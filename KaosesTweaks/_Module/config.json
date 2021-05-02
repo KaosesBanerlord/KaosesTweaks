@@ -1,0 +1,332 @@
+{
+	"BodyArmorWeightModifiers": false, /* Enables modifying BodyArmor weight */
+	"BodyArmorTier1WeightMultiplier": 1.0, /* Multiply BodyArmor Tier1 weight by the multiplier [Native : 1.0[100%]]. */
+	"BodyArmorTier2WeightMultiplier": 1.0, /* Multiply BodyArmor Tier2 weight by the multiplier [Native : 1.0[100%]]. */
+	"BodyArmorTier3WeightMultiplier": 1.0, /* Multiply BodyArmor Tier3 weight by the multiplier [Native : 1.0[100%]]. */
+	"BodyArmorTier4WeightMultiplier": 1.0, /* Multiply BodyArmor Tier4 weight by the multiplier [Native : 1.0[100%]]. */
+	"BodyArmorTier5WeightMultiplier": 1.0, /* Multiply BodyArmor Tier5 weight by the multiplier [Native : 1.0[100%]]. */
+	"BodyArmorTier6WeightMultiplier": 1.0, /* Multiply BodyArmor Tier6 weight by the multiplier [Native : 1.0[100%]]. */
+	"BodyArmorValueModifiers": false, /* Enables modifying BodyArmor price  */
+	"BodyArmorTier1PriceMultiplier": 1.0, /* Multiply BodyArmor Tier1 price by the multiplier [Native : 1.0[100%]]. */
+	"BodyArmorTier2PriceMultiplier": 1.0, /* Multiply BodyArmor Tier2 price by the multiplier [Native : 1.0[100%]]. */
+	"BodyArmorTier3PriceMultiplier": 1.0, /* Multiply BodyArmor Tier3 price by the multiplier [Native : 1.0[100%]]. */
+	"BodyArmorTier4PriceMultiplier": 1.0, /* Multiply BodyArmor Tier4 price by the multiplier [Native : 1.0[100%]]. */
+	"BodyArmorTier5PriceMultiplier": 1.0, /* Multiply BodyArmor Tier5 price by the multiplier [Native : 1.0[100%]]. */
+	"BodyArmorTier6PriceMultiplier": 1.0, /* Multiply BodyArmor Tier6 price by the multiplier [Native : 1.0[100%]]. */
+
+	"BowWeightModifiers": false, /* Enables modifying Bow weight */
+	"BowTier1WeightMultiplier": 1.0, /* Multiply Bow Tier1 weight by the multiplier [Native : 1.0[100%]]. */
+	"BowTier2WeightMultiplier": 1.0, /* Multiply Bow Tier2 weight by the multiplier [Native : 1.0[100%]]. */
+	"BowTier3WeightMultiplier": 1.0, /* Multiply Bow Tier3 weight by the multiplier [Native : 1.0[100%]]. */
+	"BowTier4WeightMultiplier": 1.0, /* Multiply Bow Tier4 weight by the multiplier [Native : 1.0[100%]]. */
+	"BowTier5WeightMultiplier": 1.0, /* Multiply Bow Tier5 weight by the multiplier [Native : 1.0[100%]]. */
+	"BowTier6WeightMultiplier": 1.0, /* Multiply Bow Tier6 weight by the multiplier [Native : 1.0[100%]]. */
+	"BowValueModifiers": false, /* Enables modifying Bow price. */
+	"BowTier1PriceMultiplier": 1.0, /* Multiply Bow Tier1 price by the multiplier [Native : 1.0[100%]]. */
+	"BowTier2PriceMultiplier": 1.0, /* Multiply Bow Tier2 price by the multiplier [Native : 1.0[100%]]. */
+	"BowTier3PriceMultiplier": 1.0, /* Multiply Bow Tier3 price by the multiplier [Native : 1.0[100%]]. */
+	"BowTier4PriceMultiplier": 1.0, /* Multiply Bow Tier4 price by the multiplier [Native : 1.0[100%]]. */
+	"BowTier5PriceMultiplier": 1.0, /* Multiply Bow Tier5 price by the multiplier [Native : 1.0[100%]]. */
+	"BowTier6PriceMultiplier": 1.0, /* Multiply Bow Tier6 price by the multiplier [Native : 1.0[100%]]. */
+
+	"CapeWeightModifiers": false, /* Enables modifying Cape weight. */
+	"CapeTier1WeightMultiplier": 1.0, /* Multiply Cape Tier1 weight by the multiplier [Native : 1.0[100%]]. */
+	"CapeTier2WeightMultiplier": 1.0, /* Multiply Cape Tier2 weight by the multiplier [Native : 1.0[100%]]. */
+	"CapeTier3WeightMultiplier": 1.0, /* Multiply Cape Tier3 weight by the multiplier [Native : 1.0[100%]]. */
+	"CapeTier4WeightMultiplier": 1.0, /* Multiply Cape Tier4 weight by the multiplier [Native : 1.0[100%]]. */
+	"CapeTier5WeightMultiplier": 1.0, /* Multiply Cape Tier5 weight by the multiplier [Native : 1.0[100%]]. */
+	"CapeTier6WeightMultiplier": 1.0, /* Multiply Cape Tier6 weight by the multiplier [Native : 1.0[100%]]. */
+	"CapeValueModifiers": false, /* Enables modifying Cape price. */
+	"CapeTier1PriceMultiplier": 1.0, /* Multiply Cape Tier1 price by the multiplier [Native : 1.0[100%]]. */
+	"CapeTier2PriceMultiplier": 1.0, /* Multiply Cape Tier2 price by the multiplier [Native : 1.0[100%]]. */
+	"CapeTier3PriceMultiplier": 1.0, /* Multiply Cape Tier3 price by the multiplier [Native : 1.0[100%]]. */
+	"CapeTier4PriceMultiplier": 1.0, /* Multiply Cape Tier4 price by the multiplier [Native : 1.0[100%]]. */
+	"CapeTier5PriceMultiplier": 1.0, /* Multiply Cape Tier5 price by the multiplier [Native : 1.0[100%]]. */
+	"CapeTier6PriceMultiplier": 1.0, /* Multiply Cape Tier6 price by the multiplier [Native : 1.0[100%]]. */
+
+	"ChestArmorWeightModifiers": false, /* Enables modifying ChestArmor weight. */
+	"ChestArmorTier1WeightMultiplier": 1.0, /* Multiply ChestArmor Tier1 weight by the multiplier [Native : 1.0[100%]]. */
+	"ChestArmorTier2WeightMultiplier": 1.0, /* Multiply ChestArmor Tier2 weight by the multiplier [Native : 1.0[100%]]. */
+	"ChestArmorTier3WeightMultiplier": 1.0, /* Multiply ChestArmor Tier3 weight by the multiplier [Native : 1.0[100%]]. */
+	"ChestArmorTier4WeightMultiplier": 1.0, /* Multiply ChestArmor Tier4 weight by the multiplier [Native : 1.0[100%]]. */
+	"ChestArmorTier5WeightMultiplier": 1.0, /* Multiply ChestArmor Tier5 weight by the multiplier [Native : 1.0[100%]]. */
+	"ChestArmorTier6WeightMultiplier": 1.0, /* Multiply ChestArmor Tier6 weight by the multiplier [Native : 1.0[100%]]. */
+	"ChestArmorValueModifiers": false, /* Enables modifying ChestArmor price. */
+	"ChestArmorTier1PriceMultiplier": 1.0, /* Multiply ChestArmor Tier1 price by the multiplier [Native : 1.0[100%]]. */
+	"ChestArmorTier2PriceMultiplier": 1.0, /* Multiply ChestArmor Tier2 price by the multiplier [Native : 1.0[100%]]. */
+	"ChestArmorTier3PriceMultiplier": 1.0, /* Multiply ChestArmor Tier3 price by the multiplier [Native : 1.0[100%]]. */
+	"ChestArmorTier4PriceMultiplier": 1.0, /* Multiply ChestArmor Tier4 price by the multiplier [Native : 1.0[100%]]. */
+	"ChestArmorTier5PriceMultiplier": 1.0, /* Multiply ChestArmor Tier5 price by the multiplier [Native : 1.0[100%]]. */
+	"ChestArmorTier6PriceMultiplier": 1.0, /* Multiply ChestArmor Tier6 price by the multiplier [Native : 1.0[100%]]. */
+
+	"CrossbowWeightModifiers": false, /* Enables modifying Crossbow weight. */
+	"CrossbowTier1WeightMultiplier": 1.0, /* Multiply Crossbow Tier1 weight by the multiplier [Native : 1.0[100%]]. */
+	"CrossbowTier2WeightMultiplier": 1.0, /* Multiply Crossbow Tier2 weight by the multiplier [Native : 1.0[100%]]. */
+	"CrossbowTier3WeightMultiplier": 1.0, /* Multiply Crossbow Tier3 weight by the multiplier [Native : 1.0[100%]]. */
+	"CrossbowTier4WeightMultiplier": 1.0, /* Multiply Crossbow Tier4 weight by the multiplier [Native : 1.0[100%]]. */
+	"CrossbowTier5WeightMultiplier": 1.0, /* Multiply Crossbow Tier5 weight by the multiplier [Native : 1.0[100%]]. */
+	"CrossbowTier6WeightMultiplier": 1.0, /* Multiply Crossbow Tier6 weight by the multiplier [Native : 1.0[100%]]. */
+	"CrossbowValueModifiers": false, /* Enables modifying Crossbow price. */
+	"CrossbowTier1PriceMultiplier": 1.0, /* Multiply Crossbow Tier1 price by the multiplier [Native : 1.0[100%]]. */
+	"CrossbowTier2PriceMultiplier": 1.0, /* Multiply Crossbow Tier2 price by the multiplier [Native : 1.0[100%]]. */
+	"CrossbowTier3PriceMultiplier": 1.0, /* Multiply Crossbow Tier3 price by the multiplier [Native : 1.0[100%]]. */
+	"CrossbowTier4PriceMultiplier": 1.0, /* Multiply Crossbow Tier4 price by the multiplier [Native : 1.0[100%]]. */
+	"CrossbowTier5PriceMultiplier": 1.0, /* Multiply Crossbow Tier5 price by the multiplier [Native : 1.0[100%]]. */
+	"CrossbowTier6PriceMultiplier": 1.0, /* Multiply Crossbow Tier6 price by the multiplier [Native : 1.0[100%]]. */
+
+	"HandArmorWeightModifiers": false, /* Enables modifying HandArmor weight. */
+	"HandArmorTier1WeightMultiplier": 1.0, /* Multiply HandArmor Tier1 weight by the multiplier [Native : 1.0[100%]]. */
+	"HandArmorTier2WeightMultiplier": 1.0, /* Multiply HandArmor Tier2 weight by the multiplier [Native : 1.0[100%]]. */
+	"HandArmorTier3WeightMultiplier": 1.0, /* Multiply HandArmor Tier3 weight by the multiplier [Native : 1.0[100%]]. */
+	"HandArmorTier4WeightMultiplier": 1.0, /* Multiply HandArmor Tier4 weight by the multiplier [Native : 1.0[100%]]. */
+	"HandArmorTier5WeightMultiplier": 1.0, /* Multiply HandArmor Tier5 weight by the multiplier [Native : 1.0[100%]]. */
+	"HandArmorTier6WeightMultiplier": 1.0, /* Multiply HandArmor Tier6 weight by the multiplier [Native : 1.0[100%]]. */
+	"HandArmorValueModifiers": false, /* Enables modifying HandArmor price. */
+	"HandArmorTier1PriceMultiplier": 1.0, /* Multiply HandArmor Tier1 price by the multiplier [Native : 1.0[100%]]. */
+	"HandArmorTier2PriceMultiplier": 1.0, /* Multiply HandArmor Tier2 price by the multiplier [Native : 1.0[100%]]. */
+	"HandArmorTier3PriceMultiplier": 1.0, /* Multiply HandArmor Tier3 price by the multiplier [Native : 1.0[100%]]. */
+	"HandArmorTier4PriceMultiplier": 1.0, /* Multiply HandArmor Tier4 price by the multiplier [Native : 1.0[100%]]. */
+	"HandArmorTier5PriceMultiplier": 1.0, /* Multiply HandArmor Tier5 price by the multiplier [Native : 1.0[100%]]. */
+	"HandArmorTier6PriceMultiplier": 1.0, /* Multiply HandArmor Tier6 price by the multiplier [Native : 1.0[100%]]. */
+
+	"HeadArmorWeightModifiers": false, /* Enables modifying HeadArmor weight. */
+	"HeadArmorTier1WeightMultiplier": 1.0, /* Multiply HeadArmor Tier1 weight by the multiplier [Native : 1.0[100%]]. */
+	"HeadArmorTier2WeightMultiplier": 1.0, /* Multiply HeadArmor Tier2 weight by the multiplier [Native : 1.0[100%]]. */
+	"HeadArmorTier3WeightMultiplier": 1.0, /* Multiply HeadArmor Tier3 weight by the multiplier [Native : 1.0[100%]]. */
+	"HeadArmorTier4WeightMultiplier": 1.0, /* Multiply HeadArmor Tier4 weight by the multiplier [Native : 1.0[100%]]. */
+	"HeadArmorTier5WeightMultiplier": 1.0, /* Multiply HeadArmor Tier5 weight by the multiplier [Native : 1.0[100%]]. */
+	"HeadArmorTier6WeightMultiplier": 1.0, /* Multiply HeadArmor Tier6 weight by the multiplier [Native : 1.0[100%]]. */
+	"HeadArmorValueModifiers": false, /* Enables modifying HeadArmor price. */
+	"HeadArmorTier1PriceMultiplier": 1.0, /* Multiply HeadArmor Tier1 price by the multiplier [Native : 1.0[100%]]. */
+	"HeadArmorTier2PriceMultiplier": 1.0, /* Multiply HeadArmor Tier2 price by the multiplier [Native : 1.0[100%]]. */
+	"HeadArmorTier3PriceMultiplier": 1.0, /* Multiply HeadArmor Tier3 price by the multiplier [Native : 1.0[100%]]. */
+	"HeadArmorTier4PriceMultiplier": 1.0, /* Multiply HeadArmor Tier4 price by the multiplier [Native : 1.0[100%]]. */
+	"HeadArmorTier5PriceMultiplier": 1.0, /* Multiply HeadArmor Tier5 price by the multiplier [Native : 1.0[100%]]. */
+	"HeadArmorTier6PriceMultiplier": 1.0, /* Multiply HeadArmor Tier6 price by the multiplier [Native : 1.0[100%]]. */
+
+	"HorseWeightModifiers": false, /* Enables modifying Horse weight. */
+	"HorseTier1WeightMultiplier": 1.0, /* Multiply Horse Tier1 weight by the multiplier [Native : 1.0[100%]]. */
+	"HorseTier2WeightMultiplier": 1.0, /* Multiply Horse Tier2 weight by the multiplier [Native : 1.0[100%]]. */
+	"HorseTier3WeightMultiplier": 1.0, /* Multiply Horse Tier3 weight by the multiplier [Native : 1.0[100%]]. */
+	"HorseTier4WeightMultiplier": 1.0, /* Multiply Horse Tier4 weight by the multiplier [Native : 1.0[100%]]. */
+	"HorseTier5WeightMultiplier": 1.0, /* Multiply Horse Tier5 weight by the multiplier [Native : 1.0[100%]]. */
+	"HorseTier6WeightMultiplier": 1.0, /* Multiply Horse Tier6 weight by the multiplier [Native : 1.0[100%]]. */
+	"HorseValueModifiers": false, /* Enables modifying Horse price. */
+	"HorseTier1PriceMultiplier": 1.0, /* Multiply Horse Tier1 price by the multiplier [Native : 1.0[100%]]. */
+	"HorseTier2PriceMultiplier": 1.0, /* Multiply Horse Tier2 price by the multiplier [Native : 1.0[100%]]. */
+	"HorseTier3PriceMultiplier": 1.0, /* Multiply Horse Tier3 price by the multiplier [Native : 1.0[100%]]. */
+	"HorseTier4PriceMultiplier": 1.0, /* Multiply Horse Tier4 price by the multiplier [Native : 1.0[100%]]. */
+	"HorseTier5PriceMultiplier": 1.0, /* Multiply Horse Tier5 price by the multiplier [Native : 1.0[100%]]. */
+	"HorseTier6PriceMultiplier": 1.0, /* Multiply Horse Tier6 price by the multiplier [Native : 1.0[100%]]. */
+
+	"HorseHarnessWeightModifiers": false, /* Enables modifying HorseHarness weight. */
+	"HorseHarnessTier1WeightMultiplier": 1.0, /* Multiply HorseHarness Tier1 weight by the multiplier [Native : 1.0[100%]]. */
+	"HorseHarnessTier2WeightMultiplier": 1.0, /* Multiply HorseHarness Tier2 weight by the multiplier [Native : 1.0[100%]]. */
+	"HorseHarnessTier3WeightMultiplier": 1.0, /* Multiply HorseHarness Tier3 weight by the multiplier [Native : 1.0[100%]]. */
+	"HorseHarnessTier4WeightMultiplier": 1.0, /* Multiply HorseHarness Tier4 weight by the multiplier [Native : 1.0[100%]]. */
+	"HorseHarnessTier5WeightMultiplier": 1.0, /* Multiply HorseHarness Tier5 weight by the multiplier [Native : 1.0[100%]]. */
+	"HorseHarnessTier6WeightMultiplier": 1.0, /* Multiply HorseHarness Tier6 weight by the multiplier [Native : 1.0[100%]]. */
+	"HorseHarnessValueModifiers": false, /* Enables modifying HorseHarness price. */
+	"HorseHarnessTier1PriceMultiplier": 1.0, /* Multiply HorseHarness Tier1 price by the multiplier [Native : 1.0[100%]]. */
+	"HorseHarnessTier2PriceMultiplier": 1.0, /* Multiply HorseHarness Tier2 price by the multiplier [Native : 1.0[100%]]. */
+	"HorseHarnessTier3PriceMultiplier": 1.0, /* Multiply HorseHarness Tier3 price by the multiplier [Native : 1.0[100%]]. */
+	"HorseHarnessTier4PriceMultiplier": 1.0, /* Multiply HorseHarness Tier4 price by the multiplier [Native : 1.0[100%]]. */
+	"HorseHarnessTier5PriceMultiplier": 1.0, /* Multiply HorseHarness Tier5 price by the multiplier [Native : 1.0[100%]]. */
+	"HorseHarnessTier6PriceMultiplier": 1.0, /* Multiply HorseHarness Tier6 price by the multiplier [Native : 1.0[100%]]. */
+
+	"LegArmorWeightModifiers": false, /* Enables modifying LegArmor weight. */
+	"LegArmorTier1WeightMultiplier": 1.0, /* Multiply LegArmor Tier1 weight by the multiplier [Native : 1.0[100%]]. */
+	"LegArmorTier2WeightMultiplier": 1.0, /* Multiply LegArmor Tier2 weight by the multiplier [Native : 1.0[100%]]. */
+	"LegArmorTier3WeightMultiplier": 1.0, /* Multiply LegArmor Tier3 weight by the multiplier [Native : 1.0[100%]]. */
+	"LegArmorTier4WeightMultiplier": 1.0, /* Multiply LegArmor Tier4 weight by the multiplier [Native : 1.0[100%]]. */
+	"LegArmorTier5WeightMultiplier": 1.0, /* Multiply LegArmor Tier5 weight by the multiplier [Native : 1.0[100%]]. */
+	"LegArmorTier6WeightMultiplier": 1.0, /* Multiply LegArmor Tier6 weight by the multiplier [Native : 1.0[100%]]. */
+	"LegArmorValueModifiers": false, /* Enables modifying LegArmor price. */
+	"LegArmorTier1PriceMultiplier": 1.0, /* Multiply LegArmor Tier1 price by the multiplier [Native : 1.0[100%]]. */
+	"LegArmorTier2PriceMultiplier": 1.0, /* Multiply LegArmor Tier2 price by the multiplier [Native : 1.0[100%]]. */
+	"LegArmorTier3PriceMultiplier": 1.0, /* Multiply LegArmor Tier3 price by the multiplier [Native : 1.0[100%]]. */
+	"LegArmorTier4PriceMultiplier": 1.0, /* Multiply LegArmor Tier4 price by the multiplier [Native : 1.0[100%]]. */
+	"LegArmorTier5PriceMultiplier": 1.0, /* Multiply LegArmor Tier5 price by the multiplier [Native : 1.0[100%]]. */
+	"LegArmorTier6PriceMultiplier": 1.0, /* Multiply LegArmor Tier6 price by the multiplier [Native : 1.0[100%]]. */
+
+	"MusketWeightModifiers": false, /* Enables modifying Musket weight. */
+	"MusketTier1WeightMultiplier": 1.0, /* Multiply Musket Tier1 weight by the multiplier [Native : 1.0[100%]]. */
+	"MusketTier2WeightMultiplier": 1.0, /* Multiply Musket Tier2 weight by the multiplier [Native : 1.0[100%]]. */
+	"MusketTier3WeightMultiplier": 1.0, /* Multiply Musket Tier3 weight by the multiplier [Native : 1.0[100%]]. */
+	"MusketTier4WeightMultiplier": 1.0, /* Multiply Musket Tier4 weight by the multiplier [Native : 1.0[100%]]. */
+	"MusketTier5WeightMultiplier": 1.0, /* Multiply Musket Tier5 weight by the multiplier [Native : 1.0[100%]]. */
+	"MusketTier6WeightMultiplier": 1.0, /* Multiply Musket Tier6 weight by the multiplier [Native : 1.0[100%]]. */
+	"MusketValueModifiers": false, /* Enables modifying Musket price. */
+	"MusketTier1PriceMultiplier": 1.0, /* Multiply Musket Tier1 price by the multiplier [Native : 1.0[100%]]. */
+	"MusketTier2PriceMultiplier": 1.0, /* Multiply Musket Tier2 price by the multiplier [Native : 1.0[100%]]. */
+	"MusketTier3PriceMultiplier": 1.0, /* Multiply Musket Tier3 price by the multiplier [Native : 1.0[100%]]. */
+	"MusketTier4PriceMultiplier": 1.0, /* Multiply Musket Tier4 price by the multiplier [Native : 1.0[100%]]. */
+	"MusketTier5PriceMultiplier": 1.0, /* Multiply Musket Tier5 price by the multiplier [Native : 1.0[100%]]. */
+	"MusketTier6PriceMultiplier": 1.0, /* Multiply Musket Tier6 price by the multiplier [Native : 1.0[100%]]. */
+
+
+	"OneHandedWeaponWeightModifiers": false, /* Enables modifying OneHandedWeapon weight. */
+	"OneHandedWeaponTier1WeightMultiplier": 1.0, /* Multiply OneHandedWeapon Tier1 weight by the multiplier [Native : 1.0[100%]]. */
+	"OneHandedWeaponTier2WeightMultiplier": 1.0, /* Multiply OneHandedWeapon Tier2 weight by the multiplier [Native : 1.0[100%]]. */
+	"OneHandedWeaponTier3WeightMultiplier": 1.0, /* Multiply OneHandedWeapon Tier3 weight by the multiplier [Native : 1.0[100%]]. */
+	"OneHandedWeaponTier4WeightMultiplier": 1.0, /* Multiply OneHandedWeapon Tier4 weight by the multiplier [Native : 1.0[100%]]. */
+	"OneHandedWeaponTier5WeightMultiplier": 1.0, /* Multiply OneHandedWeapon Tier5 weight by the multiplier [Native : 1.0[100%]]. */
+	"OneHandedWeaponTier6WeightMultiplier": 1.0, /* Multiply OneHandedWeapon Tier6 weight by the multiplier [Native : 1.0[100%]]. */
+	"OneHandedWeaponValueModifiers": false, /* Enables modifying OneHandedWeapon price. */
+	"OneHandedWeaponTier1PriceMultiplier": 1.0, /* Multiply OneHandedWeapon Tier1 price by the multiplier [Native : 1.0[100%]]. */
+	"OneHandedWeaponTier2PriceMultiplier": 1.0, /* Multiply OneHandedWeapon Tier2 price by the multiplier [Native : 1.0[100%]]. */
+	"OneHandedWeaponTier3PriceMultiplier": 1.0, /* Multiply OneHandedWeapon Tier3 price by the multiplier [Native : 1.0[100%]]. */
+	"OneHandedWeaponTier4PriceMultiplier": 1.0, /* Multiply OneHandedWeapon Tier4 price by the multiplier [Native : 1.0[100%]]. */
+	"OneHandedWeaponTier5PriceMultiplier": 1.0, /* Multiply OneHandedWeapon Tier5 price by the multiplier [Native : 1.0[100%]]. */
+	"OneHandedWeaponTier6PriceMultiplier": 1.0, /* Multiply OneHandedWeapon Tier6 price by the multiplier [Native : 1.0[100%]]. */
+
+	"PistolWeightModifiers": false, /* Enables modifying Pistol weight. */
+	"PistolTier1WeightMultiplier": 1.0, /* Multiply Pistol Tier1 weight by the multiplier [Native : 1.0[100%]]. */
+	"PistolTier2WeightMultiplier": 1.0, /* Multiply Pistol Tier2 weight by the multiplier [Native : 1.0[100%]]. */
+	"PistolTier3WeightMultiplier": 1.0, /* Multiply Pistol Tier3 weight by the multiplier [Native : 1.0[100%]]. */
+	"PistolTier4WeightMultiplier": 1.0, /* Multiply Pistol Tier4 weight by the multiplier [Native : 1.0[100%]]. */
+	"PistolTier5WeightMultiplier": 1.0, /* Multiply Pistol Tier5 weight by the multiplier [Native : 1.0[100%]]. */
+	"PistolTier6WeightMultiplier": 1.0, /* Multiply Pistol Tier6 weight by the multiplier [Native : 1.0[100%]]. */
+	"PistolValueModifiers": false, /* Enables modifying Pistol price. */
+	"PistolTier1PriceMultiplier": 1.0, /* Multiply Pistol Tier1 price by the multiplier [Native : 1.0[100%]]. */
+	"PistolTier2PriceMultiplier": 1.0, /* Multiply Pistol Tier2 price by the multiplier [Native : 1.0[100%]]. */
+	"PistolTier3PriceMultiplier": 1.0, /* Multiply Pistol Tier3 price by the multiplier [Native : 1.0[100%]]. */
+	"PistolTier4PriceMultiplier": 1.0, /* Multiply Pistol Tier4 price by the multiplier [Native : 1.0[100%]]. */
+	"PistolTier5PriceMultiplier": 1.0, /* Multiply Pistol Tier5 price by the multiplier [Native : 1.0[100%]]. */
+	"PistolTier6PriceMultiplier": 1.0, /* Multiply Pistol Tier6 price by the multiplier [Native : 1.0[100%]]. */
+
+	"PolearmWeightModifiers": false, /* Enables modifying Polearm weight. */
+	"PolearmTier1WeightMultiplier": 1.0, /* Multiply Polearm Tier1 weight by the multiplier [Native : 1.0[100%]]. */
+	"PolearmTier2WeightMultiplier": 1.0, /* Multiply Polearm Tier2 weight by the multiplier [Native : 1.0[100%]]. */
+	"PolearmTier3WeightMultiplier": 1.0, /* Multiply Polearm Tier3 weight by the multiplier [Native : 1.0[100%]]. */
+	"PolearmTier4WeightMultiplier": 1.0, /* Multiply Polearm Tier4 weight by the multiplier [Native : 1.0[100%]]. */
+	"PolearmTier5WeightMultiplier": 1.0, /* Multiply Polearm Tier5 weight by the multiplier [Native : 1.0[100%]]. */
+	"PolearmTier6WeightMultiplier": 1.0, /* Multiply Polearm Tier6 weight by the multiplier [Native : 1.0[100%]]. */
+	"PolearmValueModifiers": false, /* Enables modifying Polearm price. */
+	"PolearmTier1PriceMultiplier": 1.0, /* Multiply Polearm Tier1 price by the multiplier [Native : 1.0[100%]]. */
+	"PolearmTier2PriceMultiplier": 1.0, /* Multiply Polearm Tier2 price by the multiplier [Native : 1.0[100%]]. */
+	"PolearmTier3PriceMultiplier": 1.0, /* Multiply Polearm Tier3 price by the multiplier [Native : 1.0[100%]]. */
+	"PolearmTier4PriceMultiplier": 1.0, /* Multiply Polearm Tier4 price by the multiplier [Native : 1.0[100%]]. */
+	"PolearmTier5PriceMultiplier": 1.0, /* Multiply Polearm Tier5 price by the multiplier [Native : 1.0[100%]]. */
+	"PolearmTier6PriceMultiplier": 1.0, /* Multiply Polearm Tier6 price by the multiplier [Native : 1.0[100%]]. */
+
+	"ShieldWeightModifiers": false, /* Enables modifying Shield weight. */
+	"ShieldTier1WeightMultiplier": 1.0, /* Multiply Shield Tier1 weight by the multiplier [Native : 1.0[100%]]. */
+	"ShieldTier2WeightMultiplier": 1.0, /* Multiply Shield Tier2 weight by the multiplier [Native : 1.0[100%]]. */
+	"ShieldTier3WeightMultiplier": 1.0, /* Multiply Shield Tier3 weight by the multiplier [Native : 1.0[100%]]. */
+	"ShieldTier4WeightMultiplier": 1.0, /* Multiply Shield Tier4 weight by the multiplier [Native : 1.0[100%]]. */
+	"ShieldTier5WeightMultiplier": 1.0, /* Multiply Shield Tier5 weight by the multiplier [Native : 1.0[100%]]. */
+	"ShieldTier6WeightMultiplier": 1.0, /* Multiply Shield Tier6 weight by the multiplier [Native : 1.0[100%]]. */
+	"ShieldValueModifiers": false, /* Enables modifying Shield price. */
+	"ShieldTier1PriceMultiplier": 1.0, /* Multiply Shield Tier1 price by the multiplier [Native : 1.0[100%]]. */
+	"ShieldTier2PriceMultiplier": 1.0, /* Multiply Shield Tier2 price by the multiplier [Native : 1.0[100%]]. */
+	"ShieldTier3PriceMultiplier": 1.0, /* Multiply Shield Tier3 price by the multiplier [Native : 1.0[100%]]. */
+	"ShieldTier4PriceMultiplier": 1.0, /* Multiply Shield Tier4 price by the multiplier [Native : 1.0[100%]]. */
+	"ShieldTier5PriceMultiplier": 1.0, /* Multiply Shield Tier5 price by the multiplier [Native : 1.0[100%]]. */
+	"ShieldTier6PriceMultiplier": 1.0, /* Multiply Shield Tier6 price by the multiplier [Native : 1.0[100%]]. */
+
+	"TwoHandedWeaponWeightModifiers": false, /* Enables modifying TwoHandedWeapon weight. */
+	"TwoHandedWeaponTier1WeightMultiplier": 1.0, /* Multiply TwoHandedWeapon Tier1 weight by the multiplier [Native : 1.0[100%]]. */
+	"TwoHandedWeaponTier2WeightMultiplier": 1.0, /* Multiply TwoHandedWeapon Tier2 weight by the multiplier [Native : 1.0[100%]]. */
+	"TwoHandedWeaponTier3WeightMultiplier": 1.0, /* Multiply TwoHandedWeapon Tier3 weight by the multiplier [Native : 1.0[100%]]. */
+	"TwoHandedWeaponTier4WeightMultiplier": 1.0, /* Multiply TwoHandedWeapon Tier4 weight by the multiplier [Native : 1.0[100%]]. */
+	"TwoHandedWeaponTier5WeightMultiplier": 1.0, /* Multiply TwoHandedWeapon Tier5 weight by the multiplier [Native : 1.0[100%]]. */
+	"TwoHandedWeaponTier6WeightMultiplier": 1.0, /* Multiply TwoHandedWeapon Tier6 weight by the multiplier [Native : 1.0[100%]]. */
+	"TwoHandedWeaponValueModifiers": false, /* Enables modifying TwoHandedWeapon price. */
+	"TwoHandedWeaponTier1PriceMultiplier": 1.0, /* Multiply TwoHandedWeapon Tier1 price by the multiplier [Native : 1.0[100%]]. */
+	"TwoHandedWeaponTier2PriceMultiplier": 1.0, /* Multiply TwoHandedWeapon Tier2 price by the multiplier [Native : 1.0[100%]]. */
+	"TwoHandedWeaponTier3PriceMultiplier": 1.0, /* Multiply TwoHandedWeapon Tier3 price by the multiplier [Native : 1.0[100%]]. */
+	"TwoHandedWeaponTier4PriceMultiplier": 1.0, /* Multiply TwoHandedWeapon Tier4 price by the multiplier [Native : 1.0[100%]]. */
+	"TwoHandedWeaponTier5PriceMultiplier": 1.0, /* Multiply TwoHandedWeapon Tier5 price by the multiplier [Native : 1.0[100%]]. */
+	"TwoHandedWeaponTier6PriceMultiplier": 1.0, /* Multiply TwoHandedWeapon Tier6 price by the multiplier [Native : 1.0[100%]]. */
+
+
+	"BattleRewardsRelationShipGainModifiers": false, /* Enables modifying Relationship gain. */
+	"BattleRewardsRelationShipGainMultiplier": 1.0, /* Multiply Relationship gain  by the multiplier [Native : 1.0[100%]]. */
+	"BattleRewardsRenownGainModifiers": false, /* Enables modifying Renown gain. */
+	"BattleRewardsRenownGainMultiplier": 1.0, /* Multiply Renown gain  by the multiplier [Native : 1.0[100%]]. */
+	"BattleRewardsInfluenceGainModifiers": false, /* Enables modifying Influence gain. */
+	"BattleRewardsInfluenceGainMultiplier": 1.0, /* Multiply Influence gain  by the multiplier [Native : 1.0[100%]]. */
+	"BattleRewardsMoraleGainModifiers": false, /* Enables modifying Morale gain. */
+	"BattleRewardsMoraleGainMultiplier": 1.0, /* Multiply Morale gain  by the multiplier [Native : 1.0[100%]]. */
+	"BattleRewardsGoldLossModifiers": false, /* Enables modifying Gold Loss on defeat . */
+	"BattleRewardsGoldLossMultiplier": 1.0, /* Multiply Gold Loss on defeat by the multiplier [Native : 1.0[100%]]. */
+
+
+	"ClanAdditionalPartyLimitForTierModifiers": false, /* Enables additional Party limit per clan tier . */
+	"ClanAdditionalPartyLimitForTierValue": 0, /* Additional Party limit per clan tier [Native: 0]. */
+	"ClanAdditionaCompanionLimitForTierModifiers": false, /* Enables additional Companion limit per clan tier . */
+	"ClanAdditionalCompanionLimitForTierValue": 0, /* Additional Companion limit per clan tier [Native: 0]. */
+
+	"WorkShopBankruptcyModifiers": false, /* Enables Bankruptcy Modifiers. */
+	"WorkShopBankruptcyValue": 3, /* Days For Player to Save Workshop From Bankruptcy [Native : 3]. */
+	"WorkShopMaxWorkshopCountForPlayerModifiers": false, /* Enable Limit Modifier for workshop limit for player. */
+	"WorkShopMaxWorkshopCountForPlayerValue": 1, /* Maximum number of workshops for player native is the multiplier number times clan tier [Native : 1]. */
+
+	"CharacterLevelsPerAttributeModifiers": false, /* Enable Number of Levels Per Attribute  */
+	"CharacterLevelsPerAttributeValue": 4, /* Number of Levels Per Attribute [Native : 4]. */
+	"CharacterFocusPerLevelModifiers": false, /* Enables Focus points per level modifier. */
+	"CharacterFocusPerLevelValue": 1, /* Number of Focus points per level [Native : 1]. */
+
+
+	"PregnancyDurationModifiers": false, /* Enables Pregnancy Duration modifier. */
+	"PregnancyDurationValue": 36, /* Pregnancy Duration in days [Native : 36]. */
+	"PregnancyLaborMortalityChanceModifiers": false, /* Enables Mortality In Labor Chance modifier. */
+	"PregnancyLaborMortalityChanceValue": 0.015, /* Mortality In Labor Chance [Native : 0.015]. */
+
+	"PregnancyStillbirthChanceModifiers": false, /* Enables Stillbirth Chance modifier. */
+	"PregnancyStillbirthChanceValue": 0.01, /* Enables Stillbirth Chance modifier. */
+	"PregnancyFemaleOffspringChanceModifiers": false, /* Enables Female Child Chance modifier. */
+	"PregnancyFemaleOffspringChanceValue": 0.51, /* Female Child Chance  [Native : 0.51]. */
+	"PregnancyTwinsChanceModifiers": false, /* Enables Twins Chance modifier. */
+	"PregnancyTwinsChanceValue": 0.03, /* Twins Chance  [Native : 0.03]. */
+
+	"SmithingRefiningXpModifiers": false, /* Enable Refining Xp multiplier. */
+	"SmithingRefiningXpValue": 1.0, /* Multiply Refining Xp by the multiplier [Native : 1.0[100%]]. */
+	"SmithingSmeltingXpModifiers": false, /* Enable Smelting Xp multiplier. */
+	"SmithingSmeltingXpValue": 1.0, /* Multiply Smelting Xp by the multiplier [Native : 1.0[100%]]. */
+	"SmithingSmithingXpModifiers": false, /* Enable Smithing Xp multiplier. */
+	"SmithingSmithingXpValue": 1.0, /* Multiply Smithing Xp by the multiplier [Native : 1.0[100%]]. */
+	"SmithingEnergyDisable": false, /* Disable the energy for crafting and refining tasks [Native : false] */
+	"SmithingEnergyRefiningModifiers": false, /* Enable modify the energy used for refining. */
+	"SmithingEnergyRefiningValue": 1.0, /* Multiply the energy used for refining by the multiplier [Native : 1.0[100%]]. */
+	"SmithingEnergySmithingModifiers": false, /* Enable modify the energy used for Crafting. */
+	"SmithingEnergySmithingValue": 1.0, /* Multiply the energy used for Crafting by the multiplier [Native : 1.0[100%]]. */
+	"SmithingEnergySmeltingModifiers": false, /* Enable modify the energy used for Smelting. */
+	"SmithingEnergySmeltingValue": 1.0, /* Multiply the energy used for Smelting by the multiplier [Native : 1.0[100%]]. */
+
+
+
+	"autoLockHorses": false, /* Auto lock horses except lame horses. */
+	"autoLockFood": false, /* Auto lock all food. */
+	"autoLockIronBar1": false, /* Auto lock Crude Iron. */
+	"autoLockIronBar2": false, /* Auto lock Wrought Iron. */
+	"autoLockIronBar3": false, /* Auto lock Iron. */
+	"autoLockIronBar4": false, /* Auto lock Steel. */
+	"autoLockIronBar5": false, /* Auto lock Fine Steel. */
+	"autoLockIronBar6": false, /* Auto lock Thamaskene Steel. */
+	"autoLockIronOre": false, /* Auto lock Iron Ore . */
+	"autoLockSilverOre": false, /* Auto lock Silver Ore. */
+	"autoLockHardwood": false, /* Auto lock Hardwood. */
+	"autoLockCharcol": false, /*Auto lock Charcoal.  */
+
+
+	"armyCohesionMultipliers": true, /* Allows Cohesion modifiers. */
+	"armyCohesionBaseChange": -2, /* Base Cohesion Change for armies [Native : -2]. */
+	"armyDisableCohesionLossClanOnlyParties": false, /* Disable other cohesion loss except base for armies that are made up of a single clans parties only [Native : false]. */
+	"armyApplyMultiplerToClanOnlyParties": true, /* Apply the cohesion multiplier to armies that are made up of a single clans parties only [Native : false]. */
+	"armyCohesionLossMultiplier": 1.0, /* Multiply the cohesion loss by this multiplier [Native : 1.0[100%]].  */
+
+
+	"relationsKillingBanditsEnabled": false, /* Relation Building Killing Bandits modifiers  */
+	"GroupsOfBandits": 1, /* Number of bandit groups you must destroy before you gain relation  */
+	"RelationshipIncrease": 1, /* The base value that your relationship will increase by when it increases  */
+	"Radius": 1000, /* This is the size of the radius inside which villages and towns will be affected by the relationship increase  */
+	"SizeBonusEnabled": false, /* Enable Size bonus modifiers  */
+	"SizeBonus": 0.05, /* Multiply the Size Bonus by the number of bandits you have killed since you last gained relationship. this will then be multiplied by the base Relationship Increase to give your final increase value  */
+	"PrisonersOnly": false, /* Enable relationship bonuses only for bandits with prisoners  */
+	"IncludeBandits": false, /* Enable relationship bonuses for bandit parties  */
+	"IncludeOutlaws": false, /* Enable relationship bonuses for outlaw parties  */
+	"IncludeMafia": false /* Enable relationship bonuses for mafia parties  */
+
+}
