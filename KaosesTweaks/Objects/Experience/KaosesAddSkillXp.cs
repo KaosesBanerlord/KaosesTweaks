@@ -1,4 +1,5 @@
-﻿using KaosesTweaks.Settings;
+﻿using KaosesTweaks.Helpers;
+using KaosesTweaks.Settings;
 using KaosesTweaks.Utils;
 using System;
 using System.Collections.Generic;
@@ -53,9 +54,9 @@ namespace KaosesTweaks.Objects.Experience
                 if (_hero.IsHumanPlayerCharacter)
                 {
                     _isPlayer = _hero.IsHumanPlayerCharacter;
-                }else if (Statics.IsPlayerClan(_hero))
+                }else if (Kaoses.IsPlayerClan(_hero))
                 {
-                    _isPlayerClan = Statics.IsPlayerClan(_hero);
+                    _isPlayerClan = Kaoses.IsPlayerClan(_hero);
                 }
                 if (_hero.CharacterObject.IsHero && !_hero.IsHumanPlayerCharacter)
                 {

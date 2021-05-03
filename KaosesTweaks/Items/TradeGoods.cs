@@ -178,7 +178,7 @@ namespace KaosesTweaks.Items
         {
             if (Statics._settings.Debug)
             {
-                Ux.MessageDebug(item.Name.ToString() + " Old Value: " + item.Value.ToString() + "  New Value: " + newValue.ToString() + " using multiplier: " + multiplier);
+                IM.MessageDebug(item.Name.ToString() + " Old Value: " + item.Value.ToString() + "  New Value: " + newValue.ToString() + " using multiplier: " + multiplier);
             }
             else if (Statics._settings.LogToFile)
             {
@@ -189,7 +189,7 @@ namespace KaosesTweaks.Items
         {
             if (Statics._settings.Debug)
             {
-                Ux.MessageDebug(item.Name.ToString() + " Old Weight: " + item.Weight.ToString() + "  New Weight: " + newValue.ToString() + " using multiplier: " + multiplier);
+                IM.MessageDebug(item.Name.ToString() + " Old Weight: " + item.Weight.ToString() + "  New Weight: " + newValue.ToString() + " using multiplier: " + multiplier);
             }
             else if (Statics._settings.LogToFile)
             {

@@ -242,20 +242,20 @@ namespace KaosesTweaks.Models
                     num4++;
                 }
             }
-            Ux.MessageDebug("CalculateCohesionChangeInternal:   starvingParties: " + starvingParties.ToString()
+            IM.MessageDebug("CalculateCohesionChangeInternal:   starvingParties: " + starvingParties.ToString()
                                                                                    + "  lowMoraleParties: " + lowMoraleParties.ToString()
                                                                                    + " lowHealthyTroopsParties: " + lowHealthyTroopsParties.ToString());
             float starvingCohesion = (starvingParties + 1) / 2;
             float lowMoraleCohesion = (lowMoraleParties + 1) / 2;
             float lowHealthyTroops = (lowHealthyTroopsParties + 1) / 2;
 
-            Ux.MessageDebug("CalculateCohesionChangeInternal:   starvingCohesion: "+ starvingCohesion.ToString() 
+            IM.MessageDebug("CalculateCohesionChangeInternal:   starvingCohesion: "+ starvingCohesion.ToString() 
                                                                                    + "  lowMoraleCohesion: "+ lowMoraleCohesion.ToString() 
                                                                                    + " lowHealthyTroops: " + lowHealthyTroops.ToString());
 
             if (Statics._settings.armyCohesionMultipliers)
             {
-                Ux.MessageDebug("KAOSES CalculateCohesion :"
+                IM.MessageDebug("KAOSES CalculateCohesion :"
                     + "  armyDisableCohesionLossClanOnlyParties: " + Statics._settings.armyDisableCohesionLossClanOnlyParties.ToString()
                     + "  armyApplyMultiplerToClanOnlyParties: " + Statics._settings.armyApplyMultiplerToClanOnlyParties.ToString()
                     + "  armyContainsOtherClans: " + armyContainsOtherClans.ToString() );
@@ -279,7 +279,7 @@ namespace KaosesTweaks.Models
                     lowHealthyTroops *= Statics._settings.armyCohesionLossMultiplier;
                 }
             }
-            Ux.MessageDebug("Final Cohesion :"
+            IM.MessageDebug("Final Cohesion :"
                 + " Final starvingCohesion: " + starvingCohesion.ToString()
                 + " Final lowMoraleCohesion: " + lowMoraleCohesion.ToString()
                 + " Final lowHealthyTroops: " + lowHealthyTroops.ToString());
@@ -317,10 +317,10 @@ namespace KaosesTweaks.Models
             int num = (sign == 1) ? (army.Parties.Count - 1) : army.Parties.Count;
             int num2 = MathF.Ceiling((float)(calculatedCohesion * num + 100 * sign)) / (num + sign);
 
-            Ux.MessageDebug(" ");
-            Ux.MessageDebug("CalculateNewCohesion : " + calculatedCohesion.ToString() + "  sign: " + sign.ToString() 
+            IM.MessageDebug(" ");
+            IM.MessageDebug("CalculateNewCohesion : " + calculatedCohesion.ToString() + "  sign: " + sign.ToString() 
                 + " num: " + num.ToString() + " num2: " + num2.ToString());
-            Ux.MessageDebug(" ");
+            IM.MessageDebug(" ");
 
             if (num2 > 100)
             {

@@ -118,6 +118,13 @@ Covers the following each one can have weight and/or price increaded or decrease
 
 
 
+
+
+
+
+
+
+
 ## ChangeLog
 - 0.0.1 Initial version 
 - 0.0.2 Implemented Item modifiers
@@ -141,7 +148,8 @@ Covers the following each one can have weight and/or price increaded or decrease
       -  Fixed missing dll include 
 -0.1.3
     - Removed a logging command thatr was report to cause a crash
-
+-0.1.4 
+    - Updated MCM to be translatable
 
 
 ## Todo
@@ -155,3 +163,4 @@ Covers the following each one can have weight and/or price increaded or decrease
 ## Credits 
 - Another Chance at Marriage by Jicksaw  https://www.nexusmods.com/mountandblade2bannerlord/mods/388
 - Kill Bandits Raise Relations by Clickers2223  https://www.nexusmods.com/mountandblade2bannerlord/mods/500?tab=description
+- Bannerlord Tweaks https://www.nexusmods.com/mountandblade2bannerlord/mods/2825 mildeww Original Author Jiros updater Cebullus Current Maintainer

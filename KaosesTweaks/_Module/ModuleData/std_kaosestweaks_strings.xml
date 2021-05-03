@@ -1,0 +1,312 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<base xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema" type="string">
+	<tags>
+		<tag language="English" />
+	</tags>
+	<strings>
+    <string id="KaosesTweaksModDisplayName" text="Kaoses Tweaks" />
+    <string id="KTMCM_PriceT1" text="Price Tier1 Multiplier" />
+    <string id="KTMCM_PriceT2" text="Price Tier2 Multiplier" />
+    <string id="KTMCM_PriceT3" text="Price Tier3 Multiplier" />
+    <string id="KTMCM_PriceT4" text="Price Tier4 Multiplier" />
+    <string id="KTMCM_PriceT5" text="Price Tier5 Multiplier" />
+    <string id="KTMCM_PriceT6" text="Price Tier6 Multiplier" />
+    <string id="KTMCM_PriceT7" text="Price Tier7 Multiplier" />
+    <string id="KTMCM_WeightT1" text="Weight Tier1 Multiplier" />
+    <string id="KTMCM_WeightT2" text="Weight Tier2 Multiplier" />
+    <string id="KTMCM_WeightT3" text="Weight Tier3 Multiplier" />
+    <string id="KTMCM_WeightT4" text="Weight Tier4 Multiplier" />
+    <string id="KTMCM_WeightT5" text="Weight Tier5 Multiplier" />
+    <string id="KTMCM_WeightT6" text="Weight Tier6 Multiplier" />
+    <string id="KTMCM_WeightT7" text="Weight Tier7 Multiplier" />
+    <string id="KTMCM_ITMWT1H" text="Multiply Tier1 weight by the multiplier [Native : 1.0[100%]]." />
+    <string id="KTMCM_ITMWT2H" text="Multiply Tier2 weight by the multiplier [Native : 1.0[100%]]." />
+    <string id="KTMCM_ITMWT3H" text="Multiply Tier3 weight by the multiplier [Native : 1.0[100%]]." />
+    <string id="KTMCM_ITMWT4H" text="Multiply Tier4 weight by the multiplier [Native : 1.0[100%]]." />
+    <string id="KTMCM_ITMWT5H" text="Multiply Tier5 weight by the multiplier [Native : 1.0[100%]]." />
+    <string id="KTMCM_ITMWT6H" text="Multiply Tier6 weight by the multiplier [Native : 1.0[100%]]." />
+    <string id="KTMCM_ITMWT7H" text="Multiply Tier7 weight by the multiplier [Native : 1.0[100%]]." />
+    <string id="KTMCM_ITMPT1H" text="Multiply Tier1 price by the multiplier [Native : 1.0[100%]]." />
+    <string id="KTMCM_ITMPT2H" text="Multiply Tier2 price by the multiplier [Native : 1.0[100%]]." />
+    <string id="KTMCM_ITMPT3H" text="Multiply Tier3 price by the multiplier [Native : 1.0[100%]]." />
+    <string id="KTMCM_ITMPT4H" text="Multiply Tier4 price by the multiplier [Native : 1.0[100%]]." />
+    <string id="KTMCM_ITMPT5H" text="Multiply Tier5 price by the multiplier [Native : 1.0[100%]]." />
+    <string id="KTMCM_ITMPT6H" text="Multiply Tier6 price by the multiplier [Native : 1.0[100%]]." />
+    <string id="KTMCM_ITMPT7H" text="Multiply Tier7 price by the multiplier [Native : 1.0[100%]]." />
+    <string id="KTMCM_ItemModifiers" text="Item Modifiers" />
+    <string id="KTMCM_ItemModifiersHint" text="Enables modifying Item weight and price." />
+    <string id="KTMCM_ITMH" text="Enables modifying the weight and price." />
+    <string id="KTMCM_ITMPH" text="Enables modifying items price." />
+    <string id="KTMCM_ITMWH" text="Enables modifying items weight." />
+    <string id="KTMCM_BAM" text="BodyArmor Modifiers" />
+    <string id="=KTMCM_BAW" text="BodyArmor Weight" />
+    <string id="KTMCM_BAP" text="BodyArmor Price" />
+    <string id="KTMCM_BM" text="Bow Modifiers" />
+    <string id="KTMCM_BMW" text="Bow Weight" />
+    <string id="KTMCM_BMP" text="Bow Price" />
+    <string id="KTMCM_CM" text="Cape Modifiers" />
+    <string id="KTMCM_CMW" text="Cape Weight" />
+    <string id="KTMCM_CMP" text="Cape Price" />
+    <string id="KTMCM_CAM" text="ChestArmor Modifiers" />
+    <string id="KTMCM_CAMW" text="ChestArmor Weight" />
+    <string id="KTMCM_CAMP" text="ChestArmor Price" />
+    <string id="KTMCM_CBM" text="Crossbow Modifiers" />
+    <string id="KTMCM_CBMW" text="Crossbow Weight" />
+    <string id="KTMCM_CBMP" text="Crossbow Price" />
+    <string id="KTMCM_HAM" text="HandArmor Modifiers" />
+    <string id="KTMCM_HAMW" text="HandArmor Weight" />
+    <string id="KTMCM_HAMP" text="HandArmor Price" />
+    <string id="KTMCM_HDABM" text="HeadArmor Modifiers" />
+    <string id="KTMCM_HDAMW" text="HeadArmor Weight" />
+    <string id="KTMCM_HDAMP" text="HeadArmor Price" />
+    <string id="KTMCM_HM" text="Horse Modifiers" />
+    <string id="KTMCM_HMW" text="Horse Weight" />
+    <string id="KTMCM_HMP" text="Horse Price" />
+    <string id="KTMCM_HHM" text="HorseHarness Modifiers" />
+    <string id="KTMCM_HHMW" text="HorseHarness Weight" />
+    <string id="KTMCM_HHMP" text="HorseHarness Price" />
+    <string id="KTMCM_LAM" text="LegArmor Modifiers" />
+    <string id="KTMCM_LAMW" text="LegArmor Weight" />
+    <string id="KTMCM_LAMP" text="LegArmor Price" />
+    <string id="KTMCM_MM" text="Musket Modifiers" />
+    <string id="KTMCM_MMW" text="Musket Weight" />
+    <string id="KTMCM_MMP" text="Musket Price" />
+    <string id="KTMCM_OHBM" text="OneHandedWeapon Modifiers" />
+    <string id="KTMCM_OHMW" text="OneHandedWeapon Weight" />
+    <string id="KTMCM_OHMP" text="OneHandedWeapon Price" />
+    <string id="KTMCM_PM" text="Pistol Modifiers" />
+    <string id="KTMCM_PMW" text="Pistol Weight" />
+    <string id="KTMCM_PMP" text="Pistol Price" />
+    <string id="KTMCM_PAM" text="Polearm Modifiers" />
+    <string id="KTMCM_PAMW" text="Polearm Weight" />
+    <string id="KTMCM_PAMP" text="Polearm Price" />
+    <string id="KTMCM_SHM" text="Shield Modifiers" />
+    <string id="KTMCM_SHMW" text="Shield Weight" />
+    <string id="KTMCM_SHMP" text="Shield Price" />
+    <string id="KTMCM_THM" text="TwoHandedWeapon Modifiers" />
+    <string id="KTMCM_THMW" text="TwoHandedWeapon Weight" />
+    <string id="KTMCM_THMP" text="TwoHandedWeapon Price" />
+    <string id="KTMCM_BRM" text="Battle Reward Modifiers" />
+    <string id="KTMCM_BRMH" text="Enables modifying battle rewards." />
+    <string id="KTMCM_BRMRG" text="Relationship Gain" />
+    <string id="KTMCM_BRMRGH" text="Enables modifying Relationship gain." />
+    <string id="KTMCM_BRMRGM" text="Relationship gain Multiplier" />
+    <string id="KTMCM_BRMRGMH" text="Multiply Relationship gain  by the multiplier [Native : 1.0[100%]]." />
+    <string id="KTMCM_BRMRNG" text="Renown Gain" />
+    <string id="KTMCM_BRMRNGH" text="Enables modifying Renown gain." />
+    <string id="KTMCM_BRMRNGM" text="Renown gain Multiplier" />
+    <string id="KTMCM_BRMRNGMH" text="Multiply Renown gain  by the multiplier [Native : 1.0[100%]]." />
+    <string id="KTMCM_BRMIG" text="Influence Gain" />
+    <string id="KTMCM_BRMIGH" text="Enables modifying Influence gain." />
+    <string id="KTMCM_BRMIGM" text="Influence gain Multiplier" />
+    <string id="KTMCM_BRMIGMH" text="Multiply Influence gain  by the multiplier [Native : 1.0[100%]]." />
+    <string id="KTMCM_BRM" text="FULLTEXT" />
+    <string id="KTMCM_BRMMG" text="Morale Gain" />
+    <string id="KTMCM_BRMMGH" text="Enables modifying Morale gain." />
+    <string id="KTMCM_BRMMGM" text="Morale gain Multiplier" />
+    <string id="KTMCM_BRMMGMH" text="Multiply Morale gain  by the multiplier [Native : 1.0[100%]]." />
+    <string id="KTMCM_BRMGL" text="Gold Loss" />
+    <string id="KTMCM_BRMGLH" text="Enables modifying Gold Loss on defeat ." />
+    <string id="KTMCM_BRMGLM" text="Gold Loss Multiplier" />
+    <string id="KTMCM_BRMGLMH" text="Multiply Gold Loss on defeat by the multiplier [Native : 1.0[100%]]." />
+    <string id="KTMCM_CLM" text="Clan Modifiers" />
+    <string id="KTMCM_CLMH" text="Enables modifying clan variables." />
+    <string id="KTMCM_CLMBPL" text="Bonus Party Limit" />
+    <string id="KTMCM_CLMBPLH" text="Enables additional Party limit per clan tier ." />
+    <string id="KTMCM_CLMBPLM" text="}Bonus Party Limit Multiplier" />
+    <string id="KTMCM_CLMBPLMH" text="Additional Party limit per clan tier [Native: 0]." />
+    <string id="KTMCM_CLMCL" text="Bonus Companion Limit" />
+    <string id="KTMCM_CLMCLH" text="Enables additional Companion limit per clan tier ." />
+    <string id="KTMCM_CLMCLBC" text="Bonus Companions" />
+    <string id="KTMCM_CLMCLBCH" text="Additional Companion limit per clan tier [Native: 0]." />
+    <string id="KTMCM_CLMWS" text="WorkShop Modifiers" />
+    <string id="KTMCM_CLMWSH" text="Enables modifying WorkShop variables." />
+    <string id="KTMCM_CLMWSBRTM" text="Bankruptcy Modifier" />
+    <string id="KTMCM_CLMWSBRTMH" text="Enables Bankruptcy Modifiers." />
+    <string id="KTMCM_CLMWSBRDSM" text="Days to save" />
+    <string id="KTMCM_CLMWSBRDSMH" text="Days For Player to Save Workshop From Bankruptcy [Native : 3]." />
+    <string id="KTMCM_CLMWSL" text="Enable Limit Modifier" />
+    <string id="KTMCM_CLMWSLH" text="Enable Limit Modifier for workshop limit for player." />
+    <string id="KTMCM_CLMWSLN" text="Max number of Limit" />
+    <string id="KTMCM_CLMWSLNH" text="Maximum number of workshops for player native is the multiplier number times clan tier [Native : 1]." />
+    <string id="KTMCM_PCM" text="Character Modifiers" />
+    <string id="KTMCM_PCMH" text="Enables modifying Character variables." />
+    <string id="KTMCM_PCMLPA" text="Levels Per Attribute modifier" />
+    <string id="KTMCM_PCMLPAH" text="Enable Number of Levels Per Attribute modifier" />
+    <string id="KTMCM_PCMLPAN" text="Levels for Attribute" />
+    <string id="KTMCM_PCMLPANH" text="Number of Levels to acquire an attribute point [Native : 4]." />
+    <string id="KTMCM_PCMFP" text="Focus points modifier" />
+    <string id="KTMCM_PCMFPH" text="Enables Focus points per level modifier." />
+    <string id="KTMCM_PCMFPPL" text="Focus points per level" />
+    <string id="KTMCM_PCMFPPLH" text="Number of Focus points per level [Native : 1]." />
+    <string id="KTMCM_PM" text="Pregnancy Modifiers" />
+    <string id="KTMCM_PMH" text="Enables modifying Pregnancy variables." />
+    <string id="KTMCM_PMDD" text="Pregnancy Duration Modifier" />
+    <string id="KTMCM_PMDDH" text="Enables Pregnancy Duration modifier." />
+    <string id="KTMCM_PMDDN" text="Pregnancy Duration" />
+    <string id="KTMCM_PMDDNH" text="Pregnancy Duration in days [Native : 36]." />
+    <string id="KTMCM_PMMPL" text="Labor Mortality Chance Modifier" />
+    <string id="KTMCM_PMMPLH" text="Enables Mortality In Labor Chance modifier." />
+    <string id="KTMCM_PMMPLC" text="Labor Mortality Chance" />
+    <string id="KTMCM_PMMPLCH" text="Mortality In Labor Chance [Native : 0.015]." />
+    <string id="KTMCM_PMSB" text="Stillbirth Chance Modifier" />
+    <string id="KTMCM_PMSBH" text="Enables Stillbirth Chance modifier." />
+    <string id="KTMCM_PMSBC" text="Stillbirth Chance" />
+    <string id="KTMCM_PMSBCH" text="Stillbirth Chance  [Native : 0.01]." />
+    <string id="KTMCM_PMFO" text="Female Child Chance Modifier" />
+    <string id="KTMCM_PMFOH" text="Enables Female Child Chance modifier." />
+    <string id="KTMCM_PMFOC" text="Female Child Chance" />
+    <string id="KTMCM_PMFOCH" text="Female Child Chance  [Native : 0.51]." />
+    <string id="KTMCM_PMTO" text="Twins Chance Modifier" />
+    <string id="KTMCM_PMTOH" text="Enables Twins Chance modifier." />
+    <string id="KTMCM_PMTOC" text="Twins Chance" />
+    <string id="KTMCM_PMTOCH" text="Twins Chance  [Native : 0.03]." />
+    <string id="KTMCM_SM" text="Smithing Modifiers" />
+    <string id="KTMCM_SMH" text="Enables modifying Smithing variables." />
+    <string id="KTMCM_SMRXP" text="Refining Xp" />
+    <string id="KTMCM_SMRXPH" text="Enable Refining Xp multiplier." />
+    <string id="KTMCM_SMRXPM" text="Refining Xp" />
+    <string id="KTMCM_SMRXPMH" text="Multiply Refining Xp by the multiplier [Native : 1.0[100%]]." />
+    <string id="KTMCM_SMSXP" text="Smelting Xp" />
+    <string id="KTMCM_SMSXPH" text="Enable Smelting Xp multiplier." />
+    <string id="KTMCM_SMSXPM" text="Smelting Xp" />
+    <string id="KTMCM_SMSXPMH" text="Multiply Smelting Xp by the multiplier [Native : 1.0[100%]]." />
+    <string id="KTMCM_SMCXP" text="Crafting Xp" />
+    <string id="KTMCM_SMCXPH" text="Enable Crafting Xp multiplier." />
+    <string id="KTMCM_SMCXPM" text="Smithing Xp" />
+    <string id="KTMCM_SMCXPMH" text="Multiply Smithing Xp by the multiplier [Native : 1.0[100%]]." />
+    <string id="KTMCM_SMSE" text="Energy Disable" />
+    <string id="KTMCM_SMSEH" text="Disable the energy for crafting and refining tasks [Native : false]" />
+    <string id="KTMCM_SMECR" text="Energy Refining" />
+    <string id="KTMCM_SMECRH" text="Enable modify the energy used for refining." />
+    <string id="KTMCM_SMECRM" text="Energy Refining" />
+    <string id="KTMCM_SMECRMH" text="Multiply the energy used for refining by the multiplier [Native : 1.0[100%]]." />
+    <string id="KTMCM_SMECC" text="Energy Crafting" />
+    <string id="KTMCM_SMECCH" text="Enable modify the energy used for Crafting." />
+    <string id="KTMCM_SMECCM" text="Energy Crafting" />
+    <string id="KTMCM_SMECCMH" text="Multiply the energy used for Crafting by the multiplier [Native : 1.0[100%]]." />
+    <string id="KTMCM_SMECS" text="Energy Smelting" />
+    <string id="KTMCM_SMECSH" text="Enable modify the energy used for Smelting." />
+    <string id="KTMCM_SMECSM" text="Energy Smithing" />
+    <string id="KTMCM_SMECSMH" text="Multiply the energy used for Smelting by the multiplier [Native : 1.0[100%]]." />
+    <string id="KTMCM_AL" text="Item Auto Locks" />	
+    <string id="KTMCM_ALH" text="Allows for auto locking horses, food , and smithing materials." />	
+    <string id="KTMCM_ALHS" text="Horses" />	
+    <string id="KTMCM_ALHSH" text="Auto lock horses except lame horses." />	
+    <string id="KTMCM_ALF" text="Food" />	
+    <string id="KTMCM_ALFH" text="Auto lock all food." />	
+    <string id="KTMCM_ALIB1" text="Crude Iron" />	
+    <string id="KTMCM_ALIB1H" text="Auto lock Crude Iron." />	
+    <string id="KTMCM_ALIB2" text="Wrought Iron" />	
+    <string id="KTMCM_ALIB2H" text="Auto lock Wrought Iron." />	
+    <string id="KTMCM_ALIB3" text="Iron" />	
+    <string id="KTMCM_ALIB3H" text="Auto lock Iron." />	
+    <string id="KTMCM_ALIB4" text="Steel" />	
+    <string id="KTMCM_ALIB4H" text="Auto lock Steel." />	
+    <string id="KTMCM_ALIB5" text="Fine Steel" />	
+    <string id="KTMCM_ALIB5H" text="Auto lock Fine Steel." />	
+    <string id="KTMCM_ALIB6" text="Thamaskene Steel" />	
+    <string id="KTMCM_ALIB6H" text="Auto lock Thamaskene Steel." />	
+    <string id="KTMCM_ALIO" text="Iron Ore" />	
+    <string id="KTMCM_ALIOH" text="Auto lock Iron Ore ." />	
+    <string id="KTMCM_ALSO" text="Silver Ore" />	
+    <string id="KTMCM_ALSOH" text="Auto lock Silver Ore." />	
+    <string id="KTMCM_ALHW" text="Hardwood" />	
+    <string id="KTMCM_ALHWH" text="Auto lock Hardwood." />	
+    <string id="KTMCM_ALCC" text="Charcoal" />	
+    <string id="KTMCM_ALCCH" text="Auto lock Charcoal." />	
+    <string id="KTMCM_AM" text="Army Modifiers" />
+    <string id="KTMCM_AMH" text="Allows army modifiers." />
+    <string id="KTMCM_AMCM" text="Cohesion Modifiers" />
+    <string id="KTMCM_AMSMH" text="Allows Cohesion modifiers." />
+    <string id="KTMCM_AMCMBC" text="Base Cohesion Change" />
+    <string id="KTMCM_AMCMBCH" text="Base Cohesion Change for armies [Native : -2]." />
+    <string id="KTMCM_AMCMDCOO" text="Disable Clan Only other modifiers" />
+    <string id="KTMCM_AMCMDCOOH" text="Disable other cohesion loss except base for armies that are made up of a single clans parties only." />
+    <string id="KTMCM_AMCMCO" text="Clan Only Use Multiplier" />
+    <string id="KTMCM_AMCMCOH" text="Apply the cohesion multiplier to armies that are made up of a single clans parties only." />
+    <string id="KTMCM_AMCHMM" text="Cohesion Multiplier" />
+    <string id="KTMCM_AMCHMMH" text="Multiply the cohesion loss by this multiplier [Native : 1.0[100%]]." />
+    <string id="KTMCM_RB" text="Killing Bandits Modifiers" />
+    <string id="KTMCM_RBH" text="Relation Building Killing Bandits modifiers." />
+    <string id="KTMCM_RBKBGB" text="Groups for bonus" />
+    <string id="KTMCM_RBKBGBH" text="Number of bandit groups you must destroy before you gain relation." />
+    <string id="KTMCM_RBKBRI" text="Relationship Increase" />
+    <string id="KTMCM_RBKBRIH" text="The base value that your relationship will increase by when it increases." />
+    <string id="KTMCM_RBKBR" text="Radius" />
+    <string id="KTMCM_RBKBRH" text="This is the size of the radius inside which villages and towns will be affected by the relationship increase." />
+    <string id="KTMCM_RBKBSB" text="Size Bonus" />
+    <string id="KTMCM_RBKBSBH" text="Enable Size bonus modifiers." />
+    <string id="KTMCM_RBKBSBM" text="Size bonus Modifier" />
+    <string id="KTMCM_RBKBSBMH" text="Multiply the Size Bonus by the number of bandits you have killed since you last gained relationship. this will then be multiplied by the base Relationship Increase to give your final increase value." />
+    <string id="KTMCM_RBKBOPP" text="Only Bandits with Prisoners" />
+    <string id="KTMCM_RBKBOPPH" text="Enable relationship bonuses only for bandit parties with prisoners." />
+    <string id="KTMCM_RBKBBP" text="Bandits Parties" />
+    <string id="KTMCM_RBKBBPH" text="Enable relationship bonuses for bandit parties." />
+    <string id="KTMCM_RBKBOP" text="Outlaw Parties" />
+    <string id="KTMCM_RBKBOPH" text="Enable relationship bonuses for outlaw parties." />
+    <string id="KTMCM_RBKMGP" text="Mafia Parties" />
+    <string id="KTMCM_RBKMGPH" text="Enable relationship bonuses for mafia parties." />
+    <string id="KTMCM_XPM" text="Xp Modifiers" />
+    <string id="KTMCM_XPMH" text="Enable Xp modifiers." />
+    <string id="KTMCM_XPMSM" text="Skill Xp Modifiers" />
+    <string id="KTMCM_XPMSMH" text="Enable Skill Xp modifiers." />
+    <string id="KTMCM_XPMSMP" text="Player Skill Modifiers" />
+    <string id="KTMCM_XPMSMPH" text="Enable Player to use Skill Xp modifiers" />
+    <string id="KTMCM_XPMSMPC" text="Player Clan Skill Modifiers" />
+    <string id="KTMCM_XPMSMPCH" text="Enable Player Clan to use Skill Xp modifiers" />
+    <string id="KTMCM_XPMSMAI" text="AI Skill Modifiers" />
+    <string id="KTMCM_XPMSMAIH" text="Enable AI to use Xp modifiers." />
+    <string id="KTMCM_XPMSMID" text="Individual Skill Modifiers" />
+    <string id="KTMCM_XPMSMIDH" text="Enable Individual Skill Xp modifiers. Use this or global they don't work at same time" />
+    <string id="KTMCM_XPMSMIDA" text="Athletics Multiplier" />
+    <string id="KTMCM_XPMSMIDAH" text="Multiply Athletics skills exp gains by the multiplier [Native : 1.0[100%]]." />
+    <string id="KTMCM_XPMSMIDB" text="Bow Multiplier" />
+    <string id="KTMCM_XPMSMIDBH" text="Multiply Bow skills exp gains by the multiplier [Native : 1.0[100%]]." />
+    <string id="KTMCM_XPMSMIDC" text="Charm Multiplier" />
+    <string id="KTMCM_XPMSMIDCH" text="Multiply Charm skills exp gains by the multiplier [Native : 1.0[100%]]." />
+    <string id="KTMCM_XPMSMIDCS" text="Crafting Multiplier" />
+    <string id="KTMCM_XPMSMIDCSH" text="Multiply Crafting skills exp gains by the multiplier [Native : 1.0[100%]]." />
+    <string id="KTMCM_XPMSMIDCB" text="Crossbow Multiplier" />
+    <string id="KTMCM_XPMSMIDCBH" text="Multiply Crossbow skills exp gains by the multiplier [Native : 1.0[100%]]." />
+    <string id="KTMCM_XPMSMIDE" text="Engineering Multiplier" />
+    <string id="KTMCM_XPMSMIDEH" text="Multiply Engineering skills exp gains by the multiplier [Native : 1.0[100%]]." />
+    <string id="KTMCM_XPMSMIDL" text="Leadership Multiplier" />
+    <string id="KTMCM_XPMSMIDLH" text="Multiply Leadership skills exp gains by the multiplier [Native : 1.0[100%]]." />
+    <string id="KTMCM_XPMSMIDM" text="Medicine Multiplier" />
+    <string id="KTMCM_XPMSMIDMH" text="Multiply Medicine skills exp gains by the multiplier [Native : 1.0[100%]]." />
+    <string id="KTMCM_XPMSMIDOH" text="OneHanded Multiplier" />
+    <string id="KTMCM_XPMSMIDOHH" text="Multiply OneHanded skills exp gains by the multiplier [Native : 1.0[100%]]." />
+    <string id="KTMCM_XPMSMIDP" text="Polearm Multiplier" />
+    <string id="KTMCM_XPMSMIDPH" text="Multiply Polearm skills exp gains by the multiplier [Native : 1.0[100%]]." />
+    <string id="KTMCM_XPMSMIDR" text="Riding Multiplier" />
+    <string id="KTMCM_XPMSMIDRH" text="Multiply Riding skills exp gains by the multiplier [Native : 1.0[100%]]." />
+    <string id="KTMCM_XPMSMIDRG" text="Roguery Multiplier" />
+    <string id="KTMCM_XPMSMIDRGH" text="Multiply Roguery skills exp gains by the multiplier [Native : 1.0[100%]]." />
+    <string id="KTMCM_XPMSMIDS" text="Scouting Multiplier" />
+    <string id="KTMCM_XPMSMIDSH" text="Multiply Scouting skills exp gains by the multiplier [Native : 1.0[100%]]." />
+    <string id="KTMCM_XPMSMIDST" text="Steward Multiplier" />
+    <string id="KTMCM_XPMSMIDSTH" text="Multiply Steward skills exp gains by the multiplier [Native : 1.0[100%]]." />
+    <string id="KTMCM_XPMSMIDT" text="Tactics Multiplier" />
+    <string id="KTMCM_XPMSMIDTH" text="Multiply Tactics skills exp gains by the multiplier [Native : 1.0[100%]]." />
+    <string id="KTMCM_XPMSMIDTR" text="Throwing Multiplier" />
+    <string id="KTMCM_XPMSMIDTRH" text="Multiply Throwing skills exp gains by the multiplier [Native : 1.0[100%]]." />
+    <string id="KTMCM_XPMSMIDTS" text="Trade Multiplier" />
+    <string id="KTMCM_XPMSMIDTSH" text="Multiply Trade skills exp gains by the multiplier [Native : 1.0[100%]]." />
+    <string id="KTMCM_XPMSMIDTHW" text="TwoHanded Multiplier" />
+    <string id="KTMCM_XPMSMIDTHWH" text="Multiply TwoHanded skills exp gains by the multiplier [Native : 1.0[100%]]." />
+    <string id="KTMCM_XPMSMGS" text="Global Skill Modifiers" />
+    <string id="KTMCM_XPMSMGSH" text="Enable Global Skill Xp modifiers. Use this or global they don't work at same time" />
+    <string id="KTMCM_XPMSMGSM" text="Global Multiplier" />
+    <string id="KTMCM_XPMSMGSMH" text="Multiply skills exp gains by the Global multiplier [Native : 1.0[100%]]." />
+    <string id="KTMCM_XPMLR" text="Learning Rate Modifiers" />
+    <string id="KTMCM_XPMLRH" text="Enable Learning Rate modifiers." />
+    <string id="KTMCM_XPMLRM" text="Global Multiplier" />
+    <string id="KTMCM_XPMLRMH" text="Multiply Learning Rate by the Global multiplier [Native : 1.0[100%]]." />
+    <string id="KTMCM_XPMMPF" text="Party Food Modifiers" />
+    <string id="KTMCM_XPMMPFH" text="Enable Party food consumption modifiers." />
+    <string id="KTMCM_XPMMPFM" text="Party Food Multiplier" />
+    <string id="KTMCM_XPMMPFMH" text="Multiply Party food consumption by the multiplier [Native : 1.0[100%]]." />
+	</strings>
+</base>
