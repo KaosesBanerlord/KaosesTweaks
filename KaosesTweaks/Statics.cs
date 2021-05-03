@@ -8,7 +8,7 @@ namespace KaosesTweaks
 {
     public static class Statics
     {
-        public static ISettingsProviderInterface? _settings;
+        public static MCMSettings? _settings;
         public const string ModuleFolder = "KaosesTweaks";
         public const string InstanceID = ModuleFolder;
         public const string DisplayName = "Kaoses Tweaks";

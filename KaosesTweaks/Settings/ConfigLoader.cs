@@ -12,7 +12,7 @@ namespace KaosesTweaks.Settings
         public static void LoadConfig()
         {
             BuildVariables();
-            LoadModConfigFile();
+            //LoadModConfigFile();
             ChechMCMProvider();
             if (Statics._settings is null)
             {
@@ -27,12 +27,13 @@ namespace KaosesTweaks.Settings
         {
             IsMCMLoaded();
             CheckMcmConfig();
-            CheckModConfig();
+            //CheckModConfig();
         }
 
 
         private static void LoadModConfigFile()
         {
+/*
             Settings.Instance = new Settings();
             if (Settings.Instance is not null)
             {
@@ -50,9 +51,10 @@ namespace KaosesTweaks.Settings
                     Settings.Instance = config;
                 }
             }
-            Statics._settings = Settings.Instance;
-
+            Statics._settings = Settings.Instance;*/
         }
+
+
         private static void ChechMCMProvider()
         {
             if (Statics.MCMModuleLoaded)
@@ -74,7 +76,7 @@ namespace KaosesTweaks.Settings
             }
         }
 
-        private static void IsMCMLoaded(bool overrideSettings = true)
+        private static void IsMCMLoaded()
         {
             var modnames = Utilities.GetModulesNames().ToList();
             if (modnames.Contains("Bannerlord.MBOptionScreen"))// && !overrideSettings

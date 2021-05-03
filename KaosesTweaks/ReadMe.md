@@ -150,7 +150,9 @@ Covers the following each one can have weight and/or price increaded or decrease
     - Removed a logging command thatr was report to cause a crash
 -0.1.4 
     - Updated MCM to be translatable
-
+-0.1.5 
+    - Updated and mage MCM a required mod removed soft dependency
+- 
 
 ## Todo
 - test workshop model

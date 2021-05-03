@@ -13,7 +13,7 @@ namespace KaosesTweaks.Objects.Experience
 {
     public class KaosesAddSkillXp
     {
-        protected ISettingsProviderInterface? _settings;
+        protected MCMSettings? _settings;
         protected Hero _hero;
         protected bool _isPlayerClan = false;
         protected bool _isPlayer = false;

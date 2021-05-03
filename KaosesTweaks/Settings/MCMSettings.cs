@@ -13,7 +13,7 @@ namespace KaosesTweaks.Settings
 {
     //public class MCMSettings : AttributePerSaveSettings<MCMSettings>, ISettingsProviderInterface
     //public class MCMSettings : AttributeGlobalSettings<MCMSettings>, ISettingsProviderInterface 
-    public class MCMSettings : AttributeGlobalSettings<MCMSettings>, ISettingsProviderInterface
+    public class MCMSettings : AttributeGlobalSettings<MCMSettings>//, ISettingsProviderInterface
     {
         public override string Id => Statics.InstanceID;
 
