@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Engine;
 
-namespace KaosesTweaks.Helpers
+namespace KaosesTweaks.Common
 {
     class Kaoses
     {

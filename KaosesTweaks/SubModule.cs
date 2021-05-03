@@ -1,7 +1,7 @@
 ﻿using HarmonyLib;
 using KaosesTweaks.Behaviors;
 using KaosesTweaks.Event;
-using KaosesTweaks.Helpers;
+using KaosesTweaks.Common;
 using KaosesTweaks.Models;
 using KaosesTweaks.Settings;
 using KaosesTweaks.Utils;
@@ -15,6 +15,9 @@ using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
 using static TaleWorlds.Core.ItemObject;
+using KaosesTweaks.BTTweaks;
+using System.Text;
+using System.Linq;
 
 namespace KaosesTweaks
 {
@@ -111,22 +114,14 @@ namespace KaosesTweaks
         {
             base.OnGameStart(game, gameStarter);
 
-#pragma warning disable CS8604 // Possible null reference argument.
-            AddModels(gameStarter: gameStarter as CampaignGameStarter);
-#pragma warning restore CS8604 // Possible null reference argument.
 
             if (game.GameType is Campaign)
             {
                 CampaignGameStarter campaignGameStarter = (CampaignGameStarter)gameStarter;
-                //campaignGameStarter.LoadGameTexts(BasePath.Name + "Modules/" + Statics.ModuleFolder + "/ModuleData/module_strings.xml");
-                campaignGameStarter.AddModel(new KaosesBattleRewardModel());
-                campaignGameStarter.AddModel(new KaosesCharacterDevelopmentModel());
-                campaignGameStarter.AddModel(new KaosesClanTierModel());
-                campaignGameStarter.AddModel(new KaosesPregnancyModel());
-                campaignGameStarter.AddModel(new KaosesSmithingModel());
-                campaignGameStarter.AddModel(new KaosesWorkshopModel());
-                campaignGameStarter.AddModel(new KaosesArmyManagementCalculationModel());
-                campaignGameStarter.AddModel(new KaosesMobilePartyFoodConsumptionModel());
+
+                #pragma warning disable CS8604 // Possible null reference argument.
+                AddModels(campaignGameStarter);
+                #pragma warning restore CS8604 // Possible null reference argument.
 
 
                 PlayerBattleEndEventListener playerBattleEndEventListener = new PlayerBattleEndEventListener();
@@ -137,7 +132,7 @@ namespace KaosesTweaks
 
                 try
                 {
-                    //campaignGameStarter.AddBehavior(new ChangeSettlementCulture());
+                    campaignGameStarter.AddBehavior(new ChangeSettlementCulture());
                 }
                 catch (Exception ex)
                 {
@@ -157,6 +152,20 @@ namespace KaosesTweaks
         }
 
 
+        public override bool DoLoading(Game game)
+        {
+            if (Campaign.Current != null && MCMSettings.Instance is { } settings)
+            {
+                if (settings.PrisonerImprisonmentTweakEnabled)
+                    PrisonerImprisonmentTweak.Apply(Campaign.Current);
+                if (settings.DailyTroopExperienceTweakEnabled)
+                    DailyTroopExperienceTweak.Apply(Campaign.Current);
+                // 1.5.7.2 - Disable until we understand main quest changes.
+                //if (settings.TweakedConspiracyQuestTimerEnabled)
+                //    BTConspiracyQuestTimerTweak.Apply(Campaign.Current);
+            }
+            return base.DoLoading(game);
+        }
 
         protected override void OnSubModuleUnloaded()
         {
@@ -180,49 +189,107 @@ namespace KaosesTweaks
             base.OnMissionBehaviourInitialize(mission);
         }
 
-        private void AddModels(CampaignGameStarter gameStarter)
+        private void AddModels(CampaignGameStarter campaignGameStarter)
         {
-/*
-            if (gameStarter != null && BannerlordTweaksSettings.Instance is { } settings)
+
+            if (campaignGameStarter != null && MCMSettings.Instance is { } settings)
             {
-                if (settings.TroopExperienceTweakEnabled || settings.ArenaHeroExperienceMultiplierEnabled || settings.TournamentHeroExperienceMultiplierEnabled)
-                    gameStarter.AddModel(new TweakedCombatXpModel());
-                if (settings.MaxWorkshopCountTweakEnabled || settings.WorkshopBuyingCostTweakEnabled || settings.WorkshopEffectivnessEnabled)
-                    gameStarter.AddModel(new TweakedWorkshopModel());
-                if (settings.PartiesLimitTweakEnabled || settings.CompanionLimitTweakEnabled || settings.BalancingPartyLimitTweaksEnabled)
-                    gameStarter.AddModel(new TweakedClanTierModel());
+                if (settings.MCMClanModifiers)
+                {
+                    campaignGameStarter.AddModel(new KaosesClanTierModel());
+                }
+                if (settings.MCMArmy)
+                {
+                    campaignGameStarter.AddModel(new KaosesArmyManagementCalculationModel());
+                }
+                if (settings.MCMBattleRewardModifiers)
+                {
+                    campaignGameStarter.AddModel(new KaosesBattleRewardModel());
+                }
+                if (settings.MCMCharacterDevlopmentModifiers)
+                {
+                    campaignGameStarter.AddModel(new KaosesCharacterDevelopmentModel());
+                }
+                if (settings.MCMPregnancyModifiers)
+                {
+                    campaignGameStarter.AddModel(new KaosesPregnancyModel());
+                }
+                if (settings.MCMSmithingModifiers)
+                {
+                    campaignGameStarter.AddModel(new KaosesSmithingModel());
+                }
+                if (settings.MCMSmithingModifiers)
+                {
+                    campaignGameStarter.AddModel(new KaosesMobilePartyFoodConsumptionModel());
+                }
+                if (settings.DifficultyTweakEnabled)
+                {
+                    campaignGameStarter.AddModel(new BTDifficultyModel());
+                }
                 if (settings.SettlementMilitiaEliteSpawnRateBonusEnabled)
-                    gameStarter.AddModel(new TweakedSettlementMilitiaModel());
-                if (settings.SiegeTweaksEnabled)
-                    gameStarter.AddModel(new TweakedSiegeEventModel());
-                if (settings.PregnancyTweaksEnabled)
-                    gameStarter.AddModel(new TweakedPregnancyModel());
+                {
+                    campaignGameStarter.AddModel(new BTSettlementMilitiaModel());
+                }
                 if (settings.AgeTweaksEnabled)
                 {
-                    TweakedAgeModel model = new();
+                    BTAgeModel model = new();
                     List<string> configErrors = model.GetConfigErrors().ToList();
-                    if (configErrors.Any())
-                    {
-                        StringBuilder sb = new();
-                        sb.AppendLine("There is a configuration error in the \'Age\' tweaks from Bannerlord Tweaks.");
-                        sb.AppendLine("Please check the below errors and fix the age settings in the settings menu:");
-                        sb.AppendLine();
-                        foreach (var e in configErrors)
-                            sb.AppendLine(e);
-                        sb.AppendLine();
-                        sb.AppendLine("The age tweaks will not be applied until these errors have been resolved.");
-                        sb.Append("Note that this is only a warning message and not a crash.");
+                    
+                                        if (configErrors.Any())
+                                        {
+                                            StringBuilder sb = new();
+                                            sb.AppendLine("There is a configuration error in the \'Age\' tweaks from Bannerlord Tweaks.");
+                                            sb.AppendLine("Please check the below errors and fix the age settings in the settings menu:");
+                                            sb.AppendLine();
+                                            foreach (var e in configErrors)
+                                                sb.AppendLine(e);
+                                            sb.AppendLine();
+                                            sb.AppendLine("The age tweaks will not be applied until these errors have been resolved.");
+                                            sb.Append("Note that this is only a warning message and not a crash.");
 
-                        MessageBox.Show(sb.ToString(), "Configuration Error in Bannerlord Tweaks");
-                    }
+                                            MessageBox.Show(sb.ToString(), "Configuration Error in Bannerlord Tweaks");
+                                        }
                     else
-                        gameStarter.AddModel(new TweakedAgeModel());
+                    {
+                        campaignGameStarter.AddModel(new BTAgeModel());
+                    }
+
                 }
-                if (settings.AttributeFocusPointTweakEnabled)
-                    gameStarter.AddModel(new TweakedCharacterDevelopmentModel());
-                if (settings.DifficultyTweakEnabled)
-                    gameStarter.AddModel(new TweakedDifficultyModel());
-            }*/
+                if (settings.SiegeTweaksEnabled)
+                {
+                    campaignGameStarter.AddModel(new BTSiegeEventModel());
+                }
+                if (settings.MaxWorkshopCountTweakEnabled || settings.WorkshopBuyingCostTweakEnabled || settings.WorkshopEffectivnessEnabled)
+                {
+                    campaignGameStarter.AddModel(new BTWorkshopModel());
+                }
+                if (settings.MCMWorkShopModifiers)
+                {
+                    //campaignGameStarter.AddModel(new KaosesWorkshopModel());
+                }
+
+
+
+
+
+
+
+
+
+                //if (settings.TroopExperienceTweakEnabled || settings.ArenaHeroExperienceMultiplierEnabled || settings.TournamentHeroExperienceMultiplierEnabled)
+                //campaignGameStarter.AddModel(new TweakedCombatXpModel());
+                //
+
+
+                //if (settings.PartiesLimitTweakEnabled || settings.CompanionLimitTweakEnabled || settings.BalancingPartyLimitTweaksEnabled)
+                //gameStarter.AddModel(new TweakedClanTierModel());
+
+
+                //if (settings.MCMPregnancyModifiers)
+                //campaignGameStarter.AddModel(new TweakedPregnancyModel());
+                //if (settings.AttributeFocusPointTweakEnabled)
+                //campaignGameStarter.AddModel(new TweakedCharacterDevelopmentModel());
+            }
         }
 
 

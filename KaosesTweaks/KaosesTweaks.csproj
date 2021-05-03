@@ -263,4 +263,8 @@
     <Folder Include="_Module\bin\Win64_Shipping_Client\" />
     <Folder Include="_Module\ModuleData\Languages\" />
   </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\.editorconfig" Link=".editorconfig" />
+  </ItemGroup>
 </Project>

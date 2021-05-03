@@ -151,14 +151,17 @@ Covers the following each one can have weight and/or price increaded or decrease
 -0.1.4 
     - Updated MCM to be translatable
 -0.1.5 
-    - Updated and mage MCM a required mod removed soft dependency
-- 
+    - Updated and made MCM a required mod removed soft dependency
+- 0.2.0
+    - Intergrated BannerlordTweaks Settings
+    - added BT todo AI party limits same as player *untested
+    - added per tier multiplier for custom spawn parties *untested
 
 ## Todo
 - test workshop model
-- add learning rate multipliers character development
-- add xp multipliers ??? 
 - 
+-  
+- added the todo AI party limits same as player
 
 
 

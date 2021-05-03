@@ -1,5 +1,8 @@
-﻿using KaosesTweaks.Utils;
+﻿using Helpers;
+using KaosesTweaks.Settings;
+using KaosesTweaks.Utils;
 using System;
+using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.SandBox.GameComponents;
 
@@ -83,22 +86,61 @@ namespace KaosesTweaks.Models
             }
         }
 
-        // Token: 0x06002C6F RID: 11375 RVA: 0x000AC6E3 File Offset: 0x000AA8E3
-        private bool IsHeroAgeSuitableForPregnancy(Hero hero)
-        {
-            return hero.Age >= 18f && hero.Age <= 45f;
-        }
 
-        // Token: 0x06002C70 RID: 11376 RVA: 0x000AC704 File Offset: 0x000AA904
         public override float GetDailyChanceOfPregnancyForHero(Hero hero)
         {
-            float result = 0f;
-            if (hero.Spouse != null && this.IsHeroAgeSuitableForPregnancy(hero))
+            if (hero == null) throw new ArgumentNullException(nameof(hero));
+
+            if (MCMSettings.Instance is { } settings && hero != null)
             {
-                result = (1.2f - (hero.Age - 18f) * 0.04f) / (float)Math.Pow((double)(hero.Children.Count + 1), 2.0) * 0.2f;
+                if (!settings.DailyChancePregnancyTweakEnabled)
+                    return base.GetDailyChanceOfPregnancyForHero(hero);
+
+                float num = 0f;
+                if (settings.PlayerCharacterInfertileEnabled && HeroIsMainOrSpouseOfMain(hero))
+                {
+                    return num;
+                }
+
+                if (hero.Children != null && hero.Children.Any() && hero.Children.Count >= MCMSettings.Instance.MaxChildren)
+                {
+                    return num;
+                }
+
+                if (hero != null && hero.Spouse != null && IsHeroAgeSuitableForPregnancy(hero))
+                {
+                    ExplainedNumber bonuses = new ExplainedNumber(1f, false);
+                    PerkHelper.AddPerkBonusForCharacter(DefaultPerks.Medicine.PerfectHealth, hero.Clan.Leader.CharacterObject, true, ref bonuses);
+                    num = (float)((6.9 - ((double)hero.Age - settings.MinPregnancyAge) * 0.2) * 0.02) / ((hero.Children!.Count + 1) * 0.2f) * bonuses.ResultNumber;
+                }
+
+                if (hero!.Clan == Hero.MainHero.Clan)
+                    num *= settings.ClanFertilityBonus;
+
+                return num;
             }
-            return result;
+            return base.GetDailyChanceOfPregnancyForHero(hero);
         }
+
+        private bool IsHeroAgeSuitableForPregnancy(Hero hero)
+        {
+            if (!hero.IsFemale)
+                return true;
+
+            return (double)hero.Age >= MCMSettings.Instance!.MinPregnancyAge && (double)hero.Age <= MCMSettings.Instance!.MaxPregnancyAge;
+        }
+
+        private bool HeroIsMainOrSpouseOfMain(Hero hero)
+        {
+            if (hero == Hero.MainHero)
+                return true;
+
+            if (hero.Spouse == Hero.MainHero)
+                return true;
+
+            return false;
+        }
+
 
         // Token: 0x04000ED4 RID: 3796
         private const int MinPregnancyAge = 18;

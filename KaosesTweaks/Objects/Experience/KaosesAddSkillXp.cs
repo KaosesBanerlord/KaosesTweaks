@@ -1,4 +1,4 @@
-﻿using KaosesTweaks.Helpers;
+﻿using KaosesTweaks.Common;
 using KaosesTweaks.Settings;
 using KaosesTweaks.Utils;
 using System;
