@@ -8,7 +8,7 @@ namespace KaosesTweaks.Patches
 {
 
     [HarmonyPatch(typeof(DefaultVillageProductionCalculatorModel), "CalculateDailyFoodProductionAmount")]
-    class CalculateDailyFoodProductionAmountPatch
+    class BTCalculateDailyFoodProductionAmountPatch
     {
         static void Postfix(Village village, ref float __result)
         {

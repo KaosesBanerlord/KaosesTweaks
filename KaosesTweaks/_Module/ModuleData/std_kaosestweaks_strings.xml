@@ -384,15 +384,7 @@
     <!-- BT Strings -->
 
 		<string id="BT_Settings_000000" text="Battle Tweaks" />
-			<string id="BT_Settings_000100" text="Battle Renown, Influence, Morale Tweaks" />
-			<string id="BT_Settings_000100_Desc" text="Applies the set multiplier to renown, influence and morale gain from battles (applies to the player only)." />
-				<string id="BT_Settings_000101" text="Battle Renown Amount"/>
-				<string id="BT_Settings_000101_Desc" text="Native value is 100%. The amount of renown you receive from a battle is multiplied by this value." />
-				<string id="BT_Settings_000102" text="Battle Influence Amount" />
-				<string id="BT_Settings_000102_Desc" text="Native value is 100%. The amount of influence you receive from a battle is multiplied by this value." />
-				<string id="BT_Settings_000103" text="Battle Morale Amount" />
-				<string id="BT_Settings_000103_Desc" text="Native value is 100%. The amount of morale you receive from a battle is multiplied by this value." />
-				<string id="BT_Settings_000104" text="Also Apply To AI" />
+		<string id="BT_Settings_000104" text="Also Apply To AI" />
 				<string id="BT_Settings_000104_Desc" text="Applies the renown, influence and morale modifiers to AI parties." />
 				<string id="BT_Settings_000105" text="Show Calculation Message" />
 				<string id="BT_Settings_000105_Desc" text="Shows detailed calculation for renown, influence and morale tweaks in message log." />

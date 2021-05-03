@@ -19,7 +19,6 @@ namespace KaosesTweaks.Models
             {
                 if (Statics._settings.PregnancyDurationModifiers)
                 {
-                    //Logging.Lm("New Duration: "+ Statics._settings.PregnancyDurationValue.ToString());
                     return Statics._settings.PregnancyDurationValue;
                 }
                 return 36f;
@@ -36,6 +35,9 @@ namespace KaosesTweaks.Models
                 {
                     //Logging.Lm("New MortalityProbabilityInLabor: " + Statics._settings.PregnancyLaborMortalityChanceValue.ToString());
                     return Statics._settings.PregnancyLaborMortalityChanceValue;
+                }else if (Statics._settings.NoMaternalMortalityTweakEnabled)
+                {
+                    return 0.0f;
                 }
                 return 0.015f;
             }
@@ -51,6 +53,9 @@ namespace KaosesTweaks.Models
                 {
                     //Logging.Lm("New StillbirthProbability: " + Statics._settings.PregnancyStillbirthChanceValue.ToString());
                     return Statics._settings.PregnancyStillbirthChanceValue;
+                }else if (Statics._settings.NoStillbirthsTweakEnabled)
+                {
+                    return 0.0f;
                 }
                 return 0.01f;
             }

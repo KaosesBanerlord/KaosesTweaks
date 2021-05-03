@@ -25,14 +25,11 @@ namespace KaosesTweaks
     {
 
         /* Another chance at marriage */
-
         public static Dictionary<Hero, CampaignTime> LastAttempts;
         public static readonly FastInvokeHandler RemoveUnneededPersuasionAttemptsHandler =
         HarmonyLib.MethodInvoker.GetHandler(AccessTools.Method(typeof(RomanceCampaignBehavior), "RemoveUnneededPersuasionAttempts"));
         private Harmony _harmony;
         /* Another chance at marriage */
-
-
 
 
         protected override void OnBeforeInitialModuleScreenSetAsRoot()
@@ -71,9 +68,9 @@ namespace KaosesTweaks
 
 
 
+        // Called 4th after choosing (Resume Game, Campaign, Custom Battle) from the main menu.
         public override void OnGameInitializationFinished(Game game)
         {
-            // Called 4th after choosing (Resume Game, Campaign, Custom Battle) from the main menu.
             base.OnGameInitializationFinished(game);
             Campaign gameType = game.GameType as Campaign;
             if (!(gameType is Campaign))
@@ -81,18 +78,9 @@ namespace KaosesTweaks
                 return;
             }
 
-            if (gameType != null)
+            if (gameType != null && Statics._settings is { } settings && settings.PrisonerImprisonmentTweakEnabled) //(settings.EnableMissingHeroFix && 
             {
-                MBReadOnlyList<ItemObject> ItemsList = gameType.Items;
-                new KaosesItemTweaks(gameType.Items);
-            }
-
-            //~ BT
-
-/*
-            if (Campaign.Current != null && BannerlordTweaksSettings.Instance is { } settings && (settings.EnableMissingHeroFix && settings.PrisonerImprisonmentTweakEnabled))
-            {
-
+                //~ BT
                 try
                 {
                     CampaignEvents.DailyTickEvent.AddNonSerializedListener(this, delegate
@@ -102,18 +90,21 @@ namespace KaosesTweaks
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Error Initialising Missing Hero Fix:\n\n{ex.ToStringFull()}");
+                    MessageBox.Show($":\n\n{ex.ToStringFull()}");
                 }
-            }*/
 
-            //~ BT
+            }
+
+            if (gameType != null && Statics._settings.MCMItemModifiers)
+            {
+                new KaosesItemTweaks(gameType.Items);
+            }
 
         }
 
         protected override void OnGameStart(Game game, IGameStarter gameStarter)
         {
             base.OnGameStart(game, gameStarter);
-
 
             if (game.GameType is Campaign)
             {
@@ -132,6 +123,12 @@ namespace KaosesTweaks
 
                 try
                 {
+                    /* Another chance at marriage */
+                    LastAttempts = new Dictionary<Hero, CampaignTime>();
+                    /* Another chance at marriage */
+                    campaignGameStarter.CampaignBehaviors.Add(new AnotherChanceBehavior());
+                    /* Another chance at marriage */
+                    //~BT
                     campaignGameStarter.AddBehavior(new ChangeSettlementCulture());
                 }
                 catch (Exception ex)
@@ -139,13 +136,6 @@ namespace KaosesTweaks
                     MessageBox.Show($"Error Initialising Culture Changer:\n\n{ex.ToStringFull()}");
                 }
 
-                //~BT
-
-                /* Another chance at marriage */
-                LastAttempts = new Dictionary<Hero, CampaignTime>();
-                /* Another chance at marriage */
-                campaignGameStarter.CampaignBehaviors.Add(new AnotherChanceBehavior());
-                /* Another chance at marriage */
 
 
             }
@@ -174,10 +164,7 @@ namespace KaosesTweaks
 
         public override void OnGameEnd(Game game)
         {
-
-            /* Another chance at marriage */
             _harmony?.UnpatchAll(Statics.HarmonyId);
-            /* Another chance at marriage */
         }
 
 
@@ -204,7 +191,7 @@ namespace KaosesTweaks
                 }
                 if (settings.MCMBattleRewardModifiers)
                 {
-                    campaignGameStarter.AddModel(new KaosesBattleRewardModel());
+                    //campaignGameStarter.AddModel(new KaosesBattleRewardModel());
                 }
                 if (settings.MCMCharacterDevlopmentModifiers)
                 {
@@ -263,32 +250,14 @@ namespace KaosesTweaks
                 {
                     campaignGameStarter.AddModel(new BTWorkshopModel());
                 }
-                if (settings.MCMWorkShopModifiers)
+                if (settings.TroopExperienceTweakEnabled || settings.ArenaHeroExperienceMultiplierEnabled || settings.TournamentHeroExperienceMultiplierEnabled)
+                {
+                    campaignGameStarter.AddModel(new BTCombatXpModel());
+                }
+                if (settings.MCMAutoLocks)
                 {
                     //campaignGameStarter.AddModel(new KaosesWorkshopModel());
                 }
-
-
-
-
-
-
-
-
-
-                //if (settings.TroopExperienceTweakEnabled || settings.ArenaHeroExperienceMultiplierEnabled || settings.TournamentHeroExperienceMultiplierEnabled)
-                //campaignGameStarter.AddModel(new TweakedCombatXpModel());
-                //
-
-
-                //if (settings.PartiesLimitTweakEnabled || settings.CompanionLimitTweakEnabled || settings.BalancingPartyLimitTweaksEnabled)
-                //gameStarter.AddModel(new TweakedClanTierModel());
-
-
-                //if (settings.MCMPregnancyModifiers)
-                //campaignGameStarter.AddModel(new TweakedPregnancyModel());
-                //if (settings.AttributeFocusPointTweakEnabled)
-                //campaignGameStarter.AddModel(new TweakedCharacterDevelopmentModel());
             }
         }
 
@@ -296,11 +265,10 @@ namespace KaosesTweaks
 
         protected override void OnApplicationTick(float dt)
         {
-/*
-            if (Campaign.Current != null && BannerlordTweaksSettings.Instance is { } settings2 && settings2.CampaignSpeed != 4)
+            if (Campaign.Current != null && MCMSettings.Instance is { } settings2 && settings2.CampaignSpeed != 4)
             {
                 Campaign.Current.SpeedUpMultiplier = settings2.CampaignSpeed;
-            }*/
+            }
         }
         //~ BT
 

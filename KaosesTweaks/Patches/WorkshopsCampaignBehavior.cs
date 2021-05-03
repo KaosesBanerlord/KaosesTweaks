@@ -3,6 +3,7 @@ using KaosesTweaks.Settings;
 using System;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.SandBox.CampaignBehaviors;
+using TaleWorlds.CampaignSystem.SandBox.GameComponents;
 using TaleWorlds.Core;
 
 
@@ -12,7 +13,6 @@ namespace KaosesTweaks.Patches
     [HarmonyPatch(typeof(WorkshopsCampaignBehavior), "ProduceOutput")]
     public class ProductionOutputPatch
     {
-
         private static bool Prefix(ItemObject outputItem, Town town, Workshop workshop, int count, bool doNotEffectCapital, out int __state)
         {
             if (Campaign.Current.GameStarted && !doNotEffectCapital)
@@ -66,6 +66,7 @@ namespace KaosesTweaks.Patches
                 return true;
             }
         }
+
         private static void Postfix(ItemCategory productionInput, Town town, Workshop workshop, bool doNotEffectCapital, int __state)
         {
 
@@ -78,4 +79,19 @@ namespace KaosesTweaks.Patches
         }
         static bool Prepare() => MCMSettings.Instance is { } settings && settings.EnableWorkshopBuyTweak;
     }
+
+
+/*
+    [HarmonyPatch(typeof(DefaultWorkshopModel), "DaysForPlayerSaveWorkshopFromBankruptcy")]
+    public class DaysForPlayerSaveWorkshopFromBankruptcyPatch
+    {
+        private static void Postfix(ref int __result)
+        {
+            if (MCMSettings.Instance is { } settings && settings.WorkShopBankruptcyModifiers)
+            {
+                __result = settings.WorkShopBankruptcyValue;
+            }
+        }
+        static bool Prepare() => MCMSettings.Instance is { } settings && settings.WorkShopBankruptcyModifiers;
+    }*/
 }

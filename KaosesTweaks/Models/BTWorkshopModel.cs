@@ -8,6 +8,20 @@ namespace KaosesTweaks.Models
 {
     class BTWorkshopModel : DefaultWorkshopModel
     {
+        // Token: 0x17000B27 RID: 2855
+        // (get) Token: 0x06002CBA RID: 11450 RVA: 0x000AECEC File Offset: 0x000ACEEC
+        public override int DaysForPlayerSaveWorkshopFromBankruptcy
+        {
+            get
+            {
+                if (Statics._settings.WorkShopBankruptcyModifiers)
+                {
+                    return Statics._settings.WorkShopBankruptcyValue;
+                }
+                return 3;
+            }
+        }
+
         public override int GetMaxWorkshopCountForPlayer()
         {
             if (MCMSettings.Instance is { } settings && settings.MaxWorkshopCountTweakEnabled)
