@@ -15,6 +15,7 @@ namespace KaosesTweaks.Settings
     //public class MCMSettings : AttributeGlobalSettings<MCMSettings>, ISettingsProviderInterface 
     public class MCMSettings : AttributeGlobalSettings<MCMSettings> //, ISettingsProviderInterface
     {
+        #region ModSettingsStandard
         public override string Id => Statics.InstanceID;
 
         // Build mod display name with name and version form the project properties version
@@ -29,1404 +30,378 @@ namespace KaosesTweaks.Settings
         public override string FolderName => Statics.ModuleFolder;
         public override string FormatType => Statics.FormatType;
 
+        public bool LoadMCMConfigFile { get; set; } = false;
+        public string ModDisplayName { get { return DisplayName; } }
+        #endregion
 
         //[SettingPropertyBool("{=debug}Debug", RequireRestart = false, HintText = "{=}{=debug_desc}Displays mod developer debug information and logs them to the file")]
+        //[SettingPropertyGroup("Debug", GroupOrder = 100)]
         public bool Debug { get; set; } = Statics.Debug;
 
         //[SettingPropertyBool("{=debuglog}Log to file", RequireRestart = false, HintText = "{=}{=debuglog_desc}Log information messages to the log file as well as errors and debug")]
+        //[SettingPropertyGroup("Debug", GroupOrder = 100)]
         public bool LogToFile { get; set; } = Statics.LogToFile;
 
-        [SettingPropertyBool("{=BT_Settings_000105}Show Battle Rewards Calculation Message", Order = 6, RequireRestart = false,
-            HintText = "{=BT_Settings_000105_Desc}Shows detailed calculation for renown, influence and morale tweaks in message log."),
-            SettingPropertyGroup("Debug")]
+        [SettingPropertyBool("{=BT_Settings_000105}Show Battle Rewards Calculation Message", IsToggle = true, Order = 0, RequireRestart = true,
+            HintText = "{=BT_Settings_000105_Desc}Shows detailed calculation for renown, influence and morale tweaks in message log.")]
+        [SettingPropertyGroup("Debug", GroupOrder=100)]
         public bool BattleRewardShowDebug { get; set; } = false;
-
-
-
-        public bool LoadMCMConfigFile { get; set; } = false;
-        public string ModDisplayName { get { return DisplayName; } }
-
 
 
         ///~ Mod Specific settings 
 
 
+        //~ Items
+        #region Items
         [SettingPropertyBool("{=KTMCM_ItemModifiers}Item Modifiers *", IsToggle = true, Order = 0, RequireRestart = true,
-            HintText = "{=}{=KTMCM_ItemModifiersHint}Enables modifying Item weight and price.")]
+            HintText = "{=KTMCM_ItemModifiersHint}Enables modifying Item weight and price.")]
         [SettingPropertyGroup("{=KTMCM_CItems}Items")]
         public bool MCMItemModifiers { get; set; } = true;
 
-        #region Items
+        //~ For use in debuging item tweak code
+        public bool ItemDebugMode { get; set; } = false;
 
-        [SettingPropertyBool("{=KTMCM_BAM}BodyArmor Modifiers", IsToggle = true, Order = 0, RequireRestart = false,
+        //~ Armor
+        [SettingPropertyBool("{=KTMCM_AM}Armor Modifiers", IsToggle = true, Order = 0, RequireRestart = false,
             HintText = "{=KTMCM_ITMH}Enables modifying the weight and price.")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CBodyArmor}BodyArmor")]
-        public bool MCMBodyArmorModifiers { get; set; } = true;
-        #region BodyArmor
+        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CArmor}Armor")]
+        public bool MCMArmorModifiers { get; set; } = true;
+        #region Armor
 
 
-        [SettingPropertyBool("{=KTMCM_BAW}BodyArmor Weight", IsToggle = true, Order = 0, RequireRestart = false,
+        [SettingPropertyBool("{=KTMCM_AW}Armor Weight", IsToggle = true, Order = 0, RequireRestart = false,
             HintText = "{=KTMCM_ITMWH}Enables modifying items weight.")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CBodyArmor}BodyArmor/{=KTMCM_Cweight}weight")]
-        public bool BodyArmorWeightModifiers { get; set; } = true;
+        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CArmor}Armor/{=KTMCM_Cweight}weight")]
+        public bool ItemArmorWeightModifiers { get; set; } = true;
 
         #region Weight
-        [SettingPropertyFloatingInteger("{=KTMCM_WeightT1}Weight Tier1 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
+        [SettingPropertyFloatingInteger("{=KTMCM_WeightT1}Weight Tier1 Multiplier", 0.1f, 3.0f, "#0%", RequireRestart = false,
             HintText = "{=KTMCM_ITMWT1H}Multiply Tier1 weight by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CBodyArmor}BodyArmor/{=KTMCM_Cweight}weight")]
-        public float BodyArmorTier1WeightMultiplier { get; set; } = 0.5f;
+        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CArmor}Armor/{=KTMCM_Cweight}weight")]
+        public float ItemArmorTier1WeightMultiplier { get; set; } = 0.5f;
 
-        [SettingPropertyFloatingInteger("{=KTMCM_WeightT2}Weight Tier2 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
+        [SettingPropertyFloatingInteger("{=KTMCM_WeightT2}Weight Tier2 Multiplier", 0.1f, 3.0f, "#0%", RequireRestart = false,
             HintText = "{=KTMCM_ITMWT2H}Multiply Tier2 weight by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CBodyArmor}BodyArmor/{=KTMCM_Cweight}weight")]
-        public float BodyArmorTier2WeightMultiplier { get; set; } = 0.5f;
+        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CArmor}Armor/{=KTMCM_Cweight}weight")]
+        public float ItemArmorTier2WeightMultiplier { get; set; } = 0.5f;
 
-        [SettingPropertyFloatingInteger("{=KTMCM_WeightT3}Weight Tier3 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
+        [SettingPropertyFloatingInteger("{=KTMCM_WeightT3}Weight Tier3 Multiplier", 0.1f, 3.0f, "#0%", RequireRestart = false,
             HintText = "{=KTMCM_ITMWT3H}Multiply Tier3 weight by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CBodyArmor}BodyArmor/{=KTMCM_Cweight}weight")]
-        public float BodyArmorTier3WeightMultiplier { get; set; } = 0.5f;
+        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CArmor}Armor/{=KTMCM_Cweight}weight")]
+        public float ItemArmorTier3WeightMultiplier { get; set; } = 0.5f;
 
-        [SettingPropertyFloatingInteger("{=KTMCM_WeightT4}Weight Tier4 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
+        [SettingPropertyFloatingInteger("{=KTMCM_WeightT4}Weight Tier4 Multiplier", 0.1f, 3.0f, "#0%", RequireRestart = false,
             HintText = "{=KTMCM_ITMWT4H}Multiply Tier4 weight by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CBodyArmor}BodyArmor/{=KTMCM_Cweight}weight")]
-        public float BodyArmorTier4WeightMultiplier { get; set; } = 0.5f;
+        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CArmor}Armor/{=KTMCM_Cweight}weight")]
+        public float ItemArmorTier4WeightMultiplier { get; set; } = 0.5f;
 
-        [SettingPropertyFloatingInteger("{=KTMCM_WeightT5}Weight Tier5 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
+        [SettingPropertyFloatingInteger("{=KTMCM_WeightT5}Weight Tier5 Multiplier", 0.1f, 3.0f, "#0%", RequireRestart = false,
             HintText = "{=KTMCM_ITMWT5H}Multiply Tier5 weight by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CBodyArmor}BodyArmor/{=KTMCM_Cweight}weight")]
-        public float BodyArmorTier5WeightMultiplier { get; set; } = 0.5f;
+        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CArmor}Armor/{=KTMCM_Cweight}weight")]
+        public float ItemArmorTier5WeightMultiplier { get; set; } = 0.5f;
 
-        [SettingPropertyFloatingInteger("{=KTMCM_WeightT6}Weight Tier6 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
+        [SettingPropertyFloatingInteger("{=KTMCM_WeightT6}Weight Tier6 Multiplier", 0.1f, 3.0f, "#0%", RequireRestart = false,
             HintText = "{=KTMCM_ITMWT6H}Multiply Tier6 weight by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CBodyArmor}BodyArmor/{=KTMCM_Cweight}weight")]
-        public float BodyArmorTier6WeightMultiplier { get; set; } = 0.5f;
+        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CArmor}Armor/{=KTMCM_Cweight}weight")]
+        public float ItemArmorTier6WeightMultiplier { get; set; } = 0.5f;
 
         #endregion
 
-        [SettingPropertyBool("{=KTMCM_BAP}BodyArmor Price", IsToggle = true, Order = 0, RequireRestart = false,
+        [SettingPropertyBool("{=KTMCM_AP}Armor Price", IsToggle = true, Order = 0, RequireRestart = false,
             HintText = "{=KTMCM_ITMPH}Enables modifying items price.")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CBodyArmor}BodyArmor/{=KTMCM_CPrice}Price")]
-        public bool BodyArmorValueModifiers { get; set; } = true;
+        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CArmor}Armor/{=KTMCM_CPrice}Price")]
+        public bool ItemArmorValueModifiers { get; set; } = true;
 
         #region Price
-        [SettingPropertyFloatingInteger("{=KTMCM_PriceT1}Price Tier1 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
+        [SettingPropertyFloatingInteger("{=KTMCM_PriceT1}Price Tier1 Multiplier", 0.1f, 3.0f, "#0%", RequireRestart = false,
             HintText = "{=KTMCM_ITMPT1H}Multiply Tier1 price by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CBodyArmor}BodyArmor/{=KTMCM_CPrice}Price")]
-        public float BodyArmorTier1PriceMultiplier { get; set; } = 1.0f;
+        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CArmor}Armor/{=KTMCM_CPrice}Price")]
+        public float ItemArmorTier1PriceMultiplier { get; set; } = 1.0f;
 
-        [SettingPropertyFloatingInteger("{=KTMCM_PriceT2}Price Tier2 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
+        [SettingPropertyFloatingInteger("{=KTMCM_PriceT2}Price Tier2 Multiplier", 0.1f, 3.0f, "#0%", RequireRestart = false,
             HintText = "{=KTMCM_ITMPT2H}Multiply Tier2 price by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CBodyArmor}BodyArmor/{=KTMCM_CPrice}Price")]
-        public float BodyArmorTier2PriceMultiplier { get; set; } = 1.0f;
+        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CArmor}Armor/{=KTMCM_CPrice}Price")]
+        public float ItemArmorTier2PriceMultiplier { get; set; } = 1.0f;
 
-        [SettingPropertyFloatingInteger("{=KTMCM_PriceT3}Price Tier3 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
+        [SettingPropertyFloatingInteger("{=KTMCM_PriceT3}Price Tier3 Multiplier", 0.1f, 3.0f, "#0%", RequireRestart = false,
             HintText = "{=KTMCM_ITMPT3H}Multiply Tier3 price by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CBodyArmor}BodyArmor/{=KTMCM_CPrice}Price")]
-        public float BodyArmorTier3PriceMultiplier { get; set; } = 1.0f;
+        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CArmor}Armor/{=KTMCM_CPrice}Price")]
+        public float ItemArmorTier3PriceMultiplier { get; set; } = 1.0f;
 
-        [SettingPropertyFloatingInteger("{=KTMCM_PriceT4}Price Tier4 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
+        [SettingPropertyFloatingInteger("{=KTMCM_PriceT4}Price Tier4 Multiplier", 0.1f, 3.0f, "#0%", RequireRestart = false,
             HintText = "{=KTMCM_ITMPT4H}Multiply Tier4 price by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CBodyArmor}BodyArmor/{=KTMCM_CPrice}Price")]
-        public float BodyArmorTier4PriceMultiplier { get; set; } = 1.0f;
+        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CArmor}Armor/{=KTMCM_CPrice}Price")]
+        public float ItemArmorTier4PriceMultiplier { get; set; } = 1.0f;
 
-        [SettingPropertyFloatingInteger("{=KTMCM_PriceT5}Price Tier5 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
+        [SettingPropertyFloatingInteger("{=KTMCM_PriceT5}Price Tier5 Multiplier", 0.1f, 3.0f, "#0%", RequireRestart = false,
             HintText = "{=KTMCM_ITMPT5H}Multiply Tier5 price by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CBodyArmor}BodyArmor/{=KTMCM_CPrice}Price")]
-        public float BodyArmorTier5PriceMultiplier { get; set; } = 1.0f;
+        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CArmor}Armor/{=KTMCM_CPrice}Price")]
+        public float ItemArmorTier5PriceMultiplier { get; set; } = 1.0f;
 
-        [SettingPropertyFloatingInteger("{=KTMCM_PriceT6}Price Tier6 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
+        [SettingPropertyFloatingInteger("{=KTMCM_PriceT6}Price Tier6 Multiplier", 0.1f, 3.0f, "#0%", RequireRestart = false,
             HintText = "{=KTMCM_ITMPT6H}Multiply Tier6 price by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CBodyArmor}BodyArmor/{=KTMCM_CPrice}Price")]
-        public float BodyArmorTier6PriceMultiplier { get; set; } = 1.0f;
-        
-        #endregion
+        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CArmor}Armor/{=KTMCM_CPrice}Price")]
+        public float ItemArmorTier6PriceMultiplier { get; set; } = 1.0f;
 
         #endregion
 
+        #endregion
 
-        [SettingPropertyBool("{=KTMCM_BM}Bow Modifiers", IsToggle = true, Order = 0, RequireRestart = false,
+        //~ Food
+        [SettingPropertyBool("{=KTMCM_FDM}Food by Morale Modifiers", IsToggle = true, Order = 0, RequireRestart = false,
             HintText = "{=KTMCM_ITMH}Enables modifying the weight and price.")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CBow}Bow")]
-        public bool MCMBowModifiers { get; set; } = true;
-        #region Bow
-        [SettingPropertyBool("{=KTMCM_BMW}Bow Weight", IsToggle = true, Order = 0, RequireRestart = false,
-            HintText = "{=KTMCM_ITMWH}Enables modifying items weight.")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CBow}Bow/{=KTMCM_Cweight}weight")]
-        public bool BowWeightModifiers { get; set; } = true;
+        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CFood}Food")]
+        public bool MCMFoodModifiers { get; set; } = true;
+        #region Food
         #region Weight
-        [SettingPropertyFloatingInteger("{=KTMCM_WeightT1}Weight Tier1 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMWT1H}Multiply Tier1 weight by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CBow}Bow/{=KTMCM_Cweight}weight")]
-        public float BowTier1WeightMultiplier { get; set; } = 1.0f;
 
-        [SettingPropertyFloatingInteger("{=KTMCM_WeightT2}Weight Tier2 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMWT2H}Multiply Tier2 weight by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CBow}Bow/{=KTMCM_Cweight}weight")]
-        public float BowTier2WeightMultiplier { get; set; } = 1.0f;
+        [SettingPropertyFloatingInteger("{=KTMCM_FDM0}Morale 0 Multiplier", 0.1f, 5.0f, "#0%", Order = 2, RequireRestart = false, 
+            HintText = "{=KTMCM_FDWMH}Multiply Food Weight for this morale Bonus by the multiplier")]
+        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CFood}Food/{=KTMCM_Cweight}weight")]
+        public float ItemFoodWeightMorale0Multiplier { get; set; } = 1.0f;
 
-        [SettingPropertyFloatingInteger("{=KTMCM_WeightT3}Weight Tier3 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMWT3H}Multiply Tier3 weight by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CBow}Bow/{=KTMCM_Cweight}weight")]
-        public float BowTier3WeightMultiplier { get; set; } = 1.0f;
 
-        [SettingPropertyFloatingInteger("{=KTMCM_WeightT4}Weight Tier4 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMWT4H}Multiply Tier4 weight by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CBow}Bow/{=KTMCM_Cweight}weight")]
-        public float BowTier4WeightMultiplier { get; set; } = 1.0f;
+        [SettingPropertyFloatingInteger("{=KTMCM_FDM1}Morale 1 Multiplier", 0.1f, 5.0f, "#0%", Order = 2, RequireRestart = false, 
+            HintText = "{=KTMCM_FDWMH}Multiply Food Weight for this morale Bonus by the multiplier")]
+        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CFood}Food/{=KTMCM_Cweight}weight")]
+        public float ItemFoodWeightMorale1Multiplier { get; set; } = 1.0f;
 
-        [SettingPropertyFloatingInteger("{=KTMCM_WeightT5}Weight Tier5 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMWT5H}Multiply Tier5 weight by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CBow}Bow/{=KTMCM_Cweight}weight")]
-        public float BowTier5WeightMultiplier { get; set; } = 1.0f;
 
-        [SettingPropertyFloatingInteger("{=KTMCM_WeightT6}Weight Tier6 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMWT6H}Multiply Tier6 weight by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CBow}Bow/{=KTMCM_Cweight}weight")]
-        public float BowTier6WeightMultiplier { get; set; } = 1.0f;
+        [SettingPropertyFloatingInteger("{=KTMCM_FDM2}Morale 2 Multiplier", 0.1f, 5.0f, "#0%", Order = 2, RequireRestart = false, 
+            HintText = "{=KTMCM_FDWMH}Multiply Food Weight for this morale Bonus by the multiplier")]
+        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CFood}Food/{=KTMCM_Cweight}weight")]
+        public float ItemFoodWeightMorale2Multiplier { get; set; } = 1.0f;
+
+
+        [SettingPropertyFloatingInteger("{=KTMCM_FDM3}Morale 3 Multiplier", 0.1f, 5.0f, "#0%", Order = 2, RequireRestart = false, 
+            HintText = "{=KTMCM_FDWMH}Multiply Food Weight for this morale Bonus by the multiplier")]
+        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CFood}Food/{=KTMCM_Cweight}weight")]
+        public float ItemFoodWeightMorale3Multiplier { get; set; } = 1.0f;
         #endregion
-
-
-
-        [SettingPropertyBool("{=KTMCM_BMP}Bow Price", IsToggle = true, Order = 0, RequireRestart = false,
-            HintText = "{=KTMCM_ITMPH}Enables modifying items price.")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CBow}Bow/{=KTMCM_CPrice}Price")]
-        public bool BowValueModifiers { get; set; } = true;
 
         #region Price
-        [SettingPropertyFloatingInteger("{=KTMCM_PriceT1}Price Tier1 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
+        [SettingPropertyFloatingInteger("{=KTMCM_FDM0}Morale 0 Multiplier", 0.1f, 5.0f, "#0%", Order = 2, RequireRestart = false, 
+            HintText = "{=KTMCM_FDPMH}Multiply Food Price for this morale Bonus by the multiplier")]
+        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CFood}Food/{=KTMCM_CPrice}Price")]
+        public float ItemFoodPriceMorale0Multiplier { get; set; } = 1.0f;
+
+
+        [SettingPropertyFloatingInteger("{=KTMCM_FDM1}Morale 1 Multiplier", 0.1f, 5.0f, "#0%", Order = 2, RequireRestart = false, 
+            HintText = "{=KTMCM_FDPMH}Multiply Food Price for this morale Bonus by the multiplier")]
+        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CFood}Food/{=KTMCM_CPrice}Price")]
+        public float ItemFoodPriceMorale1Multiplier { get; set; } = 1.0f;
+
+
+        [SettingPropertyFloatingInteger("{=KTMCM_FDM2}Morale 2 Multiplier", 0.1f, 5.0f, "#0%", Order = 2, RequireRestart = false, 
+            HintText = "{=KTMCM_FDPMH}Multiply Food Price for this morale Bonus by the multiplier")]
+        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CFood}Food/{=KTMCM_CPrice}Price")]
+        public float ItemFoodPriceMorale2Multiplier { get; set; } = 1.0f;
+
+
+        [SettingPropertyFloatingInteger("{=KTMCM_FDM3}Morale 3 Multiplier", 0.1f, 5.0f, "#0%", Order = 2, RequireRestart = false, 
+            HintText = "{=KTMCM_FDPMH}Multiply Food Price for this morale Bonus by the multiplier")]
+        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CFood}Food/{=KTMCM_CPrice}Price")]
+        public float ItemFoodPriceMorale3Multiplier { get; set; } = 1.0f;
+        #endregion
+        #endregion
+
+        //~ Melee Weapons
+        [SettingPropertyBool("{=KTMCM_MWM}Melee Weapons Modifiers", IsToggle = true, Order = 0, RequireRestart = false,
+            HintText = "{=KTMCM_ITMH}Enables modifying the weight and price.")]
+        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CMW}Melee Weapons")]
+        public bool MCMMeleeWeaponModifiers { get; set; } = true;
+        #region Melee Weapons
+        [SettingPropertyBool("{=KTMCM_THMW}Melee Weapons Weight", IsToggle = true, Order = 0, RequireRestart = false,
+            HintText = "{=KTMCM_ITMWH}Enables modifying items weight.")]
+        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CMW}Melee Weapons/{=KTMCM_Cweight}weight")]
+        public bool ItemMeleeWeaponWeightModifiers { get; set; } = true;
+        #region Weight
+        [SettingPropertyFloatingInteger("{=KTMCM_WeightT1}Weight Tier1 Multiplier", 0.1f, 3.0f, "#0%", RequireRestart = false,
+            HintText = "{=KTMCM_ITMWT1H}Multiply Tier1 weight by the multiplier [Native : 1.0[100%]].")]
+        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CMW}Melee Weapons/{=KTMCM_Cweight}weight")]
+        public float ItemMeleeWeaponTier1WeightMultiplier { get; set; } = 1.0f;
+
+        [SettingPropertyFloatingInteger("{=KTMCM_WeightT2}Weight Tier2 Multiplier", 0.1f, 3.0f, "#0%", RequireRestart = false,
+            HintText = "{=KTMCM_ITMWT2H}Multiply Tier2 weight by the multiplier [Native : 1.0[100%]].")]
+        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CMW}Melee Weapons/{=KTMCM_Cweight}weight")]
+        public float ItemMeleeWeaponTier2WeightMultiplier { get; set; } = 1.0f;
+
+        [SettingPropertyFloatingInteger("{=KTMCM_WeightT3}Weight Tier3 Multiplier", 0.1f, 3.0f, "#0%", RequireRestart = false,
+            HintText = "{=KTMCM_ITMWT3H}Multiply Tier3 weight by the multiplier [Native : 1.0[100%]].")]
+        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CMW}Melee Weapons/{=KTMCM_Cweight}weight")]
+        public float ItemMeleeWeaponTier3WeightMultiplier { get; set; } = 1.0f;
+
+        [SettingPropertyFloatingInteger("{=KTMCM_WeightT4}Weight Tier4 Multiplier", 0.1f, 3.0f, "#0%", RequireRestart = false,
+            HintText = "{=KTMCM_ITMWT4H}Multiply Tier4 weight by the multiplier [Native : 1.0[100%]].")]
+        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CMW}Melee Weapons/{=KTMCM_Cweight}weight")]
+        public float ItemMeleeWeaponTier4WeightMultiplier { get; set; } = 1.0f;
+
+        [SettingPropertyFloatingInteger("{=KTMCM_WeightT5}Weight Tier5 Multiplier", 0.1f, 3.0f, "#0%", RequireRestart = false,
+            HintText = "{=KTMCM_ITMWT5H}Multiply Tier5 weight by the multiplier [Native : 1.0[100%]].")]
+        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CMW}Melee Weapons/{=KTMCM_Cweight}weight")]
+        public float ItemMeleeWeaponTier5WeightMultiplier { get; set; } = 1.0f;
+
+        [SettingPropertyFloatingInteger("{=KTMCM_WeightT6}Weight Tier6 Multiplier", 0.1f, 3.0f, "#0%", RequireRestart = false,
+            HintText = "{=KTMCM_ITMWT6H}Multiply Tier6 weight by the multiplier [Native : 1.0[100%]].")]
+        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CMW}Melee Weapons/{=KTMCM_Cweight}weight")]
+        public float ItemMeleeWeaponTier6WeightMultiplier { get; set; } = 1.0f;
+        #endregion
+
+
+        [SettingPropertyBool("{=KTMCM_MWP}Melee Weapons Price", IsToggle = true, Order = 0, RequireRestart = false,
+            HintText = "{=KTMCM_ITMPH}Enables modifying items price.")]
+        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CMW}Melee Weapons/{=KTMCM_CPrice}Price")]
+        public bool ItemMeleeWeaponValueModifiers { get; set; } = true;
+        #region Price
+        [SettingPropertyFloatingInteger("{=KTMCM_PriceT1}Price Tier1 Multiplier", 0.1f, 3.0f, "#0%", RequireRestart = false,
             HintText = "{=KTMCM_ITMPT1H}Multiply Tier1 price by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CBow}Bow/{=KTMCM_CPrice}Price")]
-        public float BowTier1PriceMultiplier { get; set; } = 1.0f;
+        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CMW}Melee Weapons/{=KTMCM_CPrice}Price")]
+        public float ItemMeleeWeaponTier1PriceMultiplier { get; set; } = 1.0f;
 
-        [SettingPropertyFloatingInteger("{=KTMCM_PriceT2}Price Tier2 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMPT2H}Multiply Tier2 price by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CBow}Bow/{=KTMCM_CPrice}Price")]
-        public float BowTier2PriceMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_PriceT3}Price Tier3 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMPT3H}Multiply Tier3 price by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CBow}Bow/{=KTMCM_CPrice}Price")]
-        public float BowTier3PriceMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_PriceT4}Price Tier4 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMPT4H}Multiply Tier4 price by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CBow}Bow/{=KTMCM_CPrice}Price")]
-        public float BowTier4PriceMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_PriceT5}Price Tier5 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMPT5H}Multiply Tier5 price by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CBow}Bow/{=KTMCM_CPrice}Price")]
-        public float BowTier5PriceMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_PriceT6}Price Tier6 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMPT6H}Multiply Tier6 price by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CBow}Bow/{=KTMCM_CPrice}Price")]
-        public float BowTier6PriceMultiplier { get; set; } = 1.0f;
-        #endregion
-
-        #endregion
-
-
-        [SettingPropertyBool("{=KTMCM_CM}Cape Modifiers", IsToggle = true, Order = 0, RequireRestart = false,
-            HintText = "{=KTMCM_ITMH}Enables modifying the weight and price.")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CCape}Cape")]
-        public bool MCMCapeModifiers { get; set; } = true;
-        #region Cape
-
-
-        [SettingPropertyBool("{=KTMCM_CMW}Cape Weight", IsToggle = true, Order = 0, RequireRestart = false,
-            HintText = "{=KTMCM_ITMWH}Enables modifying items weight.")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CCape}Cape/{=KTMCM_Cweight}weight")]
-        public bool CapeWeightModifiers { get; set; } = true;
-
-        #region Weight
-        [SettingPropertyFloatingInteger("{=KTMCM_WeightT1}Weight Tier1 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMWT1H}Multiply Tier1 weight by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CCape}Cape/{=KTMCM_Cweight}weight")]
-        public float CapeTier1WeightMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_WeightT2}Weight Tier2 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMWT2H}Multiply Tier2 weight by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CCape}Cape/{=KTMCM_Cweight}weight")]
-        public float CapeTier2WeightMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_WeightT3}Weight Tier3 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMWT3H}Multiply Tier3 weight by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CCape}Cape/{=KTMCM_Cweight}weight")]
-        public float CapeTier3WeightMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_WeightT4}Weight Tier4 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-             HintText = "{=KTMCM_ITMWT4H}Multiply Tier4 weight by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CCape}Cape/{=KTMCM_Cweight}weight")]
-        public float CapeTier4WeightMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_WeightT5}Weight Tier5 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMWT5H}Multiply Tier5 weight by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CCape}Cape/{=KTMCM_Cweight}weight")]
-        public float CapeTier5WeightMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_WeightT6}Weight Tier6 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMWT6H}Multiply Tier6 weight by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CCape}Cape/{=KTMCM_Cweight}weight")]
-        public float CapeTier6WeightMultiplier { get; set; } = 1.0f;
-        #endregion
-
-
-        [SettingPropertyBool("{=KTMCM_CMP}Cape Price", IsToggle = true, Order = 0, RequireRestart = false,
-            HintText = "{=KTMCM_ITMPH}Enables modifying items price.")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CCape}Cape/{=KTMCM_CPrice}Price")]
-        public bool CapeValueModifiers { get; set; } = true;
-
-        #region Price
-        [SettingPropertyFloatingInteger("{=KTMCM_WeightT1}Weight Tier1 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMWT1H}Multiply Tier1 weight by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CCape}Cape/{=KTMCM_CPrice}Price")]
-        public float CapeTier1PriceMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_WeightT2}Weight Tier2 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMWT2H}Multiply Tier2 weight by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CCape}Cape/{=KTMCM_CPrice}Price")]
-        public float CapeTier2PriceMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_WeightT3}Weight Tier3 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMWT4H}Multiply Tier4 weight by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CCape}Cape/{=KTMCM_CPrice}Price")]
-        public float CapeTier3PriceMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_WeightT4}Weight Tier4 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMWT4H}Multiply Tier4 weight by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CCape}Cape/{=KTMCM_CPrice}Price")]
-        public float CapeTier4PriceMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_WeightT5}Weight Tier5 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMWT5H}Multiply Tier5 weight by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CCape}Cape/{=KTMCM_CPrice}Price")]
-        public float CapeTier5PriceMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_WeightT6}Weight Tier6 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMWT6H}Multiply Tier6 weight by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CCape}Cape/{=KTMCM_CPrice}Price")]
-        public float CapeTier6PriceMultiplier { get; set; } = 1.0f;
-        #endregion
-
-
-
-        #endregion
-
-
-        [SettingPropertyBool("{=KTMCM_CAM}ChestArmor Modifiers", IsToggle = true, Order = 0, RequireRestart = false,
-            HintText = "{=KTMCM_ITMH}Enables modifying the weight and price.")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CChestArmor}ChestArmor")]
-        public bool MCMChestArmorModifiers { get; set; } = true;
-        #region ChestArmor
-        [SettingPropertyBool("{=KTMCM_CAMW}ChestArmor Weight", IsToggle = true, Order = 0, RequireRestart = false,
-            HintText = "{=KTMCM_ITMWH}Enables modifying items weight.")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CChestArmor}ChestArmor/{=KTMCM_Cweight}weight")]
-        public bool ChestArmorWeightModifiers { get; set; } = true;
-
-        #region Weight
-        [SettingPropertyFloatingInteger("{=KTMCM_WeightT1}Weight Tier1 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMWT1H}Multiply Tier1 weight by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CChestArmor}ChestArmor/{=KTMCM_Cweight}weight")]
-        public float ChestArmorTier1WeightMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_WeightT2}Weight Tier2 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMWT2H}Multiply Tier2 weight by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CChestArmor}ChestArmor/{=KTMCM_Cweight}weight")]
-        public float ChestArmorTier2WeightMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_WeightT3}Weight Tier3 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMWT3H}Multiply Tier3 weight by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CChestArmor}ChestArmor/{=KTMCM_Cweight}weight")]
-        public float ChestArmorTier3WeightMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_WeightT4}Weight Tier4 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMWT4H}Multiply Tier4 weight by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CChestArmor}ChestArmor/{=KTMCM_Cweight}weight")]
-        public float ChestArmorTier4WeightMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_WeightT5}Weight Tier5 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMWT5H}Multiply Tier5 weight by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CChestArmor}ChestArmor/{=KTMCM_Cweight}weight")]
-        public float ChestArmorTier5WeightMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_WeightT6}Weight Tier6 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMWT6H}Multiply Tier6 weight by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CChestArmor}ChestArmor/{=KTMCM_Cweight}weight")]
-        public float ChestArmorTier6WeightMultiplier { get; set; } = 1.0f;
-        #endregion
-
-
-
-
-        [SettingPropertyBool("{=KTMCM_CAMP}ChestArmor Price", IsToggle = true, Order = 0, RequireRestart = false,
-            HintText = "{=KTMCM_ITMPH}Enables modifying items price.")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CChestArmor}ChestArmor/{=KTMCM_CPrice}Price")]
-        public bool ChestArmorValueModifiers { get; set; } = true;
-
-        #region Price
-        [SettingPropertyFloatingInteger("{=KTMCM_PriceT1}Price Tier1 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMPT1H}Multiply Tier1 price by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CChestArmor}ChestArmor/{=KTMCM_CPrice}Price")]
-        public float ChestArmorTier1PriceMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_PriceT2}Price Tier2 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMPT2H}Multiply Tier2 price by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CChestArmor}ChestArmor/{=KTMCM_CPrice}Price")]
-        public float ChestArmorTier2PriceMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_PriceT3}Price Tier3 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMPT3H}Multiply Tier3 price by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CChestArmor}ChestArmor/{=KTMCM_CPrice}Price")]
-        public float ChestArmorTier3PriceMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_PriceT4}Price Tier4 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMPT4H}Multiply Tier4 price by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CChestArmor}ChestArmor/{=KTMCM_CPrice}Price")]
-        public float ChestArmorTier4PriceMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_PriceT5}Price Tier5 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMPT5H}Multiply Tier5 price by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CChestArmor}ChestArmor/{=KTMCM_CPrice}Price")]
-        public float ChestArmorTier5PriceMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_PriceT6}Price Tier6 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMPT6H}Multiply Tier6 price by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CChestArmor}ChestArmor/{=KTMCM_CPrice}Price")]
-        public float ChestArmorTier6PriceMultiplier { get; set; } = 1.0f;
-        #endregion
-
-
-        #endregion
-
-
-        [SettingPropertyBool("{=KTMCM_CBM}Crossbow Modifiers", IsToggle = true, Order = 0, RequireRestart = false,
-            HintText = "{=KTMCM_ITMH}Enables modifying the weight and price.")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CCrossbow}Crossbow")]
-        public bool MCMCrossbowModifiers { get; set; } = true;
-        #region Crossbow
-        [SettingPropertyBool("{=KTMCM_CBMW}Crossbow Weight", IsToggle = true, Order = 0, RequireRestart = false,
-            HintText = "{=KTMCM_ITMWH}Enables modifying items weight.")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CCrossbow}Crossbow/{=KTMCM_Cweight}weight")]
-        public bool CrossbowWeightModifiers { get; set; } = true;
-
-        #region Weight
-        [SettingPropertyFloatingInteger("{=KTMCM_WeightT1}Weight Tier1 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMWT1H}Multiply Tier1 weight by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CCrossbow}Crossbow/{=KTMCM_Cweight}weight")]
-        public float CrossbowTier1WeightMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_WeightT2}Weight Tier2 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMWT2H}Multiply Tier2 weight by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CCrossbow}Crossbow/{=KTMCM_Cweight}weight")]
-        public float CrossbowTier2WeightMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_WeightT3}Weight Tier3 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMWT3H}Multiply Tier3 weight by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CCrossbow}Crossbow/{=KTMCM_Cweight}weight")]
-        public float CrossbowTier3WeightMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_WeightT4}Weight Tier4 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMWT4H}Multiply Tier4 weight by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CCrossbow}Crossbow/{=KTMCM_Cweight}weight")]
-        public float CrossbowTier4WeightMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_WeightT5}Weight Tier5 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMWT5H}Multiply Tier5 weight by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CCrossbow}Crossbow/{=KTMCM_Cweight}weight")]
-        public float CrossbowTier5WeightMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_WeightT6}Weight Tier6 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMWT6H}Multiply Tier6 weight by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CCrossbow}Crossbow/{=KTMCM_Cweight}weight")]
-        public float CrossbowTier6WeightMultiplier { get; set; } = 1.0f;
-        #endregion
-
-
-        [SettingPropertyBool("{=KTMCM_CBMP}Crossbow Price", IsToggle = true, Order = 0, RequireRestart = false,
-            HintText = "{=KTMCM_ITMPH}Enables modifying items price.")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CCrossbow}Crossbow/{=KTMCM_CPrice}Price")]
-        public bool CrossbowValueModifiers { get; set; } = true;
-
-        #region Price
-        [SettingPropertyFloatingInteger("{=KTMCM_PriceT1}Price Tier1 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMPT1H}Multiply Tier1 price by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CCrossbow}Crossbow/{=KTMCM_CPrice}Price")]
-        public float CrossbowTier1PriceMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_PriceT2}Price Tier2 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMPT2H}Multiply Tier2 price by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CCrossbow}Crossbow/{=KTMCM_CPrice}Price")]
-        public float CrossbowTier2PriceMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_PriceT3}Price Tier3 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMPT3H}Multiply Tier3 price by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CCrossbow}Crossbow/{=KTMCM_CPrice}Price")]
-        public float CrossbowTier3PriceMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_PriceT4}Price Tier4 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMPT4H}Multiply Tier4 price by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CCrossbow}Crossbow/{=KTMCM_CPrice}Price")]
-        public float CrossbowTier4PriceMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_PriceT5}Price Tier5 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMPT5H}Multiply Tier5 price by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CCrossbow}Crossbow/{=KTMCM_CPrice}Price")]
-        public float CrossbowTier5PriceMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_PriceT6}Price Tier6 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMPT6H}Multiply Tier6 price by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CCrossbow}Crossbow/{=KTMCM_CPrice}Price")]
-        public float CrossbowTier6PriceMultiplier { get; set; } = 1.0f;
-        #endregion
-
-
-        #endregion
-
-
-        [SettingPropertyBool("{=KTMCM_HAM}HandArmor Modifiers", IsToggle = true, Order = 0, RequireRestart = false,
-            HintText = "{=KTMCM_ITMH}Enables modifying the weight and price.")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CHandArmor}HandArmor")]
-        public bool MCMHandArmorModifiers { get; set; } = true;
-        #region HandArmor
-        [SettingPropertyBool("{=KTMCM_HAMW}HandArmor Weight", IsToggle = true, Order = 0, RequireRestart = false,
-            HintText = "{=KTMCM_ITMWH}Enables modifying items weight.")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CHandArmor}HandArmor/{=KTMCM_Cweight}weight")]
-        public bool HandArmorWeightModifiers { get; set; } = true;
-
-
-        #region Weight
-        [SettingPropertyFloatingInteger("{=KTMCM_WeightT1}Weight Tier1 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMWT1H}Multiply Tier1 weight by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CHandArmor}HandArmor/{=KTMCM_Cweight}weight")]
-        public float HandArmorTier1WeightMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_WeightT2}Weight Tier2 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMWT2H}Multiply Tier2 weight by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CHandArmor}HandArmor/{=KTMCM_Cweight}weight")]
-        public float HandArmorTier2WeightMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_WeightT3}Weight Tier3 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMWT3H}Multiply Tier3 weight by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CHandArmor}HandArmor/{=KTMCM_Cweight}weight")]
-        public float HandArmorTier3WeightMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_WeightT4}Weight Tier4 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMWT4H}Multiply Tier4 weight by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CHandArmor}HandArmor/{=KTMCM_Cweight}weight")]
-        public float HandArmorTier4WeightMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_WeightT5}Weight Tier5 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMWT5H}Multiply Tier5 weight by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CHandArmor}HandArmor/{=KTMCM_Cweight}weight")]
-        public float HandArmorTier5WeightMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_WeightT6}Weight Tier6 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMWT6H}Multiply Tier6 weight by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CHandArmor}HandArmor/{=KTMCM_Cweight}weight")]
-        public float HandArmorTier6WeightMultiplier { get; set; } = 1.0f;
-        #endregion
-
-
-
-        [SettingPropertyBool("{=KTMCM_HAMP}HandArmor Price", IsToggle = true, Order = 0, RequireRestart = false,
-            HintText = "{=KTMCM_ITMPH}Enables modifying items price.")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CHandArmor}HandArmor/{=KTMCM_CPrice}Price")]
-        public bool HandArmorValueModifiers { get; set; } = true;
-
-        #region Price
-        [SettingPropertyFloatingInteger("{=KTMCM_PriceT1}Price Tier1 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMPT1H}Multiply Tier1 price by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CHandArmor}HandArmor/{=KTMCM_CPrice}Price")]
-        public float HandArmorTier1PriceMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_PriceT2}Price Tier2 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
+        [SettingPropertyFloatingInteger("{=KTMCM_PriceT2}Price Tier2 Multiplier", 0.1f, 3.0f, "#0%", RequireRestart = false,
              HintText = "{=KTMCM_ITMPT2H}Multiply Tier2 price by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CHandArmor}HandArmor/{=KTMCM_CPrice}Price")]
-        public float HandArmorTier2PriceMultiplier { get; set; } = 1.0f;
+        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CMW}Melee Weapons/{=KTMCM_CPrice}Price")]
+        public float ItemMeleeWeaponTier2PriceMultiplier { get; set; } = 1.0f;
 
-        [SettingPropertyFloatingInteger("{=KTMCM_PriceT3}Price Tier3 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
+        [SettingPropertyFloatingInteger("{=KTMCM_PriceT3}Price Tier3 Multiplier", 0.1f, 3.0f, "#0%", RequireRestart = false,
             HintText = "{=KTMCM_ITMPT3H}Multiply Tier3 price by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CHandArmor}HandArmor/{=KTMCM_CPrice}Price")]
-        public float HandArmorTier3PriceMultiplier { get; set; } = 1.0f;
+        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CMW}Melee Weapons/{=KTMCM_CPrice}Price")]
+        public float ItemMeleeWeaponTier3PriceMultiplier { get; set; } = 1.0f;
 
-        [SettingPropertyFloatingInteger("{=KTMCM_PriceT4}Price Tier4 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
+        [SettingPropertyFloatingInteger("{=KTMCM_PriceT4}Price Tier4 Multiplier", 0.1f, 3.0f, "#0%", RequireRestart = false,
             HintText = "{=KTMCM_ITMPT4H}Multiply Tier4 price by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CHandArmor}HandArmor/{=KTMCM_CPrice}Price")]
-        public float HandArmorTier4PriceMultiplier { get; set; } = 1.0f;
+        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CMW}Melee Weapons/{=KTMCM_CPrice}Price")]
+        public float ItemMeleeWeaponTier4PriceMultiplier { get; set; } = 1.0f;
 
-        [SettingPropertyFloatingInteger("{=KTMCM_PriceT5}Price Tier5 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
+        [SettingPropertyFloatingInteger("{=KTMCM_PriceT5}Price Tier5 Multiplier", 0.1f, 3.0f, "#0%", RequireRestart = false,
             HintText = "{=KTMCM_ITMPT5H}Multiply Tier5 price by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CHandArmor}HandArmor/{=KTMCM_CPrice}Price")]
-        public float HandArmorTier5PriceMultiplier { get; set; } = 1.0f;
+        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CMW}Melee Weapons/{=KTMCM_CPrice}Price")]
+        public float ItemMeleeWeaponTier5PriceMultiplier { get; set; } = 1.0f;
 
-        [SettingPropertyFloatingInteger("{=KTMCM_PriceT6}Price Tier6 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
+        [SettingPropertyFloatingInteger("{=KTMCM_PriceT6}Price Tier6 Multiplier", 0.1f, 3.0f, "#0%", RequireRestart = false,
             HintText = "{=KTMCM_ITMPT6H}Multiply Tier6 price by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CHandArmor}HandArmor/{=KTMCM_CPrice}Price")]
-        public float HandArmorTier6PriceMultiplier { get; set; } = 1.0f;
+        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CMW}Melee Weapons/{=KTMCM_CPrice}Price")]
+        public float ItemMeleeWeaponTier6PriceMultiplier { get; set; } = 1.0f;
         #endregion
 
-
         #endregion
 
-
-        [SettingPropertyBool("{=KTMCM_HDABM}HeadArmor Modifiers", IsToggle = true, Order = 0, RequireRestart = false,
+        //~ Ranged Weapons
+        [SettingPropertyBool("{=KTMCM_RWM}Ranged Weapons Modifiers", IsToggle = true, Order = 0, RequireRestart = false,
             HintText = "{=KTMCM_ITMH}Enables modifying the weight and price.")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CHeadArmor}HeadArmor")]
-        public bool MCMHeadArmorModifiers { get; set; } = true;
-        #region HeadArmor
-        [SettingPropertyBool("{=KTMCM_HDAMW}HeadArmor Weight", IsToggle = true, Order = 0, RequireRestart = false,
+        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CRW}Ranged Weapons")]
+        public bool MCMRagedWeaponsModifiers { get; set; } = true;
+        #region Ranged Weapons
+        [SettingPropertyBool("{=KTMCM_BMW}Ranged Weapons Weight", IsToggle = true, Order = 0, RequireRestart = false,
             HintText = "{=KTMCM_ITMWH}Enables modifying items weight.")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CHeadArmor}HeadArmor/{=KTMCM_Cweight}weight")]
-        public bool HeadArmorWeightModifiers { get; set; } = true;
-
+        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CRW}Ranged Weapons/{=KTMCM_Cweight}weight")]
+        public bool ItemRangedWeaponsWeightModifiers { get; set; } = true;
         #region Weight
-        [SettingPropertyFloatingInteger("{=KTMCM_WeightT1}Weight Tier1 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
+        [SettingPropertyFloatingInteger("{=KTMCM_WeightT1}Weight Tier1 Multiplier", 0.1f, 3.0f, "#0%", RequireRestart = false,
             HintText = "{=KTMCM_ITMWT1H}Multiply Tier1 weight by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CHeadArmor}HeadArmor/{=KTMCM_Cweight}weight")]
-        public float HeadArmorTier1WeightMultiplier { get; set; } = 1.0f;
+        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CRW}Ranged Weapons/{=KTMCM_Cweight}weight")]
+        public float ItemRangedWeaponsTier1WeightMultiplier { get; set; } = 1.0f;
 
-        [SettingPropertyFloatingInteger("{=KTMCM_WeightT2}Weight Tier2 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
+        [SettingPropertyFloatingInteger("{=KTMCM_WeightT2}Weight Tier2 Multiplier", 0.1f, 3.0f, "#0%", RequireRestart = false,
             HintText = "{=KTMCM_ITMWT2H}Multiply Tier2 weight by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CHeadArmor}HeadArmor/{=KTMCM_Cweight}weight")]
-        public float HeadArmorTier2WeightMultiplier { get; set; } = 1.0f;
+        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CRW}Ranged Weapons/{=KTMCM_Cweight}weight")]
+        public float ItemRangedWeaponsTier2WeightMultiplier { get; set; } = 1.0f;
 
-        [SettingPropertyFloatingInteger("{=KTMCM_WeightT3}Weight Tier3 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
+        [SettingPropertyFloatingInteger("{=KTMCM_WeightT3}Weight Tier3 Multiplier", 0.1f, 3.0f, "#0%", RequireRestart = false,
             HintText = "{=KTMCM_ITMWT3H}Multiply Tier3 weight by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CHeadArmor}HeadArmor/{=KTMCM_Cweight}weight")]
-        public float HeadArmorTier3WeightMultiplier { get; set; } = 1.0f;
+        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CRW}Ranged Weapons/{=KTMCM_Cweight}weight")]
+        public float ItemRangedWeaponsTier3WeightMultiplier { get; set; } = 1.0f;
 
-        [SettingPropertyFloatingInteger("{=KTMCM_WeightT4}Weight Tier4 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
+        [SettingPropertyFloatingInteger("{=KTMCM_WeightT4}Weight Tier4 Multiplier", 0.1f, 3.0f, "#0%", RequireRestart = false,
             HintText = "{=KTMCM_ITMWT4H}Multiply Tier4 weight by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CHeadArmor}HeadArmor/{=KTMCM_Cweight}weight")]
-        public float HeadArmorTier4WeightMultiplier { get; set; } = 1.0f;
+        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CRW}Ranged Weapons/{=KTMCM_Cweight}weight")]
+        public float ItemRangedWeaponsTier4WeightMultiplier { get; set; } = 1.0f;
 
-        [SettingPropertyFloatingInteger("{=KTMCM_WeightT5}Weight Tier5 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
+        [SettingPropertyFloatingInteger("{=KTMCM_WeightT5}Weight Tier5 Multiplier", 0.1f, 3.0f, "#0%", RequireRestart = false,
             HintText = "{=KTMCM_ITMWT5H}Multiply Tier5 weight by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CHeadArmor}HeadArmor/{=KTMCM_Cweight}weight")]
-        public float HeadArmorTier5WeightMultiplier { get; set; } = 1.0f;
+        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CRW}Ranged Weapons/{=KTMCM_Cweight}weight")]
+        public float ItemRangedWeaponsTier5WeightMultiplier { get; set; } = 1.0f;
 
-        [SettingPropertyFloatingInteger("{=KTMCM_WeightT6}Weight Tier6 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
+        [SettingPropertyFloatingInteger("{=KTMCM_WeightT6}Weight Tier6 Multiplier", 0.1f, 3.0f, "#0%", RequireRestart = false,
             HintText = "{=KTMCM_ITMWT6H}Multiply Tier6 weight by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CHeadArmor}HeadArmor/{=KTMCM_Cweight}weight")]
-        public float HeadArmorTier6WeightMultiplier { get; set; } = 1.0f;
+        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CRW}Ranged Weapons/{=KTMCM_Cweight}weight")]
+        public float ItemRangedWeaponsTier6WeightMultiplier { get; set; } = 1.0f;
         #endregion
 
 
-        [SettingPropertyBool("{=KTMCM_HDAMP}HeadArmor Price", IsToggle = true, Order = 0, RequireRestart = false,
+
+        [SettingPropertyBool("{=KTMCM_RWP}Ranged Weapons Price", IsToggle = true, Order = 0, RequireRestart = false,
             HintText = "{=KTMCM_ITMPH}Enables modifying items price.")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CHeadArmor}HeadArmor/{=KTMCM_CPrice}Price")]
-        public bool HeadArmorValueModifiers { get; set; } = true;
-
+        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CRW}Ranged Weapons/{=KTMCM_CPrice}Price")]
+        public bool ItemRangedWeaponsValueModifiers { get; set; } = true;
         #region Price
-        [SettingPropertyFloatingInteger("{=KTMCM_PriceT1}Price Tier1 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
+        [SettingPropertyFloatingInteger("{=KTMCM_PriceT1}Price Tier1 Multiplier", 0.1f, 3.0f, "#0%", RequireRestart = false,
             HintText = "{=KTMCM_ITMPT1H}Multiply Tier1 price by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CHeadArmor}HeadArmor/{=KTMCM_CPrice}Price")]
-        public float HeadArmorTier1PriceMultiplier { get; set; } = 1.0f;
+        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CRW}Ranged Weapons/{=KTMCM_CPrice}Price")]
+        public float ItemRangedWeaponsTier1PriceMultiplier { get; set; } = 1.0f;
 
-        [SettingPropertyFloatingInteger("{=KTMCM_PriceT2}Price Tier2 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
+        [SettingPropertyFloatingInteger("{=KTMCM_PriceT2}Price Tier2 Multiplier", 0.1f, 3.0f, "#0%", RequireRestart = false,
             HintText = "{=KTMCM_ITMPT2H}Multiply Tier2 price by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CHeadArmor}HeadArmor/{=KTMCM_CPrice}Price")]
-        public float HeadArmorTier2PriceMultiplier { get; set; } = 1.0f;
+        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CRW}Ranged Weapons/{=KTMCM_CPrice}Price")]
+        public float ItemRangedWeaponsTier2PriceMultiplier { get; set; } = 1.0f;
 
-        [SettingPropertyFloatingInteger("{=KTMCM_PriceT3}Price Tier3 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
+        [SettingPropertyFloatingInteger("{=KTMCM_PriceT3}Price Tier3 Multiplier", 0.1f, 3.0f, "#0%", RequireRestart = false,
             HintText = "{=KTMCM_ITMPT3H}Multiply Tier3 price by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CHeadArmor}HeadArmor/{=KTMCM_CPrice}Price")]
-        public float HeadArmorTier3PriceMultiplier { get; set; } = 1.0f;
+        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CRW}Ranged Weapons/{=KTMCM_CPrice}Price")]
+        public float ItemRangedWeaponsTier3PriceMultiplier { get; set; } = 1.0f;
 
-        [SettingPropertyFloatingInteger("{=KTMCM_PriceT4}Price Tier4 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
+        [SettingPropertyFloatingInteger("{=KTMCM_PriceT4}Price Tier4 Multiplier", 0.1f, 3.0f, "#0%", RequireRestart = false,
             HintText = "{=KTMCM_ITMPT4H}Multiply Tier4 price by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CHeadArmor}HeadArmor/{=KTMCM_CPrice}Price")]
-        public float HeadArmorTier4PriceMultiplier { get; set; } = 1.0f;
+        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CRW}Ranged Weapons/{=KTMCM_CPrice}Price")]
+        public float ItemRangedWeaponsTier4PriceMultiplier { get; set; } = 1.0f;
 
-        [SettingPropertyFloatingInteger("{=KTMCM_PriceT5}Price Tier5 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
+        [SettingPropertyFloatingInteger("{=KTMCM_PriceT5}Price Tier5 Multiplier", 0.1f, 3.0f, "#0%", RequireRestart = false,
             HintText = "{=KTMCM_ITMPT5H}Multiply Tier5 price by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CHeadArmor}HeadArmor/{=KTMCM_CPrice}Price")]
-        public float HeadArmorTier5PriceMultiplier { get; set; } = 1.0f;
+        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CRW}Ranged Weapons/{=KTMCM_CPrice}Price")]
+        public float ItemRangedWeaponsTier5PriceMultiplier { get; set; } = 1.0f;
 
-        [SettingPropertyFloatingInteger("{=KTMCM_PriceT6}Price Tier6 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
+        [SettingPropertyFloatingInteger("{=KTMCM_PriceT6}Price Tier6 Multiplier", 0.1f, 3.0f, "#0%", RequireRestart = false,
             HintText = "{=KTMCM_ITMPT6H}Multiply Tier6 price by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CHeadArmor}HeadArmor/{=KTMCM_CPrice}Price")]
-        public float HeadArmorTier6PriceMultiplier { get; set; } = 1.0f;
+        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CRW}Ranged Weapons/{=KTMCM_CPrice}Price")]
+        public float ItemRangedWeaponsTier6PriceMultiplier { get; set; } = 1.0f;
         #endregion
 
-
-
         #endregion
 
-
-        [SettingPropertyBool("{=KTMCM_HM}Horse Modifiers", IsToggle = true, Order = 0, RequireRestart = false,
+        //~ Trade Goods
+        [SettingPropertyBool("{=KTMCM_TGM}Trade Goods Modifiers", IsToggle = true, Order = 0, RequireRestart = false,
             HintText = "{=KTMCM_ITMH}Enables modifying the weight and price.")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CHorse}Horse")]
-        public bool MCMHorseModifiers { get; set; } = true;
-        #region Horse
-        [SettingPropertyBool("{=KTMCM_HMW}Horse Weight", IsToggle = true, Order = 0, RequireRestart = false,
-            HintText = "{=KTMCM_ITMWH}Enables modifying items weight.")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CHorse}Horse/{=KTMCM_Cweight}weight")]
-        public bool HorseWeightModifiers { get; set; } = true;
-
+        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CTradeGoods}Trade Goods")]
+        public bool MCMTradeGoodsModifiers { get; set; } = true;
+        #region TradeGoods
         #region Weight
-        [SettingPropertyFloatingInteger("{=KTMCM_WeightT1}Weight Tier1 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMWT1H}Multiply Tier1 weight by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CHorse}Horse/{=KTMCM_Cweight}weight")]
-        public float HorseTier1WeightMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_WeightT2}Weight Tier2 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMWT2H}Multiply Tier2 weight by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CHorse}Horse/{=KTMCM_Cweight}weight")]
-        public float HorseTier2WeightMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_WeightT3}Weight Tier3 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMWT3H}Multiply Tier3 weight by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CHorse}Horse/{=KTMCM_Cweight}weight")]
-        public float HorseTier3WeightMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_WeightT4}Weight Tier4 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMWT4H}Multiply Tier4 weight by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CHorse}Horse/{=KTMCM_Cweight}weight")]
-        public float HorseTier4WeightMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_WeightT5}Weight Tier5 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMWT5H}Multiply Tier5 weight by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CHorse}Horse/{=KTMCM_Cweight}weight")]
-        public float HorseTier5WeightMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_WeightT6}Weight Tier6 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMWT6H}Multiply Tier6 weight by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CHorse}Horse/{=KTMCM_Cweight}weight")]
-        public float HorseTier6WeightMultiplier { get; set; } = 1.0f;
+        [SettingPropertyFloatingInteger("{=KTMCM_Cweight}Weight", 0.1f, 5.0f, "#0%", RequireRestart = false,
+            HintText = "{=KTMCM_ITMWH}Enables modifying items weight [Native : 1.0[100%]].")]
+        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CTradeGoods}Trade Goods/{=KTMCM_Cweight}weight")]
+        public float ItemTradeGoodsWeightMultiplier { get; set; } = 1.0f;
         #endregion
-
-
-
-        [SettingPropertyBool("{=KTMCM_HMP}Horse Price", IsToggle = true, Order = 0, RequireRestart = false,
-            HintText = "{=KTMCM_ITMPH}Enables modifying items price.")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CHorse}Horse/{=KTMCM_CPrice}Price")]
-        public bool HorseValueModifiers { get; set; } = true;
 
         #region Price
-        [SettingPropertyFloatingInteger("{=KTMCM_PriceT1}Price Tier1 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMPT1H}Multiply Tier1 price by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CHorse}Horse/{=KTMCM_CPrice}Price")]
-        public float HorseTier1PriceMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_PriceT2}Price Tier2 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMPT2H}Multiply Tier2 price by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CHorse}Horse/{=KTMCM_CPrice}Price")]
-        public float HorseTier2PriceMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_PriceT3}Price Tier3 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMPT3H}Multiply Tier3 price by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CHorse}Horse/{=KTMCM_CPrice}Price")]
-        public float HorseTier3PriceMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_PriceT4}Price Tier4 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMPT4H}Multiply Tier4 price by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CHorse}Horse/{=KTMCM_CPrice}Price")]
-        public float HorseTier4PriceMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_PriceT5}Price Tier5 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMPT5H}Multiply Tier5 price by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CHorse}Horse/{=KTMCM_CPrice}Price")]
-        public float HorseTier5PriceMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_PriceT6}Price Tier6 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMPT6H}Multiply Tier6 price by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CHorse}Horse/{=KTMCM_CPrice}Price")]
-        public float HorseTier6PriceMultiplier { get; set; } = 1.0f;
+        [SettingPropertyFloatingInteger("{=KTMCM_CPrice}Price", 0.1f, 5.0f, "#0%", RequireRestart = false,
+            HintText = "{=KTMCM_ITMPH}Enables modifying items price [Native : 1.0[100%]].")]
+        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CTradeGoods}Trade Goods/{=KTMCM_CPrice}Price")]
+        public float ItemTradeGoodsPriceMultiplier { get; set; } = 1.0f;
         #endregion
-
-
         #endregion
-
-
-
-        [SettingPropertyBool("{=KTMCM_HHM}HorseHarness Modifiers", IsToggle = true, Order = 0, RequireRestart = false,
-            HintText = "{=KTMCM_ITMH}Enables modifying the weight and price.")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CHorseHarness}HorseHarness")]
-        public bool MCMHorseHarnessModifiers { get; set; } = true;
-        #region HorseHarness
-        [SettingPropertyBool("{=KTMCM_HHMW}HorseHarness Weight", IsToggle = true, Order = 0, RequireRestart = false,
-            HintText = "{=KTMCM_ITMWH}Enables modifying items weight.")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CHorseHarness}HorseHarness/{=KTMCM_Cweight}weight")]
-        public bool HorseHarnessWeightModifiers { get; set; } = true;
-
-        #region Weight
-        [SettingPropertyFloatingInteger("{=KTMCM_WeightT1}Weight Tier1 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMWT1H}Multiply Tier1 weight by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CHorseHarness}HorseHarness/{=KTMCM_Cweight}weight")]
-        public float HorseHarnessTier1WeightMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_WeightT2}Weight Tier2 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMWT2H}Multiply Tier2 weight by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CHorseHarness}HorseHarness/{=KTMCM_Cweight}weight")]
-        public float HorseHarnessTier2WeightMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_WeightT3}Weight Tier3 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMWT3H}Multiply Tier3 weight by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CHorseHarness}HorseHarness/{=KTMCM_Cweight}weight")]
-        public float HorseHarnessTier3WeightMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_WeightT4}Weight Tier4 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMWT4H}Multiply Tier4 weight by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CHorseHarness}HorseHarness/{=KTMCM_Cweight}weight")]
-        public float HorseHarnessTier4WeightMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_WeightT5}Weight Tier5 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMWT5H}Multiply Tier5 weight by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CHorseHarness}HorseHarness/{=KTMCM_Cweight}weight")]
-        public float HorseHarnessTier5WeightMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_WeightT6}Weight Tier6 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMWT6H}Multiply Tier6 weight by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CHorseHarness}HorseHarness/{=KTMCM_Cweight}weight")]
-        public float HorseHarnessTier6WeightMultiplier { get; set; } = 1.0f;
-        #endregion
-
-
-        [SettingPropertyBool("{=KTMCM_HHMP}HorseHarness Price", IsToggle = true, Order = 0, RequireRestart = false,
-            HintText = "{=KTMCM_ITMPH}Enables modifying items price.")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CHorseHarness}HorseHarness/{=KTMCM_CPrice}Price")]
-        public bool HorseHarnessValueModifiers { get; set; } = true;
-
-        #region Price
-        [SettingPropertyFloatingInteger("{=KTMCM_PriceT1}Price Tier1 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMPT1H}Multiply Tier1 price by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CHorseHarness}HorseHarness/{=KTMCM_CPrice}Price")]
-        public float HorseHarnessTier1PriceMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_PriceT2}Price Tier2 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMPT2H}Multiply Tier2 price by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CHorseHarness}HorseHarness/{=KTMCM_CPrice}Price")]
-        public float HorseHarnessTier2PriceMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_PriceT3}Price Tier3 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMPT3H}Multiply Tier3 price by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CHorseHarness}HorseHarness/{=KTMCM_CPrice}Price")]
-        public float HorseHarnessTier3PriceMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_PriceT4}Price Tier4 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMPT4H}Multiply Tier4 price by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CHorseHarness}HorseHarness/{=KTMCM_CPrice}Price")]
-        public float HorseHarnessTier4PriceMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_PriceT5}Price Tier5 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMPT5H}Multiply Tier5 price by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CHorseHarness}HorseHarness/{=KTMCM_CPrice}Price")]
-        public float HorseHarnessTier5PriceMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_PriceT6}Price Tier6 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMPT6H}Multiply Tier6 price by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CHorseHarness}HorseHarness/{=KTMCM_CPrice}Price")]
-        public float HorseHarnessTier6PriceMultiplier { get; set; } = 1.0f;
-        #endregion
-
-
-        #endregion
-
-
-        [SettingPropertyBool("{=KTMCM_LAM}LegArmor Modifiers", IsToggle = true, Order = 0, RequireRestart = false,
-            HintText = "{=KTMCM_ITMH}Enables modifying the weight and price.")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CLegArmor}LegArmor")]
-        public bool MCMLegArmorModifiers { get; set; } = true;
-        #region LegArmor
-        [SettingPropertyBool("{=KTMCM_LAMW}LegArmor Weight", IsToggle = true, Order = 0, RequireRestart = false,
-            HintText = "{=KTMCM_ITMWH}Enables modifying items weight.")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CLegArmor}LegArmor/{=KTMCM_Cweight}weight")]
-        public bool LegArmorWeightModifiers { get; set; } = true;
-
-        #region Weight
-        [SettingPropertyFloatingInteger("{=KTMCM_WeightT1}Weight Tier1 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMWT1H}Multiply Tier1 weight by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CLegArmor}LegArmor/{=KTMCM_Cweight}weight")]
-        public float LegArmorTier1WeightMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_WeightT2}Weight Tier2 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMWT2H}Multiply Tier2 weight by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CLegArmor}LegArmor/{=KTMCM_Cweight}weight")]
-        public float LegArmorTier2WeightMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_WeightT3}Weight Tier3 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMWT3H}Multiply Tier3 weight by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CLegArmor}LegArmor/{=KTMCM_Cweight}weight")]
-        public float LegArmorTier3WeightMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_WeightT4}Weight Tier4 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMWT4H}Multiply Tier4 weight by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CLegArmor}LegArmor/{=KTMCM_Cweight}weight")]
-        public float LegArmorTier4WeightMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_WeightT5}Weight Tier5 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMWT5H}Multiply Tier5 weight by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CLegArmor}LegArmor/{=KTMCM_Cweight}weight")]
-        public float LegArmorTier5WeightMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_WeightT6}Weight Tier6 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMWT6H}Multiply Tier6 weight by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CLegArmor}LegArmor/{=KTMCM_Cweight}weight")]
-        public float LegArmorTier6WeightMultiplier { get; set; } = 1.0f;
-        #endregion
-
-
-        [SettingPropertyBool("{=KTMCM_LAMP}LegArmor Price", IsToggle = true, Order = 0, RequireRestart = false,
-            HintText = "{=KTMCM_ITMPH}Enables modifying items price.")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CLegArmor}LegArmor/{=KTMCM_CPrice}Price")]
-        public bool LegArmorValueModifiers { get; set; } = true;
-
-        #region Price
-        [SettingPropertyFloatingInteger("{=KTMCM_PriceT1}Price Tier1 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMPT1H}Multiply Tier1 price by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CLegArmor}LegArmor/{=KTMCM_CPrice}Price")]
-        public float LegArmorTier1PriceMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_PriceT2}Price Tier2 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMPT2H}Multiply Tier2 price by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CLegArmor}LegArmor/{=KTMCM_CPrice}Price")]
-        public float LegArmorTier2PriceMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_PriceT3}Price Tier3 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMPT3H}Multiply Tier3 price by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CLegArmor}LegArmor/{=KTMCM_CPrice}Price")]
-        public float LegArmorTier3PriceMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_PriceT4}Price Tier4 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMPT4H}Multiply Tier4 price by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CLegArmor}LegArmor/{=KTMCM_CPrice}Price")]
-        public float LegArmorTier4PriceMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_PriceT5}Price Tier5 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMPT5H}Multiply Tier5 price by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CLegArmor}LegArmor/{=KTMCM_CPrice}Price")]
-        public float LegArmorTier5PriceMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_PriceT6}Price Tier6 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMPT6H}Multiply Tier6 price by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CLegArmor}LegArmor/{=KTMCM_CPrice}Price")]
-        public float LegArmorTier6PriceMultiplier { get; set; } = 1.0f;
-        #endregion
-
-
-        #endregion
-
-
-        [SettingPropertyBool("{=KTMCM_MM}Musket Modifiers", IsToggle = true, Order = 0, RequireRestart = false,
-            HintText = "{=KTMCM_ITMH}Enables modifying the weight and price.")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CMusket}Musket")]
-        public bool MCMMusketModifiers { get; set; } = true;
-        #region Musket
-        [SettingPropertyBool("{=KTMCM_MMW}Musket Weight", IsToggle = true, Order = 0, RequireRestart = false,
-            HintText = "{=KTMCM_ITMH}Enables modifying the weight and price.")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CMusket}Musket/{=KTMCM_Cweight}weight")]
-        public bool MusketWeightModifiers { get; set; } = true;
-
-        #region Weight
-        [SettingPropertyFloatingInteger("{=KTMCM_WeightT1}Weight Tier1 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMWT1H}Multiply Tier1 weight by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CMusket}Musket/{=KTMCM_Cweight}weight")]
-        public float MusketTier1WeightMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_WeightT2}Weight Tier2 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMWT2H}Multiply Tier2 weight by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CMusket}Musket/{=KTMCM_Cweight}weight")]
-        public float MusketTier2WeightMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_WeightT3}Weight Tier3 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMWT3H}Multiply Tier3 weight by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CMusket}Musket/{=KTMCM_Cweight}weight")]
-        public float MusketTier3WeightMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_WeightT4}Weight Tier4 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMWT4H}Multiply Tier4 weight by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CMusket}Musket/{=KTMCM_Cweight}weight")]
-        public float MusketTier4WeightMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_WeightT5}Weight Tier5 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMWT5H}Multiply Tier5 weight by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CMusket}Musket/{=KTMCM_Cweight}weight")]
-        public float MusketTier5WeightMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_WeightT6}Weight Tier6 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMWT6H}Multiply Tier6 weight by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CMusket}Musket/{=KTMCM_Cweight}weight")]
-        public float MusketTier6WeightMultiplier { get; set; } = 1.0f;
-        #endregion
-
-
-        [SettingPropertyBool("{=KTMCM_MMP}Musket Price", IsToggle = true, Order = 0, RequireRestart = false,
-            HintText = "{=KTMCM_ITMPH}Enables modifying items price.")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CMusket}Musket/{=KTMCM_CPrice}Price")]
-        public bool MusketValueModifiers { get; set; } = true;
-
-        #region Price
-        [SettingPropertyFloatingInteger("{=KTMCM_PriceT1}Price Tier1 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMPT1H}Multiply Tier1 price by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CMusket}Musket/{=KTMCM_CPrice}Price")]
-        public float MusketTier1PriceMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_PriceT2}Price Tier2 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMPT2H}Multiply Tier2 price by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CMusket}Musket/{=KTMCM_CPrice}Price")]
-        public float MusketTier2PriceMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_PriceT3}Price Tier3 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMPT3H}Multiply Tier3 price by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CMusket}Musket/{=KTMCM_CPrice}Price")]
-        public float MusketTier3PriceMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_PriceT4}Price Tier4 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMPT4H}Multiply Tier4 price by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CMusket}Musket/{=KTMCM_CPrice}Price")]
-        public float MusketTier4PriceMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_PriceT5}Price Tier5 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMPT5H}Multiply Tier5 price by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CMusket}Musket/{=KTMCM_CPrice}Price")]
-        public float MusketTier5PriceMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_PriceT6}Price Tier6 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMPT6H}Multiply Tier6 price by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CMusket}Musket/{=KTMCM_CPrice}Price")]
-        public float MusketTier6PriceMultiplier { get; set; } = 1.0f;
-        #endregion
-
-
-
-
-        #endregion
-
-
-        [SettingPropertyBool("{=KTMCM_OHBM}OneHandedWeapon Modifiers", IsToggle = true, Order = 0, RequireRestart = false,
-            HintText = "{=KTMCM_ITMH}Enables modifying the weight and price.")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_COneHandedWeapon}OneHandedWeapon")]
-        public bool MCMOneHandedWeaponModifiers { get; set; } = true;
-        #region OneHandedWeapon
-        [SettingPropertyBool("{=KTMCM_OHMW}OneHandedWeapon Weight", IsToggle = true, Order = 0, RequireRestart = false,
-            HintText = "{=KTMCM_ITMWH}Enables modifying items weight.")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_COneHandedWeapon}OneHandedWeapon/{=KTMCM_Cweight}weight")]
-        public bool OneHandedWeaponWeightModifiers { get; set; } = true;
-
-        #region Weight
-        [SettingPropertyFloatingInteger("{=KTMCM_WeightT1}Weight Tier1 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMWT1H}Multiply Tier1 weight by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_COneHandedWeapon}OneHandedWeapon/{=KTMCM_Cweight}weight")]
-        public float OneHandedWeaponTier1WeightMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_WeightT2}Weight Tier2 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMWT2H}Multiply Tier2 weight by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_COneHandedWeapon}OneHandedWeapon/{=KTMCM_Cweight}weight")]
-        public float OneHandedWeaponTier2WeightMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_WeightT3}Weight Tier3 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMWT3H}Multiply Tier3 weight by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_COneHandedWeapon}OneHandedWeapon/{=KTMCM_Cweight}weight")]
-        public float OneHandedWeaponTier3WeightMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_WeightT4}Weight Tier4 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMWT4H}Multiply Tier4 weight by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_COneHandedWeapon}OneHandedWeapon/{=KTMCM_Cweight}weight")]
-        public float OneHandedWeaponTier4WeightMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_WeightT5}Weight Tier5 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMWT5H}Multiply Tier5 weight by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_COneHandedWeapon}OneHandedWeapon/{=KTMCM_Cweight}weight")]
-        public float OneHandedWeaponTier5WeightMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_WeightT6}Weight Tier6 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMWT6H}Multiply Tier6 weight by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_COneHandedWeapon}OneHandedWeapon/{=KTMCM_Cweight}weight")]
-        public float OneHandedWeaponTier6WeightMultiplier { get; set; } = 1.0f;
-        #endregion
-
-
-        [SettingPropertyBool("{=KTMCM_OHMP}OneHandedWeapon Price", IsToggle = true, Order = 0, RequireRestart = false,
-            HintText = "{=KTMCM_ITMPH}Enables modifying items price.")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_COneHandedWeapon}OneHandedWeapon/{=KTMCM_CPrice}Price")]
-        public bool OneHandedWeaponValueModifiers { get; set; } = true;
-
-        #region Price
-        [SettingPropertyFloatingInteger("{=KTMCM_PriceT1}Price Tier1 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMPT1H}Multiply Tier1 price by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_COneHandedWeapon}OneHandedWeapon/{=KTMCM_CPrice}Price")]
-        public float OneHandedWeaponTier1PriceMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_PriceT2}Price Tier2 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMPT2H}Multiply Tier2 price by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_COneHandedWeapon}OneHandedWeapon/{=KTMCM_CPrice}Price")]
-        public float OneHandedWeaponTier2PriceMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_PriceT3}Price Tier3 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMPT3H}Multiply Tier3 price by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_COneHandedWeapon}OneHandedWeapon/{=KTMCM_CPrice}Price")]
-        public float OneHandedWeaponTier3PriceMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_PriceT4}Price Tier4 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMPT4H}Multiply Tier4 price by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_COneHandedWeapon}OneHandedWeapon/{=KTMCM_CPrice}Price")]
-        public float OneHandedWeaponTier4PriceMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_PriceT5}Price Tier5 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMPT5H}Multiply Tier5 price by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_COneHandedWeapon}OneHandedWeapon/{=KTMCM_CPrice}Price")]
-        public float OneHandedWeaponTier5PriceMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_PriceT6}Price Tier6 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMPT6H}Multiply Tier6 price by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_COneHandedWeapon}OneHandedWeapon/{=KTMCM_CPrice}Price")]
-        public float OneHandedWeaponTier6PriceMultiplier { get; set; } = 1.0f;
-        #endregion
-
-
-        #endregion
-
-
-        [SettingPropertyBool("{=KTMCM_PM}Pistol Modifiers", IsToggle = true, Order = 0, RequireRestart = false,
-            HintText = "{=KTMCM_ITMH}Enables modifying the weight and price.")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CPistol}Pistol")]
-        public bool MCMPistolModifiers { get; set; } = true;
-        #region Pistol
-        [SettingPropertyBool("{=KTMCM_PMW}Pistol Weight", IsToggle = true, Order = 0, RequireRestart = false,
-            HintText = "{=KTMCM_ITMWH}Enables modifying items weight.")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CPistol}Pistol/{=KTMCM_Cweight}weight")]
-        public bool PistolWeightModifiers { get; set; } = true;
-
-        #region Weight
-        [SettingPropertyFloatingInteger("{=KTMCM_WeightT1}Weight Tier1 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMWT1H}Multiply Tier1 weight by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CPistol}Pistol/{=KTMCM_Cweight}weight")]
-        public float PistolTier1WeightMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_WeightT2}Weight Tier2 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMWT2H}Multiply Tier2 weight by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CPistol}Pistol/{=KTMCM_Cweight}weight")]
-        public float PistolTier2WeightMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_WeightT3}Weight Tier3 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMWT3H}Multiply Tier3 weight by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CPistol}Pistol/{=KTMCM_Cweight}weight")]
-        public float PistolTier3WeightMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_WeightT4}Weight Tier4 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMWT4H}Multiply Tier4 weight by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CPistol}Pistol/{=KTMCM_Cweight}weight")]
-        public float PistolTier4WeightMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_WeightT5}Weight Tier5 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMWT5H}Multiply Tier5 weight by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CPistol}Pistol/{=KTMCM_Cweight}weight")]
-        public float PistolTier5WeightMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_WeightT6}Weight Tier6 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMWT6H}Multiply Tier6 weight by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CPistol}Pistol/{=KTMCM_Cweight}weight")]
-        public float PistolTier6WeightMultiplier { get; set; } = 1.0f;
-        #endregion
-
-
-        [SettingPropertyBool("{=KTMCM_PMP}Pistol Price", IsToggle = true, Order = 0, RequireRestart = false,
-            HintText = "{=KTMCM_ITMPH}Enables modifying items price.")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CPistol}Pistol/{=KTMCM_CPrice}Price")]
-        public bool PistolValueModifiers { get; set; } = true;
-
-        #region Price
-        [SettingPropertyFloatingInteger("{=KTMCM_PriceT1}Price Tier1 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMPT1H}Multiply Tier1 price by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CPistol}Pistol/{=KTMCM_CPrice}Price")]
-        public float PistolTier1PriceMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_PriceT2}Price Tier2 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMPT2H}Multiply Tier2 price by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CPistol}Pistol/{=KTMCM_CPrice}Price")]
-        public float PistolTier2PriceMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_PriceT3}Price Tier3 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMPT3H}Multiply Tier3 price by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CPistol}Pistol/{=KTMCM_CPrice}Price")]
-        public float PistolTier3PriceMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_PriceT4}Price Tier4 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMPT4H}Multiply Tier4 price by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CPistol}Pistol/{=KTMCM_CPrice}Price")]
-        public float PistolTier4PriceMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_PriceT5}Price Tier5 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMPT5H}Multiply Tier5 price by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CPistol}Pistol/{=KTMCM_CPrice}Price")]
-        public float PistolTier5PriceMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_PriceT6}Price Tier6 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMPT6H}Multiply Tier6 price by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CPistol}Pistol/{=KTMCM_CPrice}Price")]
-        public float PistolTier6PriceMultiplier { get; set; } = 1.0f;
-        #endregion
-
-
-
-        #endregion
-
-
-        [SettingPropertyBool("{=KTMCM_PAM}Polearm Modifiers", IsToggle = true, Order = 0, RequireRestart = false,
-            HintText = "{=KTMCM_ITMH}Enables modifying the weight and price.")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CPolearm}Polearm")]
-        public bool MCMPolearmModifiers { get; set; } = true;
-        #region Polearm
-        [SettingPropertyBool("{=KTMCM_PAMW}Polearm Weight", IsToggle = true, Order = 0, RequireRestart = false,
-            HintText = "{=KTMCM_ITMWH}Enables modifying items weight.")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CPolearm}Polearm/{=KTMCM_Cweight}weight")]
-        public bool PolearmWeightModifiers { get; set; } = true;
-
-        #region Weight
-        [SettingPropertyFloatingInteger("{=KTMCM_WeightT1}Weight Tier1 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMWT1H}Multiply Tier1 weight by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CPolearm}Polearm/{=KTMCM_Cweight}weight")]
-        public float PolearmTier1WeightMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_WeightT2}Weight Tier2 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMWT2H}Multiply Tier2 weight by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CPolearm}Polearm/{=KTMCM_Cweight}weight")]
-        public float PolearmTier2WeightMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_WeightT3}Weight Tier3 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMWT3H}Multiply Tier3 weight by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CPolearm}Polearm/{=KTMCM_Cweight}weight")]
-        public float PolearmTier3WeightMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_WeightT4}Weight Tier4 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMWT4H}Multiply Tier4 weight by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CPolearm}Polearm/{=KTMCM_Cweight}weight")]
-        public float PolearmTier4WeightMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_WeightT5}Weight Tier5 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMWT5H}Multiply Tier5 weight by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CPolearm}Polearm/{=KTMCM_Cweight}weight")]
-        public float PolearmTier5WeightMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_WeightT6}Weight Tier6 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMWT6H}Multiply Tier6 weight by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CPolearm}Polearm/{=KTMCM_Cweight}weight")]
-        public float PolearmTier6WeightMultiplier { get; set; } = 1.0f;
-        #endregion
-
-
-        [SettingPropertyBool("{=KTMCM_PAMP}Polearm Price", IsToggle = true, Order = 0, RequireRestart = false,
-            HintText = "{=KTMCM_ITMPH}Enables modifying items price.")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CPolearm}Polearm/{=KTMCM_CPrice}Price")]
-        public bool PolearmValueModifiers { get; set; } = true;
-
-        #region Price
-        [SettingPropertyFloatingInteger("{=KTMCM_PriceT1}Price Tier1 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMPT1H}Multiply Tier1 price by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CPolearm}Polearm/{=KTMCM_CPrice}Price")]
-        public float PolearmTier1PriceMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_PriceT2}Price Tier2 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMPT2H}Multiply Tier2 price by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CPolearm}Polearm/{=KTMCM_CPrice}Price")]
-        public float PolearmTier2PriceMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_PriceT3}Price Tier3 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMPT3H}Multiply Tier3 price by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CPolearm}Polearm/{=KTMCM_CPrice}Price")]
-        public float PolearmTier3PriceMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_PriceT4}Price Tier4 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMPT4H}Multiply Tier4 price by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CPolearm}Polearm/{=KTMCM_CPrice}Price")]
-        public float PolearmTier4PriceMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_PriceT5}Price Tier5 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMPT5H}Multiply Tier5 price by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CPolearm}Polearm/{=KTMCM_CPrice}Price")]
-        public float PolearmTier5PriceMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_PriceT6}Price Tier6 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMPT6H}Multiply Tier6 price by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CPolearm}Polearm/{=KTMCM_CPrice}Price")]
-        public float PolearmTier6PriceMultiplier { get; set; } = 1.0f;
-        #endregion
-
-
-
-        #endregion
-
-
-        [SettingPropertyBool("{=KTMCM_SHM}Shield Modifiers", IsToggle = true, Order = 0, RequireRestart = false,
-            HintText = "{=KTMCM_ITMH}Enables modifying the weight and price.")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CShield}Shield")]
-        public bool MCMShieldModifiers { get; set; } = true;
-        #region Shield
-        [SettingPropertyBool("{=KTMCM_SHMW}Shield Weight", IsToggle = true, Order = 0, RequireRestart = false,
-            HintText = "{=KTMCM_ITMWH}Enables modifying items weight.")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CShield}Shield/{=KTMCM_Cweight}weight")]
-        public bool ShieldWeightModifiers { get; set; } = true;
-
-        #region Weight
-        [SettingPropertyFloatingInteger("{=KTMCM_WeightT1}Weight Tier1 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMWT1H}Multiply Tier1 weight by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CShield}Shield/{=KTMCM_Cweight}weight")]
-        public float ShieldTier1WeightMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_WeightT2}Weight Tier2 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMWT2H}Multiply Tier2 weight by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CShield}Shield/{=KTMCM_Cweight}weight")]
-        public float ShieldTier2WeightMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_WeightT3}Weight Tier3 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMWT3H}Multiply Tier3 weight by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CShield}Shield/{=KTMCM_Cweight}weight")]
-        public float ShieldTier3WeightMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_WeightT4}Weight Tier4 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMWT4H}Multiply Tier4 weight by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CShield}Shield/{=KTMCM_Cweight}weight")]
-        public float ShieldTier4WeightMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_WeightT5}Weight Tier5 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMWT5H}Multiply Tier5 weight by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CShield}Shield/{=KTMCM_Cweight}weight")]
-        public float ShieldTier5WeightMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_WeightT6}Weight Tier6 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMWT6H}Multiply Tier6 weight by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CShield}Shield/{=KTMCM_Cweight}weight")]
-        public float ShieldTier6WeightMultiplier { get; set; } = 1.0f;
-        #endregion
-
-
-        [SettingPropertyBool("{=KTMCM_SHMP}Shield Price", IsToggle = true, Order = 0, RequireRestart = false,
-            HintText = "{=KTMCM_ITMPH}Enables modifying items price.")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CShield}Shield/{=KTMCM_CPrice}Price")]
-        public bool ShieldValueModifiers { get; set; } = true;
-
-        #region Price
-        [SettingPropertyFloatingInteger("{=KTMCM_PriceT1}Price Tier1 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMPT1H}Multiply Tier1 price by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CShield}Shield/{=KTMCM_CPrice}Price")]
-        public float ShieldTier1PriceMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_PriceT2}Price Tier2 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMPT2H}Multiply Tier2 price by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CShield}Shield/{=KTMCM_CPrice}Price")]
-        public float ShieldTier2PriceMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_PriceT3}Price Tier3 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMPT3H}Multiply Tier3 price by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CShield}Shield/{=KTMCM_CPrice}Price")]
-        public float ShieldTier3PriceMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_PriceT4}Price Tier4 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMPT4H}Multiply Tier4 price by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CShield}Shield/{=KTMCM_CPrice}Price")]
-        public float ShieldTier4PriceMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_PriceT5}Price Tier5 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMPT5H}Multiply Tier5 price by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CShield}Shield/{=KTMCM_CPrice}Price")]
-        public float ShieldTier5PriceMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_PriceT6}Price Tier6 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMPT6H}Multiply Tier6 price by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CShield}Shield/{=KTMCM_CPrice}Price")]
-        public float ShieldTier6PriceMultiplier { get; set; } = 1.0f;
-        #endregion
-
-
-
-        #endregion
-
-
-        [SettingPropertyBool("{=KTMCM_THM}TwoHandedWeapon Modifiers", IsToggle = true, Order = 0, RequireRestart = false,
-            HintText = "{=KTMCM_ITMH}Enables modifying the weight and price.")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CTwoHandedWeapon}TwoHandedWeapon")]
-        public bool MCMTwoHandedWeaponModifiers { get; set; } = true;
-        #region TwoHandedWeapon
-        [SettingPropertyBool("{=KTMCM_THMW}TwoHandedWeapon Weight", IsToggle = true, Order = 0, RequireRestart = false,
-            HintText = "{=KTMCM_ITMWH}Enables modifying items weight.")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CTwoHandedWeapon}TwoHandedWeapon/{=KTMCM_Cweight}weight")]
-        public bool TwoHandedWeaponWeightModifiers { get; set; } = true;
-
-        #region Weight
-        [SettingPropertyFloatingInteger("{=KTMCM_WeightT1}Weight Tier1 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMWT1H}Multiply Tier1 weight by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CTwoHandedWeapon}TwoHandedWeapon/{=KTMCM_Cweight}weight")]
-        public float TwoHandedWeaponTier1WeightMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_WeightT2}Weight Tier2 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMWT2H}Multiply Tier2 weight by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CTwoHandedWeapon}TwoHandedWeapon/{=KTMCM_Cweight}weight")]
-        public float TwoHandedWeaponTier2WeightMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_WeightT3}Weight Tier3 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMWT3H}Multiply Tier3 weight by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CTwoHandedWeapon}TwoHandedWeapon/{=KTMCM_Cweight}weight")]
-        public float TwoHandedWeaponTier3WeightMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_WeightT4}Weight Tier4 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMWT4H}Multiply Tier4 weight by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CTwoHandedWeapon}TwoHandedWeapon/{=KTMCM_Cweight}weight")]
-        public float TwoHandedWeaponTier4WeightMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_WeightT5}Weight Tier5 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMWT5H}Multiply Tier5 weight by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CTwoHandedWeapon}TwoHandedWeapon/{=KTMCM_Cweight}weight")]
-        public float TwoHandedWeaponTier5WeightMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_WeightT6}Weight Tier6 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMWT6H}Multiply Tier6 weight by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CTwoHandedWeapon}TwoHandedWeapon/{=KTMCM_Cweight}weight")]
-        public float TwoHandedWeaponTier6WeightMultiplier { get; set; } = 1.0f;
-        #endregion
-
-
-        [SettingPropertyBool("{=KTMCM_THMP}TwoHandedWeapon Price", IsToggle = true, Order = 0, RequireRestart = false,
-            HintText = "{=KTMCM_ITMPH}Enables modifying items price.")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CTwoHandedWeapon}TwoHandedWeapon/{=KTMCM_CPrice}Price")]
-        public bool TwoHandedWeaponValueModifiers { get; set; } = true;
-
-        #region Price
-        [SettingPropertyFloatingInteger("{=KTMCM_PriceT1}Price Tier1 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMPT1H}Multiply Tier1 price by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CTwoHandedWeapon}TwoHandedWeapon/{=KTMCM_CPrice}Price")]
-        public float TwoHandedWeaponTier1PriceMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_PriceT2}Price Tier2 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-             HintText = "{=KTMCM_ITMPT2H}Multiply Tier2 price by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CTwoHandedWeapon}TwoHandedWeapon/{=KTMCM_CPrice}Price")]
-        public float TwoHandedWeaponTier2PriceMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_PriceT3}Price Tier3 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMPT3H}Multiply Tier3 price by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CTwoHandedWeapon}TwoHandedWeapon/{=KTMCM_CPrice}Price")]
-        public float TwoHandedWeaponTier3PriceMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_PriceT4}Price Tier4 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMPT4H}Multiply Tier4 price by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CTwoHandedWeapon}TwoHandedWeapon/{=KTMCM_CPrice}Price")]
-        public float TwoHandedWeaponTier4PriceMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_PriceT5}Price Tier5 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMPT5H}Multiply Tier5 price by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CTwoHandedWeapon}TwoHandedWeapon/{=KTMCM_CPrice}Price")]
-        public float TwoHandedWeaponTier5PriceMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_PriceT6}Price Tier6 Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMPT6H}Multiply Tier6 price by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CItems}Items/{=KTMCM_CTwoHandedWeapon}TwoHandedWeapon/{=KTMCM_CPrice}Price")]
-        public float TwoHandedWeaponTier6PriceMultiplier { get; set; } = 1.0f;
-        #endregion
-
-
-        #endregion
-
-
         //End Items
         #endregion
 
-
+        //~ Battle Rewards
+        #region Battle Rewards
         [SettingPropertyBool("{=KTMCM_BRM}Battle Reward Modifiers *", IsToggle = true, Order = 0, RequireRestart = true,
             HintText = "{=KTMCM_BRMH}Enables modifying battle rewards.")]
         [SettingPropertyGroup("{=KTMCM_CBattleReward}Battle Rewards")]
         public bool MCMBattleRewardModifiers { get; set; } = true;
-        #region Battle Rewards
+
+        //[SettingPropertyBool("{=BT_Settings_000104}Also Apply To AI", Order = 5, RequireRestart = false,
+        //    HintText = "{=BT_Settings_000104_Desc}Applies the renown, influence and morale modifiers to AI parties."),
+        //    SettingPropertyGroup("{=KTMCM_CBattleReward}Battle Rewards")]
+        public bool BattleRewardApplyToAI { get; set; } = false;
         #region RelationshipGain
         [SettingPropertyBool("{=KTMCM_BRMRG}Relationship Gain", IsToggle = true, Order = 0, RequireRestart = false,
             HintText = "{=KTMCM_BRMRGH}Enables modifying Relationship gain.")]
@@ -1486,27 +461,14 @@ namespace KaosesTweaks.Settings
         [SettingPropertyGroup("{=KTMCM_CBattleReward}Battle Rewards/{=KTMCM_CGoldLoss}Gold Loss")]
         public float BattleRewardsGoldLossMultiplier { get; set; } = 1.0f;
         #endregion
-
-        //[SettingPropertyBool("{=BT_Settings_000104}Also Apply To AI", Order = 5, RequireRestart = false,
-        //    HintText = "{=BT_Settings_000104_Desc}Applies the renown, influence and morale modifiers to AI parties."),
-        //    SettingPropertyGroup("{=KTMCM_CBattleReward}Battle Rewards")]
-        public bool BattleRewardApplyToAI { get; set; } = false;
-
         #endregion  
 
-
-
-
-
-
-
-
+        //~ Clan
+        #region Clan
         [SettingPropertyBool("{=KTMCM_CLM}Clan Modifiers *", IsToggle = true, Order = 0, RequireRestart = true,
             HintText = "{=KTMCM_CLMH}Enables modifying clan variables.")]
         [SettingPropertyGroup("{=BT_Settings_003000}Clan Tweaks")]
         public bool MCMClanModifiers { get; set; } = false;
-
-        #region Clan
 
         [SettingPropertyBool("{=KTMCM_CLMBPL}Party Limits", IsToggle = true, RequireRestart = false,//, Order = 3
             HintText = "{=KTMCM_CLMBPLH}Enables additional Party limit per clan tier .")]
@@ -1596,13 +558,12 @@ namespace KaosesTweaks.Settings
         #endregion
         #endregion
 
-
-
+        //~ CharacterDevelopment
+        #region CharacterDevelopment
         [SettingPropertyBool("{=KTMCM_PCM}Character Modifiers *", IsToggle = true, Order = 0, RequireRestart = true,
             HintText = "{=KTMCM_PCMH}Enables modifying Character variables.")]
         [SettingPropertyGroup("{=KTMCM_CCharacter}Character")]
         public bool MCMCharacterDevlopmentModifiers { get; set; } = false;
-        #region CharacterDevelopment
         #region LevelsPerAttributePoint
         [SettingPropertyBool("{=KTMCM_PCMLPA}Levels Per Attribute modifier", IsToggle = true, Order = 0, RequireRestart = false,
             HintText = "{=KTMCM_PCMLPAH}Enable Number of Levels Per Attribute modifier")]
@@ -1628,14 +589,12 @@ namespace KaosesTweaks.Settings
         #endregion 
         #endregion CharacterDevelopment
 
-
-
-
+        //~ Pregnancy
+        #region Pregnancy
         [SettingPropertyBool("{=KTMCM_PM}Pregnancy Modifiers*", IsToggle = true, Order = 0, RequireRestart = true,
             HintText = "{=KTMCM_PMH}Enables modifying Pregnancy variables.")]
         [SettingPropertyGroup("{=KTMCM_CPregnancy}Pregnancy")]
         public bool MCMPregnancyModifiers { get; set; } = false;
-        #region Pregnancy
 
         [SettingPropertyBool("{=KTMCM_PMDD}Pregnancy Duration Modifier", IsToggle = true, Order = 0, RequireRestart = false,
             HintText = "{=KTMCM_PMDDH}Enables Pregnancy Duration modifier.")]
@@ -1651,7 +610,7 @@ namespace KaosesTweaks.Settings
 
         [SettingPropertyBool("{=BT_Settings_002402}Disable Maternal Mortality", Order = 3, RequireRestart = false,
             HintText = "{=BT_Settings_002402_Desc}Disables the chance of mothers dying when giving birth."),
-            SettingPropertyGroup("{=BT_Settings_002000}Character Tweaks" + "/" + "{=BT_Settings_002400}Pregnancy Tweaks" + "*")]
+            SettingPropertyGroup("{=KTMCM_CPregnancy}Pregnancy/{=BT_Settings_002400}Pregnancy Tweaks" + "*")]
         public bool NoMaternalMortalityTweakEnabled { get; set; } = false;
 
         [SettingPropertyBool("{=KTMCM_PMMPL}Labor Mortality Chance Modifier", IsToggle = true, Order = 0, RequireRestart = false,
@@ -1668,7 +627,7 @@ namespace KaosesTweaks.Settings
 
         [SettingPropertyBool("{=BT_Settings_002401}Disable Stillbirths", Order = 2, RequireRestart = false,
             HintText = "{=BT_Settings_002401_Desc}Disables the chance of children dying when born."),
-            SettingPropertyGroup("{=BT_Settings_002000}Character Tweaks" + "/" + "{=BT_Settings_002400}Pregnancy Tweaks" + "*")]
+            SettingPropertyGroup("{=KTMCM_CPregnancy}Pregnancy/{=BT_Settings_002400}Pregnancy Tweaks" + "*")]
         public bool NoStillbirthsTweakEnabled { get; set; } = false;
 
         [SettingPropertyBool("{=KTMCM_PMSB}Stillbirth Chance Modifier", IsToggle = true, Order = 0, RequireRestart = false,
@@ -1744,103 +703,12 @@ namespace KaosesTweaks.Settings
 
         #endregion
 
-
-
-
-
-        [SettingPropertyBool("{=KTMCM_SM}Smithing Modifiers *", IsToggle = true, Order = 0, RequireRestart = true,
-            HintText = "{=KTMCM_SMH}Enables modifying Smithing variables.")]
-        [SettingPropertyGroup("{=KTMCM_CCrafting}Crafting")]
-        public bool MCMSmithingModifiers { get; set; } = false;
-        #region Smithing
-        #region RefiningXp
-        [SettingPropertyBool("{=KTMCM_SMRXP}Refining Xp", IsToggle = true, Order = 0, RequireRestart = false,
-            HintText = "{=KTMCM_SMRXPH}Enable Refining Xp multiplier.")]
-        [SettingPropertyGroup("{=KTMCM_CCrafting}Crafting/{=KTMCM_CXP}XP/{=KTMCM_CRefining}Refining")]
-        public bool SmithingRefiningXpModifiers { get; set; } = false;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_SMRXPM}Refining Xp", 0.1f, 5.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_SMRXPMH}Multiply Refining Xp by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CCrafting}Crafting/{=KTMCM_CXP}XP/{=KTMCM_CRefining}Refining")]
-        public float SmithingRefiningXpValue { get; set; } = 1.0f;
-        #endregion  
-
-        #region XpForSmelting
-        [SettingPropertyBool("{=KTMCM_SMSXP}Smelting Xp", IsToggle = true, Order = 0, RequireRestart = false,
-            HintText = "{=KTMCM_SMSXPH}Enable Smelting Xp multiplier.")]
-        [SettingPropertyGroup("{=KTMCM_CCrafting}Crafting/{=KTMCM_CXP}XP/{=KTMCM_CSmelting}Smelting")]
-        public bool SmithingSmeltingXpModifiers { get; set; } = false;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_SMSXPM}Smelting Xp", 0.1f, 5.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_SMSXPMH}Multiply Smelting Xp by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CCrafting}Crafting/{=KTMCM_CXP}XP/{=KTMCM_CSmelting}Smelting")]
-        public float SmithingSmeltingXpValue { get; set; } = 1.0f;
-        #endregion 
-
-        #region XpForSmithing
-        [SettingPropertyBool("{=KTMCM_SMCXP}Crafting Xp", IsToggle = true, Order = 0, RequireRestart = false,
-            HintText = "{=KTMCM_SMCXPH}Enable Crafting Xp multiplier.")]
-        [SettingPropertyGroup("{=KTMCM_CCrafting}Crafting/{=KTMCM_CXP}XP/{=KTMCM_CSmithing}Smithing")]
-        public bool SmithingSmithingXpModifiers { get; set; } = false;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_SMCXPM}Smithing Xp", 0.1f, 5.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_SMCXPMH}Multiply Smithing Xp by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CCrafting}Crafting/{=KTMCM_CXP}XP/{=KTMCM_CSmithing}Smithing")]
-        public float SmithingSmithingXpValue { get; set; } = 1.0f;
-        #endregion 
-
-        #region EnergyDisable
-        [SettingPropertyBool("{=KTMCM_SMSE}Energy Disable", Order = 0, RequireRestart = false,
-            HintText = "{=KTMCM_SMSEH}Disable the energy for crafting and refining tasks [Native : false]")]
-        [SettingPropertyGroup("{=KTMCM_CCrafting}Crafting/{=KTMCM_CEnergy}Energy/{=KTMCM_CDisable}Disable")]
-        public bool SmithingEnergyDisable { get; set; } = false;
-
-        #endregion 
-
-        #region EnergyCostForRefining
-        [SettingPropertyBool("{=KTMCM_SMECR}Energy Refining", IsToggle = true, Order = 0, RequireRestart = false,
-            HintText = "{=KTMCM_SMECRH}Enable modify the energy used for refining.")]
-        [SettingPropertyGroup("{=KTMCM_CCrafting}Crafting/{=KTMCM_CEnergy}Energy/{=KTMCM_CRefining}Refining")]
-        public bool SmithingEnergyRefiningModifiers { get; set; } = false;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_SMECRM}Energy Refining", 0.1f, 1.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_SMECRMH}Multiply the energy used for refining by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("Smithing/{=KTMCM_CEnergy}Energy/{=KTMCM_CRefining}Refining")]
-        public float SmithingEnergyRefiningValue { get; set; } = 1.0f;
-        #endregion 
-
-        #region EnergyCostForSmithing
-        [SettingPropertyBool("{=KTMCM_SMECC}Energy Crafting", IsToggle = true, Order = 0, RequireRestart = false,
-            HintText = "{=KTMCM_SMECCH}Enable modify the energy used for Crafting.")]
-        [SettingPropertyGroup("{=KTMCM_CCrafting}Crafting/{=KTMCM_CEnergy}Energy/{=KTMCM_CCrafting}Crafting")]
-        public bool SmithingEnergySmithingModifiers { get; set; } = false;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_SMECCM}Energy Crafting", 0.1f, 1.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_SMECCMH}Multiply the energy used for Crafting by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CCrafting}Crafting/{=KTMCM_CEnergy}Energy/{=KTMCM_CCrafting}Crafting")]
-        public float SmithingEnergySmithingValue { get; set; } = 1.0f;
-        #endregion 
-
-        #region EnergyCostForSmelting
-        [SettingPropertyBool("{=KTMCM_SMECS}Energy Smelting", IsToggle = true, Order = 0, RequireRestart = false,
-            HintText = "{=KTMCM_SMECSH}Enable modify the energy used for Smelting.")]
-        [SettingPropertyGroup("{=KTMCM_CCrafting}Crafting/{=KTMCM_CEnergy}Energy/{=KTMCM_CSmelting}Smelting")]
-        public bool SmithingEnergySmeltingModifiers { get; set; } = false;
-
-        [SettingPropertyFloatingInteger("{=}Energy Smithing", 0.1f, 1.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_SMECSMH}Multiply the energy used for Smelting by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CCrafting}Crafting/{=KTMCM_CEnergy}Energy/{=KTMCM_CSmelting}Smelting")]
-        public float SmithingEnergySmeltingValue { get; set; } = 1.0f;
-        #endregion 
-        #endregion  
-
-
-
+        //~ ItemLocks
+        #region ItemLocks
         [SettingPropertyBool("{=KTMCM_AL}Item Auto Locks *", IsToggle = true, Order = 0, RequireRestart = true,
             HintText = "{=KTMCM_ALH}Allows for auto locking horses, food , and smithing materials.")]
         [SettingPropertyGroup("{=KTMCM_CAutoLocks}Auto Locks")]
         public bool MCMAutoLocks { get; set; } = false;
-        #region ItemLocks
 
         [SettingPropertyBool("{=KTMCM_ALHS}Horses", Order = 0, RequireRestart = false, 
             HintText = "{=KTMCM_ALHSH}Auto lock horses except lame horses.")]
@@ -1905,14 +773,12 @@ namespace KaosesTweaks.Settings
 
         #endregion
 
-
-
-
+        //~ ArmyManagement
+        #region ArmyManagement
         [SettingPropertyBool("{=KTMCM_AM}Army Modifiers *", IsToggle = true, Order = 0, RequireRestart = true,
             HintText = "{=KTMCM_AMH}Enable army modifiers.")]
         [SettingPropertyGroup("{=KTMCM_CArmy}Army")]
         public bool MCMArmy { get; set; } = false;
-        #region ArmyManagement
         #region Cohesion
 
         [SettingPropertyBool("{=KTMCM_AMCM}Cohesion Modifiers", IsToggle = true, Order = 0, RequireRestart = false,
@@ -1943,14 +809,12 @@ namespace KaosesTweaks.Settings
         #endregion
         #endregion ArmyManagement
 
-
-
-
+        //~ Relations
+        #region Relations
         [SettingPropertyBool("{=}Relation Building Modifiers *", IsToggle = true, Order = 0, RequireRestart = true,
             HintText = "{=}Relation Building modifiers.")]
         [SettingPropertyGroup("{=KTMCM_CRelationBuilding}Relation Building")]
         public bool MCMRelationBuilding { get; set; } = false;
-        #region Relations
         #region KillingBandits
         [SettingPropertyBool("{=KTMCM_RB}Killing Bandits Modifiers", IsToggle = true, Order = 0, RequireRestart = false,
             HintText = "{=KTMCM_RBH}Relation Building Killing Bandits modifiers.")]
@@ -2005,14 +869,13 @@ namespace KaosesTweaks.Settings
         #endregion
         #endregion
 
-
-
+        //~ XpMultipliers
+        #region XpMultipliers
         [SettingPropertyBool("{=KTMCM_XPM}Xp Modifiers *", IsToggle = true, Order = 0, RequireRestart = true,
             HintText = "{=KTMCM_XPMH}Enable Xp modifiers.")]
         [SettingPropertyGroup("{=KTMCM_CXpModifiers}Xp Modifiers")]
         public bool MCMSkillsXp { get; set; } = false;
 
-        #region XpMultipliers
 
         [SettingPropertyBool("{=KTMCM_XPMSM}Skill Xp Modifiers *", IsToggle = true, Order = 0, RequireRestart = true,
             HintText = "{=KTMCM_XPMSMH}Enable Skill Xp modifiers.")]
@@ -2148,6 +1011,100 @@ namespace KaosesTweaks.Settings
 
         #endregion
 
+
+
+        [SettingPropertyBool("{=KTMCM_XPMLR}Learning Rate Modifiers *", IsToggle = true, Order = 0, RequireRestart = true,
+            HintText = "{=KTMCM_XPMLRH}Enable Learning Rate modifiers.")]
+        [SettingPropertyGroup("{=KTMCM_CXpModifiers}Xp Modifiers/{=KTMCM_CLearning}Learning Rate")]
+        public bool LearningRateEnabled { get; set; } = false;
+        #region LearningRateMultipliers
+        [SettingPropertyFloatingInteger("{=KTMCM_XPMLRM}Global Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false, 
+            HintText = "{=KTMCM_XPMLRMH}Multiply Learning Rate by the Global multiplier [Native : 1.0[100%]].")]
+        [SettingPropertyGroup("{=KTMCM_CXpModifiers}Xp Modifiers/{=KTMCM_CLearning}Learning Rate")]
+        public float LearningRateMultiplier { get; set; } = 1.0f;
+
+        #endregion
+
+        #region Character Tweaks - Hero Skill Multiplier Tweaks
+
+        [SettingPropertyBool("{=BT_Settings_002300}Hero Skill Experience" + "*", Order = 1, IsToggle = true, RequireRestart = true,
+            HintText = "{=BT_Settings_002300_Desc}Enable bonuses to the skill experience your hero and companions members gain."),
+            SettingPropertyGroup("{=KTMCM_CXpModifiers}Xp Modifiers/{=BT_Settings_002300}Hero Skill Experience" + "*", GroupOrder = 3)]
+        public bool SkillExperienceMultipliersEnabled { get; set; } = false;
+
+        [SettingPropertyBool("{=BT_Settings_002301}Player Skill Experience", Order = 2, RequireRestart = false, IsToggle = true,
+            HintText = "{=BT_Settings_002301_Desc}Applies a modifier to the amount of experience recieved for skills. Affects the player only. 100% = No Bonus."),
+            SettingPropertyGroup("{=KTMCM_CXpModifiers}Xp Modifiers/{=BT_Settings_002300}Hero Skill Experience" + "*/" + "{=BT_Settings_002301}Player Skill Experience", GroupOrder = 1)]
+        public bool HeroSkillExperienceMultiplierEnabled { get; set; } = false;
+
+        [SettingPropertyFloatingInteger("{=BT_Settings_002302}Player Skill Experience Amount", 1f, 5f, "0%", RequireRestart = false,
+            HintText = "{=BT_Settings_002302_Desc}Applies a modifier to the amount of experience recieved for skills. Affects the player only. 100% = No Bonus."),
+            SettingPropertyGroup("{=KTMCM_CXpModifiers}Xp Modifiers/{=BT_Settings_002300}Hero Skill Experience" + "*/" + "{=BT_Settings_002301}Player Skill Experience")]
+        public float HeroSkillExperienceMultiplier { get; set; } = 1f;
+
+        [SettingPropertyBool("{=BT_Settings_002303}Companion Skill Experience", Order = 3, RequireRestart = false, IsToggle = true,
+            HintText = "{=BT_Settings_002303_Desc}Applies a modifier to the amount of experience recieved for skills. Affects Compaions only. 100% = No Bonus."),
+            SettingPropertyGroup("{=KTMCM_CXpModifiers}Xp Modifiers/{=BT_Settings_002300}Hero Skill Experience" + "*/" + "{=BT_Settings_002303}Companion Skill Experience", GroupOrder = 2)]
+        public bool CompanionSkillExperienceMultiplierEnabled { get; set; } = false;
+
+        [SettingPropertyFloatingInteger("{=BT_Settings_002304}Companion Skill Experience Amount", 1f, 20f, "0%", RequireRestart = false,
+            HintText = "{=BT_Settings_002304_Desc}Applies a modifier to the amount of experience recieved for skills. Affects the Companion only. 100% = No Bonus."),
+            SettingPropertyGroup("{=KTMCM_CXpModifiers}Xp Modifiers/{=BT_Settings_002300}Hero Skill Experience" + "*/" + "{=BT_Settings_002303}Companion Skill Experience")]
+        public float CompanionSkillExperienceMultiplier { get; set; } = 1f;
+
+
+        #region Character Tweaks - Hero Skill Multiplier Tweaks - Enable Per-Skill Bonuses
+
+        [SettingPropertyBool("{=BT_Settings_002305}Per Skill Bonuses", Order = 4, RequireRestart = false, IsToggle = true,
+            HintText = "{=BT_Settings_002305_Desc}Modifies the amount of experience recieved for specific skills before applying global experience modifier. Affects the player and companions only. 1.0 = No Bonus. 1.1 = 10%, etc."),
+            SettingPropertyGroup("{=KTMCM_CXpModifiers}Xp Modifiers/{=BT_Settings_002300}Hero Skill Experience" + "*/" + "{=BT_Settings_002305}Per-Skill Bonuses", GroupOrder = 3)]
+        public bool PerSkillBonusEnabled { get; set; } = false;
+
+        [SettingPropertyFloatingInteger("{=BT_Settings_002306}Per-Skill Experience Amount: Engineering", 1f, 10f, "0%", RequireRestart = false,
+            HintText = "{=BT_Settings_002306_Desc}Modifies the amount of Engineering experience recieved."),
+            SettingPropertyGroup("{=KTMCM_CXpModifiers}Xp Modifiers/{=BT_Settings_002300}Hero Skill Experience" + "*/" + "{=BT_Settings_002305}Per-Skill Bonuses")]
+        public float SkillBonusEngineering { get; set; } = 1f;
+
+        [SettingPropertyFloatingInteger("{=BT_Settings_002307}Per-Skill Experience Amount: Leadership", 1f, 10f, "0%", RequireRestart = false,
+            HintText = "{=BT_Settings_002307_Desc}Modifies the amount of Leadership experience recieved."),
+            SettingPropertyGroup("{=KTMCM_CXpModifiers}Xp Modifiers/{=BT_Settings_002300}Hero Skill Experience" + "*/" + "{=BT_Settings_002305}Per-Skill Bonuses")]
+        public float SkillBonusLeadership { get; set; } = 1f;
+
+        [SettingPropertyFloatingInteger("{=BT_Settings_002308}Per-Skill Experience Amount: Medicine", 1f, 10f, "0%", RequireRestart = false,
+            HintText = "{=BT_Settings_002308_Desc}Modifies the amount of Medicine experience recieved."),
+            SettingPropertyGroup("{=KTMCM_CXpModifiers}Xp Modifiers/{=BT_Settings_002300}Hero Skill Experience" + "*/" + "{=BT_Settings_002305}Per-Skill Bonuses")]
+        public float SkillBonusMedicine { get; set; } = 1f;
+
+        [SettingPropertyFloatingInteger("{=BT_Settings_002309}Per-Skill Experience Amount: Riding", 1f, 10f, "0%", RequireRestart = false,
+            HintText = "{=BT_Settings_002309_Desc}Modifies the amount of Riding experience recieved."),
+            SettingPropertyGroup("{=KTMCM_CXpModifiers}Xp Modifiers/{=BT_Settings_002300}Hero Skill Experience" + "*/" + "{=BT_Settings_002305}Per-Skill Bonuses")]
+        public float SkillBonusRiding { get; set; } = 1f;
+
+        [SettingPropertyFloatingInteger("{=BT_Settings_002310}Per-Skill Experience Amount: Roguery", 1f, 10f, "0%", RequireRestart = false,
+            HintText = "{=BT_Settings_002310_Desc}Modifies the amount of Roguery experience recieved."),
+            SettingPropertyGroup("{=KTMCM_CXpModifiers}Xp Modifiers/{=BT_Settings_002300}Hero Skill Experience" + "*/" + "{=BT_Settings_002305}Per-Skill Bonuses")]
+        public float SkillBonusRoguery { get; set; } = 1f;
+
+        [SettingPropertyFloatingInteger("{=BT_Settings_002311}Per-Skill Experience Amount: Scouting", 1f, 10f, "0%", RequireRestart = false,
+            HintText = "{=BT_Settings_002311_Desc}Modifies the amount of Scouting experience recieved."),
+            SettingPropertyGroup("{=KTMCM_CXpModifiers}Xp Modifiers/{=BT_Settings_002300}Hero Skill Experience" + "*/" + "{=BT_Settings_002305}Per-Skill Bonuses")]
+        public float SkillBonusScouting { get; set; } = 1f;
+
+        [SettingPropertyFloatingInteger("{=BT_Settings_002312}Per-Skill Experience Amount: Trade", 1f, 10f, "0%", RequireRestart = false,
+            HintText = "{=BT_Settings_002312_Desc}Modifies the amount of Trade experience recieved."),
+            SettingPropertyGroup("{=KTMCM_CXpModifiers}Xp Modifiers/{=BT_Settings_002300}Hero Skill Experience" + "*/" + "{=BT_Settings_002305}Per-Skill Bonuses")]
+        public float SkillBonusTrade { get; set; } = 1f;
+
+        [SettingPropertyFloatingInteger("{=BT_Settings_002313}Per-Skill Experience Amount: Smithing", 1f, 10f, "0%", RequireRestart = false,
+            HintText = "{=BT_Settings_002313_Desc}Modifies the amount of Smithing experience recieved."),
+            SettingPropertyGroup("{=KTMCM_CXpModifiers}Xp Modifiers/{=BT_Settings_002300}Hero Skill Experience" + "*/" + "{=BT_Settings_002305}Per-Skill Bonuses")]
+        public float SkillBonusSmithing { get; set; } = 1f;
+
+        #endregion
+
+
+
+
         [SettingPropertyBool("{=BT_Settings_006500}Daily Troop Experience" + "*", IsToggle = true, Order = 0, RequireRestart = true,
             HintText = "{=BT_Settings_006500_Desc}Gives each troop roster (stack) in a party an amount of experience each day based upon the leader's Leadership skill. By default only applies to the player.")]
         [SettingPropertyGroup("{=KTMCM_CXpModifiers}Xp Modifiers/{=BT_Settings_006500}Daily Troop Experience")]//{=BT_Settings_006000}Party Tweaks
@@ -2179,33 +1136,44 @@ namespace KaosesTweaks.Settings
         public bool DisplayMessageDailyExperienceGain { get; set; } = false;
 
         #endregion
+
+        #region Battle Tweaks - Troop Experience Tweaks
+
+        [SettingPropertyBool("{=BT_Settings_000400}Troop Experience" + "*", Order = 1, RequireRestart = true, IsToggle = true,
+            HintText = "{=BT_Settings_000400_Desc}Tweaks for experience gain of troops in battles and simulations."),
+            SettingPropertyGroup("{=KTMCM_CXpModifiers}Xp Modifiers/{=BT_Settings_000400}Troop Experience" + "*", GroupOrder = 4)]
+        public bool TroopExperienceTweakEnabled { get; set; } = false;
+
+        [SettingPropertyBool("{=BT_Settings_000401}Troop Battle Experience", Order = 2, RequireRestart = false, IsToggle = true,
+            HintText = "{=BT_Settings_000401_Desc}Modifies the amount of experience that ALL troops receive during battles (Note: Only troops, not heroes)."),
+            SettingPropertyGroup("{=KTMCM_CXpModifiers}Xp Modifiers/{=BT_Settings_000400}Troop Experience" + "*/" + "{=BT_Settings_000401}Troop Battle Experience", GroupOrder = 1)]
+        public bool TroopBattleExperienceMultiplierEnabled { get; set; } = false;
+
+        [SettingPropertyFloatingInteger("{=BT_Settings_000402}Troop Battle Experience Amount", .01f, 6f, "0%", RequireRestart = false, Order = 3,
+            HintText = "{=BT_Settings_000402_Desc}Native value is 100%. Modifies the amount of experience that ALL troops receive during fought battles (Note: Only troops, not heroes. Does not apply to simulated battles.)."),
+            SettingPropertyGroup("{=KTMCM_CXpModifiers}Xp Modifiers/{=BT_Settings_000400}Troop Experience" + "*/" + "{=BT_Settings_000401}Troop Battle Experience")]
+        public float TroopBattleExperienceMultiplier { get; set; } = 1.0f;
+
+        [SettingPropertyBool("{=BT_Settings_000403}Troop Simulation Experience", Order = 4, RequireRestart = false, IsToggle = true,
+            HintText = "{=BT_Settings_000403_Desc}Modifies the experience gained from simulated battles. This is applied to all fights (including NPC fights) on the campaign map."),
+            SettingPropertyGroup("{=KTMCM_CXpModifiers}Xp Modifiers/{=BT_Settings_000400}Troop Experience" + "*/" + "{=BT_Settings_000403}Troop Simulation Experience", GroupOrder = 2)]
+        public bool TroopBattleSimulationExperienceMultiplierEnabled { get; set; } = false;
+
+        [SettingPropertyFloatingInteger("{=BT_Settings_000404}Troop Simulation Experience Amount", .01f, 8f, "0%", RequireRestart = false, Order = 5,
+            HintText = "{=BT_Settings_000404_Desc}Native value is 90%. Provides a multiplier to experience gained from simulated battles. This is applied to all simulated fights on the campaign map."),
+            SettingPropertyGroup("{=KTMCM_CXpModifiers}Xp Modifiers/{=BT_Settings_000400}Troop Experience" + "*/" + "{=BT_Settings_000403}Troop Simulation Experience")]
+        public float TroopBattleSimulationExperienceMultiplier { get; set; } = 0.9f;
+
         #endregion
 
 
-        [SettingPropertyBool("{=KTMCM_XPMLR}Learning Rate Modifiers *", IsToggle = true, Order = 0, RequireRestart = true,
-            HintText = "{=KTMCM_XPMLRH}Enable Learning Rate modifiers.")]
-        [SettingPropertyGroup("{=KTMCM_CLearning}Learning Rate")]
-        public bool LearningRateEnabled { get; set; } = false;
-        #region LearningRateMultipliers
-        [SettingPropertyFloatingInteger("{=KTMCM_XPMLRM}Global Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false, 
-            HintText = "{=KTMCM_XPMLRMH}Multiply Learning Rate by the Global multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CLearning}Learning Rate")]
-        public float LearningRateMultiplier { get; set; } = 1.0f;
-
         #endregion
 
 
 
-        [SettingPropertyBool("{=KTMCM_XPMMPF}Party Food Modifiers *", IsToggle = true, Order = 0, RequireRestart = true,
-            HintText = "{=KTMCM_XPMMPFH}Enable Party food consumption modifiers.")]
-        [SettingPropertyGroup("{=KTMCM_CParty}Party/{=KTMCM_CFood}Food")]
-        public bool PartyFoodConsumptionEnabled { get; set; } = false;
-        #region MobilePartyFoodConsumption
-        [SettingPropertyFloatingInteger("{=KTMCM_XPMMPFM}Party Food Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false, 
-            HintText = "{=KTMCM_XPMMPFMH}Multiply Party food consumption by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_CParty}Party/{=KTMCM_CFood}Food")]
-        public float PartyFoodConsumptionMultiplier { get; set; } = 1.0f;
-        #endregion
+
+
+
 
 
         //~ BT Keep
@@ -2284,17 +1252,6 @@ namespace KaosesTweaks.Settings
 
         #region Campaign Tweaks #2
 
-        [SettingPropertyBool("{=BT_Settings_001100}Battle Size Tweak" + "*", Order = 1, IsToggle = true, RequireRestart = true,
-            HintText = "{=BT_Settings_001100_Desc}Allows you to set the battle size limit outside of native values. WARNING: Setting this above 1000 can cause performance degradation and crashes."),
-            SettingPropertyGroup("{=BT_Settings_001000}Campaign Tweaks" + "/" + "{=BT_Settings_001100}Battle Size Tweak" + "*", GroupOrder = 1)]
-        public bool BattleSizeTweakEnabled { get; set; } = false;
-        #region Campaign Tweaks - Battle Size Tweak
-        [SettingPropertyInteger("{=BT_Settings_001101}Battle Size Limit", 2, 1800, "0 Soldiers", Order = 2, RequireRestart = false,
-            HintText = "{=BT_Settings_001101_Desc}Sets the limit for number of troops on a battlefield, ignoring what is in Bannerlord Options. WARNING: Will crash if all troops + their horses exceed 2000."),
-            SettingPropertyGroup("{=BT_Settings_001000}Campaign Tweaks" + "/" + "{=BT_Settings_001100}Battle Size Tweak" + "*")]
-        public int BattleSize { get; set; } = 1000;
-
-        #endregion
 
         [SettingPropertyBool("{=BT_Settings_001200}Difficulty Tweaks" + "*", Order = 1, RequireRestart = true, IsToggle = true,
             HintText = "{=BT_Settings_001200_Desc}Allows you to change the multiplier for several difficulty settings."),
@@ -2399,11 +1356,6 @@ namespace KaosesTweaks.Settings
         public int TimeToChanceCulture { get; set; } = 10;
 
         #endregion
-
-
-
-
-
 
         #region Settlement Tweaks - Disable Troop Donations
 
@@ -2722,15 +1674,7 @@ namespace KaosesTweaks.Settings
         public float SettlementEliteRangedSpawnRateBonus { get; set; } = 0.1f;
 
         #endregion
-
-
-
         #endregion
-
-
-
-
-
 
         #region Tournaments
 
@@ -2808,8 +1752,6 @@ namespace KaosesTweaks.Settings
 
         #endregion
 
-
-
         #region Workshops
 
         [SettingPropertyBool("{=BT_Settings_008901}Workshop Count Limit" + "*", Order = 1, RequireRestart = true, IsToggle = true,
@@ -2875,7 +1817,7 @@ namespace KaosesTweaks.Settings
 
         [SettingPropertyBool("{=KTMCM_CLMWSBRTM}Bankruptcy Modifier", IsToggle = true, Order = 0, RequireRestart = false,
             HintText = "{=}Enables Bankruptcy Modifiers.")]
-        [SettingPropertyGroup("{=KTMCM_CWorkShop}WorkShop/{=KTMCM_CBankruptcy}Bankruptcy")]
+        [SettingPropertyGroup("{=BT_Settings_008900}Workshops" + "/" + "{=KTMCM_CBankruptcy}Bankruptcy")]
         public bool WorkShopBankruptcyModifiers { get; set; } = false;
         #region Bankruptcy
         [SettingPropertyInteger("{=KTMCM_CLMWSBRDSM}Days to save", 1, 10, "0 Days", Order = 0, RequireRestart = false,
@@ -2886,12 +1828,10 @@ namespace KaosesTweaks.Settings
         #endregion
 
 
-
         [SettingPropertyBool("{=BT_Settings_002100}Age Tweaks" + "*", Order = 1, RequireRestart = true, IsToggle = true,
             HintText = "{=BT_Settings_002100_Desc}Enables the tweaking of character age behavior."),
             SettingPropertyGroup("{=BT_Settings_002100}Age Tweaks", GroupOrder = 1)]
         public bool AgeTweaksEnabled { get; set; } = false;
-
         #region Age Tweaks
         [SettingPropertyInteger("{=BT_Settings_002101}Become Infant Age", 0, 125, "0 Years", RequireRestart = false, Order = 2,
             HintText = "{=BT_Settings_002101_Desc}Native: 3. Must be less than Become Child Age."),
@@ -2926,8 +1866,245 @@ namespace KaosesTweaks.Settings
         #endregion
 
 
+        #region Kingdom Tweaks #7
 
 
+        #region Kingdom Tweaks - Lord Bartering
+
+        [SettingPropertyBool("{=BT_Settings_005100}Lord Bartering" + "*", Order = 1, RequireRestart = true, IsToggle = true,
+            HintText = "{=BT_Settings_005100_Desc}Enables tweaks which affect bartering (Marriage, Factions Joining You, etc.)"),
+            SettingPropertyGroup("{=BT_Settings_005000}Kingdom Tweaks" + "/" + "{=BT_Settings_005100}Lord Bartering" + "*", GroupOrder = 1)]
+        public bool BarterablesTweaksEnabled { get; set; } = false;
+
+        [SettingPropertyFloatingInteger("{=BT_Settings_005101}Faction Joining Barter Adjustment", 0.01f, 2f, "0%", Order = 2, RequireRestart = false,
+            HintText = "{=BT_Settings_005101_Desc}Adjust the % cost of swaying a faction to join your kingdom. Native value is 100% (no change)."),
+            SettingPropertyGroup("{=BT_Settings_005000}Kingdom Tweaks" + "/" + "{=BT_Settings_005100}Lord Bartering" + "*")]
+        public float BarterablesJoinKingdomAsClanAdjustment { get; set; } = 1;
+
+        [SettingPropertyBool("{=BT_Settings_005102}Relationship favored Faction Joining Barter", Order = 3, RequireRestart = false,
+            HintText = "{=BT_Settings_005102_Desc}An alternate formula for calculating cost of swaying a faction to join your kingdom, with more emphasis on relationsip. [The higher your relationship to the lord, the cheaper the barter]."),
+            SettingPropertyGroup("{=BT_Settings_005000}Kingdom Tweaks" + "/" + "{=BT_Settings_005100}Lord Bartering" + "*")]
+        public bool BarterablesJoinKingdomAsClanAltFormulaEnabled { get; set; } = false;
+
+        #endregion
+
+
+
+
+        [SettingPropertyBool("{=BT_Settings_005200}Faction Balancing" + "*", Order = 1, RequireRestart = true, IsToggle = true,
+            HintText = "{=BT_Settings_005200_Desc}Enables tweaks which affect the balancing of kingdoms."),
+            SettingPropertyGroup("{=BT_Settings_005000}Kingdom Tweaks" + "/" + "{=BT_Settings_005200}Faction Balancing" + "*", GroupOrder = 2)]
+        public bool KingdomBalanceStrengthEnabled { get; set; } = false;
+        #region Kingdom Tweaks - Balancing Tweaks
+        [SettingPropertyBool("{=BT_Settings_005201}Balancing Modifiers For Vanilla Kingdoms", Order = 2, RequireRestart = false, IsToggle = true,
+            HintText = "{=BT_Settings_005201_Desc}Enables tweaks which affect the balancing of kingdoms in vanilla game."),
+            SettingPropertyGroup("{=BT_Settings_005000}Kingdom Tweaks" + "/" + "{=BT_Settings_005200}Faction Balancing" + "*/" + "{=BT_Settings_005201}Balancing Modifiers For Vanilla Kingdoms", GroupOrder = 1)]
+        public bool KingdomBalanceStrengthVanEnabled { get; set; } = false;
+
+        [SettingPropertyFloatingInteger("{=BT_Settings_005202}Vlandia Balancing Strength", -0.5f, 0.5f, "0%", Order = 9, RequireRestart = false,
+            HintText = "{=BT_Settings_005202_Desc}Balancing strength for vlandia. Boosts or reduces the enabled balancing tweaks."),
+            SettingPropertyGroup("{=BT_Settings_005000}Kingdom Tweaks" + "/" + "{=BT_Settings_005200}Faction Balancing" + "*/" + "{=BT_Settings_005201}Balancing Modifiers For Vanilla Kingdoms")]
+        public float VlandiaBoost { get; set; } = 0.00f;
+
+        [SettingPropertyFloatingInteger("{=BT_Settings_005203}Sturgia Balancing Strength", -0.5f, 0.5f, "0%", Order = 8, RequireRestart = false,
+            HintText = "{=BT_Settings_005203_Desc}Balancing strength for sturgia. Boosts or reduces the enabled balancing tweaks."),
+            SettingPropertyGroup("{=BT_Settings_005000}Kingdom Tweaks" + "/" + "{=BT_Settings_005200}Faction Balancing" + "*/" + "{=BT_Settings_005201}Balancing Modifiers For Vanilla Kingdoms")]
+        public float SturgiaBoost { get; set; } = 0.00f;
+
+        [SettingPropertyFloatingInteger("{=BT_Settings_005204}Battania Balancing Strength", -0.5f, 0.5f, "0%", Order = 2, RequireRestart = false,
+            HintText = "{=BT_Settings_005204_Desc}Balancing strength for battania. Boosts or reduces the enabled balancing tweaks."),
+            SettingPropertyGroup("{=BT_Settings_005000}Kingdom Tweaks" + "/" + "{=BT_Settings_005200}Faction Balancing" + "*/" + "{=BT_Settings_005201}Balancing Modifiers For Vanilla Kingdoms")]
+        public float BattaniaBoost { get; set; } = 0.00f;
+
+        [SettingPropertyFloatingInteger("{=BT_Settings_005205}Northern Empire Balancing Strength", -0.5f, 0.5f, "0%", Order = 5, RequireRestart = false,
+            HintText = "{=BT_Settings_005205_Desc}Balancing strength for northern empire. Boosts or reduces the enabled balancing tweaks."),
+            SettingPropertyGroup("{=BT_Settings_005000}Kingdom Tweaks" + "/" + "{=BT_Settings_005200}Faction Balancing" + "*/" + "{=BT_Settings_005201}Balancing Modifiers For Vanilla Kingdoms")]
+        public float Empire_N_Boost { get; set; } = 0.00f;
+
+        [SettingPropertyFloatingInteger("{=BT_Settings_005206}Southern Empire Balancing Strength", -0.5f, 0.5f, "0%", Order = 6, RequireRestart = false,
+            HintText = "{=BT_Settings_005206_Desc}Balancing strength for southern empire. Boosts or reduces the enabled balancing tweaks."),
+            SettingPropertyGroup("{=BT_Settings_005000}Kingdom Tweaks" + "/" + "{=BT_Settings_005200}Faction Balancing" + "*/" + "{=BT_Settings_005201}Balancing Modifiers For Vanilla Kingdoms")]
+        public float Empire_S_Boost { get; set; } = 0.00f;
+
+        [SettingPropertyFloatingInteger("{=BT_Settings_005207}Western Empire Balancing Strength", -0.5f, 0.5f, "0%", Order = 7, RequireRestart = false,
+            HintText = "{=BT_Settings_005207_Desc}Balancing strength for western empire. Boosts or reduces the enabled balancing tweaks."),
+            SettingPropertyGroup("{=BT_Settings_005000}Kingdom Tweaks" + "/" + "{=BT_Settings_005200}Faction Balancing" + "*/" + "{=BT_Settings_005201}Balancing Modifiers For Vanilla Kingdoms")]
+        public float Empire_W_Boost { get; set; } = 0.00f;
+
+        [SettingPropertyFloatingInteger("{=BT_Settings_005208}Aserai Balancing Strength", -0.5f, 0.5f, "0%", Order = 1, RequireRestart = false,
+            HintText = "{=BT_Settings_005208_Desc}Balancing strength for aserai. Boosts or reduces the enabled balancing tweaks."),
+            SettingPropertyGroup("{=BT_Settings_005000}Kingdom Tweaks" + "/" + "{=BT_Settings_005200}Faction Balancing" + "*/" + "{=BT_Settings_005201}Balancing Modifiers For Vanilla Kingdoms")]
+        public float AseraiBoost { get; set; } = 0.00f;
+
+        [SettingPropertyFloatingInteger("{=BT_Settings_005209}Khuzait Balancing Strength", -0.5f, 0.5f, "0%", Order = 4, RequireRestart = false,
+            HintText = "{=BT_Settings_005209_Desc}Balancing strength for khuzait. Boosts or reduces the enabled balancing tweaks."),
+            SettingPropertyGroup("{=BT_Settings_005000}Kingdom Tweaks" + "/" + "{=BT_Settings_005200}Faction Balancing" + "*/" + "{=BT_Settings_005201}Balancing Modifiers For Vanilla Kingdoms")]
+        public float KhuzaitBoost { get; set; } = 0.00f;
+
+        [SettingPropertyFloatingInteger("{=BT_Settings_005210}Player Kingdom Balancing Strength", -0.5f, 0.5f, "0%", Order = 4, RequireRestart = false,
+            HintText = "{=BT_Settings_005210_Desc}Balancing strength for player kingdom. Boosts or reduces the enabled balancing tweaks."),
+            SettingPropertyGroup("{=BT_Settings_005000}Kingdom Tweaks" + "/" + "{=BT_Settings_005200}Faction Balancing" + "*/" + "{=BT_Settings_005201}Balancing Modifiers For Vanilla Kingdoms")]
+        public float PlayerBoost { get; set; } = 0.00f;
+
+
+
+        [SettingPropertyBool("{=BT_Settings_005211}Balancing Modifiers For Calradia Expanded Kingdoms", Order = 3, RequireRestart = false, IsToggle = true,
+            HintText = "{=BT_Settings_005211_Desc}Enables tweaks which affect the balancing of kingdoms in the mod Calradia Expanded Kingdoms."),
+            SettingPropertyGroup("{=BT_Settings_005000}Kingdom Tweaks" + "/" + "{=BT_Settings_005200}Faction Balancing" + "*/" + "{=BT_Settings_005211}Balancing Modifiers For Calradia Expanded Kingdoms", GroupOrder = 2)]
+        public bool KingdomBalanceStrengthCEKEnabled { get; set; } = false;
+
+        [SettingPropertyFloatingInteger("{=BT_Settings_005212}Nordlings Balancing Strength", -0.5f, 0.5f, "0%", Order = 9, RequireRestart = false,
+            HintText = "{=BT_Settings_005212_Desc}Balancing strength for nordlings. Boosts or reduces the enabled balancing tweaks."),
+            SettingPropertyGroup("{=BT_Settings_005000}Kingdom Tweaks" + "/" + "{=BT_Settings_005200}Faction Balancing" + "*/" + "{=BT_Settings_005211}Balancing Modifiers For Calradia Expanded Kingdoms")]
+        public float NordlingsBoost { get; set; } = 0.00f;
+
+        [SettingPropertyFloatingInteger("{=BT_Settings_005213}Vagir Balancing Strength", -0.5f, 0.5f, "0%", Order = 8, RequireRestart = false,
+            HintText = "{=BT_Settings_005213_Desc}Balancing strength for vagir. Boosts or reduces the enabled balancing tweaks."),
+            SettingPropertyGroup("{=BT_Settings_005000}Kingdom Tweaks" + "/" + "{=BT_Settings_005200}Faction Balancing" + "*/" + "{=BT_Settings_005211}Balancing Modifiers For Calradia Expanded Kingdoms")]
+        public float VagirBoost { get; set; } = 0.00f;
+
+        [SettingPropertyFloatingInteger("{=BT_Settings_005214}Royalist Vlandia Balancing Strength", -0.5f, 0.5f, "0%", Order = 2, RequireRestart = false,
+            HintText = "{=BT_Settings_005214_Desc}Balancing strength for royalist vlandia. Boosts or reduces the enabled balancing tweaks."),
+            SettingPropertyGroup("{=BT_Settings_005000}Kingdom Tweaks" + "/" + "{=BT_Settings_005200}Faction Balancing" + "*/" + "{=BT_Settings_005211}Balancing Modifiers For Calradia Expanded Kingdoms")]
+        public float RoyalistVlandiaBoost { get; set; } = 0.00f;
+
+        [SettingPropertyFloatingInteger("{=BT_Settings_005215}Apolssaly Balancing Strength", -0.5f, 0.5f, "0%", Order = 5, RequireRestart = false,
+            HintText = "{=BT_Settings_005215_Desc}Balancing strength for apolssaly. Boosts or reduces the enabled balancing tweaks."),
+            SettingPropertyGroup("{=BT_Settings_005000}Kingdom Tweaks" + "/" + "{=BT_Settings_005200}Faction Balancing" + "*/" + "{=BT_Settings_005211}Balancing Modifiers For Calradia Expanded Kingdoms")]
+        public float ApolssalyBoost { get; set; } = 0.00f;
+
+        [SettingPropertyFloatingInteger("{=BT_Settings_005216}Lyrion Balancing Strength", -0.5f, 0.5f, "0%", Order = 6, RequireRestart = false,
+            HintText = "{=BT_Settings_005216_Desc}Balancing strength for lyrion. Boosts or reduces the enabled balancing tweaks."),
+            SettingPropertyGroup("{=BT_Settings_005000}Kingdom Tweaks" + "/" + "{=BT_Settings_005200}Faction Balancing" + "*/" + "{=BT_Settings_005211}Balancing Modifiers For Calradia Expanded Kingdoms")]
+        public float LyrionBoost { get; set; } = 0.00f;
+
+        [SettingPropertyFloatingInteger("{=BT_Settings_005217}Khergit Balancing Strength", -0.5f, 0.5f, "0%", Order = 7, RequireRestart = false,
+            HintText = "{=BT_Settings_005217_Desc}Balancing strength for khergit. Boosts or reduces the enabled balancing tweaks."),
+            SettingPropertyGroup("{=BT_Settings_005000}Kingdom Tweaks" + "/" + "{=BT_Settings_005200}Faction Balancing" + "*/" + "{=BT_Settings_005211}Balancing Modifiers For Calradia Expanded Kingdoms")]
+        public float RebelKhuzaitBoost { get; set; } = 0.00f;
+
+        [SettingPropertyFloatingInteger("{=BT_Settings_005218}Paleician Balancing Strength", -0.5f, 0.5f, "0%", Order = 1, RequireRestart = false,
+            HintText = "{=BT_Settings_005218_Desc}Balancing strength for paleician. Boosts or reduces the enabled balancing tweaks."),
+            SettingPropertyGroup("{=BT_Settings_005000}Kingdom Tweaks" + "/" + "{=BT_Settings_005200}Faction Balancing" + "*/" + "{=BT_Settings_005211}Balancing Modifiers For Calradia Expanded Kingdoms")]
+        public float PaleicianBoost { get; set; } = 0.00f;
+
+        [SettingPropertyFloatingInteger("{=BT_Settings_005219}Ariorum Balancing Strength", -0.5f, 0.5f, "0%", Order = 4, RequireRestart = false,
+            HintText = "{=BT_Settings_005219_Desc}Balancing strength for ariorum. Boosts or reduces the enabled balancing tweaks."),
+            SettingPropertyGroup("{=BT_Settings_005000}Kingdom Tweaks" + "/" + "{=BT_Settings_005200}Faction Balancing" + "*/" + "{=BT_Settings_005211}Balancing Modifiers For Calradia Expanded Kingdoms")]
+        public float AriorumBoost { get; set; } = 0.00f;
+
+        [SettingPropertyFloatingInteger("{=BT_Settings_005220}Calradian Empire Balancing Strength", -0.5f, 0.5f, "0%", Order = 4, RequireRestart = false,
+            HintText = "{=BT_Settings_005220_Desc}Balancing strength for calradian empire. Boosts or reduces the enabled balancing tweaks."),
+            SettingPropertyGroup("{=BT_Settings_005000}Kingdom Tweaks" + "/" + "{=BT_Settings_005200}Faction Balancing" + "*/" + "{=BT_Settings_005211}Balancing Modifiers For Calradia Expanded Kingdoms")]
+        public float Empire_S_CEK_Boost { get; set; } = 0.00f;
+
+        [SettingPropertyFloatingInteger("{=BT_Settings_005221}Dryatican Republic Balancing Strength", -0.5f, 0.5f, "0%", Order = 4, RequireRestart = false,
+            HintText = "{=BT_Settings_005221_Desc}Balancing strength for dryatican republic. Boosts or reduces the enabled balancing tweaks."),
+            SettingPropertyGroup("{=BT_Settings_005000}Kingdom Tweaks" + "/" + "{=BT_Settings_005200}Faction Balancing" + "*/" + "{=BT_Settings_005211}Balancing Modifiers For Calradia Expanded Kingdoms")]
+        public float Empire_CEK_Boost { get; set; } = 0.00f;
+
+        [SettingPropertyFloatingInteger("{=BT_Settings_005222}Battania Balancing Strength", -0.5f, 0.5f, "0%", Order = 4, RequireRestart = false,
+            HintText = "{=BT_Settings_005222_Desc}Balancing strength for battania. Boosts or reduces the enabled balancing tweaks."),
+            SettingPropertyGroup("{=BT_Settings_005000}Kingdom Tweaks" + "/" + "{=BT_Settings_005200}Faction Balancing" + "*/" + "{=BT_Settings_005211}Balancing Modifiers For Calradia Expanded Kingdoms")]
+        public float Battania_CEK_Boost { get; set; } = 0.00f;
+
+        [SettingPropertyFloatingInteger("{=BT_Settings_005223}Cortanian Vlandia Balancing Strength", -0.5f, 0.5f, "0%", Order = 4, RequireRestart = false,
+            HintText = "{=BT_Settings_005223_Desc}Balancing strength for cortanian vlandia. Boosts or reduces the enabled balancing tweaks."),
+            SettingPropertyGroup("{=BT_Settings_005000}Kingdom Tweaks" + "/" + "{=BT_Settings_005200}Faction Balancing" + "*/" + "{=BT_Settings_005211}Balancing Modifiers For Calradia Expanded Kingdoms")]
+        public float Vlandia_CEK_Boost { get; set; } = 0.00f;
+
+        [SettingPropertyFloatingInteger("{=BT_Settings_005224}Sturgia Balancing Strength", -0.5f, 0.5f, "0%", Order = 4, RequireRestart = false,
+            HintText = "{=BT_Settings_005224_Desc}Balancing strength for sturgia. Boosts or reduces the enabled balancing tweaks."),
+            SettingPropertyGroup("{=BT_Settings_005000}Kingdom Tweaks" + "/" + "{=BT_Settings_005200}Faction Balancing" + "*/" + "{=BT_Settings_005211}Balancing Modifiers For Calradia Expanded Kingdoms")]
+        public float Sturgia_CEK_Boost { get; set; } = 0.00f;
+
+        [SettingPropertyFloatingInteger("{=BT_Settings_005225}Khuzait Balancing Strength", -0.5f, 0.5f, "0%", Order = 4, RequireRestart = false,
+            HintText = "{=BT_Settings_005225_Desc}Balancing strength for khuzait. Boosts or reduces the enabled balancing tweaks."),
+            SettingPropertyGroup("{=BT_Settings_005000}Kingdom Tweaks" + "/" + "{=BT_Settings_005200}Faction Balancing" + "*/" + "{=BT_Settings_005211}Balancing Modifiers For Calradia Expanded Kingdoms")]
+        public float Khuzait_CEK_Boost { get; set; } = 0.00f;
+
+        [SettingPropertyFloatingInteger("{=BT_Settings_005226}Aserai Balancing Strength", -0.5f, 0.5f, "0%", Order = 4, RequireRestart = false,
+            HintText = "{=BT_Settings_005226_Desc}Balancing strength for aserai. Boosts or reduces the enabled balancing tweaks."),
+            SettingPropertyGroup("{=BT_Settings_005000}Kingdom Tweaks" + "/" + "{=BT_Settings_005200}Faction Balancing" + "*/" + "{=BT_Settings_005211}Balancing Modifiers For Calradia Expanded Kingdoms")]
+        public float Aserai_CEK_Boost { get; set; } = 0.00f;
+
+        [SettingPropertyFloatingInteger("{=BT_Settings_005227}Western Empire Balancing Strength", -0.5f, 0.5f, "0%", Order = 7, RequireRestart = false,
+            HintText = "{=BT_Settings_005227_Desc}Balancing strength for western empire. Boosts or reduces the enabled balancing tweaks."),
+            SettingPropertyGroup("{=BT_Settings_005000}Kingdom Tweaks" + "/" + "{=BT_Settings_005200}Faction Balancing" + "*/" + "{=BT_Settings_005211}Balancing Modifiers For Calradia Expanded Kingdoms")]
+        public float Empire_W_CEK_Boost { get; set; } = 0.00f;
+
+        [SettingPropertyFloatingInteger("{=BT_Settings_005228}Player Kingdom Balancing Strength", -0.5f, 0.5f, "0%", Order = 7, RequireRestart = false,
+            HintText = "{=BT_Settings_005228_Desc}Balancing strength for player kingdom. Boosts or reduces the enabled balancing tweaks."),
+            SettingPropertyGroup("{=BT_Settings_005000}Kingdom Tweaks" + "/" + "{=BT_Settings_005200}Faction Balancing" + "*/" + "{=BT_Settings_005211}Balancing Modifiers For Calradia Expanded Kingdoms")]
+        public float Player_CEK_Boost { get; set; } = 0.00f;
+
+
+
+
+        [SettingPropertyBool("{=BT_Settings_005229}Party Sizes Balancing", Order = 4, RequireRestart = false,
+            HintText = "{=BT_Settings_005229_Desc}Modifier for max party sizes (1.0 x Balancing Strength)."),
+            SettingPropertyGroup("{=BT_Settings_005000}Kingdom Tweaks" + "/" + "{=BT_Settings_005200}Faction Balancing" + "*")]
+        public bool BalancingPartySizeTweaksEnabled { get; set; } = false;
+
+        [SettingPropertyBool("{=BT_Settings_005230}Party Count Limit Balancing", Order = 5, RequireRestart = false,
+            HintText = "{=BT_Settings_005230_Desc}Modifier for max party limit (1.0 x Balancing Strength)."),
+            SettingPropertyGroup("{=BT_Settings_005000}Kingdom Tweaks" + "/" + "{=BT_Settings_005200}Faction Balancing" + "*")]
+        public bool BalancingPartyLimitTweaksEnabled { get; set; } = false;
+
+        [SettingPropertyBool("{=BT_Settings_005231}Village Food Production Balancing", Order = 6, RequireRestart = false,
+            HintText = "{=BT_Settings_005231_Desc}Modifier for daily production of food goods in villages (1.0 x Balancing Strength)."),
+            SettingPropertyGroup("{=BT_Settings_005000}Kingdom Tweaks" + "/" + "{=BT_Settings_005200}Faction Balancing" + "*")]
+        public bool BalancingFoodTweakEnabled { get; set; } = false;
+
+        [SettingPropertyBool("{=BT_Settings_005232}Faster Recruitment Balancing", Order = 7, RequireRestart = false,
+            HintText = "{=BT_Settings_005232_Desc}Flat % bonus chance of new recruits to spawn in settlements (0.75 x Balancing Strength)."),
+            SettingPropertyGroup("{=BT_Settings_005000}Kingdom Tweaks" + "/" + "{=BT_Settings_005200}Faction Balancing" + "*")]
+        public bool BalancingTimeRecruitsTweaksEnabled { get; set; } = false;
+
+        [SettingPropertyBool("{=BT_Settings_005233}Taxation Efficiency Balancing", Order = 8, RequireRestart = false,
+            HintText = "{=BT_Settings_005233_Desc}Modifier for tax income from prosperity in towns and castles and trade tax income in villages (1.25 x Balancing Strength)."),
+            SettingPropertyGroup("{=BT_Settings_005000}Kingdom Tweaks" + "/" + "{=BT_Settings_005200}Faction Balancing" + "*")]
+        public bool BalancingTaxTweaksEnabled { get; set; } = false;
+
+        [SettingPropertyBool("{=BT_Settings_005234}Wage costs Balancing", Order = 9, RequireRestart = false,
+            HintText = "{=BT_Settings_005234_Desc}Modifier for troop and garrison wages (1.0 x Balancing Strength)."),
+            SettingPropertyGroup("{=BT_Settings_005000}Kingdom Tweaks" + "/" + "{=BT_Settings_005200}Faction Balancing" + "*")]
+        public bool BalancingWagesTweaksEnabled { get; set; } = false;
+
+        [SettingPropertyBool("{=BT_Settings_005235}Quality of Recruitment Balancing", Order = 10, RequireRestart = false,
+            HintText = "{=BT_Settings_005235_Desc}Increases the chance for upgraded recruits (1.0 x Balancing Strength). No effect if balancing strength is lower than 0% (no decrease in chance for upgrades)."),
+            SettingPropertyGroup("{=BT_Settings_005000}Kingdom Tweaks" + "/" + "{=BT_Settings_005200}Faction Balancing" + "*")]
+        public bool BalancingUpgradeTroopsTweaksEnabled { get; set; } = false;
+
+        #endregion
+
+
+
+        #endregion
+
+
+        #region Miscellaneous #11
+
+        [SettingPropertyBool("{=BT_Settings_009001}Disable Quest Troops Affecting Morale" + "*", Order = 1, RequireRestart = true,
+            HintText = "{=BT_Settings_009001_Desc}When enabled, quest troops such as Borrowed Troop in your party are ignored when party morale is calculated."),
+            SettingPropertyGroup("{=BT_Settings_009000}Misc", GroupOrder = 99)]
+        public bool QuestCharactersIgnorePartySize { get; set; } = false;
+
+        [SettingPropertyBool("{=BT_Settings_009002}Show Number of Days of Food" + "*", Order = 2, RequireRestart = true,
+            HintText = "{=BT_Settings_009002_Desc}Changes the number showing how much food you have to instead show how many days' worth of food you have. (Bottom right of campaign map UI)."),
+            SettingPropertyGroup("{=BT_Settings_009000}Misc")]
+        public bool ShowFoodDaysRemaining { get; set; } = false;
+
+        [SettingPropertyInteger("{=BT_Settings_009003}Campaign Speed Fast Forward", 2, 32, Order = 3, RequireRestart = false,
+            HintText = "{=BT_Settings_009003_Desc}Sets the campaign speed in fast forward mode. Vanilla is 4."),
+            SettingPropertyGroup("{=BT_Settings_009000}Misc")]
+        public int CampaignSpeed { get; set; } = 4;
+
+        /* Disable in 1.5.7.2 until we understand changes to the main quest.
+        [SettingPropertyBool("Enable Auto-Extension of the 'Stop the Conspiracy' Quest", RequireRestart = false, HintText = "Automatically extends the timer of the 'Stop the Conspiracy' quest as TW hasn't finished it yet.")]
+        public bool TweakedConspiracyQuestTimerEnabled { get; set; } = true;
+        */
+        #endregion
 
 
 
@@ -2960,6 +2137,19 @@ namespace KaosesTweaks.Settings
 
         #endregion
 
+
+        [SettingPropertyBool("{=BT_Settings_001100}Battle Size Tweak" + "*", Order = 1, IsToggle = true, RequireRestart = true,
+            HintText = "{=BT_Settings_001100_Desc}Allows you to set the battle size limit outside of native values. WARNING: Setting this above 1000 can cause performance degradation and crashes."),
+            SettingPropertyGroup("{=BT_Settings_000000}Battle Tweaks" + "/" + "{=BT_Settings_001100}Battle Size Tweak" + "*", GroupOrder = 1)]
+        public bool BattleSizeTweakEnabled { get; set; } = false;
+        #region Campaign Tweaks - Battle Size Tweak
+        [SettingPropertyInteger("{=BT_Settings_001101}Battle Size Limit", 2, 1800, "0 Soldiers", Order = 2, RequireRestart = false,
+            HintText = "{=BT_Settings_001101_Desc}Sets the limit for number of troops on a battlefield, ignoring what is in Bannerlord Options. WARNING: Will crash if all troops + their horses exceed 2000."),
+            SettingPropertyGroup("{=BT_Settings_000000}Battle Tweaks" + "/" + "{=BT_Settings_001100}Battle Size Tweak" + "*")]
+        public int BattleSize { get; set; } = 1000;
+
+        #endregion
+
         #region Battle Tweaks - Siege Tweaks
 
         [SettingPropertyBool("{=BT_Settings_000300}Siege Tweaks" + "*", Order = 1, RequireRestart = true, IsToggle = true, 
@@ -2981,35 +2171,6 @@ namespace KaosesTweaks.Settings
             HintText = "{=BT_Settings_000303_Desc}Native value is 0. This tweak adds to the base value (2) used to calculate destruction casualties during the campaign map siege stage."), 
             SettingPropertyGroup("{=BT_Settings_000000}Battle Tweaks" + "/" + "{=BT_Settings_000300}Siege Tweaks" + "*")]
         public int SiegeDestructionCasualties { get; set; } = 0;
-
-        #endregion
-
-        #region Battle Tweaks - Troop Experience Tweaks
-
-        [SettingPropertyBool("{=BT_Settings_000400}Troop Experience" + "*", Order = 1, RequireRestart = true, IsToggle = true, 
-            HintText = "{=BT_Settings_000400_Desc}Tweaks for experience gain of troops in battles and simulations."), 
-            SettingPropertyGroup("{=BT_Settings_000000}Battle Tweaks" + "/" + "{=BT_Settings_000400}Troop Experience" + "*", GroupOrder = 4)]
-        public bool TroopExperienceTweakEnabled { get; set; } = false;
-
-        [SettingPropertyBool("{=BT_Settings_000401}Troop Battle Experience", Order = 2, RequireRestart = false, IsToggle = true, 
-            HintText = "{=BT_Settings_000401_Desc}Modifies the amount of experience that ALL troops receive during battles (Note: Only troops, not heroes)."), 
-            SettingPropertyGroup("{=BT_Settings_000000}Battle Tweaks" + "/" + "{=BT_Settings_000400}Troop Experience" + "*/" + "{=BT_Settings_000401}Troop Battle Experience", GroupOrder = 1)]
-        public bool TroopBattleExperienceMultiplierEnabled { get; set; } = false;
-
-        [SettingPropertyFloatingInteger("{=BT_Settings_000402}Troop Battle Experience Amount", .01f, 6f, "0%", RequireRestart = false, Order = 3, 
-            HintText = "{=BT_Settings_000402_Desc}Native value is 100%. Modifies the amount of experience that ALL troops receive during fought battles (Note: Only troops, not heroes. Does not apply to simulated battles.)."), 
-            SettingPropertyGroup("{=BT_Settings_000000}Battle Tweaks" + "/" + "{=BT_Settings_000400}Troop Experience" + "*/" + "{=BT_Settings_000401}Troop Battle Experience")]
-        public float TroopBattleExperienceMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyBool("{=BT_Settings_000403}Troop Simulation Experience", Order = 4, RequireRestart = false, IsToggle = true, 
-            HintText = "{=BT_Settings_000403_Desc}Modifies the experience gained from simulated battles. This is applied to all fights (including NPC fights) on the campaign map."), 
-            SettingPropertyGroup("{=BT_Settings_000000}Battle Tweaks" + "/" + "{=BT_Settings_000400}Troop Experience" + "*/" + "{=BT_Settings_000403}Troop Simulation Experience", GroupOrder = 2)]
-        public bool TroopBattleSimulationExperienceMultiplierEnabled { get; set; } = false;
-
-        [SettingPropertyFloatingInteger("{=BT_Settings_000404}Troop Simulation Experience Amount", .01f, 8f, "0%", RequireRestart = false, Order = 5, 
-            HintText = "{=BT_Settings_000404_Desc}Native value is 90%. Provides a multiplier to experience gained from simulated battles. This is applied to all simulated fights on the campaign map."), 
-            SettingPropertyGroup("{=BT_Settings_000000}Battle Tweaks" + "/" + "{=BT_Settings_000400}Troop Experience" + "*/" + "{=BT_Settings_000403}Troop Simulation Experience")]
-        public float TroopBattleSimulationExperienceMultiplier { get; set; } = 0.9f;
 
         #endregion
 
@@ -3037,137 +2198,94 @@ namespace KaosesTweaks.Settings
 
         //#region Character Tweaks - Attribute Focus Point Tweaks
 
-/*
-        [SettingPropertyBool("{=BT_Settings_002200}Attribute-Focus Points Tweaks" + "*", Order = 1, RequireRestart = true, IsToggle = true, 
-            HintText = "{=BT_Settings_002200_Desc}Changes the values used to calculate how many Attribute and Focus points Heroes gain."), 
-            SettingPropertyGroup("{=BT_Settings_002000}Character Tweaks" + "/" + "{=BT_Settings_002200}Attribute-Focus Points Tweaks" + "*", GroupOrder = 2)]
-        public bool AttributeFocusPointTweakEnabled { get; set; } = false;
+        /*
+                [SettingPropertyBool("{=BT_Settings_002200}Attribute-Focus Points Tweaks" + "*", Order = 1, RequireRestart = true, IsToggle = true, 
+                    HintText = "{=BT_Settings_002200_Desc}Changes the values used to calculate how many Attribute and Focus points Heroes gain."), 
+                    SettingPropertyGroup("{=BT_Settings_002000}Character Tweaks" + "/" + "{=BT_Settings_002200}Attribute-Focus Points Tweaks" + "*", GroupOrder = 2)]
+                public bool AttributeFocusPointTweakEnabled { get; set; } = false;
 
-        [SettingPropertyInteger("{=BT_Settings_002201}Levels per Attribute Point", 1, 5, "0 Level", Order = 2, RequireRestart = false, 
-            HintText = "{=BT_Settings_002201_Desc}Native value is 4. How many levels you need to gain to receive an attribute point."), 
-            SettingPropertyGroup("{=BT_Settings_002000}Character Tweaks" + "/" + "{=BT_Settings_002200}Attribute-Focus Points Tweaks" + "*")]
-        public int AttributePointRequiredLevel { get; set; } = 4;
+                [SettingPropertyInteger("{=BT_Settings_002201}Levels per Attribute Point", 1, 5, "0 Level", Order = 2, RequireRestart = false, 
+                    HintText = "{=BT_Settings_002201_Desc}Native value is 4. How many levels you need to gain to receive an attribute point."), 
+                    SettingPropertyGroup("{=BT_Settings_002000}Character Tweaks" + "/" + "{=BT_Settings_002200}Attribute-Focus Points Tweaks" + "*")]
+                public int AttributePointRequiredLevel { get; set; } = 4;
 
-        [SettingPropertyInteger("{=BT_Settings_002202}Focus Point Per Level", 1, 5, "0 Points", Order = 3, RequireRestart = false, 
-            HintText = "{=BT_Settings_002202_Desc}Native value is 1. This is the amount of focus points earned per level."), 
-            SettingPropertyGroup("{=BT_Settings_002000}Character Tweaks" + "/" + "{=BT_Settings_002200}Attribute-Focus Points Tweaks" + "*")]
-        public int FocusPointsPerLevel { get; set; } = 1;*/
+                [SettingPropertyInteger("{=BT_Settings_002202}Focus Point Per Level", 1, 5, "0 Points", Order = 3, RequireRestart = false, 
+                    HintText = "{=BT_Settings_002202_Desc}Native value is 1. This is the amount of focus points earned per level."), 
+                    SettingPropertyGroup("{=BT_Settings_002000}Character Tweaks" + "/" + "{=BT_Settings_002200}Attribute-Focus Points Tweaks" + "*")]
+                public int FocusPointsPerLevel { get; set; } = 1;*/
 
         //#endregion
 
-        #region Character Tweaks - Hero Skill Multiplier Tweaks
-
-        [SettingPropertyBool("{=BT_Settings_002300}Hero Skill Experience" + "*", Order = 1, IsToggle = true, RequireRestart = true, 
-            HintText = "{=BT_Settings_002300_Desc}Enable bonuses to the skill experience your hero and companions members gain."), 
-            SettingPropertyGroup("{=BT_Settings_002000}Character Tweaks" + "/" + "{=BT_Settings_002300}Hero Skill Experience" + "*", GroupOrder = 3)]
-        public bool SkillExperienceMultipliersEnabled { get; set; } = false;
-
-        [SettingPropertyBool("{=BT_Settings_002301}Player Skill Experience", Order = 2, RequireRestart = false, IsToggle = true, 
-            HintText = "{=BT_Settings_002301_Desc}Applies a modifier to the amount of experience recieved for skills. Affects the player only. 100% = No Bonus."), 
-            SettingPropertyGroup("{=BT_Settings_002000}Character Tweaks" + "/" + "{=BT_Settings_002300}Hero Skill Experience" + "*/" + "{=BT_Settings_002301}Player Skill Experience", GroupOrder = 1)]
-        public bool HeroSkillExperienceMultiplierEnabled { get; set; } = false;
-
-        [SettingPropertyFloatingInteger("{=BT_Settings_002302}Player Skill Experience Amount", 1f, 5f, "0%", RequireRestart = false, 
-            HintText = "{=BT_Settings_002302_Desc}Applies a modifier to the amount of experience recieved for skills. Affects the player only. 100% = No Bonus."), 
-            SettingPropertyGroup("{=BT_Settings_002000}Character Tweaks" + "/" + "{=BT_Settings_002300}Hero Skill Experience" + "*/" + "{=BT_Settings_002301}Player Skill Experience")]
-        public float HeroSkillExperienceMultiplier { get; set; } = 1f;
-
-        [SettingPropertyBool("{=BT_Settings_002303}Companion Skill Experience", Order = 3, RequireRestart = false, IsToggle = true, 
-            HintText = "{=BT_Settings_002303_Desc}Applies a modifier to the amount of experience recieved for skills. Affects Compaions only. 100% = No Bonus."), 
-            SettingPropertyGroup("{=BT_Settings_002000}Character Tweaks" + "/" + "{=BT_Settings_002300}Hero Skill Experience" + "*/" + "{=BT_Settings_002303}Companion Skill Experience", GroupOrder = 2)]
-        public bool CompanionSkillExperienceMultiplierEnabled { get; set; } = false;
-
-        [SettingPropertyFloatingInteger("{=BT_Settings_002304}Companion Skill Experience Amount", 1f, 20f, "0%", RequireRestart = false, 
-            HintText = "{=BT_Settings_002304_Desc}Applies a modifier to the amount of experience recieved for skills. Affects the Companion only. 100% = No Bonus."), 
-            SettingPropertyGroup("{=BT_Settings_002000}Character Tweaks" + "/" + "{=BT_Settings_002300}Hero Skill Experience" + "*/" + "{=BT_Settings_002303}Companion Skill Experience")]
-        public float CompanionSkillExperienceMultiplier { get; set; } = 1f;
-
-
-        #region Character Tweaks - Hero Skill Multiplier Tweaks - Enable Per-Skill Bonuses
-
-        [SettingPropertyBool("{=BT_Settings_002305}Per Skill Bonuses", Order = 4, RequireRestart = false, IsToggle = true, 
-            HintText = "{=BT_Settings_002305_Desc}Modifies the amount of experience recieved for specific skills before applying global experience modifier. Affects the player and companions only. 1.0 = No Bonus. 1.1 = 10%, etc."), 
-            SettingPropertyGroup("{=BT_Settings_002000}Character Tweaks" + "/" + "{=BT_Settings_002300}Hero Skill Experience" + "*/" + "{=BT_Settings_002305}Per-Skill Bonuses", GroupOrder = 3)]
-        public bool PerSkillBonusEnabled { get; set; } = false;
-
-        [SettingPropertyFloatingInteger("{=BT_Settings_002306}Per-Skill Experience Amount: Engineering", 1f, 10f, "0%", RequireRestart = false, 
-            HintText = "{=BT_Settings_002306_Desc}Modifies the amount of Engineering experience recieved."), 
-            SettingPropertyGroup("{=BT_Settings_002000}Character Tweaks" + "/" + "{=BT_Settings_002300}Hero Skill Experience" + "*/" + "{=BT_Settings_002305}Per-Skill Bonuses")]
-        public float SkillBonusEngineering { get; set; } = 1f;
-
-        [SettingPropertyFloatingInteger("{=BT_Settings_002307}Per-Skill Experience Amount: Leadership", 1f, 10f, "0%", RequireRestart = false, 
-            HintText = "{=BT_Settings_002307_Desc}Modifies the amount of Leadership experience recieved."), 
-            SettingPropertyGroup("{=BT_Settings_002000}Character Tweaks" + "/" + "{=BT_Settings_002300}Hero Skill Experience" + "*/" + "{=BT_Settings_002305}Per-Skill Bonuses")]
-        public float SkillBonusLeadership { get; set; } = 1f;
-
-        [SettingPropertyFloatingInteger("{=BT_Settings_002308}Per-Skill Experience Amount: Medicine", 1f, 10f, "0%", RequireRestart = false, 
-            HintText = "{=BT_Settings_002308_Desc}Modifies the amount of Medicine experience recieved."), 
-            SettingPropertyGroup("{=BT_Settings_002000}Character Tweaks" + "/" + "{=BT_Settings_002300}Hero Skill Experience" + "*/" + "{=BT_Settings_002305}Per-Skill Bonuses")]
-        public float SkillBonusMedicine { get; set; } = 1f;
-
-        [SettingPropertyFloatingInteger("{=BT_Settings_002309}Per-Skill Experience Amount: Riding", 1f, 10f, "0%", RequireRestart = false, 
-            HintText = "{=BT_Settings_002309_Desc}Modifies the amount of Riding experience recieved."), 
-            SettingPropertyGroup("{=BT_Settings_002000}Character Tweaks" + "/" + "{=BT_Settings_002300}Hero Skill Experience" + "*/" + "{=BT_Settings_002305}Per-Skill Bonuses")]
-        public float SkillBonusRiding { get; set; } = 1f;
-
-        [SettingPropertyFloatingInteger("{=BT_Settings_002310}Per-Skill Experience Amount: Roguery", 1f, 10f, "0%", RequireRestart = false, 
-            HintText = "{=BT_Settings_002310_Desc}Modifies the amount of Roguery experience recieved."), 
-            SettingPropertyGroup("{=BT_Settings_002000}Character Tweaks" + "/" + "{=BT_Settings_002300}Hero Skill Experience" + "*/" + "{=BT_Settings_002305}Per-Skill Bonuses")]
-        public float SkillBonusRoguery { get; set; } = 1f;
-
-        [SettingPropertyFloatingInteger("{=BT_Settings_002311}Per-Skill Experience Amount: Scouting", 1f, 10f, "0%", RequireRestart = false, 
-            HintText = "{=BT_Settings_002311_Desc}Modifies the amount of Scouting experience recieved."), 
-            SettingPropertyGroup("{=BT_Settings_002000}Character Tweaks" + "/" + "{=BT_Settings_002300}Hero Skill Experience" + "*/" + "{=BT_Settings_002305}Per-Skill Bonuses")]
-        public float SkillBonusScouting { get; set; } = 1f;
-
-        [SettingPropertyFloatingInteger("{=BT_Settings_002312}Per-Skill Experience Amount: Trade", 1f, 10f, "0%", RequireRestart = false, 
-            HintText = "{=BT_Settings_002312_Desc}Modifies the amount of Trade experience recieved."), 
-            SettingPropertyGroup("{=BT_Settings_002000}Character Tweaks" + "/" + "{=BT_Settings_002300}Hero Skill Experience" + "*/" + "{=BT_Settings_002305}Per-Skill Bonuses")]
-        public float SkillBonusTrade { get; set; } = 1f;
-
-        [SettingPropertyFloatingInteger("{=BT_Settings_002313}Per-Skill Experience Amount: Smithing", 1f, 10f, "0%", RequireRestart = false, 
-            HintText = "{=BT_Settings_002313_Desc}Modifies the amount of Smithing experience recieved."), 
-            SettingPropertyGroup("{=BT_Settings_002000}Character Tweaks" + "/" + "{=BT_Settings_002300}Hero Skill Experience" + "*/" + "{=BT_Settings_002305}Per-Skill Bonuses")]
-        public float SkillBonusSmithing { get; set; } = 1f;
 
         #endregion
 
         #endregion
 
-        #endregion
+        //~ Crafting Tweaks
+        #region Crafting Tweaks
+        [SettingPropertyBool("{=KTMCM_SM}Smithing Modifiers *", IsToggle = true, Order = 0, RequireRestart = true,
+            HintText = "{=KTMCM_SMH}Enables modifying Smithing variables.")]
+        [SettingPropertyGroup("{=BT_Settings_004000}Crafting Tweaks")]
+        public bool MCMSmithingModifiers { get; set; } = false; // Activates the Model Override
 
-        #region Crafting Tweaks #6
+        [SettingPropertyBool("{=KTMCM_SMPOM}Use Patches instead of model" + "*", Order = 1, RequireRestart = true,
+            HintText = "{=KTMCM_SMPOMH}Enables using only harmoney patches and does not load a smithing model. This applies to energy cost multiplers and xp multipliers. Does not apply to " +
+            "Max crafting stamina, stamina gains, or smelting tweaks they are patches only")]
+        [SettingPropertyGroup("{=BT_Settings_004000}Crafting Tweaks")]
+        public bool MCMSmithingHarmoneyPatches { get; set; } = false; // Activates the Model Override
 
-        #region Crafting Tweaks - Crafting Stamina Tweaks
+        //~ Stamina Tweaks
+        #region Stamina
         [SettingPropertyBool("{=BT_Settings_004100}Crafting Stamina" + "*", Order = 1, RequireRestart = true, IsToggle = true, 
             HintText = "{=BT_Settings_004100_Desc}Enables tweaks which affect crafting stamina."), 
-            SettingPropertyGroup("{=BT_Settings_004000}Crafting Tweaks" + "/" + "{=BT_Settings_004100}Crafting Stamina" + "*", GroupOrder = 1)]
+            SettingPropertyGroup("{=BT_Settings_004000}Crafting Tweaks" + "/" + "{=BT_Settings_004100}Crafting Stamina", GroupOrder = 1)]
         public bool CraftingStaminaTweakEnabled { get; set; } = false;
 
         [SettingPropertyInteger("{=BT_Settings_004101}Max Crafting Stamina", 100, 1000, "0 Stamina", Order = 2, RequireRestart = false, 
             HintText = "{=BT_Settings_004101_Desc}Native value is 400. Sets the maximum crafting stamina value."), 
-            SettingPropertyGroup("{=BT_Settings_004000}Crafting Tweaks" + "/" + "{=BT_Settings_004100}Crafting Stamina" + "*")]
+            SettingPropertyGroup("{=BT_Settings_004000}Crafting Tweaks" + "/" + "{=BT_Settings_004100}Crafting Stamina")]
         public int MaxCraftingStamina { get; set; } = 400;
 
-        [SettingPropertyInteger("{=BT_Settings_004102}Crafting Stamina Gain", 0, 100, "0 Stamina/h", Order = 3, RequireRestart = false, 
-            HintText = "{=BT_Settings_004102_Desc}Native value is 5. You gain this amount of crafting stamina per hour."), 
-            SettingPropertyGroup("{=BT_Settings_004000}Crafting Tweaks" + "/" + "{=BT_Settings_004100}Crafting Stamina" + "*")]
+        //~ Stamina Gains
+        #region StaminGain
+        [SettingPropertyInteger("{=BT_Settings_004102}Crafting Stamina Gain", 0, 100, "0 Stamina/h", Order = 3, RequireRestart = false,
+            HintText = "{=BT_Settings_004102_Desc}Native value is 5. You gain this amount of crafting stamina per hour."),
+            SettingPropertyGroup("{=BT_Settings_004000}Crafting Tweaks" + "/" + "{=BT_Settings_004100}Crafting Stamina")]
         public int CraftingStaminaGainAmount { get; set; } = 5;
 
-        [SettingPropertyFloatingInteger("{=BT_Settings_004103}Crafting Stamina Gain Outside Settlement", 0f, 1f, "0%", Order = 4, RequireRestart = false, 
-            HintText = "{=BT_Settings_004103_Desc}Native value is 0%. In % of Crafting Stamina Gain. In native, you do not gain crafting stamina if you are not resting inside a settlement."), 
-            SettingPropertyGroup("{=BT_Settings_004000}Crafting Tweaks" + "/" + "{=BT_Settings_004100}Crafting Stamina" + "*")]
+        [SettingPropertyFloatingInteger("{=BT_Settings_004103}Crafting Stamina Gain Outside Settlement", 0f, 1f, "0%", Order = 4, RequireRestart = false,
+            HintText = "{=BT_Settings_004103_Desc}Native value is 0%. In % of Crafting Stamina Gain. In native, you do not gain crafting stamina if you are not resting inside a settlement."),
+            SettingPropertyGroup("{=BT_Settings_004000}Crafting Tweaks" + "/" + "{=BT_Settings_004100}Crafting Stamina")]
         public float CraftingStaminaGainOutsideSettlementMultiplier { get; set; } = 0f;
-
-        [SettingPropertyBool("{=BT_Settings_004104}Ignore Crafting Stamina", Order = 5, RequireRestart = false, 
-            HintText = "{=BT_Settings_004104_Desc}Native value is false. This disables crafting stamina completely. You will still lose crafting stamina when you craft, but you will still be able to craft when you hit zero."), 
-            SettingPropertyGroup("{=BT_Settings_004000}Crafting Tweaks" + "/" + "{=BT_Settings_004100}Crafting Stamina" + "*")]
-        public bool IgnoreCraftingStamina { get; set; } = false;
-
-
         #endregion
 
-        #region Crafting Tweaks - Smelting
+        //~ Energy Cost Multipliers
+        #region EnergyCostMultiplier
+        [SettingPropertyFloatingInteger("{=KTMCM_SMECCM}Energy Use Crafting", 0.1f, 3.0f, "#0%", RequireRestart = false,
+            HintText = "{=KTMCM_SMECCMH}Multiply the energy used for Crafting by the multiplier [Native : 1.0[100%]]. 50% uses only half the native energy per action")]
+        [SettingPropertyGroup("{=BT_Settings_004000}Crafting Tweaks" + "/" + "{=BT_Settings_004100}Crafting Stamina")]
+        public float SmithingEnergySmithingValue { get; set; } = 1.0f;
+
+        [SettingPropertyFloatingInteger("{=}Energy Use Smithing", 0.1f, 3.0f, "#0%", RequireRestart = false,
+            HintText = "{=KTMCM_SMECSMH}Multiply the energy used for Smelting by the multiplier [Native : 1.0[100%]]. 50% uses only half the native energy per action")]
+        [SettingPropertyGroup("{=BT_Settings_004000}Crafting Tweaks" + "/" + "{=BT_Settings_004100}Crafting Stamina")]
+        public float SmithingEnergySmeltingValue { get; set; } = 1.0f;
+
+
+        [SettingPropertyFloatingInteger("{=KTMCM_SMECRM}Energy Use Refining", 0.1f, 3.0f, "#0%", RequireRestart = false,
+            HintText = "{=KTMCM_SMECRMH}Multiply the energy used for refining by the multiplier [Native : 1.0[100%]]. 50% uses only half the native energy per action")]
+        [SettingPropertyGroup("{=BT_Settings_004000}Crafting Tweaks" + "/" + "{=BT_Settings_004100}Crafting Stamina")]
+        public float SmithingEnergyRefiningValue { get; set; } = 1.0f;
+        #endregion
+
+        [SettingPropertyBool("{=KTMCM_SMSE}Energy Disable", Order = 0, RequireRestart = false,
+            HintText = "{=KTMCM_SMSEH}Disable the energy for crafting and refining tasks [Native : false]")]
+        [SettingPropertyGroup("{=BT_Settings_004000}Crafting Tweaks" + "/" + "{=BT_Settings_004100}Crafting Stamina")]
+        public bool SmithingEnergyDisable { get; set; } = false;
+        #endregion
+
+        //~ BT Smelting Tweaks
+        #region Smelting
 
         [SettingPropertyBool("{=BT_Settings_004200}Smelting" + "*", Order = 1, RequireRestart = true, IsToggle = true, 
             HintText = "{=BT_Settings_004200_Desc}Enables tweaks which affect smelting of weapons."), 
@@ -3186,255 +2304,58 @@ namespace KaosesTweaks.Settings
 
         #endregion
 
+        //~ Xp Modifiers
+        #region XP Modifiers
+        [SettingPropertyBool("{=KTMCM_SMRXP}Smithing Xp Multipliers" + "*", IsToggle = true, Order = 0, RequireRestart = true,
+            HintText = "{=KTMCM_SMRXPH}Enables xp multipliers to increase or decrease the xp gained per action.")]
+        [SettingPropertyGroup("{=BT_Settings_004000}Crafting Tweaks/{=KTMCM_CXP}XP")]
+        public bool SmithingXpModifiers { get; set; } = false;
+
+        [SettingPropertyFloatingInteger("{=KTMCM_SMRXPM}Refining Xp", 0.1f, 5.0f, "#0%", RequireRestart = false,
+            HintText = "{=KTMCM_SMRXPMH}Multiply Refining Xp by the multiplier [Native : 1.0[100%]].")]
+        [SettingPropertyGroup("{=BT_Settings_004000}Crafting Tweaks/{=KTMCM_CXP}XP")]
+        public float SmithingRefiningXpValue { get; set; } = 1.0f;
+
+        [SettingPropertyFloatingInteger("{=KTMCM_SMSXPM}Smelting Xp", 0.1f, 5.0f, "#0%", RequireRestart = false,
+            HintText = "{=KTMCM_SMSXPMH}Multiply Smelting Xp by the multiplier [Native : 1.0[100%]].")]
+        [SettingPropertyGroup("{=BT_Settings_004000}Crafting Tweaks/{=KTMCM_CXP}XP")]
+        public float SmithingSmeltingXpValue { get; set; } = 1.0f;
+
+        [SettingPropertyFloatingInteger("{=KTMCM_SMCXPM}Smithing Xp", 0.1f, 5.0f, "#0%", RequireRestart = false,
+            HintText = "{=KTMCM_SMCXPMH}Multiply Smithing Xp by the multiplier [Native : 1.0[100%]].")]
+        [SettingPropertyGroup("{=BT_Settings_004000}Crafting Tweaks/{=KTMCM_CXP}XP")]
+        public float SmithingSmithingXpValue { get; set; } = 1.0f;
+        #endregion
         #endregion
 
-        #region Kingdom Tweaks #7
+        //~ Party Tweaks
+        #region Party Tweaks
 
+        /*
+                #region Party Tweaks - Cohesion Tweaks
 
-        #region Kingdom Tweaks - Lord Bartering
+                [SettingPropertyBool("{=BT_Settings_006100}Cohesion Tweaks" + "*", Order = 1, RequireRestart = true, IsToggle = true, 
+                    HintText = "{=BT_Settings_006100_Desc}Enables tweaks affecting cohesion."), 
+                    SettingPropertyGroup("{=BT_Settings_006000}Party Tweaks" + "/" + "{=BT_Settings_006100}Cohesion Tweaks" + "*", GroupOrder = 1)]
+                public bool BTCohesionTweakEnabled { get; set; } = false;
 
-        [SettingPropertyBool("{=BT_Settings_005100}Lord Bartering" + "*", Order = 1, RequireRestart = true, IsToggle = true, 
-            HintText = "{=BT_Settings_005100_Desc}Enables tweaks which affect bartering (Marriage, Factions Joining You, etc.)"), 
-            SettingPropertyGroup("{=BT_Settings_005000}Kingdom Tweaks" + "/" + "{=BT_Settings_005100}Lord Bartering" + "*", GroupOrder = 1)]
-        public bool BarterablesTweaksEnabled { get; set; } = false;
+                [SettingPropertyFloatingInteger("{=BT_Settings_006101}Cohesion Degradation Factor", 0f, 1f, "0%", Order = 2, RequireRestart = false, 
+                    HintText = "{=BT_Settings_006101_Desc}Modifier to how much cohesion should degrade over time. Vanilla is 100%, 0% is disabled."), 
+                    SettingPropertyGroup("{=BT_Settings_006000}Party Tweaks" + "/" + "{=BT_Settings_006100}Cohesion Tweaks" + "*")]
+                public float BTCohesionTweakv2 { get; set; } = 1f;
 
-        [SettingPropertyFloatingInteger("{=BT_Settings_005101}Faction Joining Barter Adjustment", 0.01f, 2f, "0%", Order = 2, RequireRestart = false, 
-            HintText = "{=BT_Settings_005101_Desc}Adjust the % cost of swaying a faction to join your kingdom. Native value is 100% (no change)."), 
-            SettingPropertyGroup("{=BT_Settings_005000}Kingdom Tweaks" + "/" + "{=BT_Settings_005100}Lord Bartering" + "*")]
-        public float BarterablesJoinKingdomAsClanAdjustment { get; set; } = 1;
+                [SettingPropertyBool("{=BT_Settings_006102}All-Clan Armies Lose No Cohesion", Order = 3, RequireRestart = false, 
+                    HintText = "{=BT_Settings_006102_Desc}Armies composed of only clan parties lose no cohesion."), 
+                    SettingPropertyGroup("{=BT_Settings_006000}Party Tweaks" + "/" + "{=BT_Settings_006100}Cohesion Tweaks" + "*")]
+                public bool ClanArmyLosesNoCohesionEnabled { get; set; } = false;
 
-        [SettingPropertyBool("{=BT_Settings_005102}Relationship favored Faction Joining Barter", Order = 3, RequireRestart = false, 
-            HintText = "{=BT_Settings_005102_Desc}An alternate formula for calculating cost of swaying a faction to join your kingdom, with more emphasis on relationsip. [The higher your relationship to the lord, the cheaper the barter]."), 
-            SettingPropertyGroup("{=BT_Settings_005000}Kingdom Tweaks" + "/" + "{=BT_Settings_005100}Lord Bartering" + "*")]
-        public bool BarterablesJoinKingdomAsClanAltFormulaEnabled { get; set; } = false;
-
-        #endregion
-
-
-
-
-        #region Kingdom Tweaks - Balancing Tweaks
-
-        [SettingPropertyBool("{=BT_Settings_005200}Faction Balancing" + "*", Order = 1, RequireRestart = true, IsToggle = true, 
-            HintText = "{=BT_Settings_005200_Desc}Enables tweaks which affect the balancing of kingdoms."), 
-            SettingPropertyGroup("{=BT_Settings_005000}Kingdom Tweaks" + "/" + "{=BT_Settings_005200}Faction Balancing" + "*", GroupOrder = 2)]
-        public bool KingdomBalanceStrengthEnabled { get; set; } = false;
-
-        [SettingPropertyBool("{=BT_Settings_005201}Balancing Modifiers For Vanilla Kingdoms", Order = 2, RequireRestart = false, IsToggle = true, 
-            HintText = "{=BT_Settings_005201_Desc}Enables tweaks which affect the balancing of kingdoms in vanilla game."), 
-            SettingPropertyGroup("{=BT_Settings_005000}Kingdom Tweaks" + "/" + "{=BT_Settings_005200}Faction Balancing" + "*/" + "{=BT_Settings_005201}Balancing Modifiers For Vanilla Kingdoms", GroupOrder = 1)]
-        public bool KingdomBalanceStrengthVanEnabled { get; set; } = false;
-
-        [SettingPropertyFloatingInteger("{=BT_Settings_005202}Vlandia Balancing Strength", -0.5f, 0.5f, "0%", Order = 9, RequireRestart = false, 
-            HintText = "{=BT_Settings_005202_Desc}Balancing strength for vlandia. Boosts or reduces the enabled balancing tweaks."), 
-            SettingPropertyGroup("{=BT_Settings_005000}Kingdom Tweaks" + "/" + "{=BT_Settings_005200}Faction Balancing" + "*/" + "{=BT_Settings_005201}Balancing Modifiers For Vanilla Kingdoms")]
-        public float VlandiaBoost { get; set; } = 0.00f;
-
-        [SettingPropertyFloatingInteger("{=BT_Settings_005203}Sturgia Balancing Strength", -0.5f, 0.5f, "0%", Order = 8, RequireRestart = false, 
-            HintText = "{=BT_Settings_005203_Desc}Balancing strength for sturgia. Boosts or reduces the enabled balancing tweaks."), 
-            SettingPropertyGroup("{=BT_Settings_005000}Kingdom Tweaks" + "/" + "{=BT_Settings_005200}Faction Balancing" + "*/" + "{=BT_Settings_005201}Balancing Modifiers For Vanilla Kingdoms")]
-        public float SturgiaBoost { get; set; } = 0.00f;
-
-        [SettingPropertyFloatingInteger("{=BT_Settings_005204}Battania Balancing Strength", -0.5f, 0.5f, "0%", Order = 2, RequireRestart = false, 
-            HintText = "{=BT_Settings_005204_Desc}Balancing strength for battania. Boosts or reduces the enabled balancing tweaks."), 
-            SettingPropertyGroup("{=BT_Settings_005000}Kingdom Tweaks" + "/" + "{=BT_Settings_005200}Faction Balancing" + "*/" + "{=BT_Settings_005201}Balancing Modifiers For Vanilla Kingdoms")]
-        public float BattaniaBoost { get; set; } = 0.00f;
-
-        [SettingPropertyFloatingInteger("{=BT_Settings_005205}Northern Empire Balancing Strength", -0.5f, 0.5f, "0%", Order = 5, RequireRestart = false, 
-            HintText = "{=BT_Settings_005205_Desc}Balancing strength for northern empire. Boosts or reduces the enabled balancing tweaks."), 
-            SettingPropertyGroup("{=BT_Settings_005000}Kingdom Tweaks" + "/" + "{=BT_Settings_005200}Faction Balancing" + "*/" + "{=BT_Settings_005201}Balancing Modifiers For Vanilla Kingdoms")]
-        public float Empire_N_Boost { get; set; } = 0.00f;
-
-        [SettingPropertyFloatingInteger("{=BT_Settings_005206}Southern Empire Balancing Strength", -0.5f, 0.5f, "0%", Order = 6, RequireRestart = false, 
-            HintText = "{=BT_Settings_005206_Desc}Balancing strength for southern empire. Boosts or reduces the enabled balancing tweaks."), 
-            SettingPropertyGroup("{=BT_Settings_005000}Kingdom Tweaks" + "/" + "{=BT_Settings_005200}Faction Balancing" + "*/" + "{=BT_Settings_005201}Balancing Modifiers For Vanilla Kingdoms")]
-        public float Empire_S_Boost { get; set; } = 0.00f;
-
-        [SettingPropertyFloatingInteger("{=BT_Settings_005207}Western Empire Balancing Strength", -0.5f, 0.5f, "0%", Order = 7, RequireRestart = false, 
-            HintText = "{=BT_Settings_005207_Desc}Balancing strength for western empire. Boosts or reduces the enabled balancing tweaks."), 
-            SettingPropertyGroup("{=BT_Settings_005000}Kingdom Tweaks" + "/" + "{=BT_Settings_005200}Faction Balancing" + "*/" + "{=BT_Settings_005201}Balancing Modifiers For Vanilla Kingdoms")]
-        public float Empire_W_Boost { get; set; } = 0.00f;
-
-        [SettingPropertyFloatingInteger("{=BT_Settings_005208}Aserai Balancing Strength", -0.5f, 0.5f, "0%", Order = 1, RequireRestart = false, 
-            HintText = "{=BT_Settings_005208_Desc}Balancing strength for aserai. Boosts or reduces the enabled balancing tweaks."), 
-            SettingPropertyGroup("{=BT_Settings_005000}Kingdom Tweaks" + "/" + "{=BT_Settings_005200}Faction Balancing" + "*/" + "{=BT_Settings_005201}Balancing Modifiers For Vanilla Kingdoms")]
-        public float AseraiBoost { get; set; } = 0.00f;
-
-        [SettingPropertyFloatingInteger("{=BT_Settings_005209}Khuzait Balancing Strength", -0.5f, 0.5f, "0%", Order = 4, RequireRestart = false, 
-            HintText = "{=BT_Settings_005209_Desc}Balancing strength for khuzait. Boosts or reduces the enabled balancing tweaks."), 
-            SettingPropertyGroup("{=BT_Settings_005000}Kingdom Tweaks" + "/" + "{=BT_Settings_005200}Faction Balancing" + "*/" + "{=BT_Settings_005201}Balancing Modifiers For Vanilla Kingdoms")]
-        public float KhuzaitBoost { get; set; } = 0.00f;
-
-        [SettingPropertyFloatingInteger("{=BT_Settings_005210}Player Kingdom Balancing Strength", -0.5f, 0.5f, "0%", Order = 4, RequireRestart = false, 
-            HintText = "{=BT_Settings_005210_Desc}Balancing strength for player kingdom. Boosts or reduces the enabled balancing tweaks."), 
-            SettingPropertyGroup("{=BT_Settings_005000}Kingdom Tweaks" + "/" + "{=BT_Settings_005200}Faction Balancing" + "*/" + "{=BT_Settings_005201}Balancing Modifiers For Vanilla Kingdoms")]
-        public float PlayerBoost { get; set; } = 0.00f;
-
-
-
-        [SettingPropertyBool("{=BT_Settings_005211}Balancing Modifiers For Calradia Expanded Kingdoms", Order = 3, RequireRestart = false, IsToggle = true, 
-            HintText = "{=BT_Settings_005211_Desc}Enables tweaks which affect the balancing of kingdoms in the mod Calradia Expanded Kingdoms."), 
-            SettingPropertyGroup("{=BT_Settings_005000}Kingdom Tweaks" + "/" + "{=BT_Settings_005200}Faction Balancing" + "*/" + "{=BT_Settings_005211}Balancing Modifiers For Calradia Expanded Kingdoms", GroupOrder = 2)]
-        public bool KingdomBalanceStrengthCEKEnabled { get; set; } = false;
-
-        [SettingPropertyFloatingInteger("{=BT_Settings_005212}Nordlings Balancing Strength", -0.5f, 0.5f, "0%", Order = 9, RequireRestart = false, 
-            HintText = "{=BT_Settings_005212_Desc}Balancing strength for nordlings. Boosts or reduces the enabled balancing tweaks."), 
-            SettingPropertyGroup("{=BT_Settings_005000}Kingdom Tweaks" + "/" + "{=BT_Settings_005200}Faction Balancing" + "*/" + "{=BT_Settings_005211}Balancing Modifiers For Calradia Expanded Kingdoms")]
-        public float NordlingsBoost { get; set; } = 0.00f;
-
-        [SettingPropertyFloatingInteger("{=BT_Settings_005213}Vagir Balancing Strength", -0.5f, 0.5f, "0%", Order = 8, RequireRestart = false, 
-            HintText = "{=BT_Settings_005213_Desc}Balancing strength for vagir. Boosts or reduces the enabled balancing tweaks."), 
-            SettingPropertyGroup("{=BT_Settings_005000}Kingdom Tweaks" + "/" + "{=BT_Settings_005200}Faction Balancing" + "*/" + "{=BT_Settings_005211}Balancing Modifiers For Calradia Expanded Kingdoms")]
-        public float VagirBoost { get; set; } = 0.00f;
-
-        [SettingPropertyFloatingInteger("{=BT_Settings_005214}Royalist Vlandia Balancing Strength", -0.5f, 0.5f, "0%", Order = 2, RequireRestart = false, 
-            HintText = "{=BT_Settings_005214_Desc}Balancing strength for royalist vlandia. Boosts or reduces the enabled balancing tweaks."), 
-            SettingPropertyGroup("{=BT_Settings_005000}Kingdom Tweaks" + "/" + "{=BT_Settings_005200}Faction Balancing" + "*/" + "{=BT_Settings_005211}Balancing Modifiers For Calradia Expanded Kingdoms")]
-        public float RoyalistVlandiaBoost { get; set; } = 0.00f;
-
-        [SettingPropertyFloatingInteger("{=BT_Settings_005215}Apolssaly Balancing Strength", -0.5f, 0.5f, "0%", Order = 5, RequireRestart = false, 
-            HintText = "{=BT_Settings_005215_Desc}Balancing strength for apolssaly. Boosts or reduces the enabled balancing tweaks."), 
-            SettingPropertyGroup("{=BT_Settings_005000}Kingdom Tweaks" + "/" + "{=BT_Settings_005200}Faction Balancing" + "*/" + "{=BT_Settings_005211}Balancing Modifiers For Calradia Expanded Kingdoms")]
-        public float ApolssalyBoost { get; set; } = 0.00f;
-
-        [SettingPropertyFloatingInteger("{=BT_Settings_005216}Lyrion Balancing Strength", -0.5f, 0.5f, "0%", Order = 6, RequireRestart = false, 
-            HintText = "{=BT_Settings_005216_Desc}Balancing strength for lyrion. Boosts or reduces the enabled balancing tweaks."), 
-            SettingPropertyGroup("{=BT_Settings_005000}Kingdom Tweaks" + "/" + "{=BT_Settings_005200}Faction Balancing" + "*/" + "{=BT_Settings_005211}Balancing Modifiers For Calradia Expanded Kingdoms")]
-        public float LyrionBoost { get; set; } = 0.00f;
-
-        [SettingPropertyFloatingInteger("{=BT_Settings_005217}Khergit Balancing Strength", -0.5f, 0.5f, "0%", Order = 7, RequireRestart = false, 
-            HintText = "{=BT_Settings_005217_Desc}Balancing strength for khergit. Boosts or reduces the enabled balancing tweaks."), 
-            SettingPropertyGroup("{=BT_Settings_005000}Kingdom Tweaks" + "/" + "{=BT_Settings_005200}Faction Balancing" + "*/" + "{=BT_Settings_005211}Balancing Modifiers For Calradia Expanded Kingdoms")]
-        public float RebelKhuzaitBoost { get; set; } = 0.00f;
-
-        [SettingPropertyFloatingInteger("{=BT_Settings_005218}Paleician Balancing Strength", -0.5f, 0.5f, "0%", Order = 1, RequireRestart = false, 
-            HintText = "{=BT_Settings_005218_Desc}Balancing strength for paleician. Boosts or reduces the enabled balancing tweaks."), 
-            SettingPropertyGroup("{=BT_Settings_005000}Kingdom Tweaks" + "/" + "{=BT_Settings_005200}Faction Balancing" + "*/" + "{=BT_Settings_005211}Balancing Modifiers For Calradia Expanded Kingdoms")]
-        public float PaleicianBoost { get; set; } = 0.00f;
-
-        [SettingPropertyFloatingInteger("{=BT_Settings_005219}Ariorum Balancing Strength", -0.5f, 0.5f, "0%", Order = 4, RequireRestart = false, 
-            HintText = "{=BT_Settings_005219_Desc}Balancing strength for ariorum. Boosts or reduces the enabled balancing tweaks."), 
-            SettingPropertyGroup("{=BT_Settings_005000}Kingdom Tweaks" + "/" + "{=BT_Settings_005200}Faction Balancing" + "*/" + "{=BT_Settings_005211}Balancing Modifiers For Calradia Expanded Kingdoms")]
-        public float AriorumBoost { get; set; } = 0.00f;
-
-        [SettingPropertyFloatingInteger("{=BT_Settings_005220}Calradian Empire Balancing Strength", -0.5f, 0.5f, "0%", Order = 4, RequireRestart = false, 
-            HintText = "{=BT_Settings_005220_Desc}Balancing strength for calradian empire. Boosts or reduces the enabled balancing tweaks."), 
-            SettingPropertyGroup("{=BT_Settings_005000}Kingdom Tweaks" + "/" + "{=BT_Settings_005200}Faction Balancing" + "*/" + "{=BT_Settings_005211}Balancing Modifiers For Calradia Expanded Kingdoms")]
-        public float Empire_S_CEK_Boost { get; set; } = 0.00f;
-
-        [SettingPropertyFloatingInteger("{=BT_Settings_005221}Dryatican Republic Balancing Strength", -0.5f, 0.5f, "0%", Order = 4, RequireRestart = false, 
-            HintText = "{=BT_Settings_005221_Desc}Balancing strength for dryatican republic. Boosts or reduces the enabled balancing tweaks."),
-            SettingPropertyGroup("{=BT_Settings_005000}Kingdom Tweaks" + "/" + "{=BT_Settings_005200}Faction Balancing" + "*/" + "{=BT_Settings_005211}Balancing Modifiers For Calradia Expanded Kingdoms")]
-        public float Empire_CEK_Boost { get; set; } = 0.00f;
-
-        [SettingPropertyFloatingInteger("{=BT_Settings_005222}Battania Balancing Strength", -0.5f, 0.5f, "0%", Order = 4, RequireRestart = false,
-            HintText = "{=BT_Settings_005222_Desc}Balancing strength for battania. Boosts or reduces the enabled balancing tweaks."), 
-            SettingPropertyGroup("{=BT_Settings_005000}Kingdom Tweaks" + "/" + "{=BT_Settings_005200}Faction Balancing" + "*/" + "{=BT_Settings_005211}Balancing Modifiers For Calradia Expanded Kingdoms")]
-        public float Battania_CEK_Boost { get; set; } = 0.00f;
-
-        [SettingPropertyFloatingInteger("{=BT_Settings_005223}Cortanian Vlandia Balancing Strength", -0.5f, 0.5f, "0%", Order = 4, RequireRestart = false, 
-            HintText = "{=BT_Settings_005223_Desc}Balancing strength for cortanian vlandia. Boosts or reduces the enabled balancing tweaks."), 
-            SettingPropertyGroup("{=BT_Settings_005000}Kingdom Tweaks" + "/" + "{=BT_Settings_005200}Faction Balancing" + "*/" + "{=BT_Settings_005211}Balancing Modifiers For Calradia Expanded Kingdoms")]
-        public float Vlandia_CEK_Boost { get; set; } = 0.00f;
-
-        [SettingPropertyFloatingInteger("{=BT_Settings_005224}Sturgia Balancing Strength", -0.5f, 0.5f, "0%", Order = 4, RequireRestart = false, 
-            HintText = "{=BT_Settings_005224_Desc}Balancing strength for sturgia. Boosts or reduces the enabled balancing tweaks."), 
-            SettingPropertyGroup("{=BT_Settings_005000}Kingdom Tweaks" + "/" + "{=BT_Settings_005200}Faction Balancing" + "*/" + "{=BT_Settings_005211}Balancing Modifiers For Calradia Expanded Kingdoms")]
-        public float Sturgia_CEK_Boost { get; set; } = 0.00f;
-
-        [SettingPropertyFloatingInteger("{=BT_Settings_005225}Khuzait Balancing Strength", -0.5f, 0.5f, "0%", Order = 4, RequireRestart = false, 
-            HintText = "{=BT_Settings_005225_Desc}Balancing strength for khuzait. Boosts or reduces the enabled balancing tweaks."), 
-            SettingPropertyGroup("{=BT_Settings_005000}Kingdom Tweaks" + "/" + "{=BT_Settings_005200}Faction Balancing" + "*/" + "{=BT_Settings_005211}Balancing Modifiers For Calradia Expanded Kingdoms")]
-        public float Khuzait_CEK_Boost { get; set; } = 0.00f;
-
-        [SettingPropertyFloatingInteger("{=BT_Settings_005226}Aserai Balancing Strength", -0.5f, 0.5f, "0%", Order = 4, RequireRestart = false, 
-            HintText = "{=BT_Settings_005226_Desc}Balancing strength for aserai. Boosts or reduces the enabled balancing tweaks."), 
-            SettingPropertyGroup("{=BT_Settings_005000}Kingdom Tweaks" + "/" + "{=BT_Settings_005200}Faction Balancing" + "*/" + "{=BT_Settings_005211}Balancing Modifiers For Calradia Expanded Kingdoms")]
-        public float Aserai_CEK_Boost { get; set; } = 0.00f;
-
-        [SettingPropertyFloatingInteger("{=BT_Settings_005227}Western Empire Balancing Strength", -0.5f, 0.5f, "0%", Order = 7, RequireRestart = false, 
-            HintText = "{=BT_Settings_005227_Desc}Balancing strength for western empire. Boosts or reduces the enabled balancing tweaks."), 
-            SettingPropertyGroup("{=BT_Settings_005000}Kingdom Tweaks" + "/" + "{=BT_Settings_005200}Faction Balancing" + "*/" + "{=BT_Settings_005211}Balancing Modifiers For Calradia Expanded Kingdoms")]
-        public float Empire_W_CEK_Boost { get; set; } = 0.00f;
-
-        [SettingPropertyFloatingInteger("{=BT_Settings_005228}Player Kingdom Balancing Strength", -0.5f, 0.5f, "0%", Order = 7, RequireRestart = false, 
-            HintText = "{=BT_Settings_005228_Desc}Balancing strength for player kingdom. Boosts or reduces the enabled balancing tweaks."), 
-            SettingPropertyGroup("{=BT_Settings_005000}Kingdom Tweaks" + "/" + "{=BT_Settings_005200}Faction Balancing" + "*/" + "{=BT_Settings_005211}Balancing Modifiers For Calradia Expanded Kingdoms")]
-        public float Player_CEK_Boost { get; set; } = 0.00f;
-
-
-
-
-        [SettingPropertyBool("{=BT_Settings_005229}Party Sizes Balancing", Order = 4, RequireRestart = false, 
-            HintText = "{=BT_Settings_005229_Desc}Modifier for max party sizes (1.0 x Balancing Strength)."), 
-            SettingPropertyGroup("{=BT_Settings_005000}Kingdom Tweaks" + "/" + "{=BT_Settings_005200}Faction Balancing" + "*")]
-        public bool BalancingPartySizeTweaksEnabled { get; set; } = false;
-
-        [SettingPropertyBool("{=BT_Settings_005230}Party Count Limit Balancing", Order = 5, RequireRestart = false, 
-            HintText = "{=BT_Settings_005230_Desc}Modifier for max party limit (1.0 x Balancing Strength)."), 
-            SettingPropertyGroup("{=BT_Settings_005000}Kingdom Tweaks" + "/" + "{=BT_Settings_005200}Faction Balancing" + "*")]
-        public bool BalancingPartyLimitTweaksEnabled { get; set; } = false;
-
-        [SettingPropertyBool("{=BT_Settings_005231}Village Food Production Balancing", Order = 6, RequireRestart = false,
-            HintText = "{=BT_Settings_005231_Desc}Modifier for daily production of food goods in villages (1.0 x Balancing Strength)."), 
-            SettingPropertyGroup("{=BT_Settings_005000}Kingdom Tweaks" + "/" + "{=BT_Settings_005200}Faction Balancing" + "*")]
-        public bool BalancingFoodTweakEnabled { get; set; } = false;
-
-        [SettingPropertyBool("{=BT_Settings_005232}Faster Recruitment Balancing", Order = 7, RequireRestart = false, 
-            HintText = "{=BT_Settings_005232_Desc}Flat % bonus chance of new recruits to spawn in settlements (0.75 x Balancing Strength)."), 
-            SettingPropertyGroup("{=BT_Settings_005000}Kingdom Tweaks" + "/" + "{=BT_Settings_005200}Faction Balancing" + "*")]
-        public bool BalancingTimeRecruitsTweaksEnabled { get; set; } = false;
-
-        [SettingPropertyBool("{=BT_Settings_005233}Taxation Efficiency Balancing", Order = 8, RequireRestart = false, 
-            HintText = "{=BT_Settings_005233_Desc}Modifier for tax income from prosperity in towns and castles and trade tax income in villages (1.25 x Balancing Strength)."), 
-            SettingPropertyGroup("{=BT_Settings_005000}Kingdom Tweaks" + "/" + "{=BT_Settings_005200}Faction Balancing" + "*")]
-        public bool BalancingTaxTweaksEnabled { get; set; } = false;
-
-        [SettingPropertyBool("{=BT_Settings_005234}Wage costs Balancing", Order = 9, RequireRestart = false, 
-            HintText = "{=BT_Settings_005234_Desc}Modifier for troop and garrison wages (1.0 x Balancing Strength)."), 
-            SettingPropertyGroup("{=BT_Settings_005000}Kingdom Tweaks" + "/" + "{=BT_Settings_005200}Faction Balancing" + "*")]
-        public bool BalancingWagesTweaksEnabled { get; set; } = false;
-
-        [SettingPropertyBool("{=BT_Settings_005235}Quality of Recruitment Balancing", Order = 10, RequireRestart = false, 
-            HintText = "{=BT_Settings_005235_Desc}Increases the chance for upgraded recruits (1.0 x Balancing Strength). No effect if balancing strength is lower than 0% (no decrease in chance for upgrades)."), 
-            SettingPropertyGroup("{=BT_Settings_005000}Kingdom Tweaks" + "/" + "{=BT_Settings_005200}Faction Balancing" + "*")]
-        public bool BalancingUpgradeTroopsTweaksEnabled { get; set; } = false;
-
-        #endregion
-
-
-
-        #endregion
-
-        #region Party Tweaks #8
-
-/*
-        #region Party Tweaks - Cohesion Tweaks
-
-        [SettingPropertyBool("{=BT_Settings_006100}Cohesion Tweaks" + "*", Order = 1, RequireRestart = true, IsToggle = true, 
-            HintText = "{=BT_Settings_006100_Desc}Enables tweaks affecting cohesion."), 
-            SettingPropertyGroup("{=BT_Settings_006000}Party Tweaks" + "/" + "{=BT_Settings_006100}Cohesion Tweaks" + "*", GroupOrder = 1)]
-        public bool BTCohesionTweakEnabled { get; set; } = false;
-
-        [SettingPropertyFloatingInteger("{=BT_Settings_006101}Cohesion Degradation Factor", 0f, 1f, "0%", Order = 2, RequireRestart = false, 
-            HintText = "{=BT_Settings_006101_Desc}Modifier to how much cohesion should degrade over time. Vanilla is 100%, 0% is disabled."), 
-            SettingPropertyGroup("{=BT_Settings_006000}Party Tweaks" + "/" + "{=BT_Settings_006100}Cohesion Tweaks" + "*")]
-        public float BTCohesionTweakv2 { get; set; } = 1f;
-
-        [SettingPropertyBool("{=BT_Settings_006102}All-Clan Armies Lose No Cohesion", Order = 3, RequireRestart = false, 
-            HintText = "{=BT_Settings_006102_Desc}Armies composed of only clan parties lose no cohesion."), 
-            SettingPropertyGroup("{=BT_Settings_006000}Party Tweaks" + "/" + "{=BT_Settings_006100}Cohesion Tweaks" + "*")]
-        public bool ClanArmyLosesNoCohesionEnabled { get; set; } = false;
-
-        #endregion*/
-
-        #region Party Tweaks - Caravan Tweaks
+                #endregion*/
 
         [SettingPropertyBool("{=BT_Settings_006200}Player Caravan Party Size" + "*", Order = 1, RequireRestart = true, IsToggle = true, 
             HintText = "{=BT_Settings_006200_Desc}Applies a configured value to your caravan party size."), 
             SettingPropertyGroup("{=BT_Settings_006000}Party Tweaks" + "/" + "{=BT_Settings_006200}Player Caravan Party Size" + "*", GroupOrder = 2)]
         public bool PlayerCaravanPartySizeTweakEnabled { get; set; } = false;
-
+        #region Party Tweaks - Caravan Tweaks
         [SettingPropertyInteger("{=BT_Settings_006201}Player Caravan Party Size Amount", 30, 100, "0 Troops", Order = 2, 
             HintText = "{=BT_Settings_006201_Desc}Native: 30. Be aware that bigger parties are also slower parties."), 
             SettingPropertyGroup("{=BT_Settings_006000}Party Tweaks" + "/" + "{=BT_Settings_006200}Player Caravan Party Size" + "*")]
@@ -3442,13 +2363,11 @@ namespace KaosesTweaks.Settings
 
         #endregion
 
-        #region Party Tweaks - Party Size Tweaks
-
         [SettingPropertyBool("{=BT_Settings_006300}Party Size" + "*", Order = 1, RequireRestart = true, IsToggle = true,
             HintText = "{=BT_Settings_006300_Desc}Applies a bonues to you and AI lord's party size based on leadership and steward skills."), 
             SettingPropertyGroup("{=BT_Settings_006000}Party Tweaks" + "/" + "{=BT_Settings_006300}Party Size" + "*", GroupOrder = 3)]
         public bool PartySizeTweakEnabled { get; set; } = false;
-
+        #region Party Tweaks - Party Size Tweaks
         [SettingPropertyBool("{=BT_Settings_006301}Leadership Bonus", Order = 2, IsToggle = true, RequireRestart = false, 
             HintText = "{=BT_Settings_006301_Desc}Applies a bonus equal to the set percentage of your leadership skill to your party size."), 
             SettingPropertyGroup("{=BT_Settings_006000}Party Tweaks" + "/" + "{=BT_Settings_006300}Party Size" + "*/" + "{=BT_Settings_006301}Leadership Bonus", GroupOrder = 1)]
@@ -3476,13 +2395,11 @@ namespace KaosesTweaks.Settings
 
         #endregion
 
-        #region Party Tweaks - Party Wage Tweaks
-
         [SettingPropertyBool("{=BT_Settings_006400}Wages" + "*", Order = 1, RequireRestart = true, IsToggle = true, 
             HintText = "{=BT_Settings_006400_Desc}Allows you to reduce/increase wages for various groups."), 
             SettingPropertyGroup("{=BT_Settings_006000}Party Tweaks" + "/" + "{=BT_Settings_006400}Wages" + "*", GroupOrder = 4)]
         public bool PartyWageTweaksEnabled { get; set; } = false;
-
+        #region Party Tweaks - Party Wage Tweaks
         [SettingPropertyFloatingInteger("{=BT_Settings_006401}Party Wage Adjustment", .05f, 5f, "0%", Order = 2, RequireRestart = false, 
             HintText = "{=BT_Settings_006401_Desc}Adjusts party wages to a % of native value. Native is 100%."), 
             SettingPropertyGroup("{=BT_Settings_006000}Party Tweaks" + "/" + "{=BT_Settings_006400}Wages" + "*")]
@@ -3506,35 +2423,22 @@ namespace KaosesTweaks.Settings
         #endregion
 
 
-        #endregion
-
-        #region Miscellaneous #11
-
-        [SettingPropertyBool("{=BT_Settings_009001}Disable Quest Troops Affecting Morale" + "*", Order = 1, RequireRestart = true, 
-            HintText = "{=BT_Settings_009001_Desc}When enabled, quest troops such as Borrowed Troop in your party are ignored when party morale is calculated."), 
-            SettingPropertyGroup("{=BT_Settings_009000}Misc", GroupOrder = 99)]
-        public bool QuestCharactersIgnorePartySize { get; set; } = false;
-
-        [SettingPropertyBool("{=BT_Settings_009002}Show Number of Days of Food" + "*", Order = 2, RequireRestart = true, 
-            HintText = "{=BT_Settings_009002_Desc}Changes the number showing how much food you have to instead show how many days' worth of food you have. (Bottom right of campaign map UI)."), 
-            SettingPropertyGroup("{=BT_Settings_009000}Misc")]
-        public bool ShowFoodDaysRemaining { get; set; } = false;
-
-        [SettingPropertyInteger("{=BT_Settings_009003}Campaign Speed Fast Forward", 2, 32, Order = 3, RequireRestart = false, 
-            HintText = "{=BT_Settings_009003_Desc}Sets the campaign speed in fast forward mode. Vanilla is 4."), 
-            SettingPropertyGroup("{=BT_Settings_009000}Misc")]
-        public int CampaignSpeed { get; set; } = 4;
-
-        /* Disable in 1.5.7.2 until we understand changes to the main quest.
-        [SettingPropertyBool("Enable Auto-Extension of the 'Stop the Conspiracy' Quest", RequireRestart = false, HintText = "Automatically extends the timer of the 'Stop the Conspiracy' quest as TW hasn't finished it yet.")]
-        public bool TweakedConspiracyQuestTimerEnabled { get; set; } = true;
-        */
+        [SettingPropertyBool("{=KTMCM_XPMMPF}Party Food Modifiers *", IsToggle = true, Order = 0, RequireRestart = true,
+            HintText = "{=KTMCM_XPMMPFH}Enable Party food consumption modifiers.")]
+        [SettingPropertyGroup("{=BT_Settings_006000}Party Tweaks" + "/" + "{=KTMCM_CFood}Food")]
+        public bool PartyFoodConsumptionEnabled { get; set; } = false;
+        #region MobilePartyFoodConsumption
+        [SettingPropertyFloatingInteger("{=KTMCM_XPMMPFM}Party Food Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
+            HintText = "{=KTMCM_XPMMPFMH}Multiply Party food consumption by the multiplier [Native : 1.0[100%]]. allows increasing or decreasing daily consumption of food")]
+        [SettingPropertyGroup("{=BT_Settings_006000}Party Tweaks" + "/" + "{=KTMCM_CFood}Food")]
+        public float PartyFoodConsumptionMultiplier { get; set; } = 1.0f;
         #endregion
 
 
+        #endregion
 
-
-
+        //~ Presets
+        #region Presets
         public override IDictionary<string, Func<BaseSettings>> GetAvailablePresets()
         {
             var basePresets = base.GetAvailablePresets(); // include the 'Default' preset that MCM provides
@@ -3544,265 +2448,73 @@ namespace KaosesTweaks.Settings
                 Debug = false,
                 LoadMCMConfigFile = false,
                 LogToFile = false,
+
+
                 MCMItemModifiers = false,
+                ItemDebugMode = false,
 
-                MCMBodyArmorModifiers = true,
-                BodyArmorWeightModifiers = true,
-                BodyArmorTier1WeightMultiplier = 1.0f,
-                BodyArmorTier2WeightMultiplier = 1.0f,
-                BodyArmorTier3WeightMultiplier = 1.0f,
-                BodyArmorTier4WeightMultiplier = 1.0f,
-                BodyArmorTier5WeightMultiplier = 1.0f,
-                BodyArmorTier6WeightMultiplier = 1.0f,
-                BodyArmorValueModifiers = true,
-                BodyArmorTier1PriceMultiplier = 1.0f,
-                BodyArmorTier2PriceMultiplier = 1.0f,
-                BodyArmorTier3PriceMultiplier = 1.0f,
-                BodyArmorTier4PriceMultiplier = 1.0f,
-                BodyArmorTier5PriceMultiplier = 1.0f,
-                BodyArmorTier6PriceMultiplier = 1.0f,
+                MCMArmorModifiers = true,
+                ItemArmorWeightModifiers = true,
+                ItemArmorTier1WeightMultiplier = 1.0f,
+                ItemArmorTier2WeightMultiplier = 1.0f,
+                ItemArmorTier3WeightMultiplier = 1.0f,
+                ItemArmorTier4WeightMultiplier = 1.0f,
+                ItemArmorTier5WeightMultiplier = 1.0f,
+                ItemArmorTier6WeightMultiplier = 1.0f,
+                ItemArmorValueModifiers = true,
+                ItemArmorTier1PriceMultiplier = 1.0f,
+                ItemArmorTier2PriceMultiplier = 1.0f,
+                ItemArmorTier3PriceMultiplier = 1.0f,
+                ItemArmorTier4PriceMultiplier = 1.0f,
+                ItemArmorTier5PriceMultiplier = 1.0f,
+                ItemArmorTier6PriceMultiplier = 1.0f,
 
-                MCMBowModifiers = true,
-                BowWeightModifiers = true,
-                BowTier1WeightMultiplier = 1.0f,
-                BowTier2WeightMultiplier = 1.0f,
-                BowTier3WeightMultiplier = 1.0f,
-                BowTier4WeightMultiplier = 1.0f,
-                BowTier5WeightMultiplier = 1.0f,
-                BowTier6WeightMultiplier = 1.0f,
-                BowValueModifiers = true,
-                BowTier1PriceMultiplier = 1.0f,
-                BowTier2PriceMultiplier = 1.0f,
-                BowTier3PriceMultiplier = 1.0f,
-                BowTier4PriceMultiplier = 1.0f,
-                BowTier5PriceMultiplier = 1.0f,
-                BowTier6PriceMultiplier = 1.0f,
-
-                MCMCapeModifiers = true,
-                CapeWeightModifiers = true,
-                CapeTier1WeightMultiplier = 1.0f,
-                CapeTier2WeightMultiplier = 1.0f,
-                CapeTier3WeightMultiplier = 1.0f,
-                CapeTier4WeightMultiplier = 1.0f,
-                CapeTier5WeightMultiplier = 1.0f,
-                CapeTier6WeightMultiplier = 1.0f,
-                CapeValueModifiers = true,
-                CapeTier1PriceMultiplier = 1.0f,
-                CapeTier2PriceMultiplier = 1.0f,
-                CapeTier3PriceMultiplier = 1.0f,
-                CapeTier4PriceMultiplier = 1.0f,
-                CapeTier5PriceMultiplier = 1.0f,
-                CapeTier6PriceMultiplier = 1.0f,
-
-                MCMChestArmorModifiers = true,
-                ChestArmorWeightModifiers = true,
-                ChestArmorTier1WeightMultiplier = 1.0f,
-                ChestArmorTier2WeightMultiplier = 1.0f,
-                ChestArmorTier3WeightMultiplier = 1.0f,
-                ChestArmorTier4WeightMultiplier = 1.0f,
-                ChestArmorTier5WeightMultiplier = 1.0f,
-                ChestArmorTier6WeightMultiplier = 1.0f,
-                ChestArmorValueModifiers = true,
-                ChestArmorTier1PriceMultiplier = 1.0f,
-                ChestArmorTier2PriceMultiplier = 1.0f,
-                ChestArmorTier3PriceMultiplier = 1.0f,
-                ChestArmorTier4PriceMultiplier = 1.0f,
-                ChestArmorTier5PriceMultiplier = 1.0f,
-                ChestArmorTier6PriceMultiplier = 1.0f,
-
-                MCMCrossbowModifiers = true,
-                CrossbowWeightModifiers = true,
-                CrossbowTier1WeightMultiplier = 1.0f,
-                CrossbowTier2WeightMultiplier = 1.0f,
-                CrossbowTier3WeightMultiplier = 1.0f,
-                CrossbowTier4WeightMultiplier = 1.0f,
-                CrossbowTier5WeightMultiplier = 1.0f,
-                CrossbowTier6WeightMultiplier = 1.0f,
-                CrossbowValueModifiers = true,
-                CrossbowTier1PriceMultiplier = 1.0f,
-                CrossbowTier2PriceMultiplier = 1.0f,
-                CrossbowTier3PriceMultiplier = 1.0f,
-                CrossbowTier4PriceMultiplier = 1.0f,
-                CrossbowTier5PriceMultiplier = 1.0f,
-                CrossbowTier6PriceMultiplier = 1.0f,
-
-                MCMHandArmorModifiers = true,
-                HandArmorWeightModifiers = true,
-                HandArmorTier1WeightMultiplier = 1.0f,
-                HandArmorTier2WeightMultiplier = 1.0f,
-                HandArmorTier3WeightMultiplier = 1.0f,
-                HandArmorTier4WeightMultiplier = 1.0f,
-                HandArmorTier5WeightMultiplier = 1.0f,
-                HandArmorTier6WeightMultiplier = 1.0f,
-                HandArmorValueModifiers = true,
-                HandArmorTier1PriceMultiplier = 1.0f,
-                HandArmorTier2PriceMultiplier = 1.0f,
-                HandArmorTier3PriceMultiplier = 1.0f,
-                HandArmorTier4PriceMultiplier = 1.0f,
-                HandArmorTier5PriceMultiplier = 1.0f,
-                HandArmorTier6PriceMultiplier = 1.0f,
-
-                MCMHeadArmorModifiers = true,
-                HeadArmorWeightModifiers = true,
-                HeadArmorTier1WeightMultiplier = 1.0f,
-                HeadArmorTier2WeightMultiplier = 1.0f,
-                HeadArmorTier3WeightMultiplier = 1.0f,
-                HeadArmorTier4WeightMultiplier = 1.0f,
-                HeadArmorTier5WeightMultiplier = 1.0f,
-                HeadArmorTier6WeightMultiplier = 1.0f,
-                HeadArmorValueModifiers = true,
-                HeadArmorTier1PriceMultiplier = 1.0f,
-                HeadArmorTier2PriceMultiplier = 1.0f,
-                HeadArmorTier3PriceMultiplier = 1.0f,
-                HeadArmorTier4PriceMultiplier = 1.0f,
-                HeadArmorTier5PriceMultiplier = 1.0f,
-                HeadArmorTier6PriceMultiplier = 1.0f,
-
-                MCMHorseModifiers = true,
-                HorseWeightModifiers = true,
-                HorseTier1WeightMultiplier = 1.0f,
-                HorseTier2WeightMultiplier = 1.0f,
-                HorseTier3WeightMultiplier = 1.0f,
-                HorseTier4WeightMultiplier = 1.0f,
-                HorseTier5WeightMultiplier = 1.0f,
-                HorseTier6WeightMultiplier = 1.0f,
-                HorseValueModifiers = true,
-                HorseTier1PriceMultiplier = 1.0f,
-                HorseTier2PriceMultiplier = 1.0f,
-                HorseTier3PriceMultiplier = 1.0f,
-                HorseTier4PriceMultiplier = 1.0f,
-                HorseTier5PriceMultiplier = 1.0f,
-                HorseTier6PriceMultiplier = 1.0f,
-
-                MCMHorseHarnessModifiers = true,
-                HorseHarnessWeightModifiers = true,
-                HorseHarnessTier1WeightMultiplier = 1.0f,
-                HorseHarnessTier2WeightMultiplier = 1.0f,
-                HorseHarnessTier3WeightMultiplier = 1.0f,
-                HorseHarnessTier4WeightMultiplier = 1.0f,
-                HorseHarnessTier5WeightMultiplier = 1.0f,
-                HorseHarnessTier6WeightMultiplier = 1.0f,
-                HorseHarnessValueModifiers = true,
-                HorseHarnessTier1PriceMultiplier = 1.0f,
-                HorseHarnessTier2PriceMultiplier = 1.0f,
-                HorseHarnessTier3PriceMultiplier = 1.0f,
-                HorseHarnessTier4PriceMultiplier = 1.0f,
-                HorseHarnessTier5PriceMultiplier = 1.0f,
-                HorseHarnessTier6PriceMultiplier = 1.0f,
-
-                MCMLegArmorModifiers = true,
-                LegArmorWeightModifiers = true,
-                LegArmorTier1WeightMultiplier = 1.0f,
-                LegArmorTier2WeightMultiplier = 1.0f,
-                LegArmorTier3WeightMultiplier = 1.0f,
-                LegArmorTier4WeightMultiplier = 1.0f,
-                LegArmorTier5WeightMultiplier = 1.0f,
-                LegArmorTier6WeightMultiplier = 1.0f,
-                LegArmorValueModifiers = true,
-                LegArmorTier1PriceMultiplier = 1.0f,
-                LegArmorTier2PriceMultiplier = 1.0f,
-                LegArmorTier3PriceMultiplier = 1.0f,
-                LegArmorTier4PriceMultiplier = 1.0f,
-                LegArmorTier5PriceMultiplier = 1.0f,
-                LegArmorTier6PriceMultiplier = 1.0f,
-
-                MCMMusketModifiers = true,
-                MusketWeightModifiers = true,
-                MusketTier1WeightMultiplier = 1.0f,
-                MusketTier2WeightMultiplier = 1.0f,
-                MusketTier3WeightMultiplier = 1.0f,
-                MusketTier4WeightMultiplier = 1.0f,
-                MusketTier5WeightMultiplier = 1.0f,
-                MusketTier6WeightMultiplier = 1.0f,
-                MusketValueModifiers = true,
-                MusketTier1PriceMultiplier = 1.0f,
-                MusketTier2PriceMultiplier = 1.0f,
-                MusketTier3PriceMultiplier = 1.0f,
-                MusketTier4PriceMultiplier = 1.0f,
-                MusketTier5PriceMultiplier = 1.0f,
-                MusketTier6PriceMultiplier = 1.0f,
+                MCMFoodModifiers = true,
+                ItemFoodWeightMorale0Multiplier = 1.0f,
+                ItemFoodWeightMorale1Multiplier = 1.0f,
+                ItemFoodWeightMorale2Multiplier = 1.0f,
+                ItemFoodWeightMorale3Multiplier = 1.0f,
+                ItemFoodPriceMorale0Multiplier = 1.0f,
+                ItemFoodPriceMorale1Multiplier = 1.0f,
+                ItemFoodPriceMorale2Multiplier = 1.0f,
+                ItemFoodPriceMorale3Multiplier = 1.0f,
 
 
-                MCMOneHandedWeaponModifiers = true,
-                OneHandedWeaponWeightModifiers = true,
-                OneHandedWeaponTier1WeightMultiplier = 1.0f,
-                OneHandedWeaponTier2WeightMultiplier = 1.0f,
-                OneHandedWeaponTier3WeightMultiplier = 1.0f,
-                OneHandedWeaponTier4WeightMultiplier = 1.0f,
-                OneHandedWeaponTier5WeightMultiplier = 1.0f,
-                OneHandedWeaponTier6WeightMultiplier = 1.0f,
-                OneHandedWeaponValueModifiers = true,
-                OneHandedWeaponTier1PriceMultiplier = 1.0f,
-                OneHandedWeaponTier2PriceMultiplier = 1.0f,
-                OneHandedWeaponTier3PriceMultiplier = 1.0f,
-                OneHandedWeaponTier4PriceMultiplier = 1.0f,
-                OneHandedWeaponTier5PriceMultiplier = 1.0f,
-                OneHandedWeaponTier6PriceMultiplier = 1.0f,
+                MCMMeleeWeaponModifiers = true,
+                ItemMeleeWeaponWeightModifiers = true,
+                ItemMeleeWeaponTier1WeightMultiplier = 1.0f,
+                ItemMeleeWeaponTier2WeightMultiplier = 1.0f,
+                ItemMeleeWeaponTier3WeightMultiplier = 1.0f,
+                ItemMeleeWeaponTier4WeightMultiplier = 1.0f,
+                ItemMeleeWeaponTier5WeightMultiplier = 1.0f,
+                ItemMeleeWeaponTier6WeightMultiplier = 1.0f,
+                ItemMeleeWeaponValueModifiers = true,
+                ItemMeleeWeaponTier1PriceMultiplier = 1.0f,
+                ItemMeleeWeaponTier2PriceMultiplier = 1.0f,
+                ItemMeleeWeaponTier3PriceMultiplier = 1.0f,
+                ItemMeleeWeaponTier4PriceMultiplier = 1.0f,
+                ItemMeleeWeaponTier5PriceMultiplier = 1.0f,
+                ItemMeleeWeaponTier6PriceMultiplier = 1.0f,
 
-                MCMPistolModifiers = true,
-                PistolWeightModifiers = true,
-                PistolTier1WeightMultiplier = 1.0f,
-                PistolTier2WeightMultiplier = 1.0f,
-                PistolTier3WeightMultiplier = 1.0f,
-                PistolTier4WeightMultiplier = 1.0f,
-                PistolTier5WeightMultiplier = 1.0f,
-                PistolTier6WeightMultiplier = 1.0f,
-                PistolValueModifiers = true,
-                PistolTier1PriceMultiplier = 1.0f,
-                PistolTier2PriceMultiplier = 1.0f,
-                PistolTier3PriceMultiplier = 1.0f,
-                PistolTier4PriceMultiplier = 1.0f,
-                PistolTier5PriceMultiplier = 1.0f,
-                PistolTier6PriceMultiplier = 1.0f,
+                MCMRagedWeaponsModifiers = true,
+                ItemRangedWeaponsWeightModifiers = true,
+                ItemRangedWeaponsTier1WeightMultiplier = 1.0f,
+                ItemRangedWeaponsTier2WeightMultiplier = 1.0f,
+                ItemRangedWeaponsTier3WeightMultiplier = 1.0f,
+                ItemRangedWeaponsTier4WeightMultiplier = 1.0f,
+                ItemRangedWeaponsTier5WeightMultiplier = 1.0f,
+                ItemRangedWeaponsTier6WeightMultiplier = 1.0f,
+                ItemRangedWeaponsValueModifiers = true,
+                ItemRangedWeaponsTier1PriceMultiplier = 1.0f,
+                ItemRangedWeaponsTier2PriceMultiplier = 1.0f,
+                ItemRangedWeaponsTier3PriceMultiplier = 1.0f,
+                ItemRangedWeaponsTier4PriceMultiplier = 1.0f,
+                ItemRangedWeaponsTier5PriceMultiplier = 1.0f,
+                ItemRangedWeaponsTier6PriceMultiplier = 1.0f,
 
-                MCMPolearmModifiers = true,
-                PolearmWeightModifiers = true,
-                PolearmTier1WeightMultiplier = 1.0f,
-                PolearmTier2WeightMultiplier = 1.0f,
-                PolearmTier3WeightMultiplier = 1.0f,
-                PolearmTier4WeightMultiplier = 1.0f,
-                PolearmTier5WeightMultiplier = 1.0f,
-                PolearmTier6WeightMultiplier = 1.0f,
-                PolearmValueModifiers = true,
-                PolearmTier1PriceMultiplier = 1.0f,
-                PolearmTier2PriceMultiplier = 1.0f,
-                PolearmTier3PriceMultiplier = 1.0f,
-                PolearmTier4PriceMultiplier = 1.0f,
-                PolearmTier5PriceMultiplier = 1.0f,
-                PolearmTier6PriceMultiplier = 1.0f,
-
-                MCMShieldModifiers = true,
-                ShieldWeightModifiers = true,
-                ShieldTier1WeightMultiplier = 1.0f,
-                ShieldTier2WeightMultiplier = 1.0f,
-                ShieldTier3WeightMultiplier = 1.0f,
-                ShieldTier4WeightMultiplier = 1.0f,
-                ShieldTier5WeightMultiplier = 1.0f,
-                ShieldTier6WeightMultiplier = 1.0f,
-                ShieldValueModifiers = true,
-
-                ShieldTier1PriceMultiplier = 1.0f,
-                ShieldTier2PriceMultiplier = 1.0f,
-                ShieldTier3PriceMultiplier = 1.0f,
-                ShieldTier4PriceMultiplier = 1.0f,
-                ShieldTier5PriceMultiplier = 1.0f,
-                ShieldTier6PriceMultiplier = 1.0f,
-
-                MCMTwoHandedWeaponModifiers = true,
-                TwoHandedWeaponWeightModifiers = true,
-                TwoHandedWeaponTier1WeightMultiplier = 1.0f,
-                TwoHandedWeaponTier2WeightMultiplier = 1.0f,
-                TwoHandedWeaponTier3WeightMultiplier = 1.0f,
-                TwoHandedWeaponTier4WeightMultiplier = 1.0f,
-                TwoHandedWeaponTier5WeightMultiplier = 1.0f,
-                TwoHandedWeaponTier6WeightMultiplier = 1.0f,
-                TwoHandedWeaponValueModifiers = true,
-                TwoHandedWeaponTier1PriceMultiplier = 1.0f,
-                TwoHandedWeaponTier2PriceMultiplier = 1.0f,
-                TwoHandedWeaponTier3PriceMultiplier = 1.0f,
-                TwoHandedWeaponTier4PriceMultiplier = 1.0f,
-                TwoHandedWeaponTier5PriceMultiplier = 1.0f,
-                TwoHandedWeaponTier6PriceMultiplier = 1.0f,
+                MCMTradeGoodsModifiers = true,
+                ItemTradeGoodsWeightMultiplier = 1.0f,
+                ItemTradeGoodsPriceMultiplier = 1.0f,
 
 
                 MCMBattleRewardModifiers = true,
@@ -3852,34 +2564,37 @@ namespace KaosesTweaks.Settings
                 PregnancyFemaleOffspringChanceValue = 0.01f,
 
                 MCMSmithingModifiers = true,
-                SmithingRefiningXpModifiers = true,
+                MCMSmithingHarmoneyPatches = false,
+                SmithingXpModifiers = true,
                 SmithingRefiningXpValue = 1.0f,
-                SmithingSmeltingXpModifiers = true,
                 SmithingSmeltingXpValue = 1.0f,
-                SmithingSmithingXpModifiers = true,
                 SmithingSmithingXpValue = 1.0f,
-                SmithingEnergyDisable = true,
-                SmithingEnergyRefiningModifiers = true,
+                SmithingEnergyDisable = false,
                 SmithingEnergyRefiningValue = 1.0f,
-                SmithingEnergySmithingModifiers = true,
                 SmithingEnergySmithingValue = 1.0f,
-                SmithingEnergySmeltingModifiers = true,
                 SmithingEnergySmeltingValue = 1.0f,
+                PreventSmeltingLockedItems = true,
+                SmeltingTweakEnabled = true,
+                AutoLearnSmeltedParts = false,
+                CraftingStaminaTweakEnabled = true,
+                MaxCraftingStamina = 400,
+                CraftingStaminaGainAmount = 5,
+                CraftingStaminaGainOutsideSettlementMultiplier = 0.0f,
 
 
                 MCMAutoLocks = true,
-                autoLockHorses = true,
-                autoLockFood = true,
-                autoLockIronBar1 = true,
-                autoLockIronBar2 = true,
-                autoLockIronBar3 = true,
-                autoLockIronBar4 = true,
-                autoLockIronBar5 = true,
-                autoLockIronBar6 = true,
-                autoLockIronOre = true,
-                autoLockSilverOre = true,
-                autoLockHardwood = true,
-                autoLockCharcol = true,
+                autoLockHorses = false,
+                autoLockFood = false,
+                autoLockIronBar1 = false,
+                autoLockIronBar2 = false,
+                autoLockIronBar3 = false,
+                autoLockIronBar4 = false,
+                autoLockIronBar5 = false,
+                autoLockIronBar6 = false,
+                autoLockIronOre = false,
+                autoLockSilverOre = false,
+                autoLockHardwood = false,
+                autoLockCharcol = false,
 
 
                 MCMArmy = true,
@@ -4102,15 +2817,6 @@ namespace KaosesTweaks.Settings
                 BarterablesTweaksEnabled = true,
                 BarterablesJoinKingdomAsClanAdjustment = 1.0f,
                 BarterablesJoinKingdomAsClanAltFormulaEnabled = true,
-                PreventSmeltingLockedItems = true,
-                SmeltingTweakEnabled = true,
-                AutoLearnSmeltedParts = true,
-                CraftingStaminaTweakEnabled = true,
-                MaxCraftingStamina = 400,
-                CraftingStaminaGainAmount = 5,
-                CraftingStaminaGainOutsideSettlementMultiplier = 0.0f,
-                IgnoreCraftingStamina = true,
-
 
 
 /*
@@ -4127,7 +2833,6 @@ namespace KaosesTweaks.Settings
                 CompanionBaseLimit = 3,
                 CompanionLimitBonusPerClanTier = 1,
 */
-
 
                 UnlimitedWanderersPatch = true,
                 //PregnancyTweaksEnabled = true,
@@ -4216,314 +2921,6 @@ namespace KaosesTweaks.Settings
 
             });
 
-            basePresets.Add("Kaoses", () => new MCMSettings()
-            {
-                Debug = false,
-                LoadMCMConfigFile = false,
-                LogToFile = false,
-                MCMItemModifiers = true,
-
-                MCMBodyArmorModifiers = true,
-                BodyArmorWeightModifiers = false,
-                BodyArmorValueModifiers = true,
-                BodyArmorTier1PriceMultiplier = 0.3f,
-                BodyArmorTier2PriceMultiplier = 0.4f,
-                BodyArmorTier3PriceMultiplier = 0.5f,
-                BodyArmorTier4PriceMultiplier = 0.6f,
-                BodyArmorTier5PriceMultiplier = 0.7f,
-                BodyArmorTier6PriceMultiplier = 0.8f,
-
-                MCMBowModifiers = true,
-                BowWeightModifiers = false,
-                BowValueModifiers = true,
-                BowTier1PriceMultiplier = 0.3f,
-                BowTier2PriceMultiplier = 0.4f,
-                BowTier3PriceMultiplier = 0.5f,
-                BowTier4PriceMultiplier = 0.6f,
-                BowTier5PriceMultiplier = 0.7f,
-                BowTier6PriceMultiplier = 0.8f,
-
-                MCMCapeModifiers = true,
-                CapeWeightModifiers = false,
-                CapeValueModifiers = true,
-                CapeTier1PriceMultiplier = 0.3f,
-                CapeTier2PriceMultiplier = 0.4f,
-                CapeTier3PriceMultiplier = 0.5f,
-                CapeTier4PriceMultiplier = 0.6f,
-                CapeTier5PriceMultiplier = 0.7f,
-                CapeTier6PriceMultiplier = 0.8f,
-
-                MCMChestArmorModifiers = true,
-                ChestArmorWeightModifiers = false,
-                ChestArmorValueModifiers = true,
-                ChestArmorTier1PriceMultiplier = 0.3f,
-                ChestArmorTier2PriceMultiplier = 0.4f,
-                ChestArmorTier3PriceMultiplier = 0.5f,
-                ChestArmorTier4PriceMultiplier = 0.6f,
-                ChestArmorTier5PriceMultiplier = 0.7f,
-                ChestArmorTier6PriceMultiplier = 0.8f,
-
-                MCMCrossbowModifiers = true,
-                CrossbowWeightModifiers = false,
-                CrossbowValueModifiers = true,
-                CrossbowTier1PriceMultiplier = 0.3f,
-                CrossbowTier2PriceMultiplier = 0.4f,
-                CrossbowTier3PriceMultiplier = 0.5f,
-                CrossbowTier4PriceMultiplier = 0.6f,
-                CrossbowTier5PriceMultiplier = 0.7f,
-                CrossbowTier6PriceMultiplier = 0.8f,
-
-                MCMHandArmorModifiers = true,
-                HandArmorWeightModifiers = false,
-                HandArmorValueModifiers = true,
-                HandArmorTier1PriceMultiplier = 0.3f,
-                HandArmorTier2PriceMultiplier = 0.4f,
-                HandArmorTier3PriceMultiplier = 0.5f,
-                HandArmorTier4PriceMultiplier = 0.6f,
-                HandArmorTier5PriceMultiplier = 0.7f,
-                HandArmorTier6PriceMultiplier = 0.8f,
-
-                MCMHeadArmorModifiers = true,
-                HeadArmorWeightModifiers = false,
-                HeadArmorValueModifiers = true,
-                HeadArmorTier1PriceMultiplier = 0.3f,
-                HeadArmorTier2PriceMultiplier = 0.4f,
-                HeadArmorTier3PriceMultiplier = 0.5f,
-                HeadArmorTier4PriceMultiplier = 0.6f,
-                HeadArmorTier5PriceMultiplier = 0.7f,
-                HeadArmorTier6PriceMultiplier = 0.8f,
-
-                MCMHorseModifiers = true,
-                HorseWeightModifiers = false,
-                HorseValueModifiers = true,
-                HorseTier1PriceMultiplier = 0.3f,
-                HorseTier2PriceMultiplier = 0.4f,
-                HorseTier3PriceMultiplier = 0.5f,
-                HorseTier4PriceMultiplier = 0.6f,
-                HorseTier5PriceMultiplier = 0.7f,
-                HorseTier6PriceMultiplier = 0.8f,
-
-                MCMHorseHarnessModifiers = true,
-                HorseHarnessWeightModifiers = false,
-                HorseHarnessValueModifiers = true,
-                HorseHarnessTier1PriceMultiplier = 0.3f,
-                HorseHarnessTier2PriceMultiplier = 0.4f,
-                HorseHarnessTier3PriceMultiplier = 0.5f,
-                HorseHarnessTier4PriceMultiplier = 0.6f,
-                HorseHarnessTier5PriceMultiplier = 0.7f,
-                HorseHarnessTier6PriceMultiplier = 0.8f,
-
-                MCMLegArmorModifiers = true,
-                LegArmorWeightModifiers = false,
-                LegArmorValueModifiers = true,
-                LegArmorTier1PriceMultiplier = 0.3f,
-                LegArmorTier2PriceMultiplier = 0.4f,
-                LegArmorTier3PriceMultiplier = 0.5f,
-                LegArmorTier4PriceMultiplier = 0.6f,
-                LegArmorTier5PriceMultiplier = 0.7f,
-                LegArmorTier6PriceMultiplier = 0.8f,
-
-                MCMMusketModifiers = true,
-                MusketWeightModifiers = false,
-                MusketValueModifiers = true,
-                MusketTier1PriceMultiplier = 0.4f,
-                MusketTier2PriceMultiplier = 0.5f,
-                MusketTier3PriceMultiplier = 0.6f,
-                MusketTier4PriceMultiplier = 0.7f,
-                MusketTier5PriceMultiplier = 0.8f,
-                MusketTier6PriceMultiplier = 0.9f,
-
-                MCMOneHandedWeaponModifiers = true,
-                OneHandedWeaponWeightModifiers = false,
-                OneHandedWeaponValueModifiers = true,
-                OneHandedWeaponTier1PriceMultiplier = 0.3f,
-                OneHandedWeaponTier2PriceMultiplier = 0.4f,
-                OneHandedWeaponTier3PriceMultiplier = 0.5f,
-                OneHandedWeaponTier4PriceMultiplier = 0.6f,
-                OneHandedWeaponTier5PriceMultiplier = 0.7f,
-                OneHandedWeaponTier6PriceMultiplier = 0.8f,
-
-                MCMPistolModifiers = true,
-                PistolWeightModifiers = false,
-                PistolValueModifiers = true,
-                PistolTier1PriceMultiplier = 0.4f,
-                PistolTier2PriceMultiplier = 0.5f,
-                PistolTier3PriceMultiplier = 0.6f,
-                PistolTier4PriceMultiplier = 0.7f,
-                PistolTier5PriceMultiplier = 0.8f,
-                PistolTier6PriceMultiplier = 0.9f,
-
-                MCMPolearmModifiers = true,
-                PolearmWeightModifiers = false,
-                PolearmValueModifiers = true,
-                PolearmTier1PriceMultiplier = 0.3f,
-                PolearmTier2PriceMultiplier = 0.4f,
-                PolearmTier3PriceMultiplier = 0.5f,
-                PolearmTier4PriceMultiplier = 0.6f,
-                PolearmTier5PriceMultiplier = 0.7f,
-                PolearmTier6PriceMultiplier = 0.8f,
-
-                MCMShieldModifiers = true,
-                ShieldWeightModifiers = false,
-                ShieldValueModifiers = true,
-                ShieldTier1PriceMultiplier = 0.3f,
-                ShieldTier2PriceMultiplier = 0.4f,
-                ShieldTier3PriceMultiplier = 0.5f,
-                ShieldTier4PriceMultiplier = 0.6f,
-                ShieldTier5PriceMultiplier = 0.7f,
-                ShieldTier6PriceMultiplier = 0.8f,
-
-                MCMTwoHandedWeaponModifiers = true,
-                TwoHandedWeaponWeightModifiers = false,
-                TwoHandedWeaponValueModifiers = true,
-                TwoHandedWeaponTier1PriceMultiplier = 0.4f,
-                TwoHandedWeaponTier2PriceMultiplier = 0.5f,
-                TwoHandedWeaponTier3PriceMultiplier = 0.6f,
-                TwoHandedWeaponTier4PriceMultiplier = 0.7f,
-                TwoHandedWeaponTier5PriceMultiplier = 0.8f,
-                TwoHandedWeaponTier6PriceMultiplier = 0.9f,
-
-                MCMBattleRewardModifiers = true,
-                BattleRewardsRelationShipGainModifiers = true,
-                BattleRewardsRelationShipGainMultiplier = 1.5f,
-                BattleRewardsRenownGainModifiers = true,
-                BattleRewardsRenownGainMultiplier = 1.5f,
-                BattleRewardsInfluenceGainModifiers = true,
-                BattleRewardsInfluenceGainMultiplier = 1.7f,
-                BattleRewardsMoraleGainModifiers = true,
-                BattleRewardsMoraleGainMultiplier = 0.9f,
-                BattleRewardsGoldLossModifiers = true,
-                BattleRewardsGoldLossMultiplier = 1.4f,
-
-
-                //MCMClanModifiers = true,
-                ClanAdditionalPartyLimitEnabled = true,
-                ClanPlayerPartiesLimitEnabled = true,
-                ClanPlayerBasePartiesLimit = 1,
-                ClanPlayerPartiesBonusPerClanTier = 0.5f,
-                ClanAIPartiesLimitTweakEnabled = true,
-                ClanAIBaseClanPartiesLimit = 1,
-                ClanAIPartiesBonusPerClanTier = 0.5f,
-                ClanAIMinorClanPartiesLimitTweakEnabled = false,
-                AICustomSpawnPartiesLimitTweakEnabled = false,
-                BaseAICustomSpawnPartiesLimit = 1,
-                ClanCompanionLimitEnabled = true,
-                ClanAdditionalCompanionLimit = 0,
-                WorkShopBankruptcyModifiers = true,
-                WorkShopBankruptcyValue = 6,
-
-                MCMCharacterDevlopmentModifiers = true,
-                CharacterLevelsPerAttributeModifiers = true,
-                CharacterLevelsPerAttributeValue = 3,
-                CharacterFocusPerLevelModifiers = true,
-                CharacterFocusPerLevelValue = 2,
-
-
-                MCMPregnancyModifiers = true,
-                PregnancyDurationModifiers = true,
-                PregnancyDurationValue = 36,
-                PregnancyLaborMortalityChanceModifiers = true,
-                PregnancyLaborMortalityChanceValue = 0.010f,
-                PregnancyFemaleOffspringChanceModifiers = true,
-                PregnancyFemaleOffspringChanceValue = 0.60f,
-
-                MCMSmithingModifiers = true,
-                SmithingRefiningXpModifiers = true,
-                SmithingRefiningXpValue = 1.5f,
-                SmithingSmeltingXpModifiers = true,
-                SmithingSmeltingXpValue = 1.5f,
-                SmithingSmithingXpModifiers = true,
-                SmithingSmithingXpValue = 2.5f,
-                SmithingEnergyDisable = true,
-                SmithingEnergyRefiningModifiers = true,
-                SmithingEnergyRefiningValue = 0.5f,
-                SmithingEnergySmithingModifiers = true,
-                SmithingEnergySmithingValue = 0.5f,
-                SmithingEnergySmeltingModifiers = true,
-                SmithingEnergySmeltingValue = 0.5f,
-
-
-
-                MCMAutoLocks = true,
-                autoLockHorses = true,
-                autoLockFood = true,
-                autoLockIronBar1 = true,
-                autoLockIronBar2 = true,
-                autoLockIronBar3 = true,
-                autoLockIronBar4 = true,
-                autoLockIronBar5 = true,
-                autoLockIronBar6 = true,
-                autoLockIronOre = true,
-                autoLockSilverOre = true,
-                autoLockHardwood = true,
-                autoLockCharcol = true,
-
-
-                MCMArmy = true,
-                armyCohesionMultipliers = true,
-                armyCohesionBaseChange = -2,
-                armyDisableCohesionLossClanOnlyParties = false,
-                armyApplyMultiplerToClanOnlyParties = true,
-                armyCohesionLossMultiplier = 0.75f,
-
-
-                MCMRelationBuilding = true,
-                relationsKillingBanditsEnabled = true,
-                GroupsOfBandits = 1,
-                RelationshipIncrease = 1,
-                Radius = 1500,
-                SizeBonusEnabled = false,
-                SizeBonus = 0.05f,
-                PrisonersOnly = false,
-                IncludeBandits = true,
-                IncludeOutlaws = false,
-                IncludeMafia = false,
-
-
-
-                MCMSkillsXp = false,
-                SkillXpEnabled = false,
-
-                SkillXpUseForPlayer = false,
-                SkillXpUseForPlayerClan = false,
-                SkillXpUseForAI = false,
-
-                SkillXpUseIndividualMultiplers = false,
-
-                SkillsXPMultiplierAthletics = 1.0f,
-                SkillsXPMultiplierBow = 1.0f,
-                SkillsXPMultiplierCharm = 1.0f,
-                SkillsXPMultiplierCrafting = 1.0f,
-                SkillsXPMultiplierCrossbow = 1.0f,
-                SkillsXPMultiplierEngineering = 1.0f,
-                SkillsXPMultiplierLeadership = 1.0f,
-                SkillsXPMultiplierMedicine = 1.0f,
-                SkillsXPMultiplierOneHanded = 1.0f,
-                SkillsXPMultiplierPolearm = 1.0f,
-                SkillsXPMultiplierRiding = 1.0f,
-                SkillsXPMultiplierRoguery = 1.0f,
-                SkillsXPMultiplierScouting = 1.0f,
-                SkillsXPMultiplierSteward = 1.0f,
-                SkillsXPMultiplierTactics = 1.0f,
-                SkillsXPMultiplierThrowing = 1.0f,
-                SkillsXPMultiplierTrade = 1.0f,
-                SkillsXPMultiplierTwoHanded = 1.0f,
-
-                SkillXpUseGlobalMultipler = false,
-                SkillsXpGlobalMultiplier = 1.0f,
-
-
-
-                LearningRateEnabled = false,
-                LearningRateMultiplier = 1.0f,
-
-
-                PartyFoodConsumptionEnabled = false,
-                PartyFoodConsumptionMultiplier = 1.0f,
-
-
-
-            });
             /*
             basePresets.Add("True", () => new MCMSettings()
             {
@@ -4636,7 +3033,7 @@ namespace KaosesTweaks.Settings
                 CraftingStaminaGainOutsideSettlementMultiplier = 1.0f,
                 MaxCraftingStamina = 400,
                 CraftingStaminaTweakEnabled = true,
-                IgnoreCraftingStamina = false,
+                //IgnoreCraftingStamina = false,
 
 /*
                 CompanionBaseLimit = 3,
@@ -4729,6 +3126,6 @@ namespace KaosesTweaks.Settings
             });
             return basePresets;
         }
-
+        #endregion
     }
 }

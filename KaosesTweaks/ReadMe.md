@@ -156,6 +156,12 @@ Covers the following each one can have weight and/or price increaded or decrease
     - Intergrated BannerlordTweaks Settings
     - added BT todo AI party limits same as player *untested
     - added per tier multiplier for custom spawn parties *untested
+    - intergrated a simplified version of trade goods mod
+    - merged duplicate menu categories
+    - Made smithing selectable to only use patches for new energy cost and xp cost multipliers, or use model overriding
+    - 
+
+
 
 ## Todo
 - test workshop model

@@ -20,7 +20,7 @@ namespace KaosesTweaks.Models
             float renownValue = mapEvent.GetRenownValue((mapEventSide == mapEvent.AttackerSide) ? BattleSideEnum.Attacker : BattleSideEnum.Defender);
             double originalRelationShipGain = 0.75 + Math.Pow((double)(playerPartyContributionRate * 1.3f * (num2 + renownValue)), 0.6700000166893005);
             double modifiedRelationShipGain;
-            //Ux.MessageDebug("GetPlayerGainedRelationAmount: playerPartyContributionRate: " + playerPartyContributionRate.ToString() + "  num: " + num.ToString() + "  num2: " + num2.ToString() + "  renownValue: " + renownValue.ToString());
+            IM.MessageDebug("GetPlayerGainedRelationAmount: playerPartyContributionRate: " + playerPartyContributionRate.ToString() + "  num: " + num.ToString() + "  num2: " + num2.ToString() + "  renownValue: " + renownValue.ToString());
             if (Statics._settings.BattleRewardsRelationShipGainModifiers)
             {
                 modifiedRelationShipGain = originalRelationShipGain * Statics._settings.BattleRewardsRelationShipGainMultiplier;
@@ -29,7 +29,7 @@ namespace KaosesTweaks.Models
             {
                 modifiedRelationShipGain = originalRelationShipGain;
             }
-            //Ux.MessageDebug("Original RelationShipGain : "+ originalRelationShipGain.ToString() + "   Modified Gain : "+ modifiedRelationShipGain.ToString()  + " Using Multiplier : " + Statics._settings.BattleRewardsRelationShipGainMultiplier.ToString());
+            IM.MessageDebug("Original RelationShipGain : "+ originalRelationShipGain.ToString() + "   Modified Gain : "+ modifiedRelationShipGain.ToString()  + " Using Multiplier : " + Statics._settings.BattleRewardsRelationShipGainMultiplier.ToString());
             return (int)modifiedRelationShipGain;
         }
 
@@ -46,7 +46,7 @@ namespace KaosesTweaks.Models
             {
                 modifiedRenownGain = originalRenownGain;
             }
-            //Ux.MessageDebug("Original Renown Gain : " + originalRenownGain.ToString() + "   Modified Gain : " + modifiedRenownGain.ToString()+ " Using Multiplier : " + Statics._settings.BattleRewardsRenownGainMultiplier.ToString());
+            IM.MessageDebug("Original Renown Gain : " + originalRenownGain.ToString() + "   Modified Gain : " + modifiedRenownGain.ToString()+ " Using Multiplier : " + Statics._settings.BattleRewardsRenownGainMultiplier.ToString());
             result.Add(modifiedRenownGain, null, null);
 
             if (party.IsMobile)
@@ -79,7 +79,7 @@ namespace KaosesTweaks.Models
             {
                 modifiedInfluenceGain = originalInfluenceGain;
             }
-            //Ux.MessageDebug("Original Influence Gain : " + originalInfluenceGain.ToString() + "   Modified Gain : " + modifiedInfluenceGain.ToString()+ " Using Multiplier : " + Statics._settings.BattleRewardsInfluenceGainMultiplier.ToString());
+            IM.MessageDebug("Original Influence Gain : " + originalInfluenceGain.ToString() + "   Modified Gain : " + modifiedInfluenceGain.ToString()+ " Using Multiplier : " + Statics._settings.BattleRewardsInfluenceGainMultiplier.ToString());
             
             result.Add(party.MapFaction.IsKingdomFaction ? (modifiedInfluenceGain) : 0f, null, null);
             return result.ResultNumber;
@@ -98,7 +98,7 @@ namespace KaosesTweaks.Models
             {
                 modifiedMoraleGain = originalMoraleGain;
             }
-            //Ux.MessageDebug("Original Morale Gain : " + originalMoraleGain.ToString() + "   Modified Gain : " + modifiedMoraleGain.ToString()+ " Using Multiplier : " + Statics._settings.BattleRewardsMoraleGainMultiplier.ToString());
+            IM.MessageDebug("Original Morale Gain : " + originalMoraleGain.ToString() + "   Modified Gain : " + modifiedMoraleGain.ToString()+ " Using Multiplier : " + Statics._settings.BattleRewardsMoraleGainMultiplier.ToString());
 
             result.Add(modifiedMoraleGain, null, null);
             if (party.IsMobile && party.MobileParty.HasPerk(DefaultPerks.Throwing.LongReach, true))
@@ -130,7 +130,7 @@ namespace KaosesTweaks.Models
             {
                 modifiedGoldLoss = originalGoldLoss;
             }
-            //Ux.MessageDebug("Original Gold Lost on defeat : " + originalGoldLoss.ToString() + "   Modified Gain : " + modifiedGoldLoss.ToString()+ " Using Multiplier : " + Statics._settings.BattleRewardsGoldLossMultiplier.ToString());
+            IM.MessageDebug("Original Gold Lost on defeat : " + originalGoldLoss.ToString() + "   Modified Gain : " + modifiedGoldLoss.ToString()+ " Using Multiplier : " + Statics._settings.BattleRewardsGoldLossMultiplier.ToString());
             return (int)modifiedGoldLoss;
         }
 

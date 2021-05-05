@@ -52,18 +52,6 @@ namespace KaosesTweaks
         protected override void OnSubModuleLoad()
         {
             base.OnSubModuleLoad();
-            try
-            {
-                _harmony ??= new Harmony(Statics.HarmonyId);
-                _harmony.PatchAll();
-            }
-            catch (Exception ex)
-            {
-                //Handle exceptions
-                Logging.Lm("Error with harmony patch");
-                Logging.Lm(ex.ToString());
-                MessageBox.Show($"Error Initialising Bannerlord Tweaks:\n\n{ex.ToStringFull()}");
-            }
         }
 
 
@@ -78,6 +66,17 @@ namespace KaosesTweaks
                 return;
             }
 
+            try
+            {
+                var harmony = new Harmony("kaoses.wages.patch");
+                harmony.PatchAll(Assembly.GetExecutingAssembly());
+            }
+            catch (Exception ex)
+            {
+                //Handle exceptions
+                Logging.Lm("Error with harmony patch");
+                Logging.Lm(ex.ToString());
+            }
             if (gameType != null && Statics._settings is { } settings && settings.PrisonerImprisonmentTweakEnabled) //(settings.EnableMissingHeroFix && 
             {
                 //~ BT
@@ -110,9 +109,9 @@ namespace KaosesTweaks
             {
                 CampaignGameStarter campaignGameStarter = (CampaignGameStarter)gameStarter;
 
-                #pragma warning disable CS8604 // Possible null reference argument.
+#pragma warning disable CS8604 // Possible null reference argument.
                 AddModels(campaignGameStarter);
-                #pragma warning restore CS8604 // Possible null reference argument.
+#pragma warning restore CS8604 // Possible null reference argument.
 
 
                 PlayerBattleEndEventListener playerBattleEndEventListener = new PlayerBattleEndEventListener();
@@ -139,6 +138,7 @@ namespace KaosesTweaks
 
 
             }
+            DumpValues();
         }
 
 
@@ -201,7 +201,7 @@ namespace KaosesTweaks
                 {
                     campaignGameStarter.AddModel(new KaosesPregnancyModel());
                 }
-                if (settings.MCMSmithingModifiers)
+                if (settings.MCMSmithingModifiers && !settings.MCMSmithingHarmoneyPatches)
                 {
                     campaignGameStarter.AddModel(new KaosesSmithingModel());
                 }
@@ -221,21 +221,21 @@ namespace KaosesTweaks
                 {
                     BTAgeModel model = new();
                     List<string> configErrors = model.GetConfigErrors().ToList();
-                    
-                                        if (configErrors.Any())
-                                        {
-                                            StringBuilder sb = new();
-                                            sb.AppendLine("There is a configuration error in the \'Age\' tweaks from Bannerlord Tweaks.");
-                                            sb.AppendLine("Please check the below errors and fix the age settings in the settings menu:");
-                                            sb.AppendLine();
-                                            foreach (var e in configErrors)
-                                                sb.AppendLine(e);
-                                            sb.AppendLine();
-                                            sb.AppendLine("The age tweaks will not be applied until these errors have been resolved.");
-                                            sb.Append("Note that this is only a warning message and not a crash.");
 
-                                            MessageBox.Show(sb.ToString(), "Configuration Error in Bannerlord Tweaks");
-                                        }
+                    if (configErrors.Any())
+                    {
+                        StringBuilder sb = new();
+                        sb.AppendLine("There is a configuration error in the \'Age\' tweaks from Bannerlord Tweaks.");
+                        sb.AppendLine("Please check the below errors and fix the age settings in the settings menu:");
+                        sb.AppendLine();
+                        foreach (var e in configErrors)
+                            sb.AppendLine(e);
+                        sb.AppendLine();
+                        sb.AppendLine("The age tweaks will not be applied until these errors have been resolved.");
+                        sb.Append("Note that this is only a warning message and not a crash.");
+
+                        MessageBox.Show(sb.ToString(), "Configuration Error in Bannerlord Tweaks");
+                    }
                     else
                     {
                         campaignGameStarter.AddModel(new BTAgeModel());
@@ -273,7 +273,50 @@ namespace KaosesTweaks
         //~ BT
 
 
+        public void DumpValues()
+        {
+            IM.MessageDebug("Debug Message: DumpValues");
 
+/*
+            IM.MessageDebug("");
+
+            IM.MessageDebug("GetSkillXpForRefining");
+            bool b1 = MCMSettings.Instance is { } settings && settings.SmithingRefiningXpModifiers;
+            IM.MessageDebug("Prepare state: " + b1.ToString());
+
+            IM.MessageDebug("GetSkillXpForSmelting");
+            bool b2 = MCMSettings.Instance is { } settings2 && settings2.SmithingSmeltingXpModifiers;
+            IM.MessageDebug("Prepare state: " + b2.ToString());
+
+            IM.MessageDebug("GetSkillXpForSmithing");
+            bool b3 = MCMSettings.Instance is { } settings3 && settings3.SmithingSmithingXpModifiers;
+            IM.MessageDebug("Prepare state: " + b3.ToString());
+
+            IM.MessageDebug("");
+            IM.MessageDebug("");
+            IM.MessageDebug("");
+            IM.MessageDebug("");
+
+
+            IM.MessageDebug("GetEnergyCostForRefining");
+            bool b4 = MCMSettings.Instance is { } settings4 && (settings4.SmithingEnergyDisable || settings4.SmithingEnergyRefiningModifiers);
+            IM.MessageDebug("Prepare state: " + b4.ToString());
+
+            IM.MessageDebug("GetEnergyCostForSmithing");
+            bool b5 = MCMSettings.Instance is { } settings5 && (settings5.SmithingEnergyDisable || settings5.SmithingEnergySmithingModifiers);
+            IM.MessageDebug("Prepare state: " + b5.ToString());
+
+            IM.MessageDebug("GetEnergyCostForSmelting");
+            bool b6 = MCMSettings.Instance is { } settings6 && (settings6.SmithingEnergyDisable || settings6.SmithingEnergySmeltingModifiers);
+            IM.MessageDebug("Prepare state: " + b6.ToString());
+
+*/
+
+            bool t = MCMSettings.Instance != null && MCMSettings.Instance.SmithingXpModifiers;
+            IM.MessageDebug("");
+            IM.MessageDebug("");
+
+        }
 
     }
 }

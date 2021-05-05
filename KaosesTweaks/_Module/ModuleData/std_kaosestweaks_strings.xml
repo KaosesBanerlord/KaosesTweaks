@@ -37,8 +37,8 @@
     <string id="KTMCM_ItemModifiers" text="Item Modifiers" />
     <string id="KTMCM_ItemModifiersHint" text="Enables modifying Item weight and price." />
     <string id="KTMCM_ITMH" text="Enables modifying the weight and price." />
-    <string id="KTMCM_ITMPH" text="Enables modifying items price." />
-    <string id="KTMCM_ITMWH" text="Enables modifying items weight." />
+    <string id="KTMCM_ITMPH" text="Enables modifying items price [Native : 1.0[100%]]." />
+    <string id="KTMCM_ITMWH" text="Enables modifying items weight [Native : 1.0[100%]]." />
     <string id="KTMCM_BAM" text="BodyArmor Modifiers" />
     <string id="=KTMCM_BAW" text="BodyArmor Weight" />
     <string id="KTMCM_BAP" text="BodyArmor Price" />
@@ -87,6 +87,13 @@
     <string id="KTMCM_THM" text="TwoHandedWeapon Modifiers" />
     <string id="KTMCM_THMW" text="TwoHandedWeapon Weight" />
     <string id="KTMCM_THMP" text="TwoHandedWeapon Price" />
+
+    <string id="KTMCM_TGM" text="TwoHandedWeapon Modifiers" />
+    <string id="KTMCM_TGMH" text="TwoHandedWeapon Modifiers" />
+    <string id="KTMCM_TGMW" text="TwoHandedWeapon Weight" />
+    <string id="KTMCM_TGMP" text="TwoHandedWeapon Price" />
+    <string id="KTMCM_CTradeGoods" text="Trade Goods" />
+
     <string id="KTMCM_BRM" text="Battle Reward Modifiers" />
     <string id="KTMCM_BRMH" text="Enables modifying battle rewards." />
     <string id="KTMCM_BRMRG" text="Relationship Gain" />
@@ -164,7 +171,9 @@
     <string id="KTMCM_PMTOH" text="Enables Twins Chance modifier." />
     <string id="KTMCM_PMTOC" text="Twins Chance" />
     <string id="KTMCM_PMTOCH" text="Twins Chance  [Native : 0.03]." />
-    <string id="KTMCM_SM" text="Smithing Modifiers" />
+    <string id="KTMCM_SM" text="Use Patches instead of model" />
+    <string id="KTMCM_SMPOM" text="Smithing Modifiers" />
+    <string id="KTMCM_SMPOMH" text="Enables using only harmoney patches and does not load a smithing model." />
     <string id="KTMCM_SMH" text="Enables modifying Smithing variables." />
     <string id="KTMCM_SMRXP" text="Refining Xp" />
     <string id="KTMCM_SMRXPH" text="Enable Refining Xp multiplier." />
@@ -311,7 +320,7 @@
     <string id="KTMCM_XPMMPFM" text="Party Food Multiplier" />
     <string id="KTMCM_XPMMPFMH" text="Multiply Party food consumption by the multiplier [Native : 1.0[100%]]." />
     <string id="KTMCM_CItems" text="Items" />
-    <string id="KTMCM_Cweight" text="weight" />
+    <string id="KTMCM_Cweight" text="Weight" />
     <string id="KTMCM_CPrice" text="Price" />
     <string id="KTMCM_CBodyArmor" text="BodyArmor" />
     <string id="KTMCM_CBow" text="Bow" />
@@ -349,12 +358,11 @@
     <string id="KTMCM_CStillbirth" text="Stillbirth" />
     <string id="KTMCM_CFemaleChild" text="Female Child" />
     <string id="KTMCM_CTwins" text="Twins" />
-    <string id="KTMCM_CCrafting" text="Crafting" />
     <string id="KTMCM_CXP" text="XP" />
     <string id="KTMCM_CRefining" text="Refining" />
     <string id="KTMCM_CSmelting" text="Smelting" />
     <string id="KTMCM_CSmithing" text="Smithing" />
-    <string id="KTMCM_CEnergy" text="Energy" />
+
     <string id="KTMCM_CDisable" text="Disable" />
     <string id="KTMCM_CAutoLocks" text="Auto Locks" />
     <string id="KTMCM_CArmy" text="Army" />
@@ -368,15 +376,28 @@
     <string id="KTMCM_CLearning Rate" text="Learning Rate" />
     <string id="KTMCM_CParty" text="Party" />
     <string id="KTMCM_CFood" text="Food" />
-
-
     <string id="KTMCM_CPlayer" text="Player" />
-    <string id="KTMCM_CFood" text="Food" />
-    <string id="KTMCM_CFood" text="Food" />
-    <string id="KTMCM_CFood" text="Food" />
-    <string id="KTMCM_CFood" text="Food" />
-    <string id="KTMCM_CFood" text="Food" />
-    <string id="KTMCM_CFood" text="Food" />
+    <string id="KTMCM_FDM" text="Food by Morale Modifiers" />
+    <string id="KTMCM_FDM0" text="Moral 0 Bonus" />
+    <string id="KTMCM_FDM1" text="Moral 1 Bonus" />
+    <string id="KTMCM_FDM2" text="Moral 2 Bonus" />
+    <string id="KTMCM_FDM3" text="Moral 3 Bonus" />
+    <string id="KTMCM_FDWMH" text="Multiply Food Weight for this morale Bonus by the multiplier" />
+    <string id="KTMCM_FDPMH" text="Multiply Food Price for this morale Bonus by the multiplier" />
+
+
+    <string id="KTMCM_AM" text="Armor Modifiers" />
+    <string id="KTMCM_CArmor" text="Armor" />
+    <string id="KTMCM_AW" text="Armor Weight" />
+    <string id="KTMCM_AP" text="Armor Price" />
+    <string id="KTMCM_RWM" text="Ranged Weapons Modifiers" />
+    <string id="KTMCM_CRW" text="Ranged Weapons" />
+    <string id="KTMCM_RWW" text="Ranged Weapons Weight" />
+    <string id="KTMCM_RWP" text="Ranged Weapons Price" />
+    <string id="KTMCM_MWM" text="Melee Weapons Modifiers" />
+    <string id="KTMCM_CMW" text="Melee Weapons" />
+    <string id="KTMCM_MWW" text="Melee Weapons Weight" />
+    <string id="KTMCM_MWP" text="Melee Weapons Price" />
     <string id="KTMCM_CFood" text="Food" />
 
 

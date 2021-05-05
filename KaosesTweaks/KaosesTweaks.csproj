@@ -229,6 +229,12 @@
     </Reference>
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Remove="Items\**" />
+    <EmbeddedResource Remove="Items\**" />
+    <None Remove="Items\**" />
+  </ItemGroup>
+
   <ItemGroup>    
     <PackageReference Include="Bannerlord.BUTR.Shared" Version="1.6.1.31">
       <PrivateAssets>all</PrivateAssets>
