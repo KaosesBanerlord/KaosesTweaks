@@ -13,6 +13,7 @@ namespace KaosesTweaks.Models
     class KaosesArmyManagementCalculationModel : DefaultArmyManagementCalculationModel
     {
 
+/*
 
         // Token: 0x17000B39 RID: 2873
         // (get) Token: 0x06002D6A RID: 11626 RVA: 0x000B4F54 File Offset: 0x000B3154
@@ -186,14 +187,21 @@ namespace KaosesTweaks.Models
         public override float GetPartySizeScore(MobileParty party)
         {
             return Math.Min(1f, party.PartySizeRatio);
-        }
+        }*/
 
         // Token: 0x06002D70 RID: 11632 RVA: 0x000B5834 File Offset: 0x000B3A34
         public override ExplainedNumber CalculateCohesionChange(Army army, bool includeDescriptions = false)
         {
+            //~ KT
             float baseChange = (float)Statics._settings.armyCohesionBaseChange;
+            bool IsClanOnlyarmy = IsClanOnlyArmy(army);
+            if (IsClanOnlyarmy && Statics._settings.armyDisableCohesionLossClanOnlyParties)
+            {
+                baseChange = 0;
+            }
             ExplainedNumber result = new ExplainedNumber(baseChange, includeDescriptions, null);
-            KaosesCalculateCohesionChangeInternal(army, ref result);
+            KaosesCalculateCohesionChangeInternal(army, IsClanOnlyarmy, ref result);
+            //~ KT
             MobileParty leaderParty = army.LeaderParty;
             SiegeEvent siegeEvent = (leaderParty != null) ? leaderParty.SiegeEvent : null;
             if (siegeEvent != null && siegeEvent.BesiegerCamp.IsBesiegerSideParty(army.LeaderParty) 
@@ -205,24 +213,18 @@ namespace KaosesTweaks.Models
         }
 
         // Token: 0x06002D71 RID: 11633 RVA: 0x000B58B0 File Offset: 0x000B3AB0
-        private void KaosesCalculateCohesionChangeInternal(Army army, ref ExplainedNumber cohesionChange)
+        private void KaosesCalculateCohesionChangeInternal(Army army, bool IsClanOnly, ref ExplainedNumber cohesionChange)
         {
             int starvingParties = 0;
             int lowMoraleParties = 0;
             int lowHealthyTroopsParties = 0;
             int num4 = 0;
-            Clan armyClan = army.LeaderParty.ActualClan;
-            bool armyContainsOtherClans = false;
+            bool armyIsClanOnly = IsClanOnly;
 
             foreach (MobileParty mobileParty in army.Parties)
             {
                 if (mobileParty != army.LeaderParty)
                 {
-                    if (mobileParty.ActualClan != army.LeaderParty.ActualClan)
-                    {
-                        armyContainsOtherClans = true;
-                    }
-
                     if (mobileParty.Party.IsStarving)
                     {
                         starvingParties++;
@@ -235,54 +237,57 @@ namespace KaosesTweaks.Models
                     {
                         lowHealthyTroopsParties++;
                     }
-
                     /* Idea fro rework*/
                     //float injuredRatio = mobileParty.MemberRoster.TotalRegulars / mobileParty.MemberRoster.TotalWoundedRegulars;
                     /* the more injured to troops more cohesion loss*/
                     num4++;
                 }
             }
-            IM.MessageDebug("CalculateCohesionChangeInternal:   starvingParties: " + starvingParties.ToString()
-                                                                                   + "  lowMoraleParties: " + lowMoraleParties.ToString()
-                                                                                   + " lowHealthyTroopsParties: " + lowHealthyTroopsParties.ToString());
             float starvingCohesion = (starvingParties + 1) / 2;
             float lowMoraleCohesion = (lowMoraleParties + 1) / 2;
             float lowHealthyTroops = (lowHealthyTroopsParties + 1) / 2;
 
-            IM.MessageDebug("CalculateCohesionChangeInternal:   starvingCohesion: "+ starvingCohesion.ToString() 
-                                                                                   + "  lowMoraleCohesion: "+ lowMoraleCohesion.ToString() 
-                                                                                   + " lowHealthyTroops: " + lowHealthyTroops.ToString());
-
             if (Statics._settings.armyCohesionMultipliers)
             {
-                IM.MessageDebug("KAOSES CalculateCohesion :"
-                    + "  armyDisableCohesionLossClanOnlyParties: " + Statics._settings.armyDisableCohesionLossClanOnlyParties.ToString()
-                    + "  armyApplyMultiplerToClanOnlyParties: " + Statics._settings.armyApplyMultiplerToClanOnlyParties.ToString()
-                    + "  armyContainsOtherClans: " + armyContainsOtherClans.ToString() );
-                // armyDisableCohesionLossClanOnlyParties
-                // armyApplyMultiplerToClanOnlyParties
-                // armyCohesionLossMultiplier
-                if (Statics._settings.armyDisableCohesionLossClanOnlyParties && !armyContainsOtherClans)
+                if (Statics._settings.ArmyDebug)
+                {
+                    IM.MessageDebug("KAOSES Cohesion Settings:"
+                        + "  army.LeaderParty: " + army.LeaderParty.StringId.ToString()
+                        + "  armyDisableCohesionLossClanOnlyParties: " + Statics._settings.armyDisableCohesionLossClanOnlyParties.ToString()
+                        + "  armyApplyMultiplerToClanOnlyParties: " + Statics._settings.armyApplyMultiplerToClanOnlyParties.ToString()
+                        + "  armyIsClanOnly: " + armyIsClanOnly.ToString() );
+                }
+
+                if (Statics._settings.armyDisableCohesionLossClanOnlyParties && armyIsClanOnly)
                 {
                     starvingCohesion = 0;
                     lowMoraleCohesion = 0;
                     lowHealthyTroops = 0;
-                }else if(Statics._settings.armyApplyMultiplerToClanOnlyParties && !armyContainsOtherClans)
+                }else if(Statics._settings.armyApplyMultiplerToClanOnlyParties && armyIsClanOnly)
                 {
+                    if (Statics._settings.ArmyDebug)
+                    {
+                        IM.MessageDebug("Only clan multipliers:   starvingCohesion: " + starvingCohesion.ToString()
+                                                                                               + "  lowMoraleCohesion: " + lowMoraleCohesion.ToString()
+                                                                                               + " lowHealthyTroops: " + lowHealthyTroops.ToString());
+                    }
                     starvingCohesion *= Statics._settings.armyCohesionLossMultiplier;
                     lowMoraleCohesion *= Statics._settings.armyCohesionLossMultiplier;
                     lowHealthyTroops *= Statics._settings.armyCohesionLossMultiplier;
-                }else
+                }
+                else if (!Statics._settings.armyApplyMultiplerToClanOnlyParties)
                 {
+                    if (Statics._settings.ArmyDebug)
+                    {
+                        IM.MessageDebug("Multipliers applied to all:   starvingCohesion: " + starvingCohesion.ToString()
+                                                                + "  lowMoraleCohesion: " + lowMoraleCohesion.ToString()
+                                                                + " lowHealthyTroops: " + lowHealthyTroops.ToString());
+                    }
                     starvingCohesion *= Statics._settings.armyCohesionLossMultiplier;
                     lowMoraleCohesion *= Statics._settings.armyCohesionLossMultiplier;
                     lowHealthyTroops *= Statics._settings.armyCohesionLossMultiplier;
                 }
             }
-            IM.MessageDebug("Final Cohesion :"
-                + " Final starvingCohesion: " + starvingCohesion.ToString()
-                + " Final lowMoraleCohesion: " + lowMoraleCohesion.ToString()
-                + " Final lowHealthyTroops: " + lowHealthyTroops.ToString());
 
 
             //cohesionChange.Add((float)(-(float)num4), _numberOfPartiesText, null);
@@ -304,8 +309,38 @@ namespace KaosesTweaks.Models
             {
                 cohesionChange.AddFactor(DefaultPerks.Tactics.HordeLeader.SecondaryBonus * 0.01f, DefaultPerks.Tactics.HordeLeader.Name);
             }
+
+            if (Statics._settings.ArmyDebug)
+            {
+                IM.MessageDebug("Final Cohesion :"
+                                + " base change: " + Statics._settings.armyCohesionBaseChange.ToString()
+                                + " starvingCohesion: " + starvingCohesion.ToString()
+                                + " lowMoraleCohesion: " + lowMoraleCohesion.ToString()
+                                + " lowHealthyTroops: " + lowHealthyTroops.ToString()
+                                + " result: " + cohesionChange.ResultNumber.ToString());
+            }
         }
 
+        //~ KT
+        protected bool IsClanOnlyArmy(Army army)
+        {
+            bool result = true;
+            Clan armyClan = army.LeaderParty.ActualClan;
+            foreach (MobileParty mobileParty in army.Parties)
+            {
+                if (mobileParty != army.LeaderParty)
+                {
+                    if (mobileParty.ActualClan != army.LeaderParty.ActualClan)
+                    {
+                        result = false;
+                    }
+                }
+            }
+            return result;
+        }
+
+        //~ Copied Methods To Make Model Override work
+        #region Copied Methods To Make Model Override work
         // Token: 0x06002D72 RID: 11634 RVA: 0x000B59C8 File Offset: 0x000B3BC8
         public override int CalculateNewCohesion(Army army, PartyBase newParty, int calculatedCohesion, int sign)
         {
@@ -316,12 +351,6 @@ namespace KaosesTweaks.Models
             sign = Math.Sign(sign);
             int num = (sign == 1) ? (army.Parties.Count - 1) : army.Parties.Count;
             int num2 = MathF.Ceiling((float)(calculatedCohesion * num + 100 * sign)) / (num + sign);
-
-            IM.MessageDebug(" ");
-            IM.MessageDebug("CalculateNewCohesion : " + calculatedCohesion.ToString() + "  sign: " + sign.ToString() 
-                + " num: " + num.ToString() + " num2: " + num2.ToString());
-            IM.MessageDebug(" ");
-
             if (num2 > 100)
             {
                 return 100;
@@ -391,7 +420,7 @@ namespace KaosesTweaks.Models
 
         // Token: 0x04000F68 RID: 3944
         public const int AverageCallToArmyCost = 20;
-
+        #endregion
 
     }
 }

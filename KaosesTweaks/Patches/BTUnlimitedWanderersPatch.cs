@@ -1,5 +1,6 @@
 ﻿using HarmonyLib;
 using KaosesTweaks.Settings;
+using KaosesTweaks.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,7 @@ namespace KaosesTweaks.Patches
     {
         private static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
         {
+            IM.MessageDebug("UnlimitedWanderersPatch Called");
             List<CodeInstruction> list = new List<CodeInstruction>(instructions);
             list.RemoveRange(147, 3);
             return list.AsEnumerable<CodeInstruction>();

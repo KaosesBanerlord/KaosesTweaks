@@ -37,15 +37,14 @@ namespace KaosesTweaks.Models
             }
             num2 = ((num2 < 1) ? 1 : num2);
             float baseNumber = -(float)num2 / 20f;
-
-            /*
-             Add food consumption multiplier here ???
-             */
+            //~ KT
             if (Statics._settings.PartyFoodConsumptionEnabled)
             {
+                //IM.MessageDebug("PartyFoodConsumption: original: " + baseNumber.ToString());
                 baseNumber *= Statics._settings.PartyFoodConsumptionMultiplier;
+                //IM.MessageDebug("PartyFoodConsumption: modified: " + baseNumber.ToString());
             }
-
+            //~ KT
             ExplainedNumber result = new ExplainedNumber(baseNumber, includeDescription, null);
             this.CalculatePerkEffects(party, ref result);
             return result;

@@ -50,7 +50,6 @@ namespace KaosesTweaks.Settings
 
         ///~ Mod Specific settings 
 
-
         //~ Items
         #region Items
         [SettingPropertyBool("{=KTMCM_ItemModifiers}Item Modifiers *", IsToggle = true, Order = 0, RequireRestart = true,
@@ -58,7 +57,7 @@ namespace KaosesTweaks.Settings
         [SettingPropertyGroup("{=KTMCM_CItems}Items")]
         public bool MCMItemModifiers { get; set; } = true;
 
-        //~ For use in debuging item tweak code
+        //~ For use in debugging item tweak code
         public bool ItemDebugMode { get; set; } = false;
 
         //~ Armor
@@ -398,10 +397,15 @@ namespace KaosesTweaks.Settings
         [SettingPropertyGroup("{=KTMCM_CBattleReward}Battle Rewards")]
         public bool MCMBattleRewardModifiers { get; set; } = true;
 
+        //~ KT Debugging 
+        public bool BattleRewardsDebug = false;
+
+        //~ Rewards apply to AI *needs testing is this needed or does it need to be the other way round
         //[SettingPropertyBool("{=BT_Settings_000104}Also Apply To AI", Order = 5, RequireRestart = false,
         //    HintText = "{=BT_Settings_000104_Desc}Applies the renown, influence and morale modifiers to AI parties."),
         //    SettingPropertyGroup("{=KTMCM_CBattleReward}Battle Rewards")]
         public bool BattleRewardApplyToAI { get; set; } = false;
+        //~ Relationship Gain
         #region RelationshipGain
         [SettingPropertyBool("{=KTMCM_BRMRG}Relationship Gain", IsToggle = true, Order = 0, RequireRestart = false,
             HintText = "{=KTMCM_BRMRGH}Enables modifying Relationship gain.")]
@@ -413,7 +417,7 @@ namespace KaosesTweaks.Settings
         [SettingPropertyGroup("{=KTMCM_CBattleReward}Battle Rewards/{=KTMCM_CRelationShipGain}RelationShip Gain")]
         public float BattleRewardsRelationShipGainMultiplier { get; set; } = 1.0f;
         #endregion
-
+        //~ Renown Gain
         #region  RenownGain
         [SettingPropertyBool("{=KTMCM_BRMRNG}Renown Gain", IsToggle = true, Order = 0, RequireRestart = false,
             HintText = "{=KTMCM_BRMRNGH}Enables modifying Renown gain.")]
@@ -425,7 +429,7 @@ namespace KaosesTweaks.Settings
         [SettingPropertyGroup("{=KTMCM_CBattleReward}Battle Rewards/{=KTMCM_CRenownGain}Renown Gain")]
         public float BattleRewardsRenownGainMultiplier { get; set; } = 1.0f;
         #endregion
-
+        //~ Influence Gain
         #region  InfluenceGain
         [SettingPropertyBool("{=KTMCM_BRMIG}Influence Gain", IsToggle = true, Order = 0, RequireRestart = false,
             HintText = "{=KTMCM_BRMIGH}Enables modifying Influence gain.")]
@@ -437,7 +441,7 @@ namespace KaosesTweaks.Settings
         [SettingPropertyGroup("{=KTMCM_CBattleReward}Battle Rewards/{=KTMCM_CInfluenceGain}Influence Gain")]
         public float BattleRewardsInfluenceGainMultiplier { get; set; } = 1.0f;
         #endregion  
-
+        //~ Morale Gain
         #region  MoraleGain
         [SettingPropertyBool("{=KTMCM_BRMMG}Morale Gain", IsToggle = true, Order = 0, RequireRestart = false,
             HintText = "{=KTMCM_BRMMGH}Enables modifying Morale gain.")]
@@ -449,7 +453,7 @@ namespace KaosesTweaks.Settings
         [SettingPropertyGroup("{=KTMCM_CBattleReward}Battle Rewards/{=KTMCM_CMoraleGain}Morale Gain")]
         public float BattleRewardsMoraleGainMultiplier { get; set; } = 1.0f;
         #endregion  
-
+        //~ Gold loss after defeat
         #region  GoldLossAfterDefeat
         [SettingPropertyBool("{=KTMCM_BRMGL}Gold Loss", IsToggle = true, Order = 0, RequireRestart = false,
             HintText = "{=KTMCM_BRMGLH}Enables modifying Gold Loss on defeat .")]
@@ -463,12 +467,14 @@ namespace KaosesTweaks.Settings
         #endregion
         #endregion  
 
-        //~ Clan
+        //~ Clan *AI Tweaks need Checking
         #region Clan
         [SettingPropertyBool("{=KTMCM_CLM}Clan Modifiers *", IsToggle = true, Order = 0, RequireRestart = true,
             HintText = "{=KTMCM_CLMH}Enables modifying clan variables.")]
         [SettingPropertyGroup("{=BT_Settings_003000}Clan Tweaks")]
         public bool MCMClanModifiers { get; set; } = false;
+
+        public bool ClanDebugging = true;
 
         [SettingPropertyBool("{=KTMCM_CLMBPL}Party Limits", IsToggle = true, RequireRestart = false,//, Order = 3
             HintText = "{=KTMCM_CLMBPLH}Enables additional Party limit per clan tier .")]
@@ -558,7 +564,7 @@ namespace KaosesTweaks.Settings
         #endregion
         #endregion
 
-        //~ CharacterDevelopment
+        //~ CharacterDevelopment *needs testing
         #region CharacterDevelopment
         [SettingPropertyBool("{=KTMCM_PCM}Character Modifiers *", IsToggle = true, Order = 0, RequireRestart = true,
             HintText = "{=KTMCM_PCMH}Enables modifying Character variables.")]
@@ -589,12 +595,14 @@ namespace KaosesTweaks.Settings
         #endregion 
         #endregion CharacterDevelopment
 
-        //~ Pregnancy
+        //~ Pregnancy 
         #region Pregnancy
         [SettingPropertyBool("{=KTMCM_PM}Pregnancy Modifiers*", IsToggle = true, Order = 0, RequireRestart = true,
             HintText = "{=KTMCM_PMH}Enables modifying Pregnancy variables.")]
         [SettingPropertyGroup("{=KTMCM_CPregnancy}Pregnancy")]
         public bool MCMPregnancyModifiers { get; set; } = false;
+
+        public bool PregnancyDebug = false;
 
         [SettingPropertyBool("{=KTMCM_PMDD}Pregnancy Duration Modifier", IsToggle = true, Order = 0, RequireRestart = false,
             HintText = "{=KTMCM_PMDDH}Enables Pregnancy Duration modifier.")]
@@ -703,9 +711,9 @@ namespace KaosesTweaks.Settings
 
         #endregion
 
-        //~ ItemLocks
+        //~ ItemLocks 
         #region ItemLocks
-        [SettingPropertyBool("{=KTMCM_AL}Item Auto Locks *", IsToggle = true, Order = 0, RequireRestart = true,
+        [SettingPropertyBool("{=KTMCM_AL}Item Auto Locks *", IsToggle = true, Order = 0, RequireRestart = false,
             HintText = "{=KTMCM_ALH}Allows for auto locking horses, food , and smithing materials.")]
         [SettingPropertyGroup("{=KTMCM_CAutoLocks}Auto Locks")]
         public bool MCMAutoLocks { get; set; } = false;
@@ -779,6 +787,9 @@ namespace KaosesTweaks.Settings
             HintText = "{=KTMCM_AMH}Enable army modifiers.")]
         [SettingPropertyGroup("{=KTMCM_CArmy}Army")]
         public bool MCMArmy { get; set; } = false;
+
+        public bool ArmyDebug = false;
+
         #region Cohesion
 
         [SettingPropertyBool("{=KTMCM_AMCM}Cohesion Modifiers", IsToggle = true, Order = 0, RequireRestart = false,
@@ -791,97 +802,98 @@ namespace KaosesTweaks.Settings
         [SettingPropertyGroup("{=KTMCM_CArmy}Army/{=KTMCM_CCohesion}Cohesion")]
         public int armyCohesionBaseChange { get; set; } = -2;
 
-        [SettingPropertyBool("{=KTMCM_AMCMDCOO}Disable Clan Only other modifiers", Order = 0, RequireRestart = false, 
-            HintText = "{=}Disable other cohesion loss except base for armies that are made up of a single clans parties only.")]
+        [SettingPropertyBool("{=KTMCM_AMCMDCOO}Clan Only army disable cohesion", Order = 0, RequireRestart = false, 
+            HintText = "{=}Disable cohesion loss for armies that are made up of a single clans parties only.")]
         [SettingPropertyGroup("{=KTMCM_CArmy}Army/{=KTMCM_CCohesion}Cohesion")]
         public bool armyDisableCohesionLossClanOnlyParties { get; set; } = false;
 
-        [SettingPropertyBool("{=KTMCM_AMCMCO}Clan Only Use Multiplier", Order = 0, RequireRestart = false, 
+        [SettingPropertyBool("{=KTMCM_AMCMCO}Clan Only armies Use Multiplier", Order = 0, RequireRestart = false, 
             HintText = "{=KTMCM_AMCMCOH}Apply the cohesion multiplier to armies that are made up of a single clans parties only.")]
         [SettingPropertyGroup("{=KTMCM_CArmy}Army/{=KTMCM_CCohesion}Cohesion")]
         public bool armyApplyMultiplerToClanOnlyParties { get; set; } = false;
 
         [SettingPropertyFloatingInteger("{=KTMCM_AMCHMM}Cohesion Multiplier", 0.1f, 3.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_AMCHMMH}Multiply the cohesion loss by this multiplier [Native : 1.0[100%]].")]
+            HintText = "{=KTMCM_AMCHMMH}Multiply the cohesion loss by this multiplier [Native : 1.0[100%]]. this applies to starving parties, low morale parties and low number of healthy troops parties")]
         [SettingPropertyGroup("{=KTMCM_CArmy}Army/{=KTMCM_CCohesion}Cohesion")]
         public float armyCohesionLossMultiplier { get; set; } = 1.0f;
 
         #endregion
         #endregion ArmyManagement
 
-        //~ Relations
-        #region Relations
+        //~ Killing Bandits Raises Relationships
+        #region Killing Bandits Raises Relationships
         [SettingPropertyBool("{=}Relation Building Modifiers *", IsToggle = true, Order = 0, RequireRestart = true,
             HintText = "{=}Relation Building modifiers.")]
-        [SettingPropertyGroup("{=KTMCM_CRelationBuilding}Relation Building")]
+        [SettingPropertyGroup("{=KTMCM_CKBRR}Killing Bandits Raises Relationships")]
         public bool MCMRelationBuilding { get; set; } = false;
         #region KillingBandits
         [SettingPropertyBool("{=KTMCM_RB}Killing Bandits Modifiers", IsToggle = true, Order = 0, RequireRestart = false,
             HintText = "{=KTMCM_RBH}Relation Building Killing Bandits modifiers.")]
-        [SettingPropertyGroup("{=KTMCM_CRelationBuilding}Relation Building/{=KTMCM_CBandits}Bandits")]
+        [SettingPropertyGroup("{=KTMCM_CKBRR}Killing Bandits Raises Relationships/{=KTMCM_CBandits}Bandits")]
         public bool relationsKillingBanditsEnabled { get; set; } = false;
 
         [SettingPropertyInteger("{=KTMCM_RBKBGB}Groups for bonus", 1, 50, "0 Parties", Order = 0, RequireRestart = false,
             HintText = "{=KTMCM_RBKBGBH}Number of bandit groups you must destroy before you gain relation.")]
-        [SettingPropertyGroup("{=KTMCM_CRelationBuilding}Relation Building/{=KTMCM_CBandits}Bandits")]
+        [SettingPropertyGroup("{=KTMCM_CKBRR}Killing Bandits Raises Relationships/{=KTMCM_CBandits}Bandits")]
         public int GroupsOfBandits { get; set; } = 1;
 
         [SettingPropertyInteger("{=KTMCM_RBKBRI}Relationship Increase", 1, 50, "0 Points", Order = 0, RequireRestart = false,
             HintText = "{=KTMCM_RBKBRIH}The base value that your relationship will increase by when it increases.")]
-        [SettingPropertyGroup("{=KTMCM_CRelationBuilding}Relation Building/{=KTMCM_CBandits}Bandits")]
+        [SettingPropertyGroup("{=KTMCM_CKBRR}Killing Bandits Raises Relationships/{=KTMCM_CBandits}Bandits")]
         public int RelationshipIncrease { get; set; } = 1;
 
         [SettingPropertyInteger("{=KTMCM_RBKBR}Radius", 500, 5000, Order = 0, RequireRestart = false,
             HintText = "{=KTMCM_RBKBRH}This is the size of the radius inside which villages and towns will be affected by the relationship increase.")]
-        [SettingPropertyGroup("{=KTMCM_CRelationBuilding}Relation Building/{=KTMCM_CBandits}Bandits")]
+        [SettingPropertyGroup("{=KTMCM_CKBRR}Killing Bandits Raises Relationships/{=KTMCM_CBandits}Bandits")]
         public int Radius { get; set; } = 1000;
 
         [SettingPropertyBool("{=KTMCM_RBKBSB}Size Bonus", Order = 0, RequireRestart = false,
             HintText = "{=KTMCM_RBKBSBH}Enable Size bonus modifiers.")]
-        [SettingPropertyGroup("{=KTMCM_CRelationBuilding}Relation Building/{=KTMCM_CBandits}Bandits")]
+        [SettingPropertyGroup("{=KTMCM_CKBRR}Killing Bandits Raises Relationships/{=KTMCM_CBandits}Bandits")]
         public bool SizeBonusEnabled { get; set; } = false;
 
         [SettingPropertyFloatingInteger("{=KTMCM_RBKBSBM}Size bonus Modifier", 0.1f, 1.0f, RequireRestart = false,
             HintText = "{=KTMCM_RBKBSBMH}Multiply the Size Bonus by the number of bandits you have killed since you last gained relationship. this will then be multiplied by the base Relationship Increase to give your final increase value.")]
-        [SettingPropertyGroup("{=KTMCM_CRelationBuilding}Relation Building/{=KTMCM_CBandits}Bandits")]
+        [SettingPropertyGroup("{=KTMCM_CKBRR}Killing Bandits Raises Relationships/{=KTMCM_CBandits}Bandits")]
         public float SizeBonus { get; set; } = 0.05f;
 
         [SettingPropertyBool("{=KTMCM_RBKBOPP}Only Bandits with Prisoners", Order = 0, RequireRestart = false,
             HintText = "{=KTMCM_RBKBOPPH}Enable relationship bonuses only for bandit parties with prisoners.")]
-        [SettingPropertyGroup("{=KTMCM_CRelationBuilding}Relation Building/{=KTMCM_CBandits}Bandits")]
+        [SettingPropertyGroup("{=KTMCM_CKBRR}Killing Bandits Raises Relationships/{=KTMCM_CBandits}Bandits")]
         public bool PrisonersOnly { get; set; } = false;
 
         [SettingPropertyBool("{=KTMCM_RBKBBP}Bandits Parties", Order = 0, RequireRestart = false,
             HintText = "{=KTMCM_RBKBBPH}Enable relationship bonuses for bandit parties.")]
-        [SettingPropertyGroup("{=KTMCM_CRelationBuilding}Relation Building/{=KTMCM_CBandits}Bandits")]
+        [SettingPropertyGroup("{=KTMCM_CKBRR}Killing Bandits Raises Relationships/{=KTMCM_CBandits}Bandits")]
         public bool IncludeBandits { get; set; } = false;
 
         [SettingPropertyBool("{=KTMCM_RBKBOP}Outlaw Parties", Order = 0, RequireRestart = false,
             HintText = "{=KTMCM_RBKBOPH}Enable relationship bonuses for outlaw parties.")]
-        [SettingPropertyGroup("{=KTMCM_CRelationBuilding}Relation Building/{=KTMCM_CBandits}Bandits")]
+        [SettingPropertyGroup("{=KTMCM_CKBRR}Killing Bandits Raises Relationships/{=KTMCM_CBandits}Bandits")]
         public bool IncludeOutlaws { get; set; } = false;
 
         [SettingPropertyBool("{=KTMCM_RBKMGP}Mafia Parties", Order = 0, RequireRestart = false,
             HintText = "{=KTMCM_RBKMGPH}Enable relationship bonuses for mafia parties.")]
-        [SettingPropertyGroup("{=KTMCM_CRelationBuilding}Relation Building/{=KTMCM_CBandits}Bandits")]
+        [SettingPropertyGroup("{=KTMCM_CKBRR}Killing Bandits Raises Relationships/{=KTMCM_CBandits}Bandits")]
         public bool IncludeMafia { get; set; } = false;
 
         #endregion
         #endregion
 
-        //~ XpMultipliers
+        //~ XpMultipliers *needs testing
         #region XpMultipliers
         [SettingPropertyBool("{=KTMCM_XPM}Xp Modifiers *", IsToggle = true, Order = 0, RequireRestart = true,
             HintText = "{=KTMCM_XPMH}Enable Xp modifiers.")]
         [SettingPropertyGroup("{=KTMCM_CXpModifiers}Xp Modifiers")]
         public bool MCMSkillsXp { get; set; } = false;
 
-
+        //~ Skills
+        #region Skills
         [SettingPropertyBool("{=KTMCM_XPMSM}Skill Xp Modifiers *", IsToggle = true, Order = 0, RequireRestart = true,
             HintText = "{=KTMCM_XPMSMH}Enable Skill Xp modifiers.")]
         [SettingPropertyGroup("{=KTMCM_CXpModifiers}Xp Modifiers/{=KTMCM_CSkills}Skills")]
         public bool SkillXpEnabled { get; set; } = false;
-        #region Skills
+
         [SettingPropertyBool("{=KTMCM_XPMSMP}Player Skill Modifiers", Order = 0, RequireRestart = false,
             HintText = "{=KTMCM_XPMSMPH}Enable Player to use Skill Xp modifiers")]
         [SettingPropertyGroup("{=KTMCM_CXpModifiers}Xp Modifiers/{=KTMCM_CSkills}Skills")]
@@ -897,14 +909,13 @@ namespace KaosesTweaks.Settings
         [SettingPropertyGroup("{=KTMCM_CXpModifiers}Xp Modifiers/{=KTMCM_CSkills}Skills")]
         public bool SkillXpUseForAI { get; set; } = false;
 
-
-
+        //~ IndividualMultipliers
+        #region IndividualMultipliers
         [SettingPropertyBool("{=KTMCM_XPMSMID}Individual Skill Modifiers", IsToggle = true, Order = 0, RequireRestart = false,
             HintText = "{=KTMCM_XPMSMIDH}Enable Individual Skill Xp modifiers. Use this or global they don't work at same time")]
         [SettingPropertyGroup("{=KTMCM_CXpModifiers}Xp Modifiers/{=KTMCM_CSkills}Skills/{=KTMCM_CIndividual}Individual")]
         public bool SkillXpUseIndividualMultiplers { get; set; } = false;
 
-        #region IndividualMultipliers
         [SettingPropertyFloatingInteger("{=KTMCM_XPMSMIDA}Athletics Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false, 
             HintText = "{=KTMCM_XPMSMIDAH}Multiply Athletics skills exp gains by the multiplier [Native : 1.0[100%]].")]
         [SettingPropertyGroup("{=KTMCM_CXpModifiers}Xp Modifiers/{=KTMCM_CSkills}Skills/{=KTMCM_CIndividual}Individual")]
@@ -994,39 +1005,37 @@ namespace KaosesTweaks.Settings
             HintText = "{=KTMCM_XPMSMIDTHWH}Multiply TwoHanded skills exp gains by the multiplier [Native : 1.0[100%]].")]
         [SettingPropertyGroup("{=KTMCM_CXpModifiers}Xp Modifiers/{=KTMCM_CSkills}Skills/{=KTMCM_CIndividual}Individual")]
         public float SkillsXPMultiplierTwoHanded { get; set; } = 1.0f;
+        #endregion //~ IndividualMultipliers
 
-        #endregion
-
+        //~ Global
+        #region Global
         [SettingPropertyBool("{=KTMCM_XPMSMGS}Global Skill Modifiers", IsToggle = true, Order = 0, RequireRestart = false,
             HintText = "{=KTMCM_XPMSMGSH}Enable Global Skill Xp modifiers. Use this or global they don't work at same time")]
         [SettingPropertyGroup("{=KTMCM_CXpModifiers}Xp Modifiers/{=KTMCM_CSkills}Skills/{=KTMCM_CGlobal}Global")]
         public bool SkillXpUseGlobalMultipler { get; set; } = false;
-        #region Global
 
         [SettingPropertyFloatingInteger("{=KTMCM_XPMSMGSM}Global Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false, 
             HintText = "{=KTMCM_XPMSMGSMH}Multiply skills exp gains by the Global multiplier [Native : 1.0[100%]].")]
         [SettingPropertyGroup("{=KTMCM_CXpModifiers}Xp Modifiers/{=KTMCM_CSkills}Skills/{=KTMCM_CGlobal}Global")]
         public float SkillsXpGlobalMultiplier { get; set; } = 1.0f;
-        #endregion
+        #endregion //~ Global
+        #endregion //~ Skills
 
-        #endregion
-
-
-
+        //~ LearningRateMultipliers
+        #region LearningRateMultipliers
         [SettingPropertyBool("{=KTMCM_XPMLR}Learning Rate Modifiers *", IsToggle = true, Order = 0, RequireRestart = true,
             HintText = "{=KTMCM_XPMLRH}Enable Learning Rate modifiers.")]
         [SettingPropertyGroup("{=KTMCM_CXpModifiers}Xp Modifiers/{=KTMCM_CLearning}Learning Rate")]
         public bool LearningRateEnabled { get; set; } = false;
-        #region LearningRateMultipliers
+
         [SettingPropertyFloatingInteger("{=KTMCM_XPMLRM}Global Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false, 
             HintText = "{=KTMCM_XPMLRMH}Multiply Learning Rate by the Global multiplier [Native : 1.0[100%]].")]
         [SettingPropertyGroup("{=KTMCM_CXpModifiers}Xp Modifiers/{=KTMCM_CLearning}Learning Rate")]
         public float LearningRateMultiplier { get; set; } = 1.0f;
+        #endregion //~ LearningRateMultipliers
 
-        #endregion
-
+        //~ Character Tweaks - Hero Skill Multiplier Tweaks *needs to be merged with KT's version
         #region Character Tweaks - Hero Skill Multiplier Tweaks
-
         [SettingPropertyBool("{=BT_Settings_002300}Hero Skill Experience" + "*", Order = 1, IsToggle = true, RequireRestart = true,
             HintText = "{=BT_Settings_002300_Desc}Enable bonuses to the skill experience your hero and companions members gain."),
             SettingPropertyGroup("{=KTMCM_CXpModifiers}Xp Modifiers/{=BT_Settings_002300}Hero Skill Experience" + "*", GroupOrder = 3)]
@@ -1105,17 +1114,22 @@ namespace KaosesTweaks.Settings
 
 
 
+        #endregion //~ Character Tweaks - Hero Skill Multiplier Tweaks
+
+
+        //~ Troop Daily Experience Tweak
+        #region Party Tweaks - Troop Daily Experience Tweak
         [SettingPropertyBool("{=BT_Settings_006500}Daily Troop Experience" + "*", IsToggle = true, Order = 0, RequireRestart = true,
             HintText = "{=BT_Settings_006500_Desc}Gives each troop roster (stack) in a party an amount of experience each day based upon the leader's Leadership skill. By default only applies to the player.")]
         [SettingPropertyGroup("{=KTMCM_CXpModifiers}Xp Modifiers/{=BT_Settings_006500}Daily Troop Experience")]//{=BT_Settings_006000}Party Tweaks
         public bool DailyTroopExperienceTweakEnabled { get; set; } = false;
-        #region Party Tweaks - Troop Daily Experience Tweak
+
         [SettingPropertyFloatingInteger("{=BT_Settings_006501}Percentage of Leadership", 0.0f, 50.0f, "#0%", RequireRestart = false,
             HintText = "{=BT_Settings_006501_Desc}The percentage of the leader's Leadership skill to be given as experience to each of their troop rosters. With 100 leadership and a setting of 1000% each troop type stack will get 1.000 xp daily.")]
         [SettingPropertyGroup("{=KTMCM_CXpModifiers}Xp Modifiers/{=BT_Settings_006500}Daily Troop Experience")]
         public float LeadershipPercentageForDailyExperienceGain { get; set; } = 0f;
 
-        [SettingPropertyInteger("{=BT_Settings_006502}Starting from Level Of Leadership", 1, 200 , Order = 0, RequireRestart = false,
+        [SettingPropertyInteger("{=BT_Settings_006502}Starting from Level Of Leadership", 1, 200, Order = 0, RequireRestart = false,
             HintText = "{=BT_Settings_006502_Desc}The Leadership level required to start giving experience to troop rosters. With this setting at 20, daily training of your troop stacks will start from leadership 20 onwards (but be calculated with the full 20 skillpoints).")]
         [SettingPropertyGroup("{=KTMCM_CXpModifiers}Xp Modifiers/{=BT_Settings_006500}Daily Troop Experience")]
         public int DailyTroopExperienceRequiredLeadershipLevel { get; set; } = 30;
@@ -1134,11 +1148,10 @@ namespace KaosesTweaks.Settings
             HintText = "{=BT_Settings_006505_Desc}Displays a message showing the amount of experience granted.")]
         [SettingPropertyGroup("{=KTMCM_CXpModifiers}Xp Modifiers/{=BT_Settings_006500}Daily Troop Experience")]
         public bool DisplayMessageDailyExperienceGain { get; set; } = false;
+        #endregion //~ Troop Daily Experience Tweak
 
-        #endregion
-
+        //~ Troop Experience Tweaks
         #region Battle Tweaks - Troop Experience Tweaks
-
         [SettingPropertyBool("{=BT_Settings_000400}Troop Experience" + "*", Order = 1, RequireRestart = true, IsToggle = true,
             HintText = "{=BT_Settings_000400_Desc}Tweaks for experience gain of troops in battles and simulations."),
             SettingPropertyGroup("{=KTMCM_CXpModifiers}Xp Modifiers/{=BT_Settings_000400}Troop Experience" + "*", GroupOrder = 4)]
@@ -1163,96 +1176,118 @@ namespace KaosesTweaks.Settings
             HintText = "{=BT_Settings_000404_Desc}Native value is 90%. Provides a multiplier to experience gained from simulated battles. This is applied to all simulated fights on the campaign map."),
             SettingPropertyGroup("{=KTMCM_CXpModifiers}Xp Modifiers/{=BT_Settings_000400}Troop Experience" + "*/" + "{=BT_Settings_000403}Troop Simulation Experience")]
         public float TroopBattleSimulationExperienceMultiplier { get; set; } = 0.9f;
+        #endregion //~ Troop Experience Tweaks
+        #endregion
+
+        //~ Crafting Tweaks
+        #region Crafting Tweaks
+        [SettingPropertyBool("{=KTMCM_SM}Smithing Modifiers *", IsToggle = true, Order = 0, RequireRestart = true,
+            HintText = "{=KTMCM_SMH}Enables modifying Smithing variables.")]
+        [SettingPropertyGroup("{=BT_Settings_004000}Crafting Tweaks")]
+        public bool MCMSmithingModifiers { get; set; } = false; // Activates the Model Override
+
+        [SettingPropertyBool("{=KTMCM_SMPOM}Use Patches instead of model" + "*", Order = 1, RequireRestart = true,
+            HintText = "{=KTMCM_SMPOMH}Enables using only harmoney patches and does not load a smithing model. This applies to energy cost multiplers and xp multipliers. Does not apply to " +
+            "Max crafting stamina, stamina gains, or smelting tweaks they are patches only")]
+        [SettingPropertyGroup("{=BT_Settings_004000}Crafting Tweaks")]
+        public bool MCMSmithingHarmoneyPatches { get; set; } = false; // Activates the Model Override
+
+        //~ Stamina Tweaks
+        #region Stamina
+        [SettingPropertyBool("{=BT_Settings_004100}Crafting Stamina" + "*", Order = 1, RequireRestart = true, IsToggle = true,
+            HintText = "{=BT_Settings_004100_Desc}Enables tweaks which affect crafting stamina."),
+            SettingPropertyGroup("{=BT_Settings_004000}Crafting Tweaks" + "/" + "{=BT_Settings_004100}Crafting Stamina", GroupOrder = 1)]
+        public bool CraftingStaminaTweakEnabled { get; set; } = false;
+
+        [SettingPropertyInteger("{=BT_Settings_004101}Max Crafting Stamina", 100, 1000, "0 Stamina", Order = 2, RequireRestart = false,
+            HintText = "{=BT_Settings_004101_Desc}Native value is 400. Sets the maximum crafting stamina value."),
+            SettingPropertyGroup("{=BT_Settings_004000}Crafting Tweaks" + "/" + "{=BT_Settings_004100}Crafting Stamina")]
+        public int MaxCraftingStamina { get; set; } = 400;
+
+        //~ Stamina Gains
+        #region StaminGain
+        [SettingPropertyInteger("{=BT_Settings_004102}Crafting Stamina Gain", 0, 100, "0 Stamina/h", Order = 3, RequireRestart = false,
+            HintText = "{=BT_Settings_004102_Desc}Native value is 5. You gain this amount of crafting stamina per hour."),
+            SettingPropertyGroup("{=BT_Settings_004000}Crafting Tweaks" + "/" + "{=BT_Settings_004100}Crafting Stamina")]
+        public int CraftingStaminaGainAmount { get; set; } = 5;
+
+        [SettingPropertyFloatingInteger("{=BT_Settings_004103}Crafting Stamina Gain Outside Settlement", 0f, 1f, "0%", Order = 4, RequireRestart = false,
+            HintText = "{=BT_Settings_004103_Desc}Native value is 0%. In % of Crafting Stamina Gain. In native, you do not gain crafting stamina if you are not resting inside a settlement."),
+            SettingPropertyGroup("{=BT_Settings_004000}Crafting Tweaks" + "/" + "{=BT_Settings_004100}Crafting Stamina")]
+        public float CraftingStaminaGainOutsideSettlementMultiplier { get; set; } = 0f;
+        #endregion
+
+        //~ Energy Cost Multipliers
+        #region EnergyCostMultiplier
+        [SettingPropertyFloatingInteger("{=KTMCM_SMECCM}Energy Use Crafting", 0.1f, 3.0f, "#0%", RequireRestart = false,
+            HintText = "{=KTMCM_SMECCMH}Multiply the energy used for Crafting by the multiplier [Native : 1.0[100%]]. 50% uses only half the native energy per action")]
+        [SettingPropertyGroup("{=BT_Settings_004000}Crafting Tweaks" + "/" + "{=BT_Settings_004100}Crafting Stamina")]
+        public float SmithingEnergySmithingValue { get; set; } = 1.0f;
+
+        [SettingPropertyFloatingInteger("{=}Energy Use Smithing", 0.1f, 3.0f, "#0%", RequireRestart = false,
+            HintText = "{=KTMCM_SMECSMH}Multiply the energy used for Smelting by the multiplier [Native : 1.0[100%]]. 50% uses only half the native energy per action")]
+        [SettingPropertyGroup("{=BT_Settings_004000}Crafting Tweaks" + "/" + "{=BT_Settings_004100}Crafting Stamina")]
+        public float SmithingEnergySmeltingValue { get; set; } = 1.0f;
+
+
+        [SettingPropertyFloatingInteger("{=KTMCM_SMECRM}Energy Use Refining", 0.1f, 3.0f, "#0%", RequireRestart = false,
+            HintText = "{=KTMCM_SMECRMH}Multiply the energy used for refining by the multiplier [Native : 1.0[100%]]. 50% uses only half the native energy per action")]
+        [SettingPropertyGroup("{=BT_Settings_004000}Crafting Tweaks" + "/" + "{=BT_Settings_004100}Crafting Stamina")]
+        public float SmithingEnergyRefiningValue { get; set; } = 1.0f;
+        #endregion
+
+        [SettingPropertyBool("{=KTMCM_SMSE}Energy Disable", Order = 0, RequireRestart = false,
+            HintText = "{=KTMCM_SMSEH}Disable the energy for crafting and refining tasks [Native : false]")]
+        [SettingPropertyGroup("{=BT_Settings_004000}Crafting Tweaks" + "/" + "{=BT_Settings_004100}Crafting Stamina")]
+        public bool SmithingEnergyDisable { get; set; } = false;
+        #endregion
+
+        //~ BT Smelting Tweaks
+        #region Smelting
+
+        [SettingPropertyBool("{=BT_Settings_004200}Smelting" + "*", Order = 1, RequireRestart = true, IsToggle = true,
+            HintText = "{=BT_Settings_004200_Desc}Enables tweaks which affect smelting of weapons."),
+            SettingPropertyGroup("{=BT_Settings_004000}Crafting Tweaks" + "/" + "{=BT_Settings_004200}Smelting" + "*", GroupOrder = 2)]
+        public bool SmeltingTweakEnabled { get; set; } = false;
+
+        [SettingPropertyBool("{=BT_Settings_004201}Hide Locked Weapons in Smelting Menu", Order = 1, RequireRestart = false,
+            HintText = "{=BT_Settings_004201_Desc}Native value is false. Prevent weapons that you have locked in your inventory from showing up in the smelting list to prevent accidental smelting."),
+            SettingPropertyGroup("{=BT_Settings_004000}Crafting Tweaks" + "/" + "{=BT_Settings_004200}Smelting" + "*")]
+        public bool PreventSmeltingLockedItems { get; set; } = false;
+
+        [SettingPropertyBool("{=BT_Settings_004202}Enable Unlocking Parts From Smelted Weapons", Order = 2, RequireRestart = false,
+            HintText = "{=BT_Settings_004202_Desc}Native value is false. Unlock the parts that a weapon is made of when you smelt it."),
+            SettingPropertyGroup("{=BT_Settings_004000}Crafting Tweaks" + "/" + "{=BT_Settings_004200}Smelting" + "*")]
+        public bool AutoLearnSmeltedParts { get; set; } = false;
 
         #endregion
 
+        //~ Xp Modifiers
+        #region XP Modifiers
+        [SettingPropertyBool("{=KTMCM_SMRXP}Smithing Xp Multipliers" + "*", IsToggle = true, Order = 0, RequireRestart = true,
+            HintText = "{=KTMCM_SMRXPH}Enables xp multipliers to increase or decrease the xp gained per action.")]
+        [SettingPropertyGroup("{=BT_Settings_004000}Crafting Tweaks/{=KTMCM_CXP}XP")]
+        public bool SmithingXpModifiers { get; set; } = false;
 
+        [SettingPropertyFloatingInteger("{=KTMCM_SMRXPM}Refining Xp", 0.1f, 5.0f, "#0%", RequireRestart = false,
+            HintText = "{=KTMCM_SMRXPMH}Multiply Refining Xp by the multiplier [Native : 1.0[100%]].")]
+        [SettingPropertyGroup("{=BT_Settings_004000}Crafting Tweaks/{=KTMCM_CXP}XP")]
+        public float SmithingRefiningXpValue { get; set; } = 1.0f;
+
+        [SettingPropertyFloatingInteger("{=KTMCM_SMSXPM}Smelting Xp", 0.1f, 5.0f, "#0%", RequireRestart = false,
+            HintText = "{=KTMCM_SMSXPMH}Multiply Smelting Xp by the multiplier [Native : 1.0[100%]].")]
+        [SettingPropertyGroup("{=BT_Settings_004000}Crafting Tweaks/{=KTMCM_CXP}XP")]
+        public float SmithingSmeltingXpValue { get; set; } = 1.0f;
+
+        [SettingPropertyFloatingInteger("{=KTMCM_SMCXPM}Smithing Xp", 0.1f, 5.0f, "#0%", RequireRestart = false,
+            HintText = "{=KTMCM_SMCXPMH}Multiply Smithing Xp by the multiplier [Native : 1.0[100%]].")]
+        [SettingPropertyGroup("{=BT_Settings_004000}Crafting Tweaks/{=KTMCM_CXP}XP")]
+        public float SmithingSmithingXpValue { get; set; } = 1.0f;
+        #endregion
         #endregion
 
-
-
-
-
-
-
-
-        //~ BT Keep
-        #region Prisoner Tweaks #9
-
-        #region Imprisonmewnt Time Tweaks
-
-        [SettingPropertyBool("{=BT_Settings_007100}Imprisonment Time" + "*", Order = 1, RequireRestart = true, IsToggle = true,
-            HintText = "{=BT_Settings_007100_Desc}Adds a minimum amount of time before lords can attempt to escape imprisonment."),
-            SettingPropertyGroup("{=BT_Settings_007000}Prisoner Tweaks" + "/" + "{=BT_Settings_007100}Imprisonment Time" + "*", GroupOrder = 1)]
-        public bool PrisonerImprisonmentTweakEnabled { get; set; } = false;
-
-        [SettingPropertyBool("{=BT_Settings_007101}Player Prisoners Only", Order = 2, RequireRestart = false,
-            HintText = "{=BT_Settings_007101_Desc}Whether the tweak should be applied only to prisoners held by the player."),
-            SettingPropertyGroup("{=BT_Settings_007000}Prisoner Tweaks" + "/" + "{=BT_Settings_007100}Imprisonment Time" + "*")]
-        public bool PrisonerImprisonmentPlayerOnly { get; set; } = true;
-
-        [SettingPropertyInteger("{=BT_Settings_007102}Minimum Days of Imprisonment", 0, 180, "0 Days", Order = 3, RequireRestart = false,
-            HintText = "{=BT_Settings_007102_Desc}The minimum number of days a lord will remain imprisoned before they can attempt to escape."),
-            SettingPropertyGroup("{=BT_Settings_007000}Prisoner Tweaks" + "/" + "{=BT_Settings_007100}Imprisonment Time" + "*")]
-        public int MinimumDaysOfImprisonment { get; set; } = 0;
-
-        [SettingPropertyBool("{=BT_Settings_007103}Enable Missing Prisoner Hero Fix" + "*", Order = 4, RequireRestart = true,
-            HintText = "{=BT_Settings_007103_Desc}Will attempt to detect and release prisoner Heroes who may be bugged and do not respawn. Will trigger 3 days after the Minimum Days of Imprisonment setting."),
-            SettingPropertyGroup("{=BT_Settings_007000}Prisoner Tweaks" + "/" + "{=BT_Settings_007100}Imprisonment Time" + "*")]
-        public bool EnableMissingHeroFix { get; set; } = false;
-
-        #endregion
-
-        #region Prisoner Size Tweak
-
-        [SettingPropertyBool("{=BT_Settings_007200}Prisoner Size Bonus" + "*", Order = 1, RequireRestart = true, IsToggle = true,
-            HintText = "{=BT_Settings_007200_Desc}Enables a % bonus to your party's maximum prisoner size."),
-            SettingPropertyGroup("{=BT_Settings_007000}Prisoner Tweaks" + "/" + "{=BT_Settings_007200}Prisoner Size Bonus" + "*", GroupOrder = 2)]
-        public bool PrisonerSizeTweakEnabled { get; set; } = false;
-
-        [SettingPropertyFloatingInteger("{=BT_Settings_007201}Prisoner Size Bonus", 0f, 5f, "0%", Order = 2, RequireRestart = false,
-            HintText = "{=BT_Settings_007201_Desc}Adds a % bonues to your party's maximum prisoner size. Native is 0%."),
-            SettingPropertyGroup("{=BT_Settings_007000}Prisoner Tweaks" + "/" + "{=BT_Settings_007200}Prisoner Size Bonus" + "*")]
-        public float PrisonerSizeTweakPercent { get; set; } = 0;
-
-        [SettingPropertyBool("{=BT_Settings_007202}Also apply to AI", Order = 2, RequireRestart = false,
-            HintText = "{=BT_Settings_007202_Desc}Wether the prisoner size bonus should apply to AI Lords."),
-            SettingPropertyGroup("{=BT_Settings_007000}Prisoner Tweaks" + "/" + "{=BT_Settings_007200}Prisoner Size Bonus" + "*")]
-        public bool PrisonerSizeTweakAI { get; set; } = false;
-
-        #endregion
-
-        #region Prisoner Confirmity Tweaks
-
-        [SettingPropertyBool("{=BT_Settings_007300}Prisoner Confirmity" + "*", Order = 1, RequireRestart = true, IsToggle = true,
-            HintText = "{=BT_Settings_007300_Desc}Modifies the conformity rate of the base game, speeding the rate at which prisoners can be recruited."),
-            SettingPropertyGroup("{=BT_Settings_007000}Prisoner Tweaks" + "/" + "{=BT_Settings_007300}Prisoner Confirmity" + "*", GroupOrder = 3)]
-        public bool PrisonerConformityTweaksEnabled { get; set; } = false;
-
-        [SettingPropertyFloatingInteger("{=BT_Settings_007301}Prisoner Confirmity Bonus", 0f, 10f, "0%", Order = 2, RequireRestart = false,
-            HintText = "{=BT_Settings_007301_Desc}Adds a % bonues to the conformity generated each hour. Native is 0%."),
-            SettingPropertyGroup("{=BT_Settings_007000}Prisoner Tweaks" + "/" + "{=BT_Settings_007300}Prisoner Confirmity" + "*")]
-        public float PrisonerConformityTweakBonus { get; set; } = 0;
-
-        [SettingPropertyBool("{=BT_Settings_007302}Apply Prisoner Confirmity Tweaks to Clan", Order = 3, RequireRestart = false,
-            HintText = "{=BT_Settings_007302_Desc}Applies Prisoner Conformity Tweaks to all clan parties as well."),
-            SettingPropertyGroup("{=BT_Settings_007000}Prisoner Tweaks" + "/" + "{=BT_Settings_007300}Prisoner Confirmity" + "*")]
-        public bool PrisonerConformityTweaksApplyToClan { get; set; } = false;
-
-        [SettingPropertyBool("{=BT_Settings_007303}Apply Prisoner Confirmity Tweaks to AI", Order = 4, RequireRestart = false,
-            HintText = "{=BT_Settings_007303_Desc}Applies Prisoner Conformity Tweaks to all parties, including AI lords as well."),
-            SettingPropertyGroup("{=BT_Settings_007000}Prisoner Tweaks" + "/" + "{=BT_Settings_007300}Prisoner Confirmity" + "*")]
-        public bool PrisonerConformityTweaksApplyToAi { get; set; } = false;
-
-        #endregion
-
-        #endregion
-
-
-
+        //~ Campaign Tweaks
         #region Campaign Tweaks #2
-
-
         [SettingPropertyBool("{=BT_Settings_001200}Difficulty Tweaks" + "*", Order = 1, RequireRestart = true, IsToggle = true,
             HintText = "{=BT_Settings_001200_Desc}Allows you to change the multiplier for several difficulty settings."),
             SettingPropertyGroup("{=BT_Settings_001000}Campaign Tweaks" + "/" + "{=BT_Settings_001200}Difficulty Tweaks" + "*", GroupOrder = 2)]
@@ -1308,12 +1343,152 @@ namespace KaosesTweaks.Settings
             SettingPropertyGroup("{=BT_Settings_001000}Campaign Tweaks" + "/" + "{=BT_Settings_001200}Difficulty Tweaks" + "*/" + "{=BT_Settings_001209}Player Map Movement Speed Tweak")]
         public float PlayerMapMovementSpeedBonusMultiplier { get; set; } = 0.0f;
 
-        #endregion
 
         #endregion
 
+        #endregion
 
-        #region Settlement Tweaks #10
+        //~ Tournaments
+        #region Tournaments
+
+        [SettingPropertyBool("{=BT_Settings_008801}Renown Reward" + "*", Order = 1, RequireRestart = true, IsToggle = true,
+            HintText = "{=BT_Settings_008801_Desc}Sets the amount of renown awarded when you win a tournament."),
+            SettingPropertyGroup("{=BT_Settings_008800}Tournaments" + "/" + "{=BT_Settings_008801}Renown Reward" + "*", GroupOrder = 1)]
+        public bool TournamentRenownIncreaseEnabled { get; set; } = false;
+        #region Renown Reward
+        [SettingPropertyInteger("{=BT_Settings_008802}Tournament Renown Reward", 1, 50, "0 Renown", RequireRestart = false, Order = 2,
+            HintText = "{=BT_Settings_008802_Desc}Native value is 3. Increases the amount of renown awarded when you win a tournament."),
+            SettingPropertyGroup("{=BT_Settings_008800}Tournaments" + "/" + "{=BT_Settings_008801}Renown Reward" + "*")]
+        public int TournamentRenownAmount { get; set; } = 3;
+
+        #endregion
+
+        [SettingPropertyBool("{=BT_Settings_008803}Gold Reward" + "*", Order = 1, RequireRestart = true, IsToggle = true,
+            HintText = "{=BT_Settings_008803_Desc}Adds the set amount of gold to the rewards when you win a tournament."),
+            SettingPropertyGroup("{=BT_Settings_008800}Tournaments" + "/" + "{=BT_Settings_008803}Gold Reward" + "*", GroupOrder = 2)]
+        public bool TournamentGoldRewardEnabled { get; set; } = false;
+        #region Gold Reward
+        [SettingPropertyInteger("{=BT_Settings_008804}Tournament Gold Reward", 0, 5000, "0 Denar", RequireRestart = false, Order = 2,
+            HintText = "{=BT_Settings_008804_Desc}Native value is 0. Adds the set amount of gold to the rewards when you win a tournament."),
+            SettingPropertyGroup("{=BT_Settings_008800}Tournaments" + "/" + "{=BT_Settings_008803}Gold Reward" + "*")]
+        public int TournamentGoldRewardAmount { get; set; } = 0;
+
+        #endregion
+
+        [SettingPropertyBool("{=BT_Settings_008805}Maximum Bet" + "*", Order = 1, RequireRestart = true, IsToggle = true,
+            HintText = "{=BT_Settings_008805_Desc}Sets the maximum amount of gold that you can bet per round in tournaments."),
+            SettingPropertyGroup("{=BT_Settings_008800}Tournaments" + "/" + "{=BT_Settings_008805}Maximum Bet" + "*", GroupOrder = 3)]
+        public bool TournamentMaxBetAmountTweakEnabled { get; set; } = false;
+        #region Maximum Bet
+        [SettingPropertyInteger("{=BT_Settings_008806}Maximum Bet Amount", 0, 4000, "0 Denar", RequireRestart = false, Order = 2,
+            HintText = "{=BT_Settings_008806_Desc}Native value is 150. Sets the maximum amount of gold that you can bet per round in tournaments."),
+            SettingPropertyGroup("{=BT_Settings_008800}Tournaments" + "/" + "{=BT_Settings_008805}Maximum Bet" + "*")]
+        public int TournamentMaxBetAmount { get; set; } = 150;
+
+        #endregion
+
+        [SettingPropertyBool("{=BT_Settings_008807}Hero Experience Modifier" + "*", Order = 1, RequireRestart = true, IsToggle = true,
+            HintText = "{=BT_Settings_008807_Desc}Overrides the native multiplier value for experience gain in tournaments for hero characters."),
+            SettingPropertyGroup("{=BT_Settings_008800}Tournaments" + "/" + "{=BT_Settings_008807}Hero Experience Modifier" + "*", GroupOrder = 4)]
+        public bool TournamentHeroExperienceMultiplierEnabled { get; set; } = false;
+        #region Hero Experience
+        [SettingPropertyFloatingInteger("{=BT_Settings_008808}Tournament Hero Experience Modifier", 0.33f, 10f, "0%", RequireRestart = false, Order = 2,
+            HintText = "{=BT_Settings_008808_Desc}Native value is 33%. Sets the modifier applied to experience gained in tournaments by hero characters. 100% = full real-world experience."),
+            SettingPropertyGroup("{=BT_Settings_008800}Tournaments" + "/" + "{=BT_Settings_008807}Hero Experience Modifier" + "*")]
+        public float TournamentHeroExperienceMultiplier { get; set; } = 0.33f;
+
+        #endregion
+
+        [SettingPropertyBool("{=BT_Settings_008809}Arena Hero Experience Modifier" + "*", Order = 1, RequireRestart = true, IsToggle = true,
+            HintText = "{=BT_Settings_008809_Desc}Overrides the native multiplier value for experience gain in arena fights for hero characters."),
+            SettingPropertyGroup("{=BT_Settings_008800}Tournaments" + "/" + "{=BT_Settings_008809}Arena Experience Modifier" + "*", GroupOrder = 5)]
+        public bool ArenaHeroExperienceMultiplierEnabled { get; set; } = false;
+        #region Arena Hero Experience
+        [SettingPropertyFloatingInteger("{=BT_Settings_008810}Arena Hero Experience Modifier", 0.06f, 5f, "0%", Order = 2, RequireRestart = false,
+            HintText = "{=BT_Settings_008810_Desc}Native value is 6%. Sets the modifier applied to experience gain in arena fights for hero characters. 100% = full real-world experience."),
+            SettingPropertyGroup("{=BT_Settings_008800}Tournaments" + "/" + "{=BT_Settings_008809}Arena Experience Modifier" + "*")]
+        public float ArenaHeroExperienceMultiplier { get; set; } = 0.06f;
+
+        #endregion
+
+        [SettingPropertyBool("{=BT_Settings_008811}Minimum Betting Odds" + "*", Order = 1, RequireRestart = true, IsToggle = true,
+            HintText = "{=BT_Settings_008811_Desc}Allows you to set the minimum betting odds in tournaments."),
+            SettingPropertyGroup("{=BT_Settings_008800}Tournaments" + "/" + "{=BT_Settings_008811}Minimum Betting Odds" + "*", GroupOrder = 6)]
+        public bool MinimumBettingOddsTweakEnabled { get; set; } = false;
+        #region Minimum Betting Odds
+        [SettingPropertyFloatingInteger("{=BT_Settings_008812}Minimum Betting Odds", 1.1f, 10f, RequireRestart = false, Order = 2,
+            HintText = "{=BT_Settings_008812_Desc}Native: 1.1. The minimum odds for tournament bets, higher means more yield for your bets, if won."),
+            SettingPropertyGroup("{=BT_Settings_008800}Tournaments" + "/" + "{=BT_Settings_008811}Minimum Betting Odds" + "*")]
+        public float MinimumBettingOdds { get; set; } = 1.1f;
+
+        #endregion
+        #endregion
+
+        //~ Age Tweaks
+        #region Age Tweaks
+        [SettingPropertyBool("{=BT_Settings_002100}Age Tweaks" + "*", Order = 1, RequireRestart = true, IsToggle = true,
+            HintText = "{=BT_Settings_002100_Desc}Enables the tweaking of character age behavior."),
+            SettingPropertyGroup("{=BT_Settings_002100}Age Tweaks", GroupOrder = 1)]
+        public bool AgeTweaksEnabled { get; set; } = false;
+
+        [SettingPropertyInteger("{=BT_Settings_002101}Become Infant Age", 0, 125, "0 Years", RequireRestart = false, Order = 2,
+            HintText = "{=BT_Settings_002101_Desc}Native: 3. Must be less than Become Child Age."),
+            SettingPropertyGroup("{=BT_Settings_002100}Age Tweaks")]
+        public int BecomeInfantAge { get; set; } = 3;
+
+        [SettingPropertyInteger("{=BT_Settings_002102}Become Child Age", 0, 125, "0 Years", RequireRestart = false, Order = 3,
+            HintText = "{=BT_Settings_002102_Desc}Native: 6. Must be less than Become Teenager Age."),
+            SettingPropertyGroup("{=BT_Settings_002100}Age Tweaks")]
+        public int BecomeChildAge { get; set; } = 6;
+
+        [SettingPropertyInteger("{=BT_Settings_002103}Become Teenager Age", 0, 125, "0 Years", RequireRestart = false, Order = 4,
+            HintText = "{=BT_Settings_002103_Desc}Native: 14. Must be less than Hero Comes Of Age."),
+            SettingPropertyGroup("{=BT_Settings_002100}Age Tweaks")]
+        public int BecomeTeenagerAge { get; set; } = 14;
+
+        [SettingPropertyInteger("{=BT_Settings_002104}Hero Comes Of Age", 0, 125, "0 Years", RequireRestart = false, Order = 5,
+            HintText = "{=BT_Settings_002104_Desc}Native: 18. Must be less than Become Old Age."),
+            SettingPropertyGroup("{=BT_Settings_002100}Age Tweaks")]
+        public int HeroComesOfAge { get; set; } = 18;
+
+        [SettingPropertyInteger("{=BT_Settings_002105}Become Old Age", 0, 125, "0 Years", RequireRestart = false, Order = 6,
+            HintText = "{=BT_Settings_002105_Desc}Native: 47. Must be less than Max Age."),
+            SettingPropertyGroup("{=BT_Settings_002100}Age Tweaks")]
+        public int BecomeOldAge { get; set; } = 47;
+
+        [SettingPropertyInteger("{=BT_Settings_002106}Max Age", 0, 125, "0 Years", RequireRestart = false, Order = 7,
+            HintText = "{=BT_Settings_002106_Desc}Native: 125."),
+            SettingPropertyGroup("{=BT_Settings_002100}Age Tweaks")]
+        public int MaxAge { get; set; } = 125;
+
+        #endregion
+
+        //~ Miscellaneous
+        #region Miscellaneous
+
+        [SettingPropertyBool("{=BT_Settings_009001}Disable Quest Troops Affecting Morale" + "*", Order = 1, RequireRestart = true,
+            HintText = "{=BT_Settings_009001_Desc}When enabled, quest troops such as Borrowed Troop in your party are ignored when party morale is calculated."),
+            SettingPropertyGroup("{=BT_Settings_009000}Misc", GroupOrder = 99)]
+        public bool QuestCharactersIgnorePartySize { get; set; } = false;
+
+        [SettingPropertyBool("{=BT_Settings_009002}Show Number of Days of Food" + "*", Order = 2, RequireRestart = true,
+            HintText = "{=BT_Settings_009002_Desc}Changes the number showing how much food you have to instead show how many days' worth of food you have. (Bottom right of campaign map UI)."),
+            SettingPropertyGroup("{=BT_Settings_009000}Misc")]
+        public bool ShowFoodDaysRemaining { get; set; } = false;
+
+        [SettingPropertyInteger("{=BT_Settings_009003}Campaign Speed Fast Forward", 2, 32, Order = 3, RequireRestart = false,
+            HintText = "{=BT_Settings_009003_Desc}Sets the campaign speed in fast forward mode. Vanilla is 4."),
+            SettingPropertyGroup("{=BT_Settings_009000}Misc")]
+        public int CampaignSpeed { get; set; } = 4;
+
+        /* Disable in 1.5.7.2 until we understand changes to the main quest.
+        [SettingPropertyBool("Enable Auto-Extension of the 'Stop the Conspiracy' Quest", RequireRestart = false, HintText = "Automatically extends the timer of the 'Stop the Conspiracy' quest as TW hasn't finished it yet.")]
+        public bool TweakedConspiracyQuestTimerEnabled { get; set; } = true;
+        */
+        #endregion
+
+        //~ Settlement Tweaks
+        #region Settlement Tweaks
 
         [SettingPropertyBool("{=BT_Settings_008100}Settlement Culture Transformation" + "*", Order = 1, RequireRestart = true, IsToggle = true,
             HintText = "{=BT_Settings_008100_Desc}Changes the culture of settlement in relation to the owner clan. On deactivation cultures revert back. The last town of a culture will not be changed!"),
@@ -1490,7 +1665,7 @@ namespace KaosesTweaks.Settings
 
         #endregion
 
-        #endregion
+        #endregion //~ Castle
 
         #region Settlement Tweaks - Buildings - Town 
 
@@ -1590,9 +1765,9 @@ namespace KaosesTweaks.Settings
 
         #endregion
 
-        #endregion
+        #endregion //~ Town
 
-        #endregion
+        #endregion //~ Buildings
 
         #region Settlement Tweaks - Settlement Food
 
@@ -1674,84 +1849,9 @@ namespace KaosesTweaks.Settings
         public float SettlementEliteRangedSpawnRateBonus { get; set; } = 0.1f;
 
         #endregion
-        #endregion
+        #endregion //~ Settlement
 
-        #region Tournaments
-
-        [SettingPropertyBool("{=BT_Settings_008801}Renown Reward" + "*", Order = 1, RequireRestart = true, IsToggle = true,
-            HintText = "{=BT_Settings_008801_Desc}Sets the amount of renown awarded when you win a tournament."),
-            SettingPropertyGroup("{=BT_Settings_008800}Tournaments" + "/" + "{=BT_Settings_008801}Renown Reward" + "*", GroupOrder = 1)]
-        public bool TournamentRenownIncreaseEnabled { get; set; } = false;
-        #region Renown Reward
-        [SettingPropertyInteger("{=BT_Settings_008802}Tournament Renown Reward", 1, 50, "0 Renown", RequireRestart = false, Order = 2,
-            HintText = "{=BT_Settings_008802_Desc}Native value is 3. Increases the amount of renown awarded when you win a tournament."),
-            SettingPropertyGroup("{=BT_Settings_008800}Tournaments" + "/" + "{=BT_Settings_008801}Renown Reward" + "*")]
-        public int TournamentRenownAmount { get; set; } = 3;
-
-        #endregion
-
-        [SettingPropertyBool("{=BT_Settings_008803}Gold Reward" + "*", Order = 1, RequireRestart = true, IsToggle = true,
-            HintText = "{=BT_Settings_008803_Desc}Adds the set amount of gold to the rewards when you win a tournament."),
-            SettingPropertyGroup("{=BT_Settings_008800}Tournaments" + "/" + "{=BT_Settings_008803}Gold Reward" + "*", GroupOrder = 2)]
-        public bool TournamentGoldRewardEnabled { get; set; } = false;
-        #region Gold Reward
-        [SettingPropertyInteger("{=BT_Settings_008804}Tournament Gold Reward", 0, 5000, "0 Denar", RequireRestart = false, Order = 2,
-            HintText = "{=BT_Settings_008804_Desc}Native value is 0. Adds the set amount of gold to the rewards when you win a tournament."),
-            SettingPropertyGroup("{=BT_Settings_008800}Tournaments" + "/" + "{=BT_Settings_008803}Gold Reward" + "*")]
-        public int TournamentGoldRewardAmount { get; set; } = 0;
-
-        #endregion
-
-        [SettingPropertyBool("{=BT_Settings_008805}Maximum Bet" + "*", Order = 1, RequireRestart = true, IsToggle = true,
-            HintText = "{=BT_Settings_008805_Desc}Sets the maximum amount of gold that you can bet per round in tournaments."),
-            SettingPropertyGroup("{=BT_Settings_008800}Tournaments" + "/" + "{=BT_Settings_008805}Maximum Bet" + "*", GroupOrder = 3)]
-        public bool TournamentMaxBetAmountTweakEnabled { get; set; } = false;
-        #region Maximum Bet
-        [SettingPropertyInteger("{=BT_Settings_008806}Maximum Bet Amount", 0, 4000, "0 Denar", RequireRestart = false, Order = 2,
-            HintText = "{=BT_Settings_008806_Desc}Native value is 150. Sets the maximum amount of gold that you can bet per round in tournaments."),
-            SettingPropertyGroup("{=BT_Settings_008800}Tournaments" + "/" + "{=BT_Settings_008805}Maximum Bet" + "*")]
-        public int TournamentMaxBetAmount { get; set; } = 150;
-
-        #endregion
-
-        [SettingPropertyBool("{=BT_Settings_008807}Hero Experience Modifier" + "*", Order = 1, RequireRestart = true, IsToggle = true,
-            HintText = "{=BT_Settings_008807_Desc}Overrides the native multiplier value for experience gain in tournaments for hero characters."),
-            SettingPropertyGroup("{=BT_Settings_008800}Tournaments" + "/" + "{=BT_Settings_008807}Hero Experience Modifier" + "*", GroupOrder = 4)]
-        public bool TournamentHeroExperienceMultiplierEnabled { get; set; } = false;
-        #region Hero Experience
-        [SettingPropertyFloatingInteger("{=BT_Settings_008808}Tournament Hero Experience Modifier", 0.33f, 10f, "0%", RequireRestart = false, Order = 2,
-            HintText = "{=BT_Settings_008808_Desc}Native value is 33%. Sets the modifier applied to experience gained in tournaments by hero characters. 100% = full real-world experience."),
-            SettingPropertyGroup("{=BT_Settings_008800}Tournaments" + "/" + "{=BT_Settings_008807}Hero Experience Modifier" + "*")]
-        public float TournamentHeroExperienceMultiplier { get; set; } = 0.33f;
-
-        #endregion
-
-        [SettingPropertyBool("{=BT_Settings_008809}Arena Hero Experience Modifier" + "*", Order = 1, RequireRestart = true, IsToggle = true,
-            HintText = "{=BT_Settings_008809_Desc}Overrides the native multiplier value for experience gain in arena fights for hero characters."),
-            SettingPropertyGroup("{=BT_Settings_008800}Tournaments" + "/" + "{=BT_Settings_008809}Arena Experience Modifier" + "*", GroupOrder = 5)]
-        public bool ArenaHeroExperienceMultiplierEnabled { get; set; } = false;
-        #region Arena Hero Experience
-        [SettingPropertyFloatingInteger("{=BT_Settings_008810}Arena Hero Experience Modifier", 0.06f, 5f, "0%", Order = 2, RequireRestart = false,
-            HintText = "{=BT_Settings_008810_Desc}Native value is 6%. Sets the modifier applied to experience gain in arena fights for hero characters. 100% = full real-world experience."),
-            SettingPropertyGroup("{=BT_Settings_008800}Tournaments" + "/" + "{=BT_Settings_008809}Arena Experience Modifier" + "*")]
-        public float ArenaHeroExperienceMultiplier { get; set; } = 0.06f;
-
-        #endregion
-
-        [SettingPropertyBool("{=BT_Settings_008811}Minimum Betting Odds" + "*", Order = 1, RequireRestart = true, IsToggle = true,
-            HintText = "{=BT_Settings_008811_Desc}Allows you to set the minimum betting odds in tournaments."),
-            SettingPropertyGroup("{=BT_Settings_008800}Tournaments" + "/" + "{=BT_Settings_008811}Minimum Betting Odds" + "*", GroupOrder = 6)]
-        public bool MinimumBettingOddsTweakEnabled { get; set; } = false;
-        #region Minimum Betting Odds
-        [SettingPropertyFloatingInteger("{=BT_Settings_008812}Minimum Betting Odds", 1.1f, 10f, RequireRestart = false, Order = 2,
-            HintText = "{=BT_Settings_008812_Desc}Native: 1.1. The minimum odds for tournament bets, higher means more yield for your bets, if won."),
-            SettingPropertyGroup("{=BT_Settings_008800}Tournaments" + "/" + "{=BT_Settings_008811}Minimum Betting Odds" + "*")]
-        public float MinimumBettingOdds { get; set; } = 1.1f;
-
-        #endregion
-
-        #endregion
-
+        //~ Workshops
         #region Workshops
 
         [SettingPropertyBool("{=BT_Settings_008901}Workshop Count Limit" + "*", Order = 1, RequireRestart = true, IsToggle = true,
@@ -1825,48 +1925,81 @@ namespace KaosesTweaks.Settings
         [SettingPropertyGroup("{=KTMCM_CWorkShop}WorkShop/{=KTMCM_CBankruptcy}Bankruptcy")]
         public int WorkShopBankruptcyValue { get; set; } = 3;
         #endregion 
-        #endregion
+        #endregion //~ Workshops
 
+        //~ Prisoner Tweaks
+        #region Prisoner Tweaks
 
-        [SettingPropertyBool("{=BT_Settings_002100}Age Tweaks" + "*", Order = 1, RequireRestart = true, IsToggle = true,
-            HintText = "{=BT_Settings_002100_Desc}Enables the tweaking of character age behavior."),
-            SettingPropertyGroup("{=BT_Settings_002100}Age Tweaks", GroupOrder = 1)]
-        public bool AgeTweaksEnabled { get; set; } = false;
-        #region Age Tweaks
-        [SettingPropertyInteger("{=BT_Settings_002101}Become Infant Age", 0, 125, "0 Years", RequireRestart = false, Order = 2,
-            HintText = "{=BT_Settings_002101_Desc}Native: 3. Must be less than Become Child Age."),
-            SettingPropertyGroup("{=BT_Settings_002100}Age Tweaks")]
-        public int BecomeInfantAge { get; set; } = 3;
+        #region Imprisonmewnt Time Tweaks
 
-        [SettingPropertyInteger("{=BT_Settings_002102}Become Child Age", 0, 125, "0 Years", RequireRestart = false, Order = 3,
-            HintText = "{=BT_Settings_002102_Desc}Native: 6. Must be less than Become Teenager Age."),
-            SettingPropertyGroup("{=BT_Settings_002100}Age Tweaks")]
-        public int BecomeChildAge { get; set; } = 6;
+        [SettingPropertyBool("{=BT_Settings_007100}Imprisonment Time" + "*", Order = 1, RequireRestart = true, IsToggle = true,
+            HintText = "{=BT_Settings_007100_Desc}Adds a minimum amount of time before lords can attempt to escape imprisonment."),
+            SettingPropertyGroup("{=BT_Settings_007000}Prisoner Tweaks" + "/" + "{=BT_Settings_007100}Imprisonment Time" + "*", GroupOrder = 1)]
+        public bool PrisonerImprisonmentTweakEnabled { get; set; } = false;
 
-        [SettingPropertyInteger("{=BT_Settings_002103}Become Teenager Age", 0, 125, "0 Years", RequireRestart = false, Order = 4,
-            HintText = "{=BT_Settings_002103_Desc}Native: 14. Must be less than Hero Comes Of Age."),
-            SettingPropertyGroup("{=BT_Settings_002100}Age Tweaks")]
-        public int BecomeTeenagerAge { get; set; } = 14;
+        [SettingPropertyBool("{=BT_Settings_007101}Player Prisoners Only", Order = 2, RequireRestart = false,
+            HintText = "{=BT_Settings_007101_Desc}Whether the tweak should be applied only to prisoners held by the player."),
+            SettingPropertyGroup("{=BT_Settings_007000}Prisoner Tweaks" + "/" + "{=BT_Settings_007100}Imprisonment Time" + "*")]
+        public bool PrisonerImprisonmentPlayerOnly { get; set; } = true;
 
-        [SettingPropertyInteger("{=BT_Settings_002104}Hero Comes Of Age", 0, 125, "0 Years", RequireRestart = false, Order = 5,
-            HintText = "{=BT_Settings_002104_Desc}Native: 18. Must be less than Become Old Age."),
-            SettingPropertyGroup("{=BT_Settings_002100}Age Tweaks")]
-        public int HeroComesOfAge { get; set; } = 18;
+        [SettingPropertyInteger("{=BT_Settings_007102}Minimum Days of Imprisonment", 0, 180, "0 Days", Order = 3, RequireRestart = false,
+            HintText = "{=BT_Settings_007102_Desc}The minimum number of days a lord will remain imprisoned before they can attempt to escape."),
+            SettingPropertyGroup("{=BT_Settings_007000}Prisoner Tweaks" + "/" + "{=BT_Settings_007100}Imprisonment Time" + "*")]
+        public int MinimumDaysOfImprisonment { get; set; } = 0;
 
-        [SettingPropertyInteger("{=BT_Settings_002105}Become Old Age", 0, 125, "0 Years", RequireRestart = false, Order = 6,
-            HintText = "{=BT_Settings_002105_Desc}Native: 47. Must be less than Max Age."),
-            SettingPropertyGroup("{=BT_Settings_002100}Age Tweaks")]
-        public int BecomeOldAge { get; set; } = 47;
-
-        [SettingPropertyInteger("{=BT_Settings_002106}Max Age", 0, 125, "0 Years", RequireRestart = false, Order = 7,
-            HintText = "{=BT_Settings_002106_Desc}Native: 125."),
-            SettingPropertyGroup("{=BT_Settings_002100}Age Tweaks")]
-        public int MaxAge { get; set; } = 125;
+        [SettingPropertyBool("{=BT_Settings_007103}Enable Missing Prisoner Hero Fix" + "*", Order = 4, RequireRestart = true,
+            HintText = "{=BT_Settings_007103_Desc}Will attempt to detect and release prisoner Heroes who may be bugged and do not respawn. Will trigger 3 days after the Minimum Days of Imprisonment setting."),
+            SettingPropertyGroup("{=BT_Settings_007000}Prisoner Tweaks" + "/" + "{=BT_Settings_007100}Imprisonment Time" + "*")]
+        public bool EnableMissingHeroFix { get; set; } = false;
 
         #endregion
 
+        #region Prisoner Size Tweak
 
-        #region Kingdom Tweaks #7
+        [SettingPropertyBool("{=BT_Settings_007200}Prisoner Size Bonus" + "*", Order = 1, RequireRestart = true, IsToggle = true,
+            HintText = "{=BT_Settings_007200_Desc}Enables a % bonus to your party's maximum prisoner size."),
+            SettingPropertyGroup("{=BT_Settings_007000}Prisoner Tweaks" + "/" + "{=BT_Settings_007200}Prisoner Size Bonus" + "*", GroupOrder = 2)]
+        public bool PrisonerSizeTweakEnabled { get; set; } = false;
+
+        [SettingPropertyFloatingInteger("{=BT_Settings_007201}Prisoner Size Bonus", 0f, 5f, "0%", Order = 2, RequireRestart = false,
+            HintText = "{=BT_Settings_007201_Desc}Adds a % bonues to your party's maximum prisoner size. Native is 0%."),
+            SettingPropertyGroup("{=BT_Settings_007000}Prisoner Tweaks" + "/" + "{=BT_Settings_007200}Prisoner Size Bonus" + "*")]
+        public float PrisonerSizeTweakPercent { get; set; } = 0;
+
+        [SettingPropertyBool("{=BT_Settings_007202}Also apply to AI", Order = 2, RequireRestart = false,
+            HintText = "{=BT_Settings_007202_Desc}Wether the prisoner size bonus should apply to AI Lords."),
+            SettingPropertyGroup("{=BT_Settings_007000}Prisoner Tweaks" + "/" + "{=BT_Settings_007200}Prisoner Size Bonus" + "*")]
+        public bool PrisonerSizeTweakAI { get; set; } = false;
+
+        #endregion
+
+        #region Prisoner Confirmity Tweaks
+
+        [SettingPropertyBool("{=BT_Settings_007300}Prisoner Confirmity" + "*", Order = 1, RequireRestart = true, IsToggle = true,
+            HintText = "{=BT_Settings_007300_Desc}Modifies the conformity rate of the base game, speeding the rate at which prisoners can be recruited."),
+            SettingPropertyGroup("{=BT_Settings_007000}Prisoner Tweaks" + "/" + "{=BT_Settings_007300}Prisoner Confirmity" + "*", GroupOrder = 3)]
+        public bool PrisonerConformityTweaksEnabled { get; set; } = false;
+
+        [SettingPropertyFloatingInteger("{=BT_Settings_007301}Prisoner Confirmity Bonus", 0f, 10f, "0%", Order = 2, RequireRestart = false,
+            HintText = "{=BT_Settings_007301_Desc}Adds a % bonues to the conformity generated each hour. Native is 0%."),
+            SettingPropertyGroup("{=BT_Settings_007000}Prisoner Tweaks" + "/" + "{=BT_Settings_007300}Prisoner Confirmity" + "*")]
+        public float PrisonerConformityTweakBonus { get; set; } = 0;
+
+        [SettingPropertyBool("{=BT_Settings_007302}Apply Prisoner Confirmity Tweaks to Clan", Order = 3, RequireRestart = false,
+            HintText = "{=BT_Settings_007302_Desc}Applies Prisoner Conformity Tweaks to all clan parties as well."),
+            SettingPropertyGroup("{=BT_Settings_007000}Prisoner Tweaks" + "/" + "{=BT_Settings_007300}Prisoner Confirmity" + "*")]
+        public bool PrisonerConformityTweaksApplyToClan { get; set; } = false;
+
+        [SettingPropertyBool("{=BT_Settings_007303}Apply Prisoner Confirmity Tweaks to AI", Order = 4, RequireRestart = false,
+            HintText = "{=BT_Settings_007303_Desc}Applies Prisoner Conformity Tweaks to all parties, including AI lords as well."),
+            SettingPropertyGroup("{=BT_Settings_007000}Prisoner Tweaks" + "/" + "{=BT_Settings_007300}Prisoner Confirmity" + "*")]
+        public bool PrisonerConformityTweaksApplyToAi { get; set; } = false;
+
+        #endregion
+        #endregion //~ Prisoner Tweaks
+
+        //~ Kingdom Tweaks
+        #region Kingdom Tweaks
 
 
         #region Kingdom Tweaks - Lord Bartering
@@ -1888,14 +2021,12 @@ namespace KaosesTweaks.Settings
 
         #endregion
 
-
-
-
+        #region Kingdom Tweaks - Balancing Tweaks
         [SettingPropertyBool("{=BT_Settings_005200}Faction Balancing" + "*", Order = 1, RequireRestart = true, IsToggle = true,
             HintText = "{=BT_Settings_005200_Desc}Enables tweaks which affect the balancing of kingdoms."),
             SettingPropertyGroup("{=BT_Settings_005000}Kingdom Tweaks" + "/" + "{=BT_Settings_005200}Faction Balancing" + "*", GroupOrder = 2)]
         public bool KingdomBalanceStrengthEnabled { get; set; } = false;
-        #region Kingdom Tweaks - Balancing Tweaks
+
         [SettingPropertyBool("{=BT_Settings_005201}Balancing Modifiers For Vanilla Kingdoms", Order = 2, RequireRestart = false, IsToggle = true,
             HintText = "{=BT_Settings_005201_Desc}Enables tweaks which affect the balancing of kingdoms in vanilla game."),
             SettingPropertyGroup("{=BT_Settings_005000}Kingdom Tweaks" + "/" + "{=BT_Settings_005200}Faction Balancing" + "*/" + "{=BT_Settings_005201}Balancing Modifiers For Vanilla Kingdoms", GroupOrder = 1)]
@@ -2077,365 +2208,181 @@ namespace KaosesTweaks.Settings
         public bool BalancingUpgradeTroopsTweaksEnabled { get; set; } = false;
 
         #endregion
+        #endregion //~ Kingdom Tweaks
 
+        //~ Party Tweaks
+        #region Party Tweaks
+        #region Party Tweaks - Caravan Tweaks
+        [SettingPropertyBool("{=BT_Settings_006200}Player Caravan Party Size" + "*", Order = 1, RequireRestart = true, IsToggle = true,
+            HintText = "{=BT_Settings_006200_Desc}Applies a configured value to your caravan party size."),
+            SettingPropertyGroup("{=BT_Settings_006000}Party Tweaks" + "/" + "{=BT_Settings_006200}Player Caravan Party Size" + "*", GroupOrder = 2)]
+        public bool PlayerCaravanPartySizeTweakEnabled { get; set; } = false;
 
-
+        [SettingPropertyInteger("{=BT_Settings_006201}Player Caravan Party Size Amount", 30, 100, "0 Troops", Order = 2,
+            HintText = "{=BT_Settings_006201_Desc}Native: 30. Be aware that bigger parties are also slower parties."),
+            SettingPropertyGroup("{=BT_Settings_006000}Party Tweaks" + "/" + "{=BT_Settings_006200}Player Caravan Party Size" + "*")]
+        public int PlayerCaravanPartySize { get; set; } = 30;
         #endregion
 
+        #region Party Tweaks - Party Size Tweaks
+        [SettingPropertyBool("{=BT_Settings_006300}Party Size" + "*", Order = 1, RequireRestart = true, IsToggle = true,
+            HintText = "{=BT_Settings_006300_Desc}Applies a bonues to you and AI lord's party size based on leadership and steward skills."),
+            SettingPropertyGroup("{=BT_Settings_006000}Party Tweaks" + "/" + "{=BT_Settings_006300}Party Size" + "*", GroupOrder = 3)]
+        public bool PartySizeTweakEnabled { get; set; } = false;
 
-        #region Miscellaneous #11
+        [SettingPropertyBool("{=BT_Settings_006301}Leadership Bonus", Order = 2, IsToggle = true, RequireRestart = false,
+            HintText = "{=BT_Settings_006301_Desc}Applies a bonus equal to the set percentage of your leadership skill to your party size."),
+            SettingPropertyGroup("{=BT_Settings_006000}Party Tweaks" + "/" + "{=BT_Settings_006300}Party Size" + "*/" + "{=BT_Settings_006301}Leadership Bonus", GroupOrder = 1)]
+        public bool LeadershipPartySizeBonusEnabled { get; set; } = false;
 
-        [SettingPropertyBool("{=BT_Settings_009001}Disable Quest Troops Affecting Morale" + "*", Order = 1, RequireRestart = true,
-            HintText = "{=BT_Settings_009001_Desc}When enabled, quest troops such as Borrowed Troop in your party are ignored when party morale is calculated."),
-            SettingPropertyGroup("{=BT_Settings_009000}Misc", GroupOrder = 99)]
-        public bool QuestCharactersIgnorePartySize { get; set; } = false;
+        [SettingPropertyFloatingInteger("{=BT_Settings_006302}Leadership Bonus Player", 0f, 2f, "0%", Order = 3, RequireRestart = false,
+            HintText = "{=BT_Settings_006302_Desc}Applies a bonus equal to the set percentage of your leadership skill to your party size."),
+            SettingPropertyGroup("{=BT_Settings_006000}Party Tweaks" + "/" + "{=BT_Settings_006300}Party Size" + "*/" + "{=BT_Settings_006301}Leadership Bonus")]
+        public float LeadershipPartySizeBonus { get; set; } = 0.0f;
 
-        [SettingPropertyBool("{=BT_Settings_009002}Show Number of Days of Food" + "*", Order = 2, RequireRestart = true,
-            HintText = "{=BT_Settings_009002_Desc}Changes the number showing how much food you have to instead show how many days' worth of food you have. (Bottom right of campaign map UI)."),
-            SettingPropertyGroup("{=BT_Settings_009000}Misc")]
-        public bool ShowFoodDaysRemaining { get; set; } = false;
+        [SettingPropertyBool("{=BT_Settings_006303}Steward Bonus", Order = 4, IsToggle = true, RequireRestart = false,
+            HintText = "{=BT_Settings_006303_Desc}Applies a bonus equal to the set percentage of your steward skill to your party size."),
+            SettingPropertyGroup("{=BT_Settings_006000}Party Tweaks" + "/" + "{=BT_Settings_006300}Party Size" + "*/" + "{=BT_Settings_006303}Steward Bonus", GroupOrder = 2)]
+        public bool StewardPartySizeBonusEnabled { get; set; } = false;
 
-        [SettingPropertyInteger("{=BT_Settings_009003}Campaign Speed Fast Forward", 2, 32, Order = 3, RequireRestart = false,
-            HintText = "{=BT_Settings_009003_Desc}Sets the campaign speed in fast forward mode. Vanilla is 4."),
-            SettingPropertyGroup("{=BT_Settings_009000}Misc")]
-        public int CampaignSpeed { get; set; } = 4;
+        [SettingPropertyFloatingInteger("{=BT_Settings_006304}Steward Bonus Player", 0f, 2f, "0%", Order = 5, RequireRestart = false,
+            HintText = "{=BT_Settings_006304_Desc}Applies a bonus equal to the set percentage of your steward skill to your party size."),
+            SettingPropertyGroup("{=BT_Settings_006000}Party Tweaks" + "/" + "{=BT_Settings_006300}Party Size" + "*/" + "{=BT_Settings_006303}Steward Bonus")]
+        public float StewardPartySizeBonus { get; set; } = 0f;
 
-        /* Disable in 1.5.7.2 until we understand changes to the main quest.
-        [SettingPropertyBool("Enable Auto-Extension of the 'Stop the Conspiracy' Quest", RequireRestart = false, HintText = "Automatically extends the timer of the 'Stop the Conspiracy' quest as TW hasn't finished it yet.")]
-        public bool TweakedConspiracyQuestTimerEnabled { get; set; } = true;
-        */
+        [SettingPropertyFloatingInteger("{=BT_Settings_006305}Party Size Relation Player-AI", 0f, 2f, "0%", Order = 6, RequireRestart = false,
+            HintText = "{=BT_Settings_006305_Desc}The percentage of the party size bonus set for the player to also apply for ai lords. 0% results in no bonus for ai. You may also want to increase food production amounts (Village Production, bigger demand)."),
+            SettingPropertyGroup("{=BT_Settings_006000}Party Tweaks" + "/" + "{=BT_Settings_006300}Party Size" + "*")]
+        public float PartySizeTweakAIFactor { get; set; } = 0f;
         #endregion
+
+        #region Party Tweaks - Party Wage Tweaks
+        [SettingPropertyBool("{=BT_Settings_006400}Wages" + "*", Order = 1, RequireRestart = true, IsToggle = true,
+            HintText = "{=BT_Settings_006400_Desc}Allows you to reduce/increase wages for various groups."),
+            SettingPropertyGroup("{=BT_Settings_006000}Party Tweaks" + "/" + "{=BT_Settings_006400}Wages" + "*", GroupOrder = 4)]
+        public bool PartyWageTweaksEnabled { get; set; } = false;
+
+        [SettingPropertyFloatingInteger("{=BT_Settings_006401}Party Wage Adjustment", .05f, 5f, "0%", Order = 2, RequireRestart = false,
+            HintText = "{=BT_Settings_006401_Desc}Adjusts party wages to a % of native value. Native is 100%."),
+            SettingPropertyGroup("{=BT_Settings_006000}Party Tweaks" + "/" + "{=BT_Settings_006400}Wages" + "*")]
+        public float PartyWagePercent { get; set; } = 1.0f;
+
+        [SettingPropertyFloatingInteger("{=BT_Settings_006402}Garrison Wage Adjustment", .05f, 5f, "0%", Order = 3, RequireRestart = false,
+            HintText = "{=BT_Settings_006402_Desc}Adjusts garrison wages to a % of native value. Native is 100%."),
+            SettingPropertyGroup("{=BT_Settings_006000}Party Tweaks" + "/" + "{=BT_Settings_006400}Wages" + "*")]
+        public float GarrisonWagePercent { get; set; } = 1.0f;
+
+        [SettingPropertyBool("{=BT_Settings_006403}Also Apply Wage Tweaks to Your Faction", Order = 4, RequireRestart = false,
+            HintText = "{=BT_Settings_006403_Desc}Applies the wage modifiers to your {=KTMCM_CClan}Clan/faction parties as well."),
+            SettingPropertyGroup("{=BT_Settings_006000}Party Tweaks" + "/" + "{=BT_Settings_006400}Wages" + "*")]
+        public bool ApplyWageTweakToFaction { get; set; } = false;
+
+        [SettingPropertyBool("{=BT_Settings_006404}Also Apply Wage Tweaks to AI Lords", Order = 5, RequireRestart = false,
+            HintText = "{=BT_Settings_006404_Desc}Applies the wage modifiers to ai lord parties as well."),
+            SettingPropertyGroup("{=BT_Settings_006000}Party Tweaks" + "/" + "{=BT_Settings_006400}Wages" + "*")]
+        public bool ApplyWageTweakToAI { get; set; } = false;
+        #endregion
+
+        #region MobilePartyFoodConsumption
+        [SettingPropertyBool("{=KTMCM_XPMMPF}Party Food Consumption Modifiers *", IsToggle = true, Order = 0, RequireRestart = true,
+            HintText = "{=KTMCM_XPMMPFH}Enable Party food consumption modifiers.")]
+        [SettingPropertyGroup("{=BT_Settings_006000}Party Tweaks" + "/" + "{=KTMCM_CFood}Food Consumption")]
+        public bool PartyFoodConsumptionEnabled { get; set; } = false;
+
+        [SettingPropertyFloatingInteger("{=KTMCM_XPMMPFM}Party Food Consumption Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
+            HintText = "{=KTMCM_XPMMPFMH}Multiply Party food consumption by the multiplier [Native : 1.0[100%]]. allows increasing or decreasing daily consumption of food")]
+        [SettingPropertyGroup("{=BT_Settings_006000}Party Tweaks" + "/" + "{=KTMCM_CFood}Food Consumption")]
+        public float PartyFoodConsumptionMultiplier { get; set; } = 1.0f;
+        #endregion
+        #endregion //~ Party Tweaks
+
+
+        //~ Battle Tweaks 
+        #region Battle Tweaks
+
+        //~ Hideout Tweaks *Broken game implemented new UI ??
+        #region Battle Tweaks - Hideout Tweaks
+        [SettingPropertyBool("{=BT_Settings_000200}Hideout Tweaks" + "*", Order = 1, RequireRestart = true, IsToggle = true,
+            HintText = "{=BT_Settings_000200_Desc}Changes game behavior inside hideout battles."),
+            SettingPropertyGroup("{=BT_Settings_000000}Battle Tweaks" + "/" + "{=BT_Settings_000200}Hideout Tweaks" + "*", GroupOrder = 2)]
+        public bool HideoutBattleTroopLimitTweakEnabled { get; set; } = false;
+
+        [SettingPropertyInteger("{=BT_Settings_000201}Hideout Battle Troop Limit", 5, 90, "0 Soldiers", Order = 2, RequireRestart = false,
+            HintText = "{=BT_Settings_000201_Desc}Native value is 9 or 10. Changes the maximum troop limit to the set value inside hideout battles. Cannot be higher than 90 because it causes bugs."),
+            SettingPropertyGroup("{=BT_Settings_000000}Battle Tweaks" + "/" + "{=BT_Settings_000200}Hideout Tweaks" + "*")]
+        public int HideoutBattleTroopLimit { get; set; } = 10;
+
+        [SettingPropertyBool("{=BT_Settings_000202}Continue Hideout Battle On Player Death" + "*", Order = 3, RequireRestart = true,
+            HintText = "{=BT_Settings_000202_Desc}Native value is false. If enabled, you will not automatically lose the hideout battle if you die. Your troops will charge and the boss duel will be disabled."),
+            SettingPropertyGroup("{=BT_Settings_000000}Battle Tweaks" + "/" + "{=BT_Settings_000200}Hideout Tweaks" + "*")]
+        public bool ContinueHideoutBattleOnPlayerDeath { get; set; } = false;
+
+        [SettingPropertyBool("{=BT_Settings_000203}Continue Battle On Losing Duel" + "*", Order = 4, RequireRestart = true,
+            HintText = "{=BT_Settings_000203_Desc}Native value is false. If enabled, your troops will rush to avenge you and finish everyone off."),
+            SettingPropertyGroup("{=BT_Settings_000000}Battle Tweaks" + "/" + "{=BT_Settings_000200}Hideout Tweaks" + "*")]
+        public bool ContinueHideoutBattleOnPlayerLoseDuel { get; set; } = false;
+        #endregion //~ Hideout Tweaks *Broken game implemented new UI ??
+
+        //~ Battle Size Tweak
+        #region Campaign Tweaks - Battle Size Tweak
+        [SettingPropertyBool("{=BT_Settings_001100}Battle Size Tweak" + "*", Order = 1, IsToggle = true, RequireRestart = true,
+            HintText = "{=BT_Settings_001100_Desc}Allows you to set the battle size limit outside of native values. WARNING: Setting this above 1000 can cause performance degradation and crashes."),
+            SettingPropertyGroup("{=BT_Settings_000000}Battle Tweaks" + "/" + "{=BT_Settings_001100}Battle Size Tweak" + "*", GroupOrder = 1)]
+        public bool BattleSizeTweakEnabled { get; set; } = false;
+
+        [SettingPropertyInteger("{=BT_Settings_001101}Battle Size Limit", 2, 1800, "0 Soldiers", Order = 2, RequireRestart = false,
+            HintText = "{=BT_Settings_001101_Desc}Sets the limit for number of troops on a battlefield, ignoring what is in Bannerlord Options. WARNING: Will crash if all troops + their horses exceed 2000."),
+            SettingPropertyGroup("{=BT_Settings_000000}Battle Tweaks" + "/" + "{=BT_Settings_001100}Battle Size Tweak" + "*")]
+        public int BattleSize { get; set; } = 1000;
+        #endregion //~ Battle Size Tweak
+
+        //~ Siege Tweaks
+        #region Battle Tweaks - Siege Tweaks
+        [SettingPropertyBool("{=BT_Settings_000300}Siege Tweaks" + "*", Order = 1, RequireRestart = true, IsToggle = true,
+            HintText = "{=BT_Settings_000300_Desc}Tweaks for siege engine construction speed and collateral casulaties during sieges."),
+            SettingPropertyGroup("{=BT_Settings_000000}Battle Tweaks" + "/" + "{=BT_Settings_000300}Siege Tweaks" + "*", GroupOrder = 3)]
+        public bool SiegeTweaksEnabled { get; set; } = false;
+
+        [SettingPropertyFloatingInteger("{=BT_Settings_000301}Siege Construction Progress Per Day Amount", 0.1f, 10.0f, "0%", RequireRestart = false, Order = 2,
+            HintText = "{=BT_Settings_000301_Desc}Native value is 100%. This tweak adds a modifier to the construction progress per day for sieges. A smaller number results in longer siege times."),
+            SettingPropertyGroup("{=BT_Settings_000000}Battle Tweaks" + "/" + "{=BT_Settings_000300}Siege Tweaks" + "*")]
+        public float SiegeConstructionProgressPerDayMultiplier { get; set; } = 1f;
+
+        [SettingPropertyInteger("{=BT_Settings_000302}Siege Collateral Damage Casualties", 0, 10, Order = 5, RequireRestart = false,
+            HintText = "{=BT_Settings_000302_Desc}Native value is 0. This tweak adds to the base value (1 or 2 with Crossbow Terror Perk) used to calculate collateral casualties during the campaign map siege stage."),
+            SettingPropertyGroup("{=BT_Settings_000000}Battle Tweaks" + "/" + "{=BT_Settings_000300}Siege Tweaks" + "*")]
+        public int SiegeCollateralDamageCasualties { get; set; } = 0;
+
+        [SettingPropertyInteger("{=BT_Settings_000303}Siege Destruction Casualties", 0, 10, Order = 6, RequireRestart = false,
+            HintText = "{=BT_Settings_000303_Desc}Native value is 0. This tweak adds to the base value (2) used to calculate destruction casualties during the campaign map siege stage."),
+            SettingPropertyGroup("{=BT_Settings_000000}Battle Tweaks" + "/" + "{=BT_Settings_000300}Siege Tweaks" + "*")]
+        public int SiegeDestructionCasualties { get; set; } = 0;
+        #endregion
+
+        //~ Weapon Cut Through Tweaks
+        #region Battle Tweaks - Weapon Cut Through Tweaks
+        [SettingPropertyBool("{=BT_Settings_000500}Weapon Cut Through Tweaks" + "*", Order = 1, IsToggle = true, RequireRestart = true,
+            HintText = "{=BT_Settings_000500_Desc}Allows all weapon types to cut through and hit multiple people."), SettingPropertyGroup("{=BT_Settings_000000}Battle Tweaks" + "/" + "{=BT_Settings_000500}Weapon Cut Through Tweaks" + "*", GroupOrder = 5)]
+        public bool SliceThroughEnabled { get; set; } = false;
+
+        [SettingPropertyBool("{=BT_Settings_000501}All Two-Handed Weapons Cut Through", Order = 2, RequireRestart = false,
+            HintText = "{=BT_Settings_000501_Desc}Allows all two-handed weapon types to cut through and hit multiple people."),
+            SettingPropertyGroup("{=BT_Settings_000000}Battle Tweaks" + "/" + "{=BT_Settings_000500}Weapon Cut Through Tweaks" + "*")]
+        public bool TwoHandedWeaponsSliceThroughEnabled { get; set; } = false;
+
+        [SettingPropertyBool("{=BT_Settings_000502}All One-Handed Weapons Cut Through", Order = 3, RequireRestart = false,
+            HintText = "{=BT_Settings_000502_Desc}Allows all single-handed weapon types to cut through and hit multiple people."),
+            SettingPropertyGroup("{=BT_Settings_000000}Battle Tweaks" + "/" + "{=BT_Settings_000500}Weapon Cut Through Tweaks" + "*")]
+        public bool SingleHandedWeaponsSliceThroughEnabled { get; set; } = false;
+        #endregion //~ Weapon Cut Through Tweaks
+        #endregion //~ Battle Tweaks 
+
 
 
 
         //~ BT Source
 
-        #region Battle Tweaks #2
 
-
-        #region Battle Tweaks - Hideout Tweaks
-
-        [SettingPropertyBool("{=BT_Settings_000200}Hideout Tweaks" + "*", Order = 1, RequireRestart = true, IsToggle = true, 
-            HintText = "{=BT_Settings_000200_Desc}Changes game behavior inside hideout battles."), 
-            SettingPropertyGroup("{=BT_Settings_000000}Battle Tweaks" + "/" + "{=BT_Settings_000200}Hideout Tweaks" + "*", GroupOrder = 2)]
-        public bool HideoutBattleTroopLimitTweakEnabled { get; set; } = false;
-
-        [SettingPropertyInteger("{=BT_Settings_000201}Hideout Battle Troop Limit", 5, 90, "0 Soldiers", Order = 2, RequireRestart = false, 
-            HintText = "{=BT_Settings_000201_Desc}Native value is 9 or 10. Changes the maximum troop limit to the set value inside hideout battles. Cannot be higher than 90 because it causes bugs."), 
-            SettingPropertyGroup("{=BT_Settings_000000}Battle Tweaks" + "/" + "{=BT_Settings_000200}Hideout Tweaks" + "*")]
-        public int HideoutBattleTroopLimit { get; set; } = 10;
-
-        [SettingPropertyBool("{=BT_Settings_000202}Continue Hideout Battle On Player Death" + "*", Order = 3, RequireRestart = true, 
-            HintText = "{=BT_Settings_000202_Desc}Native value is false. If enabled, you will not automatically lose the hideout battle if you die. Your troops will charge and the boss duel will be disabled."), 
-            SettingPropertyGroup("{=BT_Settings_000000}Battle Tweaks" + "/" + "{=BT_Settings_000200}Hideout Tweaks" + "*")]
-        public bool ContinueHideoutBattleOnPlayerDeath { get; set; } = false;
-
-        [SettingPropertyBool("{=BT_Settings_000203}Continue Battle On Losing Duel" + "*", Order = 4, RequireRestart = true, 
-            HintText = "{=BT_Settings_000203_Desc}Native value is false. If enabled, your troops will rush to avenge you and finish everyone off."), 
-            SettingPropertyGroup("{=BT_Settings_000000}Battle Tweaks" + "/" + "{=BT_Settings_000200}Hideout Tweaks" + "*")]
-        public bool ContinueHideoutBattleOnPlayerLoseDuel { get; set; } = false;
-
-        #endregion
-
-
-        [SettingPropertyBool("{=BT_Settings_001100}Battle Size Tweak" + "*", Order = 1, IsToggle = true, RequireRestart = true,
-            HintText = "{=BT_Settings_001100_Desc}Allows you to set the battle size limit outside of native values. WARNING: Setting this above 1000 can cause performance degradation and crashes."),
-            SettingPropertyGroup("{=BT_Settings_000000}Battle Tweaks" + "/" + "{=BT_Settings_001100}Battle Size Tweak" + "*", GroupOrder = 1)]
-        public bool BattleSizeTweakEnabled { get; set; } = false;
-        #region Campaign Tweaks - Battle Size Tweak
-        [SettingPropertyInteger("{=BT_Settings_001101}Battle Size Limit", 2, 1800, "0 Soldiers", Order = 2, RequireRestart = false,
-            HintText = "{=BT_Settings_001101_Desc}Sets the limit for number of troops on a battlefield, ignoring what is in Bannerlord Options. WARNING: Will crash if all troops + their horses exceed 2000."),
-            SettingPropertyGroup("{=BT_Settings_000000}Battle Tweaks" + "/" + "{=BT_Settings_001100}Battle Size Tweak" + "*")]
-        public int BattleSize { get; set; } = 1000;
-
-        #endregion
-
-        #region Battle Tweaks - Siege Tweaks
-
-        [SettingPropertyBool("{=BT_Settings_000300}Siege Tweaks" + "*", Order = 1, RequireRestart = true, IsToggle = true, 
-            HintText = "{=BT_Settings_000300_Desc}Tweaks for siege engine construction speed and collateral casulaties during sieges."), 
-            SettingPropertyGroup("{=BT_Settings_000000}Battle Tweaks" + "/" + "{=BT_Settings_000300}Siege Tweaks" + "*", GroupOrder = 3)]
-        public bool SiegeTweaksEnabled { get; set; } = false;
-
-        [SettingPropertyFloatingInteger("{=BT_Settings_000301}Siege Construction Progress Per Day Amount", 0.1f, 10.0f, "0%", RequireRestart = false, Order = 2, 
-            HintText = "{=BT_Settings_000301_Desc}Native value is 100%. This tweak adds a modifier to the construction progress per day for sieges. A smaller number results in longer siege times."), 
-            SettingPropertyGroup("{=BT_Settings_000000}Battle Tweaks" + "/" + "{=BT_Settings_000300}Siege Tweaks" + "*")]
-        public float SiegeConstructionProgressPerDayMultiplier { get; set; } = 1f;
-
-        [SettingPropertyInteger("{=BT_Settings_000302}Siege Collateral Damage Casualties", 0, 10, Order = 5, RequireRestart = false, 
-            HintText = "{=BT_Settings_000302_Desc}Native value is 0. This tweak adds to the base value (1 or 2 with Crossbow Terror Perk) used to calculate collateral casualties during the campaign map siege stage."), 
-            SettingPropertyGroup("{=BT_Settings_000000}Battle Tweaks" + "/" + "{=BT_Settings_000300}Siege Tweaks" + "*")]
-        public int SiegeCollateralDamageCasualties { get; set; } = 0;
-
-        [SettingPropertyInteger("{=BT_Settings_000303}Siege Destruction Casualties", 0, 10, Order = 6, RequireRestart = false, 
-            HintText = "{=BT_Settings_000303_Desc}Native value is 0. This tweak adds to the base value (2) used to calculate destruction casualties during the campaign map siege stage."), 
-            SettingPropertyGroup("{=BT_Settings_000000}Battle Tweaks" + "/" + "{=BT_Settings_000300}Siege Tweaks" + "*")]
-        public int SiegeDestructionCasualties { get; set; } = 0;
-
-        #endregion
-
-        #region Battle Tweaks - Weapon Cut Through Tweaks
-
-        [SettingPropertyBool("{=BT_Settings_000500}Weapon Cut Through Tweaks" + "*", Order = 1, IsToggle = true, RequireRestart = true, 
-            HintText = "{=BT_Settings_000500_Desc}Allows all weapon types to cut through and hit multiple people."), SettingPropertyGroup("{=BT_Settings_000000}Battle Tweaks" + "/" + "{=BT_Settings_000500}Weapon Cut Through Tweaks" + "*", GroupOrder = 5)]
-        public bool SliceThroughEnabled { get; set; } = false;
-
-        [SettingPropertyBool("{=BT_Settings_000501}All Two-Handed Weapons Cut Through", Order = 2, RequireRestart = false, 
-            HintText = "{=BT_Settings_000501_Desc}Allows all two-handed weapon types to cut through and hit multiple people."), 
-            SettingPropertyGroup("{=BT_Settings_000000}Battle Tweaks" + "/" + "{=BT_Settings_000500}Weapon Cut Through Tweaks" + "*")]
-        public bool TwoHandedWeaponsSliceThroughEnabled { get; set; } = false;
-
-        [SettingPropertyBool("{=BT_Settings_000502}All One-Handed Weapons Cut Through", Order = 3, RequireRestart = false, 
-            HintText = "{=BT_Settings_000502_Desc}Allows all single-handed weapon types to cut through and hit multiple people."), 
-            SettingPropertyGroup("{=BT_Settings_000000}Battle Tweaks" + "/" + "{=BT_Settings_000500}Weapon Cut Through Tweaks" + "*")]
-        public bool SingleHandedWeaponsSliceThroughEnabled { get; set; } = false;
-
-        #endregion
-
-        #endregion
-
-        #region Character Tweaks #4
-
-        //#region Character Tweaks - Attribute Focus Point Tweaks
-
-        /*
-                [SettingPropertyBool("{=BT_Settings_002200}Attribute-Focus Points Tweaks" + "*", Order = 1, RequireRestart = true, IsToggle = true, 
-                    HintText = "{=BT_Settings_002200_Desc}Changes the values used to calculate how many Attribute and Focus points Heroes gain."), 
-                    SettingPropertyGroup("{=BT_Settings_002000}Character Tweaks" + "/" + "{=BT_Settings_002200}Attribute-Focus Points Tweaks" + "*", GroupOrder = 2)]
-                public bool AttributeFocusPointTweakEnabled { get; set; } = false;
-
-                [SettingPropertyInteger("{=BT_Settings_002201}Levels per Attribute Point", 1, 5, "0 Level", Order = 2, RequireRestart = false, 
-                    HintText = "{=BT_Settings_002201_Desc}Native value is 4. How many levels you need to gain to receive an attribute point."), 
-                    SettingPropertyGroup("{=BT_Settings_002000}Character Tweaks" + "/" + "{=BT_Settings_002200}Attribute-Focus Points Tweaks" + "*")]
-                public int AttributePointRequiredLevel { get; set; } = 4;
-
-                [SettingPropertyInteger("{=BT_Settings_002202}Focus Point Per Level", 1, 5, "0 Points", Order = 3, RequireRestart = false, 
-                    HintText = "{=BT_Settings_002202_Desc}Native value is 1. This is the amount of focus points earned per level."), 
-                    SettingPropertyGroup("{=BT_Settings_002000}Character Tweaks" + "/" + "{=BT_Settings_002200}Attribute-Focus Points Tweaks" + "*")]
-                public int FocusPointsPerLevel { get; set; } = 1;*/
-
-        //#endregion
-
-
-        #endregion
-
-        #endregion
-
-        //~ Crafting Tweaks
-        #region Crafting Tweaks
-        [SettingPropertyBool("{=KTMCM_SM}Smithing Modifiers *", IsToggle = true, Order = 0, RequireRestart = true,
-            HintText = "{=KTMCM_SMH}Enables modifying Smithing variables.")]
-        [SettingPropertyGroup("{=BT_Settings_004000}Crafting Tweaks")]
-        public bool MCMSmithingModifiers { get; set; } = false; // Activates the Model Override
-
-        [SettingPropertyBool("{=KTMCM_SMPOM}Use Patches instead of model" + "*", Order = 1, RequireRestart = true,
-            HintText = "{=KTMCM_SMPOMH}Enables using only harmoney patches and does not load a smithing model. This applies to energy cost multiplers and xp multipliers. Does not apply to " +
-            "Max crafting stamina, stamina gains, or smelting tweaks they are patches only")]
-        [SettingPropertyGroup("{=BT_Settings_004000}Crafting Tweaks")]
-        public bool MCMSmithingHarmoneyPatches { get; set; } = false; // Activates the Model Override
-
-        //~ Stamina Tweaks
-        #region Stamina
-        [SettingPropertyBool("{=BT_Settings_004100}Crafting Stamina" + "*", Order = 1, RequireRestart = true, IsToggle = true, 
-            HintText = "{=BT_Settings_004100_Desc}Enables tweaks which affect crafting stamina."), 
-            SettingPropertyGroup("{=BT_Settings_004000}Crafting Tweaks" + "/" + "{=BT_Settings_004100}Crafting Stamina", GroupOrder = 1)]
-        public bool CraftingStaminaTweakEnabled { get; set; } = false;
-
-        [SettingPropertyInteger("{=BT_Settings_004101}Max Crafting Stamina", 100, 1000, "0 Stamina", Order = 2, RequireRestart = false, 
-            HintText = "{=BT_Settings_004101_Desc}Native value is 400. Sets the maximum crafting stamina value."), 
-            SettingPropertyGroup("{=BT_Settings_004000}Crafting Tweaks" + "/" + "{=BT_Settings_004100}Crafting Stamina")]
-        public int MaxCraftingStamina { get; set; } = 400;
-
-        //~ Stamina Gains
-        #region StaminGain
-        [SettingPropertyInteger("{=BT_Settings_004102}Crafting Stamina Gain", 0, 100, "0 Stamina/h", Order = 3, RequireRestart = false,
-            HintText = "{=BT_Settings_004102_Desc}Native value is 5. You gain this amount of crafting stamina per hour."),
-            SettingPropertyGroup("{=BT_Settings_004000}Crafting Tweaks" + "/" + "{=BT_Settings_004100}Crafting Stamina")]
-        public int CraftingStaminaGainAmount { get; set; } = 5;
-
-        [SettingPropertyFloatingInteger("{=BT_Settings_004103}Crafting Stamina Gain Outside Settlement", 0f, 1f, "0%", Order = 4, RequireRestart = false,
-            HintText = "{=BT_Settings_004103_Desc}Native value is 0%. In % of Crafting Stamina Gain. In native, you do not gain crafting stamina if you are not resting inside a settlement."),
-            SettingPropertyGroup("{=BT_Settings_004000}Crafting Tweaks" + "/" + "{=BT_Settings_004100}Crafting Stamina")]
-        public float CraftingStaminaGainOutsideSettlementMultiplier { get; set; } = 0f;
-        #endregion
-
-        //~ Energy Cost Multipliers
-        #region EnergyCostMultiplier
-        [SettingPropertyFloatingInteger("{=KTMCM_SMECCM}Energy Use Crafting", 0.1f, 3.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_SMECCMH}Multiply the energy used for Crafting by the multiplier [Native : 1.0[100%]]. 50% uses only half the native energy per action")]
-        [SettingPropertyGroup("{=BT_Settings_004000}Crafting Tweaks" + "/" + "{=BT_Settings_004100}Crafting Stamina")]
-        public float SmithingEnergySmithingValue { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=}Energy Use Smithing", 0.1f, 3.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_SMECSMH}Multiply the energy used for Smelting by the multiplier [Native : 1.0[100%]]. 50% uses only half the native energy per action")]
-        [SettingPropertyGroup("{=BT_Settings_004000}Crafting Tweaks" + "/" + "{=BT_Settings_004100}Crafting Stamina")]
-        public float SmithingEnergySmeltingValue { get; set; } = 1.0f;
-
-
-        [SettingPropertyFloatingInteger("{=KTMCM_SMECRM}Energy Use Refining", 0.1f, 3.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_SMECRMH}Multiply the energy used for refining by the multiplier [Native : 1.0[100%]]. 50% uses only half the native energy per action")]
-        [SettingPropertyGroup("{=BT_Settings_004000}Crafting Tweaks" + "/" + "{=BT_Settings_004100}Crafting Stamina")]
-        public float SmithingEnergyRefiningValue { get; set; } = 1.0f;
-        #endregion
-
-        [SettingPropertyBool("{=KTMCM_SMSE}Energy Disable", Order = 0, RequireRestart = false,
-            HintText = "{=KTMCM_SMSEH}Disable the energy for crafting and refining tasks [Native : false]")]
-        [SettingPropertyGroup("{=BT_Settings_004000}Crafting Tweaks" + "/" + "{=BT_Settings_004100}Crafting Stamina")]
-        public bool SmithingEnergyDisable { get; set; } = false;
-        #endregion
-
-        //~ BT Smelting Tweaks
-        #region Smelting
-
-        [SettingPropertyBool("{=BT_Settings_004200}Smelting" + "*", Order = 1, RequireRestart = true, IsToggle = true, 
-            HintText = "{=BT_Settings_004200_Desc}Enables tweaks which affect smelting of weapons."), 
-            SettingPropertyGroup("{=BT_Settings_004000}Crafting Tweaks" + "/" + "{=BT_Settings_004200}Smelting" + "*", GroupOrder = 2)]
-        public bool SmeltingTweakEnabled { get; set; } = false;
-
-        [SettingPropertyBool("{=BT_Settings_004201}Hide Locked Weapons in Smelting Menu", Order = 1, RequireRestart = false, 
-            HintText = "{=BT_Settings_004201_Desc}Native value is false. Prevent weapons that you have locked in your inventory from showing up in the smelting list to prevent accidental smelting."), 
-            SettingPropertyGroup("{=BT_Settings_004000}Crafting Tweaks" + "/" + "{=BT_Settings_004200}Smelting" + "*")]
-        public bool PreventSmeltingLockedItems { get; set; } = false;
-
-        [SettingPropertyBool("{=BT_Settings_004202}Enable Unlocking Parts From Smelted Weapons", Order = 2, RequireRestart = false, 
-            HintText = "{=BT_Settings_004202_Desc}Native value is false. Unlock the parts that a weapon is made of when you smelt it."), 
-            SettingPropertyGroup("{=BT_Settings_004000}Crafting Tweaks" + "/" + "{=BT_Settings_004200}Smelting" + "*")]
-        public bool AutoLearnSmeltedParts { get; set; } = false;
-
-        #endregion
-
-        //~ Xp Modifiers
-        #region XP Modifiers
-        [SettingPropertyBool("{=KTMCM_SMRXP}Smithing Xp Multipliers" + "*", IsToggle = true, Order = 0, RequireRestart = true,
-            HintText = "{=KTMCM_SMRXPH}Enables xp multipliers to increase or decrease the xp gained per action.")]
-        [SettingPropertyGroup("{=BT_Settings_004000}Crafting Tweaks/{=KTMCM_CXP}XP")]
-        public bool SmithingXpModifiers { get; set; } = false;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_SMRXPM}Refining Xp", 0.1f, 5.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_SMRXPMH}Multiply Refining Xp by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=BT_Settings_004000}Crafting Tweaks/{=KTMCM_CXP}XP")]
-        public float SmithingRefiningXpValue { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_SMSXPM}Smelting Xp", 0.1f, 5.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_SMSXPMH}Multiply Smelting Xp by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=BT_Settings_004000}Crafting Tweaks/{=KTMCM_CXP}XP")]
-        public float SmithingSmeltingXpValue { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KTMCM_SMCXPM}Smithing Xp", 0.1f, 5.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_SMCXPMH}Multiply Smithing Xp by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=BT_Settings_004000}Crafting Tweaks/{=KTMCM_CXP}XP")]
-        public float SmithingSmithingXpValue { get; set; } = 1.0f;
-        #endregion
-        #endregion
-
-        //~ Party Tweaks
-        #region Party Tweaks
-
-        /*
-                #region Party Tweaks - Cohesion Tweaks
-
-                [SettingPropertyBool("{=BT_Settings_006100}Cohesion Tweaks" + "*", Order = 1, RequireRestart = true, IsToggle = true, 
-                    HintText = "{=BT_Settings_006100_Desc}Enables tweaks affecting cohesion."), 
-                    SettingPropertyGroup("{=BT_Settings_006000}Party Tweaks" + "/" + "{=BT_Settings_006100}Cohesion Tweaks" + "*", GroupOrder = 1)]
-                public bool BTCohesionTweakEnabled { get; set; } = false;
-
-                [SettingPropertyFloatingInteger("{=BT_Settings_006101}Cohesion Degradation Factor", 0f, 1f, "0%", Order = 2, RequireRestart = false, 
-                    HintText = "{=BT_Settings_006101_Desc}Modifier to how much cohesion should degrade over time. Vanilla is 100%, 0% is disabled."), 
-                    SettingPropertyGroup("{=BT_Settings_006000}Party Tweaks" + "/" + "{=BT_Settings_006100}Cohesion Tweaks" + "*")]
-                public float BTCohesionTweakv2 { get; set; } = 1f;
-
-                [SettingPropertyBool("{=BT_Settings_006102}All-Clan Armies Lose No Cohesion", Order = 3, RequireRestart = false, 
-                    HintText = "{=BT_Settings_006102_Desc}Armies composed of only clan parties lose no cohesion."), 
-                    SettingPropertyGroup("{=BT_Settings_006000}Party Tweaks" + "/" + "{=BT_Settings_006100}Cohesion Tweaks" + "*")]
-                public bool ClanArmyLosesNoCohesionEnabled { get; set; } = false;
-
-                #endregion*/
-
-        [SettingPropertyBool("{=BT_Settings_006200}Player Caravan Party Size" + "*", Order = 1, RequireRestart = true, IsToggle = true, 
-            HintText = "{=BT_Settings_006200_Desc}Applies a configured value to your caravan party size."), 
-            SettingPropertyGroup("{=BT_Settings_006000}Party Tweaks" + "/" + "{=BT_Settings_006200}Player Caravan Party Size" + "*", GroupOrder = 2)]
-        public bool PlayerCaravanPartySizeTweakEnabled { get; set; } = false;
-        #region Party Tweaks - Caravan Tweaks
-        [SettingPropertyInteger("{=BT_Settings_006201}Player Caravan Party Size Amount", 30, 100, "0 Troops", Order = 2, 
-            HintText = "{=BT_Settings_006201_Desc}Native: 30. Be aware that bigger parties are also slower parties."), 
-            SettingPropertyGroup("{=BT_Settings_006000}Party Tweaks" + "/" + "{=BT_Settings_006200}Player Caravan Party Size" + "*")]
-        public int PlayerCaravanPartySize { get; set; } = 30;
-
-        #endregion
-
-        [SettingPropertyBool("{=BT_Settings_006300}Party Size" + "*", Order = 1, RequireRestart = true, IsToggle = true,
-            HintText = "{=BT_Settings_006300_Desc}Applies a bonues to you and AI lord's party size based on leadership and steward skills."), 
-            SettingPropertyGroup("{=BT_Settings_006000}Party Tweaks" + "/" + "{=BT_Settings_006300}Party Size" + "*", GroupOrder = 3)]
-        public bool PartySizeTweakEnabled { get; set; } = false;
-        #region Party Tweaks - Party Size Tweaks
-        [SettingPropertyBool("{=BT_Settings_006301}Leadership Bonus", Order = 2, IsToggle = true, RequireRestart = false, 
-            HintText = "{=BT_Settings_006301_Desc}Applies a bonus equal to the set percentage of your leadership skill to your party size."), 
-            SettingPropertyGroup("{=BT_Settings_006000}Party Tweaks" + "/" + "{=BT_Settings_006300}Party Size" + "*/" + "{=BT_Settings_006301}Leadership Bonus", GroupOrder = 1)]
-        public bool LeadershipPartySizeBonusEnabled { get; set; } = false;
-
-        [SettingPropertyFloatingInteger("{=BT_Settings_006302}Leadership Bonus Player", 0f, 2f, "0%", Order = 3, RequireRestart = false,
-            HintText = "{=BT_Settings_006302_Desc}Applies a bonus equal to the set percentage of your leadership skill to your party size."), 
-            SettingPropertyGroup("{=BT_Settings_006000}Party Tweaks" + "/" + "{=BT_Settings_006300}Party Size" + "*/" + "{=BT_Settings_006301}Leadership Bonus")]
-        public float LeadershipPartySizeBonus { get; set; } = 0.0f;
-
-        [SettingPropertyBool("{=BT_Settings_006303}Steward Bonus", Order = 4, IsToggle = true, RequireRestart = false, 
-            HintText = "{=BT_Settings_006303_Desc}Applies a bonus equal to the set percentage of your steward skill to your party size."), 
-            SettingPropertyGroup("{=BT_Settings_006000}Party Tweaks" + "/" + "{=BT_Settings_006300}Party Size" + "*/" + "{=BT_Settings_006303}Steward Bonus", GroupOrder = 2)]
-        public bool StewardPartySizeBonusEnabled { get; set; } = false;
-
-        [SettingPropertyFloatingInteger("{=BT_Settings_006304}Steward Bonus Player", 0f, 2f, "0%", Order = 5, RequireRestart = false, 
-            HintText = "{=BT_Settings_006304_Desc}Applies a bonus equal to the set percentage of your steward skill to your party size."), 
-            SettingPropertyGroup("{=BT_Settings_006000}Party Tweaks" + "/" + "{=BT_Settings_006300}Party Size" + "*/" + "{=BT_Settings_006303}Steward Bonus")]
-        public float StewardPartySizeBonus { get; set; } = 0f;
-
-        [SettingPropertyFloatingInteger("{=BT_Settings_006305}Party Size Relation Player-AI", 0f, 2f, "0%", Order = 6, RequireRestart = false, 
-            HintText = "{=BT_Settings_006305_Desc}The percentage of the party size bonus set for the player to also apply for ai lords. 0% results in no bonus for ai. You may also want to increase food production amounts (Village Production, bigger demand)."), 
-            SettingPropertyGroup("{=BT_Settings_006000}Party Tweaks" + "/" + "{=BT_Settings_006300}Party Size" + "*")]
-        public float PartySizeTweakAIFactor { get; set; } = 0f;
-
-        #endregion
-
-        [SettingPropertyBool("{=BT_Settings_006400}Wages" + "*", Order = 1, RequireRestart = true, IsToggle = true, 
-            HintText = "{=BT_Settings_006400_Desc}Allows you to reduce/increase wages for various groups."), 
-            SettingPropertyGroup("{=BT_Settings_006000}Party Tweaks" + "/" + "{=BT_Settings_006400}Wages" + "*", GroupOrder = 4)]
-        public bool PartyWageTweaksEnabled { get; set; } = false;
-        #region Party Tweaks - Party Wage Tweaks
-        [SettingPropertyFloatingInteger("{=BT_Settings_006401}Party Wage Adjustment", .05f, 5f, "0%", Order = 2, RequireRestart = false, 
-            HintText = "{=BT_Settings_006401_Desc}Adjusts party wages to a % of native value. Native is 100%."), 
-            SettingPropertyGroup("{=BT_Settings_006000}Party Tweaks" + "/" + "{=BT_Settings_006400}Wages" + "*")]
-        public float PartyWagePercent { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=BT_Settings_006402}Garrison Wage Adjustment", .05f, 5f, "0%", Order = 3, RequireRestart = false, 
-            HintText = "{=BT_Settings_006402_Desc}Adjusts garrison wages to a % of native value. Native is 100%."), 
-            SettingPropertyGroup("{=BT_Settings_006000}Party Tweaks" + "/" + "{=BT_Settings_006400}Wages" + "*")]
-        public float GarrisonWagePercent { get; set; } = 1.0f;
-
-        [SettingPropertyBool("{=BT_Settings_006403}Also Apply Wage Tweaks to Your Faction", Order = 4, RequireRestart = false, 
-            HintText = "{=BT_Settings_006403_Desc}Applies the wage modifiers to your {=KTMCM_CClan}Clan/faction parties as well."), 
-            SettingPropertyGroup("{=BT_Settings_006000}Party Tweaks" + "/" + "{=BT_Settings_006400}Wages" + "*")]
-        public bool ApplyWageTweakToFaction { get; set; } = false;
-
-        [SettingPropertyBool("{=BT_Settings_006404}Also Apply Wage Tweaks to AI Lords", Order = 5, RequireRestart = false, 
-            HintText = "{=BT_Settings_006404_Desc}Applies the wage modifiers to ai lord parties as well."), 
-            SettingPropertyGroup("{=BT_Settings_006000}Party Tweaks" + "/" + "{=BT_Settings_006400}Wages" + "*")]
-        public bool ApplyWageTweakToAI { get; set; } = false;
-
-        #endregion
-
-
-        [SettingPropertyBool("{=KTMCM_XPMMPF}Party Food Modifiers *", IsToggle = true, Order = 0, RequireRestart = true,
-            HintText = "{=KTMCM_XPMMPFH}Enable Party food consumption modifiers.")]
-        [SettingPropertyGroup("{=BT_Settings_006000}Party Tweaks" + "/" + "{=KTMCM_CFood}Food")]
-        public bool PartyFoodConsumptionEnabled { get; set; } = false;
-        #region MobilePartyFoodConsumption
-        [SettingPropertyFloatingInteger("{=KTMCM_XPMMPFM}Party Food Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_XPMMPFMH}Multiply Party food consumption by the multiplier [Native : 1.0[100%]]. allows increasing or decreasing daily consumption of food")]
-        [SettingPropertyGroup("{=BT_Settings_006000}Party Tweaks" + "/" + "{=KTMCM_CFood}Food")]
-        public float PartyFoodConsumptionMultiplier { get; set; } = 1.0f;
-        #endregion
-
-
-        #endregion
 
         //~ Presets
         #region Presets

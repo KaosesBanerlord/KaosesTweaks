@@ -37,14 +37,14 @@ namespace KaosesTweaks.Objects
 
         protected void DebugValue(ItemObject item, float newValue, float multiplier)
         {
-            if (_settings.Debug || _settings.LogToFile && _settings.ItemDebugMode)
+            if (_settings.ItemDebugMode)
             {
                 IM.MessageDebug(item.Name.ToString() + " Old Price: " + item.Value.ToString() + "  New Price: " + newValue.ToString() + " using multiplier: " + multiplier);
             }
         }
         protected void DebugWeight(ItemObject item, float newValue, float multiplier)
         {
-            if (_settings.Debug || _settings.LogToFile && _settings.ItemDebugMode)
+            if (_settings.ItemDebugMode)
             {
                 IM.MessageDebug(item.Name.ToString() + " Old Weight: " + item.Weight.ToString() + "  New Weight: " + newValue.ToString() + " using multiplier: " + multiplier);
             }

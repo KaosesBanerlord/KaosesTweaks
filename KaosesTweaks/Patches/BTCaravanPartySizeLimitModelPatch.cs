@@ -1,5 +1,6 @@
 ﻿using HarmonyLib;
 using KaosesTweaks.Settings;
+using KaosesTweaks.Utils;
 using System;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.SandBox.GameComponents.Party;
@@ -16,6 +17,7 @@ namespace KaosesTweaks.Patches
                 float num = settings.PlayerCaravanPartySize;
                 float num2 = __result.ResultNumber;
                 float num3 = num - num2;
+                IM.MessageDebug("Caravan PartySize Tweak: "+ num3.ToString());
                 __result.Add((int)Math.Ceiling(num3), null);
             }
         }

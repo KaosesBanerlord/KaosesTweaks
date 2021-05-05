@@ -1,5 +1,6 @@
 ﻿using HarmonyLib;
 using KaosesTweaks.Settings;
+using KaosesTweaks.Utils;
 using System;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.SandBox.GameComponents.Party;
@@ -19,12 +20,14 @@ namespace KaosesTweaks.Patches
                 if (settings.LeadershipPartySizeBonusEnabled)
                 {
                     num = (int)Math.Ceiling(party.LeaderHero.GetSkillValue(DefaultSkills.Leadership) * settings.LeadershipPartySizeBonus * ((party.LeaderHero == Hero.MainHero) ? 1 : settings.PartySizeTweakAIFactor));
+                    //IM.MessageDebug("BT Leadership PartySizeBonus : " + num.ToString());
                     __result.Add((float)num, new TextObject("BT Leadership bonus"));
                 }
 
                 if (settings.StewardPartySizeBonusEnabled && party.LeaderHero == Hero.MainHero)
                 {
                     num = (int)Math.Ceiling(party.LeaderHero.GetSkillValue(DefaultSkills.Steward) * settings.StewardPartySizeBonus * ((party.LeaderHero == Hero.MainHero) ? 1 : settings.PartySizeTweakAIFactor));
+                    //IM.MessageDebug("BT Steward PartySizeBonus : " + num.ToString());
                     __result.Add((float)num, new TextObject("BT Steward bonus"));
                 }
                 if (settings.BalancingPartySizeTweaksEnabled && settings.KingdomBalanceStrengthEnabled && party.LeaderHero.Clan.Kingdom != null)
@@ -71,6 +74,7 @@ namespace KaosesTweaks.Patches
                     }
 
                     if (num2 == 0f && party.LeaderHero.Clan.Kingdom.Leader == Hero.MainHero) num2 = (settings.KingdomBalanceStrengthCEKEnabled) ? settings.Player_CEK_Boost : settings.PlayerBoost;
+                    IM.MessageDebug("BT Balancing Tweak: " + num2.ToString());
                     __result.Add((float)__result.ResultNumber * num2, new TextObject("BT Balancing Tweak"));
                 }
             }
@@ -89,6 +93,7 @@ namespace KaosesTweaks.Patches
                 if (MCMSettings.Instance is { } settings && settings.PrisonerSizeTweakEnabled)
                 {
                     double num = (int)Math.Ceiling(__result.ResultNumber * settings.PrisonerSizeTweakPercent);
+                    IM.MessageDebug("Prisoner SizeTweak: " + num.ToString());
                     __result.Add((float)num, new TextObject("BT Prisoner Limit Bonus"));
                 }
             }

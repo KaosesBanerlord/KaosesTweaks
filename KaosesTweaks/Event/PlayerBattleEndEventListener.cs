@@ -1,4 +1,5 @@
-﻿using System;
+﻿using KaosesTweaks.Utils;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
@@ -62,6 +63,7 @@ namespace KaosesTweaks.Event
             if (Statics._settings.SizeBonusEnabled)
             {
                 FinalRelationshipIncrease = Statics._settings.RelationshipIncrease * this.BanditDeathCounter * Statics._settings.SizeBonus;
+                //IM.MessageDebug("Killing Bandits: SizeBonusEnabled: " + FinalRelationshipIncrease.ToString());
             }
             int FinalRelationshipIncreaseInt = (int)Math.Floor(FinalRelationshipIncrease);
             FinalRelationshipIncreaseInt = FinalRelationshipIncreaseInt < 1 ? 1 : FinalRelationshipIncreaseInt;

@@ -9,7 +9,7 @@ using static TaleWorlds.CampaignSystem.InventoryLogic;
 
 namespace KaosesTweaks.Patches
 {
-    public class KeepHorsesAndFood
+    public class KaosesAutoLockItems
     {
 
         // Token: 0x02000003 RID: 3
@@ -34,7 +34,7 @@ namespace KaosesTweaks.Patches
             public static void Postfix(SPItemVM __instance)
             //public static void Postfix(SPItemVM __instance, ItemVM.UsageType __usageType, ItemRosterElement __newItem, InventoryLogic.InventorySide __inventorySide, EquipmentIndex __itemType)
             {
-                if (__instance.InventorySide == InventoryLogic.InventorySide.PlayerInventory)
+                if (__instance.InventorySide == InventoryLogic.InventorySide.PlayerInventory && Statics._settings.MCMAutoLocks)
                 {
                     bool isHorse = __instance.ItemType == EquipmentIndex.Horse;
                     if (isHorse && !__instance.StringId.Contains("lame") && Statics._settings.autoLockHorses)

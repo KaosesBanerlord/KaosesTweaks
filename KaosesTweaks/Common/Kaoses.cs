@@ -129,5 +129,22 @@ namespace KaosesTweaks.Common
             }
             return loaded;
         }
+
+
+
+
+        // Token: 0x06002FC2 RID: 12226 RVA: 0x000C94C8 File Offset: 0x000C76C8
+        public static bool KaosesHeroPregnancyCheckCondition(Hero hero)
+        {
+            if (Statics._settings.PregnancyDebug)
+            {
+                IM.MessageDebug("HeroComesOfAge: " + Campaign.Current.Models.AgeModel.HeroComesOfAge + "  Direct: " + Statics._settings.HeroComesOfAge);
+                IM.MessageDebug("New PregnancyDurationValue: " + Statics._settings.PregnancyDurationValue.ToString());
+            }
+            //return hero.IsFemale && hero.IsAlive && hero.Age > (float)Campaign.Current.Models.AgeModel.HeroComesOfAge && (hero.Clan == null || !hero.Clan.IsRebelClan) && !CampaignOptions.IsLifeDeathCycleDisabled;
+            return hero.IsFemale && hero.IsAlive && hero.Age > (float)Campaign.Current.Models.AgeModel.HeroComesOfAge && hero.Clan == null && !CampaignOptions.IsLifeDeathCycleDisabled;
+        }
+
+
     }
 }

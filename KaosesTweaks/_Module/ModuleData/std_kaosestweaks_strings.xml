@@ -367,7 +367,7 @@
     <string id="KTMCM_CAutoLocks" text="Auto Locks" />
     <string id="KTMCM_CArmy" text="Army" />
     <string id="KTMCM_CCohesion" text="Cohesion" />
-    <string id="KTMCM_CRelationBuilding" text="Relation Building" />
+    <string id="KTMCM_CKBRR" text="Killing Bandits Raises Relationships" />
     <string id="KTMCM_CBandits" text="Bandits" />
     <string id="KTMCM_CXpModifiers" text="Xp Modifiers" />
     <string id="KTMCM_CSkills" text="Skills" />

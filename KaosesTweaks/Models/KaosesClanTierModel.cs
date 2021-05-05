@@ -73,6 +73,9 @@ namespace KaosesTweaks.Models
             return clanTier + 3;
         }
 
+
+        //~ KaosesClanTierModel Copied Private Methods to make Clan Model Work
+        #region Copied Private Methods to make Clan Model Work
         // Token: 0x17000B19 RID: 2841
         // (get) Token: 0x06002C0F RID: 11279 RVA: 0x000AAC6F File Offset: 0x000A8E6F
         private int KingdomEligibleTier
@@ -110,48 +113,44 @@ namespace KaosesTweaks.Models
         // Token: 0x04000ECA RID: 3786
         private readonly TextObject _kingdomEligibleText = GameTexts.FindText("str_clan_tier_kingdom_eligible", null);
 
-
-
-
         // Token: 0x06002C13 RID: 11283 RVA: 0x000AAD60 File Offset: 0x000A8F60
-        
-                public override ValueTuple<ExplainedNumber, bool> HasUpcomingTier(Clan clan, bool includeDescriptions = false)
+        public override ValueTuple<ExplainedNumber, bool> HasUpcomingTier(Clan clan, bool includeDescriptions = false)
+        {
+            bool flag = clan.Tier < MaxClanTier;
+            ExplainedNumber item = new ExplainedNumber(0f, includeDescriptions, null);
+            if (flag)
+            {
+                int num = GetPartyLimitForTier(clan, clan.Tier + 1) - GetPartyLimitForTier(clan, clan.Tier);
+                if (num != 0)
                 {
-                    bool flag = clan.Tier < MaxClanTier;
-                    ExplainedNumber item = new ExplainedNumber(0f, includeDescriptions, null);
-                    if (flag)
-                    {
-                        int num = GetPartyLimitForTier(clan, clan.Tier + 1) - GetPartyLimitForTier(clan, clan.Tier);
-                        if (num != 0)
-                        {
-                            item.Add((float)num, _partyLimitBonusText, null);
-                        }
-                        int num2 = GetCompanionLimitFromTier(clan.Tier + 1) - GetCompanionLimitFromTier(clan.Tier);
-                        if (num2 != 0)
-                        {
-                            item.Add((float)num2, _companionLimitBonusText, null);
-                        }
-                        int num3 = Campaign.Current.Models.PartySizeLimitModel.GetTierPartySizeEffect(clan.Tier + 1) - Campaign.Current.Models.PartySizeLimitModel.GetTierPartySizeEffect(clan.Tier);
-                        if (num3 > 0)
-                        {
-                            item.Add((float)num3, _additionalCurrentPartySizeBonus, null);
-                        }
-                        if (clan.Tier + 1 == MercenaryEligibleTier)
-                        {
-                            item.Add(1f, _mercenaryEligibleText, null);
-                        }
-                        if (clan.Tier + 1 == VassalEligibleTier)
-                        {
-                            item.Add(1f, _vassalEligibleText, null);
-                        }
-                        if (clan.Tier + 1 == KingdomEligibleTier)
-                        {
-                            item.Add(1f, _kingdomEligibleText, null);
-                        }
-                    }
-                    return new ValueTuple<ExplainedNumber, bool>(item, flag);
+                    item.Add((float)num, _partyLimitBonusText, null);
                 }
-
+                int num2 = GetCompanionLimitFromTier(clan.Tier + 1) - GetCompanionLimitFromTier(clan.Tier);
+                if (num2 != 0)
+                {
+                    item.Add((float)num2, _companionLimitBonusText, null);
+                }
+                int num3 = Campaign.Current.Models.PartySizeLimitModel.GetTierPartySizeEffect(clan.Tier + 1) - Campaign.Current.Models.PartySizeLimitModel.GetTierPartySizeEffect(clan.Tier);
+                if (num3 > 0)
+                {
+                    item.Add((float)num3, _additionalCurrentPartySizeBonus, null);
+                }
+                if (clan.Tier + 1 == MercenaryEligibleTier)
+                {
+                    item.Add(1f, _mercenaryEligibleText, null);
+                }
+                if (clan.Tier + 1 == VassalEligibleTier)
+                {
+                    item.Add(1f, _vassalEligibleText, null);
+                }
+                if (clan.Tier + 1 == KingdomEligibleTier)
+                {
+                    item.Add(1f, _kingdomEligibleText, null);
+                }
+            }
+            return new ValueTuple<ExplainedNumber, bool>(item, flag);
+        }
+        #endregion
 
 
 

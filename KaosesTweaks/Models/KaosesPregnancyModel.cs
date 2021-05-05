@@ -19,6 +19,10 @@ namespace KaosesTweaks.Models
             {
                 if (Statics._settings.PregnancyDurationModifiers)
                 {
+                    if (Statics._settings.PregnancyDebug)
+                    {
+                        IM.MessageDebug("New PregnancyDurationValue: " + Statics._settings.PregnancyDurationValue.ToString());
+                    }
                     return Statics._settings.PregnancyDurationValue;
                 }
                 return 36f;
@@ -33,10 +37,17 @@ namespace KaosesTweaks.Models
             {
                 if (Statics._settings.PregnancyLaborMortalityChanceModifiers)
                 {
-                    //Logging.Lm("New MortalityProbabilityInLabor: " + Statics._settings.PregnancyLaborMortalityChanceValue.ToString());
+                    if (Statics._settings.PregnancyDebug)
+                    {
+                        //IM.MessageDebug("New MortalityProbabilityInLabor: " + Statics._settings.PregnancyLaborMortalityChanceValue.ToString());
+                    }
                     return Statics._settings.PregnancyLaborMortalityChanceValue;
                 }else if (Statics._settings.NoMaternalMortalityTweakEnabled)
                 {
+                    if (Statics._settings.PregnancyDebug)
+                    {
+                        //IM.MessageDebug("New MortalityProbabilityInLabor: DISABLED");
+                    }
                     return 0.0f;
                 }
                 return 0.015f;
@@ -51,10 +62,17 @@ namespace KaosesTweaks.Models
             {
                 if (Statics._settings.PregnancyStillbirthChanceModifiers)
                 {
-                    //Logging.Lm("New StillbirthProbability: " + Statics._settings.PregnancyStillbirthChanceValue.ToString());
+                    if (Statics._settings.PregnancyDebug)
+                    {
+                        //IM.MessageDebug("New StillbirthProbability: " + Statics._settings.PregnancyStillbirthChanceValue.ToString());
+                    }
                     return Statics._settings.PregnancyStillbirthChanceValue;
                 }else if (Statics._settings.NoStillbirthsTweakEnabled)
                 {
+                    if (Statics._settings.PregnancyDebug)
+                    {
+                        //IM.MessageDebug("New StillbirthProbability: DISABLED");
+                    }
                     return 0.0f;
                 }
                 return 0.01f;
@@ -69,7 +87,10 @@ namespace KaosesTweaks.Models
             {
                 if (Statics._settings.PregnancyFemaleOffspringChanceModifiers)
                 {
-                    //Logging.Lm("New DeliveringFemaleOffspringProbability: " + Statics._settings.PregnancyFemaleOffspringChanceValue.ToString());
+                    if (Statics._settings.PregnancyDebug)
+                    {
+                        //IM.MessageDebug("New FemaleOffspring Probability: " + Statics._settings.PregnancyFemaleOffspringChanceValue.ToString());
+                    }
                     return Statics._settings.PregnancyFemaleOffspringChanceValue;
                 }
                 return 0.51f;
@@ -84,7 +105,10 @@ namespace KaosesTweaks.Models
             {
                 if (Statics._settings.PregnancyTwinsChanceModifiers)
                 {
-                    //Logging.Lm("New DeliveringTwinsProbability: " + Statics._settings.PregnancyTwinsChanceValue.ToString());
+                    if (Statics._settings.PregnancyDebug)
+                    {
+                        //IM.MessageDebug("New Twins Probability: " + Statics._settings.PregnancyTwinsChanceValue.ToString());
+                    }
                     return Statics._settings.PregnancyTwinsChanceValue;
                 }
                 return 0.03f;
@@ -104,11 +128,19 @@ namespace KaosesTweaks.Models
                 float num = 0f;
                 if (settings.PlayerCharacterInfertileEnabled && HeroIsMainOrSpouseOfMain(hero))
                 {
+                    if (Statics._settings.PregnancyDebug)
+                    {
+                        //IM.MessageDebug("PlayerCharacterInfertileEnabled: " + num.ToString());
+                    }
                     return num;
                 }
 
                 if (hero.Children != null && hero.Children.Any() && hero.Children.Count >= MCMSettings.Instance.MaxChildren)
                 {
+                    if (Statics._settings.PregnancyDebug)
+                    {
+                        //IM.MessageDebug("New hero.Children.Count >= MCMSettings.Instance.MaxChildren: " + num.ToString());
+                    }
                     return num;
                 }
 
@@ -117,11 +149,20 @@ namespace KaosesTweaks.Models
                     ExplainedNumber bonuses = new ExplainedNumber(1f, false);
                     PerkHelper.AddPerkBonusForCharacter(DefaultPerks.Medicine.PerfectHealth, hero.Clan.Leader.CharacterObject, true, ref bonuses);
                     num = (float)((6.9 - ((double)hero.Age - settings.MinPregnancyAge) * 0.2) * 0.02) / ((hero.Children!.Count + 1) * 0.2f) * bonuses.ResultNumber;
+                    if (Statics._settings.PregnancyDebug)
+                    {
+                        //IM.MessageDebug("Pregnancy Chance: " + num.ToString());
+                    }
                 }
 
                 if (hero!.Clan == Hero.MainHero.Clan)
+                {
                     num *= settings.ClanFertilityBonus;
-
+                    if (Statics._settings.PregnancyDebug)
+                    {
+                        //IM.MessageDebug("ClanFertilityBonus: " + num.ToString());
+                    }
+                }
                 return num;
             }
             return base.GetDailyChanceOfPregnancyForHero(hero);

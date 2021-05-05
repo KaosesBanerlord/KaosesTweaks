@@ -18,7 +18,13 @@ using static TaleWorlds.Core.ItemObject;
 using KaosesTweaks.BTTweaks;
 using System.Text;
 using System.Linq;
+/*
+ 
+ /singleplayer _MODULES_*Bannerlord.Harmony*Bannerlord.ButterLib*Bannerlord.MBOptionScreen*Bannerlord.UIExtenderEx*BetterExceptionWindow*Native*SandBoxCore*CustomBattle*Sandbox*StoryMode*$(ModuleName)*_MODULES_
+ 
 
+/singleplayer _MODULES_*Bannerlord.Harmony*Bannerlord.ButterLib*Bannerlord.MBOptionScreen*Bannerlord.UIExtenderEx*BetterExceptionWindow*Native*SandBoxCore*CustomBattle*Sandbox*StoryMode*KaosesTweaks*_MODULES_
+ */
 namespace KaosesTweaks
 {
     public class SubModule : MBSubModuleBase
@@ -35,18 +41,26 @@ namespace KaosesTweaks
         protected override void OnBeforeInitialModuleScreenSetAsRoot()
         {
             base.OnBeforeInitialModuleScreenSetAsRoot();
-            ConfigLoader.LoadConfig();
-            bool modUsesHarmoney = Statics.UsesHarmony;
-            if (modUsesHarmoney)
-            {
-                if (Kaoses.IsHarmonyLoaded())
-                {
-                    IM.DisplayModLoadedMessage();
-                }
-                else { IM.DisplayModHarmonyErrorMessage(); }
-            }
-            else { IM.DisplayModLoadedMessage(); }
 
+            try
+            {
+                ConfigLoader.LoadConfig();
+                bool modUsesHarmoney = Statics.UsesHarmony;
+                if (modUsesHarmoney)
+                {
+                    if (Kaoses.IsHarmonyLoaded())
+                    {
+                        IM.DisplayModLoadedMessage();
+                    }
+                    else { IM.DisplayModHarmonyErrorMessage(); }
+                }
+                else { IM.DisplayModLoadedMessage(); }
+            }
+            catch (Exception ex)
+            {
+                //Handle exceptions
+                IM.MessageDebug("Error loading initial config: " + ex.ToStringFull());
+            }
         }
 
         protected override void OnSubModuleLoad()
@@ -65,39 +79,49 @@ namespace KaosesTweaks
             {
                 return;
             }
-
             try
             {
-                var harmony = new Harmony("kaoses.wages.patch");
+                var harmony = new Harmony(Statics.HarmonyId);
                 harmony.PatchAll(Assembly.GetExecutingAssembly());
             }
             catch (Exception ex)
             {
                 //Handle exceptions
-                Logging.Lm("Error with harmony patch");
-                Logging.Lm(ex.ToString());
+                IM.MessageDebug("Error with harmony patch: " + ex.ToStringFull());
             }
-            if (gameType != null && Statics._settings is { } settings && settings.PrisonerImprisonmentTweakEnabled) //(settings.EnableMissingHeroFix && 
+
+            try
             {
-                //~ BT
-                try
+                if (Statics._settings is { } settings && (settings.EnableMissingHeroFix && settings.PrisonerImprisonmentTweakEnabled)) //
                 {
-                    CampaignEvents.DailyTickEvent.AddNonSerializedListener(this, delegate
+                    //~ BT
+                    try
                     {
-                        PrisonerImprisonmentTweak.DailyTick();
-                    });
+                        CampaignEvents.DailyTickEvent.AddNonSerializedListener(this, delegate
+                        {
+                            PrisonerImprisonmentTweak.DailyTick();
+                        });
+                    }
+                    catch (Exception ex)
+                    {
+                        IM.MessageDebug(ex.ToStringFull());
+                        MessageBox.Show($":\n\n{ex.ToStringFull()}");
+                    }
+
                 }
-                catch (Exception ex)
+
+                if (gameType != null && Statics._settings.MCMItemModifiers)
                 {
-                    MessageBox.Show($":\n\n{ex.ToStringFull()}");
+                    new KaosesItemTweaks(gameType.Items);
                 }
 
             }
-
-            if (gameType != null && Statics._settings.MCMItemModifiers)
+            catch (Exception ex)
             {
-                new KaosesItemTweaks(gameType.Items);
+                //Handle exceptions
+                IM.MessageDebug("Error OnGameInitializationFinished "+ ex.ToStringFull());
             }
+
 
         }
 
@@ -109,19 +133,14 @@ namespace KaosesTweaks
             {
                 CampaignGameStarter campaignGameStarter = (CampaignGameStarter)gameStarter;
 
-#pragma warning disable CS8604 // Possible null reference argument.
-                AddModels(campaignGameStarter);
-#pragma warning restore CS8604 // Possible null reference argument.
-
-
-                PlayerBattleEndEventListener playerBattleEndEventListener = new PlayerBattleEndEventListener();
-                CampaignEvents.OnPlayerBattleEndEvent.AddNonSerializedListener(playerBattleEndEventListener, new Action<MapEvent>(playerBattleEndEventListener.IncreaseLocalRelationsAfterBanditFight));
-
-
                 //~ BT
-
                 try
                 {
+                    AddModels(campaignGameStarter);
+
+                    PlayerBattleEndEventListener playerBattleEndEventListener = new PlayerBattleEndEventListener();
+                    CampaignEvents.OnPlayerBattleEndEvent.AddNonSerializedListener(playerBattleEndEventListener, new Action<MapEvent>(playerBattleEndEventListener.IncreaseLocalRelationsAfterBanditFight));
+
                     /* Another chance at marriage */
                     LastAttempts = new Dictionary<Hero, CampaignTime>();
                     /* Another chance at marriage */
@@ -129,30 +148,38 @@ namespace KaosesTweaks
                     /* Another chance at marriage */
                     //~BT
                     campaignGameStarter.AddBehavior(new ChangeSettlementCulture());
+                    //campaignGameStarter.AddBehavior(new KaosesPregnancyCampaignBehavior());
+                    
+                    //DumpValues();
                 }
                 catch (Exception ex)
                 {
+                    IM.MessageDebug("Error OnGameStart: "+ex.ToStringFull());
                     MessageBox.Show($"Error Initialising Culture Changer:\n\n{ex.ToStringFull()}");
                 }
-
-
-
             }
-            DumpValues();
         }
 
 
         public override bool DoLoading(Game game)
         {
-            if (Campaign.Current != null && MCMSettings.Instance is { } settings)
+            try
             {
-                if (settings.PrisonerImprisonmentTweakEnabled)
-                    PrisonerImprisonmentTweak.Apply(Campaign.Current);
-                if (settings.DailyTroopExperienceTweakEnabled)
-                    DailyTroopExperienceTweak.Apply(Campaign.Current);
-                // 1.5.7.2 - Disable until we understand main quest changes.
-                //if (settings.TweakedConspiracyQuestTimerEnabled)
-                //    BTConspiracyQuestTimerTweak.Apply(Campaign.Current);
+                if (Campaign.Current != null && MCMSettings.Instance is { } settings)
+                {
+                    if (settings.PrisonerImprisonmentTweakEnabled)
+                        PrisonerImprisonmentTweak.Apply(Campaign.Current);
+                    if (settings.DailyTroopExperienceTweakEnabled)
+                        DailyTroopExperienceTweak.Apply(Campaign.Current);
+                    // 1.5.7.2 - Disable until we understand main quest changes.
+                    //if (settings.TweakedConspiracyQuestTimerEnabled)
+                    //    BTConspiracyQuestTimerTweak.Apply(Campaign.Current);
+                }
+            }
+            catch (Exception ex)
+            {
+                //Handle exceptions
+                IM.MessageDebug("Error DoLoading : " + ex.ToStringFull());
             }
             return base.DoLoading(game);
         }
@@ -164,17 +191,27 @@ namespace KaosesTweaks
 
         public override void OnGameEnd(Game game)
         {
-            _harmony?.UnpatchAll(Statics.HarmonyId);
+            try
+            {
+                _harmony?.UnpatchAll(Statics.HarmonyId);
+            }
+            catch (Exception ex)
+            {
+                //Handle exceptions
+                IM.MessageDebug("Error OnGameEnd harmony un patch: " + ex.ToStringFull());
+            }
+            
         }
 
 
         //~ BT
 
+/*
         public override void OnMissionBehaviourInitialize(Mission mission)
         {
             if (mission == null) return;
             base.OnMissionBehaviourInitialize(mission);
-        }
+        }*/
 
         private void AddModels(CampaignGameStarter campaignGameStarter)
         {
@@ -183,38 +220,74 @@ namespace KaosesTweaks
             {
                 if (settings.MCMClanModifiers)
                 {
+                    if (settings.Debug)
+                    {
+                        IM.MessageDebug("Loaded Kaoses Clan Model Override");
+                    }
                     campaignGameStarter.AddModel(new KaosesClanTierModel());
                 }
                 if (settings.MCMArmy)
                 {
+                    if (settings.Debug)
+                    {
+                        IM.MessageDebug("Loaded Kaoses Army Model Override");
+                    }
                     campaignGameStarter.AddModel(new KaosesArmyManagementCalculationModel());
                 }
                 if (settings.MCMBattleRewardModifiers)
                 {
-                    //campaignGameStarter.AddModel(new KaosesBattleRewardModel());
+                    if (settings.Debug)
+                    {
+                        IM.MessageDebug("Loading Kaoses Battle rewards Model");
+                    }
+                    campaignGameStarter.AddModel(new KaosesBattleRewardModel());
                 }
                 if (settings.MCMCharacterDevlopmentModifiers)
                 {
+                    if (settings.Debug)
+                    {
+                        IM.MessageDebug("Loaded Kaoses Character Development Model Override");
+                    }
                     campaignGameStarter.AddModel(new KaosesCharacterDevelopmentModel());
                 }
                 if (settings.MCMPregnancyModifiers)
                 {
+                    if (settings.Debug)
+                    {
+                        IM.MessageDebug("Loaded Kaoses Pregncy Model Override");
+                    }
                     campaignGameStarter.AddModel(new KaosesPregnancyModel());
                 }
                 if (settings.MCMSmithingModifiers && !settings.MCMSmithingHarmoneyPatches)
                 {
+                    if (settings.Debug)
+                    {
+                        IM.MessageDebug("Loaded Kaoses Smithing Model Override");
+                    }
                     campaignGameStarter.AddModel(new KaosesSmithingModel());
                 }
-                if (settings.MCMSmithingModifiers)
+                if (settings.PartyFoodConsumptionEnabled)
                 {
+                    if (settings.Debug)
+                    {
+                        IM.MessageDebug("Loaded Kaoses party Food Consumption Model Override");
+                    }
                     campaignGameStarter.AddModel(new KaosesMobilePartyFoodConsumptionModel());
                 }
                 if (settings.DifficultyTweakEnabled)
                 {
+                    if (settings.Debug)
+                    {
+                        IM.MessageDebug("Loaded BT Difficulty Model Override");
+                    }
                     campaignGameStarter.AddModel(new BTDifficultyModel());
                 }
                 if (settings.SettlementMilitiaEliteSpawnRateBonusEnabled)
                 {
+                    if (settings.Debug)
+                    {
+                        IM.MessageDebug("Loaded BT Settlement Militia Model Override");
+                    }
                     campaignGameStarter.AddModel(new BTSettlementMilitiaModel());
                 }
                 if (settings.AgeTweaksEnabled)
@@ -238,25 +311,37 @@ namespace KaosesTweaks
                     }
                     else
                     {
+                        if (settings.Debug)
+                        {
+                            IM.MessageDebug("Loaded BT Age Model Override");
+                        }
                         campaignGameStarter.AddModel(new BTAgeModel());
                     }
 
                 }
                 if (settings.SiegeTweaksEnabled)
                 {
+                    if (settings.Debug)
+                    {
+                        IM.MessageDebug("Loaded BT Siege Model Override");
+                    }
                     campaignGameStarter.AddModel(new BTSiegeEventModel());
                 }
                 if (settings.MaxWorkshopCountTweakEnabled || settings.WorkshopBuyingCostTweakEnabled || settings.WorkshopEffectivnessEnabled)
                 {
+                    if (settings.Debug)
+                    {
+                        IM.MessageDebug("Loaded BT Workshop Model Override");
+                    }
                     campaignGameStarter.AddModel(new BTWorkshopModel());
                 }
                 if (settings.TroopExperienceTweakEnabled || settings.ArenaHeroExperienceMultiplierEnabled || settings.TournamentHeroExperienceMultiplierEnabled)
                 {
+                    if (settings.Debug)
+                    {
+                        IM.MessageDebug("Loaded BT ComabatXP Model Override");
+                    }
                     campaignGameStarter.AddModel(new BTCombatXpModel());
-                }
-                if (settings.MCMAutoLocks)
-                {
-                    //campaignGameStarter.AddModel(new KaosesWorkshopModel());
                 }
             }
         }

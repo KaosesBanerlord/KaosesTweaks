@@ -63,16 +63,16 @@ namespace KaosesTweaks.Settings
                 {
                     Statics._settings = MCMSettings.Instance;
                     IM.MessageDebug("using MCM");
-                    IM.MessageDebug("Not Using config settings");
+                    //IM.MessageDebug("Not Using config settings");
                 }
                 else
                 {
-                    IM.MessageError("Problem loading MCM config");
+                    //IM.MessageError("Problem loading MCM config");
                 }
             }
             else
             {
-                IM.MessageDebug("MCM Module is not loaded");
+                IM.MessageError("MCM Module is not loaded");
             }
         }
 
@@ -106,7 +106,7 @@ namespace KaosesTweaks.Settings
             if (File.Exists(Statics.ConfigFilePath))
             {
                 Statics.ModConfigFileExists = true;
-                IM.MessageDebug("Config File FOUND");
+                //IM.MessageDebug("Config File FOUND");
             }
         }
 
