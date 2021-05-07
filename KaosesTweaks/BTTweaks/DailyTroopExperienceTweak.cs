@@ -1,4 +1,5 @@
 ﻿using KaosesTweaks.Settings;
+using KaosesTweaks.Utils;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 
@@ -49,8 +50,18 @@ namespace KaosesTweaks.BTTweaks
             int leadership = h.GetSkillValue(DefaultSkills.Leadership);
             if (MCMSettings.Instance != null)
             {
+                if (MCMSettings.Instance.XpModifiersDebug)
+                {
+                    IM.MessageDebug("leadership: " + leadership.ToString() + " RequiredLeadershipLevel: " + MCMSettings.Instance.DailyTroopExperienceRequiredLeadershipLevel.ToString());
+                }
                 if (leadership >= MCMSettings.Instance.DailyTroopExperienceRequiredLeadershipLevel)
+                {
+                    if (MCMSettings.Instance.XpModifiersDebug)
+                    {
+                        IM.MessageDebug("DailyExperienceGain : " + (MCMSettings.Instance.LeadershipPercentageForDailyExperienceGain * leadership).ToString());
+                    }
                     return (int)(MCMSettings.Instance.LeadershipPercentageForDailyExperienceGain * leadership);
+                }
             }
             return 0;
         }

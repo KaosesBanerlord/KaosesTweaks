@@ -96,13 +96,15 @@ namespace KaosesTweaks.Models
         protected int GetPlayerGainedRelationAmount(double relationShipGain)
         {
             double modifiedRelationShipGain = relationShipGain;
-            //IM.MessageDebug("GetPlayerGainedRelationAmount: playerPartyContributionRate: " + playerPartyContributionRate.ToString() + "  num: " + num.ToString() + "  num2: " + num2.ToString() + "  renownValue: " + renownValue.ToString());
             if (Statics._settings.BattleRewardsRelationShipGainModifiers)
             {
                 modifiedRelationShipGain = relationShipGain * Statics._settings.BattleRewardsRelationShipGainMultiplier;
-                IM.MessageDebug("Original RelationShipGain : " + relationShipGain.ToString() + 
-                "   Modified Gain : " + modifiedRelationShipGain.ToString() + 
-                " Using Multiplier : " + Statics._settings.BattleRewardsRelationShipGainMultiplier.ToString());
+                if (Statics._settings.BattleRewardsDebug)
+                {
+                    IM.MessageDebug("Original RelationShipGain : " + relationShipGain.ToString() +
+                    "   Modified Gain : " + modifiedRelationShipGain.ToString() +
+                    " Using Multiplier : " + Statics._settings.BattleRewardsRelationShipGainMultiplier.ToString());
+                }
             }
             return (int)modifiedRelationShipGain;
         }

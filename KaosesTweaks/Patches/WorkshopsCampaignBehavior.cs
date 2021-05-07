@@ -1,5 +1,6 @@
 ﻿using HarmonyLib;
 using KaosesTweaks.Settings;
+using KaosesTweaks.Utils;
 using System;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.SandBox.CampaignBehaviors;
@@ -73,6 +74,9 @@ namespace KaosesTweaks.Patches
             if (Campaign.Current.GameStarted && !doNotEffectCapital && MCMSettings.Instance is { } settings && settings.EnableWorkshopBuyTweak)
             {
                 float num = __state * (settings.WorkshopBuyTweak - 1f);
+
+                IM.MessageDebug("Patches WorkshopsCampaignBehavior ProduceOutput: " + num.ToString() + "  Tweak : " + settings.WorkshopBuyTweak.ToString());
+                
                 workshop.ChangeGold((int)-num);
                 town.ChangeGold((int)num);
             }

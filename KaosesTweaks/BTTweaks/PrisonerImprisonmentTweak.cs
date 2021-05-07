@@ -45,6 +45,13 @@ namespace KaosesTweaks.BTTweaks
                         (hero.MapFaction != null && FactionManager.IsNeutralWithFaction(hero.MapFaction, hero.PartyBelongedToAsPrisoner.MapFaction)) ||
                         (int)hero.CaptivityStartTime.ElapsedDaysUntilNow > settings.MinimumDaysOfImprisonment)
                     {
+
+                        if (Statics._settings.PrisonersDebug)
+                        {
+                            IM.MessageDebug("Prisoner release: elapsed >" + hero.CaptivityStartTime.ElapsedDaysUntilNow.ToString() + "\r\n"
+                                + "MinimumDaysOfImprisonment: " + settings.MinimumDaysOfImprisonment.ToString() + "\r\n"
+                                );
+                        }
                         typeof(PrisonerReleaseCampaignBehavior).GetMethod("DailyHeroTick", BindingFlags.Instance | BindingFlags.NonPublic).Invoke(escapeBehaviour, new object[] { hero });
                         return;
                     }

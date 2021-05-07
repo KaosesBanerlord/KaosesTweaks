@@ -4,6 +4,7 @@ using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.SandBox.GameComponents;
 using TaleWorlds.Library;
 using KaosesTweaks.Settings;
+using KaosesTweaks.Utils;
 
 namespace KaosesTweaks.Patches
 {
@@ -19,7 +20,15 @@ namespace KaosesTweaks.Patches
                   (!(party.Owner is null) && party.Owner.Clan == Hero.MainHero.Clan && settings.PrisonerConformityTweaksApplyToClan) ||
                   (settings.PrisonerConformityTweaksApplyToAi))
                 {
+                    if (Statics._settings.PrisonersDebug)
+                    {
+                        IM.MessageDebug("Prisoner ConformityTweak: original: " + __result.ToString() + "   Multiplier: " + (1 + settings.PrisonerConformityTweakBonus).ToString());
+                    }
                     num = __result * (1 + settings.PrisonerConformityTweakBonus);
+                    if (Statics._settings.PrisonersDebug)
+                    {
+                        IM.MessageDebug("Prisoner num Final: " + num.ToString());
+                    }
                     party.MobileParty.EffectiveQuartermaster.AddSkillXp(DefaultSkills.Charm, (num * .05f));
                     __result = MBMath.Round(num);
                 }

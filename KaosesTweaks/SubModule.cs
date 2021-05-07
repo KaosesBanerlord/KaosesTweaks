@@ -198,7 +198,7 @@ namespace KaosesTweaks
             catch (Exception ex)
             {
                 //Handle exceptions
-                IM.MessageDebug("Error OnGameEnd harmony un patch: " + ex.ToStringFull());
+                IM.MessageDebug("Error OnGameEnd harmony un-patch: " + ex.ToStringFull());
             }
             
         }
@@ -218,6 +218,9 @@ namespace KaosesTweaks
 
             if (campaignGameStarter != null && MCMSettings.Instance is { } settings)
             {
+                
+                
+
                 if (settings.MCMClanModifiers)
                 {
                     if (settings.Debug)
@@ -225,6 +228,15 @@ namespace KaosesTweaks
                         IM.MessageDebug("Loaded Kaoses Clan Model Override");
                     }
                     campaignGameStarter.AddModel(new KaosesClanTierModel());
+                }
+                if (settings.HideoutBattleTroopLimitTweakEnabled)
+                {
+/*
+                    if (settings.Debug)
+                    {
+                        IM.MessageDebug("Loaded Kaoses Bandit Density model Model Override");
+                    }*/
+                    //campaignGameStarter.AddModel(new KaosesBanditDensityModel());
                 }
                 if (settings.MCMArmy)
                 {
@@ -242,7 +254,7 @@ namespace KaosesTweaks
                     }
                     campaignGameStarter.AddModel(new KaosesBattleRewardModel());
                 }
-                if (settings.MCMCharacterDevlopmentModifiers)
+                if (settings.MCMCharacterDevlopmentModifiers || Statics._settings.LearningRateEnabled)
                 {
                     if (settings.Debug)
                     {
@@ -254,7 +266,7 @@ namespace KaosesTweaks
                 {
                     if (settings.Debug)
                     {
-                        IM.MessageDebug("Loaded Kaoses Pregncy Model Override");
+                        IM.MessageDebug("Loaded Kaoses Pregnancy Model Override");
                     }
                     campaignGameStarter.AddModel(new KaosesPregnancyModel());
                 }

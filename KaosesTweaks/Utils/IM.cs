@@ -23,7 +23,7 @@ namespace KaosesTweaks.Utils
          */
         private static void ShowMessage(string message, Color messageColor, bool logToFile = false)
         {
-            InformationManager.DisplayMessage(new InformationMessage(PrePrend + " : " + message, messageColor));
+            InformationManager.DisplayMessage(new InformationMessage(PrePrend + " : " + message + "\r\n", messageColor));
             if (logToFile)
             {
                 logMessage(message);

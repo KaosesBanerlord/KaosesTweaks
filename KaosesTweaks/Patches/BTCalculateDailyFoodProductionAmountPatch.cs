@@ -1,5 +1,7 @@
 ﻿using HarmonyLib;
 using KaosesTweaks.Settings;
+using KaosesTweaks.Utils;
+using System.Collections.Generic;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.SandBox.GameComponents.Map;
 using TaleWorlds.Core;
@@ -14,7 +16,14 @@ namespace KaosesTweaks.Patches
         {
             if (village != null && MCMSettings.Instance is { } settings && settings.ProductionTweakEnabled)
             {
-                __result = (__result * settings.ProductionFoodTweakEnabled);
+                if (Statics._settings.SettlementsDebug)
+                {
+                    IM.MessageDebug("FoodProductionAmountPatch: original : " + __result.ToString() + "\r\n"
+                        + " FoodTweakAmount " + settings.ProductionFoodTweakAmount.ToString()+ "\r\n"
+                        + " final " + (__result * settings.ProductionFoodTweakAmount).ToString()+ "\r\n"
+                        );
+                }
+                __result = (__result * settings.ProductionFoodTweakAmount);
             }
             if (village != null && MCMSettings.Instance is { } settings2 && settings2.BalancingFoodTweakEnabled && settings2.KingdomBalanceStrengthEnabled && village.Settlement.OwnerClan.Kingdom != null)
             {
@@ -70,11 +79,50 @@ namespace KaosesTweaks.Patches
     {
         static void Postfix(Village village, ItemObject item, ref float __result)
         {
+/*
             if ((MCMSettings.Instance is { } settings && settings.ProductionTweakEnabled))
             {
-                __result *= settings.ProductionOtherTweakEnabled;
+                if (Statics._settings.SettlementsDebug)
+                {
+
+                    IM.MessageDebug("DailyProductionAmount: original : " + __result.ToString() + "\r\n"
+                        + " OtherTweakAmount " + settings.ProductionOtherTweakAmount.ToString() + "\r\n"
+                        + " final " + (__result * settings.ProductionOtherTweakAmount).ToString() + "\r\n"
+                        );
+                }
+                __result *= settings.ProductionOtherTweakAmount;
             }
+
+            if  (Campaign.Current.AliveHeroes != null && Statics._settings.WandererLocationDebug)
+            {
+                //Dictionary<Hero, string> wList = new Dictionary<Hero, string>();
+                Dictionary<string, string> wList = new Dictionary<string, string>();
+                foreach (Hero hero in Campaign.Current.AliveHeroes)
+                {
+                    if (hero != null)
+                    {
+                        if (hero.CharacterObject.Occupation == Occupation.Wanderer && hero != null)
+                        {
+                            if (hero.CurrentSettlement != null)
+                            {
+                                if (!wList.ContainsKey(hero.Name.ToString()))
+                                {
+                                    wList.Add(hero.Name.ToString(), hero.CurrentSettlement.Name.ToString());
+                                }
+                                //IM.MessageDebug("Wanderer Name: " + hero.Name.ToString() + "   CurrentSettlement: " +hero.CurrentSettlement.Name.ToString());
+                            }
+                        }
+                    }
+                }
+
+                foreach (KeyValuePair<string, string> entry in wList)
+                {
+                    IM.MessageDebug("Wanderer Name: " + entry.Key.ToString() + "   CurrentSettlement: " + entry.Value.ToString());
+                }
+            }*/
+
         }
-        static bool Prepare() => MCMSettings.Instance is { } settings && settings.ProductionTweakEnabled;
+        static bool Prepare() => MCMSettings.Instance is { } settings && (settings.ProductionTweakEnabled || Statics._settings.WandererLocationDebug);
+
     }
 }

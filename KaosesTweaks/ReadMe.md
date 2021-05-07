@@ -32,21 +32,10 @@ Another chance at marriage (source code updated from Jicksaw  Another Chance at 
 
 ### Items 
 Covers the following each one can have weight and/or price increaded or decreased based on tier :
-- Body Armors
-- Bow
-- Cape
-- Chest Armor
-- Crossbow
-- Hand Armors
-- Horses
-- Horse Harnesses
-- Leg Armor
-- Musket
-- One Handed Weapons
-- Pistol
-- Polearms
-- Shields
-- Two Handed Weapons
+- Armors
+- Weapons
+- Goods
+- Food
 
 ### Battle Reward multipliers 
 - allow increase or decrease the following:
@@ -112,6 +101,7 @@ Covers the following each one can have weight and/or price increaded or decrease
 ### Another Chance at marriage:
 - Implemented and updated   Jicksaw  Another Chance at Marriage
 
+### Xp Tweaks
 
 
 
@@ -159,17 +149,34 @@ Covers the following each one can have weight and/or price increaded or decrease
     - intergrated a simplified version of trade goods mod
     - merged duplicate menu categories
     - Made smithing selectable to only use patches for new energy cost and xp cost multipliers, or use model overriding
-    - 
+    - fixed learning rate multiplier to be more accurate
 
 
 
 ## Todo
-- test workshop model
+- implement a check for kaoses projectiles and ignotr items it covers
+- implement simpler versions of other mods
+- 
 - 
 -  
 - added the todo AI party limits same as player
 
-
+### ToDo-List BT:
+- militia hard cap and settings for villages
+- Tweak for troop upgrade costs (kaoses wages)
+- rework of troop training (??)
+- retreat/panic/fleeing in battles tweak (??)
+- food consumption tweak - done v 2.0
+- tweak persuation chance (when trying to get lords to join your faction) ()
+- AI Lord party limit clan tier based (as player's limit) (check)
+- rework wage tweaks to be more granular/detailed (something in the direction kaos wentwith his mod)
+- include tweak for bandit party limits (size and count) (kaoses party sizes simpler)
+- tweaks for death, injury probability and healing rates ()
+- tweaks for excecutions,, f.ex. relationchange, cruelty, honor ()
+- check possibility of amount of corpses tweak (cancelled)
+- check battle size tweak (reinforcements/separate battles) (cancelled)
+- add presets, one with old defaults (was already done ??)
+- somehow reorganize cluttered settings (ongoing ...) (rework version 1 as of v2.0)
 
 ## Credits 
 - Another Chance at Marriage by Jicksaw  https://www.nexusmods.com/mountandblade2bannerlord/mods/388

@@ -1,5 +1,6 @@
 ﻿using HarmonyLib;
 using KaosesTweaks.Settings;
+using KaosesTweaks.Utils;
 using TaleWorlds.CampaignSystem.SandBox.GameComponents;
 
 namespace KaosesTweaks.Patches
@@ -12,6 +13,9 @@ namespace KaosesTweaks.Patches
             if (!(MCMSettings.Instance is null))
             {
                 __result = MCMSettings.Instance.TournamentRenownAmount;
+
+                IM.MessageDebug("Patches TournamentRenownAmount Tweak: " + MCMSettings.Instance.TournamentRenownAmount.ToString());
+
                 return false;
             }
             return true;

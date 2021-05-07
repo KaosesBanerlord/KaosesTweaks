@@ -34,7 +34,7 @@
     <string id="KTMCM_ITMPT5H" text="Multiply Tier5 price by the multiplier [Native : 1.0[100%]]." />
     <string id="KTMCM_ITMPT6H" text="Multiply Tier6 price by the multiplier [Native : 1.0[100%]]." />
     <string id="KTMCM_ITMPT7H" text="Multiply Tier7 price by the multiplier [Native : 1.0[100%]]." />
-    <string id="KTMCM_ItemModifiers" text="Item Modifiers" />
+    <string id="KTMCM_ItemTweaks" text="Item Tweaks" />
     <string id="KTMCM_ItemModifiersHint" text="Enables modifying Item weight and price." />
     <string id="KTMCM_ITMH" text="Enables modifying the weight and price." />
     <string id="KTMCM_ITMPH" text="Enables modifying items price [Native : 1.0[100%]]." />
@@ -87,14 +87,12 @@
     <string id="KTMCM_THM" text="TwoHandedWeapon Modifiers" />
     <string id="KTMCM_THMW" text="TwoHandedWeapon Weight" />
     <string id="KTMCM_THMP" text="TwoHandedWeapon Price" />
-
     <string id="KTMCM_TGM" text="TwoHandedWeapon Modifiers" />
     <string id="KTMCM_TGMH" text="TwoHandedWeapon Modifiers" />
     <string id="KTMCM_TGMW" text="TwoHandedWeapon Weight" />
     <string id="KTMCM_TGMP" text="TwoHandedWeapon Price" />
     <string id="KTMCM_CTradeGoods" text="Trade Goods" />
-
-    <string id="KTMCM_BRM" text="Battle Reward Modifiers" />
+    <string id="KTMCM_BRMT" text="Battle Reward Tweaks" />
     <string id="KTMCM_BRMH" text="Enables modifying battle rewards." />
     <string id="KTMCM_BRMRG" text="Relationship Gain" />
     <string id="KTMCM_BRMRGH" text="Enables modifying Relationship gain." />
@@ -108,7 +106,6 @@
     <string id="KTMCM_BRMIGH" text="Enables modifying Influence gain." />
     <string id="KTMCM_BRMIGM" text="Influence gain Multiplier" />
     <string id="KTMCM_BRMIGMH" text="Multiply Influence gain  by the multiplier [Native : 1.0[100%]]." />
-    <string id="KTMCM_BRM" text="FULLTEXT" />
     <string id="KTMCM_BRMMG" text="Morale Gain" />
     <string id="KTMCM_BRMMGH" text="Enables modifying Morale gain." />
     <string id="KTMCM_BRMMGM" text="Morale gain Multiplier" />
@@ -117,7 +114,6 @@
     <string id="KTMCM_BRMGLH" text="Enables modifying Gold Loss on defeat ." />
     <string id="KTMCM_BRMGLM" text="Gold Loss Multiplier" />
     <string id="KTMCM_BRMGLMH" text="Multiply Gold Loss on defeat by the multiplier [Native : 1.0[100%]]." />
-    <string id="KTMCM_CLM" text="Clan Modifiers" />
     <string id="KTMCM_CLMH" text="Enables Overrideing the Clan Model and allows modifying clan variables. Requires Restart" />
     <string id="KTMCM_CLMBPL" text="Bonus Party Limit" />
     <string id="KTMCM_CLMBPLH" text="Enables additional Party limit per clan tier ." />
@@ -137,9 +133,6 @@
     <string id="KTMCM_CLMWSLH" text="Enable Limit Modifier for workshop limit for player." />
     <string id="KTMCM_CLMWSLN" text="Max number of Limit" />
     <string id="KTMCM_CLMWSLNH" text="Maximum number of workshops for player native is the multiplier number times clan tier [Native : 1]." />
-
-    
-    <string id="KTMCM_PCM" text="Character Modifiers" />
     <string id="KTMCM_PCMH" text="Enables modifying Character variables." />
     <string id="KTMCM_PCMLPA" text="Levels Per Attribute modifier" />
     <string id="KTMCM_PCMLPAH" text="Enable Number of Levels Per Attribute modifier" />
@@ -149,32 +142,30 @@
     <string id="KTMCM_PCMFPH" text="Enables Focus points per level modifier." />
     <string id="KTMCM_PCMFPPL" text="Focus points per level" />
     <string id="KTMCM_PCMFPPLH" text="Number of Focus points per level [Native : 1]." />
-    <string id="KTMCM_PM" text="Pregnancy Modifiers" />
-    <string id="KTMCM_PMH" text="Enables modifying Pregnancy variables." />
-    <string id="KTMCM_PMDD" text="Pregnancy Duration Modifier" />
-    <string id="KTMCM_PMDDH" text="Enables Pregnancy Duration modifier." />
-    <string id="KTMCM_PMDDN" text="Pregnancy Duration" />
-    <string id="KTMCM_PMDDNH" text="Pregnancy Duration in days [Native : 36]." />
-    <string id="KTMCM_PMMPL" text="Labor Mortality Chance Modifier" />
-    <string id="KTMCM_PMMPLH" text="Enables Mortality In Labor Chance modifier." />
-    <string id="KTMCM_PMMPLC" text="Labor Mortality Chance" />
-    <string id="KTMCM_PMMPLCH" text="Mortality In Labor Chance [Native : 0.015]." />
-    <string id="KTMCM_PMSB" text="Stillbirth Chance Modifier" />
-    <string id="KTMCM_PMSBH" text="Enables Stillbirth Chance modifier." />
-    <string id="KTMCM_PMSBC" text="Stillbirth Chance" />
-    <string id="KTMCM_PMSBCH" text="Stillbirth Chance  [Native : 0.01]." />
-    <string id="KTMCM_PMFO" text="Female Child Chance Modifier" />
-    <string id="KTMCM_PMFOH" text="Enables Female Child Chance modifier." />
-    <string id="KTMCM_PMFOC" text="Female Child Chance" />
-    <string id="KTMCM_PMFOCH" text="Female Child Chance  [Native : 0.51]." />
-    <string id="KTMCM_PMTO" text="Twins Chance Modifier" />
-    <string id="KTMCM_PMTOH" text="Enables Twins Chance modifier." />
-    <string id="KTMCM_PMTOC" text="Twins Chance" />
-    <string id="KTMCM_PMTOCH" text="Twins Chance  [Native : 0.03]." />
-    <string id="KTMCM_SM" text="Use Patches instead of model" />
-    <string id="KTMCM_SMPOM" text="Smithing Modifiers" />
+    <string id="KTMCM_PRMH" text="Enables modifying Pregnancy variables." />
+    <string id="KTMCM_PRMDD" text="Pregnancy Duration Modifier" />
+    <string id="KTMCM_PRMDDH" text="Enables Pregnancy Duration modifier." />
+    <string id="KTMCM_PRMDDN" text="Pregnancy Duration" />
+    <string id="KTMCM_PRMDDNH" text="Pregnancy Duration in days [Native : 36]." />
+    <string id="KTMCM_PRMMPL" text="Labor Mortality Chance Modifier" />
+    <string id="KTMCM_PRMMPLH" text="Enables Mortality In Labor Chance modifier." />
+    <string id="KTMCM_RPMMPLC" text="Labor Mortality Chance" />
+    <string id="KTMCM_PRMMPLCH" text="Mortality In Labor Chance [Native : 0.015]." />
+    <string id="KTMCM_PRMSB" text="Stillbirth Chance Modifier" />
+    <string id="KTMCM_PRMSBH" text="Enables Stillbirth Chance modifier." />
+    <string id="KTMCM_PRMSBC" text="Stillbirth Chance" />
+    <string id="KTMCM_PRMSBCH" text="Stillbirth Chance  [Native : 0.01]." />
+    <string id="KTMCM_PRMFO" text="Female Child Chance Modifier" />
+    <string id="KTMCM_PRMFOH" text="Enables Female Child Chance modifier." />
+    <string id="KTMCM_PRMFOC" text="Female Child Chance" />
+    <string id="KTMCM_PRMFOCH" text="Female Child Chance  [Native : 0.51]." />
+    <string id="KTMCM_PRMTO" text="Twins Chance Modifier" />
+    <string id="KTMCM_PRMTOH" text="Enables Twins Chance modifier." />
+    <string id="KTMCM_PRMTOC" text="Twins Chance" />
+    <string id="KTMCM_PRMTOCH" text="Twins Chance  [Native : 0.03]." />
+    <string id="KTMCM_SMPOM" text="Use Patches instead of model" />
     <string id="KTMCM_SMPOMH" text="Enables using only harmoney patches and does not load a smithing model." />
-    <string id="KTMCM_SMH" text="Enables modifying Smithing variables." />
+    <string id="KTMCM_SMH" text="Enables modifying Crafting variables." />
     <string id="KTMCM_SMRXP" text="Refining Xp" />
     <string id="KTMCM_SMRXPH" text="Enable Refining Xp multiplier." />
     <string id="KTMCM_SMRXPM" text="Refining Xp" />
@@ -227,7 +218,7 @@
     <string id="KTMCM_ALHWH" text="Auto lock Hardwood." />	
     <string id="KTMCM_ALCC" text="Charcoal" />	
     <string id="KTMCM_ALCCH" text="Auto lock Charcoal." />	
-    <string id="KTMCM_AM" text="Army Modifiers" />
+    <string id="KTMCM_AT" text="Army Tweaks" />
     <string id="KTMCM_AMH" text="Allows army modifiers." />
     <string id="KTMCM_AMCM" text="Cohesion Modifiers" />
     <string id="KTMCM_AMSMH" text="Allows Cohesion modifiers." />
@@ -239,8 +230,7 @@
     <string id="KTMCM_AMCMCOH" text="Apply the cohesion multiplier to armies that are made up of a single clans parties only." />
     <string id="KTMCM_AMCHMM" text="Cohesion Multiplier" />
     <string id="KTMCM_AMCHMMH" text="Multiply the cohesion loss by this multiplier [Native : 1.0[100%]]." />
-    <string id="KTMCM_RB" text="Killing Bandits Modifiers" />
-    <string id="KTMCM_RBH" text="Relation Building Killing Bandits modifiers." />
+    <string id="KTMCM_CKBRRH" text="Edit killing kandits raises relationships settings." />
     <string id="KTMCM_RBKBGB" text="Groups for bonus" />
     <string id="KTMCM_RBKBGBH" text="Number of bandit groups you must destroy before you gain relation." />
     <string id="KTMCM_RBKBRI" text="Relationship Increase" />
@@ -259,8 +249,13 @@
     <string id="KTMCM_RBKBOPH" text="Enable relationship bonuses for outlaw parties." />
     <string id="KTMCM_RBKMGP" text="Mafia Parties" />
     <string id="KTMCM_RBKMGPH" text="Enable relationship bonuses for mafia parties." />
-    <string id="KTMCM_XPM" text="Xp Modifiers" />
-    <string id="KTMCM_XPMH" text="Enable Xp modifiers." />
+    <string id="KTMCM_KTH" text="Enable modifying kingdom tweak variables." />
+    <string id="KTMCM_PTH" text="Enable modifying party tweak variables." />
+    <string id="KTMCM_PRTH" text="Enable modifying prisoner tweak variables." />
+    <string id="KTMCM_TTH" text="Enable modifying tournaments tweak variables." />
+    <string id="KTMCM_WSTH" text="Enable modifying Workshops tweak variables." />
+    <string id="KTMCM_STTH" text="Enable modifying settlement tweak variables." />
+    <string id="KTMCM_XPMH" text="Enable modifying XP tweak variables." />
     <string id="KTMCM_XPMSM" text="Skill Xp Modifiers" />
     <string id="KTMCM_XPMSMH" text="Enable Skill Xp modifiers." />
     <string id="KTMCM_XPMSMP" text="Player Skill Modifiers" />
@@ -348,11 +343,10 @@
     <string id="KTMCM_CWorkShop" text="WorkShop" />
     <string id="KTMCM_CBankruptcy" text="Bankruptcy" />
     <string id="KTMCM_CMaxLimit" text="Max Limit" />
-    <string id="KTMCM_CCharacter" text="Character" />
+    <string id="KTMCM_CCharacterTw" text="Character Tweaks" />
     <string id="KTMCM_CAttributes" text="Attributes" />
     <string id="KTMCM_CLevel" text="Level" />
     <string id="KTMCM_CFocus" text="Focus" />
-    <string id="KTMCM_CPregnancy" text="Pregnancy" />
     <string id="KTMCM_CDuration" text="Duration" />
     <string id="KTMCM_CLaborMortality" text="Labor Mortality" />
     <string id="KTMCM_CStillbirth" text="Stillbirth" />
@@ -362,14 +356,13 @@
     <string id="KTMCM_CRefining" text="Refining" />
     <string id="KTMCM_CSmelting" text="Smelting" />
     <string id="KTMCM_CSmithing" text="Smithing" />
-
     <string id="KTMCM_CDisable" text="Disable" />
     <string id="KTMCM_CAutoLocks" text="Auto Locks" />
     <string id="KTMCM_CArmy" text="Army" />
     <string id="KTMCM_CCohesion" text="Cohesion" />
     <string id="KTMCM_CKBRR" text="Killing Bandits Raises Relationships" />
     <string id="KTMCM_CBandits" text="Bandits" />
-    <string id="KTMCM_CXpModifiers" text="Xp Modifiers" />
+    <string id="KTMCM_CXPTweaks" text="XP Tweaks" />
     <string id="KTMCM_CSkills" text="Skills" />
     <string id="KTMCM_CIndividual" text="Individual" />
     <string id="KTMCM_CGlobal" text="Global" />
@@ -384,8 +377,6 @@
     <string id="KTMCM_FDM3" text="Moral 3 Bonus" />
     <string id="KTMCM_FDWMH" text="Multiply Food Weight for this morale Bonus by the multiplier" />
     <string id="KTMCM_FDPMH" text="Multiply Food Price for this morale Bonus by the multiplier" />
-
-
     <string id="KTMCM_AM" text="Armor Modifiers" />
     <string id="KTMCM_CArmor" text="Armor" />
     <string id="KTMCM_AW" text="Armor Weight" />
@@ -398,9 +389,8 @@
     <string id="KTMCM_CMW" text="Melee Weapons" />
     <string id="KTMCM_MWW" text="Melee Weapons Weight" />
     <string id="KTMCM_MWP" text="Melee Weapons Price" />
-    <string id="KTMCM_CFood" text="Food" />
-
-
+    <string id="KTMCM_BTH" text="Enables editing battle tweaks" />
+    <string id="KTMCM_CTH" text="Enables editing campaign tweaks" />
     
     <!-- BT Strings -->
 
@@ -422,7 +412,7 @@
 			<string id="BT_Settings_000300" text="Siege Tweaks" />
 			<string id="BT_Settings_000300_Desc" text="Tweaks for siege engine construction speed and collateral casulaties during sieges." />
 				<string id="BT_Settings_000301" text="Siege Construction Progress Per Day Amount"/>
-				<string id="BT_Settings_000301_Desc" text="Native value is 100%. This tweak adds a modifier to the construction progress per day for sieges. A smaller number results in longer siege times." />
+				<string id="BT_Settings_000301_Desc" text="This tweak adds a modifier to the construction progress per day for sieges. A smaller number results in longer siege times. [Native : 100%.]" />
 				<string id="BT_Settings_000302" text="Siege Collateral Damage Casualties" />
 				<string id="BT_Settings_000302_Desc" text="Native value is 0. This tweak adds to the base value (1 or 2 with Crossbow Terror Perk) used to calculate collateral casualties during the campaign map siege stage." />
 				<string id="BT_Settings_000303" text="Siege Destruction Casualties" />

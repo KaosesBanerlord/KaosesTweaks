@@ -1,4 +1,6 @@
-﻿using TaleWorlds.CampaignSystem;
+﻿using KaosesTweaks.Utils;
+using System;
+using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.SandBox.GameComponents;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
@@ -59,19 +61,37 @@ namespace KaosesTweaks.Models
 
             if (Statics._settings.LearningRateEnabled)
             {
-                learningMultiplier =  Statics._settings.LearningRateMultiplier;
+                learningMultiplier = Statics._settings.LearningRateMultiplier;
             }
 
-            float baseNumber = (20f / (10f + (float)characterLevel) * learningMultiplier);
+            float baseNo = 20f / (10f + (float)characterLevel);
+            float baseNumber = baseNo * learningMultiplier;
             ExplainedNumber result = new ExplainedNumber(baseNumber, true, null);
 
-            //Ux.MessageDebug("KaosesCharacterDevelopmentModel: base result " + result.ResultNumber.ToString());
-
-
-            result.AddFactor(((0.4f * (float)attributeValue) * learningMultiplier), attributeName);
-            //Ux.MessageDebug("KaosesCharacterDevelopmentModel: attributeName result " + result.ResultNumber.ToString());
-            result.AddFactor(((float)focusValue * 1f) * learningMultiplier, _skillFocusText);
-            //Ux.MessageDebug("KaosesCharacterDevelopmentModel: base _skillFocusText " + result.ResultNumber.ToString());
+            float att1 = (0.4f * (float)attributeValue);
+            float attAdded = ((float)Math.Round((double)(att1), 3) * 100f);
+            double attFac = Math.Round((baseNumber * attAdded * 0.01f), 3);
+            if (Statics._settings.LearningRateEnabled)
+            {
+                result.Add((float)(attFac), new TextObject("KT " + attributeName.ToString(), null));
+            }
+            else
+            {
+                result.AddFactor(((0.4f * (float)attributeValue)), attributeName);
+            }
+    
+            float fv1 = (float)focusValue * 1f;
+            float focusAdded = ((float)Math.Round((double)fv1, 3) * 100f);
+            double focusFac = Math.Round((baseNumber * focusAdded * 0.01f), 3);
+            if (Statics._settings.LearningRateEnabled)
+            {
+                result.Add((float)(focusFac), new TextObject("KT " + _skillFocusText, null));
+            }
+            else
+            {
+                result.AddFactor(((float)focusValue * 1f), _skillFocusText);
+            }
+            
 
             int num = MBMath.Round(this.CalculateLearningLimit(attributeValue, focusValue, null, false).ResultNumber);
             float test = 0.0f;
@@ -83,62 +103,21 @@ namespace KaosesTweaks.Models
                 test = -1f - 0.1f * (float)num2;
             }
 
+
             result.LimitMin(0f);
-/*
-           
-            float att1 = 0.4f * (float)attributeValue;
-            float fv1 = (float)focusValue * 1f;
-
-                Ux.MessageDebug("KaosesCharacterDevelopmentModel: CalculateLearningRate   " 
-                    + "  base is 20f / (10f + (float)characterLevel) " + (20f / (10f + (float)characterLevel)).ToString()   /// 0.61
-                    + "  baseNumber " + baseNumber.ToString()                                                               /// 0.61
-                    + "  attributeName " + (0.4f * (float)attributeValue).ToString()                                        /// result 1.575758  ?? +0.97  num = baseNumber * num * 0.01f;
-                    + "  = " + ((float)Math.Round((double)att1, 3) * 100f).ToString()                                       /// 160  eg 0.61 * 160 * 0.01  = 0.97
-                    + "  _skillFocusText " + ((float)focusValue * 1f).ToString()                                            /// 4  ??? +2.42   num = baseNumber * num * 0.01f;
-                    + "  = " + ((float)Math.Round((double)fv1, 3) * 100f).ToString()                                        /// 400  eg 0.61 * 400 * 0.01  =  2.42 
-                    + "  skillValue " + skillValue.ToString()                                                               /// 4
-                    + "  num " + num.ToString() + "   MBMath.Round(this.CalculateLearningLimit(attributeValue, focusValue, null, false).ResultNumber);   "
-                    + "  skillValue > num  " + (skillValue > num).ToString()
-                    + "  if (skillValue > num) "
-                    + "  ->num2 = skillValue - num  " + (-1f - 0.1f * (float)num2).ToString()  
-                    + "  ->test (-1f - 0.1f * (float)num2)  " + test.ToString()  
-                    );
-*/
-
-
             return result;
         }
 
 
-
-
+        #region Required Source Code
         // Token: 0x04000EA0 RID: 3744
-        private static TextObject _attributeText = new TextObject("{=AT6v10NK}Attribute", null);
 
         // Token: 0x04000EA1 RID: 3745
         private static TextObject _skillFocusText = new TextObject("{=MRktqZwu}Skill Focus", null);
 
         // Token: 0x04000EA2 RID: 3746
         private static TextObject _overLimitText = new TextObject("{=bcA7ZuyO}Learning Limit Exceeded", null);
-
-
-
-        /*
-         Maybe dont need to copy this function over
-         */
-        // Token: 0x06002BD6 RID: 11222 RVA: 0x000A85EC File Offset: 0x000A67EC
-
-        public override ExplainedNumber CalculateLearningLimit(int attributeValue, int focusValue, TextObject attributeName, bool includeDescriptions = false)
-        {
-            ExplainedNumber result = new ExplainedNumber(0f, includeDescriptions, null);
-            result.Add((float)((attributeValue - 1) * 10), attributeName, null);
-            result.Add((float)(focusValue * 30), _skillFocusText, null);
-            result.LimitMin(0f);
-            return result;
-        }
-
-
-
+ 
         // Token: 0x04000E8D RID: 3725
         private const int MaxCharacterLevels = 62;
 
@@ -197,6 +176,9 @@ namespace KaosesTweaks.Models
         private const int traitMaxValue2 = 6000;
 
         // Token: 0x04000EA0 RID: 3744
+        #endregion
+
+
 
 
 

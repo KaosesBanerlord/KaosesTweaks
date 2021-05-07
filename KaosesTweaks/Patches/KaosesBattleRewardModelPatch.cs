@@ -12,7 +12,7 @@ namespace KaosesTweaks.Patches
     [HarmonyPatch(typeof(DefaultBattleRewardModel), "CalculateRenownGain")]
     public class KTBattleRewardsRenownGain
     {
-        static bool PreFix(PartyBase party, float renownValueOfBattle, float contributionShare, ref ExplainedNumber result, ref float __result)
+        public static bool PreFix(PartyBase party, float renownValueOfBattle, float contributionShare, ref ExplainedNumber result, ref float __result)
         {
             if (MCMSettings.Instance.MCMBattleRewardModifiers && MCMSettings.Instance.BattleRewardsRenownGainModifiers)
             {

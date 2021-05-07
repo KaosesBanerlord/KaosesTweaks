@@ -93,10 +93,50 @@ namespace KaosesTweaks.Common
             return isPlayer;
         }
 
+        /// <summary>
+        /// Checks if the hero is a Lord/Lady or Wanderer and is not the player
+        /// </summary>
+        /// <param name="hero"></param>
+        /// <returns></returns>
         public static bool IsLord(Hero hero)
         {
-            // == Occupation.Lord
-            return hero.CharacterObject.IsHero;
+            /*
+            IM.MessageDebug("IsLord: "
+                + "Name: " + hero.CharacterObject.Name.ToString() +"\r\n"
+                + "Occupation: " + hero.CharacterObject.Occupation.ToString() +"\r\n"
+                + "IsHero: " + hero.CharacterObject.IsHero.ToString() +"\r\n"
+                //+ "IsBasicTroop: " + hero.CharacterObject.IsBasicTroop.ToString() +"\r\n"
+                + "result" + ((hero.CharacterObject.Occupation == Occupation.Lord || hero.CharacterObject.Occupation == Occupation.Lady || hero.CharacterObject.Occupation == Occupation.Wanderer) && !hero.IsHumanPlayerCharacter).ToString() +"\r\n"
+                );*/
+            return (hero.CharacterObject.Occupation == Occupation.Lord || hero.CharacterObject.Occupation == Occupation.Lady || hero.CharacterObject.Occupation == Occupation.Wanderer) && !hero.IsHumanPlayerCharacter;
+
+            /*
+                Kaoses Tweaks : IsLordName: Nadea the Wanderer
+                Occupation: Wanderer
+                IsHero: True
+                IsBasicTroop: False
+
+                Kaoses Tweaks : IsLordName: Ira
+                Occupation: Lord
+                IsHero: True
+                IsBasicTroop: False
+             */
+        }
+
+
+        public static bool IsPlayerLord(Hero hero)
+        {
+            //hero.CharacterObject.IsHero
+/*
+            IM.MessageDebug("IsLord: "
+                + "Name: " + hero.CharacterObject.Name.ToString() + "\r\n"
+                + "Occupation: " + hero.CharacterObject.Occupation.ToString() + "\r\n"
+                + "IsHero: " + hero.CharacterObject.IsHero.ToString() + "\r\n"
+                + "IsPlayerClan: " + IsPlayerClan(hero).ToString() + "\r\n"
+                //+ "IsBasicTroop: " + hero.CharacterObject.IsBasicTroop.ToString() +"\r\n"
+                + "result" + ((hero.CharacterObject.Occupation == Occupation.Lord || hero.CharacterObject.Occupation == Occupation.Lady || hero.CharacterObject.Occupation == Occupation.Wanderer) && !hero.IsHumanPlayerCharacter && IsPlayerClan(hero)).ToString() + "\r\n"
+                );*/
+            return (hero.CharacterObject.Occupation == Occupation.Lord || hero.CharacterObject.Occupation == Occupation.Lady || hero.CharacterObject.Occupation == Occupation.Wanderer) && !hero.IsHumanPlayerCharacter && IsPlayerClan(hero);
         }
 
 

@@ -34,17 +34,6 @@ namespace KaosesTweaks.Objects.Experience
             BuildHeroVeriables();
             CheckHeroUseModifier();
             CheckSkill();
-/*
-            Ux.MessageDebug("KaosesAddSkillXp:  StringId: "+ hero.StringId.ToString() 
-                + "  Skill Name: " + skill.GetName().ToString()
-                + "  _isPlayerClan: " + _isPlayerClan.ToString()
-                + "  _isPlayer: " + _isPlayer.ToString()
-                + "  _isAILord: " + _isAILord.ToString()
-                + "  _ValidHeroForUse: " + _ValidHeroForUse.ToString()
-                + "  _ValidSkillForUse: " + _ValidSkillForUse.ToString()
-                + "  _skillMultiplier: " + _skillMultiplier.ToString()
-                //+ "  _ValidSkillForUse: " + _ValidSkillForUse.ToString()
-                );*/
         }
 
         protected void BuildHeroVeriables()
@@ -54,16 +43,15 @@ namespace KaosesTweaks.Objects.Experience
                 if (_hero.IsHumanPlayerCharacter)
                 {
                     _isPlayer = _hero.IsHumanPlayerCharacter;
-                }else if (Kaoses.IsPlayerClan(_hero))
+                }else if (Common.Kaoses.IsLord(_hero) && Kaoses.IsPlayerClan(_hero))
                 {
                     _isPlayerClan = Kaoses.IsPlayerClan(_hero);
                 }
-                if (_hero.CharacterObject.IsHero && !_hero.IsHumanPlayerCharacter)
+                if (Common.Kaoses.IsLord(_hero))
                 {
+                    
                     _isAILord = _hero.CharacterObject.IsHero;
                 }
-                
-                
             }
         }
 
@@ -209,6 +197,10 @@ namespace KaosesTweaks.Objects.Experience
         public float GetNewSkillXp()
         {
             float newXp = 0.0f;
+            if (Statics._settings.XpModifiersDebug && HasModifiedXP())
+            {
+                DebugDump();
+            }
             if (HasModifiedXP())
             {
                 newXp = _xpAmount * _skillMultiplier;
@@ -216,11 +208,29 @@ namespace KaosesTweaks.Objects.Experience
             return newXp;
         }
 
+        public void DebugDump()
+        {
+            IM.MessageDebug("KaosesAddSkillXp: " 
+                + " StringId: " + _hero.StringId.ToString() + "\r\n"
+                + " Name: " + _hero.CharacterObject.Name.ToString() + "\r\n"
+                + "  Skill Name: " + _skill.GetName().ToString() + "\r\n"
+                + "  _isPlayerClan: " + _isPlayerClan.ToString() + "\r\n"
+                + "  SkillXpUseForPlayerClan: " + Statics._settings.SkillXpUseForPlayerClan.ToString() + "\r\n"
+                + "  _isPlayer: " + _isPlayer.ToString() + "\r\n"
+                + "  SkillXpUseForPlayer: " + Statics._settings.SkillXpUseForPlayer.ToString() + "\r\n"
+                + "  _isAILord: " + _isAILord.ToString() + "\r\n"
+                + "  SkillXpUseForAI: " + Statics._settings.SkillXpUseForAI.ToString() + "\r\n"
+                + "  _ValidHeroForUse: " + _ValidHeroForUse.ToString() + "\r\n"
+                + "  _ValidSkillForUse: " + _ValidSkillForUse.ToString() + "\r\n"
+                + "  _skillMultiplier: " + _skillMultiplier.ToString() + "\r\n"
+                + "  _xpAmount: " + _xpAmount.ToString() + "\r\n"
+                + "  new xpAmount: " + (_xpAmount * _skillMultiplier).ToString() + "\r\n"
+                );
+        }
 
 
+        #region source code
         /*
-
-
 
         // Token: 0x060008BC RID: 2236 RVA: 0x000322EC File Offset: 0x000304EC
         public void AddSkillXp(SkillObject skill, float rawXp, bool isAffectedByFocusFactor = true, bool shouldNotify = true)
@@ -272,6 +282,8 @@ namespace KaosesTweaks.Objects.Experience
 
 
 */
+        #endregion
+
 
 
 

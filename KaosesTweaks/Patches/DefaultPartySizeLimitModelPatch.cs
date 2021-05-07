@@ -93,8 +93,17 @@ namespace KaosesTweaks.Patches
                 if (MCMSettings.Instance is { } settings && settings.PrisonerSizeTweakEnabled)
                 {
                     double num = (int)Math.Ceiling(__result.ResultNumber * settings.PrisonerSizeTweakPercent);
-                    IM.MessageDebug("Prisoner SizeTweak: " + num.ToString());
+                    if (Statics._settings.PrisonersDebug)
+                    {
+                        IM.MessageDebug("Prisoner SizeTweak: " + num.ToString() + "   Multiplier: " + settings.PrisonerSizeTweakPercent.ToString());
+                        IM.MessageDebug("Prisoner __result: " + __result.ResultNumber.ToString() + "   num: " + num.ToString());
+                    }
+                    
                     __result.Add((float)num, new TextObject("BT Prisoner Limit Bonus"));
+                    if (Statics._settings.PrisonersDebug)
+                    {
+                        IM.MessageDebug("Prisoner __result Final: " + __result.ResultNumber.ToString());
+                    }
                 }
             }
         }

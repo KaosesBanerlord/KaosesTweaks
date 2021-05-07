@@ -12,12 +12,12 @@ namespace KaosesTweaks
         public const string ModuleFolder = "KaosesTweaks";
         public const string InstanceID = ModuleFolder;
         public const string DisplayName = "Kaoses Tweaks";
-        public const string FormatType = "json";//json2
+        public const string FormatType = "json";
         public const string logPath = @"..\\..\\Modules\\" + ModuleFolder + "\\KaosLog.txt";
         public const string ConfigFilePath = @"..\\..\\Modules\\" + ModuleFolder + "\\config.json";
-        public static string PrePrend { get; set; } = DisplayName;//+ " : "
-        public const string HarmonyId = "KaosesPoliticalWars" + ".harmony";
-        public const bool UsesHarmony = false;
+        public static string PrePrend { get; set; } = DisplayName;
+        public const string HarmonyId = "KaosesTweaks" + ".harmony";
+        public const bool UsesHarmony = true;
 
         #region MCMConfigValues
         public static string? MCMConfigFolder { get; set; }
@@ -29,8 +29,8 @@ namespace KaosesTweaks
 
 
         //~DEBUG
-        public static bool Debug { get; set; } = true;
-        public static bool LogToFile { get; set; } = true;
+        public static bool Debug { get; set; } = false;
+        public static bool LogToFile { get; set; } = false;
 
     }
 }

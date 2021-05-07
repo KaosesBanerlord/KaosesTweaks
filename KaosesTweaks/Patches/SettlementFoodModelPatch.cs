@@ -1,5 +1,6 @@
 ﻿using HarmonyLib;
 using KaosesTweaks.Settings;
+using KaosesTweaks.Utils;
 using System;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.SandBox.GameComponents;
@@ -22,12 +23,25 @@ namespace KaosesTweaks.Patches
                     __result.Add(malus, prosperityTextObj);
 
                     malus = -town.Owner.Settlement.Prosperity / settings.SettlementProsperityFoodMalusDivisor;
+
+                    //IM.MessageDebug("Patches CalculateTownFoodStocksChange Tweak: " + settings.SettlementProsperityFoodMalusDivisor.ToString());
+
                     __result.Add(malus, prosperityTextObj);
                 }
-                if (town.IsCastle)
+                if (town.IsCastle) {
                     __result.Add(Math.Abs(__result.ResultNumber) * (settings.CastleFoodBonus - 1), new TextObject("Military rations"));
-                else if (town.IsTown)
+
+                    //IM.MessageDebug("Patches CastleFoodBonus Tweak: " + settings.CastleFoodBonus.ToString());
+
+                }
+                
+
+                else if (town.IsTown) { 
                     __result.Add(Math.Abs(__result.ResultNumber) * (settings.TownFoodBonus - 1), new TextObject("Citizen food drive"));
+
+                    //IM.MessageDebug("Patches TownFoodBonus Tweak: " + settings.TownFoodBonus.ToString());
+
+                }
             }
             return;
         }

@@ -1,5 +1,6 @@
 ﻿using Helpers;
 using KaosesTweaks.Settings;
+using KaosesTweaks.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -43,6 +44,11 @@ namespace KaosesTweaks.Models
             {
                 if (MCMSettings.Instance is { } settings && settings.TournamentHeroExperienceMultiplierEnabled)
                 {
+                    if (Statics._settings.TournamentDebug)
+                    {
+                        IM.MessageDebug("TournamentHeroXP : original : "+ xpAmount.ToString() + " new: " 
+                            +(MathF.Round(settings.TournamentHeroExperienceMultiplier * (float)xpAmount)).ToString() + "  multiplier: " + settings.TournamentHeroExperienceMultiplier.ToString());
+                    }
                     xpAmount = (int)MathF.Round(settings.TournamentHeroExperienceMultiplier * (float)xpAmount);
                 }
                 else
@@ -55,6 +61,11 @@ namespace KaosesTweaks.Models
             {
                 if (MCMSettings.Instance is { } settings && settings.ArenaHeroExperienceMultiplierEnabled)
                 {
+                    if (Statics._settings.TournamentDebug)
+                    {
+                        IM.MessageDebug("ArenaHeroXP : original : " + xpAmount.ToString() + " new: "
+                            + (MathF.Round(settings.ArenaHeroExperienceMultiplier * (float)xpAmount)).ToString() + "  multiplier: " + settings.ArenaHeroExperienceMultiplier.ToString());
+                    }
                     xpAmount = (int)MathF.Round(settings.ArenaHeroExperienceMultiplier * (float)xpAmount);
                 }
                 else
@@ -66,17 +77,35 @@ namespace KaosesTweaks.Models
             else if (missionType == MissionTypeEnum.Battle)
             {
                 if (MCMSettings.Instance is { } settings && settings.TroopBattleExperienceMultiplierEnabled)
+                {
+                    if (Statics._settings.XpModifiersDebug)
+                    {
+                        IM.MessageDebug(" TroopBattleExperienceMultiplier Original: " + xpAmount .ToString()+  " new XP amount: " + ((xpAmount * settings.TroopBattleExperienceMultiplier)).ToString() + "  multiplier: " + settings.TroopBattleExperienceMultiplier.ToString());
+                    }
                     xpAmount = (int)MathF.Round(xpAmount * settings.TroopBattleExperienceMultiplier);
+                }
                 else
+                {
                     xpAmount = MathF.Round((float)xpAmount * 1f);
+                }
+                    
             }
 
             else if (missionType == MissionTypeEnum.SimulationBattle)
             {
                 if (MCMSettings.Instance is { } settings && settings.TroopBattleSimulationExperienceMultiplierEnabled)
+                {
+                    if (Statics._settings.XpModifiersDebug)
+                    {
+                        IM.MessageDebug("TroopBattleSimulationExperienceMultiplier original: " + xpAmount .ToString()+ " new XP amount: " + ((xpAmount * settings.TroopBattleSimulationExperienceMultiplier)).ToString() + "  multiplier: " + settings.TroopBattleSimulationExperienceMultiplier.ToString());
+                    }
                     xpAmount = (int)MathF.Round(xpAmount * settings.TroopBattleSimulationExperienceMultiplier);
+                }
                 else
+                {
                     xpAmount = MathF.Round((float)xpAmount * 0.9f);
+                }
+                    
             }
 
             ExplainedNumber xpToGain = new(xpAmount, false, null);
