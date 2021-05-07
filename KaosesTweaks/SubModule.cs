@@ -59,7 +59,7 @@ namespace KaosesTweaks
             catch (Exception ex)
             {
                 //Handle exceptions
-                IM.MessageDebug("Error loading initial config: " + ex.ToStringFull());
+                IM.MessageError("Error loading initial config: " + ex.ToStringFull());
             }
         }
 
@@ -87,7 +87,7 @@ namespace KaosesTweaks
             catch (Exception ex)
             {
                 //Handle exceptions
-                IM.MessageDebug("Error with harmony patch: " + ex.ToStringFull());
+                IM.MessageError("Error with harmony patch: " + ex.ToStringFull());
             }
 
             try
@@ -104,7 +104,7 @@ namespace KaosesTweaks
                     }
                     catch (Exception ex)
                     {
-                        IM.MessageDebug(ex.ToStringFull());
+                        IM.MessageError(ex.ToStringFull());
                         MessageBox.Show($":\n\n{ex.ToStringFull()}");
                     }
 
@@ -119,7 +119,7 @@ namespace KaosesTweaks
             catch (Exception ex)
             {
                 //Handle exceptions
-                IM.MessageDebug("Error OnGameInitializationFinished "+ ex.ToStringFull());
+                IM.MessageError("Error OnGameInitializationFinished "+ ex.ToStringFull());
             }
 
 
@@ -154,7 +154,7 @@ namespace KaosesTweaks
                 }
                 catch (Exception ex)
                 {
-                    IM.MessageDebug("Error OnGameStart: "+ex.ToStringFull());
+                    IM.MessageError("Error OnGameStart: "+ex.ToStringFull());
                     MessageBox.Show($"Error Initialising Culture Changer:\n\n{ex.ToStringFull()}");
                 }
             }
@@ -179,7 +179,7 @@ namespace KaosesTweaks
             catch (Exception ex)
             {
                 //Handle exceptions
-                IM.MessageDebug("Error DoLoading : " + ex.ToStringFull());
+                IM.MessageError("Error DoLoading : " + ex.ToStringFull());
             }
             return base.DoLoading(game);
         }
@@ -198,7 +198,7 @@ namespace KaosesTweaks
             catch (Exception ex)
             {
                 //Handle exceptions
-                IM.MessageDebug("Error OnGameEnd harmony un-patch: " + ex.ToStringFull());
+                IM.MessageError("Error OnGameEnd harmony un-patch: " + ex.ToStringFull());
             }
             
         }
@@ -372,7 +372,7 @@ namespace KaosesTweaks
 
         public void DumpValues()
         {
-            IM.MessageDebug("Debug Message: DumpValues");
+            //IM.MessageDebug("Debug Message: DumpValues");
 
 /*
             IM.MessageDebug("");
@@ -409,9 +409,9 @@ namespace KaosesTweaks
 
 */
 
-            bool t = MCMSettings.Instance != null && MCMSettings.Instance.SmithingXpModifiers;
-            IM.MessageDebug("");
-            IM.MessageDebug("");
+            //bool t = MCMSettings.Instance != null && MCMSettings.Instance.SmithingXpModifiers;
+            //IM.MessageDebug("");
+            //IM.MessageDebug("");
 
         }
 
