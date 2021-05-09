@@ -16,7 +16,7 @@ namespace KaosesTweaks
         public const string logPath = @"..\\..\\Modules\\" + ModuleFolder + "\\KaosLog.txt";
         public const string ConfigFilePath = @"..\\..\\Modules\\" + ModuleFolder + "\\config.json";
         public static string PrePrend { get; set; } = DisplayName;
-        public const string HarmonyId = "KaosesTweaks" + ".harmony";
+        public const string HarmonyId = ModuleFolder + ".harmony";
         public const bool UsesHarmony = true;
 
         #region MCMConfigValues
