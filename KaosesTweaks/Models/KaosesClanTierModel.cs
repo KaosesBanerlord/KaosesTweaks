@@ -52,10 +52,6 @@ namespace KaosesTweaks.Models
         {
             MCMSettings _settings = MCMSettings.Instance;
             int num = GetCompanionLimitFromTier(clan.Tier);
-            if (_settings.ClanCompanionLimitEnabled)
-            {
-                num += _settings.ClanAdditionalCompanionLimit;
-            }
             if (clan.Leader.GetPerkValue(DefaultPerks.Leadership.WePledgeOurSwords))
             {
                 num += (int)DefaultPerks.Leadership.WePledgeOurSwords.PrimaryBonus;
@@ -68,7 +64,7 @@ namespace KaosesTweaks.Models
         {
             if (MCMSettings.Instance.ClanCompanionLimitEnabled)
             {
-                return clanTier + MCMSettings.Instance.ClanCompanionBaseLimit;
+                return clanTier * MCMSettings.Instance.ClanAdditionalCompanionLimit + MCMSettings.Instance.ClanCompanionBaseLimit;
             }
             return clanTier + 3;
         }
