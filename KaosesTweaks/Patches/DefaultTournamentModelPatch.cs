@@ -13,9 +13,10 @@ namespace KaosesTweaks.Patches
             if (!(MCMSettings.Instance is null))
             {
                 __result = MCMSettings.Instance.TournamentRenownAmount;
-
-                IM.MessageDebug("Patches TournamentRenownAmount Tweak: " + MCMSettings.Instance.TournamentRenownAmount.ToString());
-
+                if (Statics._settings.TournamentDebug)
+                {
+                    IM.MessageDebug("Patches TournamentRenownAmount Tweak: " + MCMSettings.Instance.TournamentRenownAmount.ToString());
+                }
                 return false;
             }
             return true;

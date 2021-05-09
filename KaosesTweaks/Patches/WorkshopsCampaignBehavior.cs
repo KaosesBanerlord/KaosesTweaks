@@ -74,9 +74,10 @@ namespace KaosesTweaks.Patches
             if (Campaign.Current.GameStarted && !doNotEffectCapital && MCMSettings.Instance is { } settings && settings.EnableWorkshopBuyTweak)
             {
                 float num = __state * (settings.WorkshopBuyTweak - 1f);
-
-                IM.MessageDebug("Patches WorkshopsCampaignBehavior ProduceOutput: " + num.ToString() + "  Tweak : " + settings.WorkshopBuyTweak.ToString());
-                
+                if (Statics._settings.WorkshopsDebug)
+                {
+                    IM.MessageDebug("Patches WorkshopsCampaignBehavior ProduceOutput: " + num.ToString() + "  Tweak : " + settings.WorkshopBuyTweak.ToString());
+                }
                 workshop.ChangeGold((int)-num);
                 town.ChangeGold((int)num);
             }

@@ -207,10 +207,12 @@ namespace KaosesTweaks.Patches
         {
             if (Statics._settings.SmithingXpModifiers)
             {
-                IM.MessageDebug("GetSkillXpForRefining Patch called");
                 float baseXp = MathF.Round(0.3f * (float)(__instance.GetCraftingMaterialItem(refineFormula.Output).Value * refineFormula.OutputCount));
                 baseXp *= Statics._settings.SmithingRefiningXpValue;
-                IM.MessageDebug("GetSkillXpForRefining  base: " + (MathF.Round(0.3f * (float)(__instance.GetCraftingMaterialItem(refineFormula.Output).Value * refineFormula.OutputCount))).ToString() + "  new :" + baseXp.ToString());
+                if (Statics._settings.CraftingDebug)
+                {
+                    IM.MessageDebug("GetSkillXpForRefining  base: " + (MathF.Round(0.3f * (float)(__instance.GetCraftingMaterialItem(refineFormula.Output).Value * refineFormula.OutputCount))).ToString() + "  new :" + baseXp.ToString());
+                }
                 __result = (int)baseXp;
                 return false;
             }
@@ -247,10 +249,12 @@ namespace KaosesTweaks.Patches
         {
             if (Statics._settings.SmithingXpModifiers)
             {
-                IM.MessageDebug("GetSkillXpForSmithing Patch called");
                 float baseXp = MathF.Round(0.1f * (float)item.Value);
                 baseXp *= Statics._settings.SmithingSmithingXpValue;
-                IM.MessageDebug("GetSkillXpForSmithing  base: " + (MathF.Round(0.1f * (float)item.Value)).ToString() + "  new :" + baseXp.ToString());
+                if (Statics._settings.CraftingDebug)
+                {
+                    IM.MessageDebug("GetSkillXpForSmithing  base: " + (MathF.Round(0.1f * (float)item.Value)).ToString() + "  new :" + baseXp.ToString());
+                }
                 __result = (int)baseXp;
                 return false;
             }
@@ -305,21 +309,26 @@ namespace KaosesTweaks.Patches
         {
             if (Statics._settings.SmithingEnergyDisable || Statics._settings.CraftingStaminaTweakEnabled)
             {
-                IM.MessageDebug("GetEnergyCostForSmithing Patch called");
                 int.TryParse(item.Tier.ToString(), out int itemTier);
                 int tier6 = 6;
                 //int num = (int)(10 + ItemObject.ItemTiers.Tier6 * item.Tier);
                 int num = (int)(10 + tier6 * itemTier);
                 if (Statics._settings.SmithingEnergyDisable)
                 {
-                    IM.MessageDebug("GetEnergyCostForSmithing: DISABLED ");
+                    if (Statics._settings.CraftingDebug)
+                    {
+                        IM.MessageDebug("GetEnergyCostForSmithing: DISABLED ");
+                    }
                     __result = 0;
                     return false;
                 }
                 else //if (Statics._settings.CraftingStaminaTweakEnabled)
                 {
                     float tmp = num * Statics._settings.SmithingEnergySmithingValue;
-                    IM.MessageDebug("GetEnergyCostForSmithing Old : " + num.ToString() + " New : " + tmp.ToString());
+                    if (Statics._settings.CraftingDebug)
+                    {
+                        IM.MessageDebug("GetEnergyCostForSmithing Old : " + num.ToString() + " New : " + tmp.ToString());
+                    }
                     num = (int)tmp;
                     if (hero.GetPerkValue(DefaultPerks.Crafting.PracticalSmith))
                     {

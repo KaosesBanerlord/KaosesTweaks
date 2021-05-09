@@ -60,6 +60,10 @@ namespace KaosesTweaks.Settings
         public bool PrisonersDebug { get; set; } = false;
         public bool SettlementsDebug { get; set; } = false;
         public bool WandererLocationDebug { get; set; } = false;
+        public bool PartySizeLimitsDebug { get; set; } = false;
+        public bool WorkshopsDebug { get; set; } = false;
+        public bool CraftingDebug { get; set; } = false;
+        public bool BattleSizeDebug { get; set; } = false;
         //~ KT Debugging 
 
 

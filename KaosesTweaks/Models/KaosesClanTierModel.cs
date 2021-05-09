@@ -54,7 +54,7 @@ namespace KaosesTweaks.Models
             int num = GetCompanionLimitFromTier(clan.Tier);
             if (_settings.ClanCompanionLimitEnabled)
             {
-                num += _settings.ClanAdditionalCompanionLimit;
+                num += _settings.ClanAdditionalCompanionLimit * clan.Tier;
             }
             if (clan.Leader.GetPerkValue(DefaultPerks.Leadership.WePledgeOurSwords))
             {
