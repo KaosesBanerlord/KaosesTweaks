@@ -25,9 +25,7 @@ namespace KaosesTweaks.Event
         {
             TroopRoster rosterReceivingLootShare;
             int mainPartSideInt = (int)PartyBase.MainParty.Side;
-
             rosterReceivingLootShare = PlayerEncounter.Current.RosterToReceiveLootMembers;
-
             //PartyBase partyReceivingLootShare = m.GetPartyReceivingLootShare(PartyBase.MainParty);
 
 

@@ -31,7 +31,11 @@ namespace KaosesTweaks.Objects
             }
             if (_settings.ItemRangedWeaponsWeightModifiers && _settings.MCMRagedWeaponsModifiers)
             {
-                SetItemsWeight((int)(_item.Weight * multiplerWeight), multiplerWeight);
+                if (_item.Type != ItemObject.ItemTypeEnum.Thrown)
+                {
+                    //SetItemsWeight((int)(_item.Weight * multiplerWeight), multiplerWeight);
+                }
+                
             }
         }
 

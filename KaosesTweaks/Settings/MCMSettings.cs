@@ -63,6 +63,7 @@ namespace KaosesTweaks.Settings
         public bool PartySizeLimitsDebug { get; set; } = false;
         public bool WorkshopsDebug { get; set; } = false;
         public bool CraftingDebug { get; set; } = false;
+        public bool LearningDebug { get; set; } = false;
         public bool BattleSizeDebug { get; set; } = false;
         //~ KT Debugging 
 
@@ -764,43 +765,43 @@ namespace KaosesTweaks.Settings
         [SettingPropertyBool("{=KTMCM_MWM}Melee Weapons Modifiers", IsToggle = true, Order = 0, RequireRestart = false,
             HintText = "{=KTMCM_ITMH}Enables modifying the weight and price.")]
         [SettingPropertyGroup("{=KTMCM_ItemTweaks}Item Tweaks" + "/" + "{=KTMCM_CMW}Melee Weapons")]
-        public bool MCMMeleeWeaponModifiers { get; set; } = true;
+        public bool MCMMeleeWeaponModifiers { get; set; } = false;
 
         //~ Weight
         #region Weight
-        [SettingPropertyBool("{=KTMCM_THMW}Melee Weapons Weight", IsToggle = true, Order = 0, RequireRestart = false,
-            HintText = "{=KTMCM_ITMWH}Enables modifying items weight.")]
-        [SettingPropertyGroup("{=KTMCM_ItemTweaks}Item Tweaks" + "/" + "{=KTMCM_CMW}Melee Weapons" + "/" + "{=KTMCM_Cweight}weight")]
+        //[SettingPropertyBool("{=KTMCM_THMW}Melee Weapons Weight", IsToggle = true, Order = 0, RequireRestart = false,
+        //    HintText = "{=KTMCM_ITMWH}Enables modifying items weight.")]
+        //[SettingPropertyGroup("{=KTMCM_ItemTweaks}Item Tweaks" + "/" + "{=KTMCM_CMW}Melee Weapons" + "/" + "{=KTMCM_Cweight}weight")]
         public bool ItemMeleeWeaponWeightModifiers { get; set; } = true;
 
-        [SettingPropertyFloatingInteger("{=KTMCM_WeightT1}Weight Tier1 Multiplier", 0.1f, 3.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMWT1H}Multiply Tier1 weight by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_ItemTweaks}Item Tweaks" + "/" + "{=KTMCM_CMW}Melee Weapons" + "/" + "{=KTMCM_Cweight}weight")]
+        //[SettingPropertyFloatingInteger("{=KTMCM_WeightT1}Weight Tier1 Multiplier", 0.1f, 3.0f, "#0%", RequireRestart = false,
+        //    HintText = "{=KTMCM_ITMWT1H}Multiply Tier1 weight by the multiplier [Native : 1.0[100%]].")]
+        //[SettingPropertyGroup("{=KTMCM_ItemTweaks}Item Tweaks" + "/" + "{=KTMCM_CMW}Melee Weapons" + "/" + "{=KTMCM_Cweight}weight")]
         public float ItemMeleeWeaponTier1WeightMultiplier { get; set; } = 1.0f;
 
-        [SettingPropertyFloatingInteger("{=KTMCM_WeightT2}Weight Tier2 Multiplier", 0.1f, 3.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMWT2H}Multiply Tier2 weight by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_ItemTweaks}Item Tweaks" + "/" + "{=KTMCM_CMW}Melee Weapons" + "/" + "{=KTMCM_Cweight}weight")]
+        //[SettingPropertyFloatingInteger("{=KTMCM_WeightT2}Weight Tier2 Multiplier", 0.1f, 3.0f, "#0%", RequireRestart = false,
+        //    HintText = "{=KTMCM_ITMWT2H}Multiply Tier2 weight by the multiplier [Native : 1.0[100%]].")]
+        //[SettingPropertyGroup("{=KTMCM_ItemTweaks}Item Tweaks" + "/" + "{=KTMCM_CMW}Melee Weapons" + "/" + "{=KTMCM_Cweight}weight")]
         public float ItemMeleeWeaponTier2WeightMultiplier { get; set; } = 1.0f;
 
-        [SettingPropertyFloatingInteger("{=KTMCM_WeightT3}Weight Tier3 Multiplier", 0.1f, 3.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMWT3H}Multiply Tier3 weight by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_ItemTweaks}Item Tweaks" + "/" + "{=KTMCM_CMW}Melee Weapons" + "/" + "{=KTMCM_Cweight}weight")]
+        //[SettingPropertyFloatingInteger("{=KTMCM_WeightT3}Weight Tier3 Multiplier", 0.1f, 3.0f, "#0%", RequireRestart = false,
+        //    HintText = "{=KTMCM_ITMWT3H}Multiply Tier3 weight by the multiplier [Native : 1.0[100%]].")]
+        //[SettingPropertyGroup("{=KTMCM_ItemTweaks}Item Tweaks" + "/" + "{=KTMCM_CMW}Melee Weapons" + "/" + "{=KTMCM_Cweight}weight")]
         public float ItemMeleeWeaponTier3WeightMultiplier { get; set; } = 1.0f;
 
-        [SettingPropertyFloatingInteger("{=KTMCM_WeightT4}Weight Tier4 Multiplier", 0.1f, 3.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMWT4H}Multiply Tier4 weight by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_ItemTweaks}Item Tweaks" + "/" + "{=KTMCM_CMW}Melee Weapons" + "/" + "{=KTMCM_Cweight}weight")]
+        //[SettingPropertyFloatingInteger("{=KTMCM_WeightT4}Weight Tier4 Multiplier", 0.1f, 3.0f, "#0%", RequireRestart = false,
+        //    HintText = "{=KTMCM_ITMWT4H}Multiply Tier4 weight by the multiplier [Native : 1.0[100%]].")]
+        //[SettingPropertyGroup("{=KTMCM_ItemTweaks}Item Tweaks" + "/" + "{=KTMCM_CMW}Melee Weapons" + "/" + "{=KTMCM_Cweight}weight")]
         public float ItemMeleeWeaponTier4WeightMultiplier { get; set; } = 1.0f;
 
-        [SettingPropertyFloatingInteger("{=KTMCM_WeightT5}Weight Tier5 Multiplier", 0.1f, 3.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMWT5H}Multiply Tier5 weight by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_ItemTweaks}Item Tweaks" + "/" + "{=KTMCM_CMW}Melee Weapons" + "/" + "{=KTMCM_Cweight}weight")]
+        //[SettingPropertyFloatingInteger("{=KTMCM_WeightT5}Weight Tier5 Multiplier", 0.1f, 3.0f, "#0%", RequireRestart = false,
+        //    HintText = "{=KTMCM_ITMWT5H}Multiply Tier5 weight by the multiplier [Native : 1.0[100%]].")]
+        //[SettingPropertyGroup("{=KTMCM_ItemTweaks}Item Tweaks" + "/" + "{=KTMCM_CMW}Melee Weapons" + "/" + "{=KTMCM_Cweight}weight")]
         public float ItemMeleeWeaponTier5WeightMultiplier { get; set; } = 1.0f;
 
-        [SettingPropertyFloatingInteger("{=KTMCM_WeightT6}Weight Tier6 Multiplier", 0.1f, 3.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMWT6H}Multiply Tier6 weight by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_ItemTweaks}Item Tweaks" + "/" + "{=KTMCM_CMW}Melee Weapons" + "/" + "{=KTMCM_Cweight}weight")]
+        //[SettingPropertyFloatingInteger("{=KTMCM_WeightT6}Weight Tier6 Multiplier", 0.1f, 3.0f, "#0%", RequireRestart = false,
+        //    HintText = "{=KTMCM_ITMWT6H}Multiply Tier6 weight by the multiplier [Native : 1.0[100%]].")]
+        //[SettingPropertyGroup("{=KTMCM_ItemTweaks}Item Tweaks" + "/" + "{=KTMCM_CMW}Melee Weapons" + "/" + "{=KTMCM_Cweight}weight")]
         public float ItemMeleeWeaponTier6WeightMultiplier { get; set; } = 1.0f;
         #endregion
 
@@ -846,46 +847,46 @@ namespace KaosesTweaks.Settings
 
         //~ Ranged Weapons
         #region Ranged Weapons
-        [SettingPropertyBool("{=KTMCM_RWM}Ranged Weapons Modifiers", IsToggle = true, Order = 0, RequireRestart = false,
-            HintText = "{=KTMCM_ITMH}Enables modifying the weight and price.")]
-        [SettingPropertyGroup("{=KTMCM_ItemTweaks}Item Tweaks" + "/" + "{=KTMCM_CRW}Ranged Weapons")]
-        public bool MCMRagedWeaponsModifiers { get; set; } = true;
+        //[SettingPropertyBool("{=KTMCM_RWM}Ranged Weapons Modifiers", IsToggle = true, Order = 0, RequireRestart = false,
+        //    HintText = "{=KTMCM_ITMH}Enables modifying the weight and price.")]
+        //[SettingPropertyGroup("{=KTMCM_ItemTweaks}Item Tweaks" + "/" + "{=KTMCM_CRW}Ranged Weapons")]
+        public bool MCMRagedWeaponsModifiers { get; set; } = false;
 
         //~ Weight
         #region Weight
-        [SettingPropertyBool("{=KTMCM_BMW}Ranged Weapons Weight", IsToggle = true, Order = 0, RequireRestart = false,
-            HintText = "{=KTMCM_ITMWH}Enables modifying items weight.")]
-        [SettingPropertyGroup("{=KTMCM_ItemTweaks}Item Tweaks" + "/" + "{=KTMCM_CRW}Ranged Weapons" + "/" + "{=KTMCM_Cweight}weight")]
+        //[SettingPropertyBool("{=KTMCM_BMW}Ranged Weapons Weight", IsToggle = true, Order = 0, RequireRestart = false,
+        //    HintText = "{=KTMCM_ITMWH}Enables modifying items weight.")]
+        //[SettingPropertyGroup("{=KTMCM_ItemTweaks}Item Tweaks" + "/" + "{=KTMCM_CRW}Ranged Weapons" + "/" + "{=KTMCM_Cweight}weight")]
         public bool ItemRangedWeaponsWeightModifiers { get; set; } = true;
 
-        [SettingPropertyFloatingInteger("{=KTMCM_WeightT1}Weight Tier1 Multiplier", 0.1f, 3.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMWT1H}Multiply Tier1 weight by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_ItemTweaks}Item Tweaks" + "/" + "{=KTMCM_CRW}Ranged Weapons" + "/" + "{=KTMCM_Cweight}weight")]
+        //[SettingPropertyFloatingInteger("{=KTMCM_WeightT1}Weight Tier1 Multiplier", 0.1f, 3.0f, "#0%", RequireRestart = false,
+        //    HintText = "{=KTMCM_ITMWT1H}Multiply Tier1 weight by the multiplier [Native : 1.0[100%]].")]
+        //[SettingPropertyGroup("{=KTMCM_ItemTweaks}Item Tweaks" + "/" + "{=KTMCM_CRW}Ranged Weapons" + "/" + "{=KTMCM_Cweight}weight")]
         public float ItemRangedWeaponsTier1WeightMultiplier { get; set; } = 1.0f;
 
-        [SettingPropertyFloatingInteger("{=KTMCM_WeightT2}Weight Tier2 Multiplier", 0.1f, 3.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMWT2H}Multiply Tier2 weight by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_ItemTweaks}Item Tweaks" + "/" + "{=KTMCM_CRW}Ranged Weapons" + "/" + "{=KTMCM_Cweight}weight")]
+        //[SettingPropertyFloatingInteger("{=KTMCM_WeightT2}Weight Tier2 Multiplier", 0.1f, 3.0f, "#0%", RequireRestart = false,
+        //    HintText = "{=KTMCM_ITMWT2H}Multiply Tier2 weight by the multiplier [Native : 1.0[100%]].")]
+        //[SettingPropertyGroup("{=KTMCM_ItemTweaks}Item Tweaks" + "/" + "{=KTMCM_CRW}Ranged Weapons" + "/" + "{=KTMCM_Cweight}weight")]
         public float ItemRangedWeaponsTier2WeightMultiplier { get; set; } = 1.0f;
 
-        [SettingPropertyFloatingInteger("{=KTMCM_WeightT3}Weight Tier3 Multiplier", 0.1f, 3.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMWT3H}Multiply Tier3 weight by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_ItemTweaks}Item Tweaks" + "/" + "{=KTMCM_CRW}Ranged Weapons" + "/" + "{=KTMCM_Cweight}weight")]
+        //[SettingPropertyFloatingInteger("{=KTMCM_WeightT3}Weight Tier3 Multiplier", 0.1f, 3.0f, "#0%", RequireRestart = false,
+        //    HintText = "{=KTMCM_ITMWT3H}Multiply Tier3 weight by the multiplier [Native : 1.0[100%]].")]
+        //[SettingPropertyGroup("{=KTMCM_ItemTweaks}Item Tweaks" + "/" + "{=KTMCM_CRW}Ranged Weapons" + "/" + "{=KTMCM_Cweight}weight")]
         public float ItemRangedWeaponsTier3WeightMultiplier { get; set; } = 1.0f;
 
-        [SettingPropertyFloatingInteger("{=KTMCM_WeightT4}Weight Tier4 Multiplier", 0.1f, 3.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMWT4H}Multiply Tier4 weight by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_ItemTweaks}Item Tweaks" + "/" + "{=KTMCM_CRW}Ranged Weapons" + "/" + "{=KTMCM_Cweight}weight")]
+        //[SettingPropertyFloatingInteger("{=KTMCM_WeightT4}Weight Tier4 Multiplier", 0.1f, 3.0f, "#0%", RequireRestart = false,
+        //    HintText = "{=KTMCM_ITMWT4H}Multiply Tier4 weight by the multiplier [Native : 1.0[100%]].")]
+        //[SettingPropertyGroup("{=KTMCM_ItemTweaks}Item Tweaks" + "/" + "{=KTMCM_CRW}Ranged Weapons" + "/" + "{=KTMCM_Cweight}weight")]
         public float ItemRangedWeaponsTier4WeightMultiplier { get; set; } = 1.0f;
 
-        [SettingPropertyFloatingInteger("{=KTMCM_WeightT5}Weight Tier5 Multiplier", 0.1f, 3.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMWT5H}Multiply Tier5 weight by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_ItemTweaks}Item Tweaks" + "/" + "{=KTMCM_CRW}Ranged Weapons" + "/" + "{=KTMCM_Cweight}weight")]
+        //[SettingPropertyFloatingInteger("{=KTMCM_WeightT5}Weight Tier5 Multiplier", 0.1f, 3.0f, "#0%", RequireRestart = false,
+        //    HintText = "{=KTMCM_ITMWT5H}Multiply Tier5 weight by the multiplier [Native : 1.0[100%]].")]
+        //[SettingPropertyGroup("{=KTMCM_ItemTweaks}Item Tweaks" + "/" + "{=KTMCM_CRW}Ranged Weapons" + "/" + "{=KTMCM_Cweight}weight")]
         public float ItemRangedWeaponsTier5WeightMultiplier { get; set; } = 1.0f;
 
-        [SettingPropertyFloatingInteger("{=KTMCM_WeightT6}Weight Tier6 Multiplier", 0.1f, 3.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_ITMWT6H}Multiply Tier6 weight by the multiplier [Native : 1.0[100%]].")]
-        [SettingPropertyGroup("{=KTMCM_ItemTweaks}Item Tweaks" + "/" + "{=KTMCM_CRW}Ranged Weapons" + "/" + "{=KTMCM_Cweight}weight")]
+        //[SettingPropertyFloatingInteger("{=KTMCM_WeightT6}Weight Tier6 Multiplier", 0.1f, 3.0f, "#0%", RequireRestart = false,
+        //    HintText = "{=KTMCM_ITMWT6H}Multiply Tier6 weight by the multiplier [Native : 1.0[100%]].")]
+        //[SettingPropertyGroup("{=KTMCM_ItemTweaks}Item Tweaks" + "/" + "{=KTMCM_CRW}Ranged Weapons" + "/" + "{=KTMCM_Cweight}weight")]
         public float ItemRangedWeaponsTier6WeightMultiplier { get; set; } = 1.0f;
         #endregion
 
@@ -3192,7 +3193,7 @@ namespace KaosesTweaks.Settings
                 MCMMeleeWeaponModifiers = true,
 
                 //~ Weight
-                ItemMeleeWeaponWeightModifiers = true,
+                ItemMeleeWeaponWeightModifiers = false,
                 ItemMeleeWeaponTier1WeightMultiplier = 1.0f,
                 ItemMeleeWeaponTier2WeightMultiplier = 1.0f,
                 ItemMeleeWeaponTier3WeightMultiplier = 1.0f,
@@ -3214,7 +3215,7 @@ namespace KaosesTweaks.Settings
                 MCMRagedWeaponsModifiers = true,
 
                 //~ Weight
-                ItemRangedWeaponsWeightModifiers = true,
+                ItemRangedWeaponsWeightModifiers = false,
                 ItemRangedWeaponsTier1WeightMultiplier = 1.0f,
                 ItemRangedWeaponsTier2WeightMultiplier = 1.0f,
                 ItemRangedWeaponsTier3WeightMultiplier = 1.0f,

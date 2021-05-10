@@ -49,6 +49,10 @@ namespace KaosesTweaks.Models
             int attributeValue = hero.GetAttributeValue(skill.CharacterAttributeEnum);
             int focus = hero.HeroDeveloper.GetFocus(skill);
             int skillValue = hero.GetSkillValue(skill);
+            if (Statics._settings.LearningDebug)
+            {
+                IM.MessageDebug("KT CalculateLearningRate: " + skill.CharacterAttribute.Name.ToString());
+            }
             float LearningRate = CalculateLearningRate(attributeValue, focus, skillValue, level, skill.CharacterAttribute.Name, false).ResultNumber;
             return LearningRate;
         }
@@ -57,8 +61,11 @@ namespace KaosesTweaks.Models
         // Token: 0x06002BD8 RID: 11224 RVA: 0x000A8690 File Offset: 0x000A6890
         public override ExplainedNumber CalculateLearningRate(int attributeValue, int focusValue, int skillValue, int characterLevel, TextObject attributeName, bool includeDescriptions = false)
         {
+            if (Statics._settings.LearningDebug)
+            {
+                IM.MessageDebug("KT attributeName: " + attributeName.ToString());
+            }
             float learningMultiplier = 1.0f;
-
             if (Statics._settings.LearningRateEnabled)
             {
                 learningMultiplier = Statics._settings.LearningRateMultiplier;
@@ -68,37 +75,79 @@ namespace KaosesTweaks.Models
             float baseNumber = baseNo * learningMultiplier;
             ExplainedNumber result = new ExplainedNumber(baseNumber, true, null);
 
+            if (Statics._settings.LearningDebug)
+            {
+                IM.MessageDebug("KT base: " + result.ResultNumber.ToString());
+            }
             float att1 = (0.4f * (float)attributeValue);
             float attAdded = ((float)Math.Round((double)(att1), 3) * 100f);
             double attFac = Math.Round((baseNumber * attAdded * 0.01f), 3);
+            int AttrLimitValue = 0;
             if (Statics._settings.LearningRateEnabled)
             {
                 result.Add((float)(attFac), new TextObject("KT " + attributeName.ToString(), null));
+                AttrLimitValue = (int)attFac;
+                if (Statics._settings.LearningDebug)
+                {
+                    IM.MessageDebug("KT attribute: " + attFac.ToString());
+                }
             }
             else
             {
                 result.AddFactor(((0.4f * (float)attributeValue)), attributeName);
+                AttrLimitValue = (int)(0.4f * (float)attributeValue);
+                if (Statics._settings.LearningDebug)
+                {
+                    IM.MessageDebug("attribute: " + attFac.ToString());
+                }
+            }
+            if (Statics._settings.LearningDebug)
+            {
+                IM.MessageDebug("KT with attr: " + result.ResultNumber.ToString());
             }
     
             float fv1 = (float)focusValue * 1f;
             float focusAdded = ((float)Math.Round((double)fv1, 3) * 100f);
             double focusFac = Math.Round((baseNumber * focusAdded * 0.01f), 3);
+            int focusLimitValue = 0;
             if (Statics._settings.LearningRateEnabled)
             {
                 result.Add((float)(focusFac), new TextObject("KT " + _skillFocusText, null));
+                focusLimitValue = (int)focusFac;
+                if (Statics._settings.LearningDebug)
+                {
+                    IM.MessageDebug("KT Focus: " + focusFac.ToString());
+                }
             }
             else
             {
                 result.AddFactor(((float)focusValue * 1f), _skillFocusText);
+                focusLimitValue = (int)(focusValue * 1f);
+                if (Statics._settings.LearningDebug)
+                {
+                    IM.MessageDebug("Focus: " + focusFac.ToString());
+                }
             }
-            
 
-            int num = MBMath.Round(this.CalculateLearningLimit(attributeValue, focusValue, null, false).ResultNumber);
+            if (Statics._settings.LearningDebug)
+            {
+                IM.MessageDebug("KT with attr an focus: " + result.ResultNumber.ToString());
+            }
+
+            int num = MBMath.Round(this.CalculateLearningLimit(AttrLimitValue, focusLimitValue, null, false).ResultNumber);
+            if (Statics._settings.LearningDebug)
+            {
+                IM.MessageDebug("LearningLimit: " + num.ToString() + "  skillValue: " + skillValue.ToString());
+            }
             float test = 0.0f;
             int num2 = 0;
             if (skillValue > num)
             {
                 num2 = skillValue - num;
+                if (Statics._settings.LearningDebug)
+                {
+                    IM.MessageDebug("_overLimitText REDUCED VALUE: " + num2.ToString());
+                }
                 result.AddFactor(-1f - 0.1f * (float)num2, _overLimitText);
                 test = -1f - 0.1f * (float)num2;
             }
@@ -179,6 +228,30 @@ namespace KaosesTweaks.Models
         #endregion
 
 
+
+        // Token: 0x06002BD8 RID: 11224 RVA: 0x000A84C8 File Offset: 0x000A66C8
+        public override ExplainedNumber CalculateLearningLimit(int attributeValue, int focusValue, TextObject attributeName, bool includeDescriptions = false)
+        {
+            if (Statics._settings.LearningDebug)
+            {
+                IM.MessageDebug("CalculateLearningLimit: ");
+            }
+            ExplainedNumber result = new ExplainedNumber(0f, includeDescriptions, null);
+            result.Add((float)((attributeValue - 1) * 10), attributeName, null);
+            if (Statics._settings.LearningDebug)
+            {
+                IM.MessageDebug("CalculateLearningLimit with attr: " + result.ResultNumber.ToString());
+                IM.MessageDebug("CalculateLearningLimit: (attributeValue - 1) * 10 = " + ((attributeValue - 1) * 10).ToString());
+            }
+            result.Add((float)(focusValue * 30), _skillFocusText, null);
+            if (Statics._settings.LearningDebug)
+            {
+                IM.MessageDebug("CalculateLearningLimit with attr an focus: " + result.ResultNumber.ToString());
+                IM.MessageDebug("CalculateLearningLimit: focusValue * 30 = " + (focusValue * 30).ToString());
+            }
+            result.LimitMin(0f);
+            return result;
+        }
 
 
 

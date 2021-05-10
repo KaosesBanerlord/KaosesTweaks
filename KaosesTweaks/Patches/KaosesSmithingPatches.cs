@@ -357,14 +357,20 @@ namespace KaosesTweaks.Patches
                 int num = 10;
                 if (Statics._settings.SmithingEnergyDisable)
                 {
-                    IM.MessageDebug("GetEnergyCostForSmelting: DISABLED ");
+                    if (Statics._settings.CraftingDebug)
+                    {
+                        IM.MessageDebug("GetEnergyCostForSmelting: DISABLED ");
+                    }
                     __result = 0;
                     return false;
                 }
                 else //if (Statics._settings.CraftingStaminaTweakEnabled)
                 {
                     float tmp = num * Statics._settings.SmithingEnergySmeltingValue;
-                    IM.MessageDebug("GetEnergyCostForSmelting Old : " + num.ToString() + " New : " + tmp.ToString());
+                    if (Statics._settings.CraftingDebug)
+                    {
+                        IM.MessageDebug("GetEnergyCostForSmelting Old : " + num.ToString() + " New : " + tmp.ToString());
+                    }
                     num = (int)tmp;
                     if (hero.GetPerkValue(DefaultPerks.Crafting.PracticalSmelter))
                     {

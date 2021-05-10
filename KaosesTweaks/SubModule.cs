@@ -137,20 +137,35 @@ namespace KaosesTweaks
                 try
                 {
                     AddModels(campaignGameStarter);
-
                     PlayerBattleEndEventListener playerBattleEndEventListener = new PlayerBattleEndEventListener();
                     CampaignEvents.OnPlayerBattleEndEvent.AddNonSerializedListener(playerBattleEndEventListener, new Action<MapEvent>(playerBattleEndEventListener.IncreaseLocalRelationsAfterBanditFight));
+                }
+                catch (Exception ex)
+                {
+                    IM.MessageError("Error OnGameStart: " + ex.ToStringFull());
+                    MessageBox.Show($"Error Initialising Culture Changer:\n\n{ex.ToStringFull()}");
+                }
 
+                try
+                {
                     /* Another chance at marriage */
                     LastAttempts = new Dictionary<Hero, CampaignTime>();
                     /* Another chance at marriage */
                     campaignGameStarter.CampaignBehaviors.Add(new AnotherChanceBehavior());
                     /* Another chance at marriage */
+                }
+                catch (Exception ex)
+                {
+                    IM.MessageError("Error OnGameStart: "+ex.ToStringFull());
+                    MessageBox.Show($"Error Initialising Culture Changer:\n\n{ex.ToStringFull()}");
+                }
+                try
+                {
                     //~BT
-                    campaignGameStarter.AddBehavior(new ChangeSettlementCulture());
-                    //campaignGameStarter.AddBehavior(new KaosesPregnancyCampaignBehavior());
-                    
-                    //DumpValues();
+                    if (Statics._settings.EnableCultureChanger)
+                    {
+                        campaignGameStarter.AddBehavior(new ChangeSettlementCulture());
+                    }
                 }
                 catch (Exception ex)
                 {
