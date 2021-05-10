@@ -35,7 +35,13 @@ namespace KaosesTweaks
         public static readonly FastInvokeHandler RemoveUnneededPersuasionAttemptsHandler =
         HarmonyLib.MethodInvoker.GetHandler(AccessTools.Method(typeof(RomanceCampaignBehavior), "RemoveUnneededPersuasionAttempts"));
         private Harmony _harmony;
+        public static bool HasPatched = false;
         /* Another chance at marriage */
+
+        protected override void OnSubModuleLoad()
+        {
+            base.OnSubModuleLoad();
+        }
 
 
         protected override void OnBeforeInitialModuleScreenSetAsRoot()
@@ -51,6 +57,8 @@ namespace KaosesTweaks
                     if (Kaoses.IsHarmonyLoaded())
                     {
                         IM.DisplayModLoadedMessage();
+                        var harmony = new Harmony(Statics.HarmonyId);
+                        harmony.PatchAll(Assembly.GetExecutingAssembly());
                     }
                     else { IM.DisplayModHarmonyErrorMessage(); }
                 }
@@ -61,11 +69,6 @@ namespace KaosesTweaks
                 //Handle exceptions
                 IM.MessageError("Error loading initial config: " + ex.ToStringFull());
             }
-        }
-
-        protected override void OnSubModuleLoad()
-        {
-            base.OnSubModuleLoad();
         }
 
 
@@ -79,17 +82,6 @@ namespace KaosesTweaks
             {
                 return;
             }
-            try
-            {
-                var harmony = new Harmony(Statics.HarmonyId);
-                harmony.PatchAll(Assembly.GetExecutingAssembly());
-            }
-            catch (Exception ex)
-            {
-                //Handle exceptions
-                IM.MessageError("Error with harmony patch: " + ex.ToStringFull());
-            }
-
             try
             {
                 if (Statics._settings is { } settings && (settings.EnableMissingHeroFix && settings.PrisonerImprisonmentTweakEnabled)) //
@@ -202,6 +194,16 @@ namespace KaosesTweaks
         protected override void OnSubModuleUnloaded()
         {
             base.OnSubModuleUnloaded();
+            try
+            {
+                _harmony?.UnpatchAll(Statics.HarmonyId);
+                HasPatched = false;
+            }
+            catch (Exception ex)
+            {
+                //Handle exceptions
+                //IM.MessageError("Error OnGameEnd harmony un-patch: " + ex.ToStringFull());
+            }
         }
 
         public override void OnGameEnd(Game game)
@@ -209,11 +211,12 @@ namespace KaosesTweaks
             try
             {
                 _harmony?.UnpatchAll(Statics.HarmonyId);
+                HasPatched = false;
             }
             catch (Exception ex)
             {
                 //Handle exceptions
-                IM.MessageError("Error OnGameEnd harmony un-patch: " + ex.ToStringFull());
+                //IM.MessageError("Error OnGameEnd harmony un-patch: " + ex.ToStringFull());
             }
             
         }

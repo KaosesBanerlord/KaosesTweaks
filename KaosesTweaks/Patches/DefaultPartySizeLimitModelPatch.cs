@@ -20,14 +20,21 @@ namespace KaosesTweaks.Patches
                 if (settings.LeadershipPartySizeBonusEnabled)
                 {
                     num = (int)Math.Ceiling(party.LeaderHero.GetSkillValue(DefaultSkills.Leadership) * settings.LeadershipPartySizeBonus * ((party.LeaderHero == Hero.MainHero) ? 1 : settings.PartySizeTweakAIFactor));
-                    //IM.MessageDebug("BT Leadership PartySizeBonus : " + num.ToString());
+                    
+                    if (Statics._settings.PartySizeLimitsDebug)
+                    {
+                        IM.MessageDebug("BT Leadership PartySizeBonus : " + num.ToString());
+                    }
                     __result.Add((float)num, new TextObject("BT Leadership bonus"));
                 }
 
                 if (settings.StewardPartySizeBonusEnabled && party.LeaderHero == Hero.MainHero)
                 {
                     num = (int)Math.Ceiling(party.LeaderHero.GetSkillValue(DefaultSkills.Steward) * settings.StewardPartySizeBonus * ((party.LeaderHero == Hero.MainHero) ? 1 : settings.PartySizeTweakAIFactor));
-                    //IM.MessageDebug("BT Steward PartySizeBonus : " + num.ToString());
+                    if (Statics._settings.PartySizeLimitsDebug)
+                    {
+                        IM.MessageDebug("BT Steward PartySizeBonus : " + num.ToString());
+                    }
                     __result.Add((float)num, new TextObject("BT Steward bonus"));
                 }
                 if (settings.BalancingPartySizeTweaksEnabled && settings.KingdomBalanceStrengthEnabled && party.LeaderHero.Clan.Kingdom != null)
@@ -81,9 +88,21 @@ namespace KaosesTweaks.Patches
                     __result.Add((float)__result.ResultNumber * num2, new TextObject("BT Balancing Tweak"));
                 }
             }
+            
+            if (party.IsCaravan && party.Party?.Owner != null && party.Party.Owner == Hero.MainHero && MCMSettings.Instance is { } settings2)
+            {
+                float num = settings2.PlayerCaravanPartySize;
+                float num2 = __result.ResultNumber;
+                float num3 = num - num2;
+                if (Statics._settings.PartySizeLimitsDebug)
+                {
+                    IM.MessageDebug("Caravan PartySize Tweak: " + num3.ToString());
+                }
+                __result.Add((int)Math.Ceiling(num3), null);
+            }
         }
 
-        static bool Prepare() => MCMSettings.Instance is { } settings && (settings.PartySizeTweakEnabled || settings.KingdomBalanceStrengthEnabled);
+        static bool Prepare() => MCMSettings.Instance is { } settings && (settings.PartySizeTweakEnabled || settings.KingdomBalanceStrengthEnabled || settings.PlayerCaravanPartySizeTweakEnabled);
     }
 
     [HarmonyPatch(typeof(DefaultPartySizeLimitModel), "GetPartyPrisonerSizeLimit")]

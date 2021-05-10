@@ -3,7 +3,7 @@
     "Bannerlord": {
       "commandName": "Executable",
       "executablePath": "$(GameFolder)\\bin\\Win64_Shipping_Client\\Bannerlord.exe",
-      "commandLineArgs": "/singleplayer _MODULES_*Bannerlord.Harmony*Bannerlord.ButterLib*Bannerlord.MBOptionScreen*Bannerlord.UIExtenderEx*BetterExceptionWindow*Native*SandBoxCore*CustomBattle*Sandbox*StoryMode*_MODULES_",
+      "commandLineArgs": "/singleplayer _MODULES_*Bannerlord.Harmony*Bannerlord.ButterLib*Bannerlord.MBOptionScreen*Bannerlord.UIExtenderEx*BetterExceptionWindow*Native*SandBoxCore*CustomBattle*Sandbox*StoryMode*KaosesTweaks*_MODULES_",
       "workingDirectory": "$(GameFolder)\\bin\\Win64_Shipping_Client"
     }
   }
