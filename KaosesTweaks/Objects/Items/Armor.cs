@@ -31,7 +31,7 @@ namespace KaosesTweaks.Objects
             }
             if (_settings.ItemArmorWeightModifiers && _settings.MCMArmorModifiers)
             {
-                SetItemsWeight((int)(_item.Weight * multiplerWeight), multiplerWeight);
+                SetItemsWeight(_item.Weight * multiplerWeight, multiplerWeight);
             }
         }
 

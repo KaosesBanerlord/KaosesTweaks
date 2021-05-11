@@ -28,7 +28,7 @@ namespace KaosesTweaks.Objects
             if (_settings.MCMFoodModifiers)
             {
                 SetItemsValue((int)(_item.Value * multiplerPrice), multiplerPrice);
-                SetItemsWeight((int)(_item.Weight * multiplerWeight), multiplerWeight);
+                SetItemsWeight(_item.Weight * multiplerWeight, multiplerWeight);
             }
         }
 

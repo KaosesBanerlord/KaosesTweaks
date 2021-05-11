@@ -186,5 +186,35 @@ namespace KaosesTweaks.Common
         }
 
 
+        /// <summary>
+        /// Code replicates what happens inside the AddFactor call e.g. result.AddFactor(((0.4f * (float)attributeValue)), attributeName);
+        /// first it
+        /// (float)Math.Round((double)value, 3) * 100f
+        /// then when they get the multiply lines they do this
+        /// if (explanationLine.OperationType == ExplainedNumber.StatExplainer.OperationType.Multiply)
+		/// {
+		/// num = baseNumber* num * 0.01f;
+        /// }
+        /// </summary>
+        /// <returns>float</returns>
+        public static float getFactorValueForExplainers(int currentValue, int baseNumber)
+        {
+            return getFactorValueForExplainers((float)currentValue, baseNumber);
+        }
+        
+        public static float getFactorValueForExplainers(int currentValue, float baseNumber)
+        {
+            return getFactorValueForExplainers((float)currentValue, baseNumber);
+        }
+        
+        public static float getFactorValueForExplainers(float currentValue, float baseNumber)
+        {
+            float value = 0.0f;
+            value = ((float)Math.Round((double)(currentValue), 3) * 100f);
+            double tmp = Math.Round((baseNumber * value * 0.01f), 3);
+            value = (float)tmp;
+            return value;
+        }
+
     }
 }

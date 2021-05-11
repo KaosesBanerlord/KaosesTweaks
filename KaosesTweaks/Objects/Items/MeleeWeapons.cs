@@ -31,7 +31,7 @@ namespace KaosesTweaks.Objects
             }
             if (_settings.ItemMeleeWeaponWeightModifiers && _settings.MCMMeleeWeaponModifiers)
             {
-                //SetItemsWeight((int)(_item.Weight * multiplerWeight), multiplerWeight);
+                //SetItemsWeight(_item.Weight * multiplerWeight, multiplerWeight);
             }
         }
 

@@ -25,7 +25,7 @@ namespace KaosesTweaks.Objects
             if (_settings.MCMTradeGoodsModifiers)
             {
                 SetItemsValue((int)(_item.Value * _settings.ItemTradeGoodsPriceMultiplier), _settings.ItemTradeGoodsPriceMultiplier);
-                SetItemsWeight((int)(_item.Weight * _settings.ItemTradeGoodsWeightMultiplier), _settings.ItemTradeGoodsWeightMultiplier);
+                SetItemsWeight(_item.Weight * _settings.ItemTradeGoodsWeightMultiplier, _settings.ItemTradeGoodsWeightMultiplier);
             }
         }
     }

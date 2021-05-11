@@ -33,7 +33,7 @@ namespace KaosesTweaks.Objects
             {
                 if (_item.Type != ItemObject.ItemTypeEnum.Thrown)
                 {
-                    //SetItemsWeight((int)(_item.Weight * multiplerWeight), multiplerWeight);
+                    //SetItemsWeight(_item.Weight * multiplerWeight, multiplerWeight);
                 }
                 
             }

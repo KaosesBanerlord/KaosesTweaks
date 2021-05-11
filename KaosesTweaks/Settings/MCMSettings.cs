@@ -2286,7 +2286,7 @@ namespace KaosesTweaks.Settings
 
         //~ LearningRateMultipliers
         #region LearningRateMultipliers
-        [SettingPropertyBool("{=KTMCM_XPMLR}Learning Rate Modifiers " + "*", IsToggle = true, Order = 0, RequireRestart = true,
+        [SettingPropertyBool("{=KTMCM_XPMLR}Learning Rate Enable " + "*", IsToggle = true, Order = 0, RequireRestart = true,
             HintText = "{=KTMCM_XPMLRH}Enable Learning Rate modifiers.")]
         [SettingPropertyGroup("{=KTMCM_CXPTweaks}XP Tweaks" + "/" + "{=KTMCM_CLearning}Learning Rate")]
         public bool LearningRateEnabled { get; set; } = false;
@@ -2296,6 +2296,19 @@ namespace KaosesTweaks.Settings
         [SettingPropertyGroup("{=KTMCM_CXPTweaks}XP Tweaks" + "/" + "{=KTMCM_CLearning}Learning Rate")]
         public float LearningRateMultiplier { get; set; } = 1.0f;
         #endregion //~ LearningRateMultipliers
+
+        //~ LearningLimitMultipliers
+        #region LearningLimitMultipliers
+        [SettingPropertyBool("{=KTMCM_XPMLL}Learning Limit Enable " + "*", IsToggle = true, Order = 0, RequireRestart = true,
+            HintText = "{=KTMCM_XPMLLH}Enable Learning Limit modifiers.")]
+        [SettingPropertyGroup("{=KTMCM_CXPTweaks}XP Tweaks" + "/" + "{=KTMCM_CLearningLimit}Learning Limit")]
+        public bool LearningLimitEnabled { get; set; } = false;
+
+        [SettingPropertyFloatingInteger("{=KTMCM_XPMLLM}Learning Limit Multiplier", 0.0f, 1.0f, "#0%", RequireRestart = false,
+            HintText = "{=KTMCM_XPMLLMH}Multiply Learning limit by the multiplier [Native : 0.0[0%]].")]
+        [SettingPropertyGroup("{=KTMCM_CXPTweaks}XP Tweaks" + "/" + "{=KTMCM_CLearningLimit}Learning Limit")]
+        public float LearningLimitMultiplier { get; set; } = 0.0f;
+        #endregion //~ LearningLimitMultipliers
 
         //~ Troop Daily Experience Tweak
         #region Troop Daily Experience Tweak

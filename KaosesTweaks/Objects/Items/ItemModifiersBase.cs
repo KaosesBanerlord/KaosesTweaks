@@ -28,10 +28,10 @@ namespace KaosesTweaks.Objects
             typeof(ItemObject).GetProperty("Value").SetValue(_item, (int)multiplePriceValue);
         }
 
-        protected void SetItemsWeight(int multipleWeightValue, float multiplier = 0.0f)
+        protected void SetItemsWeight(float multipleWeightValue, float multiplier = 0.0f)
         {
             DebugWeight(_item, multipleWeightValue, multiplier);
-            typeof(ItemObject).GetProperty("Weight").SetValue(_item, (float)multipleWeightValue);
+            typeof(ItemObject).GetProperty("Weight").SetValue(_item, multipleWeightValue);
 
         }
 

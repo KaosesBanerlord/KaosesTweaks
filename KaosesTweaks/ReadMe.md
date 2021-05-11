@@ -150,7 +150,9 @@ Covers the following each one can have weight and/or price increaded or decrease
     - merged duplicate menu categories
     - Made smithing selectable to only use patches for new energy cost and xp cost multipliers, or use model overriding
     - fixed learning rate multiplier to be more accurate
-
+0.2.3
+    - Cebullus located and fixed item modification error with weights
+    - Added new Learning limit multipliers added
 
 
 ## Todo
