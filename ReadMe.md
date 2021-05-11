@@ -321,6 +321,8 @@ All tweaks can be set through Mod Configuration Menu integration. The tweaks cov
       - Player Persuasion Bonus Chance
       - Clan Member Death Chance Reduction 
     - Updated Battle rewards model
+- 0.2.5 
+    - Fixed Character Calculate Learning Rate to remove character level to match the 1.5.10 code changes
 
 
 
