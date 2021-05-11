@@ -18,16 +18,16 @@ namespace KaosesTweaks.Behaviors
         // Token: 0x06002FBF RID: 12223 RVA: 0x000C9360 File Offset: 0x000C7560
         public override void RegisterEvents()
         {
-            CampaignEvents.OnNewGameCreatedEvent2.AddNonSerializedListener(this, new Action(this.OnAfterNewGameCreated));
+            //CampaignEvents.OnNewGameCreatedEvent2.AddNonSerializedListener(this, new Action(this.OnAfterNewGameCreated));
             CampaignEvents.HeroKilledEvent.AddNonSerializedListener(this, new Action<Hero, Hero, KillCharacterAction.KillCharacterActionDetail, bool>(this.OnHeroKilled));
             CampaignEvents.DailyTickHeroEvent.AddNonSerializedListener(this, new Action<Hero>(this.DailyTickHero));
-            //CampaignEvents.OnGameLoadedEvent.AddNonSerializedListener(this, new Action<CampaignGameStarter>(this.GameLoaded));
+            CampaignEvents.OnGameLoadedEvent.AddNonSerializedListener(this, new Action<CampaignGameStarter>(this.GameLoaded));
             CampaignEvents.OnChildConceivedEvent.AddNonSerializedListener(this, new Action<Hero>(this.ChildConceived));
            
         }
 
         // Token: 0x06002FC0 RID: 12224 RVA: 0x000C93E0 File Offset: 0x000C75E0
-/*
+
         private void GameLoaded(CampaignGameStarter starter)
         {
             foreach (LogEntry logEntry in new List<LogEntry>(Campaign.Current.LogEntryHistory.GameActionLogs))
@@ -38,7 +38,7 @@ namespace KaosesTweaks.Behaviors
                     LogEntry.AddLogEntry(new ChildbirthLogEntry(childbirthLogEntry.Mother, childbirthLogEntry.NewLogTwin), childbirthLogEntry.GameTime);
                 }
             }
-        }*/
+        }
 
         // Token: 0x06002FC1 RID: 12225 RVA: 0x000C9470 File Offset: 0x000C7670
         private void DailyTickHero(Hero hero)

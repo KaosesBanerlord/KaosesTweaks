@@ -65,6 +65,8 @@ namespace KaosesTweaks.Settings
         public bool CraftingDebug { get; set; } = false;
         public bool LearningDebug { get; set; } = false;
         public bool BattleSizeDebug { get; set; } = false;
+        public bool CultureChangeDebug { get; set; } = false;
+
         //~ KT Debugging 
 
 
@@ -330,6 +332,7 @@ namespace KaosesTweaks.Settings
             SettingPropertyGroup("{=BT_Settings_001000}Campaign Tweaks" + "/" + "{=BT_Settings_001200}Difficulty Tweaks" + "/" + "{=BT_Settings_001201}Damage to Player Tweak")]
         public float DamageToPlayerMultiplier { get; set; } = 1.0f;
 
+/*
         [SettingPropertyBool("{=BT_Settings_001203}Damage to Friends Tweak", Order = 4, RequireRestart = false, IsToggle = true,
             HintText = "{=BT_Settings_001203_Desc}Allows you to change the damage the player's friends receive."),
             SettingPropertyGroup("{=BT_Settings_001000}Campaign Tweaks" + "/" + "{=BT_Settings_001200}Difficulty Tweaks" + "/" + "{=BT_Settings_001203}Damage to Friends Tweak", GroupOrder = 2)]
@@ -338,7 +341,7 @@ namespace KaosesTweaks.Settings
         [SettingPropertyFloatingInteger("{=BT_Settings_001204}Damage to Friends Tweak Amount", 0.1f, 5.0f, "0%", RequireRestart = false, Order = 5,
             HintText = "{=BT_Settings_001204_Desc}Native values: Very Easy: 30%, Easy: 67%, Realistic: 100%. This value is used to calculate the damage the player's friends receive."),
             SettingPropertyGroup("{=BT_Settings_001000}Campaign Tweaks" + "/" + "{=BT_Settings_001200}Difficulty Tweaks" + "/" + "{=BT_Settings_001203}Damage to Friends Tweak")]
-        public float DamageToFriendsMultiplier { get; set; } = 1.0f;
+        public float DamageToFriendsMultiplier { get; set; } = 1.0f;*/
 
         [SettingPropertyBool("{=BT_Settings_001205}Damage to Player's Troops Tweak", Order = 6, RequireRestart = false, IsToggle = true,
             HintText = "{=BT_Settings_001205_Desc}Allows you to change the multiplier for damage the player's troops receive."),
@@ -369,6 +372,30 @@ namespace KaosesTweaks.Settings
             HintText = "{=BT_Settings_001210_Desc}Native values: Very Easy: 10%, Easy: 5%, Realistic: 0%. This value is used to calculate player's map movement speed."),
             SettingPropertyGroup("{=BT_Settings_001000}Campaign Tweaks" + "/" + "{=BT_Settings_001200}Difficulty Tweaks" + "/" + "{=BT_Settings_001209}Player Map Movement Speed Tweak")]
         public float PlayerMapMovementSpeedBonusMultiplier { get; set; } = 0.0f;
+
+
+        [SettingPropertyBool("{=KT_PPBC}Player Persuasion Bonus Chance Tweak", Order = 10, RequireRestart = false, IsToggle = true,
+            HintText = "{=KT_PPBCH}Allows you to change the bonus persuasion chance multiplier the player receives."),
+            SettingPropertyGroup("{=BT_Settings_001000}Campaign Tweaks" + "/" + "{=BT_Settings_001200}Difficulty Tweaks" + "/" + "{=KT_PPBC}Player Persuasion Bonus Chance Tweak", GroupOrder = 5)]
+        public bool PlayerPersuasionBonusChanceTweakEnabled { get; set; } = false;
+
+        [SettingPropertyFloatingInteger("{=KT_PPBCM}Player Persuasion Bonus Chance Tweak Amount", 0.00f, 1.0f, "0%", RequireRestart = false, Order = 11,
+            HintText = "{=KT_PPBCMH}Native values: Very Easy: 0.1%, Easy: 0.05%, Realistic: 0%. This value is used to calculate player's persuasion bonus chance."),
+            SettingPropertyGroup("{=BT_Settings_001000}Campaign Tweaks" + "/" + "{=BT_Settings_001200}Difficulty Tweaks" + "/" + "{=KT_PPBC}Player Persuasion Bonus Chance Tweak")]
+        public float PlayerPersuasionBonusChanceMultiplier { get; set; } = 0.00f;
+        
+
+        [SettingPropertyBool("{=KT_CMDCR}Clan Member Death Chance Reduction Tweak", Order = 10, RequireRestart = false, IsToggle = true,
+            HintText = "{=KT_CMDCRH}Allows you to change the clan member death chance reduction multiplier."),
+            SettingPropertyGroup("{=BT_Settings_001000}Campaign Tweaks" + "/" + "{=BT_Settings_001200}Difficulty Tweaks" + "/" + "{=KT_CMDCR}Clan Member Death Chance Reduction Tweak", GroupOrder = 5)]
+        public bool ClanMemberDeathChanceReductionTweakEnabled { get; set; } = false;
+
+        [SettingPropertyFloatingInteger("{=KT_CMDCRM}Clan Member Death Chance Reduction Amount", 0.00f, 1.0f, "0%", RequireRestart = false, Order = 11,
+            HintText = "{=KT_CMDCRMH}Native values: Very Easy: 0.1%, Easy: 0.05%, Realistic: 0%. This value is used to calculate Clan member death chance reduction in missions."),
+            SettingPropertyGroup("{=BT_Settings_001000}Campaign Tweaks" + "/" + "{=BT_Settings_001200}Difficulty Tweaks" + "/" + "{=KT_CMDCR}Clan Member Death Chance Reduction Tweak")]
+        public float ClanMemberDeathChanceReductionMultiplier { get; set; } = 0.00f;
+
+
         #endregion //~ Difficulty Settings
 
         #endregion //~ Campaign Tweaks
@@ -1957,11 +1984,12 @@ namespace KaosesTweaks.Settings
             HintText = "{=BT_Settings_008701_Desc}Native value is 10%. Sets the chance that the militia spawning in towns and castles are elite melee troops."),
             SettingPropertyGroup("{=BT_Settings_008000}Settlement Tweaks" + "/" + "{=BT_Settings_008700}Elite Militia")]
         public float SettlementEliteMeleeSpawnRateBonus { get; set; } = 0.1f;
+/*
 
         [SettingPropertyFloatingInteger("{=BT_Settings_008702}Elite Ranged Militia Spawn Chance", 0.01f, 1f, "0%", RequireRestart = false, Order = 3,
             HintText = "{=BT_Settings_008702_Desc}Native value is 10%. Sets the chance that the militia spawning in towns and castles are elite ranged troops."),
             SettingPropertyGroup("{=BT_Settings_008000}Settlement Tweaks" + "/" + "{=BT_Settings_008700}Elite Militia")]
-        public float SettlementEliteRangedSpawnRateBonus { get; set; } = 0.1f;
+        public float SettlementEliteRangedSpawnRateBonus { get; set; } = 0.1f;*/
         #endregion//~ Settlement Tweaks - Militia Bonus Tweaks - Elite Militia
         #endregion //~ Settlement
 
@@ -2454,8 +2482,8 @@ namespace KaosesTweaks.Settings
                 DifficultyTweakEnabled = false,
                 DamageToPlayerTweakEnabled = false,
                 DamageToPlayerMultiplier = 0.67f,
-                DamageToFriendsTweakEnabled = false,
-                DamageToFriendsMultiplier = 0.67f,
+                //DamageToFriendsTweakEnabled = false,
+                //DamageToFriendsMultiplier = 0.67f,
                 DamageToTroopsTweakEnabled = false,
                 DamageToTroopsMultiplier = 0.67f,
                 CombatAIDifficultyTweakEnabled = false,
@@ -2887,7 +2915,7 @@ namespace KaosesTweaks.Settings
                 //~ Settlement Tweaks - Militia Bonus Tweaks - Elite Militia
                 SettlementMilitiaEliteSpawnRateBonusEnabled = false,
                 SettlementEliteMeleeSpawnRateBonus = 0.1f,
-                SettlementEliteRangedSpawnRateBonus = 0.1f,
+                //SettlementEliteRangedSpawnRateBonus = 0.1f,
 
                 //~ Tournaments
                 MCMTournamentsEnabled = false,
@@ -3079,8 +3107,8 @@ namespace KaosesTweaks.Settings
                 DifficultyTweakEnabled = true,
                 DamageToPlayerTweakEnabled = true,
                 DamageToPlayerMultiplier = 0.35f,
-                DamageToFriendsTweakEnabled = true,
-                DamageToFriendsMultiplier = 0.35f,
+                //DamageToFriendsTweakEnabled = true,
+                //DamageToFriendsMultiplier = 0.35f,
                 DamageToTroopsTweakEnabled = true,
                 DamageToTroopsMultiplier = 0.35f,
                 CombatAIDifficultyTweakEnabled = true,
@@ -3512,7 +3540,7 @@ namespace KaosesTweaks.Settings
                 //~ Settlement Tweaks - Militia Bonus Tweaks - Elite Militia
                 SettlementMilitiaEliteSpawnRateBonusEnabled = true,
                 SettlementEliteMeleeSpawnRateBonus = 0.1f,
-                SettlementEliteRangedSpawnRateBonus = 0.1f,
+                //SettlementEliteRangedSpawnRateBonus = 0.1f,
 
                 //~ Tournaments
                 MCMTournamentsEnabled = true,
@@ -3653,7 +3681,7 @@ namespace KaosesTweaks.Settings
                 TownMilitiaBonusFlat = 2.5f,
                 SettlementMilitiaBonusEnabled = false,
                 SettlementEliteMeleeSpawnRateBonus = 0.15f,
-                SettlementEliteRangedSpawnRateBonus = 0.1f,
+                //SettlementEliteRangedSpawnRateBonus = 0.1f,
                 SettlementMilitiaEliteSpawnRateBonusEnabled = true,
                 CastleFoodBonus = 2.0f,
                 TownFoodBonus = 4.0f,
@@ -3801,8 +3829,8 @@ namespace KaosesTweaks.Settings
                 DamageToTroopsTweakEnabled = false,
                 DamageToPlayerMultiplier = 1.0f,
                 DamageToPlayerTweakEnabled = false,
-                DamageToFriendsMultiplier = 1.0f,
-                DamageToFriendsTweakEnabled = false,
+                //DamageToFriendsMultiplier = 1.0f,
+                //DamageToFriendsTweakEnabled = false,
                 CombatAIDifficultyMultiplier = 0.96f,
                 CombatAIDifficultyTweakEnabled = false,
                 BattleSize = 1000,

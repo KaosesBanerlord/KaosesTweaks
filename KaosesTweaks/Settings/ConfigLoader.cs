@@ -1,5 +1,5 @@
-﻿using KaosesTweaks.Utils;
-using Newtonsoft.Json;
+﻿using Bannerlord.BUTR.Shared.Helpers;
+using KaosesTweaks.Utils;
 using System.IO;
 using System.Linq;
 using TaleWorlds.Engine;
@@ -88,7 +88,9 @@ namespace KaosesTweaks.Settings
 
         private static void CheckMcmConfig()
         {
-            string RootFolder = System.IO.Path.Combine(Utilities.GetConfigsPath(), "ModSettings/Global/" + Statics.ModuleFolder);
+            //string RootFolder = System.IO.Path.Combine(Utilities.GetConfigsPath(), "ModSettings/Global/" + Statics.ModuleFolder);
+
+            string RootFolder = System.IO.Path.Combine(FSIOHelper.GetConfigPath(), "ModSettings/Global/" + Statics.ModuleFolder);
             if (System.IO.Directory.Exists(RootFolder))
             {
                 Statics.MCMConfigFolder = RootFolder;

@@ -12,19 +12,19 @@ using System.Windows.Forms;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.SandBox.CampaignBehaviors;
 using TaleWorlds.Core;
-using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
-using static TaleWorlds.Core.ItemObject;
 using KaosesTweaks.BTTweaks;
 using System.Text;
 using System.Linq;
+
+
 /*
- 
- /singleplayer _MODULES_*Bannerlord.Harmony*Bannerlord.ButterLib*Bannerlord.MBOptionScreen*Bannerlord.UIExtenderEx*BetterExceptionWindow*Native*SandBoxCore*CustomBattle*Sandbox*StoryMode*$(ModuleName)*_MODULES_
- 
+
+/singleplayer _MODULES_*Bannerlord.Harmony*Bannerlord.ButterLib*Bannerlord.MBOptionScreen*Bannerlord.UIExtenderEx*BetterExceptionWindow*Native*SandBoxCore*CustomBattle*Sandbox*StoryMode*$(ModuleName)*_MODULES_
+
 
 /singleplayer _MODULES_*Bannerlord.Harmony*Bannerlord.ButterLib*Bannerlord.MBOptionScreen*Bannerlord.UIExtenderEx*BetterExceptionWindow*Native*SandBoxCore*CustomBattle*Sandbox*StoryMode*KaosesTweaks*_MODULES_
- */
+*/
 namespace KaosesTweaks
 {
     public class SubModule : MBSubModuleBase
@@ -69,6 +69,8 @@ namespace KaosesTweaks
                 //Handle exceptions
                 IM.MessageError("Error loading initial config: " + ex.ToStringFull());
             }
+
+            
         }
 
 
@@ -93,6 +95,10 @@ namespace KaosesTweaks
                         {
                             PrisonerImprisonmentTweak.DailyTick();
                         });
+                        if (Statics._settings.Debug)
+                        {
+                            IM.MessageDebug("Loaded DailyTickEvent PrisonerImprisonmentTweak");
+                        }
                     }
                     catch (Exception ex)
                     {
@@ -105,6 +111,10 @@ namespace KaosesTweaks
                 if (gameType != null && Statics._settings.MCMItemModifiers)
                 {
                     new KaosesItemTweaks(gameType.Items);
+                    if (Statics._settings.Debug)
+                    {
+                        IM.MessageDebug("Loaded KaosesItemTweaks");
+                    }
                 }
 
             }
@@ -131,6 +141,10 @@ namespace KaosesTweaks
                     AddModels(campaignGameStarter);
                     PlayerBattleEndEventListener playerBattleEndEventListener = new PlayerBattleEndEventListener();
                     CampaignEvents.OnPlayerBattleEndEvent.AddNonSerializedListener(playerBattleEndEventListener, new Action<MapEvent>(playerBattleEndEventListener.IncreaseLocalRelationsAfterBanditFight));
+                    if (Statics._settings.Debug)
+                    {
+                        IM.MessageDebug("Loaded Killing Bandits raises relationships playerBattleEndEventListener Behavior");
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -144,6 +158,10 @@ namespace KaosesTweaks
                     LastAttempts = new Dictionary<Hero, CampaignTime>();
                     /* Another chance at marriage */
                     campaignGameStarter.CampaignBehaviors.Add(new AnotherChanceBehavior());
+                    if (Statics._settings.Debug)
+                    {
+                        IM.MessageDebug("Loaded AnotherChanceBehavior Behavior");
+                    }
                     /* Another chance at marriage */
                 }
                 catch (Exception ex)
@@ -156,6 +174,10 @@ namespace KaosesTweaks
                     //~BT
                     if (Statics._settings.EnableCultureChanger)
                     {
+                        if (Statics._settings.Debug)
+                        {
+                            IM.MessageDebug("Loaded ChangeSettlementCulture Behavior");
+                        }
                         campaignGameStarter.AddBehavior(new ChangeSettlementCulture());
                     }
                 }

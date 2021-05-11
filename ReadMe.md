@@ -314,10 +314,19 @@ All tweaks can be set through Mod Configuration Menu integration. The tweaks cov
 - 0.2.3
     - Cebullus located and fixed item modification error with weights
     - Added new Learning limit multipliers added
+-0.2.4 
+    - Update for 1.5.10 Bannerlords
+    - removed GetDamageToFriendsMultiplier as it has been removed by taleworlds
+    - added new difficulty settings
+      - Player Persuasion Bonus Chance
+      - Clan Member Death Chance Reduction 
+    - Updated Battle rewards model
+
+
 
 
 ## Todo
-
+- is CalculateEliteMilitiaSpawnChance suppose to be flat rate or added to base calculation in BTSettlementMilitiaModel
 
 
 ### ToDo-List BT:

@@ -8,6 +8,7 @@ using TaleWorlds.CampaignSystem.GameMenus;
 using TaleWorlds.Core;
 using TaleWorlds.Localization;
 using KaosesTweaks.Settings;
+using KaosesTweaks.Utils;
 
 namespace KaosesTweaks.Behaviors
 {
@@ -17,10 +18,13 @@ namespace KaosesTweaks.Behaviors
         {
             CampaignEvents.ClanChangedKingdom.AddNonSerializedListener(this, new Action<Clan, Kingdom, Kingdom, bool, bool>(this.OnClanChangedKingdom));
             CampaignEvents.OnGameLoadedEvent.AddNonSerializedListener(this, new Action<CampaignGameStarter>(this.OnGameLoaded));
-            CampaignEvents.WeeklyTickSettlementEvent.AddNonSerializedListener(this, new Action<Settlement>(this.OnWeeklyTickSettlement));
+            //CampaignEvents.WeeklyTickSettlementEvent.AddNonSerializedListener(this, new Action<Settlement>(this.OnWeeklyTickSettlement));
+            CampaignEvents.DailyTickSettlementEvent.AddNonSerializedListener(this, new Action<Settlement>(this.OnDailyTickSettlement));
             CampaignEvents.OnNewGameCreatedEvent.AddNonSerializedListener(this, new Action<CampaignGameStarter>(this.OnGameLoaded));
             CampaignEvents.OnSiegeAftermathAppliedEvent.AddNonSerializedListener(this, new Action<MobileParty, Settlement, SiegeAftermathCampaignBehavior.SiegeAftermath, Clan, Dictionary<MobileParty, float>>(this.OnSiegeAftermathApplied));
             CampaignEvents.OnSettlementOwnerChangedEvent.AddNonSerializedListener(this, new Action<Settlement, bool, Hero, Hero, Hero, ChangeOwnerOfSettlementAction.ChangeOwnerOfSettlementDetail>(this.OnSettlementOwnerChanged));
+
+
         }
 
         private void OnGameLoaded(CampaignGameStarter obj)
@@ -30,7 +34,8 @@ namespace KaosesTweaks.Behaviors
             if (MCMSettings.Instance is { } settings)
             {
                 OverrideCulture = null;
-                foreach (CultureObject Culture in from kingdom in Campaign.Current.Kingdoms where settings.PlayerCultureOverride.SelectedValue == kingdom.Culture.StringId || (settings.PlayerCultureOverride.SelectedValue == "khergit" && kingdom.Culture.StringId == "rebkhu") select kingdom.Culture)
+                foreach (CultureObject Culture in from kingdom in Campaign.Current.Kingdoms where settings.PlayerCultureOverride.SelectedValue == kingdom.Culture.StringId 
+                                                  || (settings.PlayerCultureOverride.SelectedValue == "khergit" && kingdom.Culture.StringId == "rebkhu") select kingdom.Culture)
                 {
                     OverrideCulture = Culture;
                     break;
@@ -130,6 +135,7 @@ namespace KaosesTweaks.Behaviors
         public void Transform(Settlement settlement, bool removeTroops)
         {
 
+
             if (MCMSettings.Instance is { } settings && settlement.OwnerClan == Clan.PlayerClan)
             {
                 OverrideCulture = null;
@@ -214,12 +220,41 @@ namespace KaosesTweaks.Behaviors
             }
         }
 
+        public void OnDailyTickSettlement(Settlement settlement)
+        {
+            if (WeekCounter.ContainsKey(settlement))
+            {
+                Dictionary<Settlement, int> dictionary = WeekCounter;
+                if ((int)(dictionary[settlement] / 7) <= Statics._settings.TimeToChanceCulture)
+                {
+                    dictionary[settlement]++;
+                    if (Statics._settings.CultureChangeDebug)
+                    {
+                        IM.MessageDebug($"OnDailyTickSettlement : {settlement.Name.ToString()} counter: {dictionary[settlement].ToString()}");
+                        IM.MessageDebug($"OnDailyTickSettlement condition: {((int)(dictionary[settlement] / 7) <= Statics._settings.TimeToChanceCulture).ToString()} ");
+                        IM.MessageDebug($"OnDailyTickSettlement (dictionary[settlement] / 7) : {((dictionary[settlement] / 7)).ToString()} ");
+                        IM.MessageDebug($"OnDailyTickSettlement TimeToChanceCulture: {Statics._settings.TimeToChanceCulture.ToString()} ");
+                    }
+
+                    if (this.IsSettlementDue(settlement))
+                    {
+                        Transform(settlement, true);
+                    }
+                }
+
+            }
+        }
+
         public void OnWeeklyTickSettlement(Settlement settlement)
         {
             if (WeekCounter.ContainsKey(settlement))
             {
                 Dictionary<Settlement, int> dictionary = WeekCounter;
                 dictionary[settlement]++;
+                if (Statics._settings.CultureChangeDebug)
+                {
+                    IM.MessageDebug($"OnWeeklyTickSettlement : {settlement.Name.ToString()} Added 1 week : {dictionary[settlement].ToString()} ");
+                }
 
                 if (this.IsSettlementDue(settlement))
                 {
@@ -232,7 +267,7 @@ namespace KaosesTweaks.Behaviors
         {
             if (MCMSettings.Instance is { } settings && settings.TimeToChanceCulture > 0)
             {
-                return WeekCounter[settlement] >= settings.TimeToChanceCulture;
+                return (int)(WeekCounter[settlement] / 7) >= settings.TimeToChanceCulture;
             }
             else
             {
@@ -246,10 +281,18 @@ namespace KaosesTweaks.Behaviors
             {
                 if (WeekCounter.ContainsKey(settlement))
                 {
+                    if (Statics._settings.CultureChangeDebug)
+                    {
+                        IM.MessageDebug($"AddCounter : {settlement.Name.ToString()} set exisiting");
+                    }
                     WeekCounter[settlement] = 0;
                 }
                 else
                 {
+                    if (Statics._settings.CultureChangeDebug)
+                    {
+                        IM.MessageDebug($"AddCounter : {settlement.Name.ToString()} add new");
+                    }
                     WeekCounter.Add(settlement, 0);
                 }
             }
@@ -290,7 +333,7 @@ namespace KaosesTweaks.Behaviors
                 }
                 else if (PlayerOverride || KingdomOverride || ClanCulture)
                 {
-                    InformationManager.DisplayMessage(new InformationMessage("The people in " + Settlement.CurrentSettlement.Name + " seem to adopt their owners culture in " + (settings.TimeToChanceCulture - (WeekCounter.ContainsKey(Settlement.CurrentSettlement) ? WeekCounter[Settlement.CurrentSettlement] : 0)) + " weeks."));
+                    InformationManager.DisplayMessage(new InformationMessage("The people in " + Settlement.CurrentSettlement.Name + " seem to adopt their owners culture in " + (settings.TimeToChanceCulture - (WeekCounter.ContainsKey(Settlement.CurrentSettlement) ? (WeekCounter[Settlement.CurrentSettlement] / 7) : 00)) + " weeks."));
                 }
                 else
                 {

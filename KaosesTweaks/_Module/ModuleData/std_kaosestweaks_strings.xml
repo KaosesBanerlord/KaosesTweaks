@@ -833,12 +833,6 @@
 				<string id="BT_Settings_008603_Desc" text="Native value is 2.5%. Modifies the percentage of your militia retiring each dayin castles." />
 				<string id="BT_Settings_008604" text="Town Militia Retirement Modifier"/>
 				<string id="BT_Settings_008604_Desc" text="Native value is 2.5%. Modifies the percentage of your militia retiring each dayin town." />
-			<string id="BT_Settings_008700" text="Elite Militia" />
-			<string id="BT_Settings_008700_Desc" text="Adds a bonus to the chance that militia spawning in towns and castles are elite." />
-				<string id="BT_Settings_008701" text="Elite Melee Militia Spawn Chance"/>
-				<string id="BT_Settings_008701_Desc" text="Native value is 10%. Sets the chance that the militia spawning in towns and castles are elite melee troops."/>
-				<string id="BT_Settings_008702" text="Elite Ranged Militia Spawn Chance"/>
-				<string id="BT_Settings_008702_Desc" text="Native value is 10%. Sets the chance that the militia spawning in towns and castles are elite ranged troops." />
 			<string id="BT_Settings_008800" text="Tournaments" />
 				<string id="BT_Settings_008801" text="Renown Reward"/>
 				<string id="BT_Settings_008801_Desc" text="Sets the amount of renown awarded when you win a tournament."/>
@@ -904,6 +898,40 @@
     <string id="KTMCM_CLearningLimit" text="Learning Limit" />
     <!-- version 0.2.3 -->
 		
+    
+    <!-- version 0.2.4 for 1.5.10 -->
+    <string id="KT_PPBC" text="Player Persuasion Bonus Chance Tweak" />
+    <string id="KT_PPBCH" text="Allows you to change the bonus persuasion chance multiplier the player receives." />
+    <string id="KT_PPBCM" text="Player Persuasion Bonus Chance Tweak Amount" />
+    <string id="KT_PPBCMH" text="Native values: Very Easy: 0.1%, Easy: 0.05%, Realistic: 0%. This value is used to calculate player's persuasion bonus chance." />
+    <string id="KT_CMDCR" text="Clan Member Death Chance Reduction Tweak" />
+    <string id="KT_CMDCRH" text="Allows you to change the clan member death chance reduction multiplier." />
+    <string id="KT_CMDCRM" text="Clan Member Death Chance Reduction Amount" />
+    <string id="KT_CMDCRMH" text="Native values: Very Easy: 0.1%, Easy: 0.05%, Realistic: 0%. This value is used to calculate Clan member death chance reduction in missions." />
+    
+    <string id="BT_Settings_008700" text="Elite Militia" />
+    <string id="BT_Settings_008700_Desc" text="Adds a bonus to the chance that militia spawning in towns and castles are elite." />
+    <string id="BT_Settings_008701" text="Elite Militia Spawn Chance"/>
+    <string id="BT_Settings_008701_Desc" text="Native value is 10%. Sets the chance that the militia spawning in towns and castles are elite melee troops."/>
+    <!-- <string id="BT_Settings_008702" text="Elite Ranged Militia Spawn Chance"/>
+    <string id="BT_Settings_008702_Desc" text="Native value is 10%. Sets the chance that the militia spawning in towns and castles are elite ranged troops." />
+		-->
+
+
+    <string id="KTMCM_CLearningLimit" text="LearningLimit" />
+    <string id="KTMCM_CLearningLimit" text="LearningLimit" />
+    <string id="KTMCM_CLearningLimit" text="LearningLimit" />
+    <string id="KTMCM_CLearningLimit" text="LearningLimit" />
+    <string id="KTMCM_CLearningLimit" text="LearningLimit" />
+    <string id="KTMCM_CLearningLimit" text="LearningLimit" />
+    <string id="KTMCM_CLearningLimit" text="LearningLimit" />
+    <string id="KTMCM_CLearningLimit" text="LearningLimit" />
+    <string id="KTMCM_CLearningLimit" text="LearningLimit" />
+    <string id="KTMCM_CLearningLimit" text="LearningLimit" />
+    <string id="KTMCM_CLearningLimit" text="LearningLimit" />
+    <string id="KTMCM_CLearningLimit" text="LearningLimit" />
+    <string id="KTMCM_CLearningLimit" text="LearningLimit" />
+
 
   </strings>
 </base>
