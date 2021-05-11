@@ -327,7 +327,7 @@ All tweaks can be set through Mod Configuration Menu integration. The tweaks cov
 
 ## Todo
 - is CalculateEliteMilitiaSpawnChance suppose to be flat rate or added to base calculation in BTSettlementMilitiaModel
-
+-Could we possibly get a seperate section for AI and Player on the experience boosts? 
 
 ### ToDo-List BT:
 - militia hard cap and settings for villages
