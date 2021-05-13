@@ -1,6 +1,8 @@
+using Bannerlord.BUTR.Shared.Helpers;
 using KaosesTweaks.Settings;
 using KaosesTweaks.Utils;
 using System.Linq;
+using System.Reflection;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Engine;
 
@@ -17,6 +19,8 @@ namespace KaosesTweaks
         public const string ConfigFilePath = @"..\\..\\Modules\\" + ModuleFolder + "\\config.json";
         public static string PrePrend { get; set; } = DisplayName;
         public const string HarmonyId = ModuleFolder + ".harmony";
+        public static string GameVersion = ApplicationVersionHelper.GameVersionStr();
+        public static string ModVersion = Assembly.GetExecutingAssembly().GetName().Version.ToString();
         public const bool UsesHarmony = true;
 
         #region MCMConfigValues
@@ -31,6 +35,5 @@ namespace KaosesTweaks
         //~DEBUG
         public static bool Debug { get; set; } = true;
         public static bool LogToFile { get; set; } = true;
-
     }
 }
