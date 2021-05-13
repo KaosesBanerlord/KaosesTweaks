@@ -34,7 +34,7 @@ namespace KaosesTweaks
         public static Dictionary<Hero, CampaignTime> LastAttempts;
         public static readonly FastInvokeHandler RemoveUnneededPersuasionAttemptsHandler =
         HarmonyLib.MethodInvoker.GetHandler(AccessTools.Method(typeof(RomanceCampaignBehavior), "RemoveUnneededPersuasionAttempts"));
-        private Harmony? harmonyKT;
+        private Harmony _harmony;
         public static bool HasPatched = false;
         /* Another chance at marriage */
 
@@ -57,11 +57,8 @@ namespace KaosesTweaks
                     if (Kaoses.IsHarmonyLoaded())
                     {
                         IM.DisplayModLoadedMessage();
-                        if (harmonyKT == null)
-                        {
-                            harmonyKT = new Harmony(Statics.HarmonyId);
-                            harmonyKT.PatchAll(Assembly.GetExecutingAssembly());
-                        }
+                        var harmony = new Harmony(Statics.HarmonyId);
+                        harmony.PatchAll(Assembly.GetExecutingAssembly());
                     }
                     else { IM.DisplayModHarmonyErrorMessage(); }
                 }
@@ -219,30 +216,30 @@ namespace KaosesTweaks
         protected override void OnSubModuleUnloaded()
         {
             base.OnSubModuleUnloaded();
-            //try
-            //{
-            //    harmonyKT?.UnpatchAll(Statics.HarmonyId);
-            //    HasPatched = false;
-            //}
-            //catch (Exception ex)
-            //{
+            try
+            {
+                _harmony?.UnpatchAll(Statics.HarmonyId);
+                HasPatched = false;
+            }
+            catch (Exception ex)
+            {
                 //Handle exceptions
                 //IM.MessageError("Error OnGameEnd harmony un-patch: " + ex.ToStringFull());
-            //}
+            }
         }
 
         public override void OnGameEnd(Game game)
         {
-            //try
-            //{
-            //    harmonyKT?.UnpatchAll(Statics.HarmonyId);
-            //    HasPatched = false;
-            //}
-            //catch (Exception ex)
-            //{
+            try
+            {
+                _harmony?.UnpatchAll(Statics.HarmonyId);
+                HasPatched = false;
+            }
+            catch (Exception ex)
+            {
                 //Handle exceptions
                 //IM.MessageError("Error OnGameEnd harmony un-patch: " + ex.ToStringFull());
-            //}
+            }
             
         }
 

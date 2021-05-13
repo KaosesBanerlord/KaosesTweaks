@@ -19,10 +19,7 @@ namespace KaosesTweaks.Patches
         private static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
         {
             List<CodeInstruction> list = new List<CodeInstruction>(instructions);
-            if (list.Count == 165)
-            {
-                list.RemoveRange(147, 3);
-            }
+            list.RemoveRange(147, 3);
             return list.AsEnumerable<CodeInstruction>();
         }
 
