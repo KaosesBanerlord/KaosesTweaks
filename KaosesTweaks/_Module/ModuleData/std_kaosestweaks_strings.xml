@@ -932,6 +932,26 @@
     <string id="KTMCM_CLearningLimit" text="LearningLimit" />
     <string id="KTMCM_CLearningLimit" text="LearningLimit" />
 
+	<!-- version 0.2.6 for 1.5.10 -->
+	<string id="KT_Debug_000" text ="Debug" />
+	<string id="KT_Debug_001" text ="Show Battle Rewards Calculation Message" />
+	<string id="KT_Debug_002" text ="Debug mode - Army tweaks" />
+	<string id="KT_Debug_003" text ="Debug mode - Battle reward tweaks" />
+	<string id="KT_Debug_004" text ="Debug mode - Clan tweaks" />
+	<string id="KT_Debug_005" text ="Debug mode - Item tweaks" />
+	<string id="KT_Debug_006" text ="Debug mode - Pregnancy tweaks" />
+	<string id="KT_Debug_007" text ="Debug mode - Xp tweaks" />
+	<string id="KT_Debug_008" text ="Debug mode - Tournament tweaks" />
+	<string id="KT_Debug_009" text ="Debug mode - Prisoner tweaks" />
+	<string id="KT_Debug_010" text ="Debug mode - Settlement tweaks" />
+	<string id="KT_Debug_011" text ="Debug mode - Wanderer location tweaks" />
+	<string id="KT_Debug_012" text ="Debug mode - Party size tweaks" />
+	<string id="KT_Debug_013" text ="Debug mode - Workshop tweaks" />
+	<string id="KT_Debug_014" text ="Debug mode - Crafting tweaks" />
+	<string id="KT_Debug_015" text ="Debug mode - Learning tweaks" />
+	<string id="KT_Debug_016" text ="Debug mode - Battlesize tweaks" />
+	<string id="KT_Debug_017" text ="Debug mode - Culture transformation tweaks" />
+	<string id="KT_Debug_018" text ="Create logfile" />
 
-  </strings>
+	</strings>
 </base>

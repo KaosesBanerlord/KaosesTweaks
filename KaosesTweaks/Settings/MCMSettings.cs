@@ -32,43 +32,130 @@ namespace KaosesTweaks.Settings
 
         public bool LoadMCMConfigFile { get; set; } = false;
         public string ModDisplayName { get { return DisplayName; } }
-        #endregion
+
 
         //[SettingPropertyBool("{=debug}Debug", RequireRestart = false, HintText = "{=}{=debug_desc}Displays mod developer debug information and logs them to the file")]
         //[SettingPropertyGroup("Debug", GroupOrder = 100)]
-        public bool Debug { get; set; } = Statics.Debug;
+        //public bool Debug { get; set; } = Statics.Debug;
 
         //[SettingPropertyBool("{=debuglog}Log to file", RequireRestart = false, HintText = "{=}{=debuglog_desc}Log information messages to the log file as well as errors and debug")]
         //[SettingPropertyGroup("Debug", GroupOrder = 100)]
-        public bool LogToFile { get; set; } = Statics.LogToFile;
-
-
+        //public bool LogToFile { get; set; } = Statics.LogToFile;
+        #endregion
         ///~ Mod Specific settings 
-        [SettingPropertyBool("{=BT_Settings_000105}Show Battle Rewards Calculation Message", IsToggle = true, Order = 0, RequireRestart = true,
-            HintText = "{=BT_Settings_000105_Desc}Shows detailed calculation for renown, influence and morale tweaks in message log.")]
-        [SettingPropertyGroup("Debug", GroupOrder=100)]
+
+        //~ KT Debugging 
+        #region Debugging
+        private bool _Debug = false;
+        [SettingPropertyBool("{=KT_Debug_000}Debug", IsToggle = true, Order = 0, RequireRestart = true,
+            HintText = "{=KT_Debug_000}Debug")]
+        [SettingPropertyGroup("Debug", GroupOrder = 100)]
+        public bool Debug
+        {
+            get => _Debug;
+            set
+            {
+                if (_Debug != value)
+                {
+                    _Debug = value;
+                    if (value == false)
+                    {
+                        OnPropertyChanged(nameof(Debug));
+                    }
+                }
+            }
+        }
+
+        [SettingPropertyBool("{=KT_Debug_001}Show Battle Rewards Calculation Message", IsToggle = false, Order = 0, RequireRestart = true,
+            HintText = "{=KT_Debug_001}Show Battle Rewards Calculation Message")]
+        [SettingPropertyGroup("Debug", GroupOrder = 100)]
         public bool BattleRewardShowDebug { get; set; } = false;
 
-        //~ KT Debugging 
+        [SettingPropertyBool("{=KT_Debug_002}Debug mode - Army tweaks", IsToggle = false, Order = 0, RequireRestart = true,
+            HintText = "{=KT_Debug_002}Debug mode - Army tweaks")]
+        [SettingPropertyGroup("Debug", GroupOrder = 100)]
         public bool ArmyDebug { get; set; } = false;
+
+        [SettingPropertyBool("{=KT_Debug_003}Debug mode - Battle reward tweaks", IsToggle = false, Order = 0, RequireRestart = true,
+            HintText = "{=KT_Debug_003}Debug mode - Battle reward tweaks")]
+        [SettingPropertyGroup("Debug", GroupOrder = 100)]
         public bool BattleRewardsDebug { get; set; } = false;
+
+        [SettingPropertyBool("{=KT_Debug_004}Debug mode - Clan tweaks", IsToggle = false, Order = 0, RequireRestart = true,
+            HintText = "{=KT_Debug_004}Debug mode - Clan tweaks")]
+        [SettingPropertyGroup("Debug", GroupOrder = 100)]
         public bool ClanDebugging { get; set; } = false;
+
+        [SettingPropertyBool("{=KT_Debug_005}Debug mode - Item tweaks", IsToggle = false, Order = 0, RequireRestart = true,
+            HintText = "{=KT_Debug_005}Debug mode - Item tweaks")]
+        [SettingPropertyGroup("Debug", GroupOrder = 100)]
         public bool ItemDebugMode { get; set; } = false;
+
+        [SettingPropertyBool("{=KT_Debug_006}Debug mode - Pregnancy tweaks", IsToggle = false, Order = 0, RequireRestart = true,
+            HintText = "{=KT_Debug_006}Debug mode - Pregnancy tweaks")]
+        [SettingPropertyGroup("Debug", GroupOrder = 100)]
         public bool PregnancyDebug { get; set; } = false;
+
+        [SettingPropertyBool("{=KT_Debug_007}Debug mode - Xp tweaks", IsToggle = false, Order = 0, RequireRestart = true,
+            HintText = "{=KT_Debug_007}Debug mode - Xp tweaks")]
+        [SettingPropertyGroup("Debug", GroupOrder = 100)]
         public bool XpModifiersDebug { get; set; } = false;
+
+        [SettingPropertyBool("{=KT_Debug_008}Debug mode - Tournament tweaks", IsToggle = false, Order = 0, RequireRestart = true,
+            HintText = "{=KT_Debug_008}Debug mode - Tournament tweaks")]
+        [SettingPropertyGroup("Debug", GroupOrder = 100)]
         public bool TournamentDebug { get; set; } = false;
+
+        [SettingPropertyBool("{=KT_Debug_009}Debug mode - Prisoner tweaks", IsToggle = false, Order = 0, RequireRestart = true,
+            HintText = "{=KT_Debug_009}Debug mode - Prisoner tweaks")]
+        [SettingPropertyGroup("Debug", GroupOrder = 100)]
         public bool PrisonersDebug { get; set; } = false;
+
+        [SettingPropertyBool("{=KT_Debug_010}Debug mode - Settlement tweaks", IsToggle = false, Order = 0, RequireRestart = true,
+            HintText = "{=KT_Debug_010}Debug mode - Settlement tweaks")]
+        [SettingPropertyGroup("Debug", GroupOrder = 100)]
         public bool SettlementsDebug { get; set; } = false;
+
+        [SettingPropertyBool("{=KT_Debug_011}Debug mode - Wanderer location tweaks", IsToggle = false, Order = 0, RequireRestart = true,
+            HintText = "{=KT_Debug_011}Debug mode - Wanderer location tweaks")]
+        [SettingPropertyGroup("Debug", GroupOrder = 100)]
         public bool WandererLocationDebug { get; set; } = false;
+
+        [SettingPropertyBool("{=KT_Debug_012}Debug mode - Party size tweaks", IsToggle = false, Order = 0, RequireRestart = true,
+            HintText = "{=KT_Debug_012}Debug mode - Party size tweaks")]
+        [SettingPropertyGroup("Debug", GroupOrder = 100)]
         public bool PartySizeLimitsDebug { get; set; } = false;
+
+        [SettingPropertyBool("{=KT_Debug_013}Debug mode - Workshop tweaks", IsToggle = false, Order = 0, RequireRestart = true,
+            HintText = "{=KT_Debug_013}Debug mode - Workshop tweaks")]
+        [SettingPropertyGroup("Debug", GroupOrder = 100)]
         public bool WorkshopsDebug { get; set; } = false;
+
+        [SettingPropertyBool("{=KT_Debug_014}Debug mode - Crafting tweaks", IsToggle = false, Order = 0, RequireRestart = true,
+            HintText = "{=KT_Debug_014}Debug mode - Crafting tweaks")]
+        [SettingPropertyGroup("Debug", GroupOrder = 100)]
         public bool CraftingDebug { get; set; } = false;
+
+        [SettingPropertyBool("{=KT_Debug_015}Debug mode - Learning tweaks", IsToggle = false, Order = 0, RequireRestart = true,
+            HintText = "{=KT_Debug_015}Debug mode - Learning tweaks")]
+        [SettingPropertyGroup("Debug", GroupOrder = 100)]
         public bool LearningDebug { get; set; } = false;
+
+        [SettingPropertyBool("{=KT_Debug_016}Debug mode - Battlesize tweaks", IsToggle = false, Order = 0, RequireRestart = true,
+            HintText = "{=KT_Debug_016}Debug mode - Battlesize tweaks")]
+        [SettingPropertyGroup("Debug", GroupOrder = 100)]
         public bool BattleSizeDebug { get; set; } = false;
+
+        [SettingPropertyBool("{=KT_Debug_017}Debug mode - Culture transformation tweaks", IsToggle = false, Order = 0, RequireRestart = true,
+            HintText = "{=KT_Debug_017}Debug mode - Culture transformation tweaks")]
+        [SettingPropertyGroup("Debug", GroupOrder = 100)]
         public bool CultureChangeDebug { get; set; } = false;
 
-        //~ KT Debugging 
-
+        [SettingPropertyBool("{=KT_Debug_018}Create Logfile", IsToggle = false, Order = 0, RequireRestart = true,
+            HintText = "{=KT_Debug_018}Create Logfile")]
+        [SettingPropertyGroup("Debug", GroupOrder = 100)]
+        public bool LogToFile { get; set; } = false;
+        #endregion
 
         //~ Age Tweaks
         #region Age Tweaks
@@ -3861,5 +3948,36 @@ namespace KaosesTweaks.Settings
             return basePresets;
         }
         #endregion
+
+
+        public MCMSettings()
+        {
+            PropertyChanged += MCMSettings_PropertyChanged;
+        }
+
+        private void MCMSettings_PropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(Debug))
+            {
+                BattleRewardShowDebug = false;
+                ArmyDebug = false;
+                BattleRewardsDebug = false;
+                ClanDebugging = false;
+                ItemDebugMode = false;
+                PregnancyDebug = false;
+                XpModifiersDebug = false;
+                TournamentDebug = false;
+                PrisonersDebug = false;
+                SettlementsDebug = false;
+                WandererLocationDebug = false;
+                PartySizeLimitsDebug = false;
+                WorkshopsDebug = false;
+                CraftingDebug = false;
+                LearningDebug = false;
+                BattleSizeDebug = false;
+                CultureChangeDebug = false;
+                LogToFile = false;
+            }
+        }
     }
 }

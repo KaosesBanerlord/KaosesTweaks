@@ -33,7 +33,7 @@ namespace KaosesTweaks
 
 
         //~DEBUG
-        public static bool Debug { get; set; } = true;
-        public static bool LogToFile { get; set; } = true;
+        //public static bool Debug { get; set; } = true;
+        //public static bool LogToFile { get; set; } = true;
     }
 }
