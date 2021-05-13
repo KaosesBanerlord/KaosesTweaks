@@ -308,8 +308,8 @@
     <string id="KTMCM_XPMSMGSMH" text="Multiply skills exp gains by the Global multiplier [Native : 1.0[100%]]." />
     <string id="KTMCM_XPMLR" text="Learning Rate Modifiers" />
     <string id="KTMCM_XPMLRH" text="Enable Learning Rate modifiers." />
-    <string id="KTMCM_XPMLRM" text="Global Multiplier" />
-    <string id="KTMCM_XPMLRMH" text="Multiply Learning Rate by the Global multiplier [Native : 1.0[100%]]." />
+    <string id="KTMCM_XPMLRM" text="Learning Rate Multiplier" />
+    <string id="KTMCM_XPMLRMH" text="Multiply Learning Rate by the multiplier [Native : 1.0[100%]]." />
     <string id="KTMCM_XPMMPF" text="Party Food Modifiers" />
     <string id="KTMCM_XPMMPFH" text="Enable Party food consumption modifiers." />
     <string id="KTMCM_XPMMPFM" text="Party Food Multiplier" />

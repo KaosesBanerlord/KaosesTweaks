@@ -2319,8 +2319,8 @@ namespace KaosesTweaks.Settings
         [SettingPropertyGroup("{=KTMCM_CXPTweaks}XP Tweaks" + "/" + "{=KTMCM_CLearning}Learning Rate")]
         public bool LearningRateEnabled { get; set; } = false;
 
-        [SettingPropertyFloatingInteger("{=KTMCM_XPMLRM}Global Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_XPMLRMH}Multiply Learning Rate by the Global multiplier [Native : 1.0[100%]].")]
+        [SettingPropertyFloatingInteger("{=KTMCM_XPMLRM}Learning Rate Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
+            HintText = "{=KTMCM_XPMLRMH}Multiply Learning Rate by the multiplier [Native : 1.0[100%]].")]
         [SettingPropertyGroup("{=KTMCM_CXPTweaks}XP Tweaks" + "/" + "{=KTMCM_CLearning}Learning Rate")]
         public float LearningRateMultiplier { get; set; } = 1.0f;
         #endregion //~ LearningRateMultipliers
