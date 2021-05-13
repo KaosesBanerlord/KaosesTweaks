@@ -18,8 +18,8 @@ namespace KaosesTweaks.Settings
             {
                 IM.MessageError("Failed to load any config provider");
             }
-            IM.logToFile = Statics.LogToFile;
-            IM.Debug = Statics.Debug;
+            IM.logToFile = Statics._settings.LogToFile;
+            IM.Debug = Statics._settings.Debug;
             IM.PrePrend = Statics.PrePrend;
             Logging.PrePrend = Statics.PrePrend;
         }

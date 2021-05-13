@@ -32,7 +32,7 @@ namespace KaosesTweaks.Utils
 
         private static void logMessage(string message)
         {
-            Logging.Lm(message);
+            Logging.Lm(message + "; GameVersion: " + Statics.GameVersion + "; ModVersion: " + Statics.ModVersion);
         }
 
         public static void MessageInfo(string message)

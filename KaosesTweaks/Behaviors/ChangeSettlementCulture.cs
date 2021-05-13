@@ -33,21 +33,7 @@ namespace KaosesTweaks.Behaviors
 
             if (MCMSettings.Instance is { } settings)
             {
-                OverrideCulture = null;
-                foreach (CultureObject Culture in from kingdom in Campaign.Current.Kingdoms where settings.PlayerCultureOverride.SelectedValue == kingdom.Culture.StringId 
-                                                  || (settings.PlayerCultureOverride.SelectedValue == "khergit" && kingdom.Culture.StringId == "rebkhu") select kingdom.Culture)
-                {
-                    OverrideCulture = Culture;
-                    break;
-                }
-                if (OverrideCulture == null && settings.ChangeToKingdomCulture && Clan.PlayerClan.Kingdom != null)
-                {
-                    OverrideCulture = Clan.PlayerClan.Kingdom.Culture;
-                }
-                else if (OverrideCulture == null)
-                {
-                    OverrideCulture = Clan.PlayerClan.Culture;
-                }
+                UpdatePlayerOverride();
             }
 
             foreach (Settlement settlement in from settlement in Campaign.Current.Settlements where settlement.IsTown || settlement.IsCastle || settlement.IsVillage select settlement)
@@ -86,6 +72,10 @@ namespace KaosesTweaks.Behaviors
 
             if (detail != ChangeOwnerOfSettlementAction.ChangeOwnerOfSettlementDetail.BySiege)
             {
+                if (settlement.OwnerClan == Clan.PlayerClan)
+                {
+                    UpdatePlayerOverride();
+                }
                 this.AddCounter(settlement);
             }
             else
@@ -100,27 +90,7 @@ namespace KaosesTweaks.Behaviors
             {
                 if (clan == Clan.PlayerClan)
                 {
-                    OverrideCulture = null;
-                    foreach (CultureObject Culture in from kingdom in Campaign.Current.Kingdoms where settings.PlayerCultureOverride.SelectedValue == kingdom.Culture.StringId || (settings.PlayerCultureOverride.SelectedValue == "khergit" && kingdom.Culture.StringId == "rebkhu") select kingdom.Culture)
-                    {
-                        OverrideCulture = Culture;
-                        break;
-                    }
-                    if (OverrideCulture == null && settings.ChangeToKingdomCulture && Clan.PlayerClan.Kingdom != null)
-                    {
-                        OverrideCulture = Clan.PlayerClan.Kingdom.Culture;
-                    }
-                    else if (OverrideCulture == null)
-                    {
-                        OverrideCulture = Clan.PlayerClan.Culture;
-                    }
-                    foreach (Settlement settlement in from settlement in clan.Settlements where settlement.IsTown || settlement.IsCastle || settlement.IsVillage select settlement)
-                    {
-                        if (settlement.Culture != OverrideCulture)
-                        {
-                            this.AddCounter(settlement);
-                        }
-                    }
+                    UpdatePlayerOverride();
                 }
                 else if (clan.Kingdom == null || clan.Kingdom.Culture != clan.Culture)
                 {
@@ -138,20 +108,7 @@ namespace KaosesTweaks.Behaviors
 
             if (MCMSettings.Instance is { } settings && settlement.OwnerClan == Clan.PlayerClan)
             {
-                OverrideCulture = null;
-                foreach (CultureObject Culture in from kingdom in Campaign.Current.Kingdoms where settings.PlayerCultureOverride.SelectedValue == kingdom.Culture.StringId || (settings.PlayerCultureOverride.SelectedValue == "khergit" && kingdom.Culture.StringId == "rebkhu") select kingdom.Culture)
-                {
-                    OverrideCulture = Culture;
-                    break;
-                }
-                if (OverrideCulture == null && settings.ChangeToKingdomCulture && Clan.PlayerClan.Kingdom != null)
-                {
-                    OverrideCulture = Clan.PlayerClan.Kingdom.Culture;
-                }
-                else if (OverrideCulture == null)
-                {
-                    OverrideCulture = Clan.PlayerClan.Culture;
-                }
+                UpdatePlayerOverride();
             }
             if (settlement.IsVillage || settlement.IsCastle || settlement.IsTown)
             {
@@ -202,6 +159,28 @@ namespace KaosesTweaks.Behaviors
                 }
             }
         }
+
+        public void UpdatePlayerOverride()
+        {
+            if (MCMSettings.Instance is { } settings)
+            {
+                OverrideCulture = null;
+                foreach (CultureObject Culture in from kingdom in Campaign.Current.Kingdoms where settings.PlayerCultureOverride.SelectedValue == kingdom.Culture.StringId || (settings.PlayerCultureOverride.SelectedValue == "khergit" && kingdom.Culture.StringId == "rebkhu") select kingdom.Culture)
+                {
+                    OverrideCulture = Culture;
+                    break;
+                }
+                if (OverrideCulture == null && settings.ChangeToKingdomCulture && Clan.PlayerClan.Kingdom != null)
+                {
+                    OverrideCulture = Clan.PlayerClan.Kingdom.Culture;
+                }
+                else if (OverrideCulture == null)
+                {
+                    OverrideCulture = Clan.PlayerClan.Culture;
+                }
+            }
+        }
+
 
         public static void RemoveTroopsfromNotable(Settlement settlement)
         {
