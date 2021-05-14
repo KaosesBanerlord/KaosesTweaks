@@ -64,9 +64,7 @@ namespace KaosesTweaks.Behaviors
 
         private static void Another_chance_success_on_consequence()
         {
-            //SubModule.LastAttempts[Hero.OneToOneConversationHero] = CampaignTime.Now;
-            //SubModule.LastAttempts[Hero.OneToOneConversationHero] = CampaignTime.DaysFromNow(CampaignTime.Now.ElapsedDaysUntilNow + 2);
-            SubModule.LastAttempts[Hero.OneToOneConversationHero] = CampaignTime.DaysFromNow(2f);
+            SubModule.LastAttempts[Hero.OneToOneConversationHero] = CampaignTime.DaysFromNow((float)Statics._settings.AnotherChanceAtMarriageDaysTillRetry);
             // Go straight to 2nd stage if completed 1st stage successfully before
             var toLevel = (Romance.GetRomanticLevel(Hero.MainHero, Hero.OneToOneConversationHero) == Romance.RomanceLevelEnum.FailedInPracticalities)
                     ? Romance.RomanceLevelEnum.CoupleDecidedThatTheyAreCompatible
@@ -91,8 +89,7 @@ namespace KaosesTweaks.Behaviors
 
         private static void Another_chance_rejected_on_consequence()
         {
-            //SubModule.LastAttempts[Hero.OneToOneConversationHero] = CampaignTime.Now;
-            SubModule.LastAttempts[Hero.OneToOneConversationHero] = CampaignTime.DaysFromNow(2f);
+            SubModule.LastAttempts[Hero.OneToOneConversationHero] = CampaignTime.DaysFromNow((float)Statics._settings.AnotherChanceAtMarriageDaysTillRetry);
             var relation = Hero.OneToOneConversationHero.GetRelationWithPlayer();
             // 30% chance at relation loss at 0 relation, 15% at 4, 0% at 15 
             var criticalFailChance = (relation >= 15) ? 0 : (2f / 15f) * relation * relation - 4 * relation + 30;

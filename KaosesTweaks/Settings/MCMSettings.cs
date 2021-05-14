@@ -201,6 +201,11 @@ namespace KaosesTweaks.Settings
             SettingPropertyGroup("{=KT_ACAMC}Another Chance At Marrige")] //, GroupOrder = 1
         public bool AnotherChanceAtMarriageEnabled { get; set; } = false;
 
+        [SettingPropertyInteger("{=KT_ACAMDBT}Days Between Tries", 1, 20, "0 Companions", Order = 0, RequireRestart = false,
+            HintText = "{=KT_ACAMDBT_Desc}The number of days that has to pass between attempts to restart the courtship. [Native: N/A].")]
+        [SettingPropertyGroup("{=KT_ACAMC}Another Chance At Marrige")]
+        public int AnotherChanceAtMarriageDaysTillRetry { get; set; } = 3;
+
         #endregion //~ Another Chance at marriage
 
         //~ ArmyManagement

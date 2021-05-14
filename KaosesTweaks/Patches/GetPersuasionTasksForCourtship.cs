@@ -31,35 +31,9 @@ namespace KaosesTweaks.Patches
             {
                 CampaignTime lastAttempt = SubModule.LastAttempts.TryGetValue(Hero.OneToOneConversationHero, out var value)
                     ? value
-                    : CampaignTime.Zero;
+                    : CampaignTime.DaysFromNow(-1f);
 
-
-                Logging.Lm(
-                    "CampaignTime.Now: " + CampaignTime.Now.ToString() +
-                    "lastAttempt: " + lastAttempt.ToString()
-                    );
-
-                if (CampaignTime.Now.Equals(lastAttempt))
-                {
-                    Logging.Lm("CampaignTime.Now.Equals(lastAttempt)" +
-                        "CampaignTime.Now: " + CampaignTime.Now.ToString() +
-                        "lastAttempt: " + lastAttempt.ToString()
-                        );
-                }
-
-
-                if (CampaignTime.Now > lastAttempt)
-                {
-                    Logging.Lm("CampaignTime.Now > lastAttempt" +
-                        "CampaignTime.Now: " + CampaignTime.Now.ToString() +
-                        "lastAttempt: " + lastAttempt.ToString()
-                        );
-                }
-
-
-
-
-                if (CampaignTime.DaysFromNow(-1f) < lastAttempt)
+                if (CampaignTime.Now.ToDays < lastAttempt.ToDays)
                 {
                     __result = false;
                     return false;

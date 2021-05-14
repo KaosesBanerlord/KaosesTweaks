@@ -942,6 +942,8 @@
     <string id="KT_ACAM" text="Another Chance At Marrige Enabled" />
     <string id="KT_ACAMH" text="Enables the another chance at marriage tweaks." />
     <string id="KT_ACAMC" text="Another Chance At Marrige" />
+    <string id="KT_ACAMDBT" text="Days Between Tries" />
+    <string id="KT_ACAMDBT_Desc" text="The number of days that has to pass between attempts to restart the courtship. [Native: N/A]." />
     <!-- <string id="KTMCM_CLearningLimit" text="LearningLimit" /> -->
 
 
