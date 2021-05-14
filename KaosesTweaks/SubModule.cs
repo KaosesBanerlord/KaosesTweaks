@@ -22,13 +22,12 @@ namespace KaosesTweaks
 {
     public class SubModule : MBSubModuleBase
     {
+        private Harmony? harmonyKT;
 
         /* Another chance at marriage */
         public static Dictionary<Hero, CampaignTime> LastAttempts;
         public static readonly FastInvokeHandler RemoveUnneededPersuasionAttemptsHandler =
         HarmonyLib.MethodInvoker.GetHandler(AccessTools.Method(typeof(RomanceCampaignBehavior), "RemoveUnneededPersuasionAttempts"));
-        private Harmony? harmonyKT;
-        public static bool HasPatched = false;
         /* Another chance at marriage */
 
         protected override void OnSubModuleLoad()
@@ -63,7 +62,8 @@ namespace KaosesTweaks
             catch (Exception ex)
             {
                 //Handle exceptions
-                IM.MessageError("Error loading initial config: " + ex.ToStringFull());
+                IM.ShowError("Error loading", "initial config", ex);
+                //MessageBox.Show($":\n\n{ex.ToStringFull()}" + "\n\nGameVersion: " + Statics.GameVersion + "\nModVersion: " + Statics.ModVersion);
             }
 
 
@@ -98,10 +98,8 @@ namespace KaosesTweaks
                     }
                     catch (Exception ex)
                     {
-                        IM.MessageError(ex.ToStringFull());
-                        MessageBox.Show($":\n\n{ex.ToStringFull()}");
-                        MessageBox.Show($":\n\n{ex.ToStringFull()}" + "\n\nGameVersion: " + Statics.GameVersion + "\nModVersion: " + Statics.ModVersion);
-
+                        IM.ShowError("Imprisonment Tweak Error", "Prisoner Tweak Loading Error", ex);
+                        //MessageBox.Show($":\n\n{ex.ToStringFull()}" + "\n\nGameVersion: " + Statics.GameVersion + "\nModVersion: " + Statics.ModVersion);
                     }
 
                 }
@@ -119,7 +117,7 @@ namespace KaosesTweaks
             catch (Exception ex)
             {
                 //Handle exceptions
-                IM.MessageError("Error OnGameInitializationFinished " + ex.ToStringFull());
+                IM.ShowError("Error initializing one of the game tweaks", "Game Initialization Finished Error", ex);
             }
 
 
@@ -146,8 +144,8 @@ namespace KaosesTweaks
                 }
                 catch (Exception ex)
                 {
-                    IM.MessageError("Error OnGameStart: Initialising Killing Bandits raises relationships\n" + ex.ToStringFull());
-                    MessageBox.Show($"Error Initialising Killing Bandits raises relationships:\n\n{ex.ToStringFull()}" + "\n\nGameVersion: " + Statics.GameVersion + "\nModVersion: " + Statics.ModVersion);
+                    IM.ShowError("Error initializing Killing Bandits raises relationships", "Game Start Error", ex);
+                    //MessageBox.Show($"Error Initialising Killing Bandits raises relationships:\n\n{ex.ToStringFull()}" + "\n\nGameVersion: " + Statics.GameVersion + "\nModVersion: " + Statics.ModVersion);
                 }
 
                 try
@@ -164,8 +162,8 @@ namespace KaosesTweaks
                 }
                 catch (Exception ex)
                 {
-                    IM.MessageError("Error OnGameStart: Initialising Another chance at marriage" + ex.ToStringFull());
-                    MessageBox.Show($"Error Initialising Another chance at marriage:\n\n{ex.ToStringFull()}" + "\n\nGameVersion: " + Statics.GameVersion + "\nModVersion: " + Statics.ModVersion);
+                    IM.ShowError("Error initializing Another chance at marriage", "Game Start Error", ex);
+                    //MessageBox.Show($"Error Initialising Another chance at marriage:\n\n{ex.ToStringFull()}" + "\n\nGameVersion: " + Statics.GameVersion + "\nModVersion: " + Statics.ModVersion);
                 }
                 try
                 {
@@ -181,8 +179,8 @@ namespace KaosesTweaks
                 }
                 catch (Exception ex)
                 {
-                    IM.MessageError("Error OnGameStart: Initialising Culture Changer" + ex.ToStringFull());
-                    MessageBox.Show($"Error Initialising Culture Changer:\n\n{ex.ToStringFull()}" + "\n\nGameVersion: " + Statics.GameVersion + "\nModVersion: " + Statics.ModVersion);
+                    IM.ShowError("Error initializing Culture Changer", "Game Start Error", ex);
+                    //MessageBox.Show($"Error Initialising Culture Changer:\n\n{ex.ToStringFull()}" + "\n\nGameVersion: " + Statics.GameVersion + "\nModVersion: " + Statics.ModVersion);
                 }
             }
         }
@@ -206,7 +204,7 @@ namespace KaosesTweaks
             catch (Exception ex)
             {
                 //Handle exceptions
-                IM.MessageError("Error DoLoading : " + ex.ToStringFull());
+                IM.ShowError("Error initializing game loading tweak calls", "Game Loading Error", ex);
             }
             return base.DoLoading(game);
         }
@@ -333,8 +331,8 @@ namespace KaosesTweaks
                         sb.AppendLine();
                         sb.AppendLine("The age tweaks will not be applied until these errors have been resolved.");
                         sb.Append("Note that this is only a warning message and not a crash.");
-
-                        MessageBox.Show(sb.ToString(), "Configuration Error in Bannerlord Tweaks");
+                        //MessageBox.Show(sb.ToString(), "Configuration Error in Age Tweaks");
+                        IM.ShowError(sb.ToString(), "Configuration Error in Age Tweaks");
                     }
                     else
                     {
@@ -384,4 +382,5 @@ namespace KaosesTweaks
         }
         //~ BT
 
+    }
 }

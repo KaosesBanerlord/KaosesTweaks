@@ -106,14 +106,19 @@ namespace KaosesTweaks.Utils
         }
 
         // From Modlib---
-        public static void ShowError(string message, string title = "", Exception? exception = null)
+        public static void ShowError(string message, string title = "", Exception? exception = null, bool ShowVersionsInfo = true)
         {
             if (string.IsNullOrWhiteSpace(title))
             {
                 title = "";
             }
-
-            MessageBox.Show(message + "\n\n" + exception?.ToStringFull(), title);
+            message += "\n\n" + exception?.ToStringFull();
+            if (ShowVersionsInfo)
+            {
+                message += "\n\nGameVersion: " + Statics.GameVersion + "\nModVersion: " + Statics.ModVersion
+            }
+            logMessage(title + "\n" +message);
+            MessageBox.Show(message, title);
         }
 
         public static string ToStringFull(this Exception ex) => ex != null ? GetString(ex) : "";
