@@ -1,11 +1,9 @@
 ﻿using HarmonyLib;
-using KaosesTweaks.Utils;
 using System;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.ViewModelCollection;
 using TaleWorlds.Core;
 using TaleWorlds.Core.ViewModelCollection;
-using static TaleWorlds.CampaignSystem.InventoryLogic;
 
 namespace KaosesTweaks.Patches
 {
@@ -32,7 +30,6 @@ namespace KaosesTweaks.Patches
         {
             // Token: 0x06000004 RID: 4 RVA: 0x00002088 File Offset: 0x00000288
             public static void Postfix(SPItemVM __instance)
-            //public static void Postfix(SPItemVM __instance, ItemVM.UsageType __usageType, ItemRosterElement __newItem, InventoryLogic.InventorySide __inventorySide, EquipmentIndex __itemType)
             {
                 if (__instance.InventorySide == InventoryLogic.InventorySide.PlayerInventory && Statics._settings.MCMAutoLocks)
                 {
@@ -46,8 +43,6 @@ namespace KaosesTweaks.Patches
                     {
                         __instance.IsLocked = true;
                     }
-
-
                     if (__instance.IsCivilianItem && !isFood)
                     {
                         if (__instance.StringId == "ironIngot1"  && Statics._settings.autoLockIronBar1)
@@ -100,7 +95,6 @@ namespace KaosesTweaks.Patches
                         {
                             __instance.IsLocked = true;
                         }
-                        //Logging.Lm("StringId: "+__instance.StringId+"    TypeId: "+ __instance.TypeId);
                     }
                 }
             }

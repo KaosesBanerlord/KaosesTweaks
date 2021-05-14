@@ -88,8 +88,6 @@ namespace KaosesTweaks.Settings
 
         private static void CheckMcmConfig()
         {
-            //string RootFolder = System.IO.Path.Combine(Utilities.GetConfigsPath(), "ModSettings/Global/" + Statics.ModuleFolder);
-
             string RootFolder = System.IO.Path.Combine(FSIOHelper.GetConfigPath(), "ModSettings/Global/" + Statics.ModuleFolder);
             if (System.IO.Directory.Exists(RootFolder))
             {
@@ -103,6 +101,7 @@ namespace KaosesTweaks.Settings
                 }
             }
         }
+
         private static void CheckModConfig()
         {
             if (File.Exists(Statics.ConfigFilePath))

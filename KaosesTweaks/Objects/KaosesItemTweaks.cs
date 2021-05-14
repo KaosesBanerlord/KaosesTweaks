@@ -1,5 +1,4 @@
 ﻿using KaosesTweaks.Objects;
-using KaosesTweaks.Utils;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
 using static TaleWorlds.Core.ItemObject;

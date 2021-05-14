@@ -1,14 +1,16 @@
 ﻿using HarmonyLib;
+using KaosesTweaks.Settings;
 using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.CampaignSystem.Conversation.Persuasion;
 using TaleWorlds.CampaignSystem.SandBox.CampaignBehaviors;
+
 /* Another chance at marriage */
 namespace KaosesTweaks.Patches
 {
-    class GetPersuasionTasksForCourtship
+    public class GetPersuasionTasksForCourtship
     {
          
         // These are Harmony patches because player lines cannot be removed or replaced
@@ -71,7 +73,8 @@ namespace KaosesTweaks.Patches
                 return false;
             }
         }
-        
+
+        static bool Prepare() => MCMSettings.Instance is { } settings && settings.AnotherChanceAtMarriageEnabled;
     }
 }
 /* Another chance at marriage */

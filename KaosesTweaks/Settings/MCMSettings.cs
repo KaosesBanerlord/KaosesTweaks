@@ -13,7 +13,7 @@ namespace KaosesTweaks.Settings
 {
     //public class MCMSettings : AttributePerSaveSettings<MCMSettings>, ISettingsProviderInterface
     //public class MCMSettings : AttributeGlobalSettings<MCMSettings>, ISettingsProviderInterface 
-    public class MCMSettings : AttributeGlobalSettings<MCMSettings> //, ISettingsProviderInterface
+    public class MCMSettings : AttributeGlobalSettings<MCMSettings>
     {
         #region ModSettingsStandard
         public override string Id => Statics.InstanceID;
@@ -194,6 +194,15 @@ namespace KaosesTweaks.Settings
             SettingPropertyGroup("{=BT_Settings_002100}Age Tweaks")]
         public int MaxAge { get; set; } = 125;
         #endregion
+
+        //~ Another Chance at marriage
+        #region Another Chance at marriage
+        [SettingPropertyBool("{=KT_ACAM}Another Chance At Marrige Enabled" + "*", Order = 1, RequireRestart = true, IsToggle = true,
+            HintText = "{=KT_ACAMH}Enables the another chance at marriage tweaks."),
+            SettingPropertyGroup("{=KT_ACAMC}Another Chance At Marrige")] //, GroupOrder = 1
+        public bool AnotherChanceAtMarriageEnabled { get; set; } = false;
+
+        #endregion //~ Another Chance at marriage
 
         //~ ArmyManagement
         #region ArmyManagement

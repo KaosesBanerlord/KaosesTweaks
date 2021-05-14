@@ -1,44 +1,35 @@
 ﻿using HarmonyLib;
 using KaosesTweaks.Behaviors;
-using KaosesTweaks.BTTweaks;
-//using KaosesTweaks.Events;
-//using KaosesTweaks.Models;
-using KaosesTweaks.Common;
 using KaosesTweaks.Event;
+using KaosesTweaks.Common;
 using KaosesTweaks.Models;
 using KaosesTweaks.Settings;
 using KaosesTweaks.Utils;
-using SandBox;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Text;
+using System.Windows.Forms;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.SandBox.CampaignBehaviors;
 using TaleWorlds.Core;
-using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
-using TaleWorlds.ObjectSystem;
-using static TaleWorlds.Core.ItemObject;
-
-//using KaosesTweaks.Behaviors;
+using KaosesTweaks.BTTweaks;
+using System.Text;
+using System.Linq;
 
 
 namespace KaosesTweaks
 {
-    public class SubModule : MBSubModuleBase  // Must have a class inherting MBSubModuleBase, the entry point of the mod
+    public class SubModule : MBSubModuleBase
     {
 
-    /* Another chance at marriage */
-    public static Dictionary<Hero, CampaignTime> LastAttempts;
-    public static readonly FastInvokeHandler RemoveUnneededPersuasionAttemptsHandler =
-    HarmonyLib.MethodInvoker.GetHandler(AccessTools.Method(typeof(RomanceCampaignBehavior), "RemoveUnneededPersuasionAttempts"));
-    private Harmony _harmony;
-    public static bool HasPatched = false;
-    /* Another chance at marriage */
-
-        public static MCMSettings? _settings;
+        /* Another chance at marriage */
+        public static Dictionary<Hero, CampaignTime> LastAttempts;
+        public static readonly FastInvokeHandler RemoveUnneededPersuasionAttemptsHandler =
+        HarmonyLib.MethodInvoker.GetHandler(AccessTools.Method(typeof(RomanceCampaignBehavior), "RemoveUnneededPersuasionAttempts"));
+        private Harmony? harmonyKT;
+        public static bool HasPatched = false;
+        /* Another chance at marriage */
 
         protected override void OnSubModuleLoad()
         {
@@ -59,8 +50,11 @@ namespace KaosesTweaks
                     if (Kaoses.IsHarmonyLoaded())
                     {
                         IM.DisplayModLoadedMessage();
-                        var harmony = new Harmony(Statics.HarmonyId);
-                        harmony.PatchAll(Assembly.GetExecutingAssembly());
+                        if (harmonyKT == null)
+                        {
+                            harmonyKT = new Harmony(Statics.HarmonyId);
+                            harmonyKT.PatchAll(Assembly.GetExecutingAssembly());
+                        }
                     }
                     else { IM.DisplayModHarmonyErrorMessage(); }
                 }
@@ -105,7 +99,7 @@ namespace KaosesTweaks
                     catch (Exception ex)
                     {
                         IM.MessageError(ex.ToStringFull());
-                       // MessageBox.Show($":\n\n{ex.ToStringFull()}");
+                        MessageBox.Show($":\n\n{ex.ToStringFull()}");
                     }
 
                 }
@@ -151,7 +145,7 @@ namespace KaosesTweaks
                 catch (Exception ex)
                 {
                     IM.MessageError("Error OnGameStart: " + ex.ToStringFull());
-                    //MessageBox.Show($"Error Initialising Culture Changer:\n\n{ex.ToStringFull()}");
+                    MessageBox.Show($"Error Initialising Culture Changer:\n\n{ex.ToStringFull()}");
                 }
 
                 try
@@ -169,7 +163,7 @@ namespace KaosesTweaks
                 catch (Exception ex)
                 {
                     IM.MessageError("Error OnGameStart: " + ex.ToStringFull());
-                    //MessageBox.Show($"Error Initialising Culture Changer:\n\n{ex.ToStringFull()}");
+                    MessageBox.Show($"Error Initialising Culture Changer:\n\n{ex.ToStringFull()}");
                 }
                 try
                 {
@@ -186,7 +180,7 @@ namespace KaosesTweaks
                 catch (Exception ex)
                 {
                     IM.MessageError("Error OnGameStart: " + ex.ToStringFull());
-                    //MessageBox.Show($"Error Initialising Culture Changer:\n\n{ex.ToStringFull()}");
+                    MessageBox.Show($"Error Initialising Culture Changer:\n\n{ex.ToStringFull()}");
                 }
             }
         }
@@ -218,30 +212,10 @@ namespace KaosesTweaks
         protected override void OnSubModuleUnloaded()
         {
             base.OnSubModuleUnloaded();
-            try
-            {
-                _harmony?.UnpatchAll(Statics.HarmonyId);
-                HasPatched = false;
-            }
-            catch (Exception ex)
-            {
-                //Handle exceptions
-                //IM.MessageError("Error OnGameEnd harmony un-patch: " + ex.ToStringFull());
-            }
         }
 
         public override void OnGameEnd(Game game)
         {
-            try
-            {
-                _harmony?.UnpatchAll(Statics.HarmonyId);
-                HasPatched = false;
-            }
-            catch (Exception ex)
-            {
-                //Handle exceptions
-                //IM.MessageError("Error OnGameEnd harmony un-patch: " + ex.ToStringFull());
-            }
 
         }
 
@@ -249,20 +223,17 @@ namespace KaosesTweaks
         //~ BT
 
         /*
-                public override void OnMissionBehaviourInitialize(Mission mission)
-                {
-                    if (mission == null) return;
-                    base.OnMissionBehaviourInitialize(mission);
-                }*/
+        public override void OnMissionBehaviourInitialize(Mission mission)
+        {
+            if (mission == null) return;
+            base.OnMissionBehaviourInitialize(mission);
+        }*/
 
         private void AddModels(CampaignGameStarter campaignGameStarter)
         {
 
             if (campaignGameStarter != null && MCMSettings.Instance is { } settings)
             {
-
-
-
                 if (settings.MCMClanModifiers)
                 {
                     if (settings.Debug)
@@ -274,10 +245,10 @@ namespace KaosesTweaks
                 if (settings.HideoutBattleTroopLimitTweakEnabled)
                 {
                     /*
-                                        if (settings.Debug)
-                                        {
-                                            IM.MessageDebug("Loaded Kaoses Bandit Density model Model Override");
-                                        }*/
+                    if (settings.Debug)
+                    {
+                        IM.MessageDebug("Loaded Kaoses Bandit Density model Model Override");
+                    }*/
                     //campaignGameStarter.AddModel(new KaosesBanditDensityModel());
                 }
                 if (settings.MCMArmy)
@@ -361,7 +332,7 @@ namespace KaosesTweaks
                         sb.AppendLine("The age tweaks will not be applied until these errors have been resolved.");
                         sb.Append("Note that this is only a warning message and not a crash.");
 
-                        //MessageBox.Show(sb.ToString(), "Configuration Error in Bannerlord Tweaks");
+                        MessageBox.Show(sb.ToString(), "Configuration Error in Bannerlord Tweaks");
                     }
                     else
                     {
@@ -411,50 +382,4 @@ namespace KaosesTweaks
         }
         //~ BT
 
-
-        public void DumpValues()
-        {
-            //IM.MessageDebug("Debug Message: DumpValues");
-
-            /*
-                        IM.MessageDebug("");
-
-                        IM.MessageDebug("GetSkillXpForRefining");
-                        bool b1 = MCMSettings.Instance is { } settings && settings.SmithingRefiningXpModifiers;
-                        IM.MessageDebug("Prepare state: " + b1.ToString());
-
-                        IM.MessageDebug("GetSkillXpForSmelting");
-                        bool b2 = MCMSettings.Instance is { } settings2 && settings2.SmithingSmeltingXpModifiers;
-                        IM.MessageDebug("Prepare state: " + b2.ToString());
-
-                        IM.MessageDebug("GetSkillXpForSmithing");
-                        bool b3 = MCMSettings.Instance is { } settings3 && settings3.SmithingSmithingXpModifiers;
-                        IM.MessageDebug("Prepare state: " + b3.ToString());
-
-                        IM.MessageDebug("");
-                        IM.MessageDebug("");
-                        IM.MessageDebug("");
-                        IM.MessageDebug("");
-
-
-                        IM.MessageDebug("GetEnergyCostForRefining");
-                        bool b4 = MCMSettings.Instance is { } settings4 && (settings4.SmithingEnergyDisable || settings4.SmithingEnergyRefiningModifiers);
-                        IM.MessageDebug("Prepare state: " + b4.ToString());
-
-                        IM.MessageDebug("GetEnergyCostForSmithing");
-                        bool b5 = MCMSettings.Instance is { } settings5 && (settings5.SmithingEnergyDisable || settings5.SmithingEnergySmithingModifiers);
-                        IM.MessageDebug("Prepare state: " + b5.ToString());
-
-                        IM.MessageDebug("GetEnergyCostForSmelting");
-                        bool b6 = MCMSettings.Instance is { } settings6 && (settings6.SmithingEnergyDisable || settings6.SmithingEnergySmeltingModifiers);
-                        IM.MessageDebug("Prepare state: " + b6.ToString());
-
-            */
-
-            //bool t = MCMSettings.Instance != null && MCMSettings.Instance.SmithingXpModifiers;
-            //IM.MessageDebug("");
-            //IM.MessageDebug("");
-
-        }
-    }
 }

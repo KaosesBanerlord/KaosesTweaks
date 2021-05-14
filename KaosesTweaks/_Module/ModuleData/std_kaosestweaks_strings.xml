@@ -917,21 +917,6 @@
     <string id="BT_Settings_008702_Desc" text="Native value is 10%. Sets the chance that the militia spawning in towns and castles are elite ranged troops." />
 		-->
 
-
-    <string id="KTMCM_CLearningLimit" text="LearningLimit" />
-    <string id="KTMCM_CLearningLimit" text="LearningLimit" />
-    <string id="KTMCM_CLearningLimit" text="LearningLimit" />
-    <string id="KTMCM_CLearningLimit" text="LearningLimit" />
-    <string id="KTMCM_CLearningLimit" text="LearningLimit" />
-    <string id="KTMCM_CLearningLimit" text="LearningLimit" />
-    <string id="KTMCM_CLearningLimit" text="LearningLimit" />
-    <string id="KTMCM_CLearningLimit" text="LearningLimit" />
-    <string id="KTMCM_CLearningLimit" text="LearningLimit" />
-    <string id="KTMCM_CLearningLimit" text="LearningLimit" />
-    <string id="KTMCM_CLearningLimit" text="LearningLimit" />
-    <string id="KTMCM_CLearningLimit" text="LearningLimit" />
-    <string id="KTMCM_CLearningLimit" text="LearningLimit" />
-
 	<!-- version 0.2.6 for 1.5.10 -->
 	<string id="KT_Debug_000" text ="Debug" />
 	<string id="KT_Debug_001" text ="Show Battle Rewards Calculation Message" />
@@ -952,6 +937,12 @@
 	<string id="KT_Debug_016" text ="Debug mode - Battlesize tweaks" />
 	<string id="KT_Debug_017" text ="Debug mode - Culture transformation tweaks" />
 	<string id="KT_Debug_018" text ="Create logfile" />
+
+    <string id="KT_ACAM" text="Another Chance At Marrige Enabled" />
+    <string id="KT_ACAMH" text="Enables the another chance at marriage tweaks." />
+    <string id="KT_ACAMC" text="Another Chance At Marrige" />
+    <!-- <string id="KTMCM_CLearningLimit" text="LearningLimit" /> -->
+
 
 	</strings>
 </base>
