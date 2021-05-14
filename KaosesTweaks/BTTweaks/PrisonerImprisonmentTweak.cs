@@ -27,14 +27,14 @@ namespace KaosesTweaks.BTTweaks
         {
             if (escapeBehaviour == null || !(MCMSettings.Instance is { } settings) || !hero.IsPrisoner) return;
 
-            if (hero.PartyBelongedToAsPrisoner != null && (hero.PartyBelongedToAsPrisoner.MapFaction != null 
+            if (hero.PartyBelongedToAsPrisoner != null && (hero.PartyBelongedToAsPrisoner.MapFaction != null
                 || hero.PartyBelongedToAsPrisoner.LeaderHero?.Clan == Hero.MainHero.Clan))
             {
-                bool flag = hero.PartyBelongedToAsPrisoner.MapFaction == Hero.MainHero.MapFaction 
+                bool flag = hero.PartyBelongedToAsPrisoner.MapFaction == Hero.MainHero.MapFaction
                     || (hero.PartyBelongedToAsPrisoner.IsSettlement && hero.PartyBelongedToAsPrisoner.Settlement.OwnerClan == Clan.PlayerClan);
 
-                if ((settings.PrisonerImprisonmentPlayerOnly && flag) 
-                    || (settings.PrisonerImprisonmentPlayerOnly == false && (Kingdom.All.Contains(hero.PartyBelongedToAsPrisoner.MapFaction) 
+                if ((settings.PrisonerImprisonmentPlayerOnly && flag)
+                    || (settings.PrisonerImprisonmentPlayerOnly == false && (Kingdom.All.Contains(hero.PartyBelongedToAsPrisoner.MapFaction)
                     || hero.PartyBelongedToAsPrisoner.IsSettlement)))
                     flag = true;
 

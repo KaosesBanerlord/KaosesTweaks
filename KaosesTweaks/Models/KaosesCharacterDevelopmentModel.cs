@@ -104,7 +104,7 @@ namespace KaosesTweaks.Models
             {
                 result.Add((float)(((attributeValue - 1)) * 10), attributeName, null);
             }
-            
+
             result.Add((float)(((focusValue * 1)) * 30), _skillFocusText, null);
             //result.Add((float)((((focusValue * 1)) * 30) * (1 + Statics._settings.LearningLimitMultiplier)), _skillFocusText, null);
             result.LimitMin(0f);
@@ -119,7 +119,7 @@ namespace KaosesTweaks.Models
 
         // Token: 0x04000EA2 RID: 3746
         private static TextObject _overLimitText = new TextObject("{=bcA7ZuyO}Learning Limit Exceeded", null);
- 
+
         // Token: 0x04000E8D RID: 3725
         private const int MaxCharacterLevels = 62;
 
@@ -181,11 +181,11 @@ namespace KaosesTweaks.Models
         #endregion
 
 
-}
+    }
 
 
 
-    
+
 
 
 }

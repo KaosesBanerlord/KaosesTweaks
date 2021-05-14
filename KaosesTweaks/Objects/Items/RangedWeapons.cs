@@ -35,7 +35,7 @@ namespace KaosesTweaks.Objects
                 {
                     //SetItemsWeight(_item.Weight * multiplerWeight, multiplerWeight);
                 }
-                
+
             }
         }
 

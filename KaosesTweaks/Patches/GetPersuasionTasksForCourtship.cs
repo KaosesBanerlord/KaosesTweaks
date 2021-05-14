@@ -12,7 +12,7 @@ namespace KaosesTweaks.Patches
 {
     public class GetPersuasionTasksForCourtship
     {
-         
+
         // These are Harmony patches because player lines cannot be removed or replaced
         [HarmonyPatch(typeof(RomanceCampaignBehavior))]
         internal class Patches

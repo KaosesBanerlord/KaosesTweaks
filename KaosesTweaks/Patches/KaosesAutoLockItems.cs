@@ -45,51 +45,51 @@ namespace KaosesTweaks.Patches
                     }
                     if (__instance.IsCivilianItem && !isFood)
                     {
-                        if (__instance.StringId == "ironIngot1"  && Statics._settings.autoLockIronBar1)
+                        if (__instance.StringId == "ironIngot1" && Statics._settings.autoLockIronBar1)
                         {
                             __instance.IsLocked = true;
                         }
-                        
+
                         if (__instance.StringId == "ironIngot2" && Statics._settings.autoLockIronBar2)
                         {
                             __instance.IsLocked = true;
                         }
-                        
+
                         if (__instance.StringId == "ironIngot3" && Statics._settings.autoLockIronBar3)
                         {
                             __instance.IsLocked = true;
                         }
-                        
+
                         if (__instance.StringId == "ironIngot4" && Statics._settings.autoLockIronBar4)
                         {
                             __instance.IsLocked = true;
                         }
-                        
+
                         if (__instance.StringId == "ironIngot5" && Statics._settings.autoLockIronBar5)
                         {
                             __instance.IsLocked = true;
                         }
-                        
+
                         if (__instance.StringId == "ironIngot6" && Statics._settings.autoLockIronBar6)
                         {
                             __instance.IsLocked = true;
                         }
-                        
+
                         if (__instance.StringId == "iron" && Statics._settings.autoLockIronOre)
                         {
                             __instance.IsLocked = true;
                         }
-                        
+
                         if (__instance.StringId == "silver" && Statics._settings.autoLockSilverOre)
                         {
                             __instance.IsLocked = true;
                         }
-                        
+
                         if (__instance.StringId == "hardwood" && Statics._settings.autoLockHardwood)
                         {
                             __instance.IsLocked = true;
                         }
-                        
+
 
                         if (__instance.StringId == "charcoal" && Statics._settings.autoLockCharcol)
                         {

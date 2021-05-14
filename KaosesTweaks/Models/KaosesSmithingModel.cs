@@ -16,7 +16,7 @@ namespace KaosesTweaks.Models
             if (Statics._settings.SmithingXpModifiers)
             {
                 baseXp *= Statics._settings.SmithingRefiningXpValue;
-                if(Statics._settings.CraftingDebug)
+                if (Statics._settings.CraftingDebug)
                 {
                     IM.MessageDebug("GetSkillXpForRefining  base: " + (MathF.Round(0.3f * (float)(this.GetCraftingMaterialItem(refineFormula.Output).Value * refineFormula.OutputCount))).ToString() + "  new :" + baseXp.ToString());
                 }
@@ -65,9 +65,10 @@ namespace KaosesTweaks.Models
                     IM.MessageDebug("GetEnergyCostForRefining: DISABLED ");
                 }
                 num = 0;
-            }else
+            }
+            else
             {
-                if(Statics._settings.CraftingStaminaTweakEnabled)
+                if (Statics._settings.CraftingStaminaTweakEnabled)
                 {
                     float tmp = num * Statics._settings.SmithingEnergyRefiningValue;
                     if (Statics._settings.CraftingDebug)

@@ -152,7 +152,7 @@ namespace KaosesTweaks.Settings
 
         //~ Age Tweaks
         #region Age Tweaks
-        [SettingPropertyBool("{=BT_Settings_002100}Age Tweaks"  + "*", Order = 1, RequireRestart = true, IsToggle = true,
+        [SettingPropertyBool("{=BT_Settings_002100}Age Tweaks" + "*", Order = 1, RequireRestart = true, IsToggle = true,
             HintText = "{=BT_Settings_002100_Desc}Enables the tweaking of character age behavior."),
             SettingPropertyGroup("{=BT_Settings_002100}Age Tweaks")] //, GroupOrder = 1
         public bool AgeTweaksEnabled { get; set; } = false;
@@ -207,7 +207,7 @@ namespace KaosesTweaks.Settings
         #region Cohesion
         [SettingPropertyBool("{=KTMCM_AMCM}Cohesion Modifiers", IsToggle = true, Order = 0, RequireRestart = false,
             HintText = "{=KTMCM_AMSMH}Allows Cohesion modifiers.")]
-        [SettingPropertyGroup("{=KTMCM_CArmy}Army" + "/" +"{=KTMCM_CCohesion}Cohesion")]
+        [SettingPropertyGroup("{=KTMCM_CArmy}Army" + "/" + "{=KTMCM_CCohesion}Cohesion")]
         public bool armyCohesionMultipliers { get; set; } = false;
 
         [SettingPropertyInteger("{=KTMCM_AMCMBC}Base Cohesion Change", -5, 5, "0 Cohesion", Order = 0, RequireRestart = false,
@@ -215,12 +215,12 @@ namespace KaosesTweaks.Settings
         [SettingPropertyGroup("{=KTMCM_CArmy}Army" + "/" + "{=KTMCM_CCohesion}Cohesion")]
         public int armyCohesionBaseChange { get; set; } = -2;
 
-        [SettingPropertyBool("{=KTMCM_AMCMDCOO}Clan Only army disable cohesion", Order = 0, RequireRestart = false, 
+        [SettingPropertyBool("{=KTMCM_AMCMDCOO}Clan Only army disable cohesion", Order = 0, RequireRestart = false,
             HintText = "{=}Disable cohesion loss for armies that are made up of a single clans parties only.")]
         [SettingPropertyGroup("{=KTMCM_CArmy}Army" + "/" + "{=KTMCM_CCohesion}Cohesion")]
         public bool armyDisableCohesionLossClanOnlyParties { get; set; } = false;
 
-        [SettingPropertyBool("{=KTMCM_AMCMCO}Clan Only armies Use Multiplier", Order = 0, RequireRestart = false, 
+        [SettingPropertyBool("{=KTMCM_AMCMCO}Clan Only armies Use Multiplier", Order = 0, RequireRestart = false,
             HintText = "{=KTMCM_AMCMCOH}Apply the cohesion multiplier to armies that are made up of a single clans parties only.")]
         [SettingPropertyGroup("{=KTMCM_CArmy}Army" + "/" + "{=KTMCM_CCohesion}Cohesion")]
         public bool armyApplyMultiplerToClanOnlyParties { get; set; } = false;
@@ -235,14 +235,14 @@ namespace KaosesTweaks.Settings
 
         //~ Battle Tweaks 
         #region Battle Tweaks
-        [SettingPropertyBool("{=BT_Settings_000000}Battle Tweaks" + "*", IsToggle = true, Order = 0, RequireRestart = false, 
+        [SettingPropertyBool("{=BT_Settings_000000}Battle Tweaks" + "*", IsToggle = true, Order = 0, RequireRestart = false,
             HintText = "{=KTMCM_BTH}Enables editing battle tweaks.")]
         [SettingPropertyGroup("{=BT_Settings_000000}Battle Tweaks")]
         public bool battleTweaksEnabled { get; set; } = true;
 
         //~ Hideout Tweaks
         #region Hideout Tweaks
-        [SettingPropertyBool("{=BT_Settings_000200}Hideout Tweaks "  + "*", Order = 1, RequireRestart = true, IsToggle = true,
+        [SettingPropertyBool("{=BT_Settings_000200}Hideout Tweaks " + "*", Order = 1, RequireRestart = true, IsToggle = true,
             HintText = "{=BT_Settings_000200_Desc}Changes game behavior inside hideout battles."),
             SettingPropertyGroup("{=BT_Settings_000000}Battle Tweaks" + "/" + "{=BT_Settings_000200}Hideout Tweaks", GroupOrder = 2)]
         public bool HideoutBattleTroopLimitTweakEnabled { get; set; } = false;
@@ -252,12 +252,12 @@ namespace KaosesTweaks.Settings
             SettingPropertyGroup("{=BT_Settings_000000}Battle Tweaks" + "/" + "{=BT_Settings_000200}Hideout Tweaks")]
         public int HideoutBattleTroopLimit { get; set; } = 10;
 
-        [SettingPropertyBool("{=BT_Settings_000202}Continue Hideout Battle On Player Death"  + "*", Order = 3, RequireRestart = true,
+        [SettingPropertyBool("{=BT_Settings_000202}Continue Hideout Battle On Player Death" + "*", Order = 3, RequireRestart = true,
             HintText = "{=BT_Settings_000202_Desc}Native value is false. If enabled, you will not automatically lose the hideout battle if you die. Your troops will charge and the boss duel will be disabled."),
             SettingPropertyGroup("{=BT_Settings_000000}Battle Tweaks" + "/" + "{=BT_Settings_000200}Hideout Tweaks")]
         public bool ContinueHideoutBattleOnPlayerDeath { get; set; } = false;
 
-        [SettingPropertyBool("{=BT_Settings_000203}Continue Battle On Losing Duel"  + "*", Order = 4, RequireRestart = true,
+        [SettingPropertyBool("{=BT_Settings_000203}Continue Battle On Losing Duel" + "*", Order = 4, RequireRestart = true,
             HintText = "{=BT_Settings_000203_Desc}Native value is false. If enabled, your troops will rush to avenge you and finish everyone off."),
             SettingPropertyGroup("{=BT_Settings_000000}Battle Tweaks" + "/" + "{=BT_Settings_000200}Hideout Tweaks")]
         public bool ContinueHideoutBattleOnPlayerLoseDuel { get; set; } = false;
@@ -265,7 +265,7 @@ namespace KaosesTweaks.Settings
 
         //~ Battle Size Tweak
         #region Battle Size Tweak
-        [SettingPropertyBool("{=BT_Settings_001100}Battle Size Tweak"  + "*", Order = 1, IsToggle = true, RequireRestart = true,
+        [SettingPropertyBool("{=BT_Settings_001100}Battle Size Tweak" + "*", Order = 1, IsToggle = true, RequireRestart = true,
             HintText = "{=BT_Settings_001100_Desc}Allows you to set the battle size limit outside of native values. WARNING: Setting this above 1000 can cause performance degradation and crashes."),
             SettingPropertyGroup("{=BT_Settings_000000}Battle Tweaks" + "/" + "{=BT_Settings_001100}Battle Size Tweak")]
         public bool BattleSizeTweakEnabled { get; set; } = false;
@@ -278,7 +278,7 @@ namespace KaosesTweaks.Settings
 
         //~ Siege Tweaks
         #region Siege Tweaks
-        [SettingPropertyBool("{=BT_Settings_000300}Siege Tweaks "  + "*", Order = 1, RequireRestart = true, IsToggle = true,
+        [SettingPropertyBool("{=BT_Settings_000300}Siege Tweaks " + "*", Order = 1, RequireRestart = true, IsToggle = true,
             HintText = "{=BT_Settings_000300_Desc}Tweaks for siege engine construction speed and collateral casulaties during sieges."),
             SettingPropertyGroup("{=BT_Settings_000000}Battle Tweaks" + "/" + "{=BT_Settings_000300}Siege Tweaks", GroupOrder = 3)]
         public bool SiegeTweaksEnabled { get; set; } = false;
@@ -301,8 +301,8 @@ namespace KaosesTweaks.Settings
 
         //~ Weapon Cut Through Tweaks
         #region Weapon Cut Through Tweaks
-        [SettingPropertyBool("{=BT_Settings_000500}Weapon Cut Through Tweaks"  + "*", Order = 1, IsToggle = true, RequireRestart = true,
-            HintText = "{=BT_Settings_000500_Desc}Allows all weapon types to cut through and hit multiple people."), SettingPropertyGroup("{=BT_Settings_000000}Battle Tweaks" + "/" + "{=BT_Settings_000500}Weapon Cut Through Tweaks"  + "*", GroupOrder = 5)]
+        [SettingPropertyBool("{=BT_Settings_000500}Weapon Cut Through Tweaks" + "*", Order = 1, IsToggle = true, RequireRestart = true,
+            HintText = "{=BT_Settings_000500_Desc}Allows all weapon types to cut through and hit multiple people."), SettingPropertyGroup("{=BT_Settings_000000}Battle Tweaks" + "/" + "{=BT_Settings_000500}Weapon Cut Through Tweaks" + "*", GroupOrder = 5)]
         public bool SliceThroughEnabled { get; set; } = false;
 
         [SettingPropertyBool("{=BT_Settings_000501}All Two-Handed Weapons Cut Through", Order = 2, RequireRestart = false,
@@ -399,14 +399,14 @@ namespace KaosesTweaks.Settings
         //~ Campaign Tweaks
         #region Campaign Tweaks
 
-        [SettingPropertyBool("{=BT_Settings_001000}Campaign Tweaks", IsToggle = true, Order = 0, RequireRestart = false, 
+        [SettingPropertyBool("{=BT_Settings_001000}Campaign Tweaks", IsToggle = true, Order = 0, RequireRestart = false,
             HintText = "{=KTMCM_CTH}Enables editing campaign tweaks")]
         [SettingPropertyGroup("{=BT_Settings_001000}Campaign Tweaks")]
         public bool CampaignTweaksEnabled { get; set; } = false;
 
         //~ Difficulty Settings
         #region Difficulty Settings
-        [SettingPropertyBool("{=BT_Settings_001200}Difficulty Tweaks "  + "*", Order = 1, RequireRestart = true, IsToggle = true,
+        [SettingPropertyBool("{=BT_Settings_001200}Difficulty Tweaks " + "*", Order = 1, RequireRestart = true, IsToggle = true,
             HintText = "{=BT_Settings_001200_Desc}Allows you to change the multiplier for several difficulty settings."),
             SettingPropertyGroup("{=BT_Settings_001000}Campaign Tweaks" + "/" + "{=BT_Settings_001200}Difficulty Tweaks", GroupOrder = 2)]
         public bool DifficultyTweakEnabled { get; set; } = false;
@@ -421,16 +421,16 @@ namespace KaosesTweaks.Settings
             SettingPropertyGroup("{=BT_Settings_001000}Campaign Tweaks" + "/" + "{=BT_Settings_001200}Difficulty Tweaks" + "/" + "{=BT_Settings_001201}Damage to Player Tweak")]
         public float DamageToPlayerMultiplier { get; set; } = 1.0f;
 
-/*
-        [SettingPropertyBool("{=BT_Settings_001203}Damage to Friends Tweak", Order = 4, RequireRestart = false, IsToggle = true,
-            HintText = "{=BT_Settings_001203_Desc}Allows you to change the damage the player's friends receive."),
-            SettingPropertyGroup("{=BT_Settings_001000}Campaign Tweaks" + "/" + "{=BT_Settings_001200}Difficulty Tweaks" + "/" + "{=BT_Settings_001203}Damage to Friends Tweak", GroupOrder = 2)]
-        public bool DamageToFriendsTweakEnabled { get; set; } = false;
+        /*
+                [SettingPropertyBool("{=BT_Settings_001203}Damage to Friends Tweak", Order = 4, RequireRestart = false, IsToggle = true,
+                    HintText = "{=BT_Settings_001203_Desc}Allows you to change the damage the player's friends receive."),
+                    SettingPropertyGroup("{=BT_Settings_001000}Campaign Tweaks" + "/" + "{=BT_Settings_001200}Difficulty Tweaks" + "/" + "{=BT_Settings_001203}Damage to Friends Tweak", GroupOrder = 2)]
+                public bool DamageToFriendsTweakEnabled { get; set; } = false;
 
-        [SettingPropertyFloatingInteger("{=BT_Settings_001204}Damage to Friends Tweak Amount", 0.1f, 5.0f, "0%", RequireRestart = false, Order = 5,
-            HintText = "{=BT_Settings_001204_Desc}Native values: Very Easy: 30%, Easy: 67%, Realistic: 100%. This value is used to calculate the damage the player's friends receive."),
-            SettingPropertyGroup("{=BT_Settings_001000}Campaign Tweaks" + "/" + "{=BT_Settings_001200}Difficulty Tweaks" + "/" + "{=BT_Settings_001203}Damage to Friends Tweak")]
-        public float DamageToFriendsMultiplier { get; set; } = 1.0f;*/
+                [SettingPropertyFloatingInteger("{=BT_Settings_001204}Damage to Friends Tweak Amount", 0.1f, 5.0f, "0%", RequireRestart = false, Order = 5,
+                    HintText = "{=BT_Settings_001204_Desc}Native values: Very Easy: 30%, Easy: 67%, Realistic: 100%. This value is used to calculate the damage the player's friends receive."),
+                    SettingPropertyGroup("{=BT_Settings_001000}Campaign Tweaks" + "/" + "{=BT_Settings_001200}Difficulty Tweaks" + "/" + "{=BT_Settings_001203}Damage to Friends Tweak")]
+                public float DamageToFriendsMultiplier { get; set; } = 1.0f;*/
 
         [SettingPropertyBool("{=BT_Settings_001205}Damage to Player's Troops Tweak", Order = 6, RequireRestart = false, IsToggle = true,
             HintText = "{=BT_Settings_001205_Desc}Allows you to change the multiplier for damage the player's troops receive."),
@@ -472,7 +472,7 @@ namespace KaosesTweaks.Settings
             HintText = "{=KT_PPBCMH}Native values: Very Easy: 0.1%, Easy: 0.05%, Realistic: 0%. This value is used to calculate player's persuasion bonus chance."),
             SettingPropertyGroup("{=BT_Settings_001000}Campaign Tweaks" + "/" + "{=BT_Settings_001200}Difficulty Tweaks" + "/" + "{=KT_PPBC}Player Persuasion Bonus Chance Tweak")]
         public float PlayerPersuasionBonusChanceMultiplier { get; set; } = 0.00f;
-        
+
 
         [SettingPropertyBool("{=KT_CMDCR}Clan Member Death Chance Reduction Tweak", Order = 10, RequireRestart = false, IsToggle = true,
             HintText = "{=KT_CMDCRH}Allows you to change the clan member death chance reduction multiplier."),
@@ -513,7 +513,7 @@ namespace KaosesTweaks.Settings
         [SettingPropertyInteger("{=BT_Settings_003202}Base Parties Limit", 0, 10, "0 Parties", Order = 0, RequireRestart = false,
             HintText = "{=BT_Settings_003202_Desc}This is the number of parties you can field at the start.[Native: 1].")]
         [SettingPropertyGroup("{=BT_Settings_003000}Clan Tweaks" + "/" + "{=BT_Settings_003200}Party Limits" + "/" + "{=KTMCM_CPlayer}Player")]
-        public int ClanPlayerBasePartiesLimit{ get; set; } = 1;
+        public int ClanPlayerBasePartiesLimit { get; set; } = 1;
 
         [SettingPropertyFloatingInteger("{=BT_Settings_003203}Parties Bonus Per Clan Tier", 0.0f, 6.0f, "0.0 Parties/Clan Tier", RequireRestart = false,
             HintText = "{=BT_Settings_003203_Desc}Native has a calculation for this: 1 party for under tier 3, 2 parties for under tier 5, 3 parties for over tier 5. This setting is multiplied by your clan tier. A value of 0.5 will equate to 1 extra party per 2 clan tiers, which eqautes to the same as native.")]
@@ -523,7 +523,7 @@ namespace KaosesTweaks.Settings
 
         [SettingPropertyBool("{=BT_Settings_003204}AI Lord Parties Limit", IsToggle = true, RequireRestart = false,
             HintText = "{=BT_Settings_003204_Desc}Changes the base number of parties AI Lords can field.")]
-        [SettingPropertyGroup("{=BT_Settings_003000}Clan Tweaks" + "/" + "{=BT_Settings_003200}Party Limits" + "/" + "{=BT_Settings_003204}AI Lord Parties Limit", GroupOrder=2)]
+        [SettingPropertyGroup("{=BT_Settings_003000}Clan Tweaks" + "/" + "{=BT_Settings_003200}Party Limits" + "/" + "{=BT_Settings_003204}AI Lord Parties Limit", GroupOrder = 2)]
         public bool ClanAIPartiesLimitTweakEnabled { get; set; } = false;
 
         //~ AI Parties Limits
@@ -599,7 +599,7 @@ namespace KaosesTweaks.Settings
 
         //~ Stamina Tweaks
         #region Stamina
-        [SettingPropertyBool("{=BT_Settings_004100}Crafting Stamina"  + "*", Order = 1, RequireRestart = true, IsToggle = true,
+        [SettingPropertyBool("{=BT_Settings_004100}Crafting Stamina" + "*", Order = 1, RequireRestart = true, IsToggle = true,
             HintText = "{=BT_Settings_004100_Desc}Enables tweaks which affect crafting stamina."),
             SettingPropertyGroup("{=BT_Settings_004000}Crafting Tweaks" + "/" + "{=BT_Settings_004100}Crafting Stamina")]
         public bool CraftingStaminaTweakEnabled { get; set; } = false;
@@ -650,7 +650,7 @@ namespace KaosesTweaks.Settings
         //~ BT Smelting Tweaks
         #region Smelting
 
-        [SettingPropertyBool("{=BT_Settings_004200}Smelting "  + "*", Order = 1, RequireRestart = true, IsToggle = true,
+        [SettingPropertyBool("{=BT_Settings_004200}Smelting " + "*", Order = 1, RequireRestart = true, IsToggle = true,
             HintText = "{=BT_Settings_004200_Desc}Enables tweaks which affect smelting of weapons."),
             SettingPropertyGroup("{=BT_Settings_004000}Crafting Tweaks" + "/" + "{=BT_Settings_004200}Smelting", GroupOrder = 2)]
         public bool SmeltingTweakEnabled { get; set; } = false;
@@ -669,7 +669,7 @@ namespace KaosesTweaks.Settings
 
         //~ Xp Modifiers
         #region XP Modifiers
-        [SettingPropertyBool("{=KTMCM_SMRXP}Smithing Xp Multipliers"  + "*", IsToggle = true, Order = 0, RequireRestart = true,
+        [SettingPropertyBool("{=KTMCM_SMRXP}Smithing Xp Multipliers" + "*", IsToggle = true, Order = 0, RequireRestart = true,
             HintText = "{=KTMCM_SMRXPH}Enables xp multipliers to increase or decrease the xp gained per action.")]
         [SettingPropertyGroup("{=BT_Settings_004000}Crafting Tweaks" + "/" + "{=KTMCM_CXP}XP")]
         public bool SmithingXpModifiers { get; set; } = false;
@@ -1078,37 +1078,37 @@ namespace KaosesTweaks.Settings
         [SettingPropertyGroup("{=KTMCM_CAutoLocks}Auto Locks")]
         public bool MCMAutoLocks { get; set; } = false;
 
-        [SettingPropertyBool("{=KTMCM_ALHS}Horses", Order = 0, RequireRestart = false, 
+        [SettingPropertyBool("{=KTMCM_ALHS}Horses", Order = 0, RequireRestart = false,
             HintText = "{=KTMCM_ALHSH}Auto lock horses except lame horses.")]
         [SettingPropertyGroup("{=KTMCM_CAutoLocks}Auto Locks")]
         public bool autoLockHorses { get; set; } = false;
 
-        [SettingPropertyBool("{=KTMCM_ALF}Food", Order = 0, RequireRestart = false, 
+        [SettingPropertyBool("{=KTMCM_ALF}Food", Order = 0, RequireRestart = false,
             HintText = "{=KTMCM_ALFH}Auto lock all food.")]
         [SettingPropertyGroup("{=KTMCM_CAutoLocks}Auto Locks")]
         public bool autoLockFood { get; set; } = false;
 
-        [SettingPropertyBool("{=KTMCM_ALIB1}Crude Iron", Order = 0, RequireRestart = false, 
-            HintText = "{=KTMCM_ALIB1H}Auto lock Crude Iron.")] 
+        [SettingPropertyBool("{=KTMCM_ALIB1}Crude Iron", Order = 0, RequireRestart = false,
+            HintText = "{=KTMCM_ALIB1H}Auto lock Crude Iron.")]
         [SettingPropertyGroup("{=KTMCM_CAutoLocks}Auto Locks")]
         public bool autoLockIronBar1 { get; set; } = false;
 
-        [SettingPropertyBool("{=KTMCM_ALIB2}Wrought Iron", Order = 0, RequireRestart = false, 
+        [SettingPropertyBool("{=KTMCM_ALIB2}Wrought Iron", Order = 0, RequireRestart = false,
             HintText = "{=KTMCM_ALIB2H}Auto lock Wrought Iron.")]
         [SettingPropertyGroup("{=KTMCM_CAutoLocks}Auto Locks")]
         public bool autoLockIronBar2 { get; set; } = false;
 
-        [SettingPropertyBool("{=KTMCM_ALIB3}Iron", Order = 0, RequireRestart = false, 
+        [SettingPropertyBool("{=KTMCM_ALIB3}Iron", Order = 0, RequireRestart = false,
             HintText = "{=KTMCM_ALIB3H}Auto lock Iron.")]
         [SettingPropertyGroup("{=KTMCM_CAutoLocks}Auto Locks")]
         public bool autoLockIronBar3 { get; set; } = false;
 
-        [SettingPropertyBool("{=KTMCM_ALIB4}Steel", Order = 0, RequireRestart = false, 
+        [SettingPropertyBool("{=KTMCM_ALIB4}Steel", Order = 0, RequireRestart = false,
             HintText = "{=KTMCM_ALIB4H}Auto lock Steel.")]
         [SettingPropertyGroup("{=KTMCM_CAutoLocks}Auto Locks")]
         public bool autoLockIronBar4 { get; set; } = false;
 
-        [SettingPropertyBool("{=KTMCM_ALIB5}Fine Steel", Order = 0, RequireRestart = false, 
+        [SettingPropertyBool("{=KTMCM_ALIB5}Fine Steel", Order = 0, RequireRestart = false,
             HintText = "{=KTMCM_ALIB5H}Auto lock Fine Steel.")]
         [SettingPropertyGroup("{=KTMCM_CAutoLocks}Auto Locks")]
         public bool autoLockIronBar5 { get; set; } = false;
@@ -1123,17 +1123,17 @@ namespace KaosesTweaks.Settings
         [SettingPropertyGroup("{=KTMCM_CAutoLocks}Auto Locks")]
         public bool autoLockIronOre { get; set; } = false;
 
-        [SettingPropertyBool("{=KTMCM_ALSO}Silver Ore", Order = 0, RequireRestart = false, 
+        [SettingPropertyBool("{=KTMCM_ALSO}Silver Ore", Order = 0, RequireRestart = false,
             HintText = "{=KTMCM_ALSOH}Auto lock Silver Ore.")]
         [SettingPropertyGroup("{=KTMCM_CAutoLocks}Auto Locks")]
         public bool autoLockSilverOre { get; set; } = false;
 
-        [SettingPropertyBool("{=KTMCM_ALHW}Hardwood", Order = 0, RequireRestart = false, 
+        [SettingPropertyBool("{=KTMCM_ALHW}Hardwood", Order = 0, RequireRestart = false,
             HintText = "{=KTMCM_ALHWH}Auto lock Hardwood.")]
         [SettingPropertyGroup("{=KTMCM_CAutoLocks}Auto Locks")]
         public bool autoLockHardwood { get; set; } = false;
 
-        [SettingPropertyBool("{=KTMCM_ALCC}Charcoal", Order = 0, RequireRestart = false, 
+        [SettingPropertyBool("{=KTMCM_ALCC}Charcoal", Order = 0, RequireRestart = false,
             HintText = "{=KTMCM_ALCCH}Auto lock Charcoal.")]
         [SettingPropertyGroup("{=KTMCM_CAutoLocks}Auto Locks")]
         public bool autoLockCharcol { get; set; } = false;
@@ -1198,14 +1198,14 @@ namespace KaosesTweaks.Settings
 
         //~ Kingdom Tweaks
         #region Kingdom Tweaks
-        [SettingPropertyBool("{=BT_Settings_005000}Kingdom Tweaks " + "*", IsToggle = true, Order = 0, RequireRestart = false, 
+        [SettingPropertyBool("{=BT_Settings_005000}Kingdom Tweaks " + "*", IsToggle = true, Order = 0, RequireRestart = false,
             HintText = "{=KTMCM_KTH}Enable modifying kingdom tweak variables..")]
         [SettingPropertyGroup("{=BT_Settings_005000}Kingdom Tweaks")]
         public bool MCMKingdomTweaksEnabled { get; set; } = true;
 
         //~ Lord Bartering
         #region Lord Bartering
-        [SettingPropertyBool("{=BT_Settings_005100}Lord Bartering "  + "*", Order = 1, RequireRestart = true, IsToggle = true,
+        [SettingPropertyBool("{=BT_Settings_005100}Lord Bartering " + "*", Order = 1, RequireRestart = true, IsToggle = true,
             HintText = "{=BT_Settings_005100_Desc}Enables tweaks which affect bartering (Marriage, Factions Joining You, etc.)"),
             SettingPropertyGroup("{=BT_Settings_005000}Kingdom Tweaks" + "/" + "{=BT_Settings_005100}Lord Bartering")]
         public bool BarterablesTweaksEnabled { get; set; } = false;
@@ -1223,7 +1223,7 @@ namespace KaosesTweaks.Settings
 
         //~ Balancing Tweaks
         #region Balancing Tweaks
-        [SettingPropertyBool("{=BT_Settings_005200}Faction Balancing "  + "*", Order = 1, RequireRestart = true, IsToggle = true,
+        [SettingPropertyBool("{=BT_Settings_005200}Faction Balancing " + "*", Order = 1, RequireRestart = true, IsToggle = true,
             HintText = "{=BT_Settings_005200_Desc}Enables tweaks which affect the balancing of kingdoms."),
             SettingPropertyGroup("{=BT_Settings_005000}Kingdom Tweaks" + "/" + "{=BT_Settings_005200}Faction Balancing", GroupOrder = 2)]
         public bool KingdomBalanceStrengthEnabled { get; set; } = false;
@@ -1408,12 +1408,12 @@ namespace KaosesTweaks.Settings
         //~ Miscellaneous
         #region Miscellaneous
 
-        [SettingPropertyBool("{=BT_Settings_009001}Disable Quest Troops Affecting Morale"  + "*", Order = 1, RequireRestart = true,
+        [SettingPropertyBool("{=BT_Settings_009001}Disable Quest Troops Affecting Morale" + "*", Order = 1, RequireRestart = true,
             HintText = "{=BT_Settings_009001_Desc}When enabled, quest troops such as Borrowed Troop in your party are ignored when party morale is calculated."),
             SettingPropertyGroup("{=BT_Settings_009000}Misc", GroupOrder = 99)]
         public bool QuestCharactersIgnorePartySize { get; set; } = false;
 
-        [SettingPropertyBool("{=BT_Settings_009002}Show Number of Days of Food"  + "*", Order = 2, RequireRestart = true,
+        [SettingPropertyBool("{=BT_Settings_009002}Show Number of Days of Food" + "*", Order = 2, RequireRestart = true,
             HintText = "{=BT_Settings_009002_Desc}Changes the number showing how much food you have to instead show how many days' worth of food you have. (Bottom right of campaign map UI)."),
             SettingPropertyGroup("{=BT_Settings_009000}Misc")]
         public bool ShowFoodDaysRemaining { get; set; } = false;
@@ -1423,7 +1423,7 @@ namespace KaosesTweaks.Settings
             SettingPropertyGroup("{=BT_Settings_009000}Misc")]
         public int CampaignSpeed { get; set; } = 4;
 
-        [SettingPropertyBool("{=BT_Settings_003103}Enable Unlimited Wanderers Patch"  + "*", Order = 0, RequireRestart = true,
+        [SettingPropertyBool("{=BT_Settings_003103}Enable Unlimited Wanderers Patch" + "*", Order = 0, RequireRestart = true,
             HintText = "{=BT_Settings_003103_Desc}Removes the soft cap on the maximum number of potential companions who can spawn. Native limits the # of wanderers to ~25. This will remove that limit. Note: Requires a new campaign to take effect, as the cap is set when a new game is generated. Credit to Bleinz for his UnlimitedWanderers mod.")]
         [SettingPropertyGroup("{=BT_Settings_009000}Misc")]
         public bool UnlimitedWanderersPatch { get; set; } = false;
@@ -1436,14 +1436,14 @@ namespace KaosesTweaks.Settings
 
         //~ Party Tweaks
         #region Party Tweaks
-        [SettingPropertyBool("{=BT_Settings_006000}Party Tweaks", IsToggle = true, Order = 0, RequireRestart = false, 
+        [SettingPropertyBool("{=BT_Settings_006000}Party Tweaks", IsToggle = true, Order = 0, RequireRestart = false,
             HintText = "{=KTMCM_PTH}Enable modifying party tweak variables..")]
         [SettingPropertyGroup("{=BT_Settings_006000}Party Tweaks")]
         public bool MCMPartyTweaksEnabled { get; set; } = true;
 
         //~ Caravan Tweaks
         #region Caravan Tweaks
-        [SettingPropertyBool("{=BT_Settings_006200}Player Caravan Party Size"  + "*", Order = 1, RequireRestart = true, IsToggle = true,
+        [SettingPropertyBool("{=BT_Settings_006200}Player Caravan Party Size" + "*", Order = 1, RequireRestart = true, IsToggle = true,
             HintText = "{=BT_Settings_006200_Desc}Applies a configured value to your caravan party size."),
             SettingPropertyGroup("{=BT_Settings_006000}Party Tweaks" + "/" + "{=BT_Settings_006200}Player Caravan Party Size", GroupOrder = 2)]
         public bool PlayerCaravanPartySizeTweakEnabled { get; set; } = false;
@@ -1456,7 +1456,7 @@ namespace KaosesTweaks.Settings
 
         //~ Party Size Tweaks
         #region Party Size Tweaks
-        [SettingPropertyBool("{=BT_Settings_006300}Party Size "  + "*", Order = 1, RequireRestart = true, IsToggle = true,
+        [SettingPropertyBool("{=BT_Settings_006300}Party Size " + "*", Order = 1, RequireRestart = true, IsToggle = true,
             HintText = "{=BT_Settings_006300_Desc}Applies a bonues to you and AI lord's party size based on leadership and steward skills."),
             SettingPropertyGroup("{=BT_Settings_006000}Party Tweaks" + "/" + "{=BT_Settings_006300}Party Size", GroupOrder = 3)]
         public bool PartySizeTweakEnabled { get; set; } = false;
@@ -1489,7 +1489,7 @@ namespace KaosesTweaks.Settings
 
         //~ Party Wage Tweaks
         #region Party Wage Tweaks
-        [SettingPropertyBool("{=BT_Settings_006400}Wages "  + "*", Order = 1, RequireRestart = true, IsToggle = true,
+        [SettingPropertyBool("{=BT_Settings_006400}Wages " + "*", Order = 1, RequireRestart = true, IsToggle = true,
             HintText = "{=BT_Settings_006400_Desc}Allows you to reduce/increase wages for various groups."),
             SettingPropertyGroup("{=BT_Settings_006000}Party Tweaks" + "/" + "{=BT_Settings_006400}Wages", GroupOrder = 4)]
         public bool PartyWageTweaksEnabled { get; set; } = false;
@@ -1646,7 +1646,7 @@ namespace KaosesTweaks.Settings
 
         //~ Prisoner Tweaks
         #region Prisoner Tweaks
-        [SettingPropertyBool("{=BT_Settings_007000}Prisoner Tweaks", IsToggle = true, Order = 0, RequireRestart = false, 
+        [SettingPropertyBool("{=BT_Settings_007000}Prisoner Tweaks", IsToggle = true, Order = 0, RequireRestart = false,
             HintText = "{=KTMCM_PRTH}Enable modifying prisoner tweak variables..")]
         [SettingPropertyGroup("{=BT_Settings_007000}Prisoner Tweaks")]
         public bool MCMPrisonerTweaksEnabled { get; set; } = true;
@@ -1668,7 +1668,7 @@ namespace KaosesTweaks.Settings
             SettingPropertyGroup("{=BT_Settings_007000}Prisoner Tweaks" + "/" + "{=BT_Settings_007100}Imprisonment Time")]
         public int MinimumDaysOfImprisonment { get; set; } = 0;
 
-        [SettingPropertyBool("{=BT_Settings_007103}Enable Missing Prisoner Hero Fix"  + "*", Order = 4, RequireRestart = true,
+        [SettingPropertyBool("{=BT_Settings_007103}Enable Missing Prisoner Hero Fix" + "*", Order = 4, RequireRestart = true,
             HintText = "{=BT_Settings_007103_Desc}Will attempt to detect and release prisoner Heroes who may be bugged and do not respawn. Will trigger 3 days after the Minimum Days of Imprisonment setting."),
             SettingPropertyGroup("{=BT_Settings_007000}Prisoner Tweaks" + "/" + "{=BT_Settings_007100}Imprisonment Time")]
         public bool EnableMissingHeroFix { get; set; } = false;
@@ -1678,7 +1678,7 @@ namespace KaosesTweaks.Settings
         //~ Party Prisoner Size Tweak
         #region Party Prisoner Size Tweak
 
-        [SettingPropertyBool("{=BT_Settings_007200}Prisoner Size Bonus "  + "*", Order = 1, RequireRestart = true, IsToggle = true,
+        [SettingPropertyBool("{=BT_Settings_007200}Prisoner Size Bonus " + "*", Order = 1, RequireRestart = true, IsToggle = true,
             HintText = "{=BT_Settings_007200_Desc}Enables a % bonus to your party's maximum prisoner size."),
             SettingPropertyGroup("{=BT_Settings_007000}Prisoner Tweaks" + "/" + "{=BT_Settings_007200}Prisoner Size Bonus", GroupOrder = 2)]
         public bool PrisonerSizeTweakEnabled { get; set; } = false;
@@ -1698,7 +1698,7 @@ namespace KaosesTweaks.Settings
         //~ Prisoner Confirmity Tweaks
         #region Prisoner Confirmity Tweaks
 
-        [SettingPropertyBool("{=BT_Settings_007300}Prisoner Confirmity "  + "*", Order = 1, RequireRestart = true, IsToggle = true,
+        [SettingPropertyBool("{=BT_Settings_007300}Prisoner Confirmity " + "*", Order = 1, RequireRestart = true, IsToggle = true,
             HintText = "{=BT_Settings_007300_Desc}Modifies the conformity rate of the base game, speeding the rate at which prisoners can be recruited."),
             SettingPropertyGroup("{=BT_Settings_007000}Prisoner Tweaks" + "/" + "{=BT_Settings_007300}Prisoner Confirmity", GroupOrder = 3)]
         public bool PrisonerConformityTweaksEnabled { get; set; } = false;
@@ -1723,7 +1723,7 @@ namespace KaosesTweaks.Settings
 
         //~ Settlement Tweaks
         #region Settlement Tweaks
-        [SettingPropertyBool("{=BT_Settings_008000}Settlement Tweaks", IsToggle = true, Order = 0, RequireRestart = false, 
+        [SettingPropertyBool("{=BT_Settings_008000}Settlement Tweaks", IsToggle = true, Order = 0, RequireRestart = false,
             HintText = "{=KTMCM_STTH}Enable modifying settlement tweak variables..")]
         [SettingPropertyGroup("{=BT_Settings_008000}Settlement Tweaks")]
         public bool MCMSettlementTweaksEnabled { get; set; } = true;
@@ -1735,12 +1735,12 @@ namespace KaosesTweaks.Settings
             SettingPropertyGroup("{=BT_Settings_008000}Settlement Tweaks" + "/" + "{=BT_Settings_008100}Settlement Culture Transformation")]
         public bool EnableCultureChanger { get; set; } = false;
 
-        [SettingPropertyBool("{=BT_Settings_008101}Change To Culture Of Kingdom Faction Instead"  + "*", Order = 1, RequireRestart = true, IsToggle = false,
+        [SettingPropertyBool("{=BT_Settings_008101}Change To Culture Of Kingdom Faction Instead" + "*", Order = 1, RequireRestart = true, IsToggle = false,
             HintText = "{=BT_Settings_008101_Desc}Instead of changing the culture to its owner-clan culture, change to its kingdom culture."),
             SettingPropertyGroup("{=BT_Settings_008000}Settlement Tweaks" + "/" + "{=BT_Settings_008100}Settlement Culture Transformation")]
         public bool ChangeToKingdomCulture { get; set; } = false;
 
-        [SettingPropertyDropdown("{=BT_Settings_008102}Override Culture For Player Clan"  + "*", Order = 3, RequireRestart = true,
+        [SettingPropertyDropdown("{=BT_Settings_008102}Override Culture For Player Clan" + "*", Order = 3, RequireRestart = true,
             HintText = "{=BT_Settings_008102_Desc}Overrides the culture to change to for player clan owned settlements."),
             SettingPropertyGroup("{=BT_Settings_008000}Settlement Tweaks" + "/" + "{=BT_Settings_008100}Settlement Culture Transformation")]
         public DropdownDefault<string> PlayerCultureOverride { get; } = new(new string[]
@@ -1773,7 +1773,7 @@ namespace KaosesTweaks.Settings
 
         //~ Settlement Tweaks - Disable Troop Donations
         #region Settlement Tweaks - Disable Troop Donations
-        [SettingPropertyBool("{=BT_Settings_008200}Disable Troop Donations"  + "*", Order = 1, RequireRestart = true, IsToggle = true,
+        [SettingPropertyBool("{=BT_Settings_008200}Disable Troop Donations" + "*", Order = 1, RequireRestart = true, IsToggle = true,
             HintText = "{=BT_Settings_008200_Desc}Disables your clan parties from donating troops to clan owned settlements."),
             SettingPropertyGroup("{=BT_Settings_008000}Settlement Tweaks" + "/" + "{=BT_Settings_008200}Disable Troop Donations", GroupOrder = 2)]
         public bool DisableTroopDonationPatchEnabled { get; set; } = false;
@@ -1786,7 +1786,7 @@ namespace KaosesTweaks.Settings
 
         //~ Settlement Tweaks - Production Tweaks
         #region Settlement Tweaks - Production Tweaks
-        [SettingPropertyBool("{=BT_Settings_008300}Village Productivity"  + "*", Order = 1, IsToggle = true, RequireRestart = true,
+        [SettingPropertyBool("{=BT_Settings_008300}Village Productivity" + "*", Order = 1, IsToggle = true, RequireRestart = true,
             HintText = "{=BT_Settings_008300_Desc}Enables Tweaks for increased productivity in villages."),
             SettingPropertyGroup("{=BT_Settings_008000}Settlement Tweaks" + "/" + "{=BT_Settings_008300}Village Productivity", GroupOrder = 3)]
         public bool ProductionTweakEnabled { get; set; } = false;
@@ -1811,22 +1811,22 @@ namespace KaosesTweaks.Settings
 
         //~ Settlement Tweaks - Buildings - Castle - Training Fields
         #region Settlement Tweaks - Buildings - Castle - Training Fields
-        [SettingPropertyBool("{=BT_Settings_008402}Castle Training Field "  + "*", Order = 1, RequireRestart = true, IsToggle = true,
+        [SettingPropertyBool("{=BT_Settings_008402}Castle Training Field " + "*", Order = 1, RequireRestart = true, IsToggle = true,
             HintText = "{=BT_Settings_008402_Desc}Changes the amount of experience the training fields provides for each level."),
             SettingPropertyGroup("{=BT_Settings_008000}Settlement Tweaks" + "/" + "{=BT_Settings_008400}Buildings" + "/" + "{=BT_Settings_008401}Castle" + "/" + "{=BT_Settings_008402}Castle Training Field")]
         public bool CastleTrainingFieldsBonusEnabled { get; set; } = false;
 
-        [SettingPropertyInteger("{=BT_Settings_008403}Castle Training Fields Experience Level 1"  + "*", 1, 100, RequireRestart = true, Order = 2,
+        [SettingPropertyInteger("{=BT_Settings_008403}Castle Training Fields Experience Level 1" + "*", 1, 100, RequireRestart = true, Order = 2,
             HintText = "{=BT_Settings_008403_Desc}Native value is 1. Changes the amount of experience the training fields provides at level 1."),
             SettingPropertyGroup("{=BT_Settings_008000}Settlement Tweaks" + "/" + "{=BT_Settings_008400}Buildings" + "/" + "{=BT_Settings_008401}Castle" + "/" + "{=BT_Settings_008402}Castle Training Field")]
         public int CastleTrainingFieldsXpAmountLevel1 { get; set; } = 1;
 
-        [SettingPropertyInteger("{=BT_Settings_008404}Castle Training Fields Experience Level 2"  + "*", 2, 200, RequireRestart = true, Order = 3,
+        [SettingPropertyInteger("{=BT_Settings_008404}Castle Training Fields Experience Level 2" + "*", 2, 200, RequireRestart = true, Order = 3,
             HintText = "{=BT_Settings_008404_Desc}Native value is 2. Changes the amount of experience the training fields provides at level 2."),
             SettingPropertyGroup("{=BT_Settings_008000}Settlement Tweaks" + "/" + "{=BT_Settings_008400}Buildings" + "/" + "{=BT_Settings_008401}Castle" + "/" + "{=BT_Settings_008402}Castle Training Field")]
         public int CastleTrainingFieldsXpAmountLevel2 { get; set; } = 2;
 
-        [SettingPropertyInteger("{=BT_Settings_008405}Castle Training Fields Experience Level 3"  + "*", 3, 300, RequireRestart = true, Order = 4,
+        [SettingPropertyInteger("{=BT_Settings_008405}Castle Training Fields Experience Level 3" + "*", 3, 300, RequireRestart = true, Order = 4,
             HintText = "{=BT_Settings_008405_Desc}Native value is 3. Changes the amount of experience the training fields provides at level 3."),
             SettingPropertyGroup("{=BT_Settings_008000}Settlement Tweaks" + "/" + "{=BT_Settings_008400}Buildings" + "/" + "{=BT_Settings_008401}Castle" + "/" + "{=BT_Settings_008402}Castle Training Field")]
         public int CastleTrainingFieldsXpAmountLevel3 { get; set; } = 3;
@@ -1834,22 +1834,22 @@ namespace KaosesTweaks.Settings
 
         //~ Settlement Tweaks - Buildings - Castle - Granary 
         #region Settlement Tweaks - Buildings - Castle - Granary 
-        [SettingPropertyBool("{=BT_Settings_008406}Castle Granary "  + "*", Order = 1, RequireRestart = true, IsToggle = true,
+        [SettingPropertyBool("{=BT_Settings_008406}Castle Granary " + "*", Order = 1, RequireRestart = true, IsToggle = true,
             HintText = "{=BT_Settings_008406_Desc}Changes the amount of food storage the castle granary provides per level."),
             SettingPropertyGroup("{=BT_Settings_008000}Settlement Tweaks" + "/" + "{=BT_Settings_008400}Buildings" + "/" + "{=BT_Settings_008401}Castle" + "/" + "{=BT_Settings_008406}Castle Granary", GroupOrder = 2)]
         public bool CastleGranaryBonusEnabled { get; set; } = false;
 
-        [SettingPropertyInteger("{=BT_Settings_008407}Castle Granary Food Storage Level 1"  + "*", 100, 1000, RequireRestart = true, Order = 2,
+        [SettingPropertyInteger("{=BT_Settings_008407}Castle Granary Food Storage Level 1" + "*", 100, 1000, RequireRestart = true, Order = 2,
             HintText = "{=BT_Settings_008407_Desc}Native value is 100. Changes the amount of food storage the castle granary provides at level 1."),
             SettingPropertyGroup("{=BT_Settings_008000}Settlement Tweaks" + "/" + "{=BT_Settings_008400}Buildings" + "/" + "{=BT_Settings_008401}Castle" + "/" + "{=BT_Settings_008406}Castle Granary")]
         public int CastleGranaryStorageAmountLevel1 { get; set; } = 100;
 
-        [SettingPropertyInteger("{=BT_Settings_008408}Castle Granary Food Storage Level 2"  + "*", 200, 2000, RequireRestart = true, Order = 3,
+        [SettingPropertyInteger("{=BT_Settings_008408}Castle Granary Food Storage Level 2" + "*", 200, 2000, RequireRestart = true, Order = 3,
             HintText = "{=BT_Settings_008408_Desc}Native value is 200. Changes the amount of food storage the castle granary provides at level 2."),
             SettingPropertyGroup("{=BT_Settings_008000}Settlement Tweaks" + "/" + "{=BT_Settings_008400}Buildings" + "/" + "{=BT_Settings_008401}Castle" + "/" + "{=BT_Settings_008406}Castle Granary")]
         public int CastleGranaryStorageAmountLevel2 { get; set; } = 200;
 
-        [SettingPropertyInteger("{=BT_Settings_008409}Castle Granary Food Storage Level 3"  + "*", 300, 3000, RequireRestart = true, Order = 4,
+        [SettingPropertyInteger("{=BT_Settings_008409}Castle Granary Food Storage Level 3" + "*", 300, 3000, RequireRestart = true, Order = 4,
             HintText = "{=BT_Settings_008409_Desc}Native value is 300. Changes the amount of food storage the castle granary provides at level 3."),
             SettingPropertyGroup("{=BT_Settings_008000}Settlement Tweaks" + "/" + "{=BT_Settings_008400}Buildings" + "/" + "{=BT_Settings_008401}Castle" + "/" + "{=BT_Settings_008406}Castle Granary")]
         public int CastleGranaryStorageAmountLevel3 { get; set; } = 300;
@@ -1857,22 +1857,22 @@ namespace KaosesTweaks.Settings
 
         //~ Settlement Tweaks - Buildings - Castle - Gardens
         #region Settlement Tweaks - Buildings - Castle - Gardens
-        [SettingPropertyBool("{=BT_Settings_008410}Castle Gardens "  + "*", Order = 1, RequireRestart = true, IsToggle = true,
+        [SettingPropertyBool("{=BT_Settings_008410}Castle Gardens " + "*", Order = 1, RequireRestart = true, IsToggle = true,
             HintText = "{=BT_Settings_008410_Desc}Changes the amount of food the castle gardens produce per level."),
             SettingPropertyGroup("{=BT_Settings_008000}Settlement Tweaks" + "/" + "{=BT_Settings_008400}Buildings" + "/" + "{=BT_Settings_008401}Castle" + "/" + "{=BT_Settings_008410}Castle Gardens", GroupOrder = 3)]
         public bool CastleGardensBonusEnabled { get; set; } = false;
 
-        [SettingPropertyInteger("{=BT_Settings_008411}Castle Garden Food Production Level 1"  + "*", 5, 50, RequireRestart = true, Order = 2,
+        [SettingPropertyInteger("{=BT_Settings_008411}Castle Garden Food Production Level 1" + "*", 5, 50, RequireRestart = true, Order = 2,
             HintText = "{=BT_Settings_008411_Desc}Native value is 5. Changes the amount of food the castle gardens produce at level 1."),
             SettingPropertyGroup("{=BT_Settings_008000}Settlement Tweaks" + "/" + "{=BT_Settings_008400}Buildings" + "/" + "{=BT_Settings_008401}Castle" + "/" + "{=BT_Settings_008410}Castle Gardens")]
         public int CastleGardensFoodProductionAmountLevel1 { get; set; } = 5;
 
-        [SettingPropertyInteger("{=BT_Settings_008412}Castle Garden Food Production Level 2"  + "*", 10, 100, RequireRestart = true, Order = 3,
+        [SettingPropertyInteger("{=BT_Settings_008412}Castle Garden Food Production Level 2" + "*", 10, 100, RequireRestart = true, Order = 3,
             HintText = "{=BT_Settings_008412_Desc}Native value is 10. Changes the amount of food the castle gardens produce at level 2."),
             SettingPropertyGroup("{=BT_Settings_008000}Settlement Tweaks" + "/" + "{=BT_Settings_008400}Buildings" + "/" + "{=BT_Settings_008401}Castle" + "/" + "{=BT_Settings_008410}Castle Gardens")]
         public int CastleGardensFoodProductionAmountLevel2 { get; set; } = 10;
 
-        [SettingPropertyInteger("{=BT_Settings_008413}Castle Garden Food Production Level 3"  + "*", 15, 150, RequireRestart = true, Order = 4,
+        [SettingPropertyInteger("{=BT_Settings_008413}Castle Garden Food Production Level 3" + "*", 15, 150, RequireRestart = true, Order = 4,
             HintText = "{=BT_Settings_008413_Desc}Native value is 15. Changes the amount of food the castle gardens produce at level 3."),
             SettingPropertyGroup("{=BT_Settings_008000}Settlement Tweaks" + "/" + "{=BT_Settings_008400}Buildings" + "/" + "{=BT_Settings_008401}Castle" + "/" + "{=BT_Settings_008410}Castle Gardens")]
         public int CastleGardensFoodProductionAmountLevel3 { get; set; } = 15;
@@ -1880,22 +1880,22 @@ namespace KaosesTweaks.Settings
 
         //~ Settlement Tweaks - Buildings - Castle - Militia Barracks
         #region Settlement Tweaks - Buildings - Castle - Militia Barracks
-        [SettingPropertyBool("{=BT_Settings_008414}Castle Militia Barracks "  + "*", Order = 1, RequireRestart = true, IsToggle = true,
+        [SettingPropertyBool("{=BT_Settings_008414}Castle Militia Barracks " + "*", Order = 1, RequireRestart = true, IsToggle = true,
             HintText = "{=BT_Settings_008414_Desc}Changes the militia production that the castle militia barracks provides per level."),
             SettingPropertyGroup("{=BT_Settings_008000}Settlement Tweaks" + "/" + "{=BT_Settings_008400}Buildings" + "/" + "{=BT_Settings_008401}Castle" + "/" + "{=BT_Settings_008414}Castle Militia Barracks", GroupOrder = 4)]
         public bool CastleMilitiaBarracksBonusEnabled { get; set; } = false;
 
-        [SettingPropertyInteger("{=BT_Settings_008415}Castle Militia Barracks Production Level 1"  + "*", 1, 10, RequireRestart = true, Order = 2,
+        [SettingPropertyInteger("{=BT_Settings_008415}Castle Militia Barracks Production Level 1" + "*", 1, 10, RequireRestart = true, Order = 2,
             HintText = "{=BT_Settings_008415_Desc}Native value is 1. Changes the militia production that the castle militia barracks provides at level 1."),
             SettingPropertyGroup("{=BT_Settings_008000}Settlement Tweaks" + "/" + "{=BT_Settings_008400}Buildings" + "/" + "{=BT_Settings_008401}Castle" + "/" + "{=BT_Settings_008414}Castle Militia Barracks")]
         public int CastleMilitiaBarracksAmountLevel1 { get; set; } = 1;
 
-        [SettingPropertyInteger("{=BT_Settings_008416}Castle Militia Barracks Production Level 2"  + "*", 2, 20, RequireRestart = true, Order = 3,
+        [SettingPropertyInteger("{=BT_Settings_008416}Castle Militia Barracks Production Level 2" + "*", 2, 20, RequireRestart = true, Order = 3,
             HintText = "{=BT_Settings_008416_Desc}Native value is 2. Changes the militia production that the castle militia barracks provides at level 2."),
             SettingPropertyGroup("{=BT_Settings_008000}Settlement Tweaks" + "/" + "{=BT_Settings_008400}Buildings" + "/" + "{=BT_Settings_008401}Castle" + "/" + "{=BT_Settings_008414}Castle Militia Barracks")]
         public int CastleMilitiaBarracksAmountLevel2 { get; set; } = 2;
 
-        [SettingPropertyInteger("{=BT_Settings_008417}Castle Militia Barracks Production Level 3"  + "*", 3, 30, RequireRestart = true, Order = 4,
+        [SettingPropertyInteger("{=BT_Settings_008417}Castle Militia Barracks Production Level 3" + "*", 3, 30, RequireRestart = true, Order = 4,
             HintText = "{=BT_Settings_008417_Desc}Native value is 3. Changes the militia production that the castle militia barracks provides at level 3."),
             SettingPropertyGroup("{=BT_Settings_008000}Settlement Tweaks" + "/" + "{=BT_Settings_008400}Buildings" + "/" + "{=BT_Settings_008401}Castle" + "/" + "{=BT_Settings_008414}Castle Militia Barracks")]
         public int CastleMilitiaBarracksAmountLevel3 { get; set; } = 3;
@@ -1908,22 +1908,22 @@ namespace KaosesTweaks.Settings
 
         //~ Settlement Tweaks - Buildings - Town - Training Fields
         #region Settlement Tweaks - Buildings - Town - Training Fields
-        [SettingPropertyBool("{=BT_Settings_008419}Town Training Fields "  + "*", Order = 1, RequireRestart = true, IsToggle = true,
+        [SettingPropertyBool("{=BT_Settings_008419}Town Training Fields " + "*", Order = 1, RequireRestart = true, IsToggle = true,
             HintText = "{=BT_Settings_008419_Desc}Changes the amount of experience the training fields provides for each level."),
             SettingPropertyGroup("{=BT_Settings_008000}Settlement Tweaks" + "/" + "{=BT_Settings_008400}Buildings" + "/" + "{=BT_Settings_008418}Town" + "/" + "{=BT_Settings_008419}Town Training Fields")]
         public bool TownTrainingFieldsBonusEnabled { get; set; } = false;
 
-        [SettingPropertyInteger("{=BT_Settings_008420}Town Training Fields Experience Level 1"  + "*", 30, 300, RequireRestart = true, Order = 2,
+        [SettingPropertyInteger("{=BT_Settings_008420}Town Training Fields Experience Level 1" + "*", 30, 300, RequireRestart = true, Order = 2,
             HintText = "{=BT_Settings_008420_Desc}Native value is 30. Changes the amount of experience the training fields provides at level 1."),
             SettingPropertyGroup("{=BT_Settings_008000}Settlement Tweaks" + "/" + "{=BT_Settings_008400}Buildings" + "/" + "{=BT_Settings_008418}Town" + "/" + "{=BT_Settings_008419}Town Training Fields")]
         public int TownTrainingFieldsXpAmountLevel1 { get; set; } = 30;
 
-        [SettingPropertyInteger("{=BT_Settings_008421}Town Training Fields Experience Level 2"  + "*", 60, 600, RequireRestart = true, Order = 3,
+        [SettingPropertyInteger("{=BT_Settings_008421}Town Training Fields Experience Level 2" + "*", 60, 600, RequireRestart = true, Order = 3,
             HintText = "{=BT_Settings_008421_Desc}Native value is 60. Changes the amount of experience the training fields provides at level 2."),
             SettingPropertyGroup("{=BT_Settings_008000}Settlement Tweaks" + "/" + "{=BT_Settings_008400}Buildings" + "/" + "{=BT_Settings_008418}Town" + "/" + "{=BT_Settings_008419}Town Training Fields")]
         public int TownTrainingFieldsXpAmountLevel2 { get; set; } = 60;
 
-        [SettingPropertyInteger("{=BT_Settings_008422}Town Training Fields Experience Level 3"  + "*", 100, 1000, RequireRestart = true, Order = 4,
+        [SettingPropertyInteger("{=BT_Settings_008422}Town Training Fields Experience Level 3" + "*", 100, 1000, RequireRestart = true, Order = 4,
             HintText = "{=BT_Settings_008422_Desc}Native value is 100. Changes the amount of experience the training fields provides at level 3."),
             SettingPropertyGroup("{=BT_Settings_008000}Settlement Tweaks" + "/" + "{=BT_Settings_008400}Buildings" + "/" + "{=BT_Settings_008418}Town" + "/" + "{=BT_Settings_008419}Town Training Fields")]
         public int TownTrainingFieldsXpAmountLevel3 { get; set; } = 100;
@@ -1931,22 +1931,22 @@ namespace KaosesTweaks.Settings
 
         //~ Settlement Tweaks - Buildings - Town - Granary
         #region Settlement Tweaks - Buildings - Town - Granary
-        [SettingPropertyBool("{=BT_Settings_008423}Town Granary "  + "*", RequireRestart = true, IsToggle = true,
+        [SettingPropertyBool("{=BT_Settings_008423}Town Granary " + "*", RequireRestart = true, IsToggle = true,
             HintText = "{=BT_Settings_008423_Desc}Changes the amount of food storage the town granary provides per level."),
             SettingPropertyGroup("{=BT_Settings_008000}Settlement Tweaks" + "/" + "{=BT_Settings_008400}Buildings" + "/" + "{=BT_Settings_008418}Town" + "/" + "{=BT_Settings_008423}Town Granary", GroupOrder = 2)]
         public bool TownGranaryBonusEnabled { get; set; } = false;
 
-        [SettingPropertyInteger("{=BT_Settings_008424}Town Granary Food Storage Level 1"  + "*", 200, 2000, RequireRestart = true, Order = 1,
+        [SettingPropertyInteger("{=BT_Settings_008424}Town Granary Food Storage Level 1" + "*", 200, 2000, RequireRestart = true, Order = 1,
             HintText = "{=BT_Settings_008424_Desc}Native value is 200. Changes the amount of food storage the town granary provides at level 1."),
             SettingPropertyGroup("{=BT_Settings_008000}Settlement Tweaks" + "/" + "{=BT_Settings_008400}Buildings" + "/" + "{=BT_Settings_008418}Town" + "/" + "{=BT_Settings_008423}Town Granary")]
         public int TownGranaryStorageAmountLevel1 { get; set; } = 200;
 
-        [SettingPropertyInteger("{=BT_Settings_008425}Town Granary Food Storage Level 2"  + "*", 400, 4000, RequireRestart = true, Order = 2,
+        [SettingPropertyInteger("{=BT_Settings_008425}Town Granary Food Storage Level 2" + "*", 400, 4000, RequireRestart = true, Order = 2,
             HintText = "{=BT_Settings_008425_Desc}Native value is 400. Changes the amount of food storage the town granary provides at level 2."),
             SettingPropertyGroup("{=BT_Settings_008000}Settlement Tweaks" + "/" + "{=BT_Settings_008400}Buildings" + "/" + "{=BT_Settings_008418}Town" + "/" + "{=BT_Settings_008423}Town Granary")]
         public int TownGranaryStorageAmountLevel2 { get; set; } = 400;
 
-        [SettingPropertyInteger("{=BT_Settings_008426}Town Granary Food Storage Level 3"  + "*", 600, 6000, RequireRestart = true, Order = 3,
+        [SettingPropertyInteger("{=BT_Settings_008426}Town Granary Food Storage Level 3" + "*", 600, 6000, RequireRestart = true, Order = 3,
             HintText = "{=BT_Settings_008426_Desc}Native value is 600. Changes the amount of food storage the town granary provides at level 3."),
             SettingPropertyGroup("{=BT_Settings_008000}Settlement Tweaks" + "/" + "{=BT_Settings_008400}Buildings" + "/" + "{=BT_Settings_008418}Town" + "/" + "{=BT_Settings_008423}Town Granary")]
         public int TownGranaryStorageAmountLevel3 { get; set; } = 600;
@@ -1954,22 +1954,22 @@ namespace KaosesTweaks.Settings
 
         //~ Settlement Tweaks - Settlement Buildings Tweaks - Town Buildings Tweaks - Orchards Tweak
         #region Settlement Tweaks - Settlement Buildings Tweaks - Town Buildings Tweaks - Orchards Tweak
-        [SettingPropertyBool("{=BT_Settings_008427}Town Orchards "  + "*", Order = 1, RequireRestart = false, IsToggle = true,
+        [SettingPropertyBool("{=BT_Settings_008427}Town Orchards " + "*", Order = 1, RequireRestart = false, IsToggle = true,
             HintText = "{=BT_Settings_008427_Desc}Changes the amount of food the town orchards produce per level."),
             SettingPropertyGroup("{=BT_Settings_008000}Settlement Tweaks" + "/" + "{=BT_Settings_008400}Buildings" + "/" + "{=BT_Settings_008418}Town" + "/" + "{=BT_Settings_008427}Town Orchards", GroupOrder = 3)]
         public bool TownOrchardsBonusEnabled { get; set; } = false;
 
-        [SettingPropertyInteger("{=BT_Settings_008428}Town Orchard Food Production Level 1"  + "*", 10, 100, RequireRestart = true, Order = 2,
+        [SettingPropertyInteger("{=BT_Settings_008428}Town Orchard Food Production Level 1" + "*", 10, 100, RequireRestart = true, Order = 2,
             HintText = "{=BT_Settings_008428_Desc}Native value is 10. Changes the amount of food the town orchards produce at level 1."),
             SettingPropertyGroup("{=BT_Settings_008000}Settlement Tweaks" + "/" + "{=BT_Settings_008400}Buildings" + "/" + "{=BT_Settings_008418}Town" + "/" + "{=BT_Settings_008427}Town Orchards")]
         public int TownOrchardsFoodProductionAmountLevel1 { get; set; } = 10;
 
-        [SettingPropertyInteger("{=BT_Settings_008429}Town Orchard Food Production Level 2"  + "*", 20, 200, RequireRestart = true, Order = 3,
+        [SettingPropertyInteger("{=BT_Settings_008429}Town Orchard Food Production Level 2" + "*", 20, 200, RequireRestart = true, Order = 3,
             HintText = "{=BT_Settings_008429_Desc}Native value is 20. Changes the amount of food the town orchards produce at level 2."),
             SettingPropertyGroup("{=BT_Settings_008000}Settlement Tweaks" + "/" + "{=BT_Settings_008400}Buildings" + "/" + "{=BT_Settings_008418}Town" + "/" + "{=BT_Settings_008427}Town Orchards")]
         public int TownOrchardsFoodProductionAmountLevel2 { get; set; } = 20;
 
-        [SettingPropertyInteger("{=BT_Settings_008430}Town Orchard Food Production Level 3"  + "*", 30, 300, RequireRestart = true, Order = 4,
+        [SettingPropertyInteger("{=BT_Settings_008430}Town Orchard Food Production Level 3" + "*", 30, 300, RequireRestart = true, Order = 4,
             HintText = "{=BT_Settings_008430_Desc}Native value is 30. Changes the amount of food the town orchards produce at level 3."),
             SettingPropertyGroup("{=BT_Settings_008000}Settlement Tweaks" + "/" + "{=BT_Settings_008400}Buildings" + "/" + "{=BT_Settings_008418}Town" + "/" + "{=BT_Settings_008427}Town Orchards")]
         public int TownOrchardsFoodProductionAmountLevel3 { get; set; } = 30;
@@ -1977,22 +1977,22 @@ namespace KaosesTweaks.Settings
 
         //~ Settlement Tweaks - Settlement Buildings Tweaks - Town Buildings Tweaks - Militia Barracks Tweak
         #region Settlement Tweaks - Settlement Buildings Tweaks - Town Buildings Tweaks - Militia Barracks Tweak
-        [SettingPropertyBool("{=BT_Settings_008431}Town Militia Barracks "  + "*", Order = 1, RequireRestart = true, IsToggle = true,
+        [SettingPropertyBool("{=BT_Settings_008431}Town Militia Barracks " + "*", Order = 1, RequireRestart = true, IsToggle = true,
             HintText = "{=BT_Settings_008431_Desc}Changes the militia production that the town militia barracks provides per level."),
             SettingPropertyGroup("{=BT_Settings_008000}Settlement Tweaks" + "/" + "{=BT_Settings_008400}Buildings" + "/" + "{=BT_Settings_008418}Town" + "/" + "{=BT_Settings_008431}Town Militia Barracks", GroupOrder = 4)]
         public bool TownMilitiaBarracksBonusEnabled { get; set; } = false;
 
-        [SettingPropertyFloatingInteger("{=BT_Settings_008432}Town Militia Barracks Production Level 1"  + "*", .5f, 15, RequireRestart = true, Order = 2,
+        [SettingPropertyFloatingInteger("{=BT_Settings_008432}Town Militia Barracks Production Level 1" + "*", .5f, 15, RequireRestart = true, Order = 2,
             HintText = "{=BT_Settings_008432_Desc}Native value is .5. Changes the militia production that the town militia barracks provides at level 1."),
             SettingPropertyGroup("{=BT_Settings_008000}Settlement Tweaks" + "/" + "{=BT_Settings_008400}Buildings" + "/" + "{=BT_Settings_008418}Town" + "/" + "{=BT_Settings_008431}Town Militia Barracks")]
         public float TownMilitiaBarracksAmountLevel1 { get; set; } = 0.5f;
 
-        [SettingPropertyFloatingInteger("{=BT_Settings_008433}Town Militia Barracks Production Level 2"  + "*", 1f, 20f, RequireRestart = true, Order = 3,
+        [SettingPropertyFloatingInteger("{=BT_Settings_008433}Town Militia Barracks Production Level 2" + "*", 1f, 20f, RequireRestart = true, Order = 3,
             HintText = "{=BT_Settings_008433_Desc}Native value is 1. Changes the militia production that the town militia barracks provides at level 2."),
             SettingPropertyGroup("{=BT_Settings_008000}Settlement Tweaks" + "/" + "{=BT_Settings_008400}Buildings" + "/" + "{=BT_Settings_008418}Town" + "/" + "{=BT_Settings_008431}Town Militia Barracks")]
         public float TownMilitiaBarracksAmountLevel2 { get; set; } = 1.0f;
 
-        [SettingPropertyFloatingInteger("{=BT_Settings_008434}Town Militia Barracks Production Level 3"  + "*", 1.5f, 30f, RequireRestart = true, Order = 4,
+        [SettingPropertyFloatingInteger("{=BT_Settings_008434}Town Militia Barracks Production Level 3" + "*", 1.5f, 30f, RequireRestart = true, Order = 4,
             HintText = "{=BT_Settings_008434_Desc}Native value is 1.5. Changes the militia production that the town militia barracks provides at level 3."),
             SettingPropertyGroup("{=BT_Settings_008000}Settlement Tweaks" + "/" + "{=BT_Settings_008400}Buildings" + "/" + "{=BT_Settings_008418}Town" + "/" + "{=BT_Settings_008431}Town Militia Barracks")]
         public float TownMilitiaBarracksAmountLevel3 { get; set; } = 1.5f;
@@ -2003,7 +2003,7 @@ namespace KaosesTweaks.Settings
 
         //~ Settlement Tweaks - Settlement Food
         #region Settlement Tweaks - Settlement Food
-        [SettingPropertyBool("{=BT_Settings_008500}Settlement Food "  + "*", Order = 1, RequireRestart = true, IsToggle = true,
+        [SettingPropertyBool("{=BT_Settings_008500}Settlement Food " + "*", Order = 1, RequireRestart = true, IsToggle = true,
             HintText = "{=BT_Settings_008500_Desc}Enables tweaks which provide bonuses to food production in towns and castles."),
             SettingPropertyGroup("{=BT_Settings_008000}Settlement Tweaks" + "/" + "{=BT_Settings_008500}Settlement Food", GroupOrder = 4)]
         public bool SettlementFoodBonusEnabled { get; set; } = false;
@@ -2035,7 +2035,7 @@ namespace KaosesTweaks.Settings
         //~ Settlement Tweaks - Normal Militia
         #region Settlement Tweaks - Normal Militia
 
-        [SettingPropertyBool("{=BT_Settings_008600}Normal Militia "  + "*", Order = 1, RequireRestart = true, IsToggle = true,
+        [SettingPropertyBool("{=BT_Settings_008600}Normal Militia " + "*", Order = 1, RequireRestart = true, IsToggle = true,
             HintText = "{=BT_Settings_008600_Desc}Grants a flat bonus to militia growth and rate of retirement in towns and castles."),
             SettingPropertyGroup("{=BT_Settings_008000}Settlement Tweaks" + "/" + "{=BT_Settings_008600}Normal Militia", GroupOrder = 5)]
         public bool SettlementMilitiaBonusEnabled { get; set; } = false;
@@ -2064,7 +2064,7 @@ namespace KaosesTweaks.Settings
         //~ Settlement Tweaks - Militia Bonus Tweaks - Elite Militia
         #region Settlement Tweaks - Militia Bonus Tweaks - Elite Militia
 
-        [SettingPropertyBool("{=BT_Settings_008700}Elite Militia "  + "*", Order = 1, RequireRestart = true, IsToggle = true,
+        [SettingPropertyBool("{=BT_Settings_008700}Elite Militia " + "*", Order = 1, RequireRestart = true, IsToggle = true,
             HintText = "{=BT_Settings_008700_Desc}Adds a bonus to the chance that militia spawning in towns and castles are elite."),
             SettingPropertyGroup("{=BT_Settings_008000}Settlement Tweaks" + "/" + "{=BT_Settings_008700}Elite Militia", GroupOrder = 6)]
         public bool SettlementMilitiaEliteSpawnRateBonusEnabled { get; set; } = false;
@@ -2073,25 +2073,25 @@ namespace KaosesTweaks.Settings
             HintText = "{=BT_Settings_008701_Desc}Native value is 10%. Sets the chance that the militia spawning in towns and castles are elite melee troops."),
             SettingPropertyGroup("{=BT_Settings_008000}Settlement Tweaks" + "/" + "{=BT_Settings_008700}Elite Militia")]
         public float SettlementEliteMeleeSpawnRateBonus { get; set; } = 0.1f;
-/*
+        /*
 
-        [SettingPropertyFloatingInteger("{=BT_Settings_008702}Elite Ranged Militia Spawn Chance", 0.01f, 1f, "0%", RequireRestart = false, Order = 3,
-            HintText = "{=BT_Settings_008702_Desc}Native value is 10%. Sets the chance that the militia spawning in towns and castles are elite ranged troops."),
-            SettingPropertyGroup("{=BT_Settings_008000}Settlement Tweaks" + "/" + "{=BT_Settings_008700}Elite Militia")]
-        public float SettlementEliteRangedSpawnRateBonus { get; set; } = 0.1f;*/
+                [SettingPropertyFloatingInteger("{=BT_Settings_008702}Elite Ranged Militia Spawn Chance", 0.01f, 1f, "0%", RequireRestart = false, Order = 3,
+                    HintText = "{=BT_Settings_008702_Desc}Native value is 10%. Sets the chance that the militia spawning in towns and castles are elite ranged troops."),
+                    SettingPropertyGroup("{=BT_Settings_008000}Settlement Tweaks" + "/" + "{=BT_Settings_008700}Elite Militia")]
+                public float SettlementEliteRangedSpawnRateBonus { get; set; } = 0.1f;*/
         #endregion//~ Settlement Tweaks - Militia Bonus Tweaks - Elite Militia
         #endregion //~ Settlement
 
         //~ Tournaments
         #region Tournaments
-        [SettingPropertyBool("{=BT_Settings_008800}Tournaments", IsToggle = true, Order = 0, RequireRestart = false, 
+        [SettingPropertyBool("{=BT_Settings_008800}Tournaments", IsToggle = true, Order = 0, RequireRestart = false,
             HintText = "{=KTMCM_TTH}Enable modifying tournaments tweak variables.")]
         [SettingPropertyGroup("{=BT_Settings_008800}Tournaments")]
         public bool MCMTournamentsEnabled { get; set; } = true;
 
         //~ Renown Reward
         #region Renown Reward
-        [SettingPropertyBool("{=BT_Settings_008801}Renown Reward "  + "*", Order = 1, RequireRestart = true, IsToggle = true,
+        [SettingPropertyBool("{=BT_Settings_008801}Renown Reward " + "*", Order = 1, RequireRestart = true, IsToggle = true,
             HintText = "{=BT_Settings_008801_Desc}Sets the amount of renown awarded when you win a tournament."),
             SettingPropertyGroup("{=BT_Settings_008800}Tournaments" + "/" + "{=BT_Settings_008801}Renown Reward")]
         public bool TournamentRenownIncreaseEnabled { get; set; } = false;
@@ -2143,7 +2143,7 @@ namespace KaosesTweaks.Settings
 
         //~ Arena Hero Experience
         #region Arena Hero Experience
-        [SettingPropertyBool("{=BT_Settings_008809}Arena Hero Experience Modifier "  + "*", Order = 1, RequireRestart = true, IsToggle = true,
+        [SettingPropertyBool("{=BT_Settings_008809}Arena Hero Experience Modifier " + "*", Order = 1, RequireRestart = true, IsToggle = true,
             HintText = "{=BT_Settings_008809_Desc}Overrides the native multiplier value for experience gain in arena fights for hero characters."),
             SettingPropertyGroup("{=BT_Settings_008800}Tournaments" + "/" + "{=BT_Settings_008809}Arena Experience Modifier", GroupOrder = 5)]
         public bool ArenaHeroExperienceMultiplierEnabled { get; set; } = false;
@@ -2171,14 +2171,14 @@ namespace KaosesTweaks.Settings
 
         //~ Workshops
         #region Workshops
-        [SettingPropertyBool("{=BT_Settings_008900}Workshops", IsToggle = true, Order = 0, RequireRestart = false, 
+        [SettingPropertyBool("{=BT_Settings_008900}Workshops", IsToggle = true, Order = 0, RequireRestart = false,
             HintText = "{=KTMCM_WSTH}Enable modifying workshops tweak variables..")]
         [SettingPropertyGroup("{=BT_Settings_008900}Workshops")]
         public bool MCMWorkshopsEnabled { get; set; } = true;
 
         //~ Workshop Limit
         #region Workshop Limit
-        [SettingPropertyBool("{=BT_Settings_008901}Workshop Count Limit "  + "*", Order = 1, RequireRestart = true, IsToggle = true,
+        [SettingPropertyBool("{=BT_Settings_008901}Workshop Count Limit " + "*", Order = 1, RequireRestart = true, IsToggle = true,
             HintText = "{=BT_Settings_008901_Desc}Sets the base maximum number of workshops you can have and the limit increase gained per clan tier."),
             SettingPropertyGroup("{=BT_Settings_008900}Workshops" + "/" + "{=BT_Settings_008901}Workshop Count Limit")]
         public bool MaxWorkshopCountTweakEnabled { get; set; } = false;
@@ -2196,7 +2196,7 @@ namespace KaosesTweaks.Settings
 
         //~ Workshop Cost Tweak
         #region Workshop Cost Tweak
-        [SettingPropertyBool("{=BT_Settings_008904}Workshop Buy Cost "  + "*", Order = 1, RequireRestart = true, IsToggle = true,
+        [SettingPropertyBool("{=BT_Settings_008904}Workshop Buy Cost " + "*", Order = 1, RequireRestart = true, IsToggle = true,
             HintText = "{=BT_Settings_008904_Desc}Sets the base value used to calculate the cost of workshops. Reduce to reduce cost of workshops."),
             SettingPropertyGroup("{=BT_Settings_008900}Workshops" + "/" + "{=BT_Settings_008904}Workshop Buy Cost", GroupOrder = 2)]
         public bool WorkshopBuyingCostTweakEnabled { get; set; } = false;
@@ -2235,7 +2235,7 @@ namespace KaosesTweaks.Settings
 
         //~ Workshop Buy Prices
         #region Workshop Buy Prices
-        [SettingPropertyBool("{=BT_Settings_008910}Workshop Products Buy Prices "  + "*", RequireRestart = true, IsToggle = true, Order = 2,
+        [SettingPropertyBool("{=BT_Settings_008910}Workshop Products Buy Prices " + "*", RequireRestart = true, IsToggle = true, Order = 2,
             HintText = "{=BT_Settings_008910_Desc}Alters the buying prices for input items of workshops."),
             SettingPropertyGroup("{=BT_Settings_008900}Workshops" + "/" + "{=BT_Settings_008910}Workshop Products Buy Prices", GroupOrder = 5)]
         public bool EnableWorkshopBuyTweak { get; set; } = false;
@@ -2429,7 +2429,7 @@ namespace KaosesTweaks.Settings
 
         //~ Troop Daily Experience Tweak
         #region Troop Daily Experience Tweak
-        [SettingPropertyBool("{=BT_Settings_006500}Daily Troop Experience"  + "*", IsToggle = true, Order = 0, RequireRestart = true,
+        [SettingPropertyBool("{=BT_Settings_006500}Daily Troop Experience" + "*", IsToggle = true, Order = 0, RequireRestart = true,
             HintText = "{=BT_Settings_006500_Desc}Gives each troop roster (stack) in a party an amount of experience each day based upon the leader's Leadership skill. By default only applies to the player.")]
         [SettingPropertyGroup("{=KTMCM_CXPTweaks}XP Tweaks" + "/" + "{=BT_Settings_006500}Daily Troop Experience")]//{=BT_Settings_006000}Party Tweaks
         public bool DailyTroopExperienceTweakEnabled { get; set; } = false;
@@ -2462,7 +2462,7 @@ namespace KaosesTweaks.Settings
 
         //~ Troop Experience Tweaks
         #region Troop Experience Tweaks
-        [SettingPropertyBool("{=BT_Settings_000400}Troop Experience"  + "*", Order = 1, RequireRestart = true, IsToggle = true,
+        [SettingPropertyBool("{=BT_Settings_000400}Troop Experience" + "*", Order = 1, RequireRestart = true, IsToggle = true,
             HintText = "{=BT_Settings_000400_Desc}Tweaks for experience gain of troops in battles and simulations."),
             SettingPropertyGroup("{=KTMCM_CXPTweaks}XP Tweaks" + "/" + "{=BT_Settings_000400}Troop Experience", GroupOrder = 4)]
         public bool TroopExperienceTweakEnabled { get; set; } = false;
@@ -3114,7 +3114,7 @@ namespace KaosesTweaks.Settings
                 TroopBattleExperienceMultiplierEnabled = false,
                 TroopBattleExperienceMultiplier = 1.0f,
                 TroopBattleSimulationExperienceMultiplierEnabled = false,
-                TroopBattleSimulationExperienceMultiplier = 0.9f   
+                TroopBattleSimulationExperienceMultiplier = 0.9f
 
 
 
@@ -3857,50 +3857,50 @@ namespace KaosesTweaks.Settings
                 CraftingStaminaTweakEnabled = true,
                 //IgnoreCraftingStamina = false,
 
-/*
-                CompanionBaseLimit = 3,
-                CompanionLimitBonusPerClanTier = 3,
-                CompanionLimitTweakEnabled = false,
-                UnlimitedWanderersPatch = false,
-                BaseClanPartiesLimit = 1,
-                ClanPartiesBonusPerClanTier = 0.5f,
-                ClanPartiesLimitTweakEnabled = false,
-                BaseAICustomSpawnPartiesLimit = 1,
-                AICustomSpawnPartiesLimitTweakEnabled = false,
-                BaseAIClanPartiesLimit = 1,
-                AIMinorClanPartiesLimitTweakEnabled = false,
-                AIClanPartiesLimitTweakEnabled = false,*/
+                /*
+                                CompanionBaseLimit = 3,
+                                CompanionLimitBonusPerClanTier = 3,
+                                CompanionLimitTweakEnabled = false,
+                                UnlimitedWanderersPatch = false,
+                                BaseClanPartiesLimit = 1,
+                                ClanPartiesBonusPerClanTier = 0.5f,
+                                ClanPartiesLimitTweakEnabled = false,
+                                BaseAICustomSpawnPartiesLimit = 1,
+                                AICustomSpawnPartiesLimitTweakEnabled = false,
+                                BaseAIClanPartiesLimit = 1,
+                                AIMinorClanPartiesLimitTweakEnabled = false,
+                                AIClanPartiesLimitTweakEnabled = false,*/
 
                 NoMaternalMortalityTweakEnabled = false,
                 NoStillbirthsTweakEnabled = false,
-/*
-                TwinsProbability = 0.03f,
-                TwinsProbabilityTweakEnabled = false,
-                PregnancyDuration = 36,
-                PregnancyDurationTweakEnabled = false,*/
+                /*
+                                TwinsProbability = 0.03f,
+                                TwinsProbabilityTweakEnabled = false,
+                                PregnancyDuration = 36,
+                                PregnancyDurationTweakEnabled = false,*/
                 MaxPregnancyAge = 45,
                 MinPregnancyAge = 18,
                 DailyChancePregnancyTweakEnabled = false,
                 PlayerCharacterInfertileEnabled = false,
                 MaxChildren = 5,
                 ClanFertilityBonus = 1.1f,
-/*
-                FemaleOffspringProbability = 0.51f,
-                FemaleOffspringProbabilityTweakEnabled = false,*/
-/*
-                CompanionSkillExperienceMultiplier = 1.0f,
-                HeroSkillExperienceMultiplier = 1.0f,
-                CompanionSkillExperienceMultiplierEnabled = false,
-                HeroSkillExperienceMultiplierEnabled = false,
-                SkillExperienceMultipliersEnabled = false,
-                SkillBonusEngineering = 1.0f,
-                SkillBonusLeadership = 1.0f,
-                SkillBonusMedicine = 1.0f,
-                SkillBonusRiding = 1.0f,
-                SkillBonusRoguery = 1.0f,
-                SkillBonusScouting = 1.0f,
-                SkillBonusTrade = 1.0f,
-                PerSkillBonusEnabled = false,*/
+                /*
+                                FemaleOffspringProbability = 0.51f,
+                                FemaleOffspringProbabilityTweakEnabled = false,*/
+                /*
+                                CompanionSkillExperienceMultiplier = 1.0f,
+                                HeroSkillExperienceMultiplier = 1.0f,
+                                CompanionSkillExperienceMultiplierEnabled = false,
+                                HeroSkillExperienceMultiplierEnabled = false,
+                                SkillExperienceMultipliersEnabled = false,
+                                SkillBonusEngineering = 1.0f,
+                                SkillBonusLeadership = 1.0f,
+                                SkillBonusMedicine = 1.0f,
+                                SkillBonusRiding = 1.0f,
+                                SkillBonusRoguery = 1.0f,
+                                SkillBonusScouting = 1.0f,
+                                SkillBonusTrade = 1.0f,
+                                PerSkillBonusEnabled = false,*/
                 //FocusPointsPerLevel = 1,
                 //AttributePointRequiredLevel = 4,
                 //AttributeFocusPointTweakEnabled = false,
@@ -3938,10 +3938,10 @@ namespace KaosesTweaks.Settings
                 ContinueHideoutBattleOnPlayerLoseDuel = true,
                 ContinueHideoutBattleOnPlayerDeath = false,
                 HideoutBattleTroopLimitTweakEnabled = true,
-/*
-                BattleInfluenceMultiplier = 1.0f,
-                BattleRenownMultiplier = 2.0f,
-                BattleRewardTweaksEnabled = true,*/
+                /*
+                                BattleInfluenceMultiplier = 1.0f,
+                                BattleRenownMultiplier = 2.0f,
+                                BattleRewardTweaksEnabled = true,*/
 
                 BattleRewardApplyToAI = true,
 

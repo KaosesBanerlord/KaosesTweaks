@@ -126,8 +126,8 @@ namespace KaosesTweaks.Models
                 //result.Add(modifiedRenownGain, new TextObject("KT renown tweak", null), null);
                 if (Statics._settings.BattleRewardsDebug)
                 {
-                    IM.MessageDebug("Original Renown Gain : " + renownGain.ToString() + 
-                        "   Modified Gain : " + modifiedRenownGain.ToString() + 
+                    IM.MessageDebug("Original Renown Gain : " + renownGain.ToString() +
+                        "   Modified Gain : " + modifiedRenownGain.ToString() +
                         " Using Multiplier : " + Statics._settings.BattleRewardsRenownGainMultiplier.ToString());
                 }
             }
@@ -142,8 +142,8 @@ namespace KaosesTweaks.Models
                 modifiedInfluenceGain = influenceGain * Statics._settings.BattleRewardsInfluenceGainMultiplier;
                 if (Statics._settings.BattleRewardsDebug)
                 {
-                    IM.MessageDebug("Original Influence Gain : " + influenceGain.ToString() + 
-                        "   Modified Gain : " + modifiedInfluenceGain.ToString() + 
+                    IM.MessageDebug("Original Influence Gain : " + influenceGain.ToString() +
+                        "   Modified Gain : " + modifiedInfluenceGain.ToString() +
                         " Using Multiplier : " + Statics._settings.BattleRewardsInfluenceGainMultiplier.ToString());
                 }
             }
@@ -158,8 +158,8 @@ namespace KaosesTweaks.Models
                 modifiedMoraleGain = moraleGain * Statics._settings.BattleRewardsMoraleGainMultiplier;
                 if (Statics._settings.BattleRewardsDebug)
                 {
-                    IM.MessageDebug("Original Morale Gain : " + moraleGain.ToString() + 
-                        "   Modified Gain : " + modifiedMoraleGain.ToString() + 
+                    IM.MessageDebug("Original Morale Gain : " + moraleGain.ToString() +
+                        "   Modified Gain : " + modifiedMoraleGain.ToString() +
                         " Using Multiplier : " + Statics._settings.BattleRewardsMoraleGainMultiplier.ToString());
                 }
             }
@@ -171,7 +171,7 @@ namespace KaosesTweaks.Models
             float modifiedGoldLoss = originalGoldLoss;
             if (Statics._settings.BattleRewardsGoldLossModifiers)
             {
-                modifiedGoldLoss = originalGoldLoss * Statics._settings.BattleRewardsGoldLossMultiplier; 
+                modifiedGoldLoss = originalGoldLoss * Statics._settings.BattleRewardsGoldLossMultiplier;
                 if (Statics._settings.BattleRewardsDebug)
                 {
                     IM.MessageDebug("Original gold loss : " + originalGoldLoss.ToString() +
@@ -184,7 +184,7 @@ namespace KaosesTweaks.Models
 
         //~ Copied private methods and variables to allow Model override to work
         #region Copied private methods and variables to allow Modle override to work
- 
+
         #endregion
     }
 }

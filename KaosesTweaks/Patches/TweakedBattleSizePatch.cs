@@ -20,7 +20,7 @@ namespace KaosesTweaks.Patches
                 {
                     IM.ColorGreenMessage("Max Battle Size Modified to: " + settings.BattleSize);
                 }
-                
+
             }
 
             return;

@@ -231,7 +231,7 @@ namespace KaosesTweaks.Patches
                 IM.MessageDebug("GetSkillXpForSmelting Patch called");
                 float baseXp = MathF.Round(0.02f * (float)item.Value);
                 baseXp *= Statics._settings.SmithingSmeltingXpValue;
-                IM.MessageDebug("GetSkillXpForSmelting  base: " + (MathF.Round(0.02f * (float)item.Value)).ToString() + "  new :" + baseXp.ToString());              
+                IM.MessageDebug("GetSkillXpForSmelting  base: " + (MathF.Round(0.02f * (float)item.Value)).ToString() + "  new :" + baseXp.ToString());
                 __result = (int)baseXp;
                 return false;
             }
@@ -263,7 +263,7 @@ namespace KaosesTweaks.Patches
         static bool Prepare() => MCMSettings.Instance != null && MCMSettings.Instance.SmithingXpModifiers && MCMSettings.Instance.MCMSmithingHarmoneyPatches;
     }
 
-    
+
 
     //~ Energy Tweaks
     [HarmonyPatch(typeof(DefaultSmithingModel), "GetEnergyCostForRefining")]
@@ -340,7 +340,7 @@ namespace KaosesTweaks.Patches
 
         static bool Prepare() => MCMSettings.Instance is { } settings && (settings.SmithingEnergyDisable || settings.CraftingStaminaTweakEnabled) && MCMSettings.Instance.MCMSmithingHarmoneyPatches;
     }
-    
+
     [HarmonyPatch(typeof(DefaultSmithingModel), "GetEnergyCostForSmelting")]
     public class GetEnergyCostForSmeltingPatch
     {
@@ -380,7 +380,7 @@ namespace KaosesTweaks.Patches
         }
 
         static bool Prepare() => MCMSettings.Instance is { } settings && (settings.SmithingEnergyDisable || settings.CraftingStaminaTweakEnabled) && MCMSettings.Instance.MCMSmithingHarmoneyPatches;
-        
+
     }
 
 

@@ -18,7 +18,7 @@ namespace KaosesTweaks.BTTweaks
             if (party.LeaderHero != null)
             {
                 int count = party.MemberRoster.TotalManCount;
-                if (party.LeaderHero == Hero.MainHero || MCMSettings.Instance is { } settings && settings.DailyTroopExperienceApplyToAllNPC 
+                if (party.LeaderHero == Hero.MainHero || MCMSettings.Instance is { } settings && settings.DailyTroopExperienceApplyToAllNPC
                     || MCMSettings.Instance is { } settings2 && settings2.DailyTroopExperienceApplyToPlayerClanMembers && party.LeaderHero.Clan == Clan.PlayerClan)
                 {
                     int experienceAmount = ExperienceAmount(party.LeaderHero);

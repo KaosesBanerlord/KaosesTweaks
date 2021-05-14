@@ -23,7 +23,7 @@ namespace KaosesTweaks.Behaviors
             CampaignEvents.DailyTickHeroEvent.AddNonSerializedListener(this, new Action<Hero>(this.DailyTickHero));
             CampaignEvents.OnGameLoadedEvent.AddNonSerializedListener(this, new Action<CampaignGameStarter>(this.GameLoaded));
             CampaignEvents.OnChildConceivedEvent.AddNonSerializedListener(this, new Action<Hero>(this.ChildConceived));
-           
+
         }
 
         // Token: 0x06002FC0 RID: 12224 RVA: 0x000C93E0 File Offset: 0x000C75E0
@@ -145,7 +145,7 @@ namespace KaosesTweaks.Behaviors
                 }
                 //CampaignEventDispatcher.Instance.OnGivenBirth(mother, list, num2);
                 OnGivenBirth(mother, list, num2);
-                
+
                 mother.IsPregnant = false;
                 this._heroPregnancies.Remove(pregnancy);
                 if (mother != Hero.MainHero && MBRandom.RandomFloat <= pregnancyModel.MaternalMortalityProbabilityInLabor)

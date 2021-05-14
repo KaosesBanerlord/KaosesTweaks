@@ -11,7 +11,7 @@ namespace KaosesTweaks.Behaviors
         // Token: 0x060034EF RID: 13551 RVA: 0x000F3394 File Offset: 0x000F1594
         public override void RegisterEvents()
         {
-            
+
         }
 
         // Token: 0x06003510 RID: 13584 RVA: 0x000F48E8 File Offset: 0x000F2AE8

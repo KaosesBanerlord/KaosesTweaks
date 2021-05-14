@@ -42,7 +42,8 @@ namespace KaosesTweaks.Models
                         //IM.MessageDebug("New MortalityProbabilityInLabor: " + Statics._settings.PregnancyLaborMortalityChanceValue.ToString());
                     }
                     return Statics._settings.PregnancyLaborMortalityChanceValue;
-                }else if (Statics._settings.NoMaternalMortalityTweakEnabled)
+                }
+                else if (Statics._settings.NoMaternalMortalityTweakEnabled)
                 {
                     if (Statics._settings.PregnancyDebug)
                     {
@@ -67,7 +68,8 @@ namespace KaosesTweaks.Models
                         //IM.MessageDebug("New StillbirthProbability: " + Statics._settings.PregnancyStillbirthChanceValue.ToString());
                     }
                     return Statics._settings.PregnancyStillbirthChanceValue;
-                }else if (Statics._settings.NoStillbirthsTweakEnabled)
+                }
+                else if (Statics._settings.NoStillbirthsTweakEnabled)
                 {
                     if (Statics._settings.PregnancyDebug)
                     {

@@ -33,25 +33,25 @@ namespace KaosesTweaks.Settings
 
         private static void LoadModConfigFile()
         {
-/*
-            Settings.Instance = new Settings();
-            if (Settings.Instance is not null)
-            {
-                IM.MessageDebug("Settings.Instance is not null");
-                if (File.Exists(Statics.ConfigFilePath))
-                {
-                    IM.MessageDebug("Config file exists " + Statics.ConfigFilePath.ToString());
-                    Settings config = JsonConvert.DeserializeObject<Settings>(File.ReadAllText(Statics.ConfigFilePath));
-                    Settings.Instance = config;
-                }
+            /*
+                        Settings.Instance = new Settings();
+                        if (Settings.Instance is not null)
+                        {
+                            IM.MessageDebug("Settings.Instance is not null");
+                            if (File.Exists(Statics.ConfigFilePath))
+                            {
+                                IM.MessageDebug("Config file exists " + Statics.ConfigFilePath.ToString());
+                                Settings config = JsonConvert.DeserializeObject<Settings>(File.ReadAllText(Statics.ConfigFilePath));
+                                Settings.Instance = config;
+                            }
 
-                if (Settings.Instance.LoadMCMConfigFile && Statics.MCMConfigFileExists)
-                {
-                    Settings config = JsonConvert.DeserializeObject<Settings>(File.ReadAllText(Statics.MCMConfigFile));
-                    Settings.Instance = config;
-                }
-            }
-            Statics._settings = Settings.Instance;*/
+                            if (Settings.Instance.LoadMCMConfigFile && Statics.MCMConfigFileExists)
+                            {
+                                Settings config = JsonConvert.DeserializeObject<Settings>(File.ReadAllText(Statics.MCMConfigFile));
+                                Settings.Instance = config;
+                            }
+                        }
+                        Statics._settings = Settings.Instance;*/
         }
 
 

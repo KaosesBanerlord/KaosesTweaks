@@ -27,15 +27,17 @@ namespace KaosesTweaks.Patches
 
                     __result.Add(malus, prosperityTextObj);
                 }
-                if (town.IsCastle) {
+                if (town.IsCastle)
+                {
                     __result.Add(Math.Abs(__result.ResultNumber) * (settings.CastleFoodBonus - 1), new TextObject("Military rations"));
 
                     //IM.MessageDebug("Patches CastleFoodBonus Tweak: " + settings.CastleFoodBonus.ToString());
 
                 }
-                
 
-                else if (town.IsTown) { 
+
+                else if (town.IsTown)
+                {
                     __result.Add(Math.Abs(__result.ResultNumber) * (settings.TownFoodBonus - 1), new TextObject("Citizen food drive"));
 
                     //IM.MessageDebug("Patches TownFoodBonus Tweak: " + settings.TownFoodBonus.ToString());

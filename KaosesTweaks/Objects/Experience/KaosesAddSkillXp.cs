@@ -43,13 +43,14 @@ namespace KaosesTweaks.Objects.Experience
                 if (_hero.IsHumanPlayerCharacter)
                 {
                     _isPlayer = _hero.IsHumanPlayerCharacter;
-                }else if (Common.Kaoses.IsLord(_hero) && Kaoses.IsPlayerClan(_hero))
+                }
+                else if (Common.Kaoses.IsLord(_hero) && Kaoses.IsPlayerClan(_hero))
                 {
                     _isPlayerClan = Kaoses.IsPlayerClan(_hero);
                 }
                 if (Common.Kaoses.IsLord(_hero))
                 {
-                    
+
                     _isAILord = _hero.CharacterObject.IsHero;
                 }
             }
@@ -63,7 +64,7 @@ namespace KaosesTweaks.Objects.Experience
                 {
                     _ValidHeroForUse = true;
                 }
-                else if(_settings.SkillXpUseForPlayerClan && _isPlayerClan )
+                else if (_settings.SkillXpUseForPlayerClan && _isPlayerClan)
                 {
                     _ValidHeroForUse = true;
                 }
@@ -97,7 +98,8 @@ namespace KaosesTweaks.Objects.Experience
             {
                 //endurance END
                 _skillMultiplier = _settings.SkillsXPMultiplierAthletics;
-            }else if (_skill.GetName().Equals(DefaultSkills.Bow.GetName()))
+            }
+            else if (_skill.GetName().Equals(DefaultSkills.Bow.GetName()))
             {
                 //control CTR
                 _skillMultiplier = _settings.SkillsXPMultiplierBow;
@@ -210,7 +212,7 @@ namespace KaosesTweaks.Objects.Experience
 
         public void DebugDump()
         {
-            IM.MessageDebug("KaosesAddSkillXp: " 
+            IM.MessageDebug("KaosesAddSkillXp: "
                 + " StringId: " + _hero.StringId.ToString() + "\r\n"
                 + " Name: " + _hero.CharacterObject.Name.ToString() + "\r\n"
                 + "  Skill Name: " + _skill.GetName().ToString() + "\r\n"

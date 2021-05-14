@@ -117,7 +117,7 @@ namespace KaosesTweaks.Utils
             {
                 message += "\n\nGameVersion: " + Statics.GameVersion + "\nModVersion: " + Statics.ModVersion
             }
-            logMessage(title + "\n" +message);
+            logMessage(title + "\n" + message);
             MessageBox.Show(message, title);
         }
 
