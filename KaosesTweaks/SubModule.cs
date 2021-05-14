@@ -60,9 +60,7 @@ namespace KaosesTweaks
             }
             catch (Exception ex)
             {
-                //Handle exceptions
                 IM.ShowError("Error loading", "initial config", ex);
-                //MessageBox.Show($":\n\n{ex.ToStringFull()}" + "\n\nGameVersion: " + Statics.GameVersion + "\nModVersion: " + Statics.ModVersion);
             }
 
 
@@ -97,19 +95,24 @@ namespace KaosesTweaks
                     }
                     catch (Exception ex)
                     {
-                        IM.ShowError("Imprisonment Tweak Error", "Prisoner Tweak Loading Error", ex);
-                        //MessageBox.Show($":\n\n{ex.ToStringFull()}" + "\n\nGameVersion: " + Statics.GameVersion + "\nModVersion: " + Statics.ModVersion);
+                        IM.ShowError("Prisoner Imprisonment Tweak Error", " Game Initialization Finished Error", ex);
                     }
 
                 }
-
-                if (gameType != null && Statics._settings.MCMItemModifiers)
+                try
                 {
-                    new KaosesItemTweaks(gameType.Items);
-                    if (Statics._settings.Debug)
+                    if (Statics._settings.MCMItemModifiers)
                     {
-                        IM.MessageDebug("Loaded KaosesItemTweaks");
+                        new KaosesItemTweaks(gameType.Items);
+                        if (Statics._settings.Debug)
+                        {
+                            IM.MessageDebug("Loaded KaosesItemTweaks");
+                        }
                     }
+                }
+                catch (Exception ex)
+                {
+                    IM.ShowError("Kaoses Item Tweaks Error", "Game Initialization Finished Error", ex);
                 }
 
             }
@@ -138,12 +141,10 @@ namespace KaosesTweaks
                 catch (Exception ex)
                 {
                     IM.ShowError("Error initializing game models", "Game Start Error", ex);
-                    //MessageBox.Show($"Error Initialising Killing Bandits raises relationships:\n\n{ex.ToStringFull()}" + "\n\nGameVersion: " + Statics.GameVersion + "\nModVersion: " + Statics.ModVersion);
                 }
                 //~ BT
                 try
                 {
-                    AddModels(campaignGameStarter);
                     if (Statics._settings.MCMKillingBanditsEnabled)
                     {
                         PlayerBattleEndEventListener playerBattleEndEventListener = new PlayerBattleEndEventListener();
@@ -157,15 +158,14 @@ namespace KaosesTweaks
                 catch (Exception ex)
                 {
                     IM.ShowError("Error initializing Killing Bandits raises relationships", "Game Start Error", ex);
-                    //MessageBox.Show($"Error Initialising Killing Bandits raises relationships:\n\n{ex.ToStringFull()}" + "\n\nGameVersion: " + Statics.GameVersion + "\nModVersion: " + Statics.ModVersion);
                 }
 
                 try
                 {
                     /* Another chance at marriage */
-                    LastAttempts = new Dictionary<Hero, CampaignTime>();
                     if (Statics._settings.AnotherChanceAtMarriageEnabled)
                     {
+                        LastAttempts = new Dictionary<Hero, CampaignTime>();
                         campaignGameStarter.CampaignBehaviors.Add(new AnotherChanceBehavior());
                         if (Statics._settings.Debug)
                         {
@@ -177,7 +177,6 @@ namespace KaosesTweaks
                 catch (Exception ex)
                 {
                     IM.ShowError("Error initializing Another chance at marriage", "Game Start Error", ex);
-                    //MessageBox.Show($"Error Initialising Another chance at marriage:\n\n{ex.ToStringFull()}" + "\n\nGameVersion: " + Statics.GameVersion + "\nModVersion: " + Statics.ModVersion);
                 }
                 try
                 {
@@ -194,7 +193,6 @@ namespace KaosesTweaks
                 catch (Exception ex)
                 {
                     IM.ShowError("Error initializing Culture Changer", "Game Start Error", ex);
-                    //MessageBox.Show($"Error Initialising Culture Changer:\n\n{ex.ToStringFull()}" + "\n\nGameVersion: " + Statics.GameVersion + "\nModVersion: " + Statics.ModVersion);
                 }
             }
         }
@@ -217,7 +215,6 @@ namespace KaosesTweaks
             }
             catch (Exception ex)
             {
-                //Handle exceptions
                 IM.ShowError("Error initializing game loading tweak calls", "Game Loading Error", ex);
             }
             return base.DoLoading(game);

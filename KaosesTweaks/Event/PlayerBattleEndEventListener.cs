@@ -1,4 +1,5 @@
-﻿using System;
+﻿using KaosesTweaks.Utils;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
@@ -17,10 +18,12 @@ namespace KaosesTweaks.Event
         {
             this.BanditGroupCounter = Statics._settings.GroupsOfBandits;
             this.BanditDeathCounter = 0;
+            Logging.Lm("Killing Bandits : PlayerBattleEndEventListener Called" + "");
         }
 
         public void IncreaseLocalRelationsAfterBanditFight(MapEvent m)
         {
+            Logging.Lm("Killing Bandits : IncreaseLocalRelationsAfterBanditFight Called" + "");
             TroopRoster rosterReceivingLootShare;
             int mainPartSideInt = (int)PartyBase.MainParty.Side;
             rosterReceivingLootShare = PlayerEncounter.Current.RosterToReceiveLootMembers;
@@ -41,7 +44,7 @@ namespace KaosesTweaks.Event
                 if (IsDefeatedBanditLike(m) && (rosterReceivingLootShare.TotalHealthyCount > 0 || !Statics._settings.PrisonersOnly))
                 {
                     BanditDeathCounter += banditSide.Casualties;
-                    InformationManager.DisplayMessage(new InformationMessage("BanditDeathCounter: " + BanditDeathCounter.ToString(), Color.FromUint(4282569842U)));
+                    IM.ColorGreenMessage("BanditDeathCounter: " + BanditDeathCounter.ToString());
                     if (this.BanditGroupCounter == 1)
                     {
                         IncreaseLocalRelations(m);
@@ -58,14 +61,20 @@ namespace KaosesTweaks.Event
             if (Statics._settings.SizeBonusEnabled)
             {
                 FinalRelationshipIncrease = Statics._settings.RelationshipIncrease * this.BanditDeathCounter * Statics._settings.SizeBonus;
-                
-                //IM.MessageDebug("Killing Bandits: SizeBonusEnabled: " + FinalRelationshipIncrease.ToString());
+                if (Statics._settings.KillingBanditsDebug)
+                {
+                    IM.MessageDebug("Killing Bandits: SizeBonusEnabled: " + FinalRelationshipIncrease.ToString());
+                }
             }
             int FinalRelationshipIncreaseInt = (int)Math.Floor(FinalRelationshipIncrease);
+            if (Statics._settings.KillingBanditsDebug)
+            {
+                IM.MessageDebug("Killing Bandits: IncreaseLocalRelations: " + "Base Change: " + Statics._settings.RelationshipIncrease.ToString() + "Final Change: "+ FinalRelationshipIncreaseInt.ToString());
+            }
             FinalRelationshipIncreaseInt = FinalRelationshipIncreaseInt < 1 ? 1 : FinalRelationshipIncreaseInt;
-            InformationManager.DisplayMessage(new InformationMessage("Final Relationship Increase: " + FinalRelationshipIncreaseInt.ToString(), Color.FromUint(4282569842U)));
+            IM.ColorGreenMessage("Final Relationship Increase: " + FinalRelationshipIncreaseInt.ToString());
 
-            List<Settlement> list = new List<Settlement>();
+            List <Settlement> list = new List<Settlement>();
             foreach (Settlement settlement in Settlement.All)
             {
                 if ((settlement.IsVillage || settlement.IsTown) && settlement.Position2D.DistanceSquared(m.Position) <= Statics._settings.Radius)
@@ -81,7 +90,7 @@ namespace KaosesTweaks.Event
                     ChangeRelationAction.ApplyPlayerRelation(h, relation: FinalRelationshipIncreaseInt, affectRelatives: true, showQuickNotification: false);
                 }
             }
-            InformationManager.DisplayMessage(new InformationMessage("Your relationship increased with nearby notables.", Color.FromUint(4282569842U)));
+            IM.ColorGreenMessage("Your relationship increased with nearby notables. " + BanditDeathCounter.ToString());
         }
 
         private void BanditGroupCounterUpdate()
@@ -90,6 +99,10 @@ namespace KaosesTweaks.Event
             if (this.BanditGroupCounter == 0)
             {
                 this.BanditGroupCounter = Statics._settings.GroupsOfBandits;
+            }
+            if (Statics._settings.KillingBanditsDebug)
+            {
+                IM.MessageDebug("Killing Bandits : BanditGroupCounterUpdate: " + BanditGroupCounter.ToString());
             }
         }
 

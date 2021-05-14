@@ -1,5 +1,6 @@
 ﻿using HarmonyLib;
 using KaosesTweaks.Settings;
+using KaosesTweaks.Utils;
 using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
@@ -28,16 +29,41 @@ namespace KaosesTweaks.Patches
             [HarmonyPatch("conversation_player_can_open_courtship_on_condition")]
             public static bool Prefix1(ref bool __result)
             {
-                var lastAttempt = SubModule.LastAttempts.TryGetValue(Hero.OneToOneConversationHero, out var value)
+                CampaignTime lastAttempt = SubModule.LastAttempts.TryGetValue(Hero.OneToOneConversationHero, out var value)
                     ? value
                     : CampaignTime.Zero;
+
+
+                Logging.Lm(
+                    "CampaignTime.Now: " + CampaignTime.Now.ToString() +
+                    "lastAttempt: " + lastAttempt.ToString()
+                    );
+
+                if (CampaignTime.Now.Equals(lastAttempt))
+                {
+                    Logging.Lm("CampaignTime.Now.Equals(lastAttempt)" +
+                        "CampaignTime.Now: " + CampaignTime.Now.ToString() +
+                        "lastAttempt: " + lastAttempt.ToString()
+                        );
+                }
+
+
+                if (CampaignTime.Now > lastAttempt)
+                {
+                    Logging.Lm("CampaignTime.Now > lastAttempt" +
+                        "CampaignTime.Now: " + CampaignTime.Now.ToString() +
+                        "lastAttempt: " + lastAttempt.ToString()
+                        );
+                }
+
+
+
 
                 if (CampaignTime.DaysFromNow(-1f) < lastAttempt)
                 {
                     __result = false;
                     return false;
                 }
-
                 return true;
             }
 

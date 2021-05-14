@@ -144,10 +144,16 @@ namespace KaosesTweaks.Settings
         [SettingPropertyGroup("Debug", GroupOrder = 100)]
         public bool CultureChangeDebug { get; set; } = false;
 
+
         [SettingPropertyBool("{=KT_Debug_018}Create Logfile", IsToggle = false, Order = 0, RequireRestart = true,
             HintText = "{=KT_Debug_018}Create Logfile")]
         [SettingPropertyGroup("Debug", GroupOrder = 100)]
         public bool LogToFile { get; set; } = false;
+
+        [SettingPropertyBool("{=KT_Debug_019}Debug mode - Killing Bandits Raises RelationShips tweaks", IsToggle = false, Order = 0, RequireRestart = true,
+            HintText = "{=KT_Debug_019}Debug mode - Killing Bandits Raises RelationShips tweaks")]
+        [SettingPropertyGroup("Debug", GroupOrder = 100)]
+        public bool KillingBanditsDebug { get; set; } = false;
         #endregion
 
         //~ Age Tweaks

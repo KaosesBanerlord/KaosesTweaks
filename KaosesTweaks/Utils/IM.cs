@@ -58,8 +58,6 @@ namespace KaosesTweaks.Utils
         }
 
 
-
-
         //~ BT
         public static void ColorRedMessage(string message)
         {
@@ -115,7 +113,7 @@ namespace KaosesTweaks.Utils
             message += "\n\n" + exception?.ToStringFull();
             if (ShowVersionsInfo)
             {
-                message += "\n\nGameVersion: " + Statics.GameVersion + "\nModVersion: " + Statics.ModVersion
+                message += "\n\nGameVersion: " + Statics.GameVersion + "\nModVersion: " + Statics.ModVersion;
             }
             logMessage(title + "\n" + message);
             MessageBox.Show(message, title);

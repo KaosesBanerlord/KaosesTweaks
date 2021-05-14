@@ -1,4 +1,5 @@
-﻿using System;
+﻿using KaosesTweaks.Utils;
+using System;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.Core;
@@ -21,6 +22,7 @@ namespace KaosesTweaks.Behaviors
 
         public override void SyncData(IDataStore dataStore)
         {
+
         }
 
         protected void AddDialogs(CampaignGameStarter starter)
@@ -62,8 +64,9 @@ namespace KaosesTweaks.Behaviors
 
         private static void Another_chance_success_on_consequence()
         {
-            SubModule.LastAttempts[Hero.OneToOneConversationHero] = CampaignTime.Now;
-
+            //SubModule.LastAttempts[Hero.OneToOneConversationHero] = CampaignTime.Now;
+            //SubModule.LastAttempts[Hero.OneToOneConversationHero] = CampaignTime.DaysFromNow(CampaignTime.Now.ElapsedDaysUntilNow + 2);
+            SubModule.LastAttempts[Hero.OneToOneConversationHero] = CampaignTime.DaysFromNow(2f);
             // Go straight to 2nd stage if completed 1st stage successfully before
             var toLevel = (Romance.GetRomanticLevel(Hero.MainHero, Hero.OneToOneConversationHero) == Romance.RomanceLevelEnum.FailedInPracticalities)
                     ? Romance.RomanceLevelEnum.CoupleDecidedThatTheyAreCompatible
@@ -88,7 +91,8 @@ namespace KaosesTweaks.Behaviors
 
         private static void Another_chance_rejected_on_consequence()
         {
-            SubModule.LastAttempts[Hero.OneToOneConversationHero] = CampaignTime.Now;
+            //SubModule.LastAttempts[Hero.OneToOneConversationHero] = CampaignTime.Now;
+            SubModule.LastAttempts[Hero.OneToOneConversationHero] = CampaignTime.DaysFromNow(2f);
             var relation = Hero.OneToOneConversationHero.GetRelationWithPlayer();
             // 30% chance at relation loss at 0 relation, 15% at 4, 0% at 15 
             var criticalFailChance = (relation >= 15) ? 0 : (2f / 15f) * relation * relation - 4 * relation + 30;
