@@ -100,6 +100,8 @@ namespace KaosesTweaks
                     {
                         IM.MessageError(ex.ToStringFull());
                         MessageBox.Show($":\n\n{ex.ToStringFull()}");
+                        MessageBox.Show($":\n\n{ex.ToStringFull()}" + "\n\nGameVersion: " + Statics.GameVersion + "\nModVersion: " + Statics.ModVersion);
+
                     }
 
                 }
@@ -144,8 +146,8 @@ namespace KaosesTweaks
                 }
                 catch (Exception ex)
                 {
-                    IM.MessageError("Error OnGameStart: " + ex.ToStringFull());
-                    MessageBox.Show($"Error Initialising Culture Changer:\n\n{ex.ToStringFull()}");
+                    IM.MessageError("Error OnGameStart: Initialising Killing Bandits raises relationships\n" + ex.ToStringFull());
+                    MessageBox.Show($"Error Initialising Killing Bandits raises relationships:\n\n{ex.ToStringFull()}" + "\n\nGameVersion: " + Statics.GameVersion + "\nModVersion: " + Statics.ModVersion);
                 }
 
                 try
@@ -162,8 +164,8 @@ namespace KaosesTweaks
                 }
                 catch (Exception ex)
                 {
-                    IM.MessageError("Error OnGameStart: " + ex.ToStringFull());
-                    MessageBox.Show($"Error Initialising Culture Changer:\n\n{ex.ToStringFull()}");
+                    IM.MessageError("Error OnGameStart: Initialising Another chance at marriage" + ex.ToStringFull());
+                    MessageBox.Show($"Error Initialising Another chance at marriage:\n\n{ex.ToStringFull()}" + "\n\nGameVersion: " + Statics.GameVersion + "\nModVersion: " + Statics.ModVersion);
                 }
                 try
                 {
@@ -179,8 +181,8 @@ namespace KaosesTweaks
                 }
                 catch (Exception ex)
                 {
-                    IM.MessageError("Error OnGameStart: " + ex.ToStringFull());
-                    MessageBox.Show($"Error Initialising Culture Changer:\n\n{ex.ToStringFull()}");
+                    IM.MessageError("Error OnGameStart: Initialising Culture Changer" + ex.ToStringFull());
+                    MessageBox.Show($"Error Initialising Culture Changer:\n\n{ex.ToStringFull()}" + "\n\nGameVersion: " + Statics.GameVersion + "\nModVersion: " + Statics.ModVersion);
                 }
             }
         }

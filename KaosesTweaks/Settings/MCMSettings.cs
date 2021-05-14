@@ -32,16 +32,9 @@ namespace KaosesTweaks.Settings
 
         public bool LoadMCMConfigFile { get; set; } = false;
         public string ModDisplayName { get { return DisplayName; } }
-
-
-        //[SettingPropertyBool("{=debug}Debug", RequireRestart = false, HintText = "{=}{=debug_desc}Displays mod developer debug information and logs them to the file")]
-        //[SettingPropertyGroup("Debug", GroupOrder = 100)]
-        //public bool Debug { get; set; } = Statics.Debug;
-
-        //[SettingPropertyBool("{=debuglog}Log to file", RequireRestart = false, HintText = "{=}{=debuglog_desc}Log information messages to the log file as well as errors and debug")]
-        //[SettingPropertyGroup("Debug", GroupOrder = 100)]
-        //public bool LogToFile { get; set; } = Statics.LogToFile;
         #endregion
+
+
         ///~ Mod Specific settings 
 
         //~ KT Debugging 
