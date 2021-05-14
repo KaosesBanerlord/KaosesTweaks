@@ -134,11 +134,24 @@ namespace KaosesTweaks
                 try
                 {
                     AddModels(campaignGameStarter);
-                    PlayerBattleEndEventListener playerBattleEndEventListener = new PlayerBattleEndEventListener();
-                    CampaignEvents.OnPlayerBattleEndEvent.AddNonSerializedListener(playerBattleEndEventListener, new Action<MapEvent>(playerBattleEndEventListener.IncreaseLocalRelationsAfterBanditFight));
-                    if (Statics._settings.Debug)
+                }
+                catch (Exception ex)
+                {
+                    IM.ShowError("Error initializing game models", "Game Start Error", ex);
+                    //MessageBox.Show($"Error Initialising Killing Bandits raises relationships:\n\n{ex.ToStringFull()}" + "\n\nGameVersion: " + Statics.GameVersion + "\nModVersion: " + Statics.ModVersion);
+                }
+                //~ BT
+                try
+                {
+                    AddModels(campaignGameStarter);
+                    if (Statics._settings.MCMKillingBanditsEnabled)
                     {
-                        IM.MessageDebug("Loaded Killing Bandits raises relationships playerBattleEndEventListener Behavior");
+                        PlayerBattleEndEventListener playerBattleEndEventListener = new PlayerBattleEndEventListener();
+                        CampaignEvents.OnPlayerBattleEndEvent.AddNonSerializedListener(playerBattleEndEventListener, new Action<MapEvent>(playerBattleEndEventListener.IncreaseLocalRelationsAfterBanditFight));
+                        if (Statics._settings.Debug)
+                        {
+                            IM.MessageDebug("Loaded Killing Bandits raises relationships playerBattleEndEventListener Behavior");
+                        }
                     }
                 }
                 catch (Exception ex)
@@ -151,11 +164,13 @@ namespace KaosesTweaks
                 {
                     /* Another chance at marriage */
                     LastAttempts = new Dictionary<Hero, CampaignTime>();
-                    /* Another chance at marriage */
-                    campaignGameStarter.CampaignBehaviors.Add(new AnotherChanceBehavior());
-                    if (Statics._settings.Debug)
+                    if (Statics._settings.AnotherChanceAtMarriageEnabled)
                     {
-                        IM.MessageDebug("Loaded AnotherChanceBehavior Behavior");
+                        campaignGameStarter.CampaignBehaviors.Add(new AnotherChanceBehavior());
+                        if (Statics._settings.Debug)
+                        {
+                            IM.MessageDebug("Loaded AnotherChanceBehavior Behavior");
+                        }
                     }
                     /* Another chance at marriage */
                 }

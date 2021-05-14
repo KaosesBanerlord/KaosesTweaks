@@ -15,7 +15,6 @@ namespace KaosesTweaks.Event
 
         public PlayerBattleEndEventListener()
         {
-            //this.BanditGroupCounter = Statics._settings.GroupsOfBandits;
             this.BanditGroupCounter = Statics._settings.GroupsOfBandits;
             this.BanditDeathCounter = 0;
         }
@@ -26,7 +25,6 @@ namespace KaosesTweaks.Event
             int mainPartSideInt = (int)PartyBase.MainParty.Side;
             rosterReceivingLootShare = PlayerEncounter.Current.RosterToReceiveLootMembers;
             //PartyBase partyReceivingLootShare = m.GetPartyReceivingLootShare(PartyBase.MainParty);
-
 
             MapEventSide banditSide;
 
@@ -60,6 +58,7 @@ namespace KaosesTweaks.Event
             if (Statics._settings.SizeBonusEnabled)
             {
                 FinalRelationshipIncrease = Statics._settings.RelationshipIncrease * this.BanditDeathCounter * Statics._settings.SizeBonus;
+                
                 //IM.MessageDebug("Killing Bandits: SizeBonusEnabled: " + FinalRelationshipIncrease.ToString());
             }
             int FinalRelationshipIncreaseInt = (int)Math.Floor(FinalRelationshipIncrease);
