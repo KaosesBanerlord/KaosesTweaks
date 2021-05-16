@@ -71,6 +71,7 @@ namespace KaosesTweaks.Patches
 				BattleSizePatchEx_BattleSizeSpawnTick.AgentTrackerMount.Clear();
 				BattleSizePatchEx_BattleSizeSpawnTick.NumAttackers = 0;
 				BattleSizePatchEx_BattleSizeSpawnTick.NumDefenders = 0;
+				
 				if (troops == 0 && mounts == 0)
 				{
 					foreach (MapEventParty party in MapEvent.PlayerMapEvent.AttackerSide.Parties)
@@ -99,12 +100,18 @@ namespace KaosesTweaks.Patches
 					}
 				}
 				mountfootratio = 1f + (mounts / troops) * Statics._settings.BattleSizeExSafePuffer;
+				if (MapEvent.PlayerMapEvent.EventType == MapEvent.BattleTypes.Siege)
+				{
+					mountfootratio = 1f;
+					isSiege = true;
+				}
 			}
 		}
 		static bool Prepare() => MCMSettings.Instance is { } settings && settings.BattleSizeTweakExEnabled;
 		public static float mountfootratio = 0f;
 		public static float troops = 0f;
 		public static float mounts = 0f;
+		public static bool isSiege = false;
 	}
 
 
@@ -163,6 +170,8 @@ namespace KaosesTweaks.Patches
 				}
 			}
 			BattleSizePatchEx_PartyGroupTroopSupplier.mountfootratio = (BattleSizePatchEx_PartyGroupTroopSupplier.troops == AgentTrackerTroop.Count)? 1f : 1f + ((BattleSizePatchEx_PartyGroupTroopSupplier.mounts - AgentTrackerMount.Count) / (BattleSizePatchEx_PartyGroupTroopSupplier.troops - AgentTrackerTroop.Count)) * Statics._settings.BattleSizeExSafePuffer;
+			if (BattleSizePatchEx_PartyGroupTroopSupplier.isSiege == true) BattleSizePatchEx_PartyGroupTroopSupplier.mountfootratio = 1f;
+
 
 			if (runs > 200)
 			{
