@@ -185,11 +185,14 @@ namespace KaosesTweaks.Patches
 
 			List<CodeInstruction> list = new List<CodeInstruction>(instructions);
 
-			list.Insert(72, new CodeInstruction(OpCodes.Conv_R4, null)); //  (MissionAgentSpawnLogic.MaxNumberOfAgentsForMission - base.Mission.AllAgents.Count) --> float
-			list.Insert(74, new CodeInstruction(OpCodes.Conv_R4, null)); // >= numberOfTroopsCanBeSpawned --> float
-			list[75] = new CodeInstruction(OpCodes.Call, SymbolExtensions.GetMethodInfo(() => GetMountRatio())); // >= numberOfTroopsCanBeSpawned * mountfootratio
-			list[83].operand = Statics._settings.ReinforcementQuota * 0.01f; //>= (float)this._battleSize * _0.05f_ --> Percentage of Battlesize each reinforcement
-			list.RemoveRange(85, 6); // remove  _ || num4 >= 0.5f || num5 >= 0.5f_
+			if (list.Count == 250)
+			{
+				list.Insert(72, new CodeInstruction(OpCodes.Conv_R4, null)); //  (MissionAgentSpawnLogic.MaxNumberOfAgentsForMission - base.Mission.AllAgents.Count) --> float
+				list.Insert(74, new CodeInstruction(OpCodes.Conv_R4, null)); // >= numberOfTroopsCanBeSpawned --> float
+				list[75] = new CodeInstruction(OpCodes.Call, SymbolExtensions.GetMethodInfo(() => GetMountRatio())); // >= numberOfTroopsCanBeSpawned * mountfootratio
+				list[83].operand = Statics._settings.ReinforcementQuota * 0.01f; //>= (float)this._battleSize * _ReinforcementQuota * 0.01f_ --> Percentage of Battlesize each reinforcement
+				list.RemoveRange(85, 6); // remove  _ || num4 >= 0.5f || num5 >= 0.5f_
+			}
 
 			return list.AsEnumerable<CodeInstruction>();
 		}
