@@ -246,7 +246,7 @@ namespace KaosesTweaks.Settings
 
         //~ Battle Tweaks 
         #region Battle Tweaks
-        [SettingPropertyBool("{=BT_Settings_000000}Battle Tweaks" + "*", IsToggle = true, Order = 0, RequireRestart = false,
+        [SettingPropertyBool("{=BT_Settings_000000}Battle Tweaks", IsToggle = true, Order = 0, RequireRestart = false,
             HintText = "{=KTMCM_BTH}Enables editing battle tweaks.")]
         [SettingPropertyGroup("{=BT_Settings_000000}Battle Tweaks")]
         public bool battleTweaksEnabled { get; set; } = true;
@@ -278,14 +278,59 @@ namespace KaosesTweaks.Settings
         #region Battle Size Tweak
         [SettingPropertyBool("{=BT_Settings_001100}Battle Size Tweak" + "*", Order = 1, IsToggle = true, RequireRestart = true,
             HintText = "{=BT_Settings_001100_Desc}Allows you to set the battle size limit outside of native values. WARNING: Setting this above 1000 can cause performance degradation and crashes."),
-            SettingPropertyGroup("{=BT_Settings_000000}Battle Tweaks" + "/" + "{=BT_Settings_001100}Battle Size Tweak")]
+            SettingPropertyGroup("{=BT_Settings_000000}Battle Tweaks" + "/" + "{=BT_Settings_001100}Battle Size Tweak" + "*")]
         public bool BattleSizeTweakEnabled { get; set; } = false;
 
         [SettingPropertyInteger("{=BT_Settings_001101}Battle Size Limit", 2, 1800, "0 Soldiers", Order = 2, RequireRestart = false,
             HintText = "{=BT_Settings_001101_Desc}Sets the limit for number of troops on a battlefield, ignoring what is in Bannerlord Options. WARNING: Will crash if all troops + their horses exceed 2000."),
-            SettingPropertyGroup("{=BT_Settings_000000}Battle Tweaks" + "/" + "{=BT_Settings_001100}Battle Size Tweak")]
+            SettingPropertyGroup("{=BT_Settings_000000}Battle Tweaks" + "/" + "{=BT_Settings_001100}Battle Size Tweak" + "*")]
         public int BattleSize { get; set; } = 1000;
-        #endregion //~ Battle Size Tweak
+
+        [SettingPropertyBool("{=KTMCM_BSTEXP}Dynamic Battle Sizes !BETA! " + "*", Order = 1, IsToggle = true, RequireRestart = true,
+            HintText = "{=KTMCM_BSTEXP_Desc}Allows you to set the battle size limit outside of native values. Will be dynamically adjusted to actual battle parameters. WARNING: BETA."),
+            SettingPropertyGroup("{=BT_Settings_000000}Battle Tweaks" + "/" + "{=BT_Settings_001100}Battle Size Tweak" + "*/" + "{=KTMCM_BSTEXP}Dynamic Battle Sizes !BETA! " + "*")]
+        public bool BattleSizeTweakExEnabled { get; set; } = false;
+
+        [SettingPropertyInteger("{=KTMCM_BSTEXP_01}Battle Size Limit", 2, 2000, "0 Soldiers", Order = 2, RequireRestart = false,
+            HintText = "{=KTMCM_BSTEXP_01_Desc}Sets the limit for number of troops on a battlefield. May get automatically reduced when a crash is imminent because of a too large battle size limit for a given battle."),
+            SettingPropertyGroup("{=BT_Settings_000000}Battle Tweaks" + "/" + "{=BT_Settings_001100}Battle Size Tweak" + "*/" + "{=KTMCM_BSTEXP}Dynamic Battle Sizes !BETA! " + "*")]
+        public int BattleSizeEx { get; set; } = 1000;
+
+        [SettingPropertyInteger("{=KTMCM_BSTEXP_02}Min size of reinforcements", 0, 50, "0'%'", Order = 2, RequireRestart = false,
+            HintText = "{=KTMCM_BSTEXP_02_Desc}Sets the amount of free slots needed in relation to battlesize before reinforcements can spawn. With a Battle Size Limit of 1000 and a set value of 10% --> Min size of reinforcement is 100 (for both sides combined). [Vanilla:10%]"),
+            SettingPropertyGroup("{=BT_Settings_000000}Battle Tweaks" + "/" + "{=BT_Settings_001100}Battle Size Tweak" + "*/" + "{=KTMCM_BSTEXP}Dynamic Battle Sizes !BETA! " + "*")]
+        public int ReinforcementQuota { get; set; } = 20;
+
+        [SettingPropertyFloatingInteger("{=KTMCM_BSTEXP_03}Reserved Slots for reinforcements", 0f, 1f, "0 %", Order = 3, RequireRestart = false,
+            HintText = "{=KTMCM_BSTEXP_03_Desc}Reserve this amount of slots in relation to Min size of reinforcements value if close to the max slots limit. If this is set to low and you are near the max slot limit of 2048 reinforcements spawn very late or wont spawn fully/at all."),
+            SettingPropertyGroup("{=BT_Settings_000000}Battle Tweaks" + "/" + "{=BT_Settings_001100}Battle Size Tweak" + "*/" + "{=KTMCM_BSTEXP}Dynamic Battle Sizes !BETA! " + "*")]
+        public float SlotsForReinforcements { get; set; } = 0.5f;
+
+        [SettingPropertyInteger("{=KTMCM_BSTEXP_04}Horses on Battlefield", 0,500, "0 Horses", Order = 3, RequireRestart = false,
+            HintText = "{=KTMCM_BSTEXP_04_Desc}The amount of horses that will stay on the battlefield. Any horses exceeding that amount will flee from the battlefield and free up agent slots. May reduce loot amount (horses, harnesses)."),
+            SettingPropertyGroup("{=BT_Settings_000000}Battle Tweaks" + "/" + "{=BT_Settings_001100}Battle Size Tweak" + "*/" + "{=KTMCM_BSTEXP}Dynamic Battle Sizes !BETA! " + "*")]
+        public int RetreatHorses { get; set; } = 50;
+
+        [SettingPropertyFloatingInteger("{=KTMCM_BSTEXP_05}Safety Puffer", 1, 1.5f, "0 %", Order = 3, RequireRestart = false,
+            HintText = "{=KTMCM_BSTEXP_05_Desc}Vanilla assumes each troop to spawn is mounted (2 agents). We instead get the mounted share in army composition before battle and update it during battle. This value increases that share for safety reasons, because reinforcements dont exactly spawn with initial army composition ratio. Increase if you get crashes."),
+            SettingPropertyGroup("{=BT_Settings_000000}Battle Tweaks" + "/" + "{=BT_Settings_001100}Battle Size Tweak" + "*/" + "{=KTMCM_BSTEXP}Dynamic Battle Sizes !BETA! " + "*")]
+        public float BattleSizeExSafePuffer { get; set; } = 1.1f;
+
+        #endregion 
+
+        //~ Battle Morale Tweaks
+        #region Battle Moral
+        [SettingPropertyBool("{=KTMCM_BMT}Battle Moral Tweaks " + "*", Order = 1, RequireRestart = true, IsToggle = true,
+            HintText = "{=KTMCM_BMT_Desc}Tweaks for battle moral changes."),
+            SettingPropertyGroup("{=BT_Settings_000000}Battle Tweaks" + "/" + "{=KTMCM_BMT}Battle Moral Tweaks" + "*", GroupOrder = 3)]
+        public bool BattleMoralTweaksEnabled { get; set; } = false;
+
+        [SettingPropertyFloatingInteger("{=KTMCM_MC}Moral Change Modifier", 0f, 3f, "0%", RequireRestart = false, Order = 2,
+            HintText = "{=KTMCM_MC_Desc}Increases or decreases the amount battle moral changes when different effects get applied. 0 % results in no battle moral changes at all and will prevent any unit fleeing for example [Native : 100%.]"),
+            SettingPropertyGroup("{=BT_Settings_000000}Battle Tweaks" + "/" + "{=KTMCM_BMT}Battle Moral Tweaks" + "*")]
+        public float BattleMoralTweaksMultiplier { get; set; } = 1f;
+
+        #endregion
 
         //~ Siege Tweaks
         #region Siege Tweaks

@@ -945,6 +945,24 @@
     <string id="KT_ACAMDBT" text="Days Between Tries" />
     <string id="KT_ACAMDBT_Desc" text="The number of days that has to pass between attempts to restart the courtship. [Native: N/A]." />
     <!-- <string id="KTMCM_CLearningLimit" text="LearningLimit" /> -->
+		
+	<string id="KTMCM_BSTEXP" text="Dynamic Battle Sizes !BETA! " />
+	<string id="KTMCM_BSTEXP_Desc" text="Allows you to set the battle size limit outside of native values. Will be dynamically adjusted to actual battle parameters. WARNING: BETA." />
+	<string id="KTMCM_BSTEXP_01" text="Battle Size Limit" />
+	<string id="KTMCM_BSTEXP_01_Desc" text="Sets the limit for number of troops on a battlefield. May get automatically reduced when a crash is imminent because of a too large battle size limit for a given battle." />
+	<string id="KTMCM_BSTEXP_02" text="Min size of reinforcements" />
+	<string id="KTMCM_BSTEXP_02_Desc" text="Sets the amount of free slots needed in relation to battlesize before reinforcements can spawn. With a Battle Size Limit of 1000 and a set value of 10% --> Min size of reinforcement is 100 (for both sides combined). [Vanilla:10%]" />
+	<string id="KTMCM_BSTEXP_03" text="Reserved Slots for reinforcements" />
+	<string id="KTMCM_BSTEXP_03_Desc" text="Reserve this amount of slots in relation to Min size of reinforcements value if close to the max slots limit. If this is set to low and you are near the max slot limit of 2048 reinforcements spawn very late or wont spawn fully/at all." />
+	<string id="KTMCM_BSTEXP_04" text="Horses on Battlefield" />
+	<string id="KTMCM_BSTEXP_04_Desc" text="The amount of horses that will stay on the battlefield. Any horses exceeding that amount will flee from the battlefield and free up agent slots. May reduce loot amount (horses, harnesses)." />
+	<string id="KTMCM_BSTEXP_05" text="Safety Puffer" />
+	<string id="KTMCM_BSTEXP_05_Desc" text="Vanilla assumes each troop to spawn is mounted (2 agents). We instead get the mounted share in army composition before battle and update it during battle. This value increases that share for safety reasons, because reinforcements dont exactly spawn with initial army composition ratio. Increase if you get crashes." />
+
+	<string id="KTMCM_BMT" text="Battle Moral Tweaks" />
+	<string id="KTMCM_BMT_Desc" text="Tweaks for battle moral changes." />
+	<string id="KTMCM_MC" text="Moral Change Modifier" />
+	<string id="KTMCM_MC_Desc" text="Increases or decreases the amount battle moral changes when different effects get applied. 0 % results in no battle moral changes at all and will prevent any unit fleeing for example [Native : 100%.]" />
 
 
 	</strings>

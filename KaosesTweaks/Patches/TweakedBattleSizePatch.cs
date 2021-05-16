@@ -8,7 +8,7 @@ using KaosesTweaks.Utils;
 namespace KaosesTweaks.Patches
 {
     [HarmonyPatch(typeof(MissionAgentSpawnLogic), MethodType.Constructor, new Type[] { typeof(IMissionTroopSupplier[]), typeof(BattleSideEnum) })]
-    public class TweakedBattleSizePatch2
+    public class TweakedBattleSizePatch
     {
         static void Postfix(MissionAgentSpawnLogic __instance, ref int ____battleSize)
         {
@@ -26,6 +26,6 @@ namespace KaosesTweaks.Patches
             return;
         }
 
-        static bool Prepare() => MCMSettings.Instance is { } settings && settings.BattleSizeTweakEnabled;
+        static bool Prepare() => MCMSettings.Instance is { } settings && settings.BattleSizeTweakEnabled && !settings.BattleSizeTweakExEnabled;
     }
 }
