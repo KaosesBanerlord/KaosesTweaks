@@ -314,6 +314,9 @@ All tweaks can be set through Mod Configuration Menu integration. The tweaks cov
 - 0.2.3
     - Cebullus located and fixed item modification error with weights
     - Added new Learning limit multipliers added
+- 0.2.6
+    - added a new dynamic battle size tweak, which takes troop composition before battle start and also during battle into consideration. Automatically adjusts Battle Size accordingly.
+    - added new battle morale effect modifier (if set to 0% will prevent troops fleeing)
 
 
 ## Todo
