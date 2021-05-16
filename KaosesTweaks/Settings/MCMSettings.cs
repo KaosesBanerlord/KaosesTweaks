@@ -311,7 +311,7 @@ namespace KaosesTweaks.Settings
         public float SlotsForReinforcements { get; set; } = 0.5f;
 
         [SettingPropertyInteger("{=KTMCM_BSTEXP_04}Horses on Battlefield", 0,500, "0 Horses", Order = 3, RequireRestart = false,
-            HintText = "{=KTMCM_BSTEXP_04_Desc}The amount of horses that will stay on the battlefield. Any horses exceeding that amount will flee from the battlefield and free up agent slots. May reduce loot amount (horses, harnesses)."),
+            HintText = "{=KTMCM_BSTEXP_04_Desc}The amount of horses that will stay on the battlefield. Any horses exceeding that amount will flee from the battlefield and free up agent slots."),
             SettingPropertyGroup("{=BT_Settings_000000}Battle Tweaks" + "/" + "{=KTMCM_BSTEXP}Dynamic Battle Sizes !BETA! " + "*")]
         public int RetreatHorses { get; set; } = 50;
 

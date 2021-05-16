@@ -970,7 +970,7 @@
 	<string id="KTMCM_BSTEXP_03" text="Reserved Slots for reinforcements" />
 	<string id="KTMCM_BSTEXP_03_Desc" text="Reserve this amount of slots in relation to Min size of reinforcements value if close to the max slots limit. If this is set to low and you are near the max slot limit of 2048 reinforcements spawn very late or wont spawn fully/at all." />
 	<string id="KTMCM_BSTEXP_04" text="Horses on Battlefield" />
-	<string id="KTMCM_BSTEXP_04_Desc" text="The amount of horses that will stay on the battlefield. Any horses exceeding that amount will flee from the battlefield and free up agent slots. May reduce loot amount (horses, harnesses)." />
+	<string id="KTMCM_BSTEXP_04_Desc" text="The amount of horses that will stay on the battlefield. Any horses exceeding that amount will flee from the battlefield and free up agent slots." />
 	<string id="KTMCM_BSTEXP_05" text="Safety Puffer" />
 	<string id="KTMCM_BSTEXP_05_Desc" text="Vanilla assumes each troop to spawn is mounted (2 agents). We instead get the mounted share in army composition before battle and update it during battle. This value increases that share for safety reasons, because reinforcements dont exactly spawn with initial army composition ratio. Increase if you get crashes." />
 
