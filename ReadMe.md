@@ -60,6 +60,9 @@ All tweaks can be set through Mod Configuration Menu integration. The tweaks cov
 - Gold loss after a defeat
 
 ### Battle Tweaks:
+- Static Battle Size Modifier (old version)
+- Dynamic Battle Size Modifer (BETA)
+- Battle Morale Effect Modifier
 ﻿- Hideout Battle Troop Limit
 - Continue Hideout Battle On Player Death
 ﻿- Continue Battle On Losing Duel
