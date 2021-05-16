@@ -2,7 +2,6 @@
 using System.Diagnostics;
 using System.Text;
 using System.Windows.Forms;
-using System.Diagnostics;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
