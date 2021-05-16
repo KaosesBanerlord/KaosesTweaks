@@ -115,6 +115,8 @@ All tweaks can be set through Mod Configuration Menu integration. The tweaks cov
 - Crafting Stamina Gain Outside Settlement
 - Hide Locked Weapons in Smelting Menu
 - ﻿Unlocking Parts From Smelted Weapons
+- modify refing formula cost and output
+- set base bonus for crafted quality types fine, master and legendary
 
 ### Auto Item Locks:
 - Toggle Auto lock all horses except lame  
@@ -147,6 +149,8 @@ All tweaks can be set through Mod Configuration Menu integration. The tweaks cov
 
 ### Another Chance at marriage:
 - Implemented and updated   Jicksaw  Another Chance at Marriage
+- Can be Enabled/Disabled
+- can configure minimum days between attempts to restart courtship
 
 ### Skill Xp Modifiers:
 - Global skill xp modifiers

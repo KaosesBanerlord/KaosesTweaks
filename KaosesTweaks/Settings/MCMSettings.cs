@@ -608,6 +608,24 @@ namespace KaosesTweaks.Settings
         [SettingPropertyGroup("{=BT_Settings_004000}Crafting Tweaks")]
         public bool MCMSmithingHarmoneyPatches { get; set; } = false; // Activates the Model Override
 
+        //~ Refining Formula Multipliers
+        #region
+        [SettingPropertyBool("{=KT_CTRFME}Refining Formula Tweaks" + "*", Order = 1, RequireRestart = true, IsToggle = true,
+            HintText = "{=KT_CTRFME_Desc}Enables refining formula tweaks which adjust formula cost and output values."),
+            SettingPropertyGroup("{=BT_Settings_004000}Crafting Tweaks" + "/" + "{=KT_CTRFME}Refining Formula Tweaks")]
+        public bool RefiningFormulaTweaksEnabled { get; set; } = false;
+
+        [SettingPropertyFloatingInteger("{=KT_CTRFICM}Input Cost Multiplier", 0.1f, 5.0f, "#0%", RequireRestart = false,
+            HintText = "{=KT_CTRFICM_Desc}Multiply formula input cost by the multiplier [Native : 1.0[100%]]. at 50% 1 wood = 1 charcoal at 100% 2 wood = 1 charcoal. Minimum resource cost is 1")]
+        [SettingPropertyGroup("{=BT_Settings_004000}Crafting Tweaks" + "/" + "{=KT_CTRFME}Refining Formula Tweaks")]
+        public float RefiningFormulaInputCostValue { get; set; } = 1.0f;
+
+        [SettingPropertyFloatingInteger("{=KT_CTRFOTM}Input Cost Multiplier", 0.1f, 5.0f, "#0%", RequireRestart = false,
+            HintText = "{=KT_CTRFOTM_Desc}Multiply formula output result by the multiplier [Native : 1.0[100%]]. at 200% 2 wood = 2 charcoal, 300% 2 wood = 3 charcoal")]
+        [SettingPropertyGroup("{=BT_Settings_004000}Crafting Tweaks" + "/" + "{=KT_CTRFME}Refining Formula Tweaks")]
+        public float RefiningFormulaOutputValue { get; set; } = 1.0f;
+        #endregion //~ Refining Formula Multipliers
+
         //~ Stamina Tweaks
         #region Stamina
         [SettingPropertyBool("{=BT_Settings_004100}Crafting Stamina" + "*", Order = 1, RequireRestart = true, IsToggle = true,
@@ -677,6 +695,31 @@ namespace KaosesTweaks.Settings
         public bool AutoLearnSmeltedParts { get; set; } = false;
 
         #endregion
+
+        //~ Crafting Quality Bonus
+        #region
+        [SettingPropertyBool("{=KT_CTCQME}Quality Tweaks" + "*", Order = 1, RequireRestart = true, IsToggle = true,
+            HintText = "{=KT_CTCQME_Desc}Enablessetting the base bonus for each of the crafting bonus types, fine, master and legendary."),
+            SettingPropertyGroup("{=BT_Settings_004000}Crafting Tweaks" + "/" + "{=KT_CTCQME}Quality Tweaks")]
+        public bool CraftingQualityTweaksEnabled { get; set; } = false;
+
+        [SettingPropertyInteger("{=KT_CTCQFBV}Quality Fine Base Value", 1, 10, Order = 1, RequireRestart = false,
+            HintText = "{=KT_CTCQFBV_Desc}Set bonus base value for fine quality crafting [Native : 1].")]
+        [SettingPropertyGroup("{=BT_Settings_004000}Crafting Tweaks" + "/" + "{=KT_CTCQME}Quality Tweaks")]
+        public int CraftingQualityFineValue { get; set; } = 1;
+
+        [SettingPropertyInteger("{=KT_CTCQMBV}Quality Master Base Value", 1, 10, Order = 2, RequireRestart = false,
+            HintText = "{=KT_CTCQMBV_Desc}Set bonus base value for master quality crafting [Native : 2].")]
+        [SettingPropertyGroup("{=BT_Settings_004000}Crafting Tweaks" + "/" + "{=KT_CTCQME}Quality Tweaks")]
+        public int CraftingQualityMasterValue { get; set; } = 2;
+
+        [SettingPropertyInteger("{=KT_CTCQLBV}Quality Legendary Base Value", 1, 10, Order = 3, RequireRestart = false,
+            HintText = "{=KT_CTCQLBV_Desc}Set bonus base value for Legendary quality crafting [Native : 3].")]
+        [SettingPropertyGroup("{=BT_Settings_004000}Crafting Tweaks" + "/" + "{=KT_CTCQME}Quality Tweaks")]
+        public int CraftingQualityLegendaryValue { get; set; } = 2;
+
+
+        #endregion //~ Crafting Quality Bonus
 
         //~ Xp Modifiers
         #region XP Modifiers

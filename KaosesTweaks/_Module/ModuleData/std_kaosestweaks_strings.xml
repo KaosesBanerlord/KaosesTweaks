@@ -944,8 +944,22 @@
     <string id="KT_ACAMC" text="Another Chance At Marrige" />
     <string id="KT_ACAMDBT" text="Days Between Tries" />
     <string id="KT_ACAMDBT_Desc" text="The number of days that has to pass between attempts to restart the courtship. [Native: N/A]." />
+    
+    <string id="KT_CTRFME" text="Refining Formula Tweaks" />
+    <string id="KT_CTRFME_Desc" text="Enables refining formula tweaks which adjust formula cost and output values." />
+    <string id="KT_CTRFICM" text="Input Cost Multiplier" />
+    <string id="KT_CTRFICM_Desc" text="Multiply formula input cost by the multiplier [Native : 1.0[100%]]. at 50% 1 wood = 1 charcoal at 100% 2 wood = 1 charcoal. Minimum resource cost is 1" />
+    <string id="KT_CTRFOTM" text="Input Cost Multiplier" />
+    <string id="KT_CTRFOTM_Desc" text="Multiply formula output result by the multiplier [Native : 1.0[100%]]. at 200% 2 wood = 2 charcoal, 300% 2 wood = 3 charcoal" />
+    <string id="KT_CTCQME" text="Quality Tweaks" />
+    <string id="KT_CTCQME_Desc" text="Enablessetting the base bonus for each of the crafting bonus types, fine, master and legendary." />
+    <string id="KT_CTCQFBV" text="Quality Fine Base Value" />
+    <string id="KT_CTCQFBV_Desc" text="Set bonus base value for fine quality crafting [Native : 1]." />
+    <string id="KT_CTCQMBV" text="Quality Master Base Value" />
+    <string id="KT_CTCQMBV_Desc" text="Set bonus base value for master quality crafting [Native : 2]." />
+    <string id="KT_CTCQLBV" text="Quality Legendary Base Value" />
+    <string id="KT_CTCQLBV_Desc" text="Set bonus base value for Legendary quality crafting [Native : 3]." />
     <!-- <string id="KTMCM_CLearningLimit" text="LearningLimit" /> -->
-
 
 	</strings>
 </base>
