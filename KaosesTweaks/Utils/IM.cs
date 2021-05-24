@@ -2,7 +2,6 @@
 using System.Diagnostics;
 using System.Text;
 using System.Windows.Forms;
-using System.Diagnostics;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
@@ -32,7 +31,7 @@ namespace KaosesTweaks.Utils
 
         private static void logMessage(string message)
         {
-            Logging.Lm(message);
+            Logging.Lm(message + "; GameVersion: " + Statics.GameVersion + "; ModVersion: " + Statics.ModVersion);
         }
 
         public static void MessageInfo(string message)
@@ -56,8 +55,6 @@ namespace KaosesTweaks.Utils
         {
             MessageInfo("Will not function properly with out Harmony");
         }
-
-
 
 
         //~ BT
@@ -106,14 +103,19 @@ namespace KaosesTweaks.Utils
         }
 
         // From Modlib---
-        public static void ShowError(string message, string title = "", Exception? exception = null)
+        public static void ShowError(string message, string title = "", Exception? exception = null, bool ShowVersionsInfo = true)
         {
             if (string.IsNullOrWhiteSpace(title))
             {
                 title = "";
             }
-
-            MessageBox.Show(message + "\n\n" + exception?.ToStringFull(), title);
+            message += "\n\n" + exception?.ToStringFull();
+            if (ShowVersionsInfo)
+            {
+                message += "\n\nGameVersion: " + Statics.GameVersion + "\nModVersion: " + Statics.ModVersion;
+            }
+            logMessage(title + "\n" + message);
+            MessageBox.Show(message, title);
         }
 
         public static string ToStringFull(this Exception ex) => ex != null ? GetString(ex) : "";

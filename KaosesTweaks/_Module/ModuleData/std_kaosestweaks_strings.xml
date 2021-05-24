@@ -308,8 +308,8 @@
     <string id="KTMCM_XPMSMGSMH" text="Multiply skills exp gains by the Global multiplier [Native : 1.0[100%]]." />
     <string id="KTMCM_XPMLR" text="Learning Rate Modifiers" />
     <string id="KTMCM_XPMLRH" text="Enable Learning Rate modifiers." />
-    <string id="KTMCM_XPMLRM" text="Global Multiplier" />
-    <string id="KTMCM_XPMLRMH" text="Multiply Learning Rate by the Global multiplier [Native : 1.0[100%]]." />
+    <string id="KTMCM_XPMLRM" text="Learning Rate Multiplier" />
+    <string id="KTMCM_XPMLRMH" text="Multiply Learning Rate by the multiplier [Native : 1.0[100%]]." />
     <string id="KTMCM_XPMMPF" text="Party Food Modifiers" />
     <string id="KTMCM_XPMMPFH" text="Enable Party food consumption modifiers." />
     <string id="KTMCM_XPMMPFM" text="Party Food Multiplier" />
@@ -833,12 +833,6 @@
 				<string id="BT_Settings_008603_Desc" text="Native value is 2.5%. Modifies the percentage of your militia retiring each dayin castles." />
 				<string id="BT_Settings_008604" text="Town Militia Retirement Modifier"/>
 				<string id="BT_Settings_008604_Desc" text="Native value is 2.5%. Modifies the percentage of your militia retiring each dayin town." />
-			<string id="BT_Settings_008700" text="Elite Militia" />
-			<string id="BT_Settings_008700_Desc" text="Adds a bonus to the chance that militia spawning in towns and castles are elite." />
-				<string id="BT_Settings_008701" text="Elite Melee Militia Spawn Chance"/>
-				<string id="BT_Settings_008701_Desc" text="Native value is 10%. Sets the chance that the militia spawning in towns and castles are elite melee troops."/>
-				<string id="BT_Settings_008702" text="Elite Ranged Militia Spawn Chance"/>
-				<string id="BT_Settings_008702_Desc" text="Native value is 10%. Sets the chance that the militia spawning in towns and castles are elite ranged troops." />
 			<string id="BT_Settings_008800" text="Tournaments" />
 				<string id="BT_Settings_008801" text="Renown Reward"/>
 				<string id="BT_Settings_008801_Desc" text="Sets the amount of renown awarded when you win a tournament."/>
@@ -904,6 +898,86 @@
     <string id="KTMCM_CLearningLimit" text="Learning Limit" />
     <!-- version 0.2.3 -->
 		
+    
+    <!-- version 0.2.4 for 1.5.10 -->
+    <string id="KT_PPBC" text="Player Persuasion Bonus Chance Tweak" />
+    <string id="KT_PPBCH" text="Allows you to change the bonus persuasion chance multiplier the player receives." />
+    <string id="KT_PPBCM" text="Player Persuasion Bonus Chance Tweak Amount" />
+    <string id="KT_PPBCMH" text="Native values: Very Easy: 0.1%, Easy: 0.05%, Realistic: 0%. This value is used to calculate player's persuasion bonus chance." />
+    <string id="KT_CMDCR" text="Clan Member Death Chance Reduction Tweak" />
+    <string id="KT_CMDCRH" text="Allows you to change the clan member death chance reduction multiplier." />
+    <string id="KT_CMDCRM" text="Clan Member Death Chance Reduction Amount" />
+    <string id="KT_CMDCRMH" text="Native values: Very Easy: 0.1%, Easy: 0.05%, Realistic: 0%. This value is used to calculate Clan member death chance reduction in missions." />
+    
+    <string id="BT_Settings_008700" text="Elite Militia" />
+    <string id="BT_Settings_008700_Desc" text="Adds a bonus to the chance that militia spawning in towns and castles are elite." />
+    <string id="BT_Settings_008701" text="Elite Militia Spawn Chance"/>
+    <string id="BT_Settings_008701_Desc" text="Native value is 10%. Sets the chance that the militia spawning in towns and castles are elite melee troops."/>
+    <!-- <string id="BT_Settings_008702" text="Elite Ranged Militia Spawn Chance"/>
+    <string id="BT_Settings_008702_Desc" text="Native value is 10%. Sets the chance that the militia spawning in towns and castles are elite ranged troops." />
+		-->
 
-  </strings>
+	<!-- version 0.2.6 for 1.5.10 -->
+	<string id="KT_Debug_000" text ="Debug" />
+	<string id="KT_Debug_001" text ="Show Battle Rewards Calculation Message" />
+	<string id="KT_Debug_002" text ="Debug mode - Army tweaks" />
+	<string id="KT_Debug_003" text ="Debug mode - Battle reward tweaks" />
+	<string id="KT_Debug_004" text ="Debug mode - Clan tweaks" />
+	<string id="KT_Debug_005" text ="Debug mode - Item tweaks" />
+	<string id="KT_Debug_006" text ="Debug mode - Pregnancy tweaks" />
+	<string id="KT_Debug_007" text ="Debug mode - Xp tweaks" />
+	<string id="KT_Debug_008" text ="Debug mode - Tournament tweaks" />
+	<string id="KT_Debug_009" text ="Debug mode - Prisoner tweaks" />
+	<string id="KT_Debug_010" text ="Debug mode - Settlement tweaks" />
+	<string id="KT_Debug_011" text ="Debug mode - Wanderer location tweaks" />
+	<string id="KT_Debug_012" text ="Debug mode - Party size tweaks" />
+	<string id="KT_Debug_013" text ="Debug mode - Workshop tweaks" />
+	<string id="KT_Debug_014" text ="Debug mode - Crafting tweaks" />
+	<string id="KT_Debug_015" text ="Debug mode - Learning tweaks" />
+	<string id="KT_Debug_016" text ="Debug mode - Battlesize tweaks" />
+	<string id="KT_Debug_017" text ="Debug mode - Culture transformation tweaks" />
+	<string id="KT_Debug_018" text ="Create logfile" />
+	<string id="KT_Debug_019" text ="Debug mode - Killing Bandits Raises RelationShips tweaks" />
+
+    <string id="KT_ACAM" text="Another Chance At Marrige Enabled" />
+    <string id="KT_ACAMH" text="Enables the another chance at marriage tweaks." />
+    <string id="KT_ACAMC" text="Another Chance At Marrige" />
+    <string id="KT_ACAMDBT" text="Days Between Tries" />
+    <string id="KT_ACAMDBT_Desc" text="The number of days that has to pass between attempts to restart the courtship. [Native: N/A]." />
+    
+    <string id="KT_CTRFME" text="Refining Formula Tweaks" />
+    <string id="KT_CTRFME_Desc" text="Enables refining formula tweaks which adjust formula cost and output values." />
+    <string id="KT_CTRFICM" text="Input Cost Multiplier" />
+    <string id="KT_CTRFICM_Desc" text="Multiply formula input cost by the multiplier [Native : 1.0[100%]]. at 50% 1 wood = 1 charcoal at 100% 2 wood = 1 charcoal. Minimum resource cost is 1" />
+    <string id="KT_CTRFOTM" text="Input Cost Multiplier" />
+    <string id="KT_CTRFOTM_Desc" text="Multiply formula output result by the multiplier [Native : 1.0[100%]]. at 200% 2 wood = 2 charcoal, 300% 2 wood = 3 charcoal" />
+    <string id="KT_CTCQME" text="Quality Tweaks" />
+    <string id="KT_CTCQME_Desc" text="Enablessetting the base bonus for each of the crafting bonus types, fine, master and legendary." />
+    <string id="KT_CTCQFBV" text="Quality Fine Base Value" />
+    <string id="KT_CTCQFBV_Desc" text="Set bonus base value for fine quality crafting [Native : 1]." />
+    <string id="KT_CTCQMBV" text="Quality Master Base Value" />
+    <string id="KT_CTCQMBV_Desc" text="Set bonus base value for master quality crafting [Native : 2]." />
+    <string id="KT_CTCQLBV" text="Quality Legendary Base Value" />
+    <string id="KT_CTCQLBV_Desc" text="Set bonus base value for Legendary quality crafting [Native : 3]." />
+    <!-- <string id="KTMCM_CLearningLimit" text="LearningLimit" /> -->
+		
+	<string id="KTMCM_BSTEXP" text="Dynamic Battle Sizes !BETA! " />
+	<string id="KTMCM_BSTEXP_Desc" text="Allows you to set the battle size limit outside of native values. Will be dynamically adjusted to actual battle parameters. WARNING: BETA." />
+	<string id="KTMCM_BSTEXP_01" text="Battle Size Limit" />
+	<string id="KTMCM_BSTEXP_01_Desc" text="Sets the limit for number of troops on a battlefield. May get automatically reduced when a crash is imminent because of a too large battle size limit for a given battle." />
+	<string id="KTMCM_BSTEXP_02" text="Min size of reinforcements" />
+	<string id="KTMCM_BSTEXP_02_Desc" text="Sets the amount of free slots needed in relation to battlesize before reinforcements can spawn. With a Battle Size Limit of 1000 and a set value of 10% --> Min size of reinforcement is 100 (for both sides combined). [Vanilla:10%]" />
+	<string id="KTMCM_BSTEXP_03" text="Reserved Slots for reinforcements" />
+	<string id="KTMCM_BSTEXP_03_Desc" text="Reserve this amount of slots in relation to Min size of reinforcements value if close to the max slots limit. If this is set to low and you are near the max slot limit of 2048 reinforcements spawn very late or wont spawn fully/at all." />
+	<string id="KTMCM_BSTEXP_04" text="Horses on Battlefield" />
+	<string id="KTMCM_BSTEXP_04_Desc" text="The amount of horses that will stay on the battlefield. Any horses exceeding that amount will flee from the battlefield and free up agent slots." />
+	<string id="KTMCM_BSTEXP_05" text="Safety Puffer" />
+	<string id="KTMCM_BSTEXP_05_Desc" text="Vanilla assumes each troop to spawn is mounted (2 agents). We instead get the mounted share in army composition before battle and update it during battle. This value increases that share for safety reasons, because reinforcements dont exactly spawn with initial army composition ratio. Increase if you get crashes." />
+
+	<string id="KTMCM_BMT" text="Battle Moral Tweaks" />
+	<string id="KTMCM_BMT_Desc" text="Tweaks for battle moral changes." />
+	<string id="KTMCM_MC" text="Moral Change Modifier" />
+	<string id="KTMCM_MC_Desc" text="Increases or decreases the amount battle moral changes when different effects get applied. 0 % results in no battle moral changes at all and will prevent any unit fleeing for example [Native : 100%.]" />
+
+	</strings>
 </base>

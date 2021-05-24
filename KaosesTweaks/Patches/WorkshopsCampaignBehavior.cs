@@ -4,7 +4,6 @@ using KaosesTweaks.Utils;
 using System;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.SandBox.CampaignBehaviors;
-using TaleWorlds.CampaignSystem.SandBox.GameComponents;
 using TaleWorlds.Core;
 
 
@@ -86,17 +85,17 @@ namespace KaosesTweaks.Patches
     }
 
 
-/*
-    [HarmonyPatch(typeof(DefaultWorkshopModel), "DaysForPlayerSaveWorkshopFromBankruptcy")]
-    public class DaysForPlayerSaveWorkshopFromBankruptcyPatch
-    {
-        private static void Postfix(ref int __result)
+    /*
+        [HarmonyPatch(typeof(DefaultWorkshopModel), "DaysForPlayerSaveWorkshopFromBankruptcy")]
+        public class DaysForPlayerSaveWorkshopFromBankruptcyPatch
         {
-            if (MCMSettings.Instance is { } settings && settings.WorkShopBankruptcyModifiers)
+            private static void Postfix(ref int __result)
             {
-                __result = settings.WorkShopBankruptcyValue;
+                if (MCMSettings.Instance is { } settings && settings.WorkShopBankruptcyModifiers)
+                {
+                    __result = settings.WorkShopBankruptcyValue;
+                }
             }
-        }
-        static bool Prepare() => MCMSettings.Instance is { } settings && settings.WorkShopBankruptcyModifiers;
-    }*/
+            static bool Prepare() => MCMSettings.Instance is { } settings && settings.WorkShopBankruptcyModifiers;
+        }*/
 }

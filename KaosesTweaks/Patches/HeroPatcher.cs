@@ -1,6 +1,5 @@
 ﻿using HarmonyLib;
 using KaosesTweaks.Objects.Experience;
-using KaosesTweaks.Utils;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 

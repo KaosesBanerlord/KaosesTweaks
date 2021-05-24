@@ -1,5 +1,4 @@
 ﻿using KaosesTweaks.Objects;
-using KaosesTweaks.Utils;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
 using static TaleWorlds.Core.ItemObject;
@@ -44,7 +43,7 @@ namespace KaosesTweaks.Models
                 }
 
                 if (item.ItemType == ItemTypeEnum.BodyArmor || item.ItemType == ItemTypeEnum.Cape ||
-                   item.ItemType == ItemTypeEnum.ChestArmor ||  item.ItemType == ItemTypeEnum.HandArmor
+                   item.ItemType == ItemTypeEnum.ChestArmor || item.ItemType == ItemTypeEnum.HandArmor
                    || item.ItemType == ItemTypeEnum.HeadArmor || item.ItemType == ItemTypeEnum.LegArmor
                    || item.ItemType == ItemTypeEnum.Shield || item.ItemType == ItemTypeEnum.HorseHarness
                    )
@@ -56,7 +55,7 @@ namespace KaosesTweaks.Models
                 {
                     new RangedWeapons(item);
                 }
-                else if (item.ItemType == ItemTypeEnum.OneHandedWeapon || item.ItemType == ItemTypeEnum.Polearm 
+                else if (item.ItemType == ItemTypeEnum.OneHandedWeapon || item.ItemType == ItemTypeEnum.Polearm
                     || item.ItemType == ItemTypeEnum.TwoHandedWeapon)
                 {
                     new MeleeWeapons(item);

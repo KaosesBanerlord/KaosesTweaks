@@ -1,5 +1,5 @@
-﻿using KaosesTweaks.Utils;
-using Newtonsoft.Json;
+﻿using Bannerlord.BUTR.Shared.Helpers;
+using KaosesTweaks.Utils;
 using System.IO;
 using System.Linq;
 using TaleWorlds.Engine;
@@ -18,8 +18,8 @@ namespace KaosesTweaks.Settings
             {
                 IM.MessageError("Failed to load any config provider");
             }
-            IM.logToFile = Statics.LogToFile;
-            IM.Debug = Statics.Debug;
+            IM.logToFile = Statics._settings.LogToFile;
+            IM.Debug = Statics._settings.Debug;
             IM.PrePrend = Statics.PrePrend;
             Logging.PrePrend = Statics.PrePrend;
         }
@@ -33,25 +33,25 @@ namespace KaosesTweaks.Settings
 
         private static void LoadModConfigFile()
         {
-/*
-            Settings.Instance = new Settings();
-            if (Settings.Instance is not null)
-            {
-                IM.MessageDebug("Settings.Instance is not null");
-                if (File.Exists(Statics.ConfigFilePath))
-                {
-                    IM.MessageDebug("Config file exists " + Statics.ConfigFilePath.ToString());
-                    Settings config = JsonConvert.DeserializeObject<Settings>(File.ReadAllText(Statics.ConfigFilePath));
-                    Settings.Instance = config;
-                }
+            /*
+                        Settings.Instance = new Settings();
+                        if (Settings.Instance is not null)
+                        {
+                            IM.MessageDebug("Settings.Instance is not null");
+                            if (File.Exists(Statics.ConfigFilePath))
+                            {
+                                IM.MessageDebug("Config file exists " + Statics.ConfigFilePath.ToString());
+                                Settings config = JsonConvert.DeserializeObject<Settings>(File.ReadAllText(Statics.ConfigFilePath));
+                                Settings.Instance = config;
+                            }
 
-                if (Settings.Instance.LoadMCMConfigFile && Statics.MCMConfigFileExists)
-                {
-                    Settings config = JsonConvert.DeserializeObject<Settings>(File.ReadAllText(Statics.MCMConfigFile));
-                    Settings.Instance = config;
-                }
-            }
-            Statics._settings = Settings.Instance;*/
+                            if (Settings.Instance.LoadMCMConfigFile && Statics.MCMConfigFileExists)
+                            {
+                                Settings config = JsonConvert.DeserializeObject<Settings>(File.ReadAllText(Statics.MCMConfigFile));
+                                Settings.Instance = config;
+                            }
+                        }
+                        Statics._settings = Settings.Instance;*/
         }
 
 
@@ -88,7 +88,7 @@ namespace KaosesTweaks.Settings
 
         private static void CheckMcmConfig()
         {
-            string RootFolder = System.IO.Path.Combine(Utilities.GetConfigsPath(), "ModSettings/Global/" + Statics.ModuleFolder);
+            string RootFolder = System.IO.Path.Combine(FSIOHelper.GetConfigPath(), "ModSettings/Global/" + Statics.ModuleFolder);
             if (System.IO.Directory.Exists(RootFolder))
             {
                 Statics.MCMConfigFolder = RootFolder;
@@ -101,6 +101,7 @@ namespace KaosesTweaks.Settings
                 }
             }
         }
+
         private static void CheckModConfig()
         {
             if (File.Exists(Statics.ConfigFilePath))

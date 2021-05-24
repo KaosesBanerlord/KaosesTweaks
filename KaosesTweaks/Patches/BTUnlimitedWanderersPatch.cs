@@ -1,12 +1,7 @@
 ﻿using HarmonyLib;
 using KaosesTweaks.Settings;
-using KaosesTweaks.Utils;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.SandBox.CampaignBehaviors;
 
 namespace KaosesTweaks.Patches
@@ -19,7 +14,10 @@ namespace KaosesTweaks.Patches
         private static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
         {
             List<CodeInstruction> list = new List<CodeInstruction>(instructions);
-            list.RemoveRange(147, 3);
+            if (list.Count == 165)
+            {
+                list.RemoveRange(147, 3);
+            }
             return list.AsEnumerable<CodeInstruction>();
         }
 

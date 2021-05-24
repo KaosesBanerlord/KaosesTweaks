@@ -117,7 +117,6 @@ namespace KaosesTweaks.Patches
         }
     }
 
-    //[HarmonyPatch(typeof(CraftingVM), "HaveEnergy")]
     class BTCraftingVMPatch
     {
         [HarmonyPatch(typeof(CraftingVM), "HaveEnergy")]
@@ -232,7 +231,7 @@ namespace KaosesTweaks.Patches
                 IM.MessageDebug("GetSkillXpForSmelting Patch called");
                 float baseXp = MathF.Round(0.02f * (float)item.Value);
                 baseXp *= Statics._settings.SmithingSmeltingXpValue;
-                IM.MessageDebug("GetSkillXpForSmelting  base: " + (MathF.Round(0.02f * (float)item.Value)).ToString() + "  new :" + baseXp.ToString());              
+                IM.MessageDebug("GetSkillXpForSmelting  base: " + (MathF.Round(0.02f * (float)item.Value)).ToString() + "  new :" + baseXp.ToString());
                 __result = (int)baseXp;
                 return false;
             }
@@ -264,7 +263,7 @@ namespace KaosesTweaks.Patches
         static bool Prepare() => MCMSettings.Instance != null && MCMSettings.Instance.SmithingXpModifiers && MCMSettings.Instance.MCMSmithingHarmoneyPatches;
     }
 
-    
+
 
     //~ Energy Tweaks
     [HarmonyPatch(typeof(DefaultSmithingModel), "GetEnergyCostForRefining")]
@@ -298,7 +297,6 @@ namespace KaosesTweaks.Patches
             return true;
         }
 
-        //static bool Prepare() => MCMSettings.Instance is { } settings && (settings.SmithingEnergyDisable || settings.SmithingEnergyRefiningModifiers);
         static bool Prepare() => MCMSettings.Instance is { } settings && (settings.SmithingEnergyDisable || settings.CraftingStaminaTweakEnabled) && MCMSettings.Instance.MCMSmithingHarmoneyPatches;
     }
 
@@ -311,7 +309,6 @@ namespace KaosesTweaks.Patches
             {
                 int.TryParse(item.Tier.ToString(), out int itemTier);
                 int tier6 = 6;
-                //int num = (int)(10 + ItemObject.ItemTiers.Tier6 * item.Tier);
                 int num = (int)(10 + tier6 * itemTier);
                 if (Statics._settings.SmithingEnergyDisable)
                 {
@@ -322,7 +319,7 @@ namespace KaosesTweaks.Patches
                     __result = 0;
                     return false;
                 }
-                else //if (Statics._settings.CraftingStaminaTweakEnabled)
+                else
                 {
                     float tmp = num * Statics._settings.SmithingEnergySmithingValue;
                     if (Statics._settings.CraftingDebug)
@@ -341,10 +338,9 @@ namespace KaosesTweaks.Patches
             return true;
         }
 
-        //static bool Prepare() => MCMSettings.Instance is { } settings && (settings.SmithingEnergyDisable || settings.SmithingEnergySmithingModifiers);
         static bool Prepare() => MCMSettings.Instance is { } settings && (settings.SmithingEnergyDisable || settings.CraftingStaminaTweakEnabled) && MCMSettings.Instance.MCMSmithingHarmoneyPatches;
     }
-    
+
     [HarmonyPatch(typeof(DefaultSmithingModel), "GetEnergyCostForSmelting")]
     public class GetEnergyCostForSmeltingPatch
     {
@@ -364,7 +360,7 @@ namespace KaosesTweaks.Patches
                     __result = 0;
                     return false;
                 }
-                else //if (Statics._settings.CraftingStaminaTweakEnabled)
+                else
                 {
                     float tmp = num * Statics._settings.SmithingEnergySmeltingValue;
                     if (Statics._settings.CraftingDebug)
@@ -383,9 +379,8 @@ namespace KaosesTweaks.Patches
             return true;
         }
 
-        //static bool Prepare() => MCMSettings.Instance is { } settings && (settings.SmithingEnergyDisable || settings.SmithingEnergySmeltingModifiers);
         static bool Prepare() => MCMSettings.Instance is { } settings && (settings.SmithingEnergyDisable || settings.CraftingStaminaTweakEnabled) && MCMSettings.Instance.MCMSmithingHarmoneyPatches;
-        
+
     }
 
 

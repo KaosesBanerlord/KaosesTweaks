@@ -1,16 +1,19 @@
 ﻿using HarmonyLib;
+using KaosesTweaks.Settings;
+using KaosesTweaks.Utils;
 using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.CampaignSystem.Conversation.Persuasion;
 using TaleWorlds.CampaignSystem.SandBox.CampaignBehaviors;
+
 /* Another chance at marriage */
 namespace KaosesTweaks.Patches
 {
-    class GetPersuasionTasksForCourtship
+    public class GetPersuasionTasksForCourtship
     {
-         
+
         // These are Harmony patches because player lines cannot be removed or replaced
         [HarmonyPatch(typeof(RomanceCampaignBehavior))]
         internal class Patches
@@ -26,16 +29,15 @@ namespace KaosesTweaks.Patches
             [HarmonyPatch("conversation_player_can_open_courtship_on_condition")]
             public static bool Prefix1(ref bool __result)
             {
-                var lastAttempt = SubModule.LastAttempts.TryGetValue(Hero.OneToOneConversationHero, out var value)
+                CampaignTime lastAttempt = SubModule.LastAttempts.TryGetValue(Hero.OneToOneConversationHero, out var value)
                     ? value
-                    : CampaignTime.Zero;
+                    : CampaignTime.DaysFromNow(-1f);
 
-                if (CampaignTime.DaysFromNow(-1f) < lastAttempt)
+                if (CampaignTime.Now.ToDays < lastAttempt.ToDays)
                 {
                     __result = false;
                     return false;
                 }
-
                 return true;
             }
 
@@ -71,7 +73,8 @@ namespace KaosesTweaks.Patches
                 return false;
             }
         }
-        
+
+        static bool Prepare() => MCMSettings.Instance is { } settings && settings.AnotherChanceAtMarriageEnabled;
     }
 }
 /* Another chance at marriage */

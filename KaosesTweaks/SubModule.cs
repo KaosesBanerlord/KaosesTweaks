@@ -8,34 +8,25 @@ using KaosesTweaks.Utils;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
-using System.Windows.Forms;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.SandBox.CampaignBehaviors;
 using TaleWorlds.Core;
-using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
-using static TaleWorlds.Core.ItemObject;
 using KaosesTweaks.BTTweaks;
 using System.Text;
 using System.Linq;
-/*
- 
- /singleplayer _MODULES_*Bannerlord.Harmony*Bannerlord.ButterLib*Bannerlord.MBOptionScreen*Bannerlord.UIExtenderEx*BetterExceptionWindow*Native*SandBoxCore*CustomBattle*Sandbox*StoryMode*$(ModuleName)*_MODULES_
- 
 
-/singleplayer _MODULES_*Bannerlord.Harmony*Bannerlord.ButterLib*Bannerlord.MBOptionScreen*Bannerlord.UIExtenderEx*BetterExceptionWindow*Native*SandBoxCore*CustomBattle*Sandbox*StoryMode*KaosesTweaks*_MODULES_
- */
+
 namespace KaosesTweaks
 {
     public class SubModule : MBSubModuleBase
     {
+        private Harmony? harmonyKT;
 
         /* Another chance at marriage */
         public static Dictionary<Hero, CampaignTime> LastAttempts;
         public static readonly FastInvokeHandler RemoveUnneededPersuasionAttemptsHandler =
         HarmonyLib.MethodInvoker.GetHandler(AccessTools.Method(typeof(RomanceCampaignBehavior), "RemoveUnneededPersuasionAttempts"));
-        private Harmony _harmony;
-        public static bool HasPatched = false;
         /* Another chance at marriage */
 
         protected override void OnSubModuleLoad()
@@ -57,8 +48,11 @@ namespace KaosesTweaks
                     if (Kaoses.IsHarmonyLoaded())
                     {
                         IM.DisplayModLoadedMessage();
-                        var harmony = new Harmony(Statics.HarmonyId);
-                        harmony.PatchAll(Assembly.GetExecutingAssembly());
+                        if (harmonyKT == null)
+                        {
+                            harmonyKT = new Harmony(Statics.HarmonyId);
+                            harmonyKT.PatchAll(Assembly.GetExecutingAssembly());
+                        }
                     }
                     else { IM.DisplayModHarmonyErrorMessage(); }
                 }
@@ -66,9 +60,10 @@ namespace KaosesTweaks
             }
             catch (Exception ex)
             {
-                //Handle exceptions
-                IM.MessageError("Error loading initial config: " + ex.ToStringFull());
+                IM.ShowError("Error loading", "initial config", ex);
             }
+
+
         }
 
 
@@ -93,25 +88,38 @@ namespace KaosesTweaks
                         {
                             PrisonerImprisonmentTweak.DailyTick();
                         });
+                        if (Statics._settings.Debug)
+                        {
+                            IM.MessageDebug("Loaded DailyTickEvent PrisonerImprisonmentTweak");
+                        }
                     }
                     catch (Exception ex)
                     {
-                        IM.MessageError(ex.ToStringFull());
-                        MessageBox.Show($":\n\n{ex.ToStringFull()}");
+                        IM.ShowError("Prisoner Imprisonment Tweak Error", " Game Initialization Finished Error", ex);
                     }
 
                 }
-
-                if (gameType != null && Statics._settings.MCMItemModifiers)
+                try
                 {
-                    new KaosesItemTweaks(gameType.Items);
+                    if (Statics._settings.MCMItemModifiers)
+                    {
+                        new KaosesItemTweaks(gameType.Items);
+                        if (Statics._settings.Debug)
+                        {
+                            IM.MessageDebug("Loaded KaosesItemTweaks");
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    IM.ShowError("Kaoses Item Tweaks Error", "Game Initialization Finished Error", ex);
                 }
 
             }
             catch (Exception ex)
             {
                 //Handle exceptions
-                IM.MessageError("Error OnGameInitializationFinished "+ ex.ToStringFull());
+                IM.ShowError("Error initializing one of the game tweaks", "Game Initialization Finished Error", ex);
             }
 
 
@@ -129,40 +137,62 @@ namespace KaosesTweaks
                 try
                 {
                     AddModels(campaignGameStarter);
-                    PlayerBattleEndEventListener playerBattleEndEventListener = new PlayerBattleEndEventListener();
-                    CampaignEvents.OnPlayerBattleEndEvent.AddNonSerializedListener(playerBattleEndEventListener, new Action<MapEvent>(playerBattleEndEventListener.IncreaseLocalRelationsAfterBanditFight));
                 }
                 catch (Exception ex)
                 {
-                    IM.MessageError("Error OnGameStart: " + ex.ToStringFull());
-                    MessageBox.Show($"Error Initialising Culture Changer:\n\n{ex.ToStringFull()}");
+                    IM.ShowError("Error initializing game models", "Game Start Error", ex);
+                }
+                //~ BT
+                try
+                {
+                    if (Statics._settings.MCMKillingBanditsEnabled)
+                    {
+                        PlayerBattleEndEventListener playerBattleEndEventListener = new PlayerBattleEndEventListener();
+                        CampaignEvents.OnPlayerBattleEndEvent.AddNonSerializedListener(playerBattleEndEventListener, new Action<MapEvent>(playerBattleEndEventListener.IncreaseLocalRelationsAfterBanditFight));
+                        if (Statics._settings.Debug)
+                        {
+                            IM.MessageDebug("Loaded Killing Bandits raises relationships playerBattleEndEventListener Behavior");
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    IM.ShowError("Error initializing Killing Bandits raises relationships", "Game Start Error", ex);
                 }
 
                 try
                 {
                     /* Another chance at marriage */
-                    LastAttempts = new Dictionary<Hero, CampaignTime>();
-                    /* Another chance at marriage */
-                    campaignGameStarter.CampaignBehaviors.Add(new AnotherChanceBehavior());
+                    if (Statics._settings.AnotherChanceAtMarriageEnabled)
+                    {
+                        LastAttempts = new Dictionary<Hero, CampaignTime>();
+                        campaignGameStarter.CampaignBehaviors.Add(new AnotherChanceBehavior());
+                        if (Statics._settings.Debug)
+                        {
+                            IM.MessageDebug("Loaded AnotherChanceBehavior Behavior");
+                        }
+                    }
                     /* Another chance at marriage */
                 }
                 catch (Exception ex)
                 {
-                    IM.MessageError("Error OnGameStart: "+ex.ToStringFull());
-                    MessageBox.Show($"Error Initialising Culture Changer:\n\n{ex.ToStringFull()}");
+                    IM.ShowError("Error initializing Another chance at marriage", "Game Start Error", ex);
                 }
                 try
                 {
                     //~BT
                     if (Statics._settings.EnableCultureChanger)
                     {
+                        if (Statics._settings.Debug)
+                        {
+                            IM.MessageDebug("Loaded ChangeSettlementCulture Behavior");
+                        }
                         campaignGameStarter.AddBehavior(new ChangeSettlementCulture());
                     }
                 }
                 catch (Exception ex)
                 {
-                    IM.MessageError("Error OnGameStart: "+ex.ToStringFull());
-                    MessageBox.Show($"Error Initialising Culture Changer:\n\n{ex.ToStringFull()}");
+                    IM.ShowError("Error initializing Culture Changer", "Game Start Error", ex);
                 }
             }
         }
@@ -185,8 +215,7 @@ namespace KaosesTweaks
             }
             catch (Exception ex)
             {
-                //Handle exceptions
-                IM.MessageError("Error DoLoading : " + ex.ToStringFull());
+                IM.ShowError("Error initializing game loading tweak calls", "Game Loading Error", ex);
             }
             return base.DoLoading(game);
         }
@@ -194,37 +223,17 @@ namespace KaosesTweaks
         protected override void OnSubModuleUnloaded()
         {
             base.OnSubModuleUnloaded();
-            try
-            {
-                _harmony?.UnpatchAll(Statics.HarmonyId);
-                HasPatched = false;
-            }
-            catch (Exception ex)
-            {
-                //Handle exceptions
-                //IM.MessageError("Error OnGameEnd harmony un-patch: " + ex.ToStringFull());
-            }
         }
 
         public override void OnGameEnd(Game game)
         {
-            try
-            {
-                _harmony?.UnpatchAll(Statics.HarmonyId);
-                HasPatched = false;
-            }
-            catch (Exception ex)
-            {
-                //Handle exceptions
-                //IM.MessageError("Error OnGameEnd harmony un-patch: " + ex.ToStringFull());
-            }
-            
+
         }
 
 
         //~ BT
 
-/*
+        /*
         public override void OnMissionBehaviourInitialize(Mission mission)
         {
             if (mission == null) return;
@@ -236,9 +245,6 @@ namespace KaosesTweaks
 
             if (campaignGameStarter != null && MCMSettings.Instance is { } settings)
             {
-                
-                
-
                 if (settings.MCMClanModifiers)
                 {
                     if (settings.Debug)
@@ -249,7 +255,7 @@ namespace KaosesTweaks
                 }
                 if (settings.HideoutBattleTroopLimitTweakEnabled)
                 {
-/*
+                    /*
                     if (settings.Debug)
                     {
                         IM.MessageDebug("Loaded Kaoses Bandit Density model Model Override");
@@ -336,8 +342,8 @@ namespace KaosesTweaks
                         sb.AppendLine();
                         sb.AppendLine("The age tweaks will not be applied until these errors have been resolved.");
                         sb.Append("Note that this is only a warning message and not a crash.");
-
-                        MessageBox.Show(sb.ToString(), "Configuration Error in Bannerlord Tweaks");
+                        //MessageBox.Show(sb.ToString(), "Configuration Error in Age Tweaks");
+                        IM.ShowError(sb.ToString(), "Configuration Error in Age Tweaks");
                     }
                     else
                     {
@@ -386,52 +392,6 @@ namespace KaosesTweaks
             }
         }
         //~ BT
-
-
-        public void DumpValues()
-        {
-            //IM.MessageDebug("Debug Message: DumpValues");
-
-/*
-            IM.MessageDebug("");
-
-            IM.MessageDebug("GetSkillXpForRefining");
-            bool b1 = MCMSettings.Instance is { } settings && settings.SmithingRefiningXpModifiers;
-            IM.MessageDebug("Prepare state: " + b1.ToString());
-
-            IM.MessageDebug("GetSkillXpForSmelting");
-            bool b2 = MCMSettings.Instance is { } settings2 && settings2.SmithingSmeltingXpModifiers;
-            IM.MessageDebug("Prepare state: " + b2.ToString());
-
-            IM.MessageDebug("GetSkillXpForSmithing");
-            bool b3 = MCMSettings.Instance is { } settings3 && settings3.SmithingSmithingXpModifiers;
-            IM.MessageDebug("Prepare state: " + b3.ToString());
-
-            IM.MessageDebug("");
-            IM.MessageDebug("");
-            IM.MessageDebug("");
-            IM.MessageDebug("");
-
-
-            IM.MessageDebug("GetEnergyCostForRefining");
-            bool b4 = MCMSettings.Instance is { } settings4 && (settings4.SmithingEnergyDisable || settings4.SmithingEnergyRefiningModifiers);
-            IM.MessageDebug("Prepare state: " + b4.ToString());
-
-            IM.MessageDebug("GetEnergyCostForSmithing");
-            bool b5 = MCMSettings.Instance is { } settings5 && (settings5.SmithingEnergyDisable || settings5.SmithingEnergySmithingModifiers);
-            IM.MessageDebug("Prepare state: " + b5.ToString());
-
-            IM.MessageDebug("GetEnergyCostForSmelting");
-            bool b6 = MCMSettings.Instance is { } settings6 && (settings6.SmithingEnergyDisable || settings6.SmithingEnergySmeltingModifiers);
-            IM.MessageDebug("Prepare state: " + b6.ToString());
-
-*/
-
-            //bool t = MCMSettings.Instance != null && MCMSettings.Instance.SmithingXpModifiers;
-            //IM.MessageDebug("");
-            //IM.MessageDebug("");
-
-        }
 
     }
 }

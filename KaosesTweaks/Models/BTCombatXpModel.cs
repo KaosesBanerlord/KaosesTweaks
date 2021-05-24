@@ -2,10 +2,6 @@
 using KaosesTweaks.Settings;
 using KaosesTweaks.Utils;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.SandBox.GameComponents.Map;
 using TaleWorlds.Core;
@@ -46,8 +42,8 @@ namespace KaosesTweaks.Models
                 {
                     if (Statics._settings.TournamentDebug)
                     {
-                        IM.MessageDebug("TournamentHeroXP : original : "+ xpAmount.ToString() + " new: " 
-                            +(MathF.Round(settings.TournamentHeroExperienceMultiplier * (float)xpAmount)).ToString() + "  multiplier: " + settings.TournamentHeroExperienceMultiplier.ToString());
+                        IM.MessageDebug("TournamentHeroXP : original : " + xpAmount.ToString() + " new: "
+                            + (MathF.Round(settings.TournamentHeroExperienceMultiplier * (float)xpAmount)).ToString() + "  multiplier: " + settings.TournamentHeroExperienceMultiplier.ToString());
                     }
                     xpAmount = (int)MathF.Round(settings.TournamentHeroExperienceMultiplier * (float)xpAmount);
                 }
@@ -80,7 +76,7 @@ namespace KaosesTweaks.Models
                 {
                     if (Statics._settings.XpModifiersDebug)
                     {
-                        IM.MessageDebug(" TroopBattleExperienceMultiplier Original: " + xpAmount .ToString()+  " new XP amount: " + ((xpAmount * settings.TroopBattleExperienceMultiplier)).ToString() + "  multiplier: " + settings.TroopBattleExperienceMultiplier.ToString());
+                        IM.MessageDebug(" TroopBattleExperienceMultiplier Original: " + xpAmount.ToString() + " new XP amount: " + ((xpAmount * settings.TroopBattleExperienceMultiplier)).ToString() + "  multiplier: " + settings.TroopBattleExperienceMultiplier.ToString());
                     }
                     xpAmount = (int)MathF.Round(xpAmount * settings.TroopBattleExperienceMultiplier);
                 }
@@ -88,7 +84,7 @@ namespace KaosesTweaks.Models
                 {
                     xpAmount = MathF.Round((float)xpAmount * 1f);
                 }
-                    
+
             }
 
             else if (missionType == MissionTypeEnum.SimulationBattle)
@@ -97,7 +93,7 @@ namespace KaosesTweaks.Models
                 {
                     if (Statics._settings.XpModifiersDebug)
                     {
-                        IM.MessageDebug("TroopBattleSimulationExperienceMultiplier original: " + xpAmount .ToString()+ " new XP amount: " + ((xpAmount * settings.TroopBattleSimulationExperienceMultiplier)).ToString() + "  multiplier: " + settings.TroopBattleSimulationExperienceMultiplier.ToString());
+                        IM.MessageDebug("TroopBattleSimulationExperienceMultiplier original: " + xpAmount.ToString() + " new XP amount: " + ((xpAmount * settings.TroopBattleSimulationExperienceMultiplier)).ToString() + "  multiplier: " + settings.TroopBattleSimulationExperienceMultiplier.ToString());
                     }
                     xpAmount = (int)MathF.Round(xpAmount * settings.TroopBattleSimulationExperienceMultiplier);
                 }
@@ -105,7 +101,7 @@ namespace KaosesTweaks.Models
                 {
                     xpAmount = MathF.Round((float)xpAmount * 0.9f);
                 }
-                    
+
             }
 
             ExplainedNumber xpToGain = new(xpAmount, false, null);

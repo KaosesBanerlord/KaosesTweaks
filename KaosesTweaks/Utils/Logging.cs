@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 
 namespace KaosesTweaks.Utils
 {
@@ -11,7 +12,7 @@ namespace KaosesTweaks.Utils
             try
             {
                 using StreamWriter sw = File.AppendText(Statics.logPath);
-                sw.WriteLine(PrePrend + " : " + message + "\r\n");
+                sw.WriteLine(PrePrend + " : " + DateTime.Now.ToString() + " : " + message + "\r\n");
             }
             catch
             {

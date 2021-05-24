@@ -11,12 +11,20 @@ namespace KaosesTweaks.Patches
     {
         public static bool Prefix(ref int __result)
         {
-			if (MCMSettings.Instance.HideoutBattleTroopLimitTweakEnabled)
+            if (MCMSettings.Instance.HideoutBattleTroopLimitTweakEnabled)
             {
+                if (MCMSettings.Instance.BattleSizeDebug)
+                {
+                    IM.MessageDebug($"Hideout Battle Troop Limit Tweak: original: {__result}");
+                }
                 __result = Math.Min(MCMSettings.Instance.HideoutBattleTroopLimit, 90);
+                if (MCMSettings.Instance.BattleSizeDebug)
+                {
+                    IM.MessageDebug($"Hideout Battle Troop Limit Tweak: modified: {__result}");
+                }
                 return false;
             }
-			return true;
+            return true;
 
         }
 

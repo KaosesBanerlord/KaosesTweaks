@@ -60,6 +60,9 @@ All tweaks can be set through Mod Configuration Menu integration. The tweaks cov
 - Gold loss after a defeat
 
 ### Battle Tweaks:
+- Static Battle Size Modifier (old version)
+- Dynamic Battle Size Modifer (BETA)
+- Battle Morale Effect Modifier
 - Hideout Battle Troop Limit
 - Continue Hideout Battle On Player Death
 - Continue Battle On Losing Duel
@@ -115,6 +118,8 @@ All tweaks can be set through Mod Configuration Menu integration. The tweaks cov
 - Crafting Stamina Gain Outside Settlement
 - Hide Locked Weapons in Smelting Menu
 - Unlocking Parts From Smelted Weapons
+- modify refing formula cost and output
+- set base bonus for crafted quality types fine, master and legendary
 
 ### Auto Item Locks:
 - Toggle Auto lock all horses except lame  
@@ -147,6 +152,8 @@ All tweaks can be set through Mod Configuration Menu integration. The tweaks cov
 
 ### Another Chance at marriage:
 - Implemented and updated   Jicksaw  Another Chance at Marriage
+- Can be Enabled/Disabled
+- can configure minimum days between attempts to restart courtship
 
 ### Skill Xp Modifiers:
 - Global skill xp modifiers
@@ -255,91 +262,11 @@ All tweaks can be set through Mod Configuration Menu integration. The tweaks cov
 - Show Number of Days of Food 
 - Campaign Speed Fast Forward 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 ## ChangeLog
-- 0.0.1 Initial version 
-- 0.0.2 Implemented Item modifiers
-- 0.0.3 Implemented Battle reward modifiers
-- 0.0.4 Implemented Clan Limit changers
-- 0.0.5 Implemented character level up reward changers
-- 0.0.6 Implemented Pregnancy changers
-- 0.0.7 Implemented Crafting modifiers 
-- 0.0.8 Implemented Item auto locks
-- 0.0.9 Implemented 
-      - Killing bandits raises relation ships, 
-      - another chance at marriage. 
-      - Compiled and updated to 1.5.9
-- 0.1.0 Implemented Mod Configuration Menu﻿ as a soft dependency. Have not tested mod with out MCM
-- 0.1.1
-      - Fixed label for MCM levels for attribute 
-      - Fixed label for relation ship bonuses from killing bandits prisoners option 
-- 0.1.2 
-      -  Implemented Learning rate multiplier
-      -  Implemented Skill xp rate multipliers , global and individual
-      -  Fixed missing dll include 
--0.1.3
-    - Removed a logging command thatr was report to cause a crash
--0.1.4 
-    - Updated MCM to be translatable
--0.1.5 
-    - Updated and made MCM a required mod removed soft dependency
-- 0.2.0
-    - Intergrated BannerlordTweaks Settings
-    - added BT todo AI party limits same as player *untested
-    - added per tier multiplier for custom spawn parties *untested
-    - intergrated a simplified version of trade goods mod
-    - merged duplicate menu categories
-    - Made smithing selectable to only use patches for new energy cost and xp cost multipliers, or use model overriding
-    - fixed learning rate multiplier to be more accurate
-- 0.2.1
-    - fixed companion additional not being multiplied by clan tier	
-    - all weapons weight modifications removed (Battle crashes fix by Cebullus)	
-    - added check to disable culture changer	
-    - code changes to hopefully change issues more granually with behaviours	
-    - fixed issue with calculated learning limits to use modified values
-- 0.2.2
-    - fixed harmony patching issue with loading saved games
-- 0.2.3
-    - Cebullus located and fixed item modification error with weights
-    - Added new Learning limit multipliers added
-- 0.2.6
-    - added a new dynamic battle size tweak, which takes troop composition before battle start and also during battle into consideration. Automatically adjusts Battle Size accordingly.
-    - added new battle morale effect modifier (if set to 0% will prevent troops fleeing)
-    - harmony patching error fixed (fixes also unlimited wanderers tweak bug)
-
+refer to mod page
 
 ## Todo
-
-
-
-### ToDo-List BT:
-- militia hard cap and settings for villages
-- Tweak for troop upgrade costs (kaoses wages)
-- rework of troop training (??)
-- retreat/panic/fleeing in battles tweak (??)
-- food consumption tweak - done v 2.0
-- tweak persuation chance (when trying to get lords to join your faction) ()
-- AI Lord party limit clan tier based (as player's limit) (check)
-- rework wage tweaks to be more granular/detailed (something in the direction kaos wentwith his mod)
-- include tweak for bandit party limits (size and count) (kaoses party sizes simpler)
-- tweaks for death, injury probability and healing rates ()
-- tweaks for excecutions,, f.ex. relationchange, cruelty, honor ()
-- check possibility of amount of corpses tweak (cancelled)
-- check battle size tweak (reinforcements/separate battles) (cancelled)
-- add presets, one with old defaults (was already done ??)
-- somehow reorganize cluttered settings (ongoing ...) (rework version 1 as of v2.0)
+refer to wiki
 
 ## Contributor
 - Cebullus

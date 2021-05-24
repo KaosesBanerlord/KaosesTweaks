@@ -11,8 +11,6 @@ namespace KaosesTweaks.Common
 {
     class Kaoses
     {
-
-
         public static bool IsPlayerClan(PartyBase party)
         {
             bool isSame = false;
@@ -28,6 +26,7 @@ namespace KaosesTweaks.Common
             }
             return isSame;
         }
+
         public static bool IsPlayerClan(Hero hero)
         {
             bool isSame = false;
@@ -127,15 +126,15 @@ namespace KaosesTweaks.Common
         public static bool IsPlayerLord(Hero hero)
         {
             //hero.CharacterObject.IsHero
-/*
-            IM.MessageDebug("IsLord: "
-                + "Name: " + hero.CharacterObject.Name.ToString() + "\r\n"
-                + "Occupation: " + hero.CharacterObject.Occupation.ToString() + "\r\n"
-                + "IsHero: " + hero.CharacterObject.IsHero.ToString() + "\r\n"
-                + "IsPlayerClan: " + IsPlayerClan(hero).ToString() + "\r\n"
-                //+ "IsBasicTroop: " + hero.CharacterObject.IsBasicTroop.ToString() +"\r\n"
-                + "result" + ((hero.CharacterObject.Occupation == Occupation.Lord || hero.CharacterObject.Occupation == Occupation.Lady || hero.CharacterObject.Occupation == Occupation.Wanderer) && !hero.IsHumanPlayerCharacter && IsPlayerClan(hero)).ToString() + "\r\n"
-                );*/
+            /*
+                        IM.MessageDebug("IsLord: "
+                            + "Name: " + hero.CharacterObject.Name.ToString() + "\r\n"
+                            + "Occupation: " + hero.CharacterObject.Occupation.ToString() + "\r\n"
+                            + "IsHero: " + hero.CharacterObject.IsHero.ToString() + "\r\n"
+                            + "IsPlayerClan: " + IsPlayerClan(hero).ToString() + "\r\n"
+                            //+ "IsBasicTroop: " + hero.CharacterObject.IsBasicTroop.ToString() +"\r\n"
+                            + "result" + ((hero.CharacterObject.Occupation == Occupation.Lord || hero.CharacterObject.Occupation == Occupation.Lady || hero.CharacterObject.Occupation == Occupation.Wanderer) && !hero.IsHumanPlayerCharacter && IsPlayerClan(hero)).ToString() + "\r\n"
+                            );*/
             return (hero.CharacterObject.Occupation == Occupation.Lord || hero.CharacterObject.Occupation == Occupation.Lady || hero.CharacterObject.Occupation == Occupation.Wanderer) && !hero.IsHumanPlayerCharacter && IsPlayerClan(hero);
         }
 
@@ -170,51 +169,6 @@ namespace KaosesTweaks.Common
             return loaded;
         }
 
-
-
-
-        // Token: 0x06002FC2 RID: 12226 RVA: 0x000C94C8 File Offset: 0x000C76C8
-        public static bool KaosesHeroPregnancyCheckCondition(Hero hero)
-        {
-            if (Statics._settings.PregnancyDebug)
-            {
-                IM.MessageDebug("HeroComesOfAge: " + Campaign.Current.Models.AgeModel.HeroComesOfAge + "  Direct: " + Statics._settings.HeroComesOfAge);
-                IM.MessageDebug("New PregnancyDurationValue: " + Statics._settings.PregnancyDurationValue.ToString());
-            }
-            //return hero.IsFemale && hero.IsAlive && hero.Age > (float)Campaign.Current.Models.AgeModel.HeroComesOfAge && (hero.Clan == null || !hero.Clan.IsRebelClan) && !CampaignOptions.IsLifeDeathCycleDisabled;
-            return hero.IsFemale && hero.IsAlive && hero.Age > (float)Campaign.Current.Models.AgeModel.HeroComesOfAge && hero.Clan == null && !CampaignOptions.IsLifeDeathCycleDisabled;
-        }
-
-
-        /// <summary>
-        /// Code replicates what happens inside the AddFactor call e.g. result.AddFactor(((0.4f * (float)attributeValue)), attributeName);
-        /// first it
-        /// (float)Math.Round((double)value, 3) * 100f
-        /// then when they get the multiply lines they do this
-        /// if (explanationLine.OperationType == ExplainedNumber.StatExplainer.OperationType.Multiply)
-		/// {
-		/// num = baseNumber* num * 0.01f;
-        /// }
-        /// </summary>
-        /// <returns>float</returns>
-        public static float getFactorValueForExplainers(int currentValue, int baseNumber)
-        {
-            return getFactorValueForExplainers((float)currentValue, baseNumber);
-        }
-        
-        public static float getFactorValueForExplainers(int currentValue, float baseNumber)
-        {
-            return getFactorValueForExplainers((float)currentValue, baseNumber);
-        }
-        
-        public static float getFactorValueForExplainers(float currentValue, float baseNumber)
-        {
-            float value = 0.0f;
-            value = ((float)Math.Round((double)(currentValue), 3) * 100f);
-            double tmp = Math.Round((baseNumber * value * 0.01f), 3);
-            value = (float)tmp;
-            return value;
-        }
 
     }
 }

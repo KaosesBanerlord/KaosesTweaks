@@ -6,10 +6,12 @@ namespace KaosesTweaks.Models
 {
     class BTDifficultyModel : DefaultDifficultyModel
     {
-        public override float GetDamageToFriendsMultiplier()
-        {
-            return MCMSettings.Instance is { } settings && settings.DamageToFriendsTweakEnabled ? settings.DamageToFriendsMultiplier : base.GetDamageToFriendsMultiplier();
-        }
+        /*
+                public override float GetDamageToFriendsMultiplier()
+                {
+                    return MCMSettings.Instance is { } settings && settings.DamageToFriendsTweakEnabled ? settings.DamageToFriendsMultiplier : base.GetDamageToFriendsMultiplier();
+                }
+        */
 
         public override float GetDamageToPlayerMultiplier()
         {
@@ -30,5 +32,39 @@ namespace KaosesTweaks.Models
         {
             return MCMSettings.Instance is { } settings && settings.PlayerMapMovementSpeedBonusTweakEnabled ? settings.PlayerMapMovementSpeedBonusMultiplier : base.GetPlayerMapMovementSpeedBonusMultiplier();
         }
+
+        public override float GetPersuasionBonusChance()
+        {
+            return MCMSettings.Instance is { } settings && settings.PlayerPersuasionBonusChanceTweakEnabled ? settings.PlayerPersuasionBonusChanceMultiplier : base.GetPersuasionBonusChance();
+        }
+
+        public override float GetClanMemberDeathChanceReduction()
+        {
+            return MCMSettings.Instance is { } settings && settings.ClanMemberDeathChanceReductionTweakEnabled ? settings.ClanMemberDeathChanceReductionMultiplier : base.GetClanMemberDeathChanceReduction();
+        }
+
+
+
+        // Token: 0x06002C31 RID: 11313 RVA: 0x000AC2F0 File Offset: 0x000AA4F0
+        /*
+                public override int GetPlayerRecruitSlotBonus()
+                {
+                    switch (CampaignOptions.RecruitmentDifficulty)
+                    {
+                        case CampaignOptions.Difficulty.VeryEasy:
+                            return 2;
+                        case CampaignOptions.Difficulty.Easy:
+                            return 1;
+                        case CampaignOptions.Difficulty.Realistic:
+                            return 0;
+                        default:
+                            return 0;
+                    }
+                }*/
+
+
+
+
+
     }
 }
