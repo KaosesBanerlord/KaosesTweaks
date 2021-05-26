@@ -201,7 +201,7 @@ namespace KaosesTweaks.Settings
             SettingPropertyGroup("{=KT_ACAMC}Another Chance At Marrige")] //, GroupOrder = 1
         public bool AnotherChanceAtMarriageEnabled { get; set; } = false;
 
-        [SettingPropertyInteger("{=KT_ACAMDBT}Days Between Tries", 1, 20, "0 Companions", Order = 0, RequireRestart = false,
+        [SettingPropertyInteger("{=KT_ACAMDBT}Days Between Tries", 1, 20, "0 Days", Order = 0, RequireRestart = false,
             HintText = "{=KT_ACAMDBT_Desc}The number of days that has to pass between attempts to restart the courtship. [Native: N/A].")]
         [SettingPropertyGroup("{=KT_ACAMC}Another Chance At Marrige")]
         public int AnotherChanceAtMarriageDaysTillRetry { get; set; } = 3;
@@ -2591,6 +2591,26 @@ namespace KaosesTweaks.Settings
         public float TroopBattleSimulationExperienceMultiplier { get; set; } = 0.9f;
         #endregion //~ Troop Experience Tweaks
         #endregion //~ XP Tweaks
+
+
+        //~ To be deleted in 1.5.10
+        [SettingPropertyBool("{=BT_Settings_001203}Damage to Friends Tweak", Order = 4, RequireRestart = false, IsToggle = true,
+            HintText = "{=BT_Settings_001203_Desc}Allows you to change the damage the player's friends receive."),
+            SettingPropertyGroup("{=BT_Settings_001000}Campaign Tweaks" + "/" + "{=BT_Settings_001200}Difficulty Tweaks" + "/" + "{=BT_Settings_001203}Damage to Friends Tweak", GroupOrder = 2)]
+        public bool DamageToFriendsTweakEnabled { get; set; } = false;
+
+        [SettingPropertyFloatingInteger("{=BT_Settings_001204}Damage to Friends Tweak Amount", 0.1f, 5.0f, "0%", RequireRestart = false, Order = 5,
+            HintText = "{=BT_Settings_001204_Desc}Native values: Very Easy: 30%, Easy: 67%, Realistic: 100%. This value is used to calculate the damage the player's friends receive."),
+            SettingPropertyGroup("{=BT_Settings_001000}Campaign Tweaks" + "/" + "{=BT_Settings_001200}Difficulty Tweaks" + "/" + "{=BT_Settings_001203}Damage to Friends Tweak")]
+        public float DamageToFriendsMultiplier { get; set; } = 1.0f;
+
+        [SettingPropertyFloatingInteger("{=BT_Settings_008702}Elite Ranged Militia Spawn Chance", 0.01f, 1f, "0%", RequireRestart = false, Order = 3,
+            HintText = "{=BT_Settings_008702_Desc}Native value is 10%. Sets the chance that the militia spawning in towns and castles are elite ranged troops."),
+            SettingPropertyGroup("{=BT_Settings_008000}Settlement Tweaks" + "/" + "{=BT_Settings_008700}Elite Militia")]
+        public float SettlementEliteRangedSpawnRateBonus { get; set; } = 0.1f;
+        //~ To be deleted in 1.5.10
+
+
 
         //~ Presets
         #region Presets

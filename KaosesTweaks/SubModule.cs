@@ -206,6 +206,19 @@ namespace KaosesTweaks
                 {
                     if (settings.PrisonerImprisonmentTweakEnabled)
                         PrisonerImprisonmentTweak.Apply(Campaign.Current);
+                    // 1.5.7.2 - Disable until we understand main quest changes.
+                    //if (settings.TweakedConspiracyQuestTimerEnabled)
+                    //    BTConspiracyQuestTimerTweak.Apply(Campaign.Current);
+                }
+            }
+            catch (Exception ex)
+            {
+                IM.ShowError("Error initializing game loading PrisonerImprisonmentTweakEnabled calls", "Game Loading Error", ex);
+            }
+            try
+            {
+                if (Campaign.Current != null && MCMSettings.Instance is { } settings)
+                {
                     if (settings.DailyTroopExperienceTweakEnabled)
                         DailyTroopExperienceTweak.Apply(Campaign.Current);
                     // 1.5.7.2 - Disable until we understand main quest changes.
@@ -215,7 +228,7 @@ namespace KaosesTweaks
             }
             catch (Exception ex)
             {
-                IM.ShowError("Error initializing game loading tweak calls", "Game Loading Error", ex);
+                IM.ShowError("Error initializing game loading DailyTroopExperienceTweakEnabled calls", "Game Loading Error", ex);
             }
             return base.DoLoading(game);
         }

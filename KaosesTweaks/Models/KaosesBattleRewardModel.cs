@@ -27,14 +27,11 @@ namespace KaosesTweaks.Models
         }
 
         // Token: 0x06002D87 RID: 11655 RVA: 0x000B5C58 File Offset: 0x000B3E58
-        public override ExplainedNumber CalculateRenownGain(PartyBase party, float renownValueOfBattle, float contributionShare)
+        public override float CalculateRenownGain(PartyBase party, float renownValueOfBattle, float contributionShare, ref ExplainedNumber result)
         {
             //~ KT
-            float renowGainBase = 0.0f;
-            renowGainBase = GetModifiedRenownGain(renownValueOfBattle * contributionShare);
+            GetModifiedRenownGain(renownValueOfBattle * contributionShare, ref result);
             //~ KT
-            //ExplainedNumber result = new ExplainedNumber(renownValueOfBattle * contributionShare, true, null);
-            ExplainedNumber result = new ExplainedNumber(renowGainBase, true, null);
             if (party.IsMobile)
             {
                 if (party.MobileParty.HasPerk(DefaultPerks.Charm.ShowYourScars, false))
@@ -49,31 +46,26 @@ namespace KaosesTweaks.Models
                 MobileParty mobileParty = party.MobileParty;
                 PerkHelper.AddPerkBonusForCharacter(famousCommander, (mobileParty != null) ? mobileParty.Leader : null, true, ref result);
             }
-            return result;
+            return result.ResultNumber;
         }
 
         // Token: 0x06002D88 RID: 11656 RVA: 0x000B5CEB File Offset: 0x000B3EEB
-        public override ExplainedNumber CalculateInfluenceGain(PartyBase party, float influenceValueOfBattle, float contributionShare)//, ref ExplainedNumber resul
+        public override float CalculateInfluenceGain(PartyBase party, float influenceValueOfBattle, float contributionShare, ref ExplainedNumber result)
         {
             //~ KT
-            float influenceGainBase = 0.0f;
-            influenceGainBase = GetModifiedInfluenceGain(party, (influenceValueOfBattle * contributionShare));
-            ExplainedNumber result = new ExplainedNumber(party.MapFaction.IsKingdomFaction ? influenceGainBase : 0f, true, null);
+            GetModifiedInfluenceGain(party, (influenceValueOfBattle * contributionShare), ref result);
             //result.Add(party.MapFaction.IsKingdomFaction ? (influenceValueOfBattle * contributionShare) : 0f, null, null);
             //~ KT
-            return result;
+            return result.ResultNumber;
         }
 
         // Token: 0x06002D89 RID: 11657 RVA: 0x000B5D14 File Offset: 0x000B3F14
-        public override ExplainedNumber CalculateMoraleGainVictory(PartyBase party, float renownValueOfBattle, float contributionShare)
+        public override float CalculateMoraleGainVictory(PartyBase party, float renownValueOfBattle, float contributionShare, ref ExplainedNumber result)
         {
             //~ KT
-            float moraleGainBase = 0.0f;
-            moraleGainBase = GetModifiedMoraleGain((float)(0.5f + renownValueOfBattle * contributionShare * 0.5f));
+            GetModifiedMoraleGain((float)(0.5f + renownValueOfBattle * contributionShare * 0.5f), ref result);
             //result.Add(0.5f + renownValueOfBattle * contributionShare * 0.5f, null, null);
             //~ KT
-            //ExplainedNumber result = new ExplainedNumber(0.5f + renownValueOfBattle * contributionShare * 0.5f, true, null);
-            ExplainedNumber result = new ExplainedNumber(moraleGainBase, true, null);
             if (party.IsMobile && party.MobileParty.HasPerk(DefaultPerks.Throwing.LongReach, true))
             {
                 PerkHelper.AddPerkBonusForParty(DefaultPerks.Throwing.LongReach, party.MobileParty, false, ref result);
@@ -82,7 +74,7 @@ namespace KaosesTweaks.Models
             {
                 PerkHelper.AddPerkBonusForParty(DefaultPerks.Leadership.CitizenMilitia, party.MobileParty, false, ref result);
             }
-            return result;
+            return result.ResultNumber;
         }
 
         // Token: 0x06002D8A RID: 11658 RVA: 0x000B5D9C File Offset: 0x000B3F9C
@@ -117,13 +109,13 @@ namespace KaosesTweaks.Models
             return (int)modifiedRelationShipGain;
         }
 
-        protected float GetModifiedRenownGain(float renownGain)//, ref ExplainedNumber result
+        protected void GetModifiedRenownGain(float renownGain, ref ExplainedNumber result)
         {
             float modifiedRenownGain = renownGain;
             if (Statics._settings.BattleRewardsRenownGainModifiers)
             {
                 modifiedRenownGain = renownGain * Statics._settings.BattleRewardsRenownGainMultiplier;
-                //result.Add(modifiedRenownGain, new TextObject("KT renown tweak", null), null);
+                result.Add(modifiedRenownGain, new TextObject("KT renown tweak", null), null);
                 if (Statics._settings.BattleRewardsDebug)
                 {
                     IM.MessageDebug("Original Renown Gain : " + renownGain.ToString() +
@@ -131,15 +123,21 @@ namespace KaosesTweaks.Models
                         " Using Multiplier : " + Statics._settings.BattleRewardsRenownGainMultiplier.ToString());
                 }
             }
-            return modifiedRenownGain;
+            else
+            {
+                result.Add(modifiedRenownGain, null, null);
+            }
+
+
         }
 
-        protected float GetModifiedInfluenceGain(PartyBase party, float influenceGain)
+        protected void GetModifiedInfluenceGain(PartyBase party, float influenceGain, ref ExplainedNumber result)
         {
             float modifiedInfluenceGain = influenceGain;
             if (Statics._settings.BattleRewardsInfluenceGainModifiers)
             {
                 modifiedInfluenceGain = influenceGain * Statics._settings.BattleRewardsInfluenceGainMultiplier;
+                result.Add(party.MapFaction.IsKingdomFaction ? (modifiedInfluenceGain) : 0f, new TextObject("KT influence tweak", null), null);
                 if (Statics._settings.BattleRewardsDebug)
                 {
                     IM.MessageDebug("Original Influence Gain : " + influenceGain.ToString() +
@@ -147,15 +145,19 @@ namespace KaosesTweaks.Models
                         " Using Multiplier : " + Statics._settings.BattleRewardsInfluenceGainMultiplier.ToString());
                 }
             }
-            return modifiedInfluenceGain;
+            else
+            {
+                result.Add(party.MapFaction.IsKingdomFaction ? (modifiedInfluenceGain) : 0f, null, null);
+            }
         }
 
-        protected float GetModifiedMoraleGain(float moraleGain)
+        protected void GetModifiedMoraleGain(float moraleGain, ref ExplainedNumber result)
         {
             float modifiedMoraleGain = moraleGain;
             if (Statics._settings.BattleRewardsMoraleGainModifiers)
             {
                 modifiedMoraleGain = moraleGain * Statics._settings.BattleRewardsMoraleGainMultiplier;
+                result.Add(modifiedMoraleGain, new TextObject("KT morale tweak", null), null);
                 if (Statics._settings.BattleRewardsDebug)
                 {
                     IM.MessageDebug("Original Morale Gain : " + moraleGain.ToString() +
@@ -163,7 +165,10 @@ namespace KaosesTweaks.Models
                         " Using Multiplier : " + Statics._settings.BattleRewardsMoraleGainMultiplier.ToString());
                 }
             }
-            return modifiedMoraleGain;
+            else
+            {
+                result.Add(modifiedMoraleGain, null, null);
+            }
         }
 
         protected float GetModifiedGoldLossAfterDefeat(float originalGoldLoss)
