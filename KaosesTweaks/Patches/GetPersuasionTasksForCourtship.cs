@@ -29,14 +29,17 @@ namespace KaosesTweaks.Patches
             [HarmonyPatch("conversation_player_can_open_courtship_on_condition")]
             public static bool Prefix1(ref bool __result)
             {
-                CampaignTime lastAttempt = SubModule.LastAttempts.TryGetValue(Hero.OneToOneConversationHero, out var value)
-                    ? value
-                    : CampaignTime.DaysFromNow(-1f);
-
-                if (CampaignTime.Now.ToDays < lastAttempt.ToDays)
+                if (Hero.OneToOneConversationHero != null)
                 {
-                    __result = false;
-                    return false;
+                    CampaignTime lastAttempt = SubModule.LastAttempts.TryGetValue(Hero.OneToOneConversationHero, out var value)
+                        ? value
+                        : CampaignTime.DaysFromNow(-1f);
+
+                    if (CampaignTime.Now.ToDays < lastAttempt.ToDays)
+                    {
+                        __result = false;
+                        return false;
+                    }
                 }
                 return true;
             }
