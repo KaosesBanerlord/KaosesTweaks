@@ -18,6 +18,10 @@ namespace KaosesTweaks.Behaviors
         public void OnSessionLaunched(CampaignGameStarter campaignGameStarter)
         {
             this.AddDialogs(campaignGameStarter);
+            if (Statics._settings.AnotherChanceAtMarriageDebug)
+            {
+                IM.MessageDebug($"Another Chance At Marriage OnSessionLaunched Added Dialogs");
+            }
         }
 
         public override void SyncData(IDataStore dataStore)
@@ -59,7 +63,14 @@ namespace KaosesTweaks.Behaviors
 
             var attraction = Romance.GetAttractionValueAsPercent(Hero.OneToOneConversationHero, Hero.MainHero);
             var chance = Math.Max(0.0f, Math.Min(20.0f + 2 * relation + 0.5f * attraction, 175.0f) / 200.0f);
-            return MBRandom.RandomFloat < chance;
+            float randonNumber = MBRandom.RandomFloat;
+            IM.MessageDebug($"attraction = {attraction} \n" +
+                            $"relation = {relation}\n" +
+                            $"chance = {chance}\n" +
+                            $"randonNumber = {randonNumber}\n" +
+                            $"pass random check = {randonNumber < chance}"
+                            );
+            return randonNumber < chance;
         }
 
         private static void Another_chance_success_on_consequence()

@@ -69,6 +69,11 @@ namespace KaosesTweaks.Settings
         [SettingPropertyGroup("Debug", GroupOrder = 100)]
         public bool ArmyDebug { get; set; } = false;
 
+        [SettingPropertyBool("{=KT_Debug_020}Debug mode - Another Chance At marriage tweaks", IsToggle = false, Order = 0, RequireRestart = true,
+            HintText = "{=KT_Debug_020}Debug mode - Another Chance At marriage tweaks")]
+        [SettingPropertyGroup("Debug", GroupOrder = 100)]
+        public bool AnotherChanceAtMarriageDebug { get; set; } = false;
+
         [SettingPropertyBool("{=KT_Debug_003}Debug mode - Battle reward tweaks", IsToggle = false, Order = 0, RequireRestart = true,
             HintText = "{=KT_Debug_003}Debug mode - Battle reward tweaks")]
         [SettingPropertyGroup("Debug", GroupOrder = 100)]
