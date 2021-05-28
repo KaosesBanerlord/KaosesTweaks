@@ -938,6 +938,7 @@
 	<string id="KT_Debug_017" text ="Debug mode - Culture transformation tweaks" />
 	<string id="KT_Debug_018" text ="Create logfile" />
 	<string id="KT_Debug_019" text ="Debug mode - Killing Bandits Raises RelationShips tweaks" />
+  <string id="KT_Debug_020" text ="Debug mode - Another Chance At marriage tweaks" />
 
     <string id="KT_ACAM" text="Another Chance At Marrige Enabled" />
     <string id="KT_ACAMH" text="Enables the another chance at marriage tweaks." />

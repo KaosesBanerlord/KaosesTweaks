@@ -160,12 +160,16 @@ namespace KaosesTweaks
                     IM.ShowError("Error initializing Killing Bandits raises relationships", "Game Start Error", ex);
                 }
 
+                LastAttempts = new Dictionary<Hero, CampaignTime>();
                 try
                 {
                     /* Another chance at marriage */
                     if (Statics._settings.AnotherChanceAtMarriageEnabled)
                     {
-                        LastAttempts = new Dictionary<Hero, CampaignTime>();
+                        if (Statics._settings.AnotherChanceAtMarriageDebug)
+                        {
+                            IM.MessageDebug($"Another Chance At Marriage ENABLED");
+                        }
                         campaignGameStarter.CampaignBehaviors.Add(new AnotherChanceBehavior());
                         if (Statics._settings.Debug)
                         {
