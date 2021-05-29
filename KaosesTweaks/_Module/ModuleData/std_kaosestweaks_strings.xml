@@ -980,5 +980,9 @@
 	<string id="KTMCM_MC" text="Moral Change Modifier" />
 	<string id="KTMCM_MC_Desc" text="Increases or decreases the amount battle moral changes when different effects get applied. 0 % results in no battle moral changes at all and will prevent any unit fleeing for example [Native : 100%.]" />
 
+	<!-- 0.2.7 -->  
+				<string id="BT_Settings_004203" text="Enable Unlocking All Parts Fror Smelted Weapons"/>
+				<string id="BT_Settings_004203_Desc" text="Enables unlocking all wepaon parts for crafting weapons on next game load." />
+
 	</strings>
 </base>
