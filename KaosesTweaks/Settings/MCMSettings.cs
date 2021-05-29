@@ -748,6 +748,11 @@ namespace KaosesTweaks.Settings
             SettingPropertyGroup("{=BT_Settings_004000}Crafting Tweaks" + "/" + "{=BT_Settings_004200}Smelting")]
         public bool AutoLearnSmeltedParts { get; set; } = false;
 
+        [SettingPropertyBool("{=BT_Settings_004203}Enable Unlocking All Parts Fror Smelted Weapons", Order = 4, RequireRestart = true,
+            HintText = "{=BT_Settings_004203_Desc}Enables unlocking all wepaon parts for crafting weapons on next game load."),
+            SettingPropertyGroup("{=BT_Settings_004000}Crafting Tweaks" + "/" + "{=BT_Settings_004200}Smelting")]
+        public bool craftingUnlockAllParts { get; set; } = false;
+
         #endregion
 
         //~ Crafting Quality Bonus
@@ -1071,9 +1076,9 @@ namespace KaosesTweaks.Settings
 
         //~ Ranged Weapons
         #region Ranged Weapons
-        //[SettingPropertyBool("{=KTMCM_RWM}Ranged Weapons Modifiers", IsToggle = true, Order = 0, RequireRestart = false,
-        //    HintText = "{=KTMCM_ITMH}Enables modifying the weight and price.")]
-        //[SettingPropertyGroup("{=KTMCM_ItemTweaks}Item Tweaks" + "/" + "{=KTMCM_CRW}Ranged Weapons")]
+        [SettingPropertyBool("{=KTMCM_RWM}Ranged Weapons Modifiers", IsToggle = true, Order = 0, RequireRestart = false,
+            HintText = "{=KTMCM_ITMH}Enables modifying the weight and price.")]
+        [SettingPropertyGroup("{=KTMCM_ItemTweaks}Item Tweaks" + "/" + "{=KTMCM_CRW}Ranged Weapons")]
         public bool MCMRagedWeaponsModifiers { get; set; } = false;
 
         //~ Weight
