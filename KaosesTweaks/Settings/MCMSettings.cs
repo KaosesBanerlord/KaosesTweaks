@@ -1640,6 +1640,7 @@ namespace KaosesTweaks.Settings
         [SettingPropertyGroup("{=BT_Settings_006000}Party Tweaks" + "/" + "{=KTMCM_CFood}Food Consumption")]
         public float PartyFoodConsumptionMultiplier { get; set; } = 1.0f;
         #endregion //~ MobilePartyFoodConsumption
+
         #endregion //~ Party Tweaks
 
         //~ Pregnancy 
@@ -2601,6 +2602,25 @@ namespace KaosesTweaks.Settings
         public float TroopBattleSimulationExperienceMultiplier { get; set; } = 0.9f;
         #endregion //~ Troop Experience Tweaks
         #endregion //~ XP Tweaks
+
+        //~ MobilePartyViewDistance
+        #region MobilePartyViewDistance
+
+        //~ NOT TO BE ENABLED WILL BREAK THE GAME TESTIJNHG ONLY
+
+        /*
+                [SettingPropertyBool("{=KTMCM_XPMMPF}Party View Distance Modifiers " + "*", IsToggle = true, Order = 0, RequireRestart = true,
+                    HintText = "{=KTMCM_XPMMPFH}Enable Party View Distance modifiers.")]
+                [SettingPropertyGroup("{=BT_Settings_006000}Party Tweaks" + "/" + "{=KTMCM_CFood}View Distance")]*/
+        public bool MobilePartyViewDistanceEnabled { get; set; } = false;
+
+        /*
+                [SettingPropertyFloatingInteger("{=KTMCM_XPMMPFM}View Distance Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
+                    HintText = "{=KTMCM_XPMMPFMH}Multiply Party View Distance by the multiplier [Native : 1.0[100%]]. allows increasing or decreasing View Distance")]
+                [SettingPropertyGroup("{=BT_Settings_006000}Party Tweaks" + "/" + "{=KTMCM_CFood}View Distance")]*/
+        public float MobilePartyViewDistanceMultiplier { get; set; } = 1.0f;
+        #endregion //~ MobilePartyViewDistance
+
 
         //~ Presets
         #region Presets
