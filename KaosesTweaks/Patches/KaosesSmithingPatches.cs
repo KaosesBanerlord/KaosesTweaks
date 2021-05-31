@@ -76,7 +76,7 @@ namespace KaosesTweaks.Patches
                                          select x).ToArray<CraftingPiece>();
                 if (Statics._settings.craftingUnlockAllParts)
                 {
-                    if (array.Length != 0)
+                    if (array.Length != 0 && count < num)
                     {
                         foreach (CraftingPiece craftingPiece in array)
                         {                
@@ -84,11 +84,13 @@ namespace KaosesTweaks.Patches
                             if (!____openedParts.Contains(craftingPiece))
                             {
                                 ____openedParts.Add(craftingPiece);
-                                GameTexts.SetVariable("PARTNAME", craftingPiece.Name);
-                                InformationManager.AddQuickInformation(new TextObject("{=p9F90bc0}KT New Smithing Part Unlocked: {PARTNAME}.", null), 0, null, "");
+                                //GameTexts.SetVariable("PARTNAME", craftingPiece.Name);
+                                //InformationManager.AddQuickInformation(new TextObject("{=p9F90bc0}KT New Smithing Part Unlocked: {PARTNAME}.", null), 0, null, "");
                             
                             }
                         }
+                        InformationManager.AddQuickInformation(new TextObject("{=p9F90bc0}KT All Smithing Parts Unlocked:", null), 0, null, "");
+
                     }
                 }
             }

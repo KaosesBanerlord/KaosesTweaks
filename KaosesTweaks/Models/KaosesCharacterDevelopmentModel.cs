@@ -73,8 +73,7 @@ namespace KaosesTweaks.Models
                 attrText = new TextObject("KT " + attributeName.ToString(), null);
                 focusText = new TextObject("KT " + _skillFocusText, null);
             }
-            //float baseNo = (20f / (10f + (float)characterLevel) * learningMultiplier);
-            ExplainedNumber result = new ExplainedNumber(1.25f, true, null);
+            ExplainedNumber result = new ExplainedNumber(1.25f * learningMultiplier, true, null);
             result.AddFactor(((0.4f * (float)attributeValue)), attrText);
             result.AddFactor(((float)focusValue * 1f), focusText);
             int num = MBMath.Round(this.CalculateLearningLimit(attributeValue, focusValue, null, false).ResultNumber);
