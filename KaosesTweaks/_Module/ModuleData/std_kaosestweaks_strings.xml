@@ -982,5 +982,9 @@
 
 
     
+	<!-- 0.2.7 -->  
+				<string id="BT_Settings_004203" text="Enable Unlocking All Parts Fror Smelted Weapons"/>
+				<string id="BT_Settings_004203_Desc" text="Enables unlocking all wepaon parts for crafting weapons on next game load." />
+
 	</strings>
 </base>

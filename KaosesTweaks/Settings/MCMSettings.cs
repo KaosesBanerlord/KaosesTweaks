@@ -752,7 +752,6 @@ namespace KaosesTweaks.Settings
             HintText = "{=BT_Settings_004203_Desc}Enables unlocking all wepaon parts for crafting weapons on next game load."),
             SettingPropertyGroup("{=BT_Settings_004000}Crafting Tweaks" + "/" + "{=BT_Settings_004200}Smelting")]
         public bool craftingUnlockAllParts { get; set; } = false;
-
         #endregion
 
         //~ Crafting Quality Bonus
@@ -1640,6 +1639,7 @@ namespace KaosesTweaks.Settings
         [SettingPropertyGroup("{=BT_Settings_006000}Party Tweaks" + "/" + "{=KTMCM_CFood}Food Consumption")]
         public float PartyFoodConsumptionMultiplier { get; set; } = 1.0f;
         #endregion //~ MobilePartyFoodConsumption
+
         #endregion //~ Party Tweaks
 
         //~ Pregnancy 
@@ -2620,6 +2620,23 @@ namespace KaosesTweaks.Settings
         public float SettlementEliteRangedSpawnRateBonus { get; set; } = 0.1f;
         //~ To be deleted in 1.5.10
 
+        //~ MobilePartyViewDistance
+        #region MobilePartyViewDistance
+
+        //~ NOT TO BE ENABLED WILL BREAK THE GAME TESTIJNHG ONLY
+
+        /*
+                [SettingPropertyBool("{=KTMCM_XPMMPF}Party View Distance Modifiers " + "*", IsToggle = true, Order = 0, RequireRestart = true,
+                    HintText = "{=KTMCM_XPMMPFH}Enable Party View Distance modifiers.")]
+                [SettingPropertyGroup("{=BT_Settings_006000}Party Tweaks" + "/" + "{=KTMCM_CFood}View Distance")]*/
+        public bool MobilePartyViewDistanceEnabled { get; set; } = false;
+
+        /*
+                [SettingPropertyFloatingInteger("{=KTMCM_XPMMPFM}View Distance Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
+                    HintText = "{=KTMCM_XPMMPFMH}Multiply Party View Distance by the multiplier [Native : 1.0[100%]]. allows increasing or decreasing View Distance")]
+                [SettingPropertyGroup("{=BT_Settings_006000}Party Tweaks" + "/" + "{=KTMCM_CFood}View Distance")]*/
+        public float MobilePartyViewDistanceMultiplier { get; set; } = 1.0f;
+        #endregion //~ MobilePartyViewDistance
 
 
         //~ Presets
