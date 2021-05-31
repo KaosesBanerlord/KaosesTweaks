@@ -80,13 +80,9 @@ namespace KaosesTweaks.Patches
                     {
                         foreach (CraftingPiece craftingPiece in array)
                         {                
-                            //CraftingPiece craftingPiece = MBRandom.ChooseWeighted<CraftingPiece>(array, (CraftingPiece x) => smithingModel.GetProbabalityToOpenPart(x));
                             if (!____openedParts.Contains(craftingPiece))
                             {
-                                ____openedParts.Add(craftingPiece);
-                                //GameTexts.SetVariable("PARTNAME", craftingPiece.Name);
-                                //InformationManager.AddQuickInformation(new TextObject("{=p9F90bc0}KT New Smithing Part Unlocked: {PARTNAME}.", null), 0, null, "");
-                            
+                                ____openedParts.Add(craftingPiece);                            
                             }
                         }
                         InformationManager.AddQuickInformation(new TextObject("{=p9F90bc0}KT All Smithing Parts Unlocked:", null), 0, null, "");
