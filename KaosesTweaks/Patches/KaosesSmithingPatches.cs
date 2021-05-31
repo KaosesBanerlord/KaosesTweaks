@@ -54,6 +54,48 @@ namespace KaosesTweaks.Patches
         }
     }
 
+    [HarmonyPatch(typeof(CraftingCampaignBehavior), "OnSessionLaunched")]
+    public class OnSessionLaunchedPatch
+    {
+        static void Postfix(CraftingCampaignBehavior __instance, CraftingPiece[] ____allCraftingParts, List<CraftingPiece> ____openedParts)
+        {
+
+            if (Statics._settings.craftingUnlockAllParts)
+            {
+                if (____allCraftingParts == null)
+                {
+                    ____allCraftingParts = (from x in CraftingPiece.All
+                                            orderby x.Id
+                                            select x).ToArray<CraftingPiece>();
+                }
+                int num = ____allCraftingParts.Length;
+                int count = ____openedParts.Count;
+                SmithingModel smithingModel = Campaign.Current.Models.SmithingModel;
+                CraftingPiece[] array = (from x in ____allCraftingParts
+                                         where !____openedParts.Contains(x)
+                                         select x).ToArray<CraftingPiece>();
+                if (Statics._settings.craftingUnlockAllParts)
+                {
+                    if (array.Length != 0 && count < num)
+                    {
+                        foreach (CraftingPiece craftingPiece in array)
+                        {
+                            if (!____openedParts.Contains(craftingPiece))
+                            {
+                                ____openedParts.Add(craftingPiece);
+                            }
+                        }
+                        InformationManager.AddQuickInformation(new TextObject("{=p9F90bc0}KT All Smithing Parts Unlocked:", null), 0, null, "");
+
+                    }
+                }
+            }
+        }
+
+        static bool Prepare() => MCMSettings.Instance is { } settings && settings.craftingUnlockAllParts;
+    }
+
+
     [HarmonyPatch(typeof(CraftingCampaignBehavior), "GetMaxHeroCraftingStamina")]
     public class GetMaxHeroCraftingStaminaPatch
     {
@@ -384,49 +426,6 @@ namespace KaosesTweaks.Patches
 
     }
 
-
-    [HarmonyPatch(typeof(CraftingCampaignBehavior), "OnSessionLaunched")]
-    public class OnSessionLaunchedPatch
-    {
-        static void Postfix(CraftingCampaignBehavior __instance, CraftingPiece[] ____allCraftingParts, List<CraftingPiece> ____openedParts)
-        {
-
-            if (Statics._settings.craftingUnlockAllParts)
-            {
-                if (____allCraftingParts == null)
-                {
-                    ____allCraftingParts = (from x in CraftingPiece.All
-                                            orderby x.Id
-                                            select x).ToArray<CraftingPiece>();
-                }
-                int num = ____allCraftingParts.Length;
-                int count = ____openedParts.Count;
-                SmithingModel smithingModel = Campaign.Current.Models.SmithingModel;
-                CraftingPiece[] array = (from x in ____allCraftingParts
-                                         where !____openedParts.Contains(x)
-                                         select x).ToArray<CraftingPiece>();
-                if (Statics._settings.craftingUnlockAllParts)
-                {
-                    if (array.Length != 0)
-                    {
-                        foreach (CraftingPiece craftingPiece in array)
-                        {
-                            //CraftingPiece craftingPiece = MBRandom.ChooseWeighted<CraftingPiece>(array, (CraftingPiece x) => smithingModel.GetProbabalityToOpenPart(x));
-                            if (!____openedParts.Contains(craftingPiece))
-                            {
-                                ____openedParts.Add(craftingPiece);
-                                GameTexts.SetVariable("PARTNAME", craftingPiece.Name);
-                                InformationManager.AddQuickInformation(new TextObject("{=p9F90bc0}KT New Smithing Part Unlocked: {PARTNAME}.", null), 0, null, "");
-
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        static bool Prepare() => MCMSettings.Instance is { } settings && settings.craftingUnlockAllParts;
-    }
 
 
 }
