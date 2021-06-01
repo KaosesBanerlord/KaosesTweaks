@@ -2172,6 +2172,11 @@ namespace KaosesTweaks.Settings
             HintText = "{=BT_Settings_008604_Desc}Native value is 2.5%. Modifies the percentage of your militia retiring each dayin town."),
             SettingPropertyGroup("{=BT_Settings_008000}Settlement Tweaks" + "/" + "{=BT_Settings_008600}Normal Militia")]
         public float TownMilitiaRetirementModifier { get; set; } = 0.025f;
+
+        [SettingPropertyFloatingInteger("{=BT_Settings_008605}Village Militia Retirement Modifier", 0f, 0.25f, "0.0%/Day", RequireRestart = false, Order = 4,
+            HintText = "{=BT_Settings_008605_Desc}Native value is 2.5%. Modifies the percentage of your militia retiring each dayin town."),
+            SettingPropertyGroup("{=BT_Settings_008000}Settlement Tweaks" + "/" + "{=BT_Settings_008600}Normal Militia")]
+        public float VillageMilitiaRetirementModifier { get; set; } = 0.025f;
         #endregion //~ Settlement Tweaks - Normal Militia
 
         //~ Settlement Tweaks - Militia Bonus Tweaks - Elite Militia
@@ -3150,6 +3155,7 @@ namespace KaosesTweaks.Settings
                 TownMilitiaBonusFlat = 0f,
                 CastleMilitiaRetirementModifier = 0.025f,
                 TownMilitiaRetirementModifier = 0.025f,
+                VillageMilitiaRetirementModifier = 0.025f,
 
                 //~ Settlement Tweaks - Militia Bonus Tweaks - Elite Militia
                 SettlementMilitiaEliteSpawnRateBonusEnabled = false,
@@ -3775,6 +3781,7 @@ namespace KaosesTweaks.Settings
                 TownMilitiaBonusFlat = 0f,
                 CastleMilitiaRetirementModifier = 0.025f,
                 TownMilitiaRetirementModifier = 0.025f,
+                VillageMilitiaRetirementModifier = 0.025f,
 
                 //~ Settlement Tweaks - Militia Bonus Tweaks - Elite Militia
                 SettlementMilitiaEliteSpawnRateBonusEnabled = true,
