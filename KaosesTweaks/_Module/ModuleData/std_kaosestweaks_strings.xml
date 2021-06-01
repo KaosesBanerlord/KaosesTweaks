@@ -830,9 +830,11 @@
 				<string id="BT_Settings_008602" text="Town Militia Growth Bonus"/>
 				<string id="BT_Settings_008602_Desc" text="Native value is 0. Adds a flat bonus on how many militia gets recruited each day in towns." />
 				<string id="BT_Settings_008603" text="Castle Militia Retirement Modifier"/>
-				<string id="BT_Settings_008603_Desc" text="Native value is 2.5%. Modifies the percentage of your militia retiring each dayin castles." />
+				<string id="BT_Settings_008603_Desc" text="Native value is 2.5%. Modifies the percentage of your militia retiring each day in castles." />
 				<string id="BT_Settings_008604" text="Town Militia Retirement Modifier"/>
-				<string id="BT_Settings_008604_Desc" text="Native value is 2.5%. Modifies the percentage of your militia retiring each dayin town." />
+				<string id="BT_Settings_008604_Desc" text="Native value is 2.5%. Modifies the percentage of your militia retiring each day in towns." />
+				<string id="BT_Settings_008605" text="Village Militia Retirement Modifier"/>
+				<string id="BT_Settings_008605_Desc" text="Native value is 2.5%. Modifies the percentage of your militia retiring each day in villages." />
 			<string id="BT_Settings_008800" text="Tournaments" />
 				<string id="BT_Settings_008801" text="Renown Reward"/>
 				<string id="BT_Settings_008801_Desc" text="Sets the amount of renown awarded when you win a tournament."/>
