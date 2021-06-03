@@ -38,9 +38,9 @@ namespace KaosesTweaks.Models
             return MCMSettings.Instance is { } settings && settings.PlayerPersuasionBonusChanceTweakEnabled ? settings.PlayerPersuasionBonusChanceMultiplier : base.GetPersuasionBonusChance();
         }
 
-        public override float GetClanMemberDeathChanceReduction()
+        public override float GetClanMemberDeathChanceMultiplier()
         {
-            return MCMSettings.Instance is { } settings && settings.ClanMemberDeathChanceReductionTweakEnabled ? settings.ClanMemberDeathChanceReductionMultiplier : base.GetClanMemberDeathChanceReduction();
+            return MCMSettings.Instance is { } settings && settings.ClanMemberDeathChanceReductionTweakEnabled ? settings.ClanMemberDeathChanceReductionMultiplier : base.GetClanMemberDeathChanceMultiplier();
         }
 
 
