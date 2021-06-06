@@ -3267,7 +3267,7 @@ namespace KaosesTweaks.Settings
                 PrisonerSizeTweakAI = false,
 
 
-                //~ Prisoner Confirmity Tweaks
+                //~ Prisoner Conformity Tweaks
                 PrisonerConformityTweaksEnabled = false,
                 PrisonerConformityTweakBonus = 0,
                 PrisonerConformityTweaksApplyToClan = false,
@@ -3473,8 +3473,43 @@ namespace KaosesTweaks.Settings
                 TroopBattleExperienceMultiplierEnabled = false,
                 TroopBattleExperienceMultiplier = 1.0f,
                 TroopBattleSimulationExperienceMultiplierEnabled = false,
-                TroopBattleSimulationExperienceMultiplier = 0.9f
+                TroopBattleSimulationExperienceMultiplier = 0.9f,
 
+                KaosesDynamicSpeedModifiersEnabled = false,
+                DynamicFleeingSpeedReductionAmount = 0.0f,
+                DynamicFleeingSpeedReductionHours = 1,
+                KaosesStaticSpeedModifiersEnabled = false,
+                KaosesmininumSpeedAmount = 1.0f,
+                LooterSpeedReductionAmount = 0.0f,
+                SteppeSpeedReductionAmount = 0.0f,
+                DesertSpeedReductionAmount = 0.0f,
+                MountainSpeedReductionAmount = 0.0f,
+                ForestSpeedReductionAmount = 0.0f,
+                SeaRaiderSpeedReductionAmount = 0.0f,
+                CaravanSpeedReductiontEnabled = false,
+                CaravanSpeedReductionAmount = 0.0f,
+                EliteCaravanSpeedReductionAmount = 0.0f,
+                VillagerSpeedReductiontEnabled = false,
+                VillagerSpeedReductionAmount = -0.5f,
+                PlayerSpeedReductiontEnabled = false,
+                PlayerSpeedReductionAmount = 0.0f,
+                PlayerClanSpeedReductionAmount = 0.0f,
+                KingdomSpeedReductiontEnabled = false,
+                KingdomSpeedReductionAmount = 0.0f,
+                OtherKingdomSpeedReductionAmount = 0.0f,
+
+                ArrowMultipliersEnabled = false,
+                ArrowMultiplier = 1.0f,
+                ArrowValueMultiplier = 1.0f,
+                BoltsMultipliersEnabled = false,
+                BoltsMultiplier = 1.0f,
+                BoltsValueMultiplier = 1.0f,
+                BoltsWeightMultiplier = 1.0f,
+                ThrownMultiplierEnabled = false,
+                ThrownMultiplier = 1.0f,
+                ThrownValueMultiplier = 1.0f,
+                ThrownWeightMultiplier = 1.0f,
+                ThrownMissionFixMultiplierEnabled = false
 
 
             });
@@ -4099,9 +4134,46 @@ namespace KaosesTweaks.Settings
                 TroopBattleExperienceMultiplierEnabled = true,
                 TroopBattleExperienceMultiplier = 1.0f,
                 TroopBattleSimulationExperienceMultiplierEnabled = true,
-                TroopBattleSimulationExperienceMultiplier = 0.9f
+                TroopBattleSimulationExperienceMultiplier = 0.9f,
 
-            });
+                KaosesDynamicSpeedModifiersEnabled = true,
+                DynamicFleeingSpeedReductionAmount = 0.0f,
+                DynamicFleeingSpeedReductionHours = 1,
+                KaosesStaticSpeedModifiersEnabled = true,
+                KaosesmininumSpeedAmount = 1.0f,
+                LooterSpeedReductionAmount = 0.0f,
+                SteppeSpeedReductionAmount = 0.0f,
+                DesertSpeedReductionAmount = 0.0f,
+                MountainSpeedReductionAmount = 0.0f,
+                ForestSpeedReductionAmount = 0.0f,
+                SeaRaiderSpeedReductionAmount = 0.0f,
+                CaravanSpeedReductiontEnabled = true,
+                CaravanSpeedReductionAmount = 0.0f,
+                EliteCaravanSpeedReductionAmount = 0.0f,
+                VillagerSpeedReductiontEnabled = true,
+                VillagerSpeedReductionAmount = -0.5f,
+                PlayerSpeedReductiontEnabled = true,
+                PlayerSpeedReductionAmount = 0.0f,
+                PlayerClanSpeedReductionAmount = 0.0f,
+                KingdomSpeedReductiontEnabled = true,
+                KingdomSpeedReductionAmount = 0.0f,
+                OtherKingdomSpeedReductionAmount = 0.0f,
+
+                ArrowMultipliersEnabled = true,
+                ArrowMultiplier = 1.0f,
+                ArrowValueMultiplier = 1.0f,
+                BoltsMultipliersEnabled = true,
+                BoltsMultiplier = 1.0f,
+                BoltsValueMultiplier = 1.0f,
+                BoltsWeightMultiplier = 1.0f,
+                ThrownMultiplierEnabled = true,
+                ThrownMultiplier = 1.0f,
+                ThrownValueMultiplier = 1.0f,
+                ThrownWeightMultiplier = 1.0f,
+                ThrownMissionFixMultiplierEnabled = false
+
+
+            }); ;
 
             /*
             basePresets.Add("True", () => new MCMSettings()
