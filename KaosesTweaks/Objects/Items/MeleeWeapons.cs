@@ -5,13 +5,12 @@ namespace KaosesTweaks.Objects
 {
     public class MeleeWeapons : ItemModifiersBase
     {
-
         public MeleeWeapons(ItemObject itemObject) :
             base(itemObject)
         {
             if (_settings.ItemDebugMode)
             {
-                IM.MessageDebug("MeleeWeapons : ObjectsBase");
+                //IM.MessageDebug("MeleeWeapons : ObjectsBase");
             }
             TweakValues();
         }

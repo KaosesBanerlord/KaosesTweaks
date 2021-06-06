@@ -11,7 +11,7 @@ namespace KaosesTweaks.Objects
         {
             if (_settings.ItemDebugMode)
             {
-                IM.MessageDebug("Armor : ObjectsBase");
+                //IM.MessageDebug("Armor : ObjectsBase");
             }
             TweakValues();
         }

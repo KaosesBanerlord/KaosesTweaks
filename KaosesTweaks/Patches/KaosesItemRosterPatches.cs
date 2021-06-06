@@ -20,6 +20,7 @@ namespace KaosesTweaks.Patches
     {
         static bool Prefix(ItemRoster __instance, ItemObject item, int number, int __result)
         {
+/*
             if (Statics._settings.MCMItemModifiers)
             {
                 if (number == 0)
@@ -46,7 +47,7 @@ namespace KaosesTweaks.Patches
                     __result = __instance.AddToCounts(new EquipmentElement(item, null), number);
                     return false;
                 }
-            }
+            }*/
             return true;
         }
         static bool Prepare() => MCMSettings.Instance is { } settings && settings.MCMItemModifiers;

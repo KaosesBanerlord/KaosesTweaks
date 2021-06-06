@@ -11,7 +11,7 @@ namespace KaosesTweaks.Objects
         {
             if (_settings.ItemDebugMode)
             {
-                IM.MessageDebug("TradeGoods : ObjectsBase");
+                //IM.MessageDebug("TradeGoods : ObjectsBase");
             }
             TweakValues();
         }

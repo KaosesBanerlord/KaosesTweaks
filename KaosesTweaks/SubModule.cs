@@ -38,7 +38,6 @@ namespace KaosesTweaks
         protected override void OnBeforeInitialModuleScreenSetAsRoot()
         {
             base.OnBeforeInitialModuleScreenSetAsRoot();
-
             try
             {
                 ConfigLoader.LoadConfig();
@@ -62,8 +61,6 @@ namespace KaosesTweaks
             {
                 IM.ShowError("Error loading", "initial config", ex);
             }
-
-
         }
 
 
@@ -77,51 +74,43 @@ namespace KaosesTweaks
             {
                 return;
             }
+
+            //~ BT PrisonerImprisonmentTweak
             try
             {
                 if (Statics._settings is { } settings && (settings.EnableMissingHeroFix && settings.PrisonerImprisonmentTweakEnabled)) //
                 {
-                    //~ BT
-                    try
+                    CampaignEvents.DailyTickEvent.AddNonSerializedListener(this, delegate
                     {
-                        CampaignEvents.DailyTickEvent.AddNonSerializedListener(this, delegate
-                        {
-                            PrisonerImprisonmentTweak.DailyTick();
-                        });
-                        if (Statics._settings.Debug)
-                        {
-                            IM.MessageDebug("Loaded DailyTickEvent PrisonerImprisonmentTweak");
-                        }
-                    }
-                    catch (Exception ex)
+                        PrisonerImprisonmentTweak.DailyTick();
+                    });
+                    if (Statics._settings.Debug)
                     {
-                        IM.ShowError("Prisoner Imprisonment Tweak Error", " Game Initialization Finished Error", ex);
-                    }
-
-                }
-                try
-                {
-                    if (Statics._settings.MCMItemModifiers)
-                    {
-                        new KaosesItemTweaks(gameType.Items);
-                        if (Statics._settings.Debug)
-                        {
-                            IM.MessageDebug("Loaded KaosesItemTweaks");
-                        }
+                        IM.MessageDebug("Loaded DailyTickEvent PrisonerImprisonmentTweak");
                     }
                 }
-                catch (Exception ex)
-                {
-                    IM.ShowError("Kaoses Item Tweaks Error", "Game Initialization Finished Error", ex);
-                }
-
             }
             catch (Exception ex)
             {
-                //Handle exceptions
-                IM.ShowError("Error initializing one of the game tweaks", "Game Initialization Finished Error", ex);
+                IM.ShowError("Prisoner Imprisonment Tweak Error", " Game Initialization Finished Error", ex);
             }
 
+            //~ KaosesItemTweaks
+            try
+            {
+                if (Statics._settings.MCMItemModifiers)
+                {
+                    new KaosesItemTweaks(gameType.Items);
+                    if (Statics._settings.Debug)
+                    {
+                        IM.MessageDebug("Loaded KaosesItemTweaks");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                IM.ShowError("Kaoses Item Tweaks Error", "Game Initialization Finished Error", ex);
+            }
 
         }
 
@@ -133,7 +122,7 @@ namespace KaosesTweaks
             {
                 CampaignGameStarter campaignGameStarter = (CampaignGameStarter)gameStarter;
 
-                //~ BT
+                //~ BT initializing game models
                 try
                 {
                     AddModels(campaignGameStarter);
@@ -142,7 +131,8 @@ namespace KaosesTweaks
                 {
                     IM.ShowError("Error initializing game models", "Game Start Error", ex);
                 }
-                //~ BT
+
+                //~ BT MCMKillingBanditsEnabled
                 try
                 {
                     if (Statics._settings.MCMKillingBanditsEnabled)
@@ -160,6 +150,7 @@ namespace KaosesTweaks
                     IM.ShowError("Error initializing Killing Bandits raises relationships", "Game Start Error", ex);
                 }
 
+                //~ Another Chance At Marriage
                 LastAttempts = new Dictionary<Hero, CampaignTime>();
                 try
                 {
@@ -182,6 +173,8 @@ namespace KaosesTweaks
                 {
                     IM.ShowError("Error initializing Another chance at marriage", "Game Start Error", ex);
                 }
+
+                //~ ChangeSettlementCulture
                 try
                 {
                     //~BT
@@ -198,20 +191,63 @@ namespace KaosesTweaks
                 {
                     IM.ShowError("Error initializing Culture Changer", "Game Start Error", ex);
                 }
+
+                //~ KaosesCraftingCampaignBehaviors
+                try
+                {
+                    if (Statics._settings.ArrowMultipliersEnabled || Statics._settings.BoltsMultipliersEnabled 
+                        || Statics._settings.ThrownMultiplierEnabled)
+                    {
+                        if (Statics._settings.Debug)
+                        {
+                            IM.MessageDebug("Loaded KaosesCraftingCampaignBehaviors Behavior");
+                        }
+                        campaignGameStarter.AddBehavior(new KaosesCraftingCampaignBehaviors());
+                    }
+                }
+                catch (Exception ex)
+                {
+                    IM.ShowError("Error initializing KaosesCraftingCampaignBehaviors Changer", "Game Start Error", ex);
+                }
             }
         }
 
 
         public override bool DoLoading(Game game)
         {
+            //~ PrisonerImprisonmentTweakEnabled
             try
             {
                 if (Campaign.Current != null && MCMSettings.Instance is { } settings)
                 {
                     if (settings.PrisonerImprisonmentTweakEnabled)
                         PrisonerImprisonmentTweak.Apply(Campaign.Current);
+                }
+            }
+            catch (Exception ex)
+            {
+                IM.ShowError("Error initializing PrisonerImprisonmentTweakEnabled tweak calls", "Game Loading Error", ex);
+            }
+
+            //~ DailyTroopExperienceTweakEnabled
+            try
+            {
+                if (Campaign.Current != null && MCMSettings.Instance is { } settings)
+                {
                     if (settings.DailyTroopExperienceTweakEnabled)
                         DailyTroopExperienceTweak.Apply(Campaign.Current);
+                }
+            }
+            catch (Exception ex)
+            {
+                IM.ShowError("Error initializing DailyTroopExperienceTweakEnabled tweak calls", "Game Loading Error", ex);
+            }
+
+            //~ TweakedConspiracyQuestTimerEnabled
+            try
+            {
+                if (Campaign.Current != null && MCMSettings.Instance is { } settings)
+                {
                     // 1.5.7.2 - Disable until we understand main quest changes.
                     //if (settings.TweakedConspiracyQuestTimerEnabled)
                     //    BTConspiracyQuestTimerTweak.Apply(Campaign.Current);
@@ -219,7 +255,7 @@ namespace KaosesTweaks
             }
             catch (Exception ex)
             {
-                IM.ShowError("Error initializing game loading tweak calls", "Game Loading Error", ex);
+                IM.ShowError("Error initializing TweakedConspiracyQuestTimerEnabled tweak calls", "Game Loading Error", ex);
             }
             return base.DoLoading(game);
         }
@@ -236,7 +272,6 @@ namespace KaosesTweaks
 
 
         //~ BT
-
         /*
         public override void OnMissionBehaviourInitialize(Mission mission)
         {
