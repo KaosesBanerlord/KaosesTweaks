@@ -1171,7 +1171,7 @@ namespace KaosesTweaks.Settings
         public float ArrowMultiplier { get; set; } = 1.0f;
 
         [SettingPropertyFloatingInteger("{=KPM_APM}Arrows Price Multiplier", 0.1f, 10.0f, "#0%", Order = 2, RequireRestart = false,
-            HintText = "{=KPM_PMH}Multiply price by the multiplier [Native: 1.0(100%)]")]
+            HintText = "{=KPM_PMH}Multiply price by the multiplier [Native: 1.0(100%)].")]
         [SettingPropertyGroup("{=KTMCM_ItemTweaks}Item Tweaks" + "/" + "{=KPM_Arrows}Arrows")]
         public float ArrowValueMultiplier { get; set; } = 1.0f;
         //[SettingPropertyFloatingInteger("{=KPM_WM}Weight Multiplier", 0.1f, 10.0f, "#0%", Order = 2, RequireRestart = false,
@@ -1619,6 +1619,154 @@ namespace KaosesTweaks.Settings
         */
         #endregion
 
+        //~ Party Speeds
+        #region Kaoses Party Speeds
+        [SettingPropertyFloatingInteger("{=KPS_MSL}Minimum Speed limit", 0.1f, 3.5f, Order = 2, RequireRestart = false,
+            HintText = "{=KPS_MSLH}Set the lowest speed allowed for any party, if a parties speed would fall below this it will changed to the limit. [Native: 1.0f]")] //, "#0%"
+        [SettingPropertyGroup("{=KPS_PartySpeeds}Party Speeds" + "/" + "{=KPS_Gloabal}Global", GroupOrder = 3)]
+        public float KaosesmininumSpeedAmount { get; set; } = 1.0f;
+
+        //~ New Dynamic Decrease
+        #region New Dynamic Decrease
+        [SettingPropertyBool("{=KPS_DSME}Dynamic Fleeing Speed Modifiers Enabled", IsToggle = true, Order = 1, RequireRestart = true,
+            HintText = "{=KPS_DSMEH}Enables the new method to reduce a parties speed so long as they are fleeing.")]
+        [SettingPropertyGroup("{=KPS_PartySpeeds}Party Speeds" + "/" + "{=KPS_DynFlee}Dynamic Fleeing", GroupOrder = 1)]
+        public bool KaosesDynamicSpeedModifiersEnabled { get; set; } = false;
+
+        [SettingPropertyFloatingInteger("{=KPS_SMPH}Speed Modifier Per Hour/Reduction", -2.00f, 0.00f, Order = 2, RequireRestart = false,
+            HintText = "{=KPS_SMPHH}Modify Fleeing parties speed by the specified amount.")] //, "#0%"
+        [SettingPropertyGroup("{=KPS_PartySpeeds}Party Speeds" + "/" + "{=KPS_DynFlee}Dynamic Fleeing")]
+        public float DynamicFleeingSpeedReductionAmount { get; set; } = -0.10f;
+
+        [SettingPropertyInteger("{=KPS_HPC}Hours Per Change", 1, 24, "0 Hours", RequireRestart = false,
+             HintText = "{=KPS_HPCH}Set how many hours between speed reductions", Order = 3)]
+        [SettingPropertyGroup("{=KPS_PartySpeeds}Party Speeds" + "/" + "{=KPS_DynFlee}Dynamic Fleeing")]
+        public int DynamicFleeingSpeedReductionHours { get; set; } = 1;
+
+        #endregion //~ New Dynamic Decrease
+
+        //~ Old Static
+        #region Old Static
+        #region PartySpeed
+        [SettingPropertyBool("{=KPS_SSME}Static Speed Modifiers Enabled", IsToggle = true, Order = 1, RequireRestart = true,
+            HintText = "{=KPS_SSMEH}Enables static Kaoses party speed Modifiers")]
+        [SettingPropertyGroup("{=KPS_PartySpeeds}Party Speeds" + "/" + "{=KPS_StaticChange}Static Change", GroupOrder = 2)]
+        public bool KaosesStaticSpeedModifiersEnabled { get; set; } = false;
+
+        #region PartySpeed Looters
+        [SettingPropertyFloatingInteger("{=KPS_SSLM}Looter Speed Modifier", -3.5f, 3.5f, Order = 2, RequireRestart = false,
+            HintText = "{=KPS_SSLMH}Modify Looters parties speed by the specified amount.")] //, "#0%"
+        [SettingPropertyGroup("{=KPS_PartySpeeds}Party Speeds" + "/" + "{=KPS_StaticChange}Static Change" + "/" + "{=KTMCM_CBandits}Bandits")]
+        public float LooterSpeedReductionAmount { get; set; } = 0.0f;
+        #endregion PartySpeed Looters
+
+        #region PartySpeed Steppe
+        [SettingPropertyFloatingInteger("{=KPS_SSMS}Steppe Bandits Speed Modifier", -3.5f, 3.5f, Order = 2, RequireRestart = false,
+            HintText = "{=KPS_SSMSH}Modify Steppe parties speed by the specified amount.")] //, "#0%"
+        [SettingPropertyGroup("{=KPS_PartySpeeds}Party Speeds" + "/" + "{=KPS_StaticChange}Static Change" + "/" + "{=KTMCM_CBandits}Bandits")]
+        public float SteppeSpeedReductionAmount { get; set; } = 0.0f;
+        #endregion PartySpeed Steppe
+
+        #region PartySpeed Dessert
+        [SettingPropertyFloatingInteger("{=KPS_SSD}Desert Bandits Speed Modifier", -3.5f, 3.5f, Order = 2, RequireRestart = false,
+            HintText = "{=KPS_SSDH}Modify Desert parties speed by the specified amount.")] //, "#0%"
+        [SettingPropertyGroup("{=KPS_PartySpeeds}Party Speeds" + "/" + "{=KPS_StaticChange}Static Change" + "/" + "{=KTMCM_CBandits}Bandits")]
+        public float DesertSpeedReductionAmount { get; set; } = 0.0f;
+        #endregion PartySpeed Dessert
+
+        #region PartySpeed Mountain
+        [SettingPropertyFloatingInteger("{=KPS_SSM}Mountain Bandits Speed Modifier", -3.5f, 3.5f, Order = 2, RequireRestart = false,
+            HintText = "{=KPS_SSMH}Modify Mountain parties speed by the specified amount.")] //, "#0%"
+        [SettingPropertyGroup("{=KPS_PartySpeeds}Party Speeds" + "/" + "{=KPS_StaticChange}Static Change" + "/" + "{=KTMCM_CBandits}Bandits")]
+        public float MountainSpeedReductionAmount { get; set; } = 0.0f;
+        #endregion PartySpeed Mountain
+
+        #region PartySpeed Forest
+        [SettingPropertyFloatingInteger("{=KPS_SSF}Forest Bandits Speed Modifier", -3.5f, 3.5f, Order = 2, RequireRestart = false,
+            HintText = "{=KPS_SSFH}Modify Forest parties speed by the specified amount.")] //, "#0%"
+        [SettingPropertyGroup("{=KPS_PartySpeeds}Party Speeds" + "/" + "{=KPS_StaticChange}Static Change" + "/" + "{=KTMCM_CBandits}Bandits")]
+        public float ForestSpeedReductionAmount { get; set; } = 0.0f;
+        #endregion PartySpeed Forest
+
+        #region PartySpeed SeaRaiders
+        [SettingPropertyFloatingInteger("{=KPS_SSSR}SeaRaiders Speed Modifier", -3.5f, 3.5f, Order = 2, RequireRestart = false,
+            HintText = "{=KPS_SSSRH}Modify SeaRaiders parties speed by the specified amount.")] //, "#0%"
+        [SettingPropertyGroup("{=KPS_PartySpeeds}Party Speeds" + "/" + "{=KPS_StaticChange}Static Change" + "/" + "{=KTMCM_CBandits}Bandits")]
+        public float SeaRaiderSpeedReductionAmount { get; set; } = 0.0f;
+        #endregion PartySpeed SeaRaiders
+
+        #region PartySpeed Caravans
+        [SettingPropertyBool("{=KPS_SSCE}Caravan Modifiers Enabled", IsToggle = true, Order = 1, RequireRestart = false,
+            HintText = "{=KPS_SSCEH}Enables Caravan party speed Modifiers")]
+        [SettingPropertyGroup("{=KPS_PartySpeeds}Party Speeds" + "/" + "{=KPS_StaticChange}Static Change" + "/" + "{=KPS_Caravan}Caravan")]
+        public bool CaravanSpeedReductiontEnabled { get; set; } = false;
+
+        [SettingPropertyFloatingInteger("{=KPS_SSC}Caravan Speed Modifier", -3.5f, 3.5f, Order = 2, RequireRestart = false,
+            HintText = "{=KPS_SSCH}Modify Caravan parties speed by the specified amount.")] //, "#0%"
+        [SettingPropertyGroup("{=KPS_PartySpeeds}Party Speeds" + "/" + "{=KPS_StaticChange}Static Change" + "/" + "{=KPS_Caravan}Caravan")]
+        public float CaravanSpeedReductionAmount { get; set; } = 0.0f;
+        #endregion PartySpeed Caravans
+
+        #region PartySpeed EliteCaravans
+        [SettingPropertyFloatingInteger("{=KPS_SSCEE}Elite Caravan Speed Modifier", -3.5f, 3.5f, Order = 2, RequireRestart = false,
+            HintText = "{=KPS_SSCEEH}Modify Elite Caravan parties speed by the specified amount.")] //, "#0%"
+        [SettingPropertyGroup("{=KPS_PartySpeeds}Party Speeds" + "/" + "{=KPS_StaticChange}Static Change" + "/" + "{=KPS_Caravan}Caravan")]
+        public float EliteCaravanSpeedReductionAmount { get; set; } = 0.0f;
+        #endregion PartySpeed EliteCaravans
+
+        #region PartySpeed Villagers
+        [SettingPropertyBool("{=KPS_SSVE}Villagers Modifiers Enabled", IsToggle = true, Order = 1, RequireRestart = false,
+            HintText = "{=KPS_SSVEH}Enables Villagers party speed Modifiers")]
+        [SettingPropertyGroup("{=KPS_PartySpeeds}Party Speeds" + "/" + "{=KPS_StaticChange}Static Change" + "/" + "{=KPS_Villagers}Villagers")]
+        public bool VillagerSpeedReductiontEnabled { get; set; } = false;
+
+        [SettingPropertyFloatingInteger("{=KPS_SSV}Villager Speed Modifier", -3.5f, 3.5f, Order = 2, RequireRestart = false,
+            HintText = "{=KPS_SSVH}Modify Villagers parties speed by the specified amount.")] //, "#0%"
+        [SettingPropertyGroup("{=KPS_PartySpeeds}Party Speeds" + "/" + "{=KPS_StaticChange}Static Change" + "/" + "{=KPS_Villagers}Villagers")]
+        public float VillagerSpeedReductionAmount { get; set; } = 0.0f;
+        #endregion PartySpeed Villagers
+
+        #region PartySpeed Player
+        [SettingPropertyBool("{=KPS_SSPE}Player Modifiers", IsToggle = true, Order = 1, RequireRestart = false,
+            HintText = "{=KPS_SSPEH}Enables Player party speed Modifiers")]
+        [SettingPropertyGroup("{=KPS_PartySpeeds}Party Speeds" + "/" + "{=KPS_StaticChange}Static Change" + "/" + "{=KTMCM_CPlayer}Player")]
+        public bool PlayerSpeedReductiontEnabled { get; set; } = false;
+
+        [SettingPropertyFloatingInteger("{=KPS_SSP}Player Speed Modifier", -3.5f, 3.5f, Order = 2, RequireRestart = false,
+            HintText = "{=KPS_SSPH}Modify Player parties speed by the specified amount.")] //, "#0%"
+        [SettingPropertyGroup("{=KPS_PartySpeeds}Party Speeds" + "/" + "{=KPS_StaticChange}Static Change" + "/" + "{=KTMCM_CPlayer}Player")]
+        public float PlayerSpeedReductionAmount { get; set; } = 0.0f;
+        #endregion PartySpeed Player
+
+        #region PartySpeed Player Clan Members
+        [SettingPropertyFloatingInteger("{=KPS_SSPC}Player Clan Speed Modifier", -3.5f, 3.5f, Order = 2, RequireRestart = false,
+            HintText = "{=KPS_SSPCH}Modify Player Clan parties speed by the specified amount.")] //, "#0%"
+        [SettingPropertyGroup("{=KPS_PartySpeeds}Party Speeds" + "/" + "{=KPS_StaticChange}Static Change" + "/" + "{=KTMCM_CPlayer}Player")]
+        public float PlayerClanSpeedReductionAmount { get; set; } = 0.0f;
+        #endregion PartySpeed PlayerCompanions
+
+        #region PartySpeed Kingdom
+        [SettingPropertyBool("{=KPS_SSKE}Kingdom Modifiers", IsToggle = true, Order = 1, RequireRestart = false,
+            HintText = "{=KPS_SSKEH}Enables Kingdom party speed Modifiers")]
+        [SettingPropertyGroup("{=KPS_PartySpeeds}Party Speeds" + "/" + "{=KPS_StaticChange}Static Change" + "/" + "{=KPS_Kingdom}Kingdom")]
+        public bool KingdomSpeedReductiontEnabled { get; set; } = false;
+
+        [SettingPropertyFloatingInteger("{=KPS_SSK}Kingdom Speed Modifier", -3.5f, 3.5f, Order = 2, RequireRestart = false,
+            HintText = "{=KPS_SSKH}Modify Kingdom parties speed by the specified amount.")] //, "#0%"
+        [SettingPropertyGroup("{=KPS_PartySpeeds}Party Speeds" + "/" + "{=KPS_StaticChange}Static Change" + "/" + "{=KPS_Kingdom}Kingdom")]
+        public float KingdomSpeedReductionAmount { get; set; } = 0.0f;
+        #endregion PartySpeed Kingdom
+
+        #region PartySpeed MinorFactions
+        [SettingPropertyFloatingInteger("{=KPS_SSKOE}Other Kingdom Speed Modifier", -3.5f, 3.5f, Order = 2, RequireRestart = false,
+            HintText = "{=KPS_SSKOEH}Modify Other Kingdom parties speed by the specified amount.")] //, "#0%"
+        [SettingPropertyGroup("{=KPS_PartySpeeds}Party Speeds" + "/" + "{=KPS_StaticChange}Static Change" + "/" + "{=KPS_Kingdom}Kingdom")]
+        public float OtherKingdomSpeedReductionAmount { get; set; } = 0.0f;
+        #endregion PartySpeed MinorFactions
+        #endregion PartySpeed
+        #endregion //~ Old Static
+        #endregion //~ Kaoses Party Speeds
+
         //~ Party Tweaks
         #region Party Tweaks
         [SettingPropertyBool("{=BT_Settings_006000}Party Tweaks", IsToggle = true, Order = 0, RequireRestart = false,
@@ -1712,8 +1860,8 @@ namespace KaosesTweaks.Settings
         [SettingPropertyGroup("{=BT_Settings_006000}Party Tweaks" + "/" + "{=KTMCM_CFood}Food Consumption")]
         public float PartyFoodConsumptionMultiplier { get; set; } = 1.0f;
         #endregion //~ MobilePartyFoodConsumption
-
         #endregion //~ Party Tweaks
+
 
         //~ Pregnancy 
         #region Pregnancy
