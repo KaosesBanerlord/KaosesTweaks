@@ -29,6 +29,14 @@ namespace KaosesTweaks
         HarmonyLib.MethodInvoker.GetHandler(AccessTools.Method(typeof(RomanceCampaignBehavior), "RemoveUnneededPersuasionAttempts"));
         /* Another chance at marriage */
 
+        /* KaosesPartySpeeds */
+        public static Dictionary<MobileParty, CampaignTime> FleeingParties;
+        public static Dictionary<MobileParty, int> FleeingHours;
+        public static Dictionary<MobileParty, float> FleeingSpeedReduction;
+        public static MobileParty FleeingPartyPlayer;
+        /* KaosesPartySpeeds */
+
+
         protected override void OnSubModuleLoad()
         {
             base.OnSubModuleLoad();

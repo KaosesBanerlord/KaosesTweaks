@@ -1007,8 +1007,60 @@
     <string id="KPM_TSSM" text="Thrown Stack Multiplier"/>    
     <string id="KPM_SSMH" text="Multiply stack sizes by the multiplier [Native: 1.0(100%)]."/>    
     <string id="KPM_TPM" text="Thrown Price Multiplier"/>    
-    <string id="KPM_PMH" text="Multiply price by the multiplier [Native: 1.0(100%)]."/>      
-    
-    
-	</strings>
+    <string id="KPM_PMH" text="Multiply price by the multiplier [Native: 1.0(100%)]."/>
+
+    <string id="KPS_PartySpeeds" text="Party Speeds"/>
+    <string id="KPS_Gloabal" text="Global"/>
+    <string id="KPS_MSL" text="Minimum Speed limit"/>
+    <string id="KPS_MSLH" text="Set the lowest speed allowed for any party, if a parties speed would fall below this it will changed to the limit. [Native: 1.0f]"/>
+    <string id="KPS_DynFlee" text="Dynamic Fleeing"/>
+    <string id="KPS_DSME" text="Dynamic Fleeing Speed Modifiers Enabled"/>
+    <string id="KPS_DSMEH" text="Enables the new method to reduce a parties speed so long as they are fleeing."/>
+    <string id="KPS_SMPH" text="Speed Modifier Per Hour/Reduction"/>
+    <string id="KPS_SMPHH" text="Modify Fleeing parties speed by the specified amount."/>
+    <string id="KPS_HPC" text="Hours Per Change"/>
+    <string id="KPS_HPCH" text="Set how many hours between speed reductions"/>
+    <string id="KPS_StaticChange" text="Static Change"/>
+    <string id="KPS_Caravan" text="Caravan"/>
+    <string id="KPS_Villagers" text="Villagers"/>
+    <string id="KPS_Kingdom" text="Kingdom"/>
+    <string id="KPS_SSME" text="Static Speed Modifiers Enabled"/>
+    <string id="KPS_SSMEH" text="Enables static Kaoses party speed Modifiers"/>
+    <string id="KPS_SSLM" text="Looter Speed Modifier"/>
+    <string id="KPS_SSLMH" text="Modify Looters parties speed by the specified amount."/>
+    <string id="KPS_SSMS" text="Steppe Bandits Speed Modifier"/>
+    <string id="KPS_SSMSH" text="Modify Steppe parties speed by the specified amount."/>
+    <string id="KPS_SSD" text="Desert Bandits Speed Modifier"/>
+    <string id="KPS_SSDH" text="Modify Desert parties speed by the specified amount."/>
+    <string id="KPS_SSM" text="Mountain Bandits Speed Modifier"/>
+    <string id="KPS_SSMH" text="Modify Mountain parties speed by the specified amount."/>
+    <string id="KPS_SSF" text="Forest Bandits Speed Modifier"/>
+    <string id="KPS_SSFH" text="Modify Forest parties speed by the specified amount."/>
+    <string id="KPS_SSSR" text="SeaRaiders Speed Modifier"/>
+    <string id="KPS_SSSRH" text="Modify SeaRaiders parties speed by the specified amount."/>
+    <string id="KPS_SSCE" text="Caravan Modifiers Enabled"/>
+    <string id="KPS_SSCEH" text="Enables Caravan party speed Modifiers"/>
+    <string id="KPS_SSC" text="Caravan Speed Modifier"/>
+    <string id="KPS_SSCH" text="Modify Caravan parties speed by the specified amount."/>
+    <string id="KPS_SSCEE" text="Elite Caravan Speed Modifier"/>
+    <string id="KPS_SSCEEH" text="Modify Elite Caravan parties speed by the specified amount."/>
+    <string id="KPS_SSVE" text="Villagers Modifiers Enabled"/>
+    <string id="KPS_SSVEH" text="Enables Villagers party speed Modifiers"/>
+    <string id="KPS_SSV" text="Villager Speed Modifier"/>
+    <string id="KPS_SSVH" text="Modify Villagers parties speed by the specified amount."/>
+    <string id="KPS_SSPE" text="Player Modifiers"/>
+    <string id="KPS_SSPEH" text="Enables Player party speed Modifiers"/>
+    <string id="KPS_SSP" text="Player Speed Modifier"/>
+    <string id="KPS_SSPH" text="Modify Player parties speed by the specified amount."/>
+    <string id="KPS_SSPC" text="Player Clan Speed Modifier"/>
+    <string id="KPS_SSPCH" text="Modify Player Clan parties speed by the specified amount."/>
+    <string id="KPS_SSKE" text="Kingdom Modifiers"/>
+    <string id="KPS_SSKEH" text="Enables Kingdom party speed Modifiers"/>
+    <string id="KPS_SSK" text="Kingdom Speed Modifier"/>
+    <string id="KPS_SSKH" text="Modify Kingdom parties speed by the specified amount."/>
+    <string id="KPS_SSKOE" text="Other Kingdom Speed Modifier"/>
+    <string id="KPS_SSKOEH" text="Modify Other Kingdom parties speed by the specified amount."/>
+
+
+  </strings>
 </base>
