@@ -63,11 +63,11 @@ namespace KaosesTweaks.Models
                 }
                 else if (item.ItemType == ItemTypeEnum.Arrows)
                 {
-                    //new Arrows(item);
+                    new Arrows(item);
                 }
                 else if (item.ItemType == ItemTypeEnum.Bolts)
                 {
-                    //new Bolts(item);
+                    new Bolts(item);
                 }
                 else if (item.ItemType == ItemTypeEnum.Thrown)
                 {
