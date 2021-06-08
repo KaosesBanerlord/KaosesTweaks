@@ -1,4 +1,5 @@
 ﻿using KaosesTweaks.Objects;
+using KaosesTweaks.Objects.Items;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
 using static TaleWorlds.Core.ItemObject;
@@ -29,6 +30,7 @@ namespace KaosesTweaks.Models
             */
         protected void TweakItemValues()
         {
+
             for (int i = 0; i < _ItemsList.Count; i++)
             {
 
@@ -51,7 +53,7 @@ namespace KaosesTweaks.Models
                     new Armor(item);
                 }
                 else if (item.ItemType == ItemTypeEnum.Bow || item.ItemType == ItemTypeEnum.Crossbow || item.ItemType == ItemTypeEnum.Musket
-                    || item.ItemType == ItemTypeEnum.Pistol || item.ItemType == ItemTypeEnum.Thrown)
+                    || item.ItemType == ItemTypeEnum.Pistol)//|| item.ItemType == ItemTypeEnum.Thrown
                 {
                     new RangedWeapons(item);
                 }
@@ -59,6 +61,18 @@ namespace KaosesTweaks.Models
                     || item.ItemType == ItemTypeEnum.TwoHandedWeapon)
                 {
                     new MeleeWeapons(item);
+                }
+                else if (item.ItemType == ItemTypeEnum.Arrows)
+                {
+                    new Arrows(item);
+                }
+                else if (item.ItemType == ItemTypeEnum.Bolts)
+                {
+                    new Bolts(item);
+                }
+                else if (item.ItemType == ItemTypeEnum.Thrown)
+                {
+                    new Thrown(item);
                 }
 
             }

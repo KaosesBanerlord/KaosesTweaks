@@ -6,7 +6,6 @@ using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.CampaignSystem.SandBox.CampaignBehaviors;
 using TaleWorlds.CampaignSystem.GameMenus;
 using TaleWorlds.Core;
-using TaleWorlds.Localization;
 using KaosesTweaks.Settings;
 using KaosesTweaks.Utils;
 
@@ -181,7 +180,6 @@ namespace KaosesTweaks.Behaviors
                 }
             }
         }
-
 
         public static void RemoveTroopsfromNotable(Settlement settlement)
         {

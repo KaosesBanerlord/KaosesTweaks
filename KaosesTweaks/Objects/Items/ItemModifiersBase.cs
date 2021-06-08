@@ -34,6 +34,15 @@ namespace KaosesTweaks.Objects
             typeof(ItemObject).GetProperty("Weight").SetValue(_item, multipleWeightValue);
 
         }
+        protected void SetItemsStack(float multiplier = 0.0f)
+        {
+            WeaponComponentData weaponData = _item.PrimaryWeapon;
+            float tmpMax = weaponData.MaxDataValue * multiplier;
+            short newMax = (short)tmpMax;
+            DebugStack(_item, newMax, multiplier);
+            typeof(WeaponComponentData).GetProperty("MaxDataValue").SetValue(weaponData, newMax);
+        }
+
 
         protected void DebugValue(ItemObject item, float newValue, float multiplier)
         {
@@ -42,11 +51,23 @@ namespace KaosesTweaks.Objects
                 IM.MessageDebug(item.Name.ToString() + " Old Price: " + item.Value.ToString() + "  New Price: " + newValue.ToString() + " using multiplier: " + multiplier);
             }
         }
+
         protected void DebugWeight(ItemObject item, float newValue, float multiplier)
         {
             if (_settings.ItemDebugMode)
             {
                 IM.MessageDebug(item.Name.ToString() + " Old Weight: " + item.Weight.ToString() + "  New Weight: " + newValue.ToString() + " using multiplier: " + multiplier);
+            }
+        }
+
+        protected void DebugStack(ItemObject item, float newValue, float multiplier)
+        {
+            if (_settings.ItemDebugMode)
+            {
+                WeaponComponentData weaponData = _item.PrimaryWeapon;
+                float tmpMax = weaponData.MaxDataValue * multiplier;
+                short newMax = (short)tmpMax;
+                IM.MessageDebug(item.Name.ToString() + " Old Stack: " + weaponData.MaxDataValue.ToString() + "  New Stack: " + newValue.ToString() + " using multiplier: " + multiplier);
             }
         }
 
