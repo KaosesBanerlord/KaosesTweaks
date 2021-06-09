@@ -82,6 +82,11 @@ namespace KaosesTweaks
             {
                 return;
             }
+            //~ KT Party Speeds
+            FleeingParties = new Dictionary<MobileParty, CampaignTime>();
+            FleeingHours = new Dictionary<MobileParty, int>();
+            FleeingSpeedReduction = new Dictionary<MobileParty, float>();
+            //~ KT Party Speeds
 
             //~ BT PrisonerImprisonmentTweak
             try
