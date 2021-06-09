@@ -387,7 +387,12 @@ namespace KaosesTweaks.Settings
         [SettingPropertyBool("{=KTMCM_BRMT}Battle Reward Tweaks " + "*", IsToggle = true, Order = 0, RequireRestart = true,
             HintText = "{=KTMCM_BRMH}Enables modifying battle rewards.")]
         [SettingPropertyGroup("{=KTMCM_CBattleReward}Battle Rewards")]
-        public bool MCMBattleRewardModifiers { get; set; } = true;
+        public bool MCMBattleRewardModifiers { get; set; } = false;
+
+        [SettingPropertyBool("{=KTMCM_BRMTHP}Battle Reward Tweaks Patches Only " + "*", Order = 0, RequireRestart = true,
+            HintText = "{=KTMCM_BRMTHPH}Use harmony patches only for battle reward tweaks. Use for comaptability with other mods.")]
+        [SettingPropertyGroup("{=KTMCM_CBattleReward}Battle Rewards")]
+        public bool BattleRewardModifiersPatchOnly { get; set; } = false;
 
         //~ Rewards apply to AI *needs testing is this needed or does it need to be the other way round
         //[SettingPropertyBool("{=BT_Settings_000104}Also Apply To AI", Order = 5, RequireRestart = false,
@@ -2082,6 +2087,20 @@ namespace KaosesTweaks.Settings
         public bool PrisonerConformityTweaksApplyToAi { get; set; } = false;
 
         #endregion //~ Prisoner Confirmity Tweaks
+
+        //~ Prisoner Selling Price
+        #region Prisoner Selling Price
+        [SettingPropertyBool("{=KT_PPE}Prisoner Price Tweaks Enabled", IsToggle = true, Order = 0, RequireRestart = true,
+            HintText = "{=KT_PPEH}Enable prisoner price tweaks.")]
+        [SettingPropertyGroup("{=BT_Settings_007000}Prisoner Tweaks" + "/" + "{=KT_PP}Prisoner Price")]
+        public bool PrisonerPriceTweaksEnabled { get; set; } = false;
+
+        [SettingPropertyFloatingInteger("{=KT_PPM}Prisoner Price Multiplier", 0f, 10f, "#0%", Order = 2,
+            HintText = "{=KT_PPMH}Multiply the prisoner selling price [Native: 100%]."),
+            SettingPropertyGroup("{=BT_Settings_007000}Prisoner Tweaks" + "/" + "{=KT_PP}Prisoner Price")]
+        public float PrisonerPriceMultiplier { get; set; } = 1.0f;
+
+        #endregion
         #endregion //~ Prisoner Tweaks
 
         //~ Settlement Tweaks

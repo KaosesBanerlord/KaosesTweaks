@@ -10,34 +10,32 @@ using TaleWorlds.Localization;
 namespace KaosesTweaks.Patches
 {
     [HarmonyPatch(typeof(DefaultBattleRewardModel), "CalculateRenownGain")]
-    public class KTBattleRewardsRenownGain
+    class KTBattleRewardsRenownGainPatch
     {
-        public static bool PreFix(PartyBase party, float renownValueOfBattle, float contributionShare, ref ExplainedNumber result, ref float __result)
+        private static bool Prefix(PartyBase party, float renownValueOfBattle, float contributionShare, ref ExplainedNumber __result)
         {
-            if (MCMSettings.Instance.MCMBattleRewardModifiers && MCMSettings.Instance.BattleRewardsRenownGainModifiers)
+            if (MCMSettings.Instance.BattleRewardsRenownGainModifiers)
             {
                 float originalRenownGain = renownValueOfBattle * contributionShare;
                 float modifiedRenownGain = originalRenownGain * Statics._settings.BattleRewardsRenownGainMultiplier;
-                result.Add(modifiedRenownGain, new TextObject("KT Renown Tweak", null), null);
-
+                __result = new ExplainedNumber(modifiedRenownGain, true, new TextObject("KT Renown Tweak", null));
                 if (party.IsMobile)
                 {
                     if (party.MobileParty.HasPerk(DefaultPerks.Charm.ShowYourScars, false))
                     {
-                        PerkHelper.AddPerkBonusForParty(DefaultPerks.Charm.ShowYourScars, party.MobileParty, true, ref result);
+                        PerkHelper.AddPerkBonusForParty(DefaultPerks.Charm.ShowYourScars, party.MobileParty, true, ref __result);
                     }
                     if (party.MobileParty.HasPerk(DefaultPerks.Throwing.LongReach, true))
                     {
-                        PerkHelper.AddPerkBonusForParty(DefaultPerks.Throwing.LongReach, party.MobileParty, false, ref result);
+                        PerkHelper.AddPerkBonusForParty(DefaultPerks.Throwing.LongReach, party.MobileParty, false, ref __result);
                     }
                     PerkObject famousCommander = DefaultPerks.Leadership.FamousCommander;
                     MobileParty mobileParty = party.MobileParty;
-                    PerkHelper.AddPerkBonusForCharacter(famousCommander, (mobileParty != null) ? mobileParty.Leader : null, true, ref result);
+                    PerkHelper.AddPerkBonusForCharacter(famousCommander, (mobileParty != null) ? mobileParty.Leader : null, true, ref __result);
                 }
-                __result = result.ResultNumber;
                 if (party.LeaderHero == Hero.MainHero && MCMSettings.Instance.BattleRewardShowDebug)
                 {
-                    IM.DebugMessage("Renown Value = " +
+                    IM.DebugMessage("Harmony Patch Renown Value = " +
                                                 (float)Math.Round((double)renownValueOfBattle, 2) +
                                                 "| Your share = " + (float)Math.Round((double)renownValueOfBattle * contributionShare, 2) +
                                                 "(" + (float)Math.Round((double)contributionShare * 100f, 1) + "%)" +
@@ -53,25 +51,25 @@ namespace KaosesTweaks.Patches
             return true;
         }
 
-        static bool Prepare() => MCMSettings.Instance is { } settings && (settings.MCMBattleRewardModifiers && settings.BattleRewardsRenownGainModifiers);
+        static bool Prepare() => MCMSettings.Instance is { } settings && (settings.MCMBattleRewardModifiers && settings.BattleRewardModifiersPatchOnly && settings.BattleRewardsRenownGainModifiers);
     }
 
-
     [HarmonyPatch(typeof(DefaultBattleRewardModel), "CalculateInfluenceGain")]
-    public class KTBattleRewardsInfluenceGain
+    class KTBattleRewardsInfluenceGainPatch
     {
-        static bool PreFix(PartyBase party, float influenceValueOfBattle, float contributionShare, ref ExplainedNumber result, ref float __result)
+        private static bool Prefix(PartyBase party, float influenceValueOfBattle, float contributionShare, ref ExplainedNumber __result)
         {
-            if (MCMSettings.Instance.MCMBattleRewardModifiers && MCMSettings.Instance.BattleRewardsInfluenceGainModifiers)
+            if (MCMSettings.Instance.BattleRewardsInfluenceGainModifiers)
             {
-
+                //~ KT
                 float originalInfluenceGain = influenceValueOfBattle * contributionShare;
                 float modifiedInfluenceGain = originalInfluenceGain * Statics._settings.BattleRewardsInfluenceGainMultiplier;
-                //Ux.MessageDebug("Original Influence Gain : " + originalInfluenceGain.ToString() + "   Modified Gain : " + modifiedInfluenceGain.ToString()+ " Using Multiplier : " + Statics._settings.BattleRewardsInfluenceGainMultiplier.ToString());
-                result.Add(party.MapFaction.IsKingdomFaction ? (modifiedInfluenceGain) : 0f, new TextObject("KT influence Tweak", null), null);
+                __result = new ExplainedNumber(party.MapFaction.IsKingdomFaction ? (modifiedInfluenceGain) : 0f, true, new TextObject("KT influence Tweak", null));
+                //~ KT
+
                 if (party.LeaderHero == Hero.MainHero && MCMSettings.Instance.BattleRewardShowDebug)
                 {
-                    IM.DebugMessage("Influence Value = " +
+                    IM.DebugMessage("Harmony Patch Influence Value = " +
                                                 (float)Math.Round((double)influenceValueOfBattle, 2) +
                                                 "| Your share = " + (float)Math.Round((double)influenceValueOfBattle * contributionShare, 2) +
                                                 "(" + (float)Math.Round((double)contributionShare * 100f, 1) + "%)" +
@@ -82,40 +80,37 @@ namespace KaosesTweaks.Patches
                                                 //+ "(" + BTTweak + (float)Math.Round((double)battleRenownMultiplier * 100f, 1) + "%)" +
                                                 "\n\n");
                 }
-                __result = result.ResultNumber;
                 return false;
             }
             return true;
         }
 
-        static bool Prepare() => MCMSettings.Instance is { } settings && (settings.MCMBattleRewardModifiers && settings.BattleRewardsInfluenceGainModifiers);
+        static bool Prepare() => MCMSettings.Instance is { } settings && (settings.MCMBattleRewardModifiers && settings.BattleRewardModifiersPatchOnly && settings.BattleRewardsInfluenceGainModifiers);
     }
 
-
     [HarmonyPatch(typeof(DefaultBattleRewardModel), "CalculateMoraleGainVictory")]
-    public class KTBattleRewardsMoraleGain
+    class KTBattleRewardsMoraleGainPatch
     {
-        static bool PreFix(PartyBase party, float renownValueOfBattle, float contributionShare, ref ExplainedNumber result, ref float __result)
+        private static bool Prefix(PartyBase party, float renownValueOfBattle, float contributionShare, ref ExplainedNumber __result)
         {
-            if (MCMSettings.Instance.MCMBattleRewardModifiers && MCMSettings.Instance.BattleRewardsMoraleGainModifiers)
+            if (MCMSettings.Instance.BattleRewardsMoraleGainModifiers)
             {
                 float originalMoraleGain = 0.5f + renownValueOfBattle * contributionShare * 0.5f;
                 float modifiedMoraleGain = originalMoraleGain * Statics._settings.BattleRewardsMoraleGainMultiplier;
-                //Ux.MessageDebug("Original Morale Gain : " + originalMoraleGain.ToString() + "   Modified Gain : " + modifiedMoraleGain.ToString()+ " Using Multiplier : " + Statics._settings.BattleRewardsMoraleGainMultiplier.ToString());
-                result.Add(modifiedMoraleGain, new TextObject("KT Morale Tweak", null), null);
+                __result = new ExplainedNumber(modifiedMoraleGain, true, new TextObject("KT Morale Tweak", null));
 
                 if (party.IsMobile && party.MobileParty.HasPerk(DefaultPerks.Throwing.LongReach, true))
                 {
-                    PerkHelper.AddPerkBonusForParty(DefaultPerks.Throwing.LongReach, party.MobileParty, false, ref result);
+                    PerkHelper.AddPerkBonusForParty(DefaultPerks.Throwing.LongReach, party.MobileParty, false, ref __result);
                 }
                 if (party.IsMobile && party.MobileParty.HasPerk(DefaultPerks.Leadership.CitizenMilitia, true))
                 {
-                    PerkHelper.AddPerkBonusForParty(DefaultPerks.Leadership.CitizenMilitia, party.MobileParty, false, ref result);
+                    PerkHelper.AddPerkBonusForParty(DefaultPerks.Leadership.CitizenMilitia, party.MobileParty, false, ref __result);
                 }
 
                 if (party.LeaderHero == Hero.MainHero && MCMSettings.Instance.BattleRewardShowDebug)
                 {
-                    IM.DebugMessage("Morale Value = " +
+                    IM.DebugMessage("Harmony Patch Morale Value = " +
                                                 (float)Math.Round((double)renownValueOfBattle, 2) +
                                                 "| Your share = " + (float)Math.Round((double)renownValueOfBattle * contributionShare, 2) +
                                                 "(" + (float)Math.Round((double)contributionShare * 100f, 1) + "%)" +
@@ -126,22 +121,18 @@ namespace KaosesTweaks.Patches
                                                 //+ "(" + BTTweak + (float)Math.Round((double)battleRenownMultiplier * 100f, 1) + "%)" +
                                                 "\n\n");
                 }
-                __result = result.ResultNumber;
                 return false;
             }
             return true;
         }
 
-        static bool Prepare() => MCMSettings.Instance is { } settings && (settings.MCMBattleRewardModifiers && settings.BattleRewardsMoraleGainModifiers);
+        static bool Prepare() => MCMSettings.Instance is { } settings && (settings.MCMBattleRewardModifiers && settings.BattleRewardModifiersPatchOnly && settings.BattleRewardsMoraleGainModifiers);
     }
 
-
-
-
     [HarmonyPatch(typeof(DefaultBattleRewardModel), "CalculateGoldLossAfterDefeat")]
-    public class KTBattleRewardsGoldLoss
+    class KTBattleRewardsGoldLossPatch
     {
-        static bool PreFix(Hero partyLeaderHero, ref int __result)
+        private static bool Prefix(Hero partyLeaderHero, ref int __result)
         {
             if (MCMSettings.Instance.MCMBattleRewardModifiers && MCMSettings.Instance.BattleRewardsGoldLossModifiers)
             {
@@ -151,10 +142,10 @@ namespace KaosesTweaks.Patches
                     originalGoldLoss = 10000f;
                 }
                 float modifiedGoldLoss = originalGoldLoss * Statics._settings.BattleRewardsGoldLossMultiplier;
-                //Ux.MessageDebug("Original Gold Lost on defeat : " + originalGoldLoss.ToString() + "   Modified Gain : " + modifiedGoldLoss.ToString()+ " Using Multiplier : " + Statics._settings.BattleRewardsGoldLossMultiplier.ToString());
+
                 if (partyLeaderHero == Hero.MainHero && MCMSettings.Instance.BattleRewardShowDebug)
                 {
-                    IM.DebugMessage("Gold Loss = " +
+                    IM.DebugMessage("Harmony Patch Gold Loss = " +
                                                 (float)Math.Round((double)originalGoldLoss, 2) +
                                                 "\nBT Tweak = " + (float)Math.Round(modifiedGoldLoss, 2) +
                                                 "\n\n");
@@ -165,8 +156,50 @@ namespace KaosesTweaks.Patches
             return true;
         }
 
-        static bool Prepare() => MCMSettings.Instance is { } settings && (settings.MCMBattleRewardModifiers && settings.BattleRewardsGoldLossModifiers);
+        static bool Prepare() => MCMSettings.Instance is { } settings && (settings.MCMBattleRewardModifiers && settings.BattleRewardModifiersPatchOnly && settings.BattleRewardsGoldLossModifiers);
     }
 
+    [HarmonyPatch(typeof(DefaultBattleRewardModel), "GetPlayerGainedRelationAmount")]
+    class KTBattleRewardsGainedRelationAmountPatch
+    {
+        private static bool Prefix(MapEvent mapEvent, Hero hero, ref int __result)
+        {
+            if (MCMSettings.Instance.BattleRewardsRelationShipGainModifiers)
+            {
+                MapEventSide mapEventSide = mapEvent.AttackerSide.IsMainPartyAmongParties() ? mapEvent.AttackerSide : mapEvent.DefenderSide;
+                float playerPartyContributionRate = mapEventSide.GetPlayerPartyContributionRate();
+                float num = (mapEvent.StrengthOfSide[(int)PartyBase.MainParty.Side] - PlayerEncounter.Current.PlayerPartyInitialStrength) / mapEvent.StrengthOfSide[(int)PartyBase.MainParty.OpponentSide];
+                float num2 = (num < 1f) ? (1f + (1f - num)) : ((num < 3f) ? (0.5f * (3f - num)) : 0f);
+                float renownValue = mapEvent.GetRenownValue((mapEventSide == mapEvent.AttackerSide) ? BattleSideEnum.Attacker : BattleSideEnum.Defender);
+                //~ KT
+                double relationShipGain = GetPlayerGainedRelationAmount(0.75 + Math.Pow((double)(playerPartyContributionRate * 1.3f * (num2 + renownValue)), 0.6700000166893005));
+                __result = (int)relationShipGain;
+                //~ KT
 
+                return false;
+            }
+            return true;
+        }
+
+        static bool Prepare() => MCMSettings.Instance is { } settings && (settings.MCMBattleRewardModifiers && settings.BattleRewardModifiersPatchOnly && settings.BattleRewardsRelationShipGainModifiers);
+
+        //~ KT
+        public static int GetPlayerGainedRelationAmount(double relationShipGain)
+        {
+            double modifiedRelationShipGain = relationShipGain;
+            if (Statics._settings.BattleRewardsRelationShipGainModifiers)
+            {
+                modifiedRelationShipGain = relationShipGain * Statics._settings.BattleRewardsRelationShipGainMultiplier;
+                if (Statics._settings.BattleRewardsDebug)
+                {
+                    IM.MessageDebug("Original RelationShipGain : " + relationShipGain.ToString() +
+                    "   Modified Gain : " + modifiedRelationShipGain.ToString() +
+                    " Using Multiplier : " + Statics._settings.BattleRewardsRelationShipGainMultiplier.ToString());
+                }
+            }
+            return (int)modifiedRelationShipGain;
+        }
+
+
+    }
 }

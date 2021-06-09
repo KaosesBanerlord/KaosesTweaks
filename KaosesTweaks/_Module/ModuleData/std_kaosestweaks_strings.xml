@@ -1065,5 +1065,16 @@
     <string id="KPM_BWME" text="Bullets Multipliers Enabled" />
     <string id="KPM_BWMEH" text="Enables Bullets Multipliers" />
     <string id="KPM_Bullets" text="Bullets" />
+
+    <!-- 0.2.11 -->
+    <string id="KTMCM_BRMTHP" text="Battle Reward Tweaks Patches Only " />
+    <string id="KTMCM_BRMTHPH" text="Use harmony patches only for battle reward tweaks. Use for comaptability with other mods." />
+    <string id="KT_PPE" text="Prisoner Price Tweaks Enabled" />
+    <string id="KT_PPEH" text="Enable prisoner price tweaks." />
+    <string id="KT_PP" text="Prisoner Price" />
+    <string id="KT_PPM" text="Prisoner Price Multiplier" />
+    <string id="KT_PPMH" text="Multiply the prisoner selling price [Native: 100%]." />
+
+
   </strings>
 </base>
