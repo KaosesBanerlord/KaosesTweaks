@@ -73,6 +73,10 @@ namespace KaosesTweaks.Models
                 {
                     new Thrown(item);
                 }
+                else if (item.ItemType == ItemTypeEnum.Bullets)
+                {
+                    new Bullets(item);
+                }
 
             }
         }
