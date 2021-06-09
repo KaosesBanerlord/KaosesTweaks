@@ -1256,6 +1256,33 @@ namespace KaosesTweaks.Settings
         public bool ThrownMissionFixMultiplierEnabled { get; set; } = false;
         #endregion
 
+        #region Bullets
+        [SettingPropertyBool("{=KPM_BWME}Bullets Multipliers Enabled", IsToggle = true, Order = 1, RequireRestart = true,
+            HintText = "{=KPM_BWMEH}Enables Bullets Multipliers")]
+        [SettingPropertyGroup("{=KTMCM_ItemTweaks}Item Tweaks" + "/" + "{=KPM_Bullets}Bullets")]
+        public bool BulletsMultiplierEnabled { get; set; } = true;
+
+        [SettingPropertyFloatingInteger("{=KPM_SSM}Stack Size Multiplier", 0.1f, 10.0f, "#0%", Order = 2, RequireRestart = false,
+            HintText = "{=KPM_SSMH}Multiply stack sizes by the multiplier [Native: 1.0(100%)].")]
+        [SettingPropertyGroup("{=KTMCM_ItemTweaks}Item Tweaks" + "/" + "{=KPM_Bullets}Bullets")]
+        public float BulletsMultiplier { get; set; } = 1.0f;
+
+        [SettingPropertyFloatingInteger("{=KPM_PM}Price Multiplier", 0.1f, 10.0f, "#0%", Order = 2, RequireRestart = false,
+            HintText = "{=KPM_PMH}Multiply price by the multiplier [Native: 1.0(100%)].")]
+        [SettingPropertyGroup("{=KTMCM_ItemTweaks}Item Tweaks" + "/" + "{=KPM_Bullets}Bullets")]
+        public float BulletsValueMultiplier { get; set; } = 1.0f;
+
+        /*[SettingPropertyFloatingInteger("{=KPM_WM}Weight Multiplier", 0.1f, 10.0f, "#0%", Order = 2, RequireRestart = false,
+            HintText = "{=KPM_WMH}Multiply item weight by the multiplier [Native: 1.0(100%)].")]
+        [SettingPropertyGroup("{=KTMCM_ItemTweaks}Item Tweaks" + "/" + "{=KPM_Bullets}Bullets")]*/
+        public float BulletsWeightMultiplier { get; set; } = 1.0f;
+
+        /*
+        [SettingPropertyBool("{=KPM_MTWFE}Thrown Mission stack Fix Enabled", Order = 1, RequireRestart = false,
+            HintText = "{KPM_MTWFEH}Enables a temp fix for thrown weapon stack sizes in missions")]
+        [SettingPropertyGroup("{=KPM_WorkAround}Work around")]
+        public bool BulletsMissionFixMultiplierEnabled { get; set; } = false;*/
+        #endregion
         #endregion //~ End Items
 
         //~ ItemLocks 

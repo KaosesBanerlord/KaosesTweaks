@@ -1062,6 +1062,8 @@
     <string id="KPS_SSKH" text="Modify Kingdom parties speed by the specified amount."/>
     <string id="KPS_SSKOE" text="Other Kingdom Speed Modifier"/>
     <string id="KPS_SSKOEH" text="Modify Other Kingdom parties speed by the specified amount."/>
-
+    <string id="KPM_BWME" text="Bullets Multipliers Enabled" />
+    <string id="KPM_BWMEH" text="Enables Bullets Multipliers" />
+    <string id="KPM_Bullets" text="Bullets" />
   </strings>
 </base>
