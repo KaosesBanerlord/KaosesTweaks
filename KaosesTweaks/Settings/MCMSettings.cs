@@ -1896,7 +1896,6 @@ namespace KaosesTweaks.Settings
         #endregion //~ MobilePartyFoodConsumption
         #endregion //~ Party Tweaks
 
-
         //~ Pregnancy 
         #region Pregnancy
         [SettingPropertyBool("{=BT_Settings_002400}Pregnancy Tweaks " + "*", IsToggle = true, Order = 0, RequireRestart = true,
