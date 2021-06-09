@@ -322,7 +322,7 @@ namespace KaosesTweaks
                     }
                     campaignGameStarter.AddModel(new KaosesArmyManagementCalculationModel());
                 }
-                if (settings.MCMBattleRewardModifiers)
+                if (settings.MCMBattleRewardModifiers && !settings.BattleRewardModifiersPatchOnly)
                 {
                     if (settings.Debug)
                     {
