@@ -164,7 +164,7 @@ namespace KaosesTweaks.Behaviors
         // Token: 0x06002FCB RID: 12235 RVA: 0x000C97F8 File Offset: 0x000C79F8
         private void CreateYoungCharactersForFactions()
         {
-            foreach (Hero hero2 in from hero in Hero.All.ToList<Hero>()
+            foreach (Hero hero2 in from hero in Hero.AllAliveHeroes.ToList<Hero>()
                                    where !hero.IsNotSpawned
                                    select hero)
             {

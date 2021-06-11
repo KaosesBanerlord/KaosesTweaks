@@ -113,7 +113,7 @@ namespace KaosesTweaks
             {
                 if (Statics._settings.MCMItemModifiers)
                 {
-                    new KaosesItemTweaks(gameType.Items);
+                    new KaosesItemTweaks(TaleWorlds.CampaignSystem.Items.All);
                     if (Statics._settings.Debug)
                     {
                         IM.MessageDebug("Loaded KaosesItemTweaks");

@@ -16,7 +16,8 @@ namespace KaosesTweaks.Behaviors
     {
         public override void RegisterEvents()
         {
-            CampaignEvents.ClanChangedKingdom.AddNonSerializedListener(this, new Action<Clan, Kingdom, Kingdom, bool, bool>(this.OnClanChangedKingdom));
+            CampaignEvents.ClanChangedKingdom.AddNonSerializedListener(this, new Action<Clan, Kingdom, Kingdom, ChangeKingdomAction.ChangeKingdomActionDetail, bool>(this.OnClanChangedKingdom));
+            //CampaignEvents.ClanChangedKingdom.AddNonSerializedListener(this, new Action<Clan, Kingdom, Kingdom, bool, bool>(this.OnClanChangedKingdom));
             CampaignEvents.OnGameLoadedEvent.AddNonSerializedListener(this, new Action<CampaignGameStarter>(this.OnGameLoaded));
             //CampaignEvents.WeeklyTickSettlementEvent.AddNonSerializedListener(this, new Action<Settlement>(this.OnWeeklyTickSettlement));
             CampaignEvents.DailyTickSettlementEvent.AddNonSerializedListener(this, new Action<Settlement>(this.OnDailyTickSettlement));
@@ -84,7 +85,9 @@ namespace KaosesTweaks.Behaviors
             }
         }
 
-        private void OnClanChangedKingdom(Clan clan, Kingdom arg2, Kingdom arg3, bool arg4, bool arg5)
+
+        // Token: 0x06000E45 RID: 3653 RVA: 0x000630F6 File Offset: 0x000612F6
+        private void OnClanChangedKingdom(Clan clan, Kingdom oldKingdom, Kingdom newKingdom, ChangeKingdomAction.ChangeKingdomActionDetail detail, bool showNotification = true)
         {
             if (MCMSettings.Instance is { } settings && settings.ChangeToKingdomCulture)
             {
@@ -180,7 +183,6 @@ namespace KaosesTweaks.Behaviors
                 }
             }
         }
-
 
         public static void RemoveTroopsfromNotable(Settlement settlement)
         {
@@ -292,6 +294,7 @@ namespace KaosesTweaks.Behaviors
             args.optionLeaveType = GameMenuOption.LeaveType.Manage;
             return Settlement.CurrentSettlement.IsTown;
         }
+        
         public static bool Game_menu_village_change_culture_on_condition(MenuCallbackArgs args)
         {
             args.optionLeaveType = GameMenuOption.LeaveType.Manage;
@@ -320,7 +323,6 @@ namespace KaosesTweaks.Behaviors
                 }
             }
         }
-
 
         private static Dictionary<Settlement, CultureObject> initialCultureDictionary = new();
         public static Dictionary<Settlement, int> WeekCounter = new();

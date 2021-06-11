@@ -42,7 +42,22 @@ namespace KaosesTweaks.Models
         }
 
         // Token: 0x06002EC1 RID: 11969 RVA: 0x000C1010 File Offset: 0x000BF210
-        public override int GetSkillXpForSmithing(ItemObject item)
+        public override int GetSkillXpForSmithingInFreeBuildMode(ItemObject item)
+        {
+            float baseXp = MathF.Round(0.02f * (float)item.Value);
+            if (Statics._settings.SmithingXpModifiers)
+            {
+                baseXp *= Statics._settings.SmithingSmithingXpValue;
+                if (Statics._settings.CraftingDebug)
+                {
+                    IM.MessageDebug("GetSkillXpForSmithing  base: " + (MathF.Round(0.02f * (float)item.Value)).ToString() + "  new :" + baseXp.ToString());
+                }
+            }
+            return (int)baseXp;
+        }
+        
+        // Token: 0x06002EC1 RID: 11969 RVA: 0x000C1010 File Offset: 0x000BF210
+        public override int GetSkillXpForSmithingInCraftingOrderMode(ItemObject item)
         {
             float baseXp = MathF.Round(0.1f * (float)item.Value);
             if (Statics._settings.SmithingXpModifiers)

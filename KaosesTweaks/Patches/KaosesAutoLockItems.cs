@@ -18,7 +18,7 @@ namespace KaosesTweaks.Patches
         typeof(InventoryLogic),
         typeof(bool),
         typeof(bool),
-        typeof(ItemVM.UsageType),
+        typeof(InventoryMode),
         typeof(ItemRosterElement),
         typeof(InventoryLogic.InventorySide),
         typeof(string),

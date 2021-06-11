@@ -61,7 +61,7 @@ namespace KaosesTweaks.Behaviors
             if (relation < 0)
                 return false;
 
-            var attraction = Romance.GetAttractionValueAsPercent(Hero.OneToOneConversationHero, Hero.MainHero);
+            var attraction = Campaign.Current.Models.RomanceModel.GetAttractionValuePercentage(Hero.OneToOneConversationHero, Hero.MainHero);
             var chance = Math.Max(0.0f, Math.Min(20.0f + 2 * relation + 0.5f * attraction, 175.0f) / 200.0f);
             float randonNumber = MBRandom.RandomFloat;
             IM.MessageDebug($"attraction = {attraction} \n" +

@@ -73,7 +73,7 @@ namespace KaosesTweaks.BTTweaks
 
         public static void DailyTick()
         {
-            foreach (Hero hero in Hero.All)
+            foreach (Hero hero in Hero.AllAliveHeroes)
             {
                 if (hero == null) return;
                 if (hero.PartyBelongedToAsPrisoner == null && hero.IsPrisoner && hero.IsAlive && !hero.IsActive && !hero.IsNotSpawned && !hero.IsReleased)

@@ -46,7 +46,7 @@ namespace KaosesTweaks.Models
         public override float CalculateLearningRate(Hero hero, SkillObject skill)
         {
             int level = hero.Level;
-            int attributeValue = hero.GetAttributeValue(skill.CharacterAttributeEnum);
+            int attributeValue = hero.GetAttributeValue(skill.CharacterAttribute);
             int focus = hero.HeroDeveloper.GetFocus(skill);
             int skillValue = hero.GetSkillValue(skill);
             if (Statics._settings.LearningDebug)
