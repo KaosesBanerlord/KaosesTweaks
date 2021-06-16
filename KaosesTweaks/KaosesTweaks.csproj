@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Version>0.2.11</Version>
+    <Version>0.2.13</Version>
     <TargetFramework>net472</TargetFramework>
     <Platforms>x64</Platforms>
     <LangVersion>9.0</LangVersion>
@@ -58,14 +58,14 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Lib.Harmony" Version="2.0.4" IncludeAssets="compile" />
-    <PackageReference Include="Harmony.Extensions" Version="2.0.0.5">
+    <PackageReference Include="Harmony.Extensions" Version="2.0.0.39">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Bannerlord.ButterLib" Version="1.0.21" IncludeAssets="compile" />
-    <PackageReference Include="Bannerlord.UIExtenderEx" Version="2.1.1" IncludeAssets="compile" />
-    <PackageReference Include="Bannerlord.MCM" Version="4.3.4" IncludeAssets="compile" />
-    <PackageReference Include="Newtonsoft.Json" Version="11.0.2">
+    <PackageReference Include="Bannerlord.ButterLib" Version="1.0.24" IncludeAssets="compile" />
+    <PackageReference Include="Bannerlord.UIExtenderEx" Version="2.1.6" IncludeAssets="compile" />
+    <PackageReference Include="Bannerlord.MCM" Version="4.3.10" IncludeAssets="compile" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>compile</IncludeAssets>
     </PackageReference>

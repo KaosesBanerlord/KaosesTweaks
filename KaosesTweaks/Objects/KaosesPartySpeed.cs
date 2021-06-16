@@ -152,5 +152,69 @@ namespace KaosesPartySpeeds.Objects
         {
             return Message;
         }
+
+
+        public static void GetDynamicSpeedChange(MobileParty mobileParty, ref ExplainedNumber finalSpeed)
+        {
+
+            if (Statics._settings.KaosesDynamicSpeedModifiersEnabled)
+            {
+                float reduction = 0f;
+                if (mobileParty.ShortTermBehavior == AiBehavior.FleeToPoint)
+                {
+                    if (SubModule.FleeingParties.ContainsKey(mobileParty))
+                    {
+                        CampaignTime oldTime = SubModule.FleeingParties[mobileParty];
+                        if (CampaignTime.Now.ToHours > oldTime.ToHours)
+                        {
+                            int fleeingHours = SubModule.FleeingHours[mobileParty];
+                            reduction = Statics._settings.DynamicFleeingSpeedReductionAmount * fleeingHours;
+                            SubModule.FleeingHours[mobileParty] = fleeingHours + 1;
+                            SubModule.FleeingParties[mobileParty] = CampaignTime.HoursFromNow(Statics._settings.DynamicFleeingSpeedReductionHours);
+                            SubModule.FleeingSpeedReduction[mobileParty] = reduction;
+                        }
+                        else
+                        {
+                            if (SubModule.FleeingSpeedReduction.ContainsKey(mobileParty))
+                            {
+                                reduction = SubModule.FleeingSpeedReduction[mobileParty];
+                            }
+                        }
+                    }
+                    else
+                    {
+                        SubModule.FleeingParties.Add(mobileParty, CampaignTime.HoursFromNow(Statics._settings.DynamicFleeingSpeedReductionHours));
+                        SubModule.FleeingHours.Add(mobileParty, 1);
+                        SubModule.FleeingSpeedReduction.Add(mobileParty, 0.0f);
+                    }
+                    if (reduction != 0)
+                    {
+                        finalSpeed.Add(reduction, null);
+                    }
+                }
+                else
+                {
+                    if (SubModule.FleeingParties.ContainsKey(mobileParty))
+                    {
+                        CampaignTime oldTime = SubModule.FleeingParties[mobileParty];
+                        if (CampaignTime.Now.ToHours > oldTime.ToHours)
+                        {
+                            SubModule.FleeingParties.Remove(mobileParty);
+                            if (SubModule.FleeingHours.ContainsKey(mobileParty))
+                            {
+                                SubModule.FleeingHours.Remove(mobileParty);
+                            }
+                            if (SubModule.FleeingSpeedReduction.ContainsKey(mobileParty))
+                            {
+                                SubModule.FleeingSpeedReduction.Remove(mobileParty);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+
+
     }
 }

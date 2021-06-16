@@ -15,7 +15,7 @@ using TaleWorlds.MountAndBlade;
 using KaosesTweaks.BTTweaks;
 using System.Text;
 using System.Linq;
-
+using KaosesPartySpeeds.Model;
 
 namespace KaosesTweaks
 {
@@ -57,6 +57,7 @@ namespace KaosesTweaks
                         IM.DisplayModLoadedMessage();
                         if (harmonyKT == null)
                         {
+                            Harmony.DEBUG = true;
                             harmonyKT = new Harmony(Statics.HarmonyId);
                             harmonyKT.PatchAll(Assembly.GetExecutingAssembly());
                         }
@@ -305,6 +306,15 @@ namespace KaosesTweaks
                     }
                     campaignGameStarter.AddModel(new KaosesClanTierModel());
                 }
+                if (settings.KaosesStaticSpeedModifiersEnabled || settings.KaosesDynamicSpeedModifiersEnabled)
+                {
+                    
+                    if (settings.Debug)
+                    {
+                        IM.MessageDebug("Loaded Kaoses Party Speed model Model Override");
+                    }
+                    campaignGameStarter.AddModel(new KaosesPartySpeedCalculatingModel());
+                }
                 if (settings.HideoutBattleTroopLimitTweakEnabled)
                 {
                     /*
@@ -313,6 +323,14 @@ namespace KaosesTweaks
                         IM.MessageDebug("Loaded Kaoses Bandit Density model Model Override");
                     }*/
                     //campaignGameStarter.AddModel(new KaosesBanditDensityModel());
+                }
+                if ((settings.PartyWageTweaksEnabled && !settings.PartyWageTweaksHarmonyEnabled) || (settings.KingdomBalanceStrengthEnabled && !settings.KingdomBalanceStrengthHarmonyEnabled))
+                {                    
+                    if (settings.Debug)
+                    {
+                        IM.MessageDebug("Loaded BT Wage model Model Override");
+                    }
+                    campaignGameStarter.AddModel(new BTDefaultPartyWageModel());
                 }
                 if (settings.MCMArmy)
                 {

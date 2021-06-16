@@ -174,8 +174,9 @@ namespace KaosesTweaks.Patches
     [HarmonyPatch(typeof(SmeltingVM), "RefreshList")]
     class RefreshListPatch
     {
-        private static void Postfix(SmeltingVM __instance, ItemRoster ____playerItemRoster)
+        private static void Postfix(SmeltingVM __instance, ItemRoster ____playerItemRoster, Action ____updateValuesOnSelectItemAction)
         {
+
             if (MCMSettings.Instance is { } settings && settings.PreventSmeltingLockedItems)
             {
                 List<string> locked_items = Campaign.Current.GetCampaignBehavior<IInventoryLockTracker>().GetLocks().ToList<string>();
@@ -189,8 +190,24 @@ namespace KaosesTweaks.Patches
                     }
                     return locked_items.Contains(text);
                 }
-
                 MBBindingList<SmeltingItemVM> filteredList = new MBBindingList<SmeltingItemVM>();
+/*
+                for (int i = 0; i < ____playerItemRoster.Count; i++)
+                {
+                    ItemRosterElement elementCopyAtIndex = ____playerItemRoster.GetElementCopyAtIndex(i);
+                    if (elementCopyAtIndex.EquipmentElement.Item.IsCraftedWeapon)
+                    {
+                        bool isLocked = __instance.IsItemLocked(elementCopyAtIndex.EquipmentElement);
+                        SmeltingItemVM item = new SmeltingItemVM(elementCopyAtIndex.EquipmentElement, new Action<SmeltingItemVM>(OnItemSelection), new Action<SmeltingItemVM, bool>(__instance.ProcessLockItem), isLocked, elementCopyAtIndex.Amount);
+                        __instance.SmeltableItemList.Add(item);
+                    }
+                }
+                if (__instance.SmeltableItemList.Count == 0)
+                {
+                    __instance.CurrentSelectedItem = null;
+                }*/
+
+
 
                 foreach (SmeltingItemVM sItem in __instance.SmeltableItemList)
                 {
@@ -203,6 +220,7 @@ namespace KaosesTweaks.Patches
                 }
 
                 __instance.SmeltableItemList = filteredList;
+                __instance.SortController.SetListToControl(__instance.SmeltableItemList);
 
                 if (__instance.SmeltableItemList.Count == 0)
                 {
@@ -210,6 +228,7 @@ namespace KaosesTweaks.Patches
                 }
             }
         }
+
 
         static bool Prepare() => MCMSettings.Instance is { } settings && settings.SmeltingTweakEnabled;
     }
