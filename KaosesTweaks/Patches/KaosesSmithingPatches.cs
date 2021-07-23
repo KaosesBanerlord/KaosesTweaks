@@ -191,24 +191,6 @@ namespace KaosesTweaks.Patches
                     return locked_items.Contains(text);
                 }
                 MBBindingList<SmeltingItemVM> filteredList = new MBBindingList<SmeltingItemVM>();
-/*
-                for (int i = 0; i < ____playerItemRoster.Count; i++)
-                {
-                    ItemRosterElement elementCopyAtIndex = ____playerItemRoster.GetElementCopyAtIndex(i);
-                    if (elementCopyAtIndex.EquipmentElement.Item.IsCraftedWeapon)
-                    {
-                        bool isLocked = __instance.IsItemLocked(elementCopyAtIndex.EquipmentElement);
-                        SmeltingItemVM item = new SmeltingItemVM(elementCopyAtIndex.EquipmentElement, new Action<SmeltingItemVM>(OnItemSelection), new Action<SmeltingItemVM, bool>(__instance.ProcessLockItem), isLocked, elementCopyAtIndex.Amount);
-                        __instance.SmeltableItemList.Add(item);
-                    }
-                }
-                if (__instance.SmeltableItemList.Count == 0)
-                {
-                    __instance.CurrentSelectedItem = null;
-                }*/
-
-
-
                 foreach (SmeltingItemVM sItem in __instance.SmeltableItemList)
                 {
                     if (!____playerItemRoster.Any(rItem =>

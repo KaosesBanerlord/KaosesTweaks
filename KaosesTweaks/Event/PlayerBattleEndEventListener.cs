@@ -44,7 +44,7 @@ namespace KaosesTweaks.Event
                 if (IsDefeatedBanditLike(m) && (rosterReceivingLootShare.TotalHealthyCount > 0 || !Statics._settings.PrisonersOnly))
                 {
                     BanditDeathCounter += banditSide.Casualties;
-                    IM.ColorGreenMessage("BanditDeathCounter: " + BanditDeathCounter.ToString());
+                    //IM.ColorGreenMessage("BanditDeathCounter: " + BanditDeathCounter.ToString());
                     if (this.BanditGroupCounter == 1)
                     {
                         IncreaseLocalRelations(m);
@@ -90,7 +90,7 @@ namespace KaosesTweaks.Event
                     ChangeRelationAction.ApplyPlayerRelation(h, relation: FinalRelationshipIncreaseInt, affectRelatives: true, showQuickNotification: false);
                 }
             }
-            IM.ColorGreenMessage("Your relationship increased with nearby notables. " + BanditDeathCounter.ToString());
+            IM.ColorGreenMessage("Your relationship increased with nearby notables. " + FinalRelationshipIncreaseInt.ToString());
         }
 
         private void BanditGroupCounterUpdate()

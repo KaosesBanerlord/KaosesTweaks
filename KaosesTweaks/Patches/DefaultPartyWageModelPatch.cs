@@ -33,7 +33,7 @@ namespace KaosesTweaks.Patches
                     {
                         float num = settings.PartyWagePercent;
                         num = orig_result * num - orig_result;
-                        __result.Add(num, new TextObject("BT Party Wage Tweak"));//
+                        __result.Add(num, new TextObject("BT Party Wage Tweak", null));//
                     }
                     if (mobileParty.IsGarrison && (mobileParty.CurrentSettlement.OwnerClan == Clan.PlayerClan ||
                         (mobileParty.Party.MapFaction == Hero.MainHero.MapFaction && settings.ApplyWageTweakToFaction)
@@ -41,7 +41,7 @@ namespace KaosesTweaks.Patches
                     {
                         float num2 = settings.GarrisonWagePercent;
                         num2 = orig_result * num2 - orig_result;
-                        __result.Add(num2, new TextObject("BT Garrison Wage Tweak"));//
+                        __result.Add(num2, new TextObject("BT Garrison Wage Tweak", null));//
                     }
                 }
 
@@ -90,7 +90,7 @@ namespace KaosesTweaks.Patches
                     }
                     if (num == 0f && mobileParty.LeaderHero.Clan.Kingdom.Leader == Hero.MainHero) num = (settings2.KingdomBalanceStrengthCEKEnabled) ? settings2.Player_CEK_Boost : settings2.PlayerBoost;
                     num = __result.ResultNumber * -num;
-                    __result.Add(num, new TextObject("BT Balancing Tweak"));
+                    __result.Add(num, new TextObject("BT Balancing Tweak", null));
                 }
             }
             catch (Exception ex)
