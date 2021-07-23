@@ -988,27 +988,27 @@
 				<string id="BT_Settings_004203" text="Enable Unlocking All Parts Fror Smelted Weapons"/>
 				<string id="BT_Settings_004203_Desc" text="Enables unlocking all wepaon parts for crafting weapons on next game load." />
 
-    <!-- 0.2.9 -->
+ <!-- 0.2.9 -->
     <string id="KPM_Arrows" text="Arrows"/>
     <string id="KPM_AME" text="Arrows Multipliers Enabled"/>
     <string id="KPM_AMEH" text="Enables arrows multipliers for price and stack size"/>
     <string id="KPM_ASSM" text="Arrows Stack Multiplier"/>
     <string id="KPM_SSMH" text="Multiply stack sizes by the multiplier [Native: 1.0(100%)]."/>
-    <string id="KPM_APM" text="Arrows Price Multiplier"/>
-    <string id="KPM_PMH" text="Multiply price by the multiplier [Native: 1.0(100%)]."/>
-    <string id="KPM_Bolts" text="Bolts"/>
-    <string id="KPM_BME" text="Bolts Multiplier Enabled"/>
-    <string id="KPM_BMEH" text="Enables Bolts stack Multiplier"/>
-    <string id="KPM_BSSM" text="Bolts Stack Multiplier"/>
-    <string id="KPM_SSMH" text="Multiply stack sizes by the multiplier [Native: 1.0(100%)]."/>
-    <string id="KPM_BPM" text="Bolts Price Multiplier"/>
-    <string id="KPM_PMH" text="Multiply price by the multiplier [Native: 1.0(100%)]."/>
-    <string id="KPM_Thrown" text="Thrown"/>
-    <string id="KPM_TWME" text="Thrown Multipliers Enabled"/>
-    <string id="KPM_TWMEH" text="Enables Thrown Multipliers"/>
-    <string id="KPM_TSSM" text="Thrown Stack Multiplier"/>
-    <string id="KPM_SSMH" text="Multiply stack sizes by the multiplier [Native: 1.0(100%)]."/>
-    <string id="KPM_TPM" text="Thrown Price Multiplier"/>
+    <string id="KPM_APM" text="Arrows Price Multiplier"/>    
+    <string id="KPM_PMH" text="Multiply price by the multiplier [Native: 1.0(100%)]."/>    
+    <string id="KPM_Bolts" text="Bolts"/>    
+    <string id="KPM_BME" text="Bolts Multiplier Enabled"/>    
+    <string id="KPM_BMEH" text="Enables Bolts stack Multiplier"/>    
+    <string id="KPM_BSSM" text="Bolts Stack Multiplier"/>    
+    <string id="KPM_SSMH" text="Multiply stack sizes by the multiplier [Native: 1.0(100%)]."/>    
+    <string id="KPM_BPM" text="Bolts Price Multiplier"/>    
+    <string id="KPM_PMH" text="Multiply price by the multiplier [Native: 1.0(100%)]."/>    
+    <string id="KPM_Thrown" text="Thrown"/>    
+    <string id="KPM_TWME" text="Thrown Multipliers Enabled"/>    
+    <string id="KPM_TWMEH" text="Enables Thrown Multipliers"/>    
+    <string id="KPM_TSSM" text="Thrown Stack Multiplier"/>    
+    <string id="KPM_SSMH" text="Multiply stack sizes by the multiplier [Native: 1.0(100%)]."/>    
+    <string id="KPM_TPM" text="Thrown Price Multiplier"/>    
     <string id="KPM_PMH" text="Multiply price by the multiplier [Native: 1.0(100%)]."/>
 
     <string id="KPS_PartySpeeds" text="Party Speeds"/>
@@ -1065,8 +1065,7 @@
     <string id="KPM_BWME" text="Bullets Multipliers Enabled" />
     <string id="KPM_BWMEH" text="Enables Bullets Multipliers" />
     <string id="KPM_Bullets" text="Bullets" />
-
-    <!-- 0.2.11 -->
+		<!-- 0.2.11 -->
     <string id="KTMCM_BRMTHP" text="Battle Reward Tweaks Patches Only " />
     <string id="KTMCM_BRMTHPH" text="Use harmony patches only for battle reward tweaks. Use for comaptability with other mods." />
     <string id="KT_PPE" text="Prisoner Price Tweaks Enabled" />
@@ -1074,7 +1073,7 @@
     <string id="KT_PP" text="Prisoner Price" />
     <string id="KT_PPM" text="Prisoner Price Multiplier" />
     <string id="KT_PPMH" text="Multiply the prisoner selling price [Native: 100%]." />
-
-
+    <string id="KPM_Bullets" text="Bullets" />
+    
   </strings>
 </base>

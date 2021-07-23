@@ -152,7 +152,6 @@ namespace KaosesTweaks.Models
             return num;
         }
 
-
         // Token: 0x06002ED9 RID: 11993 RVA: 0x000C2A6C File Offset: 0x000C0C6C
         public override int GetModifierTierForSmithedWeapon(WeaponDesign weaponDesign, Hero hero)
         {
@@ -193,7 +192,7 @@ namespace KaosesTweaks.Models
         //RefiningFormula(CraftingMaterials input1, int input1Count, CraftingMaterials input2, int input2Count, CraftingMaterials output, int outputCount = 1, CraftingMaterials output2 = CraftingMaterials.IronOre, int output2Count = 0);
         public override IEnumerable<Crafting.RefiningFormula> GetRefiningFormulas(Hero weaponsmith)
         {
-            yield return new Crafting.RefiningFormula(CraftingMaterials.Wood, GetModifiedFormulaInputCost(2), CraftingMaterials.Iron1, GetModifiedFormulaInputCost(0), CraftingMaterials.Charcoal, GetModifiedFormulaOutPut(1), CraftingMaterials.IronOre, 0);
+            yield return new Crafting.RefiningFormula(CraftingMaterials.Wood, GetModifiedFormulaInputCost(2), CraftingMaterials.Iron1, GetModifiedFormulaInputCost(0), CraftingMaterials.Charcoal, GetModifiedFormulaOutPut(1), CraftingMaterials.IronOre, 0);       
             if (weaponsmith.GetPerkValue(DefaultPerks.Crafting.CharcoalMaker))
             {
                 yield return new Crafting.RefiningFormula(CraftingMaterials.Wood, GetModifiedFormulaInputCost(2), CraftingMaterials.Iron1, GetModifiedFormulaInputCost(0), CraftingMaterials.Charcoal, GetModifiedFormulaOutPut(3), CraftingMaterials.IronOre, GetModifiedFormulaOutPut(0));

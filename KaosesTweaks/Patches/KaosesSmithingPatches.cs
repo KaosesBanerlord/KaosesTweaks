@@ -306,8 +306,6 @@ namespace KaosesTweaks.Patches
         static bool Prepare() => MCMSettings.Instance != null && MCMSettings.Instance.SmithingXpModifiers && MCMSettings.Instance.MCMSmithingHarmoneyPatches;
     }
 
-
-
     //~ Energy Tweaks
     [HarmonyPatch(typeof(DefaultSmithingModel), "GetEnergyCostForRefining")]
     public class GetEnergyCostForRefiningPatch
@@ -425,6 +423,14 @@ namespace KaosesTweaks.Patches
         static bool Prepare() => MCMSettings.Instance is { } settings && (settings.SmithingEnergyDisable || settings.CraftingStaminaTweakEnabled) && MCMSettings.Instance.MCMSmithingHarmoneyPatches;
 
     }
+
+
+
+
+
+
+
+
 
 
 

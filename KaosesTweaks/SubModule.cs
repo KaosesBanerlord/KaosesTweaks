@@ -210,7 +210,7 @@ namespace KaosesTweaks
                 //~ KaosesCraftingCampaignBehaviors
                 try
                 {
-                    if (Statics._settings.ArrowMultipliersEnabled || Statics._settings.BoltsMultipliersEnabled
+                    if (Statics._settings.ArrowMultipliersEnabled || Statics._settings.BoltsMultipliersEnabled 
                         || Statics._settings.ThrownMultiplierEnabled)
                     {
                         if (Statics._settings.Debug)

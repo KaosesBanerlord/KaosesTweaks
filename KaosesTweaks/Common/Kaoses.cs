@@ -122,7 +122,6 @@ namespace KaosesTweaks.Common
              */
         }
 
-
         public static bool IsPlayerLord(Hero hero)
         {
             //hero.CharacterObject.IsHero
@@ -137,7 +136,6 @@ namespace KaosesTweaks.Common
                             );*/
             return (hero.CharacterObject.Occupation == Occupation.Lord || hero.CharacterObject.Occupation == Occupation.Lady || hero.CharacterObject.Occupation == Occupation.Wanderer) && !hero.IsHumanPlayerCharacter && IsPlayerClan(hero);
         }
-
 
         public static bool IsMCMLoaded()
         {

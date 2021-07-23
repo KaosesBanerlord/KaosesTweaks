@@ -112,7 +112,7 @@ namespace KaosesPartySpeeds.Objects
 
                 }
 
-                if (!_mobileParty.IsMainParty && !_mobileParty.StringId.Contains("player_")
+                if (!_mobileParty.IsMainParty && !_mobileParty.StringId.Contains("player_") 
                     && !_mobileParty.StringId.Contains("militias_") && !_mobileParty.StringId.Contains("garrison_"))
                 {
                     if (!HasModifiedSpeed && !_mobileParty.IsLeaderless)
@@ -132,7 +132,10 @@ namespace KaosesPartySpeeds.Objects
                         }
                     }
                 }
+        
             }
+
+
         }
 
         public bool HasPartyModifiedSpeed()

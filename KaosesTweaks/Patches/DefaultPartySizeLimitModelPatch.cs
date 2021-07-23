@@ -110,7 +110,7 @@ namespace KaosesTweaks.Patches
     {
         private static void Postfix(PartyBase party, ref ExplainedNumber __result)
         {
-            if (party.LeaderHero != null && party.LeaderHero == Hero.MainHero)
+            if (party.LeaderHero != null)// && party.LeaderHero == Hero.MainHero
             {
                 if (MCMSettings.Instance is { } settings && settings.PrisonerSizeTweakEnabled)
                 {
@@ -121,10 +121,13 @@ namespace KaosesTweaks.Patches
                         IM.MessageDebug("Prisoner __result: " + __result.ResultNumber.ToString() + "   num: " + num.ToString());
                     }
 
-                    __result.Add((float)num, new TextObject("BT Prisoner Limit Bonus"));
-                    if (Statics._settings.PrisonersDebug)
+                    if ((Statics._settings.PrisonerSizeTweakAI && party.LeaderHero != Hero.MainHero) || party.LeaderHero == Hero.MainHero)
                     {
-                        IM.MessageDebug("Prisoner __result Final: " + __result.ResultNumber.ToString());
+                        __result.Add((float)num, new TextObject("BT Prisoner Limit Bonus"));
+                        if (Statics._settings.PrisonersDebug)
+                        {
+                            IM.MessageDebug("Prisoner result Final: " + __result.ResultNumber.ToString());
+                        }
                     }
                 }
             }
