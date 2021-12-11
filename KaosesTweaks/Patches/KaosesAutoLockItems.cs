@@ -3,7 +3,6 @@ using System;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.ViewModelCollection;
 using TaleWorlds.Core;
-using TaleWorlds.Core.ViewModelCollection;
 
 namespace KaosesTweaks.Patches
 {

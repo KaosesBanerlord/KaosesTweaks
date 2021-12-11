@@ -1,6 +1,5 @@
 ﻿using System;
 using TaleWorlds.CampaignSystem;
-using TaleWorlds.Core;
 using StoryMode.StoryModePhases;
 using KaosesTweaks.Utils;
 /*

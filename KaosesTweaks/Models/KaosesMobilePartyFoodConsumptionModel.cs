@@ -2,10 +2,8 @@
 using System.Linq;
 using Helpers;
 using TaleWorlds.Core;
-using TaleWorlds.Localization;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.SandBox.GameComponents.Map;
-using KaosesTweaks.Utils;
 
 namespace KaosesTweaks.Models
 {
@@ -31,12 +29,12 @@ namespace KaosesTweaks.Models
                 }
             }
             int num2 = party.Party.NumberOfAllMembers + party.Party.NumberOfPrisoners / 2;
-            if (party.Leader != null && party.Leader.GetPerkValue(DefaultPerks.Roguery.Promises) && num != 0)
+            if (party.LeaderHero.CharacterObject != null && party.LeaderHero.CharacterObject.GetPerkValue(DefaultPerks.Roguery.Promises) && num != 0)
             {
-                num2 += (int)((float)num * DefaultPerks.Roguery.Promises.PrimaryBonus * 0.01f);
+                num2 += (int)(num * DefaultPerks.Roguery.Promises.PrimaryBonus * 0.01f);
             }
             num2 = ((num2 < 1) ? 1 : num2);
-            float baseNumber = -(float)num2 / 20f;
+            float baseNumber = -num2 / 20f;
             //~ KT
             if (Statics._settings.PartyFoodConsumptionEnabled)
             {
@@ -46,7 +44,7 @@ namespace KaosesTweaks.Models
             }
             //~ KT
             ExplainedNumber result = new ExplainedNumber(baseNumber, includeDescription, null);
-            this.CalculatePerkEffects(party, ref result);
+            CalculatePerkEffects(party, ref result);
             return result;
         }
 

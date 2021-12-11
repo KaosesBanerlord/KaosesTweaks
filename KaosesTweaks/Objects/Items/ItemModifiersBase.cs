@@ -1,10 +1,5 @@
 ﻿using KaosesTweaks.Settings;
 using KaosesTweaks.Utils;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TaleWorlds.Core;
 
 namespace KaosesTweaks.Objects
@@ -25,7 +20,7 @@ namespace KaosesTweaks.Objects
         protected void SetItemsValue(int multiplePriceValue, float multiplier = 0.0f)
         {
             DebugValue(_item, multiplePriceValue, multiplier);
-            typeof(ItemObject).GetProperty("Value").SetValue(_item, (int)multiplePriceValue);
+            typeof(ItemObject).GetProperty("Value").SetValue(_item, multiplePriceValue);
         }
 
         protected void SetItemsWeight(float multipleWeightValue, float multiplier = 0.0f)

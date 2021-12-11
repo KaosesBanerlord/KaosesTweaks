@@ -79,10 +79,10 @@ namespace KaosesTweaks.Patches
                     if (array.Length != 0 && count < num)
                     {
                         foreach (CraftingPiece craftingPiece in array)
-                        {                
+                        {
                             if (!____openedParts.Contains(craftingPiece))
                             {
-                                ____openedParts.Add(craftingPiece);                            
+                                ____openedParts.Add(craftingPiece);
                             }
                         }
                         InformationManager.AddQuickInformation(new TextObject("{=p9F90bc0}KT All Smithing Parts Unlocked:", null), 0, null, "");
@@ -179,7 +179,7 @@ namespace KaosesTweaks.Patches
 
             if (MCMSettings.Instance is { } settings && settings.PreventSmeltingLockedItems)
             {
-                List<string> locked_items = Campaign.Current.GetCampaignBehavior<IInventoryLockTracker>().GetLocks().ToList<string>();
+                List<string> locked_items = Campaign.Current.GetCampaignBehavior<ViewDataTracker>().InventoryGetLocks().ToList<string>();
 
                 bool isLocked(ItemRosterElement item)
                 {
@@ -249,11 +249,11 @@ namespace KaosesTweaks.Patches
         {
             if (Statics._settings.SmithingXpModifiers)
             {
-                float baseXp = MathF.Round(0.3f * (float)(__instance.GetCraftingMaterialItem(refineFormula.Output).Value * refineFormula.OutputCount));
+                float baseXp = MathF.Round(0.3f * (__instance.GetCraftingMaterialItem(refineFormula.Output).Value * refineFormula.OutputCount));
                 baseXp *= Statics._settings.SmithingRefiningXpValue;
                 if (Statics._settings.CraftingDebug)
                 {
-                    IM.MessageDebug("GetSkillXpForRefining  base: " + (MathF.Round(0.3f * (float)(__instance.GetCraftingMaterialItem(refineFormula.Output).Value * refineFormula.OutputCount))).ToString() + "  new :" + baseXp.ToString());
+                    IM.MessageDebug("GetSkillXpForRefining  base: " + (MathF.Round(0.3f * (__instance.GetCraftingMaterialItem(refineFormula.Output).Value * refineFormula.OutputCount))).ToString() + "  new :" + baseXp.ToString());
                 }
                 __result = (int)baseXp;
                 return false;
@@ -272,9 +272,9 @@ namespace KaosesTweaks.Patches
             if (Statics._settings.SmithingXpModifiers)
             {
                 IM.MessageDebug("GetSkillXpForSmelting Patch called");
-                float baseXp = MathF.Round(0.02f * (float)item.Value);
+                float baseXp = MathF.Round(0.02f * item.Value);
                 baseXp *= Statics._settings.SmithingSmeltingXpValue;
-                IM.MessageDebug("GetSkillXpForSmelting  base: " + (MathF.Round(0.02f * (float)item.Value)).ToString() + "  new :" + baseXp.ToString());
+                IM.MessageDebug("GetSkillXpForSmelting  base: " + (MathF.Round(0.02f * item.Value)).ToString() + "  new :" + baseXp.ToString());
                 __result = (int)baseXp;
                 return false;
             }
@@ -291,11 +291,11 @@ namespace KaosesTweaks.Patches
         {
             if (Statics._settings.SmithingXpModifiers)
             {
-                float baseXp = MathF.Round(0.1f * (float)item.Value);
+                float baseXp = MathF.Round(0.1f * item.Value);
                 baseXp *= Statics._settings.SmithingSmithingXpValue;
                 if (Statics._settings.CraftingDebug)
                 {
-                    IM.MessageDebug("GetSkillXpForSmithing  base: " + (MathF.Round(0.1f * (float)item.Value)).ToString() + "  new :" + baseXp.ToString());
+                    IM.MessageDebug("GetSkillXpForSmithing  base: " + (MathF.Round(0.1f * item.Value)).ToString() + "  new :" + baseXp.ToString());
                 }
                 __result = (int)baseXp;
                 return false;
@@ -350,7 +350,7 @@ namespace KaosesTweaks.Patches
             {
                 int.TryParse(item.Tier.ToString(), out int itemTier);
                 int tier6 = 6;
-                int num = (int)(10 + tier6 * itemTier);
+                int num = 10 + tier6 * itemTier;
                 if (Statics._settings.SmithingEnergyDisable)
                 {
                     if (Statics._settings.CraftingDebug)

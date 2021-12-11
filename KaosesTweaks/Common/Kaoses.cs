@@ -1,9 +1,5 @@
 ﻿using KaosesTweaks.Utils;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Engine;
 
@@ -107,7 +103,7 @@ namespace KaosesTweaks.Common
                 //+ "IsBasicTroop: " + hero.CharacterObject.IsBasicTroop.ToString() +"\r\n"
                 + "result" + ((hero.CharacterObject.Occupation == Occupation.Lord || hero.CharacterObject.Occupation == Occupation.Lady || hero.CharacterObject.Occupation == Occupation.Wanderer) && !hero.IsHumanPlayerCharacter).ToString() +"\r\n"
                 );*/
-            return (hero.CharacterObject.Occupation == Occupation.Lord || hero.CharacterObject.Occupation == Occupation.Lady || hero.CharacterObject.Occupation == Occupation.Wanderer) && !hero.IsHumanPlayerCharacter;
+            return (hero.CharacterObject.Occupation == Occupation.Mercenary || hero.CharacterObject.Occupation == Occupation.Lord || hero.CharacterObject.Occupation == Occupation.GangLeader) && !hero.IsHumanPlayerCharacter;
 
             /*
                 Kaoses Tweaks : IsLordName: Nadea the Wanderer
@@ -134,7 +130,7 @@ namespace KaosesTweaks.Common
                             //+ "IsBasicTroop: " + hero.CharacterObject.IsBasicTroop.ToString() +"\r\n"
                             + "result" + ((hero.CharacterObject.Occupation == Occupation.Lord || hero.CharacterObject.Occupation == Occupation.Lady || hero.CharacterObject.Occupation == Occupation.Wanderer) && !hero.IsHumanPlayerCharacter && IsPlayerClan(hero)).ToString() + "\r\n"
                             );*/
-            return (hero.CharacterObject.Occupation == Occupation.Lord || hero.CharacterObject.Occupation == Occupation.Lady || hero.CharacterObject.Occupation == Occupation.Wanderer) && !hero.IsHumanPlayerCharacter && IsPlayerClan(hero);
+            return (hero.CharacterObject.Occupation == Occupation.Mercenary || hero.CharacterObject.Occupation == Occupation.Lord || hero.CharacterObject.Occupation == Occupation.GangLeader) && !hero.IsHumanPlayerCharacter && IsPlayerClan(hero);
         }
 
         public static bool IsMCMLoaded()

@@ -4,13 +4,7 @@ using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.SandBox.GameComponents.Party;
 using TaleWorlds.Localization;
 using System;
-using System.Linq;
-using Helpers;
-using TaleWorlds.Core;
-using TaleWorlds.Library;
-using TaleWorlds.Localization;
 using KaosesTweaks.Utils;
-using System.Reflection;
 
 namespace KaosesTweaks.Patches
 {
@@ -19,7 +13,7 @@ namespace KaosesTweaks.Patches
     public class DefaultPartyWageModelPatch
     {
 
-        public static void Postfix( ref ExplainedNumber __result , MobileParty mobileParty, bool includeDescriptions = false)
+        public static void Postfix(ref ExplainedNumber __result, MobileParty mobileParty, bool includeDescriptions = false)
         {
 
             try
@@ -99,7 +93,7 @@ namespace KaosesTweaks.Patches
             }
         }
 
-        public static bool Prepare() => MCMSettings.Instance is { } settings && ((settings.PartyWageTweaksEnabled && settings.PartyWageTweaksHarmonyEnabled) || (settings.KingdomBalanceStrengthEnabled && settings.KingdomBalanceStrengthHarmonyEnabled)) ;
+        public static bool Prepare() => MCMSettings.Instance is { } settings && ((settings.PartyWageTweaksEnabled && settings.PartyWageTweaksHarmonyEnabled) || (settings.KingdomBalanceStrengthEnabled && settings.KingdomBalanceStrengthHarmonyEnabled));
 
 
 

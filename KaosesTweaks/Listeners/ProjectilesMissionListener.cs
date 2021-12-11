@@ -12,6 +12,8 @@ namespace KaosesTweaks.Listeners
         public List<MBGUID> itemsList = new List<MBGUID>();
         public Dictionary<MBGUID, short> itemStackList = new Dictionary<MBGUID, short>();
 
+        public void OnDeploymentPlanMade(BattleSideEnum battleSide, bool isFirstPlan) { }
+
         public void OnEquipItemsFromSpawnEquipmentBegin(Agent agent, Agent.CreationType creationType)
         {
 

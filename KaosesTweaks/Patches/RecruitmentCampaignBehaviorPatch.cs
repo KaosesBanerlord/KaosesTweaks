@@ -3,7 +3,6 @@ using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.SandBox.CampaignBehaviors;
 using System.Linq;
 using TaleWorlds.Core;
-using Helpers;
 using KaosesTweaks.Settings;
 
 namespace KaosesTweaks.Patches
@@ -15,9 +14,11 @@ namespace KaosesTweaks.Patches
         {
             if (MCMSettings.Instance is { } settings && settings.BalancingUpgradeTroopsTweaksEnabled)
             {
-                foreach (Settlement settlement in from settlement in Campaign.Current.Settlements where settlement.OwnerClan != null 
-                                                  && settlement.OwnerClan.Kingdom != null && ((settlement.IsTown && !settlement.Town.InRebelliousState) 
-                                                  || (settlement.IsVillage && !settlement.Village.Bound.Town.InRebelliousState)) select settlement)
+                foreach (Settlement settlement in from settlement in Campaign.Current.Settlements
+                                                  where settlement.OwnerClan != null
+  && settlement.OwnerClan.Kingdom != null && ((settlement.IsTown && !settlement.Town.InRebelliousState)
+  || (settlement.IsVillage && !settlement.Village.Bound.Town.InRebelliousState))
+                                                  select settlement)
                 {
                     float num = 0f;
                     if (settings.KingdomBalanceStrengthVanEnabled)
@@ -65,7 +66,7 @@ namespace KaosesTweaks.Patches
                         {
                             for (int i = 0; i < 6; i++)
                             {
-                                if (hero.VolunteerTypes[i] != null && MBRandom.RandomFloat < (num * 0.5) && hero.VolunteerTypes[i].UpgradeTargets != null 
+                                if (hero.VolunteerTypes[i] != null && MBRandom.RandomFloat < (num * 0.5) && hero.VolunteerTypes[i].UpgradeTargets != null
                                     && hero.VolunteerTypes[i].Level < 20)
                                 {
                                     CultureObject cultureObject = (hero.CurrentSettlement != null) ? hero.CurrentSettlement.Culture : hero.Clan.Culture;

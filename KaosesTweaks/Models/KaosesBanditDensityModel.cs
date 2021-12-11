@@ -1,4 +1,5 @@
 ﻿using Helpers;
+using System;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.SandBox.GameComponents.Map;
 using TaleWorlds.Library;
@@ -84,7 +85,7 @@ namespace KaosesTweaks.Models
         {
             get
             {
-                return MBMath.Floor(6f * (2f + MiscHelper.GetGameProcess()));
+                return (int)Math.Floor(6f * (2f + MiscHelper.GetGameProcess()));
             }
         }
 
@@ -94,7 +95,7 @@ namespace KaosesTweaks.Models
         {
             get
             {
-                return MBMath.Floor(1f + 5f * (1f + MiscHelper.GetGameProcess()));
+                return (int)Math.Floor(1f + 5f * (1f + MiscHelper.GetGameProcess()));
             }
         }
 

@@ -191,7 +191,7 @@ namespace KaosesTweaks.Models
         public override ExplainedNumber CalculateCohesionChange(Army army, bool includeDescriptions = false)
         {
             //~ KT
-            float baseChange = (float)Statics._settings.armyCohesionBaseChange;
+            float baseChange = Statics._settings.armyCohesionBaseChange;
             bool IsClanOnlyarmy = IsClanOnlyArmy(army);
             if (IsClanOnlyarmy && Statics._settings.armyDisableCohesionLossClanOnlyParties)
             {
@@ -364,7 +364,7 @@ namespace KaosesTweaks.Models
         // Token: 0x06002D73 RID: 11635 RVA: 0x000B5A27 File Offset: 0x000B3C27
         public override int GetCohesionBoostInfluenceCost(Army army, int percentageToBoost = 100)
         {
-            return CalculateTotalInfluenceCost(army, (float)percentageToBoost);
+            return CalculateTotalInfluenceCost(army, percentageToBoost);
         }
 
         // Token: 0x06002D74 RID: 11636 RVA: 0x000B5A32 File Offset: 0x000B3C32
@@ -390,7 +390,7 @@ namespace KaosesTweaks.Models
         // Token: 0x06002D76 RID: 11638 RVA: 0x000B5A5D File Offset: 0x000B3C5D
         public override int GetPartyStrength(PartyBase party)
         {
-            return MBMath.Round(party.TotalStrength);
+            return (int)Math.Round(party.TotalStrength);
         }
 
         // Token: 0x06002D77 RID: 11639 RVA: 0x000B5A6A File Offset: 0x000B3C6A

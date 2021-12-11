@@ -23,22 +23,18 @@ namespace KaosesTweaks.Patches
                 __result = new ExplainedNumber(modifiedRenownGain, true, new TextObject("KT Renown Tweak", null));
                 if (party.IsMobile)
                 {
-                    if (party.MobileParty.HasPerk(DefaultPerks.Charm.ShowYourScars, false))
-                    {
-                        PerkHelper.AddPerkBonusForParty(DefaultPerks.Charm.ShowYourScars, party.MobileParty, true, ref __result);
-                    }
                     if (party.MobileParty.HasPerk(DefaultPerks.Throwing.LongReach, true))
                     {
                         PerkHelper.AddPerkBonusForParty(DefaultPerks.Throwing.LongReach, party.MobileParty, false, ref __result);
                     }
                     PerkObject famousCommander = DefaultPerks.Leadership.FamousCommander;
                     MobileParty mobileParty = party.MobileParty;
-                    PerkHelper.AddPerkBonusForCharacter(famousCommander, (mobileParty != null) ? mobileParty.Leader : null, true, ref __result);
+                    PerkHelper.AddPerkBonusForCharacter(famousCommander, (mobileParty != null) ? mobileParty.LeaderHero.CharacterObject : null, true, ref __result);
                 }
                 if (party.LeaderHero == Hero.MainHero && MCMSettings.Instance.BattleRewardShowDebug)
                 {
                     IM.DebugMessage("Harmony Patch Renown Value = " +
-                                                (float)Math.Round((double)renownValueOfBattle, 2) +
+                                                (float)Math.Round(renownValueOfBattle, 2) +
                                                 "| Your share = " + (float)Math.Round((double)renownValueOfBattle * contributionShare, 2) +
                                                 "(" + (float)Math.Round((double)contributionShare * 100f, 1) + "%)" +
                                                 //"\nPerkBonus = " + (float)Math.Round((double)result.ResultNumber - result.BaseNumber, 2) +
@@ -72,7 +68,7 @@ namespace KaosesTweaks.Patches
                 if (party.LeaderHero == Hero.MainHero && MCMSettings.Instance.BattleRewardShowDebug)
                 {
                     IM.DebugMessage("Harmony Patch Influence Value = " +
-                                                (float)Math.Round((double)influenceValueOfBattle, 2) +
+                                                (float)Math.Round(influenceValueOfBattle, 2) +
                                                 "| Your share = " + (float)Math.Round((double)influenceValueOfBattle * contributionShare, 2) +
                                                 "(" + (float)Math.Round((double)contributionShare * 100f, 1) + "%)" +
                                                 //"\nPerkBonus = " + (float)Math.Round((double)result.ResultNumber - result.BaseNumber, 2) +
@@ -113,7 +109,7 @@ namespace KaosesTweaks.Patches
                 if (party.LeaderHero == Hero.MainHero && MCMSettings.Instance.BattleRewardShowDebug)
                 {
                     IM.DebugMessage("Harmony Patch Morale Value = " +
-                                                (float)Math.Round((double)renownValueOfBattle, 2) +
+                                                (float)Math.Round(renownValueOfBattle, 2) +
                                                 "| Your share = " + (float)Math.Round((double)renownValueOfBattle * contributionShare, 2) +
                                                 "(" + (float)Math.Round((double)contributionShare * 100f, 1) + "%)" +
                                                 //"\nPerkBonus = " + (float)Math.Round((double)result.ResultNumber - result.BaseNumber, 2) +
@@ -138,7 +134,7 @@ namespace KaosesTweaks.Patches
         {
             if (MCMSettings.Instance.MCMBattleRewardModifiers && MCMSettings.Instance.BattleRewardsGoldLossModifiers)
             {
-                float originalGoldLoss = (float)partyLeaderHero.Gold * 0.05f;
+                float originalGoldLoss = partyLeaderHero.Gold * 0.05f;
                 if (originalGoldLoss > 10000f)
                 {
                     originalGoldLoss = 10000f;
@@ -148,7 +144,7 @@ namespace KaosesTweaks.Patches
                 if (partyLeaderHero == Hero.MainHero && MCMSettings.Instance.BattleRewardShowDebug)
                 {
                     IM.DebugMessage("Harmony Patch Gold Loss = " +
-                                                (float)Math.Round((double)originalGoldLoss, 2) +
+                                                (float)Math.Round(originalGoldLoss, 2) +
                                                 "\nBT Tweak = " + (float)Math.Round(modifiedGoldLoss, 2) +
                                                 "\n\n");
                 }
@@ -174,7 +170,7 @@ namespace KaosesTweaks.Patches
                 float num2 = (num < 1f) ? (1f + (1f - num)) : ((num < 3f) ? (0.5f * (3f - num)) : 0f);
                 float renownValue = mapEvent.GetRenownValue((mapEventSide == mapEvent.AttackerSide) ? BattleSideEnum.Attacker : BattleSideEnum.Defender);
                 //~ KT
-                double relationShipGain = GetPlayerGainedRelationAmount(0.75 + Math.Pow((double)(playerPartyContributionRate * 1.3f * (num2 + renownValue)), 0.6700000166893005));
+                double relationShipGain = GetPlayerGainedRelationAmount(0.75 + Math.Pow(playerPartyContributionRate * 1.3f * (num2 + renownValue), 0.6700000166893005));
                 __result = (int)relationShipGain;
                 //~ KT
 

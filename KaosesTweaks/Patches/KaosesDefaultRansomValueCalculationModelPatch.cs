@@ -1,6 +1,5 @@
 ﻿using HarmonyLib;
 using KaosesTweaks.Settings;
-using KaosesTweaks.Utils;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.SandBox.GameComponents;
 
