@@ -171,7 +171,6 @@ namespace KaosesTweaks.Patches
         static bool Prepare() => MCMSettings.Instance is { } settings && settings.SmithingEnergyDisable;
     }
 
-    /* - TODO: Find out how to reimplemnt without access to IInventoryLockTracker as it sprotection level has changed.
     [HarmonyPatch(typeof(SmeltingVM), "RefreshList")]
     class RefreshListPatch
     {
@@ -180,7 +179,7 @@ namespace KaosesTweaks.Patches
 
             if (MCMSettings.Instance is { } settings && settings.PreventSmeltingLockedItems)
             {
-                List<string> locked_items = Campaign.Current.GetCampaignBehavior<IInventoryLockTracker>().GetLocks().ToList<string>();
+                List<string> locked_items = Campaign.Current.GetCampaignBehavior<ViewDataTracker>().InventoryGetLocks().ToList<string>();
 
                 bool isLocked(ItemRosterElement item)
                 {
@@ -215,7 +214,6 @@ namespace KaosesTweaks.Patches
 
         static bool Prepare() => MCMSettings.Instance is { } settings && settings.SmeltingTweakEnabled;
     }
-    */
 
     [HarmonyPatch(typeof(SmeltingVM), "RefreshList")]
     [HarmonyPriority(Priority.VeryLow)]
