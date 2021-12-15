@@ -177,10 +177,10 @@ namespace KaosesPartySpeeds.Model
                 }
                 float num2 = (num / (float)mobileParty.MemberRoster.Count > 0.75f) ? -0.15f : -0.3f;
                 finalSpeed.AddFactor(num2, KaosesPartySpeedCalculatingModel._movingInForest);
-                CharacterObject leader = mobileParty.Leader;
-                if (leader != null && leader.GetFeatValue(DefaultFeats.Cultural.BattanianForestFeat))
+                CharacterObject leader = mobileParty.LeaderHero.CharacterObject;
+                if (leader != null && leader.Culture.GetCultureCode() == CultureCode.Battania)
                 {
-                    float value = DefaultFeats.Cultural.BattanianForestFeat.EffectBonus * -num2;
+                    float value = DefaultCulturalFeats.BattanianForestSpeedFeat.EffectBonus * -num2;
                     finalSpeed.AddFactor(value, KaosesPartySpeedCalculatingModel._culture);
                 }
             }
@@ -205,7 +205,7 @@ namespace KaosesPartySpeeds.Model
                 {
                     finalSpeed.AddFactor(DefaultPerks.Scouting.DesertBorn.PrimaryBonus, null);
                 }
-                if (mobileParty.Leader == null || !mobileParty.Leader.GetFeatValue(DefaultFeats.Cultural.AseraiDesertFeat))
+                if (mobileParty.LeaderHero == null || mobileParty.LeaderHero.Culture.GetCultureCode() != CultureCode.Aserai)
                 {
                     finalSpeed.AddFactor(-0.1f, KaosesPartySpeedCalculatingModel._desert);
                 }
@@ -226,9 +226,9 @@ namespace KaosesPartySpeeds.Model
             {
                 finalSpeed.AddFactor(DefaultPerks.Scouting.DayTraveler.PrimaryBonus, null);
             }
-            if (party.Leader != null)
+            if (party.LeaderHero != null)
             {
-                PerkHelper.AddEpicPerkBonusForCharacter(DefaultPerks.Scouting.UncannyInsight, party.Leader, DefaultSkills.Scouting, true, ref finalSpeed, 200);
+                PerkHelper.AddEpicPerkBonusForCharacter(DefaultPerks.Scouting.UncannyInsight, party.LeaderHero.CharacterObject, DefaultSkills.Scouting, true, ref finalSpeed, 200);
             }
             if (effectiveScout != null)
             {
@@ -484,6 +484,6 @@ namespace KaosesPartySpeeds.Model
 
         // Token: 0x04000FEC RID: 4076
         private const float DisorganizedEffect = -0.4f;
-        
+
     }
 }

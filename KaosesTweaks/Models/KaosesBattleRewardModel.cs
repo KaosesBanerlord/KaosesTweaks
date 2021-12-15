@@ -37,9 +37,9 @@ namespace KaosesTweaks.Models
             ExplainedNumber result = new ExplainedNumber(renowGainBase, true, null);
             if (party.IsMobile)
             {
-                if (party.MobileParty.HasPerk(DefaultPerks.Charm.ShowYourScars, false))
+                if (party.MobileParty.HasPerk(DefaultPerks.Charm.Warlord, false))
                 {
-                    PerkHelper.AddPerkBonusForParty(DefaultPerks.Charm.ShowYourScars, party.MobileParty, true, ref result);
+                    PerkHelper.AddPerkBonusForParty(DefaultPerks.Charm.Warlord, party.MobileParty, true, ref result);
                 }
                 if (party.MobileParty.HasPerk(DefaultPerks.Throwing.LongReach, true))
                 {
@@ -47,7 +47,7 @@ namespace KaosesTweaks.Models
                 }
                 PerkObject famousCommander = DefaultPerks.Leadership.FamousCommander;
                 MobileParty mobileParty = party.MobileParty;
-                PerkHelper.AddPerkBonusForCharacter(famousCommander, (mobileParty != null) ? mobileParty.Leader : null, true, ref result);
+                PerkHelper.AddPerkBonusForCharacter(famousCommander, (mobileParty != null) ? mobileParty.LeaderHero.CharacterObject : null, true, ref result);
             }
             return result;
         }

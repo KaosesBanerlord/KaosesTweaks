@@ -30,7 +30,7 @@ namespace KaosesTweaks.Models
             {
                 troopPowerBasedOnContext = Campaign.Current.Models.MilitaryPowerModel.GetTroopPowerBasedOnContext(attackerTroop, MapEvent.BattleTypes.None, BattleSideEnum.None, false);
             }
-            xpAmount = MBMath.Round(0.4f * ((troopPowerBasedOnContext + 0.5f) * (float)(Math.Min(damage, num) + (isFatal ? num : 0))));
+            xpAmount = (int)Math.Round(0.4f * ((troopPowerBasedOnContext + 0.5f) * (float)(Math.Min(damage, num) + (isFatal ? num : 0))));
             if (missionType == CombatXpModel.MissionTypeEnum.NoXp)
             {
                 xpAmount = 0;
@@ -109,7 +109,7 @@ namespace KaosesTweaks.Models
             {
                 if (party.IsMobile && party.MobileParty.LeaderHero != null)
                 {
-                    if (!attackerTroop.IsArcher && party.MobileParty.HasPerk(DefaultPerks.OneHanded.Trainer, true))
+                    if (!attackerTroop.IsRanged && party.MobileParty.HasPerk(DefaultPerks.OneHanded.Trainer, true))
                     {
                         xpToGain.AddFactor(DefaultPerks.OneHanded.Trainer.SecondaryBonus * 0.01f, DefaultPerks.OneHanded.Trainer.Name);
                     }
@@ -132,7 +132,7 @@ namespace KaosesTweaks.Models
                     {
                         xpToGain.AddFactor(DefaultPerks.OneHanded.LeadByExample.PrimaryBonus * 0.01f, DefaultPerks.OneHanded.LeadByExample.Name);
                     }
-                    if (attackerTroop.IsArcher && party.MobileParty.HasPerk(DefaultPerks.Crossbow.MountedCrossbowman, true))
+                    if (attackerTroop.IsRanged && party.MobileParty.HasPerk(DefaultPerks.Crossbow.MountedCrossbowman, true))
                     {
                         xpToGain.AddFactor(DefaultPerks.Crossbow.MountedCrossbowman.SecondaryBonus * 0.01f, DefaultPerks.Crossbow.MountedCrossbowman.Name);
                     }

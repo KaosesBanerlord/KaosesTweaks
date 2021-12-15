@@ -5,6 +5,7 @@ using TaleWorlds.CampaignSystem.SandBox.GameComponents;
 using TaleWorlds.Library;
 using KaosesTweaks.Settings;
 using KaosesTweaks.Utils;
+using System;
 
 namespace KaosesTweaks.Patches
 {
@@ -13,7 +14,7 @@ namespace KaosesTweaks.Patches
     {
         static void Postfix(PartyBase party, CharacterObject troopToBoost, ref int __result)
         {
-            if (MCMSettings.Instance is { } settings && settings.PrisonerConformityTweaksEnabled && !(party.LeaderHero is null))
+            if (MCMSettings.Instance is { } settings && settings.PrisonerConformityTweaksEnabled && party.LeaderHero != null)
             {
                 float num;
                 if (party.LeaderHero == Hero.MainHero ||
@@ -30,7 +31,7 @@ namespace KaosesTweaks.Patches
                         IM.MessageDebug("Prisoner num Final: " + num.ToString());
                     }
                     party.MobileParty.EffectiveQuartermaster.AddSkillXp(DefaultSkills.Charm, (num * .05f));
-                    __result = MBMath.Round(num);
+                    __result = (int)Math.Round(num);
                 }
             }
 

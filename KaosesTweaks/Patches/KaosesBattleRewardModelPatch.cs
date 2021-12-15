@@ -23,9 +23,9 @@ namespace KaosesTweaks.Patches
                 __result = new ExplainedNumber(modifiedRenownGain, true, new TextObject("KT Renown Tweak", null));
                 if (party.IsMobile)
                 {
-                    if (party.MobileParty.HasPerk(DefaultPerks.Charm.ShowYourScars, false))
+                    if (party.MobileParty.HasPerk(DefaultPerks.Charm.Warlord, false))
                     {
-                        PerkHelper.AddPerkBonusForParty(DefaultPerks.Charm.ShowYourScars, party.MobileParty, true, ref __result);
+                        PerkHelper.AddPerkBonusForParty(DefaultPerks.Charm.Warlord, party.MobileParty, true, ref __result);
                     }
                     if (party.MobileParty.HasPerk(DefaultPerks.Throwing.LongReach, true))
                     {
@@ -33,7 +33,7 @@ namespace KaosesTweaks.Patches
                     }
                     PerkObject famousCommander = DefaultPerks.Leadership.FamousCommander;
                     MobileParty mobileParty = party.MobileParty;
-                    PerkHelper.AddPerkBonusForCharacter(famousCommander, (mobileParty != null) ? mobileParty.Leader : null, true, ref __result);
+                    PerkHelper.AddPerkBonusForCharacter(famousCommander, (mobileParty != null) ? mobileParty.LeaderHero.CharacterObject : null, true, ref __result);
                 }
                 if (party.LeaderHero == Hero.MainHero && MCMSettings.Instance.BattleRewardShowDebug)
                 {

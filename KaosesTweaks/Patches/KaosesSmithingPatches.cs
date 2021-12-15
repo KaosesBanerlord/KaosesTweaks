@@ -79,10 +79,10 @@ namespace KaosesTweaks.Patches
                     if (array.Length != 0 && count < num)
                     {
                         foreach (CraftingPiece craftingPiece in array)
-                        {                
+                        {
                             if (!____openedParts.Contains(craftingPiece))
                             {
-                                ____openedParts.Add(craftingPiece);                            
+                                ____openedParts.Add(craftingPiece);
                             }
                         }
                         InformationManager.AddQuickInformation(new TextObject("{=p9F90bc0}KT All Smithing Parts Unlocked:", null), 0, null, "");
@@ -171,6 +171,7 @@ namespace KaosesTweaks.Patches
         static bool Prepare() => MCMSettings.Instance is { } settings && settings.SmithingEnergyDisable;
     }
 
+    /* - TODO: Find out how to reimplemnt without access to IInventoryLockTracker as it sprotection level has changed.
     [HarmonyPatch(typeof(SmeltingVM), "RefreshList")]
     class RefreshListPatch
     {
@@ -214,6 +215,7 @@ namespace KaosesTweaks.Patches
 
         static bool Prepare() => MCMSettings.Instance is { } settings && settings.SmeltingTweakEnabled;
     }
+    */
 
     [HarmonyPatch(typeof(SmeltingVM), "RefreshList")]
     [HarmonyPriority(Priority.VeryLow)]

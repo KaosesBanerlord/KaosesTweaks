@@ -209,7 +209,7 @@ namespace KaosesTweaks
                 //~ KaosesCraftingCampaignBehaviors
                 try
                 {
-                    if (Statics._settings.ArrowMultipliersEnabled || Statics._settings.BoltsMultipliersEnabled 
+                    if (Statics._settings.ArrowMultipliersEnabled || Statics._settings.BoltsMultipliersEnabled
                         || Statics._settings.ThrownMultiplierEnabled)
                     {
                         if (Statics._settings.Debug)
@@ -308,7 +308,7 @@ namespace KaosesTweaks
                 }
                 if (settings.KaosesStaticSpeedModifiersEnabled || settings.KaosesDynamicSpeedModifiersEnabled)
                 {
-                    
+
                     if (settings.Debug)
                     {
                         IM.MessageDebug("Loaded Kaoses Party Speed model Model Override");
@@ -325,7 +325,7 @@ namespace KaosesTweaks
                     //campaignGameStarter.AddModel(new KaosesBanditDensityModel());
                 }
                 if ((settings.PartyWageTweaksEnabled && !settings.PartyWageTweaksHarmonyEnabled) || (settings.KingdomBalanceStrengthEnabled && !settings.KingdomBalanceStrengthHarmonyEnabled))
-                {                    
+                {
                     if (settings.Debug)
                     {
                         IM.MessageDebug("Loaded BT Wage model Model Override");

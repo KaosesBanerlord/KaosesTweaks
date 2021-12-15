@@ -31,7 +31,7 @@ namespace KaosesTweaks.Models
                 }
             }
             int num2 = party.Party.NumberOfAllMembers + party.Party.NumberOfPrisoners / 2;
-            if (party.Leader != null && party.Leader.GetPerkValue(DefaultPerks.Roguery.Promises) && num != 0)
+            if (party.LeaderHero != null && party.LeaderHero.CharacterObject.GetPerkValue(DefaultPerks.Roguery.Promises) && num != 0)
             {
                 num2 += (int)((float)num * DefaultPerks.Roguery.Promises.PrimaryBonus * 0.01f);
             }

@@ -390,7 +390,7 @@ namespace KaosesTweaks.Models
         // Token: 0x06002D76 RID: 11638 RVA: 0x000B5A5D File Offset: 0x000B3C5D
         public override int GetPartyStrength(PartyBase party)
         {
-            return MBMath.Round(party.TotalStrength);
+            return (int)Math.Round(party.TotalStrength);
         }
 
         // Token: 0x06002D77 RID: 11639 RVA: 0x000B5A6A File Offset: 0x000B3C6A
