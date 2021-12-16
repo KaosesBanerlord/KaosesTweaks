@@ -1074,6 +1074,14 @@
     <string id="KT_PPM" text="Prisoner Price Multiplier" />
     <string id="KT_PPMH" text="Multiply the prisoner selling price [Native: 100%]." />
     <string id="KPM_Bullets" text="Bullets" />
+    <!-- 0.2.13 -->
+    <string id="BT_Settings_006405" text="Wage Harmony Patches " />
+    <string id="BT_Settings_006405_Desc" text="Enables Harmony Patches instead of model." />
+    <string id="BT_Settings_005236" text="Faction Balancing Harmony " />
+    <string id="BT_Settings_005200_Desc" text="Enables faction balancing of kingdoms via hormony patches instead of model." />
+
     
+
+
   </strings>
 </base>

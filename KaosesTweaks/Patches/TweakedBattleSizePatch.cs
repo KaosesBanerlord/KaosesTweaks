@@ -1,9 +1,9 @@
 ﻿using HarmonyLib;
-using System;
-using TaleWorlds.MountAndBlade;
-using TaleWorlds.Core;
 using KaosesTweaks.Settings;
 using KaosesTweaks.Utils;
+using System;
+using TaleWorlds.Core;
+using TaleWorlds.MountAndBlade;
 
 namespace KaosesTweaks.Patches
 {
@@ -16,7 +16,7 @@ namespace KaosesTweaks.Patches
             if (MCMSettings.Instance is { } settings && settings.BattleSize > 0)
             {
                 ____battleSize = settings.BattleSize;
-                if (Statics._settings.BattleSizeDebug)
+                if (settings.BattleSizeDebug)
                 {
                     IM.ColorGreenMessage("Max Battle Size Modified to: " + settings.BattleSize);
                 }

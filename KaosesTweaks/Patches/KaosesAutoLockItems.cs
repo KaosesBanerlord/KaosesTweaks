@@ -1,9 +1,9 @@
 ﻿using HarmonyLib;
+using KaosesTweaks.Settings;
 using System;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.ViewModelCollection;
 using TaleWorlds.Core;
-using TaleWorlds.Core.ViewModelCollection;
 
 namespace KaosesTweaks.Patches
 {
@@ -18,7 +18,7 @@ namespace KaosesTweaks.Patches
         typeof(InventoryLogic),
         typeof(bool),
         typeof(bool),
-        typeof(ItemVM.UsageType),
+        typeof(InventoryMode),
         typeof(ItemRosterElement),
         typeof(InventoryLogic.InventorySide),
         typeof(string),
@@ -31,67 +31,67 @@ namespace KaosesTweaks.Patches
             // Token: 0x06000004 RID: 4 RVA: 0x00002088 File Offset: 0x00000288
             public static void Postfix(SPItemVM __instance)
             {
-                if (__instance.InventorySide == InventoryLogic.InventorySide.PlayerInventory && Statics._settings.MCMAutoLocks)
+                if (MCMSettings.Instance is { } settings && __instance.InventorySide == InventoryLogic.InventorySide.PlayerInventory && settings.MCMAutoLocks)
                 {
                     bool isHorse = __instance.ItemType == EquipmentIndex.Horse;
-                    if (isHorse && !__instance.StringId.Contains("lame") && Statics._settings.autoLockHorses)
+                    if (isHorse && !__instance.StringId.Contains("lame") && settings.autoLockHorses)
                     {
                         __instance.IsLocked = true;
                     }
                     bool isFood = __instance.ItemRosterElement.EquipmentElement.Item.IsFood;
-                    if (isFood && Statics._settings.autoLockFood)
+                    if (isFood && settings.autoLockFood)
                     {
                         __instance.IsLocked = true;
                     }
                     if (__instance.IsCivilianItem && !isFood)
                     {
-                        if (__instance.StringId == "ironIngot1" && Statics._settings.autoLockIronBar1)
+                        if (__instance.StringId == "ironIngot1" && settings.autoLockIronBar1)
                         {
                             __instance.IsLocked = true;
                         }
 
-                        if (__instance.StringId == "ironIngot2" && Statics._settings.autoLockIronBar2)
+                        if (__instance.StringId == "ironIngot2" && settings.autoLockIronBar2)
                         {
                             __instance.IsLocked = true;
                         }
 
-                        if (__instance.StringId == "ironIngot3" && Statics._settings.autoLockIronBar3)
+                        if (__instance.StringId == "ironIngot3" && settings.autoLockIronBar3)
                         {
                             __instance.IsLocked = true;
                         }
 
-                        if (__instance.StringId == "ironIngot4" && Statics._settings.autoLockIronBar4)
+                        if (__instance.StringId == "ironIngot4" && settings.autoLockIronBar4)
                         {
                             __instance.IsLocked = true;
                         }
 
-                        if (__instance.StringId == "ironIngot5" && Statics._settings.autoLockIronBar5)
+                        if (__instance.StringId == "ironIngot5" && settings.autoLockIronBar5)
                         {
                             __instance.IsLocked = true;
                         }
 
-                        if (__instance.StringId == "ironIngot6" && Statics._settings.autoLockIronBar6)
+                        if (__instance.StringId == "ironIngot6" && settings.autoLockIronBar6)
                         {
                             __instance.IsLocked = true;
                         }
 
-                        if (__instance.StringId == "iron" && Statics._settings.autoLockIronOre)
+                        if (__instance.StringId == "iron" && settings.autoLockIronOre)
                         {
                             __instance.IsLocked = true;
                         }
 
-                        if (__instance.StringId == "silver" && Statics._settings.autoLockSilverOre)
+                        if (__instance.StringId == "silver" && settings.autoLockSilverOre)
                         {
                             __instance.IsLocked = true;
                         }
 
-                        if (__instance.StringId == "hardwood" && Statics._settings.autoLockHardwood)
+                        if (__instance.StringId == "hardwood" && settings.autoLockHardwood)
                         {
                             __instance.IsLocked = true;
                         }
 
 
-                        if (__instance.StringId == "charcoal" && Statics._settings.autoLockCharcol)
+                        if (__instance.StringId == "charcoal" && settings.autoLockCharcol)
                         {
                             __instance.IsLocked = true;
                         }

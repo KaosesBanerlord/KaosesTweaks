@@ -315,7 +315,7 @@ namespace KaosesTweaks.Settings
             SettingPropertyGroup("{=BT_Settings_000000}Battle Tweaks" + "/" + "{=KTMCM_BSTEXP}Dynamic Battle Sizes !BETA! " + "*")]
         public float SlotsForReinforcements { get; set; } = 0.5f;
 
-        [SettingPropertyInteger("{=KTMCM_BSTEXP_04}Horses on Battlefield", 0,500, "0 Horses", Order = 3, RequireRestart = false,
+        [SettingPropertyInteger("{=KTMCM_BSTEXP_04}Horses on Battlefield", 0, 500, "0 Horses", Order = 3, RequireRestart = false,
             HintText = "{=KTMCM_BSTEXP_04_Desc}The amount of horses that will stay on the battlefield. Any horses exceeding that amount will flee from the battlefield and free up agent slots."),
             SettingPropertyGroup("{=BT_Settings_000000}Battle Tweaks" + "/" + "{=KTMCM_BSTEXP}Dynamic Battle Sizes !BETA! " + "*")]
         public int RetreatHorses { get; set; } = 50;
@@ -668,7 +668,7 @@ namespace KaosesTweaks.Settings
         public bool MCMSmithingHarmoneyPatches { get; set; } = false; // Activates the Model Override
 
         //~ Refining Formula Multipliers
-        #region
+        #region Refining Formula Multipliers
         [SettingPropertyBool("{=KT_CTRFME}Refining Formula Tweaks" + "*", Order = 1, RequireRestart = true, IsToggle = true,
             HintText = "{=KT_CTRFME_Desc}Enables refining formula tweaks which adjust formula cost and output values."),
             SettingPropertyGroup("{=BT_Settings_004000}Crafting Tweaks" + "/" + "{=KT_CTRFME}Refining Formula Tweaks")]
@@ -760,7 +760,7 @@ namespace KaosesTweaks.Settings
         #endregion
 
         //~ Crafting Quality Bonus
-        #region
+        #region Crafting Quality Bonus
         [SettingPropertyBool("{=KT_CTCQME}Quality Tweaks" + "*", Order = 1, RequireRestart = true, IsToggle = true,
             HintText = "{=KT_CTCQME_Desc}Enablessetting the base bonus for each of the crafting bonus types, fine, master and legendary."),
             SettingPropertyGroup("{=BT_Settings_004000}Crafting Tweaks" + "/" + "{=KT_CTCQME}Quality Tweaks")]
@@ -780,8 +780,6 @@ namespace KaosesTweaks.Settings
             HintText = "{=KT_CTCQLBV_Desc}Set bonus base value for Legendary quality crafting [Native : 3].")]
         [SettingPropertyGroup("{=BT_Settings_004000}Crafting Tweaks" + "/" + "{=KT_CTCQME}Quality Tweaks")]
         public int CraftingQualityLegendaryValue { get; set; } = 2;
-
-
         #endregion //~ Crafting Quality Bonus
 
         //~ Xp Modifiers
@@ -1166,7 +1164,7 @@ namespace KaosesTweaks.Settings
         #region Arrows
         [SettingPropertyBool("{=KPM_AME}Arrows Multipliers Enabled", IsToggle = true, Order = 1, RequireRestart = false,
             HintText = "{=KPM_AMEH}Enables arrows multipliers for price and stack size")]
-        [SettingPropertyGroup("{=KTMCM_ItemTweaks}Item Tweaks" + "/" +"{=KPM_Arrows}Arrows")]
+        [SettingPropertyGroup("{=KTMCM_ItemTweaks}Item Tweaks" + "/" + "{=KPM_Arrows}Arrows")]
         public bool ArrowMultipliersEnabled { get; set; } = false;
 
         [SettingPropertyFloatingInteger("{=KPM_ASSM}Arrows Stack Multiplier", 0.1f, 10.0f, "#0%", Order = 2, RequireRestart = false,
@@ -1547,6 +1545,11 @@ namespace KaosesTweaks.Settings
             HintText = "{=BT_Settings_005200_Desc}Enables tweaks which affect the balancing of kingdoms."),
             SettingPropertyGroup("{=BT_Settings_005000}Kingdom Tweaks" + "/" + "{=BT_Settings_005200}Faction Balancing", GroupOrder = 2)]
         public bool KingdomBalanceStrengthEnabled { get; set; } = false;
+
+        //[SettingPropertyBool("{=BT_Settings_005236}Faction Balancing Harmony " + "*", Order = 1, RequireRestart = true, 
+        //    HintText = "{=BT_Settings_005200_Desc}Enables faction balancing of kingdoms via hormony patches instead of model."),
+        //    SettingPropertyGroup("{=BT_Settings_005000}Kingdom Tweaks" + "/" + "{=BT_Settings_005200}Faction Balancing", GroupOrder = 2)]
+        public bool KingdomBalanceStrengthHarmonyEnabled { get; set; } = false;
 
         [SettingPropertyBool("{=BT_Settings_005201}Balancing Modifiers For Vanilla Kingdoms", Order = 2, RequireRestart = false, IsToggle = true,
             HintText = "{=BT_Settings_005201_Desc}Enables tweaks which affect the balancing of kingdoms in vanilla game."),
@@ -1961,6 +1964,12 @@ namespace KaosesTweaks.Settings
             HintText = "{=BT_Settings_006400_Desc}Allows you to reduce/increase wages for various groups."),
             SettingPropertyGroup("{=BT_Settings_006000}Party Tweaks" + "/" + "{=BT_Settings_006400}Wages", GroupOrder = 4)]
         public bool PartyWageTweaksEnabled { get; set; } = false;
+
+        //[SettingPropertyBool("{=BT_Settings_006405}Wage Harmony Patches " + "*", Order = 1, RequireRestart = true, IsToggle = true,
+        //    HintText = "{=BT_Settings_006405_Desc}Enables Harmony Patches instead of model."),
+        //    SettingPropertyGroup("{=BT_Settings_006000}Party Tweaks" + "/" + "{=BT_Settings_006400}Wages", GroupOrder = 4)]
+        public bool PartyWageTweaksHarmonyEnabled { get; set; } = false;
+
 
         [SettingPropertyFloatingInteger("{=BT_Settings_006401}Party Wage Adjustment", .05f, 5f, "0%", Order = 2, RequireRestart = false,
             HintText = "{=BT_Settings_006401_Desc}Adjusts party wages to a % of native value. Native is 100%."),
@@ -3815,7 +3824,7 @@ namespace KaosesTweaks.Settings
 
                 //~ BT Smelting Tweaks
                 SmeltingTweakEnabled = true,
-                PreventSmeltingLockedItems = true,
+                PreventSmeltingLockedItems = false,
                 AutoLearnSmeltedParts = true,
 
 

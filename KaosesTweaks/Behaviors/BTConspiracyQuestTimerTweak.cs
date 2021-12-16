@@ -1,8 +1,7 @@
-﻿using System;
-using TaleWorlds.CampaignSystem;
-using TaleWorlds.Core;
+﻿using KaosesTweaks.Utils;
 using StoryMode.StoryModePhases;
-using KaosesTweaks.Utils;
+using System;
+using TaleWorlds.CampaignSystem;
 /*
  1.5.7.2 - Disable until we understand main quest changes.
  */

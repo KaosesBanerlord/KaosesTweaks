@@ -15,38 +15,35 @@ namespace KaosesTweaks.Patches
 {
 
 
-    [HarmonyPatch(typeof(TournamentVM), "RefreshBetProperties")]
+    [HarmonyPatch(typeof(TournamentVM), "Refresh")]
     public class RefreshBetPropertiesPatch
     {
         private static FieldInfo? bettedAmountFieldInfo = null;
 
         static void Postfix(TournamentVM __instance)
         {
-            if (!(MCMSettings.Instance is { } settings)) return;
-
-            if (bettedAmountFieldInfo == null) GetFieldInfo();
-            int thisRoundBettedAmount = !(bettedAmountFieldInfo is null) ? (int)bettedAmountFieldInfo.GetValue(__instance) : 0;
-            int num = settings.TournamentMaxBetAmount;
-            if (Hero.MainHero.GetPerkValue(DefaultPerks.Roguery.DeepPockets))
+            if (MCMSettings.Instance is { } settings)
             {
-                num *= (int)DefaultPerks.Roguery.DeepPockets.PrimaryBonus;
+                int thisRoundBettedAmount = (bettedAmountFieldInfo is null) ? 0 : (int)bettedAmountFieldInfo.GetValue(__instance);
+                int num = settings.TournamentMaxBetAmount;
+
+                if (Hero.MainHero.GetPerkValue(DefaultPerks.Roguery.DeepPockets))
+                {
+                    num *= (int)DefaultPerks.Roguery.DeepPockets.PrimaryBonus;
+                }
+
+                __instance.MaximumBetValue = Math.Min(num - thisRoundBettedAmount, Hero.MainHero.Gold);
             }
-            __instance.MaximumBetValue = Math.Min(num - thisRoundBettedAmount, Hero.MainHero.Gold);
         }
 
         static bool Prepare()
         {
             if (MCMSettings.Instance is { } settings && settings.TournamentMaxBetAmountTweakEnabled)
             {
-                GetFieldInfo();
+                bettedAmountFieldInfo = typeof(TournamentVM).GetField("_thisRoundBettedAmount", BindingFlags.Instance | BindingFlags.NonPublic);
                 return true;
             }
             return false;
-        }
-
-        private static void GetFieldInfo()
-        {
-            bettedAmountFieldInfo = typeof(TournamentVM).GetField("_thisRoundBettedAmount", BindingFlags.Instance | BindingFlags.NonPublic);
         }
     }
 

@@ -1,13 +1,13 @@
-﻿using System;
+﻿using KaosesTweaks.Settings;
+using KaosesTweaks.Utils;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
-using TaleWorlds.CampaignSystem.SandBox.CampaignBehaviors;
 using TaleWorlds.CampaignSystem.GameMenus;
+using TaleWorlds.CampaignSystem.SandBox.CampaignBehaviors;
 using TaleWorlds.Core;
-using KaosesTweaks.Settings;
-using KaosesTweaks.Utils;
 
 namespace KaosesTweaks.Behaviors
 {
@@ -15,7 +15,8 @@ namespace KaosesTweaks.Behaviors
     {
         public override void RegisterEvents()
         {
-            CampaignEvents.ClanChangedKingdom.AddNonSerializedListener(this, new Action<Clan, Kingdom, Kingdom, bool, bool>(this.OnClanChangedKingdom));
+            CampaignEvents.ClanChangedKingdom.AddNonSerializedListener(this, new Action<Clan, Kingdom, Kingdom, ChangeKingdomAction.ChangeKingdomActionDetail, bool>(this.OnClanChangedKingdom));
+            //CampaignEvents.ClanChangedKingdom.AddNonSerializedListener(this, new Action<Clan, Kingdom, Kingdom, bool, bool>(this.OnClanChangedKingdom));
             CampaignEvents.OnGameLoadedEvent.AddNonSerializedListener(this, new Action<CampaignGameStarter>(this.OnGameLoaded));
             //CampaignEvents.WeeklyTickSettlementEvent.AddNonSerializedListener(this, new Action<Settlement>(this.OnWeeklyTickSettlement));
             CampaignEvents.DailyTickSettlementEvent.AddNonSerializedListener(this, new Action<Settlement>(this.OnDailyTickSettlement));
@@ -83,7 +84,9 @@ namespace KaosesTweaks.Behaviors
             }
         }
 
-        private void OnClanChangedKingdom(Clan clan, Kingdom arg2, Kingdom arg3, bool arg4, bool arg5)
+
+        // Token: 0x06000E45 RID: 3653 RVA: 0x000630F6 File Offset: 0x000612F6
+        private void OnClanChangedKingdom(Clan clan, Kingdom oldKingdom, Kingdom newKingdom, ChangeKingdomAction.ChangeKingdomActionDetail detail, bool showNotification = true)
         {
             if (MCMSettings.Instance is { } settings && settings.ChangeToKingdomCulture)
             {
@@ -203,18 +206,18 @@ namespace KaosesTweaks.Behaviors
             if (WeekCounter.ContainsKey(settlement))
             {
                 Dictionary<Settlement, int> dictionary = WeekCounter;
-                if ((int)(dictionary[settlement] / 7) <= Statics._settings.TimeToChanceCulture)
+                if (dictionary[settlement] / 7 <= Statics._settings?.TimeToChanceCulture)
                 {
                     dictionary[settlement]++;
                     if (Statics._settings.CultureChangeDebug)
                     {
                         IM.MessageDebug($"OnDailyTickSettlement : {settlement.Name.ToString()} counter: {dictionary[settlement].ToString()}");
-                        IM.MessageDebug($"OnDailyTickSettlement condition: {((int)(dictionary[settlement] / 7) <= Statics._settings.TimeToChanceCulture).ToString()} ");
+                        IM.MessageDebug($"OnDailyTickSettlement condition: {(dictionary[settlement] / 7 <= Statics._settings.TimeToChanceCulture).ToString()} ");
                         IM.MessageDebug($"OnDailyTickSettlement (dictionary[settlement] / 7) : {((dictionary[settlement] / 7)).ToString()} ");
                         IM.MessageDebug($"OnDailyTickSettlement TimeToChanceCulture: {Statics._settings.TimeToChanceCulture.ToString()} ");
                     }
 
-                    if (this.IsSettlementDue(settlement))
+                    if (IsSettlementDue(settlement))
                     {
                         Transform(settlement, true);
                     }
@@ -229,12 +232,13 @@ namespace KaosesTweaks.Behaviors
             {
                 Dictionary<Settlement, int> dictionary = WeekCounter;
                 dictionary[settlement]++;
-                if (Statics._settings.CultureChangeDebug)
+
+                if (MCMSettings.Instance is { } settings && settings.CultureChangeDebug)
                 {
                     IM.MessageDebug($"OnWeeklyTickSettlement : {settlement.Name.ToString()} Added 1 week : {dictionary[settlement].ToString()} ");
                 }
 
-                if (this.IsSettlementDue(settlement))
+                if (IsSettlementDue(settlement))
                 {
                     Transform(settlement, true);
                 }
@@ -245,7 +249,7 @@ namespace KaosesTweaks.Behaviors
         {
             if (MCMSettings.Instance is { } settings && settings.TimeToChanceCulture > 0)
             {
-                return (int)(WeekCounter[settlement] / 7) >= settings.TimeToChanceCulture;
+                return WeekCounter[settlement] / 7 >= settings.TimeToChanceCulture;
             }
             else
             {
@@ -259,7 +263,7 @@ namespace KaosesTweaks.Behaviors
             {
                 if (WeekCounter.ContainsKey(settlement))
                 {
-                    if (Statics._settings.CultureChangeDebug)
+                    if (MCMSettings.Instance is { } settings && settings.CultureChangeDebug)
                     {
                         IM.MessageDebug($"AddCounter : {settlement.Name.ToString()} set exisiting");
                     }
@@ -267,7 +271,7 @@ namespace KaosesTweaks.Behaviors
                 }
                 else
                 {
-                    if (Statics._settings.CultureChangeDebug)
+                    if (MCMSettings.Instance is { } settings && settings.CultureChangeDebug)
                     {
                         IM.MessageDebug($"AddCounter : {settlement.Name.ToString()} add new");
                     }
@@ -291,6 +295,7 @@ namespace KaosesTweaks.Behaviors
             args.optionLeaveType = GameMenuOption.LeaveType.Manage;
             return Settlement.CurrentSettlement.IsTown;
         }
+
         public static bool Game_menu_village_change_culture_on_condition(MenuCallbackArgs args)
         {
             args.optionLeaveType = GameMenuOption.LeaveType.Manage;
@@ -319,7 +324,6 @@ namespace KaosesTweaks.Behaviors
                 }
             }
         }
-
 
         private static Dictionary<Settlement, CultureObject> initialCultureDictionary = new();
         public static Dictionary<Settlement, int> WeekCounter = new();

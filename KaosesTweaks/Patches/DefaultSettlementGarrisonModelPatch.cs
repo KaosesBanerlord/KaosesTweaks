@@ -1,8 +1,8 @@
-﻿using System;
-using System.Reflection;
-using HarmonyLib;
+﻿using HarmonyLib;
 using KaosesTweaks.Settings;
 using KaosesTweaks.Utils;
+using System;
+using System.Reflection;
 using TaleWorlds.CampaignSystem;
 
 namespace KaosesTweaks.Patches
@@ -31,7 +31,7 @@ namespace KaosesTweaks.Patches
 
                 if (DisableDonationClan || DisableForAnySettlement)
                 {
-                    if (Statics._settings.SettlementsDebug)
+                    if (settings.SettlementsDebug)
                     {
                         IM.MessageDebug("FindNumberOfTroopsToLeaveToGarrison: IS DISABLED");
                     }

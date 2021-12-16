@@ -46,7 +46,7 @@ namespace KaosesTweaks.BTTweaks
                         (int)hero.CaptivityStartTime.ElapsedDaysUntilNow > settings.MinimumDaysOfImprisonment)
                     {
 
-                        if (Statics._settings.PrisonersDebug)
+                        if (MCMSettings.Instance is { } && settings.PrisonersDebug)
                         {
                             IM.MessageDebug("Prisoner release: elapsed >" + hero.CaptivityStartTime.ElapsedDaysUntilNow.ToString() + "\r\n"
                                 + "MinimumDaysOfImprisonment: " + settings.MinimumDaysOfImprisonment.ToString() + "\r\n"
@@ -73,7 +73,7 @@ namespace KaosesTweaks.BTTweaks
 
         public static void DailyTick()
         {
-            foreach (Hero hero in Hero.All)
+            foreach (Hero hero in Hero.AllAliveHeroes)
             {
                 if (hero == null) return;
                 if (hero.PartyBelongedToAsPrisoner == null && hero.IsPrisoner && hero.IsAlive && !hero.IsActive && !hero.IsNotSpawned && !hero.IsReleased)

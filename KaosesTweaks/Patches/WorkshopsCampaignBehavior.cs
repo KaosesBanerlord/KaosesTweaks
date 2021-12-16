@@ -73,7 +73,7 @@ namespace KaosesTweaks.Patches
             if (Campaign.Current.GameStarted && !doNotEffectCapital && MCMSettings.Instance is { } settings && settings.EnableWorkshopBuyTweak)
             {
                 float num = __state * (settings.WorkshopBuyTweak - 1f);
-                if (Statics._settings.WorkshopsDebug)
+                if (settings.WorkshopsDebug)
                 {
                     IM.MessageDebug("Patches WorkshopsCampaignBehavior ProduceOutput: " + num.ToString() + "  Tweak : " + settings.WorkshopBuyTweak.ToString());
                 }

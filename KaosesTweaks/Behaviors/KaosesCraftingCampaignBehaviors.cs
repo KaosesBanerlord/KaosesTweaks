@@ -29,7 +29,8 @@ namespace KaosesTweaks.Behaviors
 
         }
 
-        private void OnNewItemCraftedEvent(ItemObject itemObject, Crafting.OverrideData overRideData)
+        //private void OnNewItemCraftedEvent(ItemObject itemObject, Crafting.OverrideData overRideData)
+        private void OnNewItemCraftedEvent(ItemObject itemObject, Crafting.OverrideData overrideData, bool isCraftingOrderItem)
         {
             if (itemObject != null)
             {
@@ -46,6 +47,7 @@ namespace KaosesTweaks.Behaviors
                 }
                 else if (itemObject.ItemType == ItemTypeEnum.Thrown)
                 {
+                    IM.MessageDebug($"IS Thrown WEAPON DO NEW thrown ITEM MODIFICATION");
                     new Thrown(itemObject);
                 }
             }
