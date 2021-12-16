@@ -1,10 +1,6 @@
 using Bannerlord.BUTR.Shared.Helpers;
 using KaosesTweaks.Settings;
-using KaosesTweaks.Utils;
-using System.Linq;
 using System.Reflection;
-using TaleWorlds.CampaignSystem;
-using TaleWorlds.Engine;
 
 namespace KaosesTweaks
 {

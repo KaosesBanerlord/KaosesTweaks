@@ -1,4 +1,5 @@
 ﻿using Helpers;
+using KaosesTweaks.Settings;
 using KaosesTweaks.Utils;
 using System;
 using System.Collections.Generic;
@@ -32,8 +33,7 @@ namespace KaosesTweaks.Behaviors
         {
             foreach (LogEntry logEntry in new List<LogEntry>(Campaign.Current.LogEntryHistory.GameActionLogs))
             {
-                ChildbirthLogEntry childbirthLogEntry = logEntry as ChildbirthLogEntry;
-                if (childbirthLogEntry != null && childbirthLogEntry.NeedsNewLogEntryForTwin && childbirthLogEntry.NewLogTwin != null)
+                if (logEntry is ChildbirthLogEntry childbirthLogEntry && childbirthLogEntry.NeedsNewLogEntryForTwin && childbirthLogEntry.NewLogTwin != null)
                 {
                     LogEntry.AddLogEntry(new ChildbirthLogEntry(childbirthLogEntry.Mother, childbirthLogEntry.NewLogTwin), childbirthLogEntry.GameTime);
                 }
@@ -45,7 +45,7 @@ namespace KaosesTweaks.Behaviors
         {
             if (this.HeroPregnancyCheckCondition(hero))
             {
-                if (hero.Age >= (float)Campaign.Current.Models.AgeModel.HeroComesOfAge && hero.Spouse != null && hero.Spouse.IsAlive && !hero.IsPregnant)
+                if (hero.Age >= Campaign.Current.Models.AgeModel.HeroComesOfAge && hero.Spouse != null && hero.Spouse.IsAlive && !hero.IsPregnant)
                 {
                     this.RefreshSpouseVisit(hero);
                 }
@@ -59,7 +59,7 @@ namespace KaosesTweaks.Behaviors
         // Token: 0x06002FC2 RID: 12226 RVA: 0x000C94C8 File Offset: 0x000C76C8
         private bool HeroPregnancyCheckCondition(Hero hero)
         {
-            return hero.IsFemale && hero.IsAlive && hero.Age >= (float)Campaign.Current.Models.AgeModel.HeroComesOfAge && (hero.Clan == null || !hero.Clan.IsRebelClan) && !CampaignOptions.IsLifeDeathCycleDisabled;
+            return hero.IsFemale && hero.IsAlive && hero.Age >= Campaign.Current.Models.AgeModel.HeroComesOfAge && (hero.Clan == null || !hero.Clan.IsRebelClan) && !CampaignOptions.IsLifeDeathCycleDisabled;
         }
 
         // Token: 0x06002FC3 RID: 12227 RVA: 0x000C9524 File Offset: 0x000C7724
@@ -79,7 +79,7 @@ namespace KaosesTweaks.Behaviors
         {
             if (this.CheckAreNearby(hero, hero.Spouse) && MBRandom.RandomFloat <= Campaign.Current.Models.PregnancyModel.GetDailyChanceOfPregnancyForHero(hero))
             {
-                if (Statics._settings.PregnancyDebug)
+                if (MCMSettings.Instance is { } settings && settings.PregnancyDebug)
                 {
                     IM.MessageDebug("KaosesPregnancyCampaignBehavior:  MBRandom.RandomFloat <=" + (MBRandom.RandomFloat).ToString() + " Hero Chance: " + Campaign.Current.Models.PregnancyModel.GetDailyChanceOfPregnancyForHero(hero).ToString());
                 }
@@ -112,7 +112,7 @@ namespace KaosesTweaks.Behaviors
             if (heroSettlement == null)
             {
                 MobileParty mobileParty2 = heroParty;
-                heroSettlement = ((mobileParty2 != null) ? mobileParty2.CurrentSettlement : null);
+                heroSettlement = mobileParty2.CurrentSettlement;
             }
         }
 
@@ -188,18 +188,18 @@ namespace KaosesTweaks.Behaviors
         {
             int count = mother.Children.Count;
             float num = 48f;
-            float num2 = mother.CharacterObject.Age - (float)yearsAgo;
+            float num2 = mother.CharacterObject.Age - yearsAgo;
             foreach (Hero hero in mother.Children)
             {
-                if (hero.CharacterObject.Age - (float)yearsAgo < num)
+                if (hero.CharacterObject.Age - yearsAgo < num)
                 {
-                    num = hero.CharacterObject.Age - (float)yearsAgo;
+                    num = hero.CharacterObject.Age - yearsAgo;
                 }
             }
             float result = 0f;
             if (num > 2f && num2 > 18f)
             {
-                result = (num + 2f) * (42f - num2) / (float)(count + 1) / 100f;
+                result = (num + 2f) * (42f - num2) / (count + 1) / 100f;
             }
             return result;
         }

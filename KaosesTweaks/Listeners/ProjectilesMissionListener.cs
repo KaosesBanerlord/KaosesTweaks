@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using KaosesTweaks.Settings;
+using System.Collections.Generic;
 using TaleWorlds.Core;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.ObjectSystem;
@@ -28,8 +29,8 @@ namespace KaosesTweaks.Listeners
                 MissionWeapon weapon3;
                 if (agent.IsHuman)//agent.IsMainAgent
                 {
-                    MissionEquipment meq = agent.Equipment;
-                    EquipmentIndex eIndex = 0;
+                    //MissionEquipment meq = agent.Equipment;
+                    //EquipmentIndex eIndex = 0;
 
                     weapon0 = agent.Equipment[EquipmentIndex.Weapon0];
                     weapon1 = agent.Equipment[EquipmentIndex.Weapon1];
@@ -194,9 +195,10 @@ namespace KaosesTweaks.Listeners
 
         public short GetNewAmmoSize(int ammo)
         {
-            float tmp = ammo * Statics._settings.ThrownMultiplier;
-            short ammoCount2 = (short)tmp;
-            return ammoCount2;
+            if (MCMSettings.Instance is { } settings)
+                ammo = (int)(ammo * settings.ThrownMultiplier);
+
+            return (short)ammo;
         }
 
         public void OnDeploymentPlanMade(BattleSideEnum battleSide, bool isFirstPlan)

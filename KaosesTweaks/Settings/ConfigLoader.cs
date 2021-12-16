@@ -14,12 +14,16 @@ namespace KaosesTweaks.Settings
             BuildVariables();
             //LoadModConfigFile();
             ChechMCMProvider();
-            if (Statics._settings is null)
+            if (MCMSettings.Instance is { } settings)
             {
-                IM.MessageError("Failed to load any config provider");
+                if (settings is null)
+                    IM.MessageError("Failed to load any config provider");
+                else
+                {
+                    IM.logToFile = settings.LogToFile;
+                    IM.Debug = settings.Debug;
+                }
             }
-            IM.logToFile = Statics._settings.LogToFile;
-            IM.Debug = Statics._settings.Debug;
             IM.PrePrend = Statics.PrePrend;
             Logging.PrePrend = Statics.PrePrend;
         }

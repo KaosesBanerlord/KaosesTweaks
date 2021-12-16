@@ -10,12 +10,13 @@ namespace KaosesTweaks.Patches
     {
         static bool Prefix(ref int __result)
         {
-            if (!(MCMSettings.Instance is null))
+            if (MCMSettings.Instance is { } settings)
             {
-                __result = MCMSettings.Instance.TournamentRenownAmount;
-                if (Statics._settings.TournamentDebug)
+                __result = settings.TournamentRenownAmount;
+
+                if (settings.TournamentDebug)
                 {
-                    IM.MessageDebug("Patches TournamentRenownAmount Tweak: " + MCMSettings.Instance.TournamentRenownAmount.ToString());
+                    IM.MessageDebug("Patches TournamentRenownAmount Tweak: " + settings.TournamentRenownAmount.ToString());
                 }
                 return false;
             }

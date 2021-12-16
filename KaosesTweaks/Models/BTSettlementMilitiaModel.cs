@@ -18,7 +18,7 @@ namespace KaosesTweaks.Models
         public override float CalculateEliteMilitiaSpawnChance(Settlement settlement)
         {
             float num = 0f;
-            Hero hero = null;
+            Hero? hero = null;
             if (settlement.IsFortification && settlement.Town.Governor != null)
             {
                 hero = settlement.Town.Governor;

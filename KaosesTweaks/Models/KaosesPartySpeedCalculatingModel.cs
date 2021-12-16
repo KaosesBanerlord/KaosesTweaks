@@ -1,11 +1,7 @@
 ﻿using Helpers;
 using KaosesPartySpeeds.Objects;
-using KaosesTweaks;
+using KaosesTweaks.Settings;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.SandBox.GameComponents.Map;
 using TaleWorlds.Core;
@@ -61,15 +57,15 @@ namespace KaosesPartySpeeds.Model
             {
                 result.AddFactor(mountedFootmenRatioModifier * DefaultPerks.Riding.NomadicTraditions.PrimaryBonus * 0.01f, DefaultPerks.Riding.NomadicTraditions.Name);
             }
-            float num12 = Math.Min(num5, (float)num6);
+            float num12 = Math.Min(num5, num6);
             if (num12 > 0f)
             {
                 float cargoEffect = this.GetCargoEffect(num12, num6);
                 result.AddFactor(cargoEffect, KaosesPartySpeedCalculatingModel._textCargo);
             }
-            if (num2 > (float)num6)
+            if (num2 > num6)
             {
-                float overBurdenedEffect = this.GetOverBurdenedEffect(num2 - (float)num6, num6);
+                float overBurdenedEffect = this.GetOverBurdenedEffect(num2 - num6, num6);
                 result.AddFactor(overBurdenedEffect, KaosesPartySpeedCalculatingModel._textOverburdened);
                 if (mobileParty.HasPerk(DefaultPerks.Athletics.Energetic, false))
                 {
@@ -153,7 +149,7 @@ namespace KaosesPartySpeeds.Model
         // Token: 0x06002E26 RID: 11814 RVA: 0x000C2634 File Offset: 0x000C0834
         private float CalculateBaseSpeedForParty(int menCount)
         {
-            return (float)(5.0 * Math.Pow((double)(200f / (200f + (float)menCount)), 0.4000000059604645));
+            return (float)(5.0 * Math.Pow(200f / (200f + menCount), 0.4000000059604645));
         }
 
         // Token: 0x06002E27 RID: 11815 RVA: 0x000C2660 File Offset: 0x000C0860
@@ -171,11 +167,11 @@ namespace KaosesPartySpeeds.Model
                     {
                         if (mobileParty.MemberRoster.GetCharacterAtIndex(i).DefaultFormationClass.Equals(FormationClass.Infantry))
                         {
-                            num += (float)mobileParty.MemberRoster.GetElementNumber(i);
+                            num += mobileParty.MemberRoster.GetElementNumber(i);
                         }
                     }
                 }
-                float num2 = (num / (float)mobileParty.MemberRoster.Count > 0.75f) ? -0.15f : -0.3f;
+                float num2 = (num / mobileParty.MemberRoster.Count > 0.75f) ? -0.15f : -0.3f;
                 finalSpeed.AddFactor(num2, KaosesPartySpeedCalculatingModel._movingInForest);
                 CharacterObject leader = mobileParty.LeaderHero.CharacterObject;
                 if (leader != null && leader.Culture.GetCultureCode() == CultureCode.Battania)
@@ -260,7 +256,9 @@ namespace KaosesPartySpeeds.Model
             }
             KaosesPartySpeed.GetDynamicSpeedChange(mobileParty, ref finalSpeed);
 
-            finalSpeed.LimitMin(Statics._settings.KaosesmininumSpeedAmount);
+            if (MCMSettings.Instance is { } settings)
+                finalSpeed.LimitMin(settings.KaosesmininumSpeedAmount);
+
             //finalSpeed.LimitMin(1f);
             return finalSpeed;
         }
@@ -268,13 +266,13 @@ namespace KaosesPartySpeeds.Model
         // Token: 0x06002E28 RID: 11816 RVA: 0x000C29FC File Offset: 0x000C0BFC
         private float GetCargoEffect(float weightCarried, int partyCapacity)
         {
-            return -0.02f * weightCarried / (float)partyCapacity;
+            return -0.02f * weightCarried / partyCapacity;
         }
 
         // Token: 0x06002E29 RID: 11817 RVA: 0x000C2A09 File Offset: 0x000C0C09
         private float GetOverBurdenedEffect(float totalWeightCarried, int partyCapacity)
         {
-            return -0.4f * (totalWeightCarried / (float)partyCapacity);
+            return -0.4f * (totalWeightCarried / partyCapacity);
         }
 
         // Token: 0x06002E2A RID: 11818 RVA: 0x000C2A18 File Offset: 0x000C0C18
@@ -282,7 +280,7 @@ namespace KaosesPartySpeeds.Model
         {
             int partySizeLimit = mobileParty.Party.PartySizeLimit;
             int numberOfAllMembers = mobileParty.Party.NumberOfAllMembers;
-            return 1f / ((float)numberOfAllMembers / (float)partySizeLimit) - 1f;
+            return 1f / (numberOfAllMembers / (float)partySizeLimit) - 1f;
         }
 
         // Token: 0x06002E2B RID: 11819 RVA: 0x000C2A50 File Offset: 0x000C0C50
@@ -290,7 +288,7 @@ namespace KaosesPartySpeeds.Model
         {
             int prisonerSizeLimit = mobileParty.Party.PrisonerSizeLimit;
             int numberOfPrisoners = mobileParty.Party.NumberOfPrisoners;
-            return 1f / ((float)numberOfPrisoners / (float)prisonerSizeLimit) - 1f;
+            return 1f / (numberOfPrisoners / (float)prisonerSizeLimit) - 1f;
         }
 
         // Token: 0x06002E2C RID: 11820 RVA: 0x000C2A86 File Offset: 0x000C0C86
@@ -305,7 +303,7 @@ namespace KaosesPartySpeeds.Model
             {
                 return -0.8f;
             }
-            return Math.Max(-0.8f, -0.3f * ((float)herdSize / (float)totalMenCount));
+            return Math.Max(-0.8f, -0.3f * (herdSize / (float)totalMenCount));
         }
 
         // Token: 0x06002E2D RID: 11821 RVA: 0x000C2AB8 File Offset: 0x000C0CB8
@@ -319,7 +317,7 @@ namespace KaosesPartySpeeds.Model
             {
                 return -0.5f;
             }
-            float baseNumber = Math.Max(-0.8f, -0.05f * (float)numWounded / (float)totalMenCount);
+            float baseNumber = Math.Max(-0.8f, -0.05f * numWounded / totalMenCount);
             ExplainedNumber explainedNumber = new ExplainedNumber(baseNumber, false, null);
             PerkHelper.AddPerkBonusForParty(DefaultPerks.Medicine.Sledges, party, true, ref explainedNumber);
             return explainedNumber.ResultNumber;
@@ -330,7 +328,7 @@ namespace KaosesPartySpeeds.Model
         {
             if (totalMenCount > 0 && totalCavalryCount > 0)
             {
-                float value = 0.4f * (float)totalCavalryCount / (float)totalMenCount;
+                float value = 0.4f * totalCavalryCount / totalMenCount;
                 result.AddFactor(value, KaosesPartySpeedCalculatingModel._textCavalry);
             }
         }
@@ -342,7 +340,7 @@ namespace KaosesPartySpeeds.Model
             {
                 return 0f;
             }
-            return 0.2f * (float)totalCavalryCount / (float)totalMenCount;
+            return 0.2f * totalCavalryCount / totalMenCount;
         }
 
         // Token: 0x06002E30 RID: 11824 RVA: 0x000C2B54 File Offset: 0x000C0D54
@@ -352,20 +350,20 @@ namespace KaosesPartySpeeds.Model
             {
                 return;
             }
-            float num = (float)totalFootmenCount / (float)totalMenCount;
+            float num = totalFootmenCount / (float)totalMenCount;
             PerkHelper.AddPerkBonusForParty(DefaultPerks.Athletics.Strong, party, false, ref result);
         }
 
         // Token: 0x06002E31 RID: 11825 RVA: 0x000C2B6E File Offset: 0x000C0D6E
         private static float GetSizeModifierWounded(int totalMenCount, int totalWoundedMenCount)
         {
-            return (float)Math.Pow((double)((10f + (float)totalMenCount) / (10f + (float)totalMenCount - (float)totalWoundedMenCount)), 0.33000001311302185);
+            return (float)Math.Pow((10f + totalMenCount) / (10f + totalMenCount - totalWoundedMenCount), 0.33000001311302185);
         }
 
         // Token: 0x06002E32 RID: 11826 RVA: 0x000C2B94 File Offset: 0x000C0D94
         private static float GetSizeModifierPrisoner(int totalMenCount, int totalPrisonerCount)
         {
-            return (float)Math.Pow((double)((10f + (float)totalMenCount + (float)totalPrisonerCount) / (10f + (float)totalMenCount)), 0.33000001311302185);
+            return (float)Math.Pow((10f + totalMenCount + totalPrisonerCount) / (10f + totalMenCount), 0.33000001311302185);
         }
 
         // Token: 0x04000FC6 RID: 4038

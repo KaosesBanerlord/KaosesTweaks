@@ -1,6 +1,5 @@
 ﻿using HarmonyLib;
 using KaosesTweaks.Settings;
-using KaosesTweaks.Utils;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.SandBox.GameComponents;
 
@@ -12,9 +11,9 @@ namespace KaosesTweaks.Patches
     {
         private static void Postfix(CharacterObject prisoner, Hero sellerHero, ref int __result)
         {
-            if (MCMSettings.Instance.PrisonerPriceTweaksEnabled)
+            if (MCMSettings.Instance is { } settings && settings.PrisonerPriceTweaksEnabled)
             {
-                float tmp = __result * MCMSettings.Instance.PrisonerPriceMultiplier;
+                float tmp = __result * settings.PrisonerPriceMultiplier;
                 __result = (int)tmp;
             }
         }

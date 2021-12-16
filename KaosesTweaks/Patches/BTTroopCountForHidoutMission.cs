@@ -11,7 +11,7 @@ namespace KaosesTweaks.Patches
     {
         public static bool Prefix(ref int __result)
         {
-            if (MCMSettings.Instance.HideoutBattleTroopLimitTweakEnabled)
+            if (MCMSettings.Instance is { } settings && settings.HideoutBattleTroopLimitTweakEnabled)
             {
                 if (MCMSettings.Instance.BattleSizeDebug)
                 {

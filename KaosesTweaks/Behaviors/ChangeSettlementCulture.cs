@@ -1,14 +1,13 @@
-﻿using System;
+﻿using KaosesTweaks.Settings;
+using KaosesTweaks.Utils;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
-using TaleWorlds.CampaignSystem.SandBox.CampaignBehaviors;
 using TaleWorlds.CampaignSystem.GameMenus;
+using TaleWorlds.CampaignSystem.SandBox.CampaignBehaviors;
 using TaleWorlds.Core;
-using TaleWorlds.Localization;
-using KaosesTweaks.Settings;
-using KaosesTweaks.Utils;
 
 namespace KaosesTweaks.Behaviors
 {
@@ -206,18 +205,18 @@ namespace KaosesTweaks.Behaviors
             if (WeekCounter.ContainsKey(settlement))
             {
                 Dictionary<Settlement, int> dictionary = WeekCounter;
-                if ((int)(dictionary[settlement] / 7) <= Statics._settings.TimeToChanceCulture)
+                if (dictionary[settlement] / 7 <= Statics._settings?.TimeToChanceCulture)
                 {
                     dictionary[settlement]++;
                     if (Statics._settings.CultureChangeDebug)
                     {
                         IM.MessageDebug($"OnDailyTickSettlement : {settlement.Name.ToString()} counter: {dictionary[settlement].ToString()}");
-                        IM.MessageDebug($"OnDailyTickSettlement condition: {((int)(dictionary[settlement] / 7) <= Statics._settings.TimeToChanceCulture).ToString()} ");
+                        IM.MessageDebug($"OnDailyTickSettlement condition: {(dictionary[settlement] / 7 <= Statics._settings.TimeToChanceCulture).ToString()} ");
                         IM.MessageDebug($"OnDailyTickSettlement (dictionary[settlement] / 7) : {((dictionary[settlement] / 7)).ToString()} ");
                         IM.MessageDebug($"OnDailyTickSettlement TimeToChanceCulture: {Statics._settings.TimeToChanceCulture.ToString()} ");
                     }
 
-                    if (this.IsSettlementDue(settlement))
+                    if (IsSettlementDue(settlement))
                     {
                         Transform(settlement, true);
                     }
@@ -232,12 +231,13 @@ namespace KaosesTweaks.Behaviors
             {
                 Dictionary<Settlement, int> dictionary = WeekCounter;
                 dictionary[settlement]++;
-                if (Statics._settings.CultureChangeDebug)
+
+                if (MCMSettings.Instance is { } settings && settings.CultureChangeDebug)
                 {
                     IM.MessageDebug($"OnWeeklyTickSettlement : {settlement.Name.ToString()} Added 1 week : {dictionary[settlement].ToString()} ");
                 }
 
-                if (this.IsSettlementDue(settlement))
+                if (IsSettlementDue(settlement))
                 {
                     Transform(settlement, true);
                 }
@@ -248,7 +248,7 @@ namespace KaosesTweaks.Behaviors
         {
             if (MCMSettings.Instance is { } settings && settings.TimeToChanceCulture > 0)
             {
-                return (int)(WeekCounter[settlement] / 7) >= settings.TimeToChanceCulture;
+                return WeekCounter[settlement] / 7 >= settings.TimeToChanceCulture;
             }
             else
             {
@@ -262,7 +262,7 @@ namespace KaosesTweaks.Behaviors
             {
                 if (WeekCounter.ContainsKey(settlement))
                 {
-                    if (Statics._settings.CultureChangeDebug)
+                    if (MCMSettings.Instance is { } settings && settings.CultureChangeDebug)
                     {
                         IM.MessageDebug($"AddCounter : {settlement.Name.ToString()} set exisiting");
                     }
@@ -270,7 +270,7 @@ namespace KaosesTweaks.Behaviors
                 }
                 else
                 {
-                    if (Statics._settings.CultureChangeDebug)
+                    if (MCMSettings.Instance is { } settings && settings.CultureChangeDebug)
                     {
                         IM.MessageDebug($"AddCounter : {settlement.Name.ToString()} add new");
                     }
@@ -294,7 +294,7 @@ namespace KaosesTweaks.Behaviors
             args.optionLeaveType = GameMenuOption.LeaveType.Manage;
             return Settlement.CurrentSettlement.IsTown;
         }
-        
+
         public static bool Game_menu_village_change_culture_on_condition(MenuCallbackArgs args)
         {
             args.optionLeaveType = GameMenuOption.LeaveType.Manage;
