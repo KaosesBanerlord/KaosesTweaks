@@ -65,12 +65,16 @@ namespace KaosesTweaks.Behaviors
             var attraction = Campaign.Current.Models.RomanceModel.GetAttractionValuePercentage(Hero.OneToOneConversationHero, Hero.MainHero);
             var chance = Math.Max(0.0f, Math.Min(20.0f + 2 * relation + 0.5f * attraction, 175.0f) / 200.0f);
             float randonNumber = MBRandom.RandomFloat;
-            IM.MessageDebug($"attraction = {attraction} \n" +
-                            $"relation = {relation}\n" +
-                            $"chance = {chance}\n" +
-                            $"randonNumber = {randonNumber}\n" +
-                            $"pass random check = {randonNumber < chance}"
-                            );
+            if (Statics._settings.AnotherChanceAtMarriageDebug)
+            {
+                IM.MessageDebug($"attraction = {attraction} \n" +
+                   $"relation = {relation}\n" +
+                   $"chance = {chance}\n" +
+                   $"randonNumber = {randonNumber}\n" +
+                   $"pass random check = {randonNumber < chance}"
+                   );
+            }
+
             return randonNumber < chance;
         }
 

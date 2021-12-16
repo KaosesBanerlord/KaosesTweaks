@@ -44,7 +44,6 @@ namespace KaosesTweaks.Patches
                     __result = false;
                     return false;
                 }
-
                 return true;
             }
 

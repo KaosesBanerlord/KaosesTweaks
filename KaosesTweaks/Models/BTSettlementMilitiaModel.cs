@@ -6,8 +6,7 @@ namespace KaosesTweaks.Models
 {
     class BTSettlementMilitiaModel : DefaultSettlementMilitiaModel
     {
-        // Token: 0x06002D28 RID: 11560 RVA: 0x000B2341 File Offset: 0x000B0541
-        public override void CalculateMilitiaSpawnRate(Settlement settlement, out float meleeTroopRate, out float rangedTroopRate)
+        public override void CalculateMilitiaSpawnRate(Settlement settlement, out float meleeTroopRate, out float rangedTroopRate, out float meleeEliteTroopRate, out float rangedEliteTroopRate)
         {
             base.CalculateMilitiaSpawnRate(settlement, out meleeTroopRate, out rangedTroopRate);
             meleeTroopRate = 0.5f;
@@ -31,16 +30,15 @@ namespace KaosesTweaks.Models
             {
                 num += DefaultPerks.Leadership.CitizenMilitia.PrimaryBonus * 0.01f;
             }
+            base.CalculateMilitiaSpawnRate(settlement, out meleeTroopRate, out rangedTroopRate, out float _meleeEliteTroopRate, out float _rangedEliteTroopRate);
 
             if (MCMSettings.Instance is { } settings && settings.SettlementMilitiaEliteSpawnRateBonusEnabled)
             {
-                num = settings.SettlementEliteMeleeSpawnRateBonus;
-                //_rangedEliteTroopRate = settings.SettlementEliteRangedSpawnRateBonus;
+                _meleeEliteTroopRate = settings.SettlementEliteMeleeSpawnRateBonus;
+                _rangedEliteTroopRate = settings.SettlementEliteRangedSpawnRateBonus;
             }
-            //meleeEliteTroopRate = _meleeEliteTroopRate;
-            //rangedEliteTroopRate = _rangedEliteTroopRate;
-            return num;
+            meleeEliteTroopRate = _meleeEliteTroopRate;
+            rangedEliteTroopRate = _rangedEliteTroopRate;
         }
-
     }
 }
