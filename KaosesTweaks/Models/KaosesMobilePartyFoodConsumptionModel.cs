@@ -1,10 +1,11 @@
-﻿using Helpers;
-using KaosesTweaks.Settings;
-using System;
+﻿using System;
 using System.Linq;
+using Helpers;
+using TaleWorlds.Core;
+using TaleWorlds.Localization;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.SandBox.GameComponents.Map;
-using TaleWorlds.Core;
+using KaosesTweaks.Utils;
 
 namespace KaosesTweaks.Models
 {
@@ -32,15 +33,15 @@ namespace KaosesTweaks.Models
             int num2 = party.Party.NumberOfAllMembers + party.Party.NumberOfPrisoners / 2;
             if (party.LeaderHero != null && party.LeaderHero.CharacterObject.GetPerkValue(DefaultPerks.Roguery.Promises) && num != 0)
             {
-                num2 += (int)(num * DefaultPerks.Roguery.Promises.PrimaryBonus * 0.01f);
+                num2 += (int)((float)num * DefaultPerks.Roguery.Promises.PrimaryBonus * 0.01f);
             }
             num2 = ((num2 < 1) ? 1 : num2);
-            float baseNumber = -num2 / 20f;
+            float baseNumber = -(float)num2 / 20f;
             //~ KT
-            if (MCMSettings.Instance is { } settings && settings.PartyFoodConsumptionEnabled)
+            if (Statics._settings.PartyFoodConsumptionEnabled)
             {
                 //IM.MessageDebug("PartyFoodConsumption: original: " + baseNumber.ToString());
-                baseNumber *= settings.PartyFoodConsumptionMultiplier;
+                baseNumber *= Statics._settings.PartyFoodConsumptionMultiplier;
                 //IM.MessageDebug("PartyFoodConsumption: modified: " + baseNumber.ToString());
             }
             //~ KT

@@ -13,9 +13,9 @@ namespace KaosesTweaks.Models
         {
             get
             {
-                if (MCMSettings.Instance is { } settings && settings.WorkShopBankruptcyModifiers)
+                if (Statics._settings.WorkShopBankruptcyModifiers)
                 {
-                    return settings.WorkShopBankruptcyValue;
+                    return Statics._settings.WorkShopBankruptcyValue;
                 }
                 return 3;
             }
@@ -39,7 +39,7 @@ namespace KaosesTweaks.Models
         public override int GetDailyExpense(int level)
         {
             if (MCMSettings.Instance is { } settings && settings.WorkshopEffectivnessEnabled)
-                return MathF.Round(base.GetDailyExpense(level) * (settings.WorkshopEffectivnessv2Factor));
+                return (int)MathF.Round(base.GetDailyExpense(level) * (settings.WorkshopEffectivnessv2Factor));
             else
                 return base.GetDailyExpense(level);
         }

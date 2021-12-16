@@ -29,13 +29,11 @@ namespace KaosesTweaks.Patches
             [HarmonyPatch("conversation_player_can_open_courtship_on_condition")]
             public static bool Prefix1(ref bool __result)
             {
-                if (SubModule.LastAttempts == null) return false;
-
                 CampaignTime lastAttempt = SubModule.LastAttempts.TryGetValue(Hero.OneToOneConversationHero, out var value)
                     ? value
                     : CampaignTime.DaysFromNow(-1f);
 
-                if (MCMSettings.Instance is { } settings && settings.AnotherChanceAtMarriageDebug)
+                if (Statics._settings.AnotherChanceAtMarriageDebug)
                 {
                     IM.MessageDebug($"Another Chance At Marriage:can_open_courtship  CampaignTime.Now.ToDays < lastAttempt.ToDays = {CampaignTime.Now.ToDays < lastAttempt.ToDays}");
                 }

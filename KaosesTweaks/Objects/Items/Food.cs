@@ -1,5 +1,4 @@
-﻿using KaosesTweaks.Settings;
-using KaosesTweaks.Utils;
+﻿using KaosesTweaks.Utils;
 using TaleWorlds.Core;
 
 namespace KaosesTweaks.Objects
@@ -35,28 +34,28 @@ namespace KaosesTweaks.Objects
 
         protected void GetMultiplierValues(ref float multiplierPrice, ref float multiplierWeight)
         {
-            if (MCMSettings.Instance is { } settings && _item.HasFoodComponent)
+            if (_item.HasFoodComponent)
             {
                 TradeItemComponent tc = _item.FoodComponent;
                 if (tc.MoraleBonus == 0)
                 {
-                    multiplierPrice = settings.ItemFoodPriceMorale0Multiplier;
-                    multiplierWeight = settings.ItemFoodWeightMorale0Multiplier;
+                    multiplierPrice = Statics._settings.ItemFoodPriceMorale0Multiplier;
+                    multiplierWeight = Statics._settings.ItemFoodWeightMorale0Multiplier;
                 }
                 else if (tc.MoraleBonus == 1)
                 {
-                    multiplierPrice = settings.ItemFoodPriceMorale1Multiplier;
-                    multiplierWeight = settings.ItemFoodWeightMorale1Multiplier;
+                    multiplierPrice = Statics._settings.ItemFoodPriceMorale1Multiplier;
+                    multiplierWeight = Statics._settings.ItemFoodWeightMorale1Multiplier;
                 }
                 else if (tc.MoraleBonus == 2)
                 {
-                    multiplierPrice = settings.ItemFoodPriceMorale2Multiplier;
-                    multiplierWeight = settings.ItemFoodWeightMorale2Multiplier;
+                    multiplierPrice = Statics._settings.ItemFoodPriceMorale2Multiplier;
+                    multiplierWeight = Statics._settings.ItemFoodWeightMorale2Multiplier;
                 }
                 else if (tc.MoraleBonus == 3)
                 {
-                    multiplierPrice = settings.ItemFoodPriceMorale3Multiplier;
-                    multiplierWeight = settings.ItemFoodWeightMorale3Multiplier;
+                    multiplierPrice = Statics._settings.ItemFoodPriceMorale3Multiplier;
+                    multiplierWeight = Statics._settings.ItemFoodWeightMorale3Multiplier;
                 }
             }
 

@@ -1,5 +1,4 @@
-﻿using KaosesTweaks.Settings;
-using KaosesTweaks.Utils;
+﻿using KaosesTweaks.Utils;
 using TaleWorlds.Core;
 
 namespace KaosesTweaks.Objects.Items
@@ -26,7 +25,7 @@ namespace KaosesTweaks.Objects.Items
             float multiplerWeight = 1.0f;
             float multiplerStack = 1.0f;
             GetMultiplierValues(ref multiplerPrice, ref multiplerWeight, ref multiplerStack);
-            if (MCMSettings.Instance is { } settings && settings.ArrowMultipliersEnabled)
+            if (Statics._settings.ArrowMultipliersEnabled)
             {
                 SetItemsValue((int)(_item.Value * multiplerPrice), multiplerPrice);
                 //SetItemsWeight((int)(_item.Value * multiplerPrice), multiplerPrice);
@@ -36,12 +35,9 @@ namespace KaosesTweaks.Objects.Items
 
         protected void GetMultiplierValues(ref float multiplierPrice, ref float multiplierWeight, ref float multiplierStack)
         {
-            if (MCMSettings.Instance is { } settings)
-            {
-                multiplierPrice = settings.ArrowValueMultiplier;
-                //multiplierWeight = settings.ArrowWeightMultiplier;
-                multiplierStack = settings.ArrowMultiplier;
-            }
+            multiplierPrice = Statics._settings.ArrowValueMultiplier;
+            //multiplierWeight = Statics._settings.ArrowWeightMultiplier;
+            multiplierStack = Statics._settings.ArrowMultiplier;
         }
     }
 }

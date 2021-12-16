@@ -1,34 +1,36 @@
 ﻿using HarmonyLib;
 using KaosesTweaks.Settings;
+using KaosesTweaks.Utils;
 using SandBox;
 using System;
+using TaleWorlds.CampaignSystem.SandBox.GameComponents;
 
 namespace KaosesTweaks.Patches
 {
-    [HarmonyPatch(typeof(SandboxBattleMoraleModel), "CalculateMaxMoraleChangeDueToAgentIncapacitated")]
-    class CalculateMaxMoraleChangeDueToAgentIncapacitatedPatch
+    [HarmonyPatch(typeof(SandboxBattleMoraleModel), "CalculateMoraleChangeAfterAgentKilled")]
+    class CalculateMoraleChangeAfterAgentKilledPatch
     {
         static void Postfix(ref ValueTuple<float, float> __result)
         {
-            if (MCMSettings.Instance is { } settings)
+            if (!(MCMSettings.Instance is null))
             {
 
-                __result = new ValueTuple<float, float>(__result.Item1 * settings.BattleMoralTweaksMultiplier, __result.Item2 * settings.BattleMoralTweaksMultiplier);
+                __result = new ValueTuple<float, float>(__result.Item1 * Statics._settings.BattleMoralTweaksMultiplier, __result.Item2 * Statics._settings.BattleMoralTweaksMultiplier);
             }
         }
 
         static bool Prepare() => MCMSettings.Instance is { } settings && settings.BattleMoralTweaksEnabled;
     }
 
-    [HarmonyPatch(typeof(SandboxBattleMoraleModel), "CalculateMaxMoraleChangeDueToAgentPanicked")]
-    class CalculateMaxMoraleChangeDueToAgentPanickedPatch
+    [HarmonyPatch(typeof(SandboxBattleMoraleModel), "CalculateMoraleChangeAfterAgentPanicked")]
+    class CalculateMoraleChangeAfterAgentPanickedPatch
     {
         static void Postfix(ref ValueTuple<float, float> __result)
         {
-            if (MCMSettings.Instance is { } settings)
+            if (!(MCMSettings.Instance is null))
             {
 
-                __result = new ValueTuple<float, float>(__result.Item1 * settings.BattleMoralTweaksMultiplier, __result.Item2 * settings.BattleMoralTweaksMultiplier);
+                __result = new ValueTuple<float, float>(__result.Item1 * Statics._settings.BattleMoralTweaksMultiplier, __result.Item2 * Statics._settings.BattleMoralTweaksMultiplier);
             }
         }
 
@@ -40,10 +42,10 @@ namespace KaosesTweaks.Patches
     {
         static void Postfix(ref float __result)
         {
-            if (MCMSettings.Instance is { } settings)
+            if (!(MCMSettings.Instance is null))
             {
 
-                __result *= settings.BattleMoralTweaksMultiplier;
+                __result *= Statics._settings.BattleMoralTweaksMultiplier;
             }
         }
 

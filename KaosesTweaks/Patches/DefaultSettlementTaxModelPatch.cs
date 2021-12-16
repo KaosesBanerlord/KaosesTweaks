@@ -1,7 +1,7 @@
-﻿using HarmonyLib;
-using KaosesTweaks.Settings;
-using System;
+﻿using System;
 using System.Reflection;
+using HarmonyLib;
+using KaosesTweaks.Settings;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Localization;
 

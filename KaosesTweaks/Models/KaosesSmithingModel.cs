@@ -1,5 +1,4 @@
-﻿using KaosesTweaks.Settings;
-using KaosesTweaks.Utils;
+﻿using KaosesTweaks.Utils;
 using System;
 using System.Collections.Generic;
 using TaleWorlds.CampaignSystem;
@@ -15,13 +14,13 @@ namespace KaosesTweaks.Models
         // Token: 0x06002EBF RID: 11967 RVA: 0x000C0FD4 File Offset: 0x000BF1D4
         public override int GetSkillXpForRefining(ref Crafting.RefiningFormula refineFormula)
         {
-            float baseXp = MathF.Round(0.3f * (this.GetCraftingMaterialItem(refineFormula.Output).Value * refineFormula.OutputCount));
-            if (MCMSettings.Instance is { } settings && settings.SmithingXpModifiers)
+            float baseXp = MathF.Round(0.3f * (float)(this.GetCraftingMaterialItem(refineFormula.Output).Value * refineFormula.OutputCount));
+            if (Statics._settings.SmithingXpModifiers)
             {
-                baseXp *= settings.SmithingRefiningXpValue;
-                if (settings.CraftingDebug)
+                baseXp *= Statics._settings.SmithingRefiningXpValue;
+                if (Statics._settings.CraftingDebug)
                 {
-                    IM.MessageDebug("GetSkillXpForRefining  base: " + (MathF.Round(0.3f * (this.GetCraftingMaterialItem(refineFormula.Output).Value * refineFormula.OutputCount))).ToString() + "  new :" + baseXp.ToString());
+                    IM.MessageDebug("GetSkillXpForRefining  base: " + (MathF.Round(0.3f * (float)(this.GetCraftingMaterialItem(refineFormula.Output).Value * refineFormula.OutputCount))).ToString() + "  new :" + baseXp.ToString());
                 }
             }
             return (int)baseXp;
@@ -30,13 +29,13 @@ namespace KaosesTweaks.Models
         // Token: 0x06002EC0 RID: 11968 RVA: 0x000C0FFC File Offset: 0x000BF1FC
         public override int GetSkillXpForSmelting(ItemObject item)
         {
-            float baseXp = MathF.Round(0.02f * item.Value);
-            if (MCMSettings.Instance is { } settings && settings.SmithingXpModifiers)
+            float baseXp = MathF.Round(0.02f * (float)item.Value);
+            if (Statics._settings.SmithingXpModifiers)
             {
-                baseXp *= settings.SmithingSmeltingXpValue;
-                if (settings.CraftingDebug)
+                baseXp *= Statics._settings.SmithingSmeltingXpValue;
+                if (Statics._settings.CraftingDebug)
                 {
-                    IM.MessageDebug("GetSkillXpForSmelting  base: " + (MathF.Round(0.02f * item.Value)).ToString() + "  new :" + baseXp.ToString());
+                    IM.MessageDebug("GetSkillXpForSmelting  base: " + (MathF.Round(0.02f * (float)item.Value)).ToString() + "  new :" + baseXp.ToString());
                 }
             }
             return (int)baseXp;
@@ -45,13 +44,13 @@ namespace KaosesTweaks.Models
         // Token: 0x06002EC1 RID: 11969 RVA: 0x000C1010 File Offset: 0x000BF210
         public override int GetSkillXpForSmithingInFreeBuildMode(ItemObject item)
         {
-            float baseXp = MathF.Round(0.02f * item.Value);
-            if (MCMSettings.Instance is { } settings && settings.SmithingXpModifiers)
+            float baseXp = MathF.Round(0.02f * (float)item.Value);
+            if (Statics._settings.SmithingXpModifiers)
             {
-                baseXp *= settings.SmithingSmithingXpValue;
-                if (settings.CraftingDebug)
+                baseXp *= Statics._settings.SmithingSmithingXpValue;
+                if (Statics._settings.CraftingDebug)
                 {
-                    IM.MessageDebug("GetSkillXpForSmithing  base: " + (MathF.Round(0.02f * item.Value)).ToString() + "  new :" + baseXp.ToString());
+                    IM.MessageDebug("GetSkillXpForSmithing  base: " + (MathF.Round(0.02f * (float)item.Value)).ToString() + "  new :" + baseXp.ToString());
                 }
             }
             return (int)baseXp;
@@ -60,13 +59,13 @@ namespace KaosesTweaks.Models
         // Token: 0x06002EC1 RID: 11969 RVA: 0x000C1010 File Offset: 0x000BF210
         public override int GetSkillXpForSmithingInCraftingOrderMode(ItemObject item)
         {
-            float baseXp = MathF.Round(0.1f * item.Value);
-            if (MCMSettings.Instance is { } settings && settings.SmithingXpModifiers)
+            float baseXp = MathF.Round(0.1f * (float)item.Value);
+            if (Statics._settings.SmithingXpModifiers)
             {
-                baseXp *= settings.SmithingSmithingXpValue;
-                if (settings.CraftingDebug)
+                baseXp *= Statics._settings.SmithingSmithingXpValue;
+                if (Statics._settings.CraftingDebug)
                 {
-                    IM.MessageDebug("GetSkillXpForSmithing  base: " + (MathF.Round(0.1f * item.Value)).ToString() + "  new :" + baseXp.ToString());
+                    IM.MessageDebug("GetSkillXpForSmithing  base: " + (MathF.Round(0.1f * (float)item.Value)).ToString() + "  new :" + baseXp.ToString());
                 }
             }
             return (int)baseXp;
@@ -76,28 +75,24 @@ namespace KaosesTweaks.Models
         public override int GetEnergyCostForRefining(ref Crafting.RefiningFormula refineFormula, Hero hero)
         {
             int num = 6;
-            if (MCMSettings.Instance is { } settings)
+            if (Statics._settings.SmithingEnergyDisable)
             {
-
-                if (settings.SmithingEnergyDisable)
+                if (Statics._settings.CraftingDebug)
                 {
-                    if (settings.CraftingDebug)
-                    {
-                        IM.MessageDebug("GetEnergyCostForRefining: DISABLED ");
-                    }
-                    num = 0;
+                    IM.MessageDebug("GetEnergyCostForRefining: DISABLED ");
                 }
-                else
+                num = 0;
+            }
+            else
+            {
+                if (Statics._settings.CraftingStaminaTweakEnabled)
                 {
-                    if (settings.CraftingStaminaTweakEnabled)
+                    float tmp = num * Statics._settings.SmithingEnergyRefiningValue;
+                    if (Statics._settings.CraftingDebug)
                     {
-                        float tmp = num * settings.SmithingEnergyRefiningValue;
-                        if (settings.CraftingDebug)
-                        {
-                            IM.MessageDebug("GetEnergyCostForRefining Old : " + num.ToString() + " New : " + tmp.ToString());
-                        }
-                        num = (int)tmp;
+                        IM.MessageDebug("GetEnergyCostForRefining Old : " + num.ToString() + " New : " + tmp.ToString());
                     }
+                    num = (int)tmp;
                 }
             }
             if (hero.GetPerkValue(DefaultPerks.Crafting.PracticalRefiner))
@@ -113,28 +108,25 @@ namespace KaosesTweaks.Models
             int.TryParse(item.Tier.ToString(), out int itemTier);
             int tier6 = 6;
             //int num = (int)(10 + ItemObject.ItemTiers.Tier6 * item.Tier);
-            int num = 10 + tier6 * itemTier;
-            if (MCMSettings.Instance is { } settings)
+            int num = (int)(10 + tier6 * itemTier);
+            if (Statics._settings.SmithingEnergyDisable)
             {
-                if (settings.SmithingEnergyDisable)
+                if (Statics._settings.CraftingDebug)
                 {
-                    if (settings.CraftingDebug)
-                    {
-                        IM.MessageDebug("GetEnergyCostForSmithing: DISABLED ");
-                    }
-                    num = 0;
+                    IM.MessageDebug("GetEnergyCostForSmithing: DISABLED ");
                 }
-                else
+                num = 0;
+            }
+            else
+            {
+                if (Statics._settings.CraftingStaminaTweakEnabled)
                 {
-                    if (settings.CraftingStaminaTweakEnabled)
+                    float tmp = num * Statics._settings.SmithingEnergySmithingValue;
+                    if (Statics._settings.CraftingDebug)
                     {
-                        float tmp = num * settings.SmithingEnergySmithingValue;
-                        if (settings.CraftingDebug)
-                        {
-                            IM.MessageDebug("GetEnergyCostForSmithing Old : " + num.ToString() + " New : " + tmp.ToString());
-                        }
-                        num = (int)tmp;
+                        IM.MessageDebug("GetEnergyCostForSmithing Old : " + num.ToString() + " New : " + tmp.ToString());
                     }
+                    num = (int)tmp;
                 }
             }
             if (hero.GetPerkValue(DefaultPerks.Crafting.PracticalSmith))
@@ -148,27 +140,24 @@ namespace KaosesTweaks.Models
         public override int GetEnergyCostForSmelting(ItemObject item, Hero hero)
         {
             int num = 10;
-            if (MCMSettings.Instance is { } settings)
+            if (Statics._settings.SmithingEnergyDisable)
             {
-                if (settings.SmithingEnergyDisable)
+                if (Statics._settings.CraftingDebug)
                 {
-                    if (settings.CraftingDebug)
-                    {
-                        IM.MessageDebug("GetEnergyCostForSmelting: DISABLED ");
-                    }
-                    num = 0;
+                    IM.MessageDebug("GetEnergyCostForSmelting: DISABLED ");
                 }
-                else
+                num = 0;
+            }
+            else
+            {
+                if (Statics._settings.CraftingStaminaTweakEnabled)
                 {
-                    if (settings.CraftingStaminaTweakEnabled)
+                    float tmp = num * Statics._settings.SmithingEnergySmeltingValue;
+                    if (Statics._settings.CraftingDebug)
                     {
-                        float tmp = num * settings.SmithingEnergySmeltingValue;
-                        if (settings.CraftingDebug)
-                        {
-                            IM.MessageDebug("GetEnergyCostForSmelting Old : " + num.ToString() + " New : " + tmp.ToString());
-                        }
-                        num = (int)tmp;
+                        IM.MessageDebug("GetEnergyCostForSmelting Old : " + num.ToString() + " New : " + tmp.ToString());
                     }
+                    num = (int)tmp;
                 }
             }
             if (hero.GetPerkValue(DefaultPerks.Crafting.PracticalSmelter))
@@ -181,34 +170,38 @@ namespace KaosesTweaks.Models
         // Token: 0x06002ED9 RID: 11993 RVA: 0x000C2A6C File Offset: 0x000C0C6C
         public override int GetModifierTierForSmithedWeapon(WeaponDesign weaponDesign, Hero hero)
         {
-            if (MCMSettings.Instance is { } settings && settings.CraftingQualityTweaksEnabled)
+            if (!Statics._settings.CraftingQualityTweaksEnabled)
             {
-                int num = this.CalculateWeaponDesignDifficulty(weaponDesign);
-                int num2 = hero.CharacterObject.GetSkillValue(DefaultSkills.Crafting) - num;
-                if (num2 < 0)
+                return base.GetModifierTierForSmithedWeapon(weaponDesign, hero);
+            }
+            else
+            {
+
+            }
+            int num = this.CalculateWeaponDesignDifficulty(weaponDesign);
+            int num2 = hero.CharacterObject.GetSkillValue(DefaultSkills.Crafting) - num;
+            if (num2 < 0)
+            {
+                return this.GetPenaltyForLowSkill(num2);
+            }
+            float randomFloat = MBRandom.RandomFloat;
+            if (hero.GetPerkValue(DefaultPerks.Crafting.ExperiencedSmith) && randomFloat < 0.2f)
+            {
+                return Statics._settings.CraftingQualityFineValue;
+            }
+            if (hero.GetPerkValue(DefaultPerks.Crafting.MasterSmith) && randomFloat < 0.35f)
+            {
+                return Statics._settings.CraftingQualityMasterValue;
+            }
+            if (hero.GetPerkValue(DefaultPerks.Crafting.LegendarySmith))
+            {
+                float num3 = 0.05f + Math.Max(0f, (float)(hero.GetSkillValue(DefaultSkills.Crafting) - 300)) * 0.01f;
+                if (randomFloat > 0.5f && randomFloat < 0.5f + num3)
                 {
-                    return this.GetPenaltyForLowSkill(num2);
-                }
-                float randomFloat = MBRandom.RandomFloat;
-                if (hero.GetPerkValue(DefaultPerks.Crafting.ExperiencedSmith) && randomFloat < 0.2f)
-                {
-                    return settings.CraftingQualityFineValue;
-                }
-                if (hero.GetPerkValue(DefaultPerks.Crafting.MasterSmith) && randomFloat < 0.35f)
-                {
-                    return settings.CraftingQualityMasterValue;
-                }
-                if (hero.GetPerkValue(DefaultPerks.Crafting.LegendarySmith))
-                {
-                    float num3 = 0.05f + Math.Max(0f, hero.GetSkillValue(DefaultSkills.Crafting) - 300) * 0.01f;
-                    if (randomFloat > 0.5f && randomFloat < 0.5f + num3)
-                    {
-                        return settings.CraftingQualityLegendaryValue;
-                    }
+                    return Statics._settings.CraftingQualityLegendaryValue;
                 }
             }
-
-            return base.GetModifierTierForSmithedWeapon(weaponDesign, hero);
+            return 0;
         }
 
         // Token: 0x06002EDC RID: 11996 RVA: 0x000C2B94 File Offset: 0x000C0D94
@@ -241,21 +234,15 @@ namespace KaosesTweaks.Models
         protected int GetModifiedFormulaInputCost(int originalCost)
         {
             float multiplierCost = 1.0f;
-            int cost = originalCost;
-
-            if (MCMSettings.Instance is { } settings)
+            if (Statics._settings.RefiningFormulaTweaksEnabled)
             {
-                if (settings.RefiningFormulaTweaksEnabled)
-                {
-                    multiplierCost = settings.RefiningFormulaInputCostValue;
-                }
-                cost = (int)Math.Round(originalCost * multiplierCost);
-                if (settings.CraftingDebug)
-                {
-                    IM.MessageDebug($"GetRefiningFormulas originalCost: {originalCost}  NewCost: {cost}");
-                }
+                multiplierCost = Statics._settings.RefiningFormulaInputCostValue;
             }
-
+            int cost = (int)Math.Round(originalCost * multiplierCost);
+            if (Statics._settings.CraftingDebug)
+            {
+                IM.MessageDebug($"GetRefiningFormulas originalCost: {originalCost}  NewCost: {cost}");
+            }
             if (cost < 1 && originalCost != 0)
             {
                 cost = 1;
@@ -270,18 +257,14 @@ namespace KaosesTweaks.Models
         protected int GetModifiedFormulaOutPut(int originalOutPut)
         {
             float multiplierReward = 1.0f;
-            int outPut = originalOutPut;
-            if (MCMSettings.Instance is { } settings)
+            if (Statics._settings.RefiningFormulaTweaksEnabled)
             {
-                if (settings.RefiningFormulaTweaksEnabled)
-                {
-                    multiplierReward = settings.RefiningFormulaOutputValue;
-                }
-                outPut = (int)Math.Round(originalOutPut * multiplierReward);
-                if (settings.CraftingDebug)
-                {
-                    IM.MessageDebug($"GetRefiningFormulas originalOutPut: {originalOutPut}  NewOutPut: {outPut}");
-                }
+                multiplierReward = Statics._settings.RefiningFormulaOutputValue;
+            }
+            int outPut = (int)Math.Round(originalOutPut * multiplierReward);
+            if (Statics._settings.CraftingDebug)
+            {
+                IM.MessageDebug($"GetRefiningFormulas originalOutPut: {originalOutPut}  NewOutPut: {outPut}");
             }
             if (outPut < 1 && originalOutPut != 0)
             {
@@ -300,7 +283,7 @@ namespace KaosesTweaks.Models
         protected int GetPenaltyForLowSkill(int difference)
         {
             float num = MBRandom.RandomFloat;
-            num += -0.01f * difference;
+            num += -0.01f * (float)difference;
             if (num < 0.4f)
             {
                 return -1;

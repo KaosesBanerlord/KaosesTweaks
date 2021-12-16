@@ -1,14 +1,14 @@
 ﻿using HarmonyLib;
-using KaosesTweaks.Settings;
 using SandBox.Source.Missions;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Windows.Forms;
 using System.Linq;
 using System.Reflection;
-using System.Windows.Forms;
 using TaleWorlds.Core;
 using TaleWorlds.MountAndBlade;
+using KaosesTweaks.Settings;
 using static TaleWorlds.MountAndBlade.Agent;
 
 namespace KaosesTweaks.Patches

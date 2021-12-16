@@ -1,21 +1,21 @@
 ﻿using HarmonyLib;
-using KaosesPartySpeeds.Model;
 using KaosesTweaks.Behaviors;
-using KaosesTweaks.BTTweaks;
-using KaosesTweaks.Common;
 using KaosesTweaks.Event;
+using KaosesTweaks.Common;
 using KaosesTweaks.Models;
 using KaosesTweaks.Settings;
 using KaosesTweaks.Utils;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Text;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.SandBox.CampaignBehaviors;
 using TaleWorlds.Core;
 using TaleWorlds.MountAndBlade;
+using KaosesTweaks.BTTweaks;
+using System.Text;
+using System.Linq;
+using KaosesPartySpeeds.Model;
 
 namespace KaosesTweaks
 {
@@ -26,16 +26,16 @@ namespace KaosesTweaks
         private Harmony? harmonyKT;
 
         /* Another chance at marriage */
-        public static Dictionary<Hero, CampaignTime>? LastAttempts;
+        public static Dictionary<Hero, CampaignTime> LastAttempts;
         public static readonly FastInvokeHandler RemoveUnneededPersuasionAttemptsHandler =
         HarmonyLib.MethodInvoker.GetHandler(AccessTools.Method(typeof(RomanceCampaignBehavior), "RemoveUnneededPersuasionAttempts"));
         /* Another chance at marriage */
 
         /* KaosesPartySpeeds */
-        public static Dictionary<MobileParty, CampaignTime>? FleeingParties;
-        public static Dictionary<MobileParty, int>? FleeingHours;
-        public static Dictionary<MobileParty, float>? FleeingSpeedReduction;
-        public static MobileParty? FleeingPartyPlayer;
+        public static Dictionary<MobileParty, CampaignTime> FleeingParties;
+        public static Dictionary<MobileParty, int> FleeingHours;
+        public static Dictionary<MobileParty, float> FleeingSpeedReduction;
+        public static MobileParty FleeingPartyPlayer;
         /* KaosesPartySpeeds */
 
 
@@ -80,7 +80,7 @@ namespace KaosesTweaks
         public override void OnGameInitializationFinished(Game game)
         {
             base.OnGameInitializationFinished(game);
-            Campaign? gameType = game.GameType as Campaign;
+            Campaign gameType = game.GameType as Campaign;
             if (!(gameType is Campaign))
             {
                 return;
@@ -114,10 +114,10 @@ namespace KaosesTweaks
             //~ KaosesItemTweaks
             try
             {
-                if (MCMSettings.Instance is { } settings && settings.MCMItemModifiers)
+                if (Statics._settings.MCMItemModifiers)
                 {
                     new KaosesItemTweaks(TaleWorlds.CampaignSystem.Items.All);
-                    if (settings.Debug)
+                    if (Statics._settings.Debug)
                     {
                         IM.MessageDebug("Loaded KaosesItemTweaks");
                     }
@@ -151,11 +151,11 @@ namespace KaosesTweaks
                 //~ BT MCMKillingBanditsEnabled
                 try
                 {
-                    if (MCMSettings.Instance is { } settings && settings.MCMKillingBanditsEnabled)
+                    if (Statics._settings.MCMKillingBanditsEnabled)
                     {
                         PlayerBattleEndEventListener playerBattleEndEventListener = new PlayerBattleEndEventListener();
                         CampaignEvents.OnPlayerBattleEndEvent.AddNonSerializedListener(playerBattleEndEventListener, new Action<MapEvent>(playerBattleEndEventListener.IncreaseLocalRelationsAfterBanditFight));
-                        if (settings.Debug)
+                        if (Statics._settings.Debug)
                         {
                             IM.MessageDebug("Loaded Killing Bandits raises relationships playerBattleEndEventListener Behavior");
                         }
@@ -171,14 +171,14 @@ namespace KaosesTweaks
                 try
                 {
                     /* Another chance at marriage */
-                    if (MCMSettings.Instance is { } settings && settings.AnotherChanceAtMarriageEnabled)
+                    if (Statics._settings.AnotherChanceAtMarriageEnabled)
                     {
-                        if (settings.AnotherChanceAtMarriageDebug)
+                        if (Statics._settings.AnotherChanceAtMarriageDebug)
                         {
                             IM.MessageDebug($"Another Chance At Marriage ENABLED");
                         }
                         campaignGameStarter.CampaignBehaviors.Add(new AnotherChanceBehavior());
-                        if (settings.Debug)
+                        if (Statics._settings.Debug)
                         {
                             IM.MessageDebug("Loaded AnotherChanceBehavior Behavior");
                         }
@@ -194,9 +194,9 @@ namespace KaosesTweaks
                 try
                 {
                     //~BT
-                    if (MCMSettings.Instance is { } settings && settings.EnableCultureChanger)
+                    if (Statics._settings.EnableCultureChanger)
                     {
-                        if (settings.Debug)
+                        if (Statics._settings.Debug)
                         {
                             IM.MessageDebug("Loaded ChangeSettlementCulture Behavior");
                         }
@@ -211,10 +211,10 @@ namespace KaosesTweaks
                 //~ KaosesCraftingCampaignBehaviors
                 try
                 {
-                    if (MCMSettings.Instance is { } settings && (settings.ArrowMultipliersEnabled || settings.BoltsMultipliersEnabled
-                        || settings.ThrownMultiplierEnabled))
+                    if (Statics._settings.ArrowMultipliersEnabled || Statics._settings.BoltsMultipliersEnabled
+                        || Statics._settings.ThrownMultiplierEnabled)
                     {
-                        if (settings.Debug)
+                        if (Statics._settings.Debug)
                         {
                             IM.MessageDebug("Loaded KaosesCraftingCampaignBehaviors Behavior");
                         }
@@ -350,7 +350,7 @@ namespace KaosesTweaks
                     }
                     campaignGameStarter.AddModel(new KaosesBattleRewardModel());
                 }
-                if (settings.MCMCharacterDevlopmentModifiers || (settings.LearningRateEnabled || settings.LearningLimitEnabled))
+                if (settings.MCMCharacterDevlopmentModifiers || (Statics._settings.LearningRateEnabled || Statics._settings.LearningLimitEnabled))
                 {
                     if (settings.Debug)
                     {

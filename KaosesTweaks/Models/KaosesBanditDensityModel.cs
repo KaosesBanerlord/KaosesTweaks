@@ -1,5 +1,4 @@
 ﻿using Helpers;
-using KaosesTweaks.Settings;
 using System;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.SandBox.GameComponents.Map;
@@ -113,14 +112,10 @@ namespace KaosesTweaks.Models
         // Token: 0x06002D86 RID: 11654 RVA: 0x000B5A24 File Offset: 0x000B3C24
         public override int GetPlayerMaximumTroopCountForHideoutMission(MobileParty party)
         {
-            float num = 8;
-            if (MCMSettings.Instance is { } settings)
+            float num = Statics._settings.HideoutBattleTroopLimit;
+            if (party.HasPerk(DefaultPerks.Tactics.SmallUnitTactics, false))
             {
-                num = settings.HideoutBattleTroopLimit;
-                if (party.HasPerk(DefaultPerks.Tactics.SmallUnitTactics, false))
-                {
-                    num += DefaultPerks.Tactics.SmallUnitTactics.PrimaryBonus;
-                }
+                num += DefaultPerks.Tactics.SmallUnitTactics.PrimaryBonus;
             }
             return MathF.Round(num);
         }

@@ -30,7 +30,7 @@ namespace KaosesTweaks.Models
             {
                 troopPowerBasedOnContext = Campaign.Current.Models.MilitaryPowerModel.GetTroopPowerBasedOnContext(attackerTroop, MapEvent.BattleTypes.None, BattleSideEnum.None, false);
             }
-            xpAmount = (int)Math.Round(0.4f * ((troopPowerBasedOnContext + 0.5f) * (Math.Min(damage, num) + (isFatal ? num : 0))));
+            xpAmount = (int)Math.Round(0.4f * ((troopPowerBasedOnContext + 0.5f) * (float)(Math.Min(damage, num) + (isFatal ? num : 0))));
             if (missionType == CombatXpModel.MissionTypeEnum.NoXp)
             {
                 xpAmount = 0;
@@ -40,16 +40,16 @@ namespace KaosesTweaks.Models
             {
                 if (MCMSettings.Instance is { } settings && settings.TournamentHeroExperienceMultiplierEnabled)
                 {
-                    if (settings.TournamentDebug)
+                    if (Statics._settings.TournamentDebug)
                     {
                         IM.MessageDebug("TournamentHeroXP : original : " + xpAmount.ToString() + " new: "
-                            + (MathF.Round(settings.TournamentHeroExperienceMultiplier * xpAmount)).ToString() + "  multiplier: " + settings.TournamentHeroExperienceMultiplier.ToString());
+                            + (MathF.Round(settings.TournamentHeroExperienceMultiplier * (float)xpAmount)).ToString() + "  multiplier: " + settings.TournamentHeroExperienceMultiplier.ToString());
                     }
-                    xpAmount = MathF.Round(settings.TournamentHeroExperienceMultiplier * xpAmount);
+                    xpAmount = (int)MathF.Round(settings.TournamentHeroExperienceMultiplier * (float)xpAmount);
                 }
                 else
                 {
-                    xpAmount = MathF.Round(xpAmount * 0.33f);
+                    xpAmount = MathF.Round((float)xpAmount * 0.33f);
                 }
             }
 
@@ -57,16 +57,16 @@ namespace KaosesTweaks.Models
             {
                 if (MCMSettings.Instance is { } settings && settings.ArenaHeroExperienceMultiplierEnabled)
                 {
-                    if (settings.TournamentDebug)
+                    if (Statics._settings.TournamentDebug)
                     {
                         IM.MessageDebug("ArenaHeroXP : original : " + xpAmount.ToString() + " new: "
-                            + (MathF.Round(settings.ArenaHeroExperienceMultiplier * xpAmount)).ToString() + "  multiplier: " + settings.ArenaHeroExperienceMultiplier.ToString());
+                            + (MathF.Round(settings.ArenaHeroExperienceMultiplier * (float)xpAmount)).ToString() + "  multiplier: " + settings.ArenaHeroExperienceMultiplier.ToString());
                     }
-                    xpAmount = MathF.Round(settings.ArenaHeroExperienceMultiplier * xpAmount);
+                    xpAmount = (int)MathF.Round(settings.ArenaHeroExperienceMultiplier * (float)xpAmount);
                 }
                 else
                 {
-                    xpAmount = MathF.Round(xpAmount * 0.0625f);
+                    xpAmount = MathF.Round((float)xpAmount * 0.0625f);
                 }
             }
 
@@ -74,15 +74,15 @@ namespace KaosesTweaks.Models
             {
                 if (MCMSettings.Instance is { } settings && settings.TroopBattleExperienceMultiplierEnabled)
                 {
-                    if (settings.XpModifiersDebug)
+                    if (Statics._settings.XpModifiersDebug)
                     {
                         IM.MessageDebug(" TroopBattleExperienceMultiplier Original: " + xpAmount.ToString() + " new XP amount: " + ((xpAmount * settings.TroopBattleExperienceMultiplier)).ToString() + "  multiplier: " + settings.TroopBattleExperienceMultiplier.ToString());
                     }
-                    xpAmount = MathF.Round(xpAmount * settings.TroopBattleExperienceMultiplier);
+                    xpAmount = (int)MathF.Round(xpAmount * settings.TroopBattleExperienceMultiplier);
                 }
                 else
                 {
-                    xpAmount = MathF.Round(xpAmount * 1f);
+                    xpAmount = MathF.Round((float)xpAmount * 1f);
                 }
 
             }
@@ -91,15 +91,15 @@ namespace KaosesTweaks.Models
             {
                 if (MCMSettings.Instance is { } settings && settings.TroopBattleSimulationExperienceMultiplierEnabled)
                 {
-                    if (settings.XpModifiersDebug)
+                    if (Statics._settings.XpModifiersDebug)
                     {
                         IM.MessageDebug("TroopBattleSimulationExperienceMultiplier original: " + xpAmount.ToString() + " new XP amount: " + ((xpAmount * settings.TroopBattleSimulationExperienceMultiplier)).ToString() + "  multiplier: " + settings.TroopBattleSimulationExperienceMultiplier.ToString());
                     }
-                    xpAmount = MathF.Round(xpAmount * settings.TroopBattleSimulationExperienceMultiplier);
+                    xpAmount = (int)MathF.Round(xpAmount * settings.TroopBattleSimulationExperienceMultiplier);
                 }
                 else
                 {
-                    xpAmount = MathF.Round(xpAmount * 0.9f);
+                    xpAmount = MathF.Round((float)xpAmount * 0.9f);
                 }
 
             }

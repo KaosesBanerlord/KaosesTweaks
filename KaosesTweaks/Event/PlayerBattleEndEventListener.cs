@@ -1,11 +1,11 @@
-﻿using KaosesTweaks.Settings;
-using KaosesTweaks.Utils;
+﻿using KaosesTweaks.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.Core;
+using TaleWorlds.Library;
 
 namespace KaosesTweaks.Event
 {
@@ -16,9 +16,8 @@ namespace KaosesTweaks.Event
 
         public PlayerBattleEndEventListener()
         {
-            if (MCMSettings.Instance is { } settings)
-                BanditGroupCounter = settings.GroupsOfBandits;
-            BanditDeathCounter = 0;
+            this.BanditGroupCounter = Statics._settings.GroupsOfBandits;
+            this.BanditDeathCounter = 0;
             Logging.Lm("Killing Bandits : PlayerBattleEndEventListener Called" + "");
         }
 
@@ -42,7 +41,7 @@ namespace KaosesTweaks.Event
             }
             if (!((int)m.DefeatedSide == -1 || (int)m.DefeatedSide == 2))
             {
-                if (MCMSettings.Instance is { } settings && (IsDefeatedBanditLike(m) && (rosterReceivingLootShare.TotalHealthyCount > 0 || !settings.PrisonersOnly)))
+                if (IsDefeatedBanditLike(m) && (rosterReceivingLootShare.TotalHealthyCount > 0 || !Statics._settings.PrisonersOnly))
                 {
                     BanditDeathCounter += banditSide.Casualties;
                     //IM.ColorGreenMessage("BanditDeathCounter: " + BanditDeathCounter.ToString());
@@ -58,60 +57,52 @@ namespace KaosesTweaks.Event
 
         private void IncreaseLocalRelations(MapEvent m)
         {
-            if (MCMSettings.Instance is { } settings)
+            float FinalRelationshipIncrease = Statics._settings.RelationshipIncrease;
+            if (Statics._settings.SizeBonusEnabled)
             {
-                float FinalRelationshipIncrease = settings.RelationshipIncrease;
-                if (settings.SizeBonusEnabled)
+                FinalRelationshipIncrease = Statics._settings.RelationshipIncrease * this.BanditDeathCounter * Statics._settings.SizeBonus;
+                if (Statics._settings.KillingBanditsDebug)
                 {
-                    FinalRelationshipIncrease = settings.RelationshipIncrease * this.BanditDeathCounter * settings.SizeBonus;
-                    if (settings.KillingBanditsDebug)
-                    {
-                        IM.MessageDebug("Killing Bandits: SizeBonusEnabled: " + FinalRelationshipIncrease.ToString());
-                    }
+                    IM.MessageDebug("Killing Bandits: SizeBonusEnabled: " + FinalRelationshipIncrease.ToString());
                 }
-                int FinalRelationshipIncreaseInt = (int)Math.Floor(FinalRelationshipIncrease);
-                if (settings.KillingBanditsDebug)
-                {
-                    IM.MessageDebug("Killing Bandits: IncreaseLocalRelations: " + "Base Change: " + settings.RelationshipIncrease.ToString() + "Final Change: " + FinalRelationshipIncreaseInt.ToString());
-                }
-
-                FinalRelationshipIncreaseInt = FinalRelationshipIncreaseInt < 1 ? 1 : FinalRelationshipIncreaseInt;
-                IM.ColorGreenMessage("Final Relationship Increase: " + FinalRelationshipIncreaseInt.ToString());
-
-                List<Settlement> list = new List<Settlement>();
-                foreach (Settlement settlement in Settlement.All)
-                {
-                    if ((settlement.IsVillage || settlement.IsTown) && settlement.Position2D.DistanceSquared(m.Position) <= settings.Radius)
-                    {
-                        list.Add(settlement);
-                    }
-                }
-
-                foreach (Settlement settlement2 in list)
-                {
-                    if (settlement2.Notables.Any<Hero>())
-                    {
-                        Hero h = settlement2.Notables.GetRandomElement<Hero>();
-                        ChangeRelationAction.ApplyPlayerRelation(h, relation: FinalRelationshipIncreaseInt, affectRelatives: true, showQuickNotification: false);
-                    }
-                }
-                IM.ColorGreenMessage("Your relationship increased with nearby notables. " + FinalRelationshipIncreaseInt.ToString());
             }
+            int FinalRelationshipIncreaseInt = (int)Math.Floor(FinalRelationshipIncrease);
+            if (Statics._settings.KillingBanditsDebug)
+            {
+                IM.MessageDebug("Killing Bandits: IncreaseLocalRelations: " + "Base Change: " + Statics._settings.RelationshipIncrease.ToString() + "Final Change: "+ FinalRelationshipIncreaseInt.ToString());
+            }
+            FinalRelationshipIncreaseInt = FinalRelationshipIncreaseInt < 1 ? 1 : FinalRelationshipIncreaseInt;
+            IM.ColorGreenMessage("Final Relationship Increase: " + FinalRelationshipIncreaseInt.ToString());
+
+            List <Settlement> list = new List<Settlement>();
+            foreach (Settlement settlement in Settlement.All)
+            {
+                if ((settlement.IsVillage || settlement.IsTown) && settlement.Position2D.DistanceSquared(m.Position) <= Statics._settings.Radius)
+                {
+                    list.Add(settlement);
+                }
+            }
+            foreach (Settlement settlement2 in list)
+            {
+                if (settlement2.Notables.Any<Hero>())
+                {
+                    Hero h = settlement2.Notables.GetRandomElement<Hero>();
+                    ChangeRelationAction.ApplyPlayerRelation(h, relation: FinalRelationshipIncreaseInt, affectRelatives: true, showQuickNotification: false);
+                }
+            }
+            IM.ColorGreenMessage("Your relationship increased with nearby notables. " + FinalRelationshipIncreaseInt.ToString());
         }
 
         private void BanditGroupCounterUpdate()
         {
-            if (MCMSettings.Instance is { } settings)
+            this.BanditGroupCounter--;
+            if (this.BanditGroupCounter == 0)
             {
-                BanditGroupCounter--;
-                if (BanditGroupCounter == 0)
-                {
-                    BanditGroupCounter = settings.GroupsOfBandits;
-                }
-                if (settings.KillingBanditsDebug)
-                {
-                    IM.MessageDebug("Killing Bandits : BanditGroupCounterUpdate: " + BanditGroupCounter.ToString());
-                }
+                this.BanditGroupCounter = Statics._settings.GroupsOfBandits;
+            }
+            if (Statics._settings.KillingBanditsDebug)
+            {
+                IM.MessageDebug("Killing Bandits : BanditGroupCounterUpdate: " + BanditGroupCounter.ToString());
             }
         }
 
@@ -122,12 +113,27 @@ namespace KaosesTweaks.Event
 
         private bool IsDefeatedBanditLike(MapEvent m)
         {
-            if (MCMSettings.Instance is { } settings && m.GetLeaderParty(m.DefeatedSide) != null)
+            try
             {
-                return
-                (m.GetLeaderParty(m.DefeatedSide).MapFaction.IsBanditFaction && settings.IncludeBandits) ||
-                (m.GetLeaderParty(m.DefeatedSide).MapFaction.IsOutlaw && settings.IncludeOutlaws) ||
-                (m.GetLeaderParty(m.DefeatedSide).Owner.Clan.IsMafia && settings.IncludeMafia);
+                if (m.GetLeaderParty(m.DefeatedSide).MapFaction.IsBanditFaction && Statics._settings.IncludeBandits)
+                {
+                    return true;
+                }
+
+                if (m.GetLeaderParty(m.DefeatedSide).MapFaction.IsOutlaw && Statics._settings.IncludeOutlaws)
+                {
+                    return true;
+                }
+
+                if (m.GetLeaderParty(m.DefeatedSide).Owner.Clan.IsMafia && Statics._settings.IncludeMafia)
+                {
+                    return true;
+                }
+            }
+
+            catch (Exception ex)
+            {
+                //Avoids crash for parties without an owner set	
             }
             return false;
         }

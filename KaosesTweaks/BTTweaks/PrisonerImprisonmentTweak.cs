@@ -46,7 +46,7 @@ namespace KaosesTweaks.BTTweaks
                         (int)hero.CaptivityStartTime.ElapsedDaysUntilNow > settings.MinimumDaysOfImprisonment)
                     {
 
-                        if (MCMSettings.Instance is { } && settings.PrisonersDebug)
+                        if (Statics._settings.PrisonersDebug)
                         {
                             IM.MessageDebug("Prisoner release: elapsed >" + hero.CaptivityStartTime.ElapsedDaysUntilNow.ToString() + "\r\n"
                                 + "MinimumDaysOfImprisonment: " + settings.MinimumDaysOfImprisonment.ToString() + "\r\n"

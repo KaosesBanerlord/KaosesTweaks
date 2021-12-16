@@ -1,6 +1,5 @@
 ﻿using KaosesTweaks;
 using KaosesTweaks.Common;
-using KaosesTweaks.Settings;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Localization;
 
@@ -31,83 +30,83 @@ namespace KaosesPartySpeeds.Objects
 
         private void calculatePartySpeed()
         {
-            if (MCMSettings.Instance is { } settings && settings.KaosesStaticSpeedModifiersEnabled)
+            if (Statics._settings.KaosesStaticSpeedModifiersEnabled)
             {
-                if (_mobileParty.StringId.Contains("looter") && settings.LooterSpeedReductionAmount != 0.0f)
+                if (_mobileParty.StringId.Contains("looter") && Statics._settings.LooterSpeedReductionAmount != 0.0f)
                 {
-                    ModifiedSpeed = settings.LooterSpeedReductionAmount;
+                    ModifiedSpeed = Statics._settings.LooterSpeedReductionAmount;
                     Message = _slowMessage;
                     HasModifiedSpeed = true;
                 }
-                if (_mobileParty.StringId.Contains("caravan") && settings.CaravanSpeedReductiontEnabled)
+                if (_mobileParty.StringId.Contains("caravan") && Statics._settings.CaravanSpeedReductiontEnabled)
                 {
-                    if (_mobileParty.StringId.Contains("elite") && settings.EliteCaravanSpeedReductionAmount != 0.0f)
+                    if (_mobileParty.StringId.Contains("elite") && Statics._settings.EliteCaravanSpeedReductionAmount != 0.0f)
                     {
-                        ModifiedSpeed = settings.EliteCaravanSpeedReductionAmount;
+                        ModifiedSpeed = Statics._settings.EliteCaravanSpeedReductionAmount;
                         Message = _slowCaravansMessage;
                         HasModifiedSpeed = true;
                     }
-                    else if (settings.CaravanSpeedReductionAmount != 0.0f)
+                    else if (Statics._settings.CaravanSpeedReductionAmount != 0.0f)
                     {
-                        ModifiedSpeed = settings.CaravanSpeedReductionAmount;
+                        ModifiedSpeed = Statics._settings.CaravanSpeedReductionAmount;
                         Message = _slowCaravansMessage;
                         HasModifiedSpeed = true;
                     }
                 }
-                if (_mobileParty.StringId.Contains("desert") && settings.DesertSpeedReductionAmount != 0.0f)
+                if (_mobileParty.StringId.Contains("desert") && Statics._settings.DesertSpeedReductionAmount != 0.0f)
                 {
-                    ModifiedSpeed = settings.DesertSpeedReductionAmount;
+                    ModifiedSpeed = Statics._settings.DesertSpeedReductionAmount;
                     Message = _slowMessage;
                     HasModifiedSpeed = true;
                 }
-                if (_mobileParty.StringId.Contains("forest") && settings.ForestSpeedReductionAmount != 0.0f)
+                if (_mobileParty.StringId.Contains("forest") && Statics._settings.ForestSpeedReductionAmount != 0.0f)
                 {
-                    ModifiedSpeed = settings.ForestSpeedReductionAmount;
+                    ModifiedSpeed = Statics._settings.ForestSpeedReductionAmount;
                     Message = _slowMessage;
                     HasModifiedSpeed = true;
                 }
-                if (_mobileParty.StringId.Contains("mountain") && settings.MountainSpeedReductionAmount != 0.0f)
+                if (_mobileParty.StringId.Contains("mountain") && Statics._settings.MountainSpeedReductionAmount != 0.0f)
                 {
-                    ModifiedSpeed = settings.MountainSpeedReductionAmount;
+                    ModifiedSpeed = Statics._settings.MountainSpeedReductionAmount;
                     Message = _slowMessage;
                     HasModifiedSpeed = true;
                 }
-                if (_mobileParty.StringId.Contains("raider") && settings.SeaRaiderSpeedReductionAmount != 0.0f)
+                if (_mobileParty.StringId.Contains("raider") && Statics._settings.SeaRaiderSpeedReductionAmount != 0.0f)
                 {
-                    ModifiedSpeed = settings.SeaRaiderSpeedReductionAmount;
+                    ModifiedSpeed = Statics._settings.SeaRaiderSpeedReductionAmount;
                     Message = _slowMessage;
                     HasModifiedSpeed = true;
                 }
-                if (_mobileParty.StringId.Contains("steppe") && settings.SteppeSpeedReductionAmount != 0.0f)
+                if (_mobileParty.StringId.Contains("steppe") && Statics._settings.SteppeSpeedReductionAmount != 0.0f)
                 {
-                    ModifiedSpeed = settings.SteppeSpeedReductionAmount;
+                    ModifiedSpeed = Statics._settings.SteppeSpeedReductionAmount;
                     Message = _slowMessage;
                     HasModifiedSpeed = true;
                 }
-                if (_mobileParty.StringId.Contains("villager") && settings.VillagerSpeedReductiontEnabled
-                    && settings.VillagerSpeedReductionAmount != 0.0f)
+                if (_mobileParty.StringId.Contains("villager") && Statics._settings.VillagerSpeedReductiontEnabled
+                    && Statics._settings.VillagerSpeedReductionAmount != 0.0f)
                 {
-                    ModifiedSpeed = settings.VillagerSpeedReductionAmount;
+                    ModifiedSpeed = Statics._settings.VillagerSpeedReductionAmount;
                     Message = _slowVillagerMessage;
                     HasModifiedSpeed = true;
                 }
-                if (_mobileParty.StringId.Contains("lord_") && settings.KingdomSpeedReductiontEnabled
-                    && settings.KingdomSpeedReductionAmount != 0.0f)
+                if (_mobileParty.StringId.Contains("lord_") && Statics._settings.KingdomSpeedReductiontEnabled
+                    && Statics._settings.KingdomSpeedReductionAmount != 0.0f)
                 {
-                    ModifiedSpeed = settings.KingdomSpeedReductionAmount;
+                    ModifiedSpeed = Statics._settings.KingdomSpeedReductionAmount;
                     Message = _slowKingdomMessage;
                     HasModifiedSpeed = true;
                 }
-                if (_mobileParty.StringId.Contains("troops_of") && settings.OtherKingdomSpeedReductionAmount != 0.0f)
+                if (_mobileParty.StringId.Contains("troops_of") && Statics._settings.OtherKingdomSpeedReductionAmount != 0.0f)
                 {
-                    ModifiedSpeed = settings.OtherKingdomSpeedReductionAmount;
+                    ModifiedSpeed = Statics._settings.OtherKingdomSpeedReductionAmount;
                     Message = _slowMinorMessage;
                     HasModifiedSpeed = true;
                 }
 
-                if (_mobileParty.IsMainParty && settings.PlayerSpeedReductiontEnabled && settings.PlayerSpeedReductionAmount != 0.0f)
+                if (_mobileParty.IsMainParty && Statics._settings.PlayerSpeedReductiontEnabled && Statics._settings.PlayerSpeedReductionAmount != 0.0f)
                 {
-                    ModifiedSpeed = settings.PlayerSpeedReductionAmount;
+                    ModifiedSpeed = Statics._settings.PlayerSpeedReductionAmount;
                     Message = _slowPlayerMessage;
                     HasModifiedSpeed = true;
 
@@ -118,16 +117,16 @@ namespace KaosesPartySpeeds.Objects
                 {
                     if (!HasModifiedSpeed && _mobileParty.LeaderHero != null)
                     {
-                        if (Kaoses.IsPlayerClan(_mobileParty) && settings.PlayerSpeedReductiontEnabled && settings.PlayerClanSpeedReductionAmount != 0.0f)
+                        if (Kaoses.IsPlayerClan(_mobileParty) && Statics._settings.PlayerSpeedReductiontEnabled && Statics._settings.PlayerClanSpeedReductionAmount != 0.0f)
                         {
-                            ModifiedSpeed = settings.PlayerClanSpeedReductionAmount;
+                            ModifiedSpeed = Statics._settings.PlayerClanSpeedReductionAmount;
                             Message = _slowPlayerClanMessage;
                             HasModifiedSpeed = true;
                             //Logger.Lm("IsPlayerClan new speed:" + finalSpeed.ResultNumber.ToString());
                         }
-                        else if (settings.OtherKingdomSpeedReductionAmount != 0.0f)
+                        else if (Statics._settings.OtherKingdomSpeedReductionAmount != 0.0f)
                         {
-                            ModifiedSpeed = settings.OtherKingdomSpeedReductionAmount;
+                            ModifiedSpeed = Statics._settings.OtherKingdomSpeedReductionAmount;
                             Message = _slowMinorMessage;
                             HasModifiedSpeed = true;
                         }
@@ -158,25 +157,25 @@ namespace KaosesPartySpeeds.Objects
         public static void GetDynamicSpeedChange(MobileParty mobileParty, ref ExplainedNumber finalSpeed)
         {
 
-            if (MCMSettings.Instance is { } settings && settings.KaosesDynamicSpeedModifiersEnabled)
+            if (Statics._settings.KaosesDynamicSpeedModifiersEnabled)
             {
                 float reduction = 0f;
                 if (mobileParty.ShortTermBehavior == AiBehavior.FleeToPoint)
                 {
-                    if (SubModule.FleeingParties != null && SubModule.FleeingParties.ContainsKey(mobileParty))
+                    if (SubModule.FleeingParties.ContainsKey(mobileParty))
                     {
                         CampaignTime oldTime = SubModule.FleeingParties[mobileParty];
-                        if (CampaignTime.Now.ToHours > oldTime.ToHours && SubModule.FleeingHours != null && SubModule.FleeingSpeedReduction != null)
+                        if (CampaignTime.Now.ToHours > oldTime.ToHours)
                         {
                             int fleeingHours = SubModule.FleeingHours[mobileParty];
-                            reduction = settings.DynamicFleeingSpeedReductionAmount * fleeingHours;
+                            reduction = Statics._settings.DynamicFleeingSpeedReductionAmount * fleeingHours;
                             SubModule.FleeingHours[mobileParty] = fleeingHours + 1;
-                            SubModule.FleeingParties[mobileParty] = CampaignTime.HoursFromNow(settings.DynamicFleeingSpeedReductionHours);
+                            SubModule.FleeingParties[mobileParty] = CampaignTime.HoursFromNow(Statics._settings.DynamicFleeingSpeedReductionHours);
                             SubModule.FleeingSpeedReduction[mobileParty] = reduction;
                         }
                         else
                         {
-                            if (SubModule.FleeingSpeedReduction != null && SubModule.FleeingSpeedReduction.ContainsKey(mobileParty))
+                            if (SubModule.FleeingSpeedReduction.ContainsKey(mobileParty))
                             {
                                 reduction = SubModule.FleeingSpeedReduction[mobileParty];
                             }
@@ -184,12 +183,9 @@ namespace KaosesPartySpeeds.Objects
                     }
                     else
                     {
-                        if (SubModule.FleeingParties != null && SubModule.FleeingHours != null && SubModule.FleeingSpeedReduction != null)
-                        {
-                            SubModule.FleeingParties.Add(mobileParty, CampaignTime.HoursFromNow(settings.DynamicFleeingSpeedReductionHours));
-                            SubModule.FleeingHours.Add(mobileParty, 1);
-                            SubModule.FleeingSpeedReduction.Add(mobileParty, 0.0f);
-                        }
+                        SubModule.FleeingParties.Add(mobileParty, CampaignTime.HoursFromNow(Statics._settings.DynamicFleeingSpeedReductionHours));
+                        SubModule.FleeingHours.Add(mobileParty, 1);
+                        SubModule.FleeingSpeedReduction.Add(mobileParty, 0.0f);
                     }
                     if (reduction != 0)
                     {
@@ -198,17 +194,17 @@ namespace KaosesPartySpeeds.Objects
                 }
                 else
                 {
-                    if (SubModule.FleeingParties != null && SubModule.FleeingParties.ContainsKey(mobileParty))
+                    if (SubModule.FleeingParties.ContainsKey(mobileParty))
                     {
                         CampaignTime oldTime = SubModule.FleeingParties[mobileParty];
                         if (CampaignTime.Now.ToHours > oldTime.ToHours)
                         {
                             SubModule.FleeingParties.Remove(mobileParty);
-                            if (SubModule.FleeingHours != null && SubModule.FleeingHours.ContainsKey(mobileParty))
+                            if (SubModule.FleeingHours.ContainsKey(mobileParty))
                             {
                                 SubModule.FleeingHours.Remove(mobileParty);
                             }
-                            if (SubModule.FleeingSpeedReduction != null && SubModule.FleeingSpeedReduction.ContainsKey(mobileParty))
+                            if (SubModule.FleeingSpeedReduction.ContainsKey(mobileParty))
                             {
                                 SubModule.FleeingSpeedReduction.Remove(mobileParty);
                             }

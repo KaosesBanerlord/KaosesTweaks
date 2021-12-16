@@ -1,9 +1,9 @@
-﻿using KaosesTweaks.Settings;
-using KaosesTweaks.Utils;
+﻿using KaosesTweaks.Utils;
 using System;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.SandBox.GameComponents;
 using TaleWorlds.Core;
+using TaleWorlds.Library;
 using TaleWorlds.Localization;
 
 namespace KaosesTweaks.Models
@@ -17,9 +17,9 @@ namespace KaosesTweaks.Models
         {
             get
             {
-                if (MCMSettings.Instance is { } settings && settings.CharacterLevelsPerAttributeModifiers)
+                if (Statics._settings.CharacterLevelsPerAttributeModifiers)
                 {
-                    return settings.CharacterLevelsPerAttributeValue;
+                    return Statics._settings.CharacterLevelsPerAttributeValue;
                 }
                 return 4;
             }
@@ -31,9 +31,9 @@ namespace KaosesTweaks.Models
         {
             get
             {
-                if (MCMSettings.Instance is { } settings && settings.CharacterFocusPerLevelModifiers)
+                if (Statics._settings.CharacterFocusPerLevelModifiers)
                 {
-                    return settings.CharacterFocusPerLevelValue;
+                    return Statics._settings.CharacterFocusPerLevelValue;
                 }
                 return 1;
             }
@@ -49,7 +49,7 @@ namespace KaosesTweaks.Models
             int attributeValue = hero.GetAttributeValue(skill.CharacterAttribute);
             int focus = hero.HeroDeveloper.GetFocus(skill);
             int skillValue = hero.GetSkillValue(skill);
-            if (MCMSettings.Instance is { } settings && settings.LearningDebug)
+            if (Statics._settings.LearningDebug)
             {
                 IM.MessageDebug("KT CalculateLearningRate: " + skill.CharacterAttribute.Name.ToString());
             }
@@ -63,10 +63,10 @@ namespace KaosesTweaks.Models
             float learningMultiplier = 1.0f;
             TextObject attrText = attributeName;
             TextObject focusText = _skillFocusText;
-            if (MCMSettings.Instance is { } settings && settings.LearningRateEnabled)
+            if (Statics._settings.LearningRateEnabled)
             {
-                learningMultiplier = settings.LearningRateMultiplier;
-                if (settings.LearningDebug)
+                learningMultiplier = Statics._settings.LearningRateMultiplier;
+                if (Statics._settings.LearningDebug)
                 {
                     IM.MessageDebug("KT attributeName: " + attributeName.ToString());
                 }
@@ -74,38 +74,38 @@ namespace KaosesTweaks.Models
                 focusText = new TextObject("KT " + _skillFocusText, null);
             }
             ExplainedNumber result = new ExplainedNumber(1.25f * learningMultiplier, true, null);
-            result.AddFactor(((0.4f * attributeValue)), attrText);
-            result.AddFactor((focusValue * 1f), focusText);
+            result.AddFactor(((0.4f * (float)attributeValue)), attrText);
+            result.AddFactor(((float)focusValue * 1f), focusText);
             int num = (int)Math.Round(this.CalculateLearningLimit(attributeValue, focusValue, null, false).ResultNumber);
             int num2 = 0;
             if (skillValue > num)
             {
                 num2 = skillValue - num;
-                if (MCMSettings.Instance is { } settings1 && settings1.LearningDebug)
+                if (Statics._settings.LearningDebug)
                 {
                     IM.MessageDebug("_overLimitText REDUCED VALUE: " + num2.ToString());
                 }
-                result.AddFactor(-1f - 0.1f * num2, _overLimitText);
+                result.AddFactor(-1f - 0.1f * (float)num2, _overLimitText);
             }
             result.LimitMin(0f);
             return result;
         }
 
         // Token: 0x06002BD8 RID: 11224 RVA: 0x000A84C8 File Offset: 0x000A66C8
-        public override ExplainedNumber CalculateLearningLimit(int attributeValue, int focusValue, TextObject? attributeName, bool includeDescriptions = false)
+        public override ExplainedNumber CalculateLearningLimit(int attributeValue, int focusValue, TextObject attributeName, bool includeDescriptions = false)
         {
             ExplainedNumber result = new ExplainedNumber(0f, includeDescriptions, null);
-            if (MCMSettings.Instance is { } settings && settings.LearningLimitEnabled)
+            if (Statics._settings.LearningLimitEnabled)
             {
-                result.Add((float)((((attributeValue - 1)) * 10) * (1 + settings.LearningLimitMultiplier)), attributeName, null);
+                result.Add((float)((((attributeValue - 1)) * 10) * (1 + Statics._settings.LearningLimitMultiplier)), attributeName, null);
             }
             else
             {
-                result.Add(((attributeValue - 1)) * 10, attributeName, null);
+                result.Add((float)(((attributeValue - 1)) * 10), attributeName, null);
             }
 
-            result.Add(((focusValue * 1)) * 30, _skillFocusText, null);
-            //result.Add((float)((((focusValue * 1)) * 30) * (1 + settings.LearningLimitMultiplier)), _skillFocusText, null);
+            result.Add((float)(((focusValue * 1)) * 30), _skillFocusText, null);
+            //result.Add((float)((((focusValue * 1)) * 30) * (1 + Statics._settings.LearningLimitMultiplier)), _skillFocusText, null);
             result.LimitMin(0f);
             return result;
         }
