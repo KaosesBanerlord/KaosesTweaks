@@ -201,27 +201,5 @@ namespace KaosesTweaks.Patches
             }
             return (int)modifiedRelationShipGain;
         }
-
-
     }
-
-    [HarmonyPatch(typeof(DefaultBattleRewardModel), "GetPlayerGainedRelationAmount")]
-    class KTBattleRewardsGainedRelationAmountPatch
-    {
-        private static bool Prefix(MapEvent mapEvent, Hero hero, ref int __result)
-        {
-            if (MCMSettings.Instance.BattleRewardsRelationShipGainModifiers)
-            {
-                MapEventSide mapEventSide = mapEvent.AttackerSide.IsMainPartyAmongParties() ? mapEvent.AttackerSide : mapEvent.DefenderSide;
-                float playerPartyContributionRate = mapEventSide.GetPlayerPartyContributionRate();
-                float num = (mapEvent.StrengthOfSide[(int)PartyBase.MainParty.Side] - PlayerEncounter.Current.PlayerPartyInitialStrength) / mapEvent.StrengthOfSide[(int)PartyBase.MainParty.OpponentSide];
-                float num2 = (num < 1f) ? (1f + (1f - num)) : ((num < 3f) ? (0.5f * (3f - num)) : 0f);
-                float renownValue = mapEvent.GetRenownValue((mapEventSide == mapEvent.AttackerSide) ? BattleSideEnum.Attacker : BattleSideEnum.Defender);
-                //~ KT
-                double relationShipGain = GetPlayerGainedRelationAmount(0.75 + Math.Pow((double)(playerPartyContributionRate * 1.3f * (num2 + renownValue)), 0.6700000166893005));
-                __result = (int)relationShipGain;
-                //~ KT
-
-
-
 }
