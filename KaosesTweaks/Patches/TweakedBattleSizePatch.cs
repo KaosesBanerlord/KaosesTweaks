@@ -1,9 +1,9 @@
 ﻿using HarmonyLib;
-using System;
-using TaleWorlds.MountAndBlade;
-using TaleWorlds.Core;
 using KaosesTweaks.Settings;
 using KaosesTweaks.Utils;
+using System;
+using TaleWorlds.Core;
+using TaleWorlds.MountAndBlade;
 
 namespace KaosesTweaks.Patches
 {

@@ -84,7 +84,7 @@ namespace KaosesTweaks.Models
         {
             get
             {
-                return MBMath.Floor(6f * (2f + MiscHelper.GetGameProcess()));
+                return MathF.Floor(6f * (2f + MiscHelper.GetGameProcess()));
             }
         }
 
@@ -94,7 +94,7 @@ namespace KaosesTweaks.Models
         {
             get
             {
-                return MBMath.Floor(1f + 5f * (1f + MiscHelper.GetGameProcess()));
+                return MathF.Floor(1f + 5f * (1f + MiscHelper.GetGameProcess()));
             }
         }
 

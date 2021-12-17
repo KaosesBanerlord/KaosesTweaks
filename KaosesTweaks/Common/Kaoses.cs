@@ -73,7 +73,7 @@ namespace KaosesTweaks.Common
             return isPlayerClan;
         }
 
-        public static bool isPlayer(Hero hero)
+        public static bool IsPlayer(Hero hero)
         {
             bool isPlayer = false;
 
@@ -83,11 +83,6 @@ namespace KaosesTweaks.Common
                 {
                     isPlayer = true;
                 }
-                /*
-                                if (Clan.PlayerClan.Leader == hero)
-                                {
-                                    isPlayer = true;
-                                }*/
             }
             return isPlayer;
         }
@@ -106,8 +101,9 @@ namespace KaosesTweaks.Common
                 + "IsHero: " + hero.CharacterObject.IsHero.ToString() +"\r\n"
                 //+ "IsBasicTroop: " + hero.CharacterObject.IsBasicTroop.ToString() +"\r\n"
                 + "result" + ((hero.CharacterObject.Occupation == Occupation.Lord || hero.CharacterObject.Occupation == Occupation.Lady || hero.CharacterObject.Occupation == Occupation.Wanderer) && !hero.IsHumanPlayerCharacter).ToString() +"\r\n"
-                );*/
-            return (hero.CharacterObject.Occupation == Occupation.Lord || hero.CharacterObject.Occupation == Occupation.Lady || hero.CharacterObject.Occupation == Occupation.Wanderer) && !hero.IsHumanPlayerCharacter;
+                );
+            */
+            return (hero.CharacterObject.Occupation == Occupation.Mercenary || hero.CharacterObject.Occupation == Occupation.Lord || hero.CharacterObject.Occupation == Occupation.GangLeader || hero.CharacterObject.Occupation == Occupation.Wanderer) && !hero.IsHumanPlayerCharacter;
 
             /*
                 Kaoses Tweaks : IsLordName: Nadea the Wanderer
@@ -134,7 +130,7 @@ namespace KaosesTweaks.Common
                             //+ "IsBasicTroop: " + hero.CharacterObject.IsBasicTroop.ToString() +"\r\n"
                             + "result" + ((hero.CharacterObject.Occupation == Occupation.Lord || hero.CharacterObject.Occupation == Occupation.Lady || hero.CharacterObject.Occupation == Occupation.Wanderer) && !hero.IsHumanPlayerCharacter && IsPlayerClan(hero)).ToString() + "\r\n"
                             );*/
-            return (hero.CharacterObject.Occupation == Occupation.Lord || hero.CharacterObject.Occupation == Occupation.Lady || hero.CharacterObject.Occupation == Occupation.Wanderer) && !hero.IsHumanPlayerCharacter && IsPlayerClan(hero);
+            return (hero.CharacterObject.Occupation == Occupation.Mercenary || hero.CharacterObject.Occupation == Occupation.Lord || hero.CharacterObject.Occupation == Occupation.GangLeader || hero.CharacterObject.Occupation == Occupation.Wanderer) && !hero.IsHumanPlayerCharacter;
         }
 
         public static bool IsMCMLoaded()

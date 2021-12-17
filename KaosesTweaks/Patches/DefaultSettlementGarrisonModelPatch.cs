@@ -1,8 +1,8 @@
-﻿using System;
-using System.Reflection;
-using HarmonyLib;
+﻿using HarmonyLib;
 using KaosesTweaks.Settings;
 using KaosesTweaks.Utils;
+using System;
+using System.Reflection;
 using TaleWorlds.CampaignSystem;
 
 namespace KaosesTweaks.Patches

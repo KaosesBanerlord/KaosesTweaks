@@ -1,21 +1,21 @@
 ﻿using HarmonyLib;
+using KaosesPartySpeeds.Model;
 using KaosesTweaks.Behaviors;
-using KaosesTweaks.Event;
+using KaosesTweaks.BTTweaks;
 using KaosesTweaks.Common;
+using KaosesTweaks.Event;
 using KaosesTweaks.Models;
 using KaosesTweaks.Settings;
 using KaosesTweaks.Utils;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
+using System.Text;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.SandBox.CampaignBehaviors;
 using TaleWorlds.Core;
 using TaleWorlds.MountAndBlade;
-using KaosesTweaks.BTTweaks;
-using System.Text;
-using System.Linq;
-using KaosesPartySpeeds.Model;
 
 namespace KaosesTweaks
 {
@@ -209,7 +209,7 @@ namespace KaosesTweaks
                 //~ KaosesCraftingCampaignBehaviors
                 try
                 {
-                    if (Statics._settings.ArrowMultipliersEnabled || Statics._settings.BoltsMultipliersEnabled 
+                    if (Statics._settings.ArrowMultipliersEnabled || Statics._settings.BoltsMultipliersEnabled
                         || Statics._settings.ThrownMultiplierEnabled)
                     {
                         if (Statics._settings.Debug)
@@ -308,7 +308,7 @@ namespace KaosesTweaks
                 }
                 if (settings.KaosesStaticSpeedModifiersEnabled || settings.KaosesDynamicSpeedModifiersEnabled)
                 {
-                    
+
                     if (settings.Debug)
                     {
                         IM.MessageDebug("Loaded Kaoses Party Speed model Model Override");
@@ -325,7 +325,7 @@ namespace KaosesTweaks
                     //campaignGameStarter.AddModel(new KaosesBanditDensityModel());
                 }
                 if ((settings.PartyWageTweaksEnabled && !settings.PartyWageTweaksHarmonyEnabled) || (settings.KingdomBalanceStrengthEnabled && !settings.KingdomBalanceStrengthHarmonyEnabled))
-                {                    
+                {
                     if (settings.Debug)
                     {
                         IM.MessageDebug("Loaded BT Wage model Model Override");

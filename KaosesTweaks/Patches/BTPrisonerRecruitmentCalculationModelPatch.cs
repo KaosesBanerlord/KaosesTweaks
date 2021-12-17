@@ -1,10 +1,10 @@
 ﻿using HarmonyLib;
-using TaleWorlds.Core;
-using TaleWorlds.CampaignSystem;
-using TaleWorlds.CampaignSystem.SandBox.GameComponents;
-using TaleWorlds.Library;
 using KaosesTweaks.Settings;
 using KaosesTweaks.Utils;
+using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.SandBox.GameComponents;
+using TaleWorlds.Core;
+using TaleWorlds.Library;
 
 namespace KaosesTweaks.Patches
 {
@@ -30,7 +30,7 @@ namespace KaosesTweaks.Patches
                         IM.MessageDebug("Prisoner num Final: " + num.ToString());
                     }
                     party.MobileParty.EffectiveQuartermaster.AddSkillXp(DefaultSkills.Charm, (num * .05f));
-                    __result = MBMath.Round(num);
+                    __result = MathF.Round(num);
                 }
             }
 

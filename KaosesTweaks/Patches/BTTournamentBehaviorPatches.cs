@@ -1,14 +1,16 @@
 ﻿using HarmonyLib;
 using KaosesTweaks.Settings;
 using SandBox.TournamentMissions.Missions;
+using System;
 using System.Reflection;
+using TaleWorlds.CampaignSystem;
 using TaleWorlds.Library;
 
 namespace KaosesTweaks.Patches
 {
 
-    [HarmonyPatch(typeof(TournamentBehavior), "OnPlayerWinTournament")]
-    public class OnPlayerWinTournamentPatch
+    [HarmonyPatch(typeof(TournamentBehavior), "get_Winner")]
+    public class get_WinnerPatch
     {
         static bool Prefix(TournamentBehavior __instance)
         {
@@ -43,6 +45,28 @@ namespace KaosesTweaks.Patches
                 return true;
             }
             return false;
+        }
+    }
+
+    [HarmonyPatch(typeof(TournamentBehavior), "GetMaximumBet")]
+    public class GetMaximumBetPatch
+    {
+        static void Postfix(TournamentBehavior __instance, ref int __result)
+        {
+            if (MCMSettings.Instance is { } settings)
+            {
+                int num = settings.TournamentMaxBetAmount;
+                if (Hero.MainHero.GetPerkValue(DefaultPerks.Roguery.DeepPockets))
+                {
+                    num *= (int)DefaultPerks.Roguery.DeepPockets.PrimaryBonus;
+                }
+                __result = Math.Min(num, Hero.MainHero.Gold);
+            }
+        }
+
+        static bool Prepare()
+        {
+            return (MCMSettings.Instance is { } settings && settings.TournamentMaxBetAmountTweakEnabled);
         }
     }
 }

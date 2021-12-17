@@ -69,12 +69,12 @@ namespace KaosesTweaks.Event
             int FinalRelationshipIncreaseInt = (int)Math.Floor(FinalRelationshipIncrease);
             if (Statics._settings.KillingBanditsDebug)
             {
-                IM.MessageDebug("Killing Bandits: IncreaseLocalRelations: " + "Base Change: " + Statics._settings.RelationshipIncrease.ToString() + "Final Change: "+ FinalRelationshipIncreaseInt.ToString());
+                IM.MessageDebug("Killing Bandits: IncreaseLocalRelations: " + "Base Change: " + Statics._settings.RelationshipIncrease.ToString() + "Final Change: " + FinalRelationshipIncreaseInt.ToString());
             }
             FinalRelationshipIncreaseInt = FinalRelationshipIncreaseInt < 1 ? 1 : FinalRelationshipIncreaseInt;
             IM.ColorGreenMessage("Final Relationship Increase: " + FinalRelationshipIncreaseInt.ToString());
 
-            List <Settlement> list = new List<Settlement>();
+            List<Settlement> list = new List<Settlement>();
             foreach (Settlement settlement in Settlement.All)
             {
                 if ((settlement.IsVillage || settlement.IsTown) && settlement.Position2D.DistanceSquared(m.Position) <= Statics._settings.Radius)

@@ -39,7 +39,7 @@ namespace KaosesTweaks.Models
         public override int GetDailyExpense(int level)
         {
             if (MCMSettings.Instance is { } settings && settings.WorkshopEffectivnessEnabled)
-                return (int)MathF.Round(base.GetDailyExpense(level) * (settings.WorkshopEffectivnessv2Factor));
+                return MathF.Round(base.GetDailyExpense(level) * (settings.WorkshopEffectivnessv2Factor));
             else
                 return base.GetDailyExpense(level);
         }

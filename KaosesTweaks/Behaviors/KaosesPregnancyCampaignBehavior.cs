@@ -45,7 +45,7 @@ namespace KaosesTweaks.Behaviors
         {
             if (this.HeroPregnancyCheckCondition(hero))
             {
-                if (hero.Age >= (float)Campaign.Current.Models.AgeModel.HeroComesOfAge && hero.Spouse != null && hero.Spouse.IsAlive && !hero.IsPregnant)
+                if (hero.Age >= Campaign.Current.Models.AgeModel.HeroComesOfAge && hero.Spouse != null && hero.Spouse.IsAlive && !hero.IsPregnant)
                 {
                     this.RefreshSpouseVisit(hero);
                 }
@@ -59,7 +59,7 @@ namespace KaosesTweaks.Behaviors
         // Token: 0x06002FC2 RID: 12226 RVA: 0x000C94C8 File Offset: 0x000C76C8
         private bool HeroPregnancyCheckCondition(Hero hero)
         {
-            return hero.IsFemale && hero.IsAlive && hero.Age >= (float)Campaign.Current.Models.AgeModel.HeroComesOfAge && (hero.Clan == null || !hero.Clan.IsRebelClan) && !CampaignOptions.IsLifeDeathCycleDisabled;
+            return hero.IsFemale && hero.IsAlive && hero.Age >= Campaign.Current.Models.AgeModel.HeroComesOfAge && (hero.Clan == null || !hero.Clan.IsRebelClan) && !CampaignOptions.IsLifeDeathCycleDisabled;
         }
 
         // Token: 0x06002FC3 RID: 12227 RVA: 0x000C9524 File Offset: 0x000C7724
@@ -132,7 +132,7 @@ namespace KaosesTweaks.Behaviors
                     if (MBRandom.RandomFloat > pregnancyModel.StillbirthProbability)
                     {
                         bool isOffspringFemale = MBRandom.RandomFloat <= pregnancyModel.DeliveringFemaleOffspringProbability;
-                        Hero item = HeroCreator.DeliverOffSpring(mother, pregnancy.Father, isOffspringFemale, null, 0);
+                        Hero item = HeroCreator.DeliverOffSpring(mother, pregnancy.Father, isOffspringFemale, null);
                         list.Add(item);
                     }
                     else
@@ -175,7 +175,7 @@ namespace KaosesTweaks.Behaviors
                     {
                         if (MBRandom.RandomFloat < this.GetChanceOfChild(hero2, i) && num < 6)
                         {
-                            HeroCreator.DeliverOffSpring(hero2, hero2.Spouse, MBRandom.RandomFloat <= Campaign.Current.Models.PregnancyModel.DeliveringFemaleOffspringProbability, null, i);
+                            HeroCreator.DeliverOffSpring(hero2, hero2.Spouse, MBRandom.RandomFloat <= Campaign.Current.Models.PregnancyModel.DeliveringFemaleOffspringProbability, null);
                             num++;
                         }
                     }
@@ -188,18 +188,18 @@ namespace KaosesTweaks.Behaviors
         {
             int count = mother.Children.Count;
             float num = 48f;
-            float num2 = mother.CharacterObject.Age - (float)yearsAgo;
+            float num2 = mother.CharacterObject.Age - yearsAgo;
             foreach (Hero hero in mother.Children)
             {
-                if (hero.CharacterObject.Age - (float)yearsAgo < num)
+                if (hero.CharacterObject.Age - yearsAgo < num)
                 {
-                    num = hero.CharacterObject.Age - (float)yearsAgo;
+                    num = hero.CharacterObject.Age - yearsAgo;
                 }
             }
             float result = 0f;
             if (num > 2f && num2 > 18f)
             {
-                result = (num + 2f) * (42f - num2) / (float)(count + 1) / 100f;
+                result = (num + 2f) * (42f - num2) / (count + 1) / 100f;
             }
             return result;
         }

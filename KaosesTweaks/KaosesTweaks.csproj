@@ -1,12 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Version>0.2.14</Version>
+    <Version>0.2.15</Version>
     <TargetFramework>net472</TargetFramework>
     <Platforms>x64</Platforms>
     <LangVersion>9.0</LangVersion>
     <Nullable>enable</Nullable>
     <ModuleName>KaosesTweaks</ModuleName>
-    <GameFolder>E:\SteamLibrary\steamapps\common\Mount &amp; Blade II Bannerlord</GameFolder>
+    <GameFolder>G:\Games\Steam\steamapps\common\Mount &amp; Blade II Bannerlord</GameFolder>
     <Authors>Patrick Scott, Cebullus</Authors>
     <Company />
     <Copyright>MIT</Copyright>
@@ -37,10 +37,10 @@
       <HintPath>%(Identity)</HintPath>
       <Private>False</Private>
     </Reference>
-	<Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Forms" />
   </ItemGroup>
 
-  <ItemGroup>    
+  <ItemGroup>
     <PackageReference Include="Bannerlord.BUTR.Shared" Version="1.6.1.40">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>

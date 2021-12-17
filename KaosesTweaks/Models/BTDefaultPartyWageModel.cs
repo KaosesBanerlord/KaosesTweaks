@@ -18,7 +18,7 @@ namespace KaosesTweaks.Models
         // Token: 0x06002D1E RID: 11550 RVA: 0x000B70B8 File Offset: 0x000B52B8
         public override ExplainedNumber GetTotalWage(MobileParty mobileParty, bool includeDescriptions = false)
         {
-            ExplainedNumber result =  base.GetTotalWage(mobileParty, includeDescriptions);
+            ExplainedNumber result = base.GetTotalWage(mobileParty, includeDescriptions);
 
             try
             {

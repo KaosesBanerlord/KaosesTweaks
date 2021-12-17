@@ -20,7 +20,7 @@ namespace KaosesTweaks.Models
             float num2 = (num < 1f) ? (1f + (1f - num)) : ((num < 3f) ? (0.5f * (3f - num)) : 0f);
             float renownValue = mapEvent.GetRenownValue((mapEventSide == mapEvent.AttackerSide) ? BattleSideEnum.Attacker : BattleSideEnum.Defender);
             //~ KT
-            double relationShipGain = GetPlayerGainedRelationAmount(0.75 + Math.Pow((double)(playerPartyContributionRate * 1.3f * (num2 + renownValue)), 0.6700000166893005));
+            double relationShipGain = GetPlayerGainedRelationAmount(0.75 + Math.Pow(playerPartyContributionRate * 1.3f * (num2 + renownValue), 0.6700000166893005));
             //return (int)(0.75 + Math.Pow((double)(playerPartyContributionRate * 1.3f * (num2 + renownValue)), 0.6700000166893005));
             return (int)relationShipGain;
             //~ KT
@@ -37,9 +37,9 @@ namespace KaosesTweaks.Models
             ExplainedNumber result = new ExplainedNumber(renowGainBase, true, null);
             if (party.IsMobile)
             {
-                if (party.MobileParty.HasPerk(DefaultPerks.Charm.ShowYourScars, false))
+                if (party.MobileParty.HasPerk(DefaultPerks.Charm.Warlord, false))
                 {
-                    PerkHelper.AddPerkBonusForParty(DefaultPerks.Charm.ShowYourScars, party.MobileParty, true, ref result);
+                    PerkHelper.AddPerkBonusForParty(DefaultPerks.Charm.Warlord, party.MobileParty, true, ref result);
                 }
                 if (party.MobileParty.HasPerk(DefaultPerks.Throwing.LongReach, true))
                 {
@@ -47,7 +47,7 @@ namespace KaosesTweaks.Models
                 }
                 PerkObject famousCommander = DefaultPerks.Leadership.FamousCommander;
                 MobileParty mobileParty = party.MobileParty;
-                PerkHelper.AddPerkBonusForCharacter(famousCommander, (mobileParty != null) ? mobileParty.Leader : null, true, ref result);
+                PerkHelper.AddPerkBonusForCharacter(famousCommander, (mobileParty != null) ? mobileParty.LeaderHero.CharacterObject : null, true, ref result);
             }
             return result;
         }
@@ -88,7 +88,7 @@ namespace KaosesTweaks.Models
         // Token: 0x06002D8A RID: 11658 RVA: 0x000B5D9C File Offset: 0x000B3F9C
         public override int CalculateGoldLossAfterDefeat(Hero partyLeaderHero)
         {
-            float num = (float)partyLeaderHero.Gold * 0.05f;
+            float num = partyLeaderHero.Gold * 0.05f;
             if (num > 10000f)
             {
                 num = 10000f;
