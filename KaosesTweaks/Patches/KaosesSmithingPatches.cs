@@ -95,7 +95,6 @@ namespace KaosesTweaks.Patches
         static bool Prepare() => MCMSettings.Instance is { } settings && settings.craftingUnlockAllParts;
     }
 
-
     [HarmonyPatch(typeof(CraftingCampaignBehavior), "GetMaxHeroCraftingStamina")]
     public class GetMaxHeroCraftingStaminaPatch
     {

@@ -753,6 +753,7 @@ namespace KaosesTweaks.Settings
             SettingPropertyGroup("{=BT_Settings_004000}Crafting Tweaks" + "/" + "{=BT_Settings_004200}Smelting")]
         public bool AutoLearnSmeltedParts { get; set; } = false;
 
+
         [SettingPropertyBool("{=BT_Settings_004203}Enable Unlocking All Parts Fror Smelted Weapons", Order = 4, RequireRestart = true,
             HintText = "{=BT_Settings_004203_Desc}Enables unlocking all wepaon parts for crafting weapons on next game load."),
             SettingPropertyGroup("{=BT_Settings_004000}Crafting Tweaks" + "/" + "{=BT_Settings_004200}Smelting")]
@@ -1285,108 +1286,6 @@ namespace KaosesTweaks.Settings
         public float ItemTradeGoodsPriceMultiplier { get; set; } = 1.0f;
         #endregion
         #endregion //~ TradeGoods
-
-
-        //~ Arrows
-        #region Arrows
-        [SettingPropertyBool("{=KPM_AME}Arrows Multipliers Enabled", IsToggle = true, Order = 1, RequireRestart = false,
-            HintText = "{=KPM_AMEH}Enables arrows multipliers for price and stack size")]
-        [SettingPropertyGroup("{=KTMCM_ItemTweaks}Item Tweaks" + "/" + "{=KPM_Arrows}Arrows")]
-        public bool ArrowMultipliersEnabled { get; set; } = false;
-
-        [SettingPropertyFloatingInteger("{=KPM_ASSM}Arrows Stack Multiplier", 0.1f, 10.0f, "#0%", Order = 2, RequireRestart = false,
-            HintText = "{=KPM_SSMH}Multiply stack sizes by the multiplier [Native: 1.0(100%)].")]
-        [SettingPropertyGroup("{=KTMCM_ItemTweaks}Item Tweaks" + "/" + "{=KPM_Arrows}Arrows")]
-        public float ArrowMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KPM_APM}Arrows Price Multiplier", 0.1f, 10.0f, "#0%", Order = 2, RequireRestart = false,
-            HintText = "{=KPM_PMH}Multiply price by the multiplier [Native: 1.0(100%)].")]
-        [SettingPropertyGroup("{=KTMCM_ItemTweaks}Item Tweaks" + "/" + "{=KPM_Arrows}Arrows")]
-        public float ArrowValueMultiplier { get; set; } = 1.0f;
-        //[SettingPropertyFloatingInteger("{=KPM_WM}Weight Multiplier", 0.1f, 10.0f, "#0%", Order = 2, RequireRestart = false,
-        //    HintText = "{=KPM_WMH}Multiply item weight by the multiplier [Native: 1.0(100%)]")]
-        //[SettingPropertyGroup("{=KTMCM_ItemTweaks}Item Tweaks" + "/" + "{=KPM_Arrows}Arrows")]
-        //public float ArrowWeightMultiplier { get; set; } = 1.0f;
-        #endregion
-
-        //~ Bolts
-        #region Bolts
-        [SettingPropertyBool("{=KPM_BME}Bolts Multiplier Enabled", IsToggle = true, Order = 1, RequireRestart = false,
-            HintText = "{=KPM_BMEH}Enables Bolts stack Multiplier")]
-        [SettingPropertyGroup("{=KTMCM_ItemTweaks}Item Tweaks" + "/" + "{=KPM_Bolts}Bolts")]
-        public bool BoltsMultipliersEnabled { get; set; } = false;
-
-        [SettingPropertyFloatingInteger("{=KPM_BSSM}Bolts Stack Multiplier", 0.1f, 10.0f, "#0%", Order = 2, RequireRestart = false,
-            HintText = "{=KPM_SSMH}Multiply stack sizes by the multiplier [Native: 1.0(100%)].")]
-        [SettingPropertyGroup("{=KTMCM_ItemTweaks}Item Tweaks" + "/" + "{=KPM_Bolts}Bolts")]
-        public float BoltsMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KPM_BPM}Bolts Price Multiplier", 0.1f, 10.0f, "#0%", Order = 2, RequireRestart = false,
-            HintText = "{=KPM_PMH}Multiply price by the multiplier [Native: 1.0(100%)].")]
-        [SettingPropertyGroup("{=KTMCM_ItemTweaks}Item Tweaks" + "/" + "{=KPM_Bolts}Bolts")]
-        public float BoltsValueMultiplier { get; set; } = 1.0f;
-
-        //[SettingPropertyFloatingInteger("{=KPM_WM}Weight Multiplier", 0.1f, 10.0f, "#0%", Order = 2, RequireRestart = false,
-        //    HintText = "{=KPM_WMH}Multiply item weight by the multiplier [Native: 1.0(100%)].")]
-        //[SettingPropertyGroup("{=KTMCM_ItemTweaks}Item Tweaks" + "/" + "{=KPM_Bolts}Bolts")]
-        public float BoltsWeightMultiplier { get; set; } = 1.0f;
-        #endregion
-
-        //~ Thrown
-        #region Thrown
-        [SettingPropertyBool("{=KPM_TWME}Thrown Multipliers Enabled", IsToggle = true, Order = 1, RequireRestart = false,
-            HintText = "{=KPM_TWMEH}Enables Thrown Multipliers")]
-        [SettingPropertyGroup("{=KTMCM_ItemTweaks}Item Tweaks" + "/" + "{=KPM_Thrown}Thrown")]
-        public bool ThrownMultiplierEnabled { get; set; } = false;
-
-        [SettingPropertyFloatingInteger("{=KPM_TSSM}Thrown Stack Multiplier", 0.1f, 10.0f, "#0%", Order = 2, RequireRestart = false,
-            HintText = "{=KPM_SSMH}Multiply stack sizes by the multiplier [Native: 1.0(100%)].")]
-        [SettingPropertyGroup("{=KTMCM_ItemTweaks}Item Tweaks" + "/" + "{=KPM_Thrown}Thrown")]
-        public float ThrownMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KPM_TPM}Thrown Price Multiplier", 0.1f, 10.0f, "#0%", Order = 2, RequireRestart = false,
-            HintText = "{=KPM_PMH}Multiply price by the multiplier [Native: 1.0(100%)].")]
-        [SettingPropertyGroup("{=KTMCM_ItemTweaks}Item Tweaks" + "/" + "{=KPM_Thrown}Thrown")]
-        public float ThrownValueMultiplier { get; set; } = 1.0f;
-
-        //[SettingPropertyFloatingInteger("{=KPM_WM}Weight Multiplier", 0.1f, 10.0f, "#0%", Order = 2, RequireRestart = false,
-        //    HintText = "{=KPM_WMH}Multiply item weight by the multiplier [Native: 1.0(100%)].")]
-        //[SettingPropertyGroup("{=KTMCM_ItemTweaks}Item Tweaks" + "/" + "{=KPM_Thrown}Thrown")]
-        public float ThrownWeightMultiplier { get; set; } = 1.0f;
-
-        //[SettingPropertyBool("{=KPM_MTWFE}Thrown Mission stack Fix Enabled", Order = 1, RequireRestart = false,
-        //    HintText = "{KPM_MTWFEH}Enables a temp fix for thrown weapon stack sizes in missions")]
-        //[SettingPropertyGroup("{=KTMCM_ItemTweaks}Item Tweaks" + "/" + "{=KPM_Thrown}Thrown")]
-        public bool ThrownMissionFixMultiplierEnabled { get; set; } = false;
-        #endregion
-
-        #region Bullets
-        [SettingPropertyBool("{=KPM_BWME}Bullets Multipliers Enabled", IsToggle = true, Order = 1, RequireRestart = true,
-            HintText = "{=KPM_BWMEH}Enables Bullets Multipliers")]
-        [SettingPropertyGroup("{=KTMCM_ItemTweaks}Item Tweaks" + "/" + "{=KPM_Bullets}Bullets")]
-        public bool BulletsMultiplierEnabled { get; set; } = true;
-
-        [SettingPropertyFloatingInteger("{=KPM_SSM}Stack Size Multiplier", 0.1f, 10.0f, "#0%", Order = 2, RequireRestart = false,
-            HintText = "{=KPM_SSMH}Multiply stack sizes by the multiplier [Native: 1.0(100%)].")]
-        [SettingPropertyGroup("{=KTMCM_ItemTweaks}Item Tweaks" + "/" + "{=KPM_Bullets}Bullets")]
-        public float BulletsMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KPM_PM}Price Multiplier", 0.1f, 10.0f, "#0%", Order = 2, RequireRestart = false,
-            HintText = "{=KPM_PMH}Multiply price by the multiplier [Native: 1.0(100%)].")]
-        [SettingPropertyGroup("{=KTMCM_ItemTweaks}Item Tweaks" + "/" + "{=KPM_Bullets}Bullets")]
-        public float BulletsValueMultiplier { get; set; } = 1.0f;
-
-        /*[SettingPropertyFloatingInteger("{=KPM_WM}Weight Multiplier", 0.1f, 10.0f, "#0%", Order = 2, RequireRestart = false,
-            HintText = "{=KPM_WMH}Multiply item weight by the multiplier [Native: 1.0(100%)].")]
-        [SettingPropertyGroup("{=KTMCM_ItemTweaks}Item Tweaks" + "/" + "{=KPM_Bullets}Bullets")]*/
-        public float BulletsWeightMultiplier { get; set; } = 1.0f;
-
-        /*
-        [SettingPropertyBool("{=KPM_MTWFE}Thrown Mission stack Fix Enabled", Order = 1, RequireRestart = false,
-            HintText = "{KPM_MTWFEH}Enables a temp fix for thrown weapon stack sizes in missions")]
-        [SettingPropertyGroup("{=KPM_WorkAround}Work around")]
-        public bool BulletsMissionFixMultiplierEnabled { get; set; } = false;*/
-        #endregion
         #endregion //~ End Items
 
         //~ ItemLocks 
@@ -2985,24 +2884,6 @@ namespace KaosesTweaks.Settings
         #endregion //~ Troop Experience Tweaks
         #endregion //~ XP Tweaks
 
-
-        //~ To be deleted in 1.5.10
-        [SettingPropertyBool("{=BT_Settings_001203}Damage to Friends Tweak", Order = 4, RequireRestart = false, IsToggle = true,
-            HintText = "{=BT_Settings_001203_Desc}Allows you to change the damage the player's friends receive."),
-            SettingPropertyGroup("{=BT_Settings_001000}Campaign Tweaks" + "/" + "{=BT_Settings_001200}Difficulty Tweaks" + "/" + "{=BT_Settings_001203}Damage to Friends Tweak", GroupOrder = 2)]
-        public bool DamageToFriendsTweakEnabled { get; set; } = false;
-
-        [SettingPropertyFloatingInteger("{=BT_Settings_001204}Damage to Friends Tweak Amount", 0.1f, 5.0f, "0%", RequireRestart = false, Order = 5,
-            HintText = "{=BT_Settings_001204_Desc}Native values: Very Easy: 30%, Easy: 67%, Realistic: 100%. This value is used to calculate the damage the player's friends receive."),
-            SettingPropertyGroup("{=BT_Settings_001000}Campaign Tweaks" + "/" + "{=BT_Settings_001200}Difficulty Tweaks" + "/" + "{=BT_Settings_001203}Damage to Friends Tweak")]
-        public float DamageToFriendsMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=BT_Settings_008702}Elite Ranged Militia Spawn Chance", 0.01f, 1f, "0%", RequireRestart = false, Order = 3,
-            HintText = "{=BT_Settings_008702_Desc}Native value is 10%. Sets the chance that the militia spawning in towns and castles are elite ranged troops."),
-            SettingPropertyGroup("{=BT_Settings_008000}Settlement Tweaks" + "/" + "{=BT_Settings_008700}Elite Militia")]
-        public float SettlementEliteRangedSpawnRateBonus { get; set; } = 0.1f;
-        //~ To be deleted in 1.5.10
-
         //~ MobilePartyViewDistance
         #region MobilePartyViewDistance
 
@@ -4348,7 +4229,7 @@ namespace KaosesTweaks.Settings
                 ThrownMissionFixMultiplierEnabled = false
 
 
-            });
+            }); ;
 
             /*
             basePresets.Add("True", () => new MCMSettings()

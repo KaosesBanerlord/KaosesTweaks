@@ -21,8 +21,6 @@ namespace KaosesTweaks
 {
     public class SubModule : MBSubModuleBase
     {
-
-
         private Harmony? harmonyKT;
 
         /* Another chance at marriage */
@@ -464,5 +462,6 @@ namespace KaosesTweaks
             }
         }
         //~ BT
+
     }
 }

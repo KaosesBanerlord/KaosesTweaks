@@ -350,9 +350,5 @@ MigrationBackup/
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
 KaosesTweaks/Behaviors/TempBehaviour.cs
-
-KaosesTweaks/smithingChanceResearch.txt
 KaosesTweaks/Patches/KaosesMobilePartyHelperPatches.cs
-KaosesTweaks/Changes.md
-
-KaosesTweaks/Properties/launchSettings.json
+KaosesTweaks/smithingChanceResearch.txt

@@ -30,7 +30,6 @@ namespace KaosesTweaks.Models
             */
         protected void TweakItemValues()
         {
-
             for (int i = 0; i < _ItemsList.Count; i++)
             {
 

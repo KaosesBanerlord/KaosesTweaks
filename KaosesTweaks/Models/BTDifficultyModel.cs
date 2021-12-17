@@ -6,10 +6,12 @@ namespace KaosesTweaks.Models
 {
     class BTDifficultyModel : DefaultDifficultyModel
     {
-        public override float GetDamageToFriendsMultiplier()
-        {
-            return MCMSettings.Instance is { } settings && settings.DamageToFriendsTweakEnabled ? settings.DamageToFriendsMultiplier : base.GetDamageToFriendsMultiplier();
-        }
+        /*
+                public override float GetDamageToFriendsMultiplier()
+                {
+                    return MCMSettings.Instance is { } settings && settings.DamageToFriendsTweakEnabled ? settings.DamageToFriendsMultiplier : base.GetDamageToFriendsMultiplier();
+                }
+        */
 
         public override float GetDamageToPlayerMultiplier()
         {
