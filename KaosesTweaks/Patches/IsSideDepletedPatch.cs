@@ -110,12 +110,8 @@ namespace KaosesTweaks.Patches
                 {
                     foreach (var formation in team.Formations)
                     {
-
-                        if (formation.GetReadonlyMovementOrderReference().OrderType != OrderType.Charge)
-                            formation.SetMovementOrder(MovementOrder.MovementOrderCharge);
-                        /*
                         if (formation.MovementOrder.OrderType != OrderType.Charge)
-                            formation.MovementOrder = MovementOrder.MovementOrderCharge;*/
+                            formation.MovementOrder = MovementOrder.MovementOrderCharge;
                     }
                 }
             }
@@ -125,10 +121,9 @@ namespace KaosesTweaks.Patches
         {
             foreach (var agent in controller.Mission.Agents)
             {
-
-                if (agent.IsAIControlled && agent.CurrentWatchState != WatchState.Alarmed)
+                if (agent.IsAIControlled && !agent.IsAlarmed())
                 {
-                    agent.SetWatchState(WatchState.Alarmed);
+                    agent.SetWatchState(AgentAIStateFlagComponent.WatchState.Alarmed);
                 }
             }
         }

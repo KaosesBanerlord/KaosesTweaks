@@ -165,6 +165,7 @@ namespace KaosesTweaks.Behaviors
 
         public void UpdatePlayerOverride()
         {
+            IM.MessageDebug($" settings.PlayerCultureOverride.SelectedValue:  {MCMSettings.Instance.PlayerCultureOverride.SelectedValue}");
             if (MCMSettings.Instance is { } settings)
             {
                 OverrideCulture = null;
