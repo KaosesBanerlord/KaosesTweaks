@@ -292,15 +292,15 @@ namespace KaosesTweaks.Models
             //cohesionChange.Add((float)(-(float)num4), _numberOfPartiesText, null);
             if (starvingCohesion > 0)
             {
-                cohesionChange.Add((float)(-(float)starvingCohesion), _numberOfStarvingPartiesText, null);
+                cohesionChange.Add((float)-(float)starvingCohesion, _numberOfStarvingPartiesText, null);
             }
             if (lowMoraleCohesion > 0)
             {
-                cohesionChange.Add((float)(-(float)lowMoraleCohesion), _numberOfLowMoralePartiesText, null);
+                cohesionChange.Add((float)-(float)lowMoraleCohesion, _numberOfLowMoralePartiesText, null);
             }
             if (lowHealthyTroops > 0)
             {
-                cohesionChange.Add((float)(-(float)lowHealthyTroops), _numberOfLessMemberPartiesText, null);
+                cohesionChange.Add((float)-(float)lowHealthyTroops, _numberOfLessMemberPartiesText, null);
             }
 
 

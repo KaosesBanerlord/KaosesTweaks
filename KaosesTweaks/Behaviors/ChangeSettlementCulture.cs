@@ -213,7 +213,7 @@ namespace KaosesTweaks.Behaviors
                     {
                         IM.MessageDebug($"OnDailyTickSettlement : {settlement.Name.ToString()} counter: {dictionary[settlement].ToString()}");
                         IM.MessageDebug($"OnDailyTickSettlement condition: {(dictionary[settlement] / 7 <= Statics._settings.TimeToChanceCulture).ToString()} ");
-                        IM.MessageDebug($"OnDailyTickSettlement (dictionary[settlement] / 7) : {((dictionary[settlement] / 7)).ToString()} ");
+                        IM.MessageDebug($"OnDailyTickSettlement (dictionary[settlement] / 7) : {(dictionary[settlement] / 7).ToString()} ");
                         IM.MessageDebug($"OnDailyTickSettlement TimeToChanceCulture: {Statics._settings.TimeToChanceCulture.ToString()} ");
                     }
 

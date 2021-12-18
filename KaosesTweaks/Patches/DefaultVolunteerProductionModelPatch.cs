@@ -51,8 +51,8 @@ namespace KaosesTweaks.Patches
                         _ => 0f
                     };
                 }
-                if (num == 0f && hero.CurrentSettlement.OwnerClan.Kingdom.Leader == Hero.MainHero) num = (settings.KingdomBalanceStrengthCEKEnabled) ? settings.Player_CEK_Boost : settings.PlayerBoost;
-                __result += (num * 0.75f);
+                if (num == 0f && hero.CurrentSettlement.OwnerClan.Kingdom.Leader == Hero.MainHero) num = settings.KingdomBalanceStrengthCEKEnabled ? settings.Player_CEK_Boost : settings.PlayerBoost;
+                __result += num * 0.75f;
             }
         }
         static bool Prepare() => MCMSettings.Instance is { } settings && settings.KingdomBalanceStrengthEnabled;

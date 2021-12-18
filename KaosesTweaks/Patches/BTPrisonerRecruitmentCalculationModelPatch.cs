@@ -18,7 +18,7 @@ namespace KaosesTweaks.Patches
                 float num;
                 if (party.LeaderHero == Hero.MainHero ||
                   (!(party.Owner is null) && party.Owner.Clan == Hero.MainHero.Clan && settings.PrisonerConformityTweaksApplyToClan) ||
-                  (settings.PrisonerConformityTweaksApplyToAi))
+                  settings.PrisonerConformityTweaksApplyToAi)
                 {
                     if (Statics._settings.PrisonersDebug)
                     {
@@ -29,7 +29,7 @@ namespace KaosesTweaks.Patches
                     {
                         IM.MessageDebug("Prisoner num Final: " + num.ToString());
                     }
-                    party.MobileParty.EffectiveQuartermaster.AddSkillXp(DefaultSkills.Charm, (num * .05f));
+                    party.MobileParty.EffectiveQuartermaster.AddSkillXp(DefaultSkills.Charm, num * .05f);
                     __result = MathF.Round(num);
                 }
             }

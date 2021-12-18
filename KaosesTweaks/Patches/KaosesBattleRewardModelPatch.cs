@@ -53,7 +53,7 @@ namespace KaosesTweaks.Patches
             return true;
         }
 
-        static bool Prepare() => MCMSettings.Instance is { } settings && (settings.MCMBattleRewardModifiers && settings.BattleRewardModifiersPatchOnly && settings.BattleRewardsRenownGainModifiers);
+        static bool Prepare() => MCMSettings.Instance is { } settings && settings.MCMBattleRewardModifiers && settings.BattleRewardModifiersPatchOnly && settings.BattleRewardsRenownGainModifiers;
     }
 
     [HarmonyPatch(typeof(DefaultBattleRewardModel), "CalculateInfluenceGain")]
@@ -66,7 +66,7 @@ namespace KaosesTweaks.Patches
                 //~ KT
                 float originalInfluenceGain = influenceValueOfBattle * contributionShare;
                 float modifiedInfluenceGain = originalInfluenceGain * Statics._settings.BattleRewardsInfluenceGainMultiplier;
-                __result = new ExplainedNumber(party.MapFaction.IsKingdomFaction ? (modifiedInfluenceGain) : 0f, true, new TextObject("KT influence Tweak", null));
+                __result = new ExplainedNumber(party.MapFaction.IsKingdomFaction ? modifiedInfluenceGain : 0f, true, new TextObject("KT influence Tweak", null));
                 //~ KT
 
                 if (party.LeaderHero == Hero.MainHero && MCMSettings.Instance.BattleRewardShowDebug)
@@ -87,7 +87,7 @@ namespace KaosesTweaks.Patches
             return true;
         }
 
-        static bool Prepare() => MCMSettings.Instance is { } settings && (settings.MCMBattleRewardModifiers && settings.BattleRewardModifiersPatchOnly && settings.BattleRewardsInfluenceGainModifiers);
+        static bool Prepare() => MCMSettings.Instance is { } settings && settings.MCMBattleRewardModifiers && settings.BattleRewardModifiersPatchOnly && settings.BattleRewardsInfluenceGainModifiers;
     }
 
     [HarmonyPatch(typeof(DefaultBattleRewardModel), "CalculateMoraleGainVictory")]
@@ -128,7 +128,7 @@ namespace KaosesTweaks.Patches
             return true;
         }
 
-        static bool Prepare() => MCMSettings.Instance is { } settings && (settings.MCMBattleRewardModifiers && settings.BattleRewardModifiersPatchOnly && settings.BattleRewardsMoraleGainModifiers);
+        static bool Prepare() => MCMSettings.Instance is { } settings && settings.MCMBattleRewardModifiers && settings.BattleRewardModifiersPatchOnly && settings.BattleRewardsMoraleGainModifiers;
     }
 
     [HarmonyPatch(typeof(DefaultBattleRewardModel), "CalculateGoldLossAfterDefeat")]
@@ -158,7 +158,7 @@ namespace KaosesTweaks.Patches
             return true;
         }
 
-        static bool Prepare() => MCMSettings.Instance is { } settings && (settings.MCMBattleRewardModifiers && settings.BattleRewardModifiersPatchOnly && settings.BattleRewardsGoldLossModifiers);
+        static bool Prepare() => MCMSettings.Instance is { } settings && settings.MCMBattleRewardModifiers && settings.BattleRewardModifiersPatchOnly && settings.BattleRewardsGoldLossModifiers;
     }
 
     [HarmonyPatch(typeof(DefaultBattleRewardModel), "GetPlayerGainedRelationAmount")]
@@ -183,7 +183,7 @@ namespace KaosesTweaks.Patches
             return true;
         }
 
-        static bool Prepare() => MCMSettings.Instance is { } settings && (settings.MCMBattleRewardModifiers && settings.BattleRewardModifiersPatchOnly && settings.BattleRewardsRelationShipGainModifiers);
+        static bool Prepare() => MCMSettings.Instance is { } settings && settings.MCMBattleRewardModifiers && settings.BattleRewardModifiersPatchOnly && settings.BattleRewardsRelationShipGainModifiers;
 
         //~ KT
         public static int GetPlayerGainedRelationAmount(double relationShipGain)

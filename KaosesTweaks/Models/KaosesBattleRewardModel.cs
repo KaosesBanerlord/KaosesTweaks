@@ -57,7 +57,7 @@ namespace KaosesTweaks.Models
         {
             //~ KT
             float influenceGainBase = 0.0f;
-            influenceGainBase = GetModifiedInfluenceGain(party, (influenceValueOfBattle * contributionShare));
+            influenceGainBase = GetModifiedInfluenceGain(party, influenceValueOfBattle * contributionShare);
             ExplainedNumber result = new ExplainedNumber(party.MapFaction.IsKingdomFaction ? influenceGainBase : 0f, true, null);
             //result.Add(party.MapFaction.IsKingdomFaction ? (influenceValueOfBattle * contributionShare) : 0f, null, null);
             //~ KT

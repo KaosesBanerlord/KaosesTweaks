@@ -92,7 +92,7 @@ namespace KaosesTweaks
             //~ BT PrisonerImprisonmentTweak
             try
             {
-                if (Statics._settings is { } settings && (settings.EnableMissingHeroFix && settings.PrisonerImprisonmentTweakEnabled)) //
+                if (Statics._settings is { } settings && settings.EnableMissingHeroFix && settings.PrisonerImprisonmentTweakEnabled) //
                 {
                     CampaignEvents.DailyTickEvent.AddNonSerializedListener(this, delegate
                     {
@@ -348,7 +348,7 @@ namespace KaosesTweaks
                     }
                     campaignGameStarter.AddModel(new KaosesBattleRewardModel());
                 }
-                if (settings.MCMCharacterDevlopmentModifiers || (Statics._settings.LearningRateEnabled || Statics._settings.LearningLimitEnabled))
+                if (settings.MCMCharacterDevlopmentModifiers || Statics._settings.LearningRateEnabled || Statics._settings.LearningLimitEnabled)
                 {
                     if (settings.Debug)
                     {

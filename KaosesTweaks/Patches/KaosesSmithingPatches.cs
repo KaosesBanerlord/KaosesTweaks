@@ -253,7 +253,7 @@ namespace KaosesTweaks.Patches
                 baseXp *= Statics._settings.SmithingRefiningXpValue;
                 if (Statics._settings.CraftingDebug)
                 {
-                    IM.MessageDebug("GetSkillXpForRefining  base: " + (MathF.Round(0.3f * (__instance.GetCraftingMaterialItem(refineFormula.Output).Value * refineFormula.OutputCount))).ToString() + "  new :" + baseXp.ToString());
+                    IM.MessageDebug("GetSkillXpForRefining  base: " + MathF.Round(0.3f * (__instance.GetCraftingMaterialItem(refineFormula.Output).Value * refineFormula.OutputCount)).ToString() + "  new :" + baseXp.ToString());
                 }
                 __result = (int)baseXp;
                 return false;
@@ -274,7 +274,7 @@ namespace KaosesTweaks.Patches
                 IM.MessageDebug("GetSkillXpForSmelting Patch called");
                 float baseXp = MathF.Round(0.02f * item.Value);
                 baseXp *= Statics._settings.SmithingSmeltingXpValue;
-                IM.MessageDebug("GetSkillXpForSmelting  base: " + (MathF.Round(0.02f * item.Value)).ToString() + "  new :" + baseXp.ToString());
+                IM.MessageDebug("GetSkillXpForSmelting  base: " + MathF.Round(0.02f * item.Value).ToString() + "  new :" + baseXp.ToString());
                 __result = (int)baseXp;
                 return false;
             }
@@ -295,7 +295,7 @@ namespace KaosesTweaks.Patches
                 baseXp *= Statics._settings.SmithingSmithingXpValue;
                 if (Statics._settings.CraftingDebug)
                 {
-                    IM.MessageDebug("GetSkillXpForSmithing  base: " + (MathF.Round(0.1f * item.Value)).ToString() + "  new :" + baseXp.ToString());
+                    IM.MessageDebug("GetSkillXpForSmithing  base: " + MathF.Round(0.1f * item.Value).ToString() + "  new :" + baseXp.ToString());
                 }
                 __result = (int)baseXp;
                 return false;

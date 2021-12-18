@@ -35,7 +35,7 @@ namespace KaosesTweaks.Models
             {
                 num2 += (int)(num * DefaultPerks.Roguery.Promises.PrimaryBonus * 0.01f);
             }
-            num2 = ((num2 < 1) ? 1 : num2);
+            num2 = (num2 < 1) ? 1 : num2;
             float baseNumber = -num2 / 20f;
             //~ KT
             if (Statics._settings.PartyFoodConsumptionEnabled)

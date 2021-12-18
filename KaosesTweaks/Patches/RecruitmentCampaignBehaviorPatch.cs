@@ -60,7 +60,7 @@ namespace KaosesTweaks.Patches
                             _ => 0f
                         };
                     }
-                    if (num == 0f && settlement.OwnerClan.Kingdom.Leader == Hero.MainHero) num = (settings.KingdomBalanceStrengthCEKEnabled) ? settings.Player_CEK_Boost : settings.PlayerBoost;
+                    if (num == 0f && settlement.OwnerClan.Kingdom.Leader == Hero.MainHero) num = settings.KingdomBalanceStrengthCEKEnabled ? settings.Player_CEK_Boost : settings.PlayerBoost;
                     foreach (Hero hero in settlement.Notables)
                     {
                         if (hero.CanHaveRecruits)

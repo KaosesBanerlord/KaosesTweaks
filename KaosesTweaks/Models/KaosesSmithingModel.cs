@@ -20,7 +20,7 @@ namespace KaosesTweaks.Models
                 baseXp *= Statics._settings.SmithingRefiningXpValue;
                 if (Statics._settings.CraftingDebug)
                 {
-                    IM.MessageDebug("GetSkillXpForRefining  base: " + (MathF.Round(0.3f * (GetCraftingMaterialItem(refineFormula.Output).Value * refineFormula.OutputCount))).ToString() + "  new :" + baseXp.ToString());
+                    IM.MessageDebug("GetSkillXpForRefining  base: " + MathF.Round(0.3f * (GetCraftingMaterialItem(refineFormula.Output).Value * refineFormula.OutputCount)).ToString() + "  new :" + baseXp.ToString());
                 }
             }
             return (int)baseXp;
@@ -35,7 +35,7 @@ namespace KaosesTweaks.Models
                 baseXp *= Statics._settings.SmithingSmeltingXpValue;
                 if (Statics._settings.CraftingDebug)
                 {
-                    IM.MessageDebug("GetSkillXpForSmelting  base: " + (MathF.Round(0.02f * item.Value)).ToString() + "  new :" + baseXp.ToString());
+                    IM.MessageDebug("GetSkillXpForSmelting  base: " + MathF.Round(0.02f * item.Value).ToString() + "  new :" + baseXp.ToString());
                 }
             }
             return (int)baseXp;
@@ -50,7 +50,7 @@ namespace KaosesTweaks.Models
                 baseXp *= Statics._settings.SmithingSmithingXpValue;
                 if (Statics._settings.CraftingDebug)
                 {
-                    IM.MessageDebug("GetSkillXpForSmithing  base: " + (MathF.Round(0.02f * item.Value)).ToString() + "  new :" + baseXp.ToString());
+                    IM.MessageDebug("GetSkillXpForSmithing  base: " + MathF.Round(0.02f * item.Value).ToString() + "  new :" + baseXp.ToString());
                 }
             }
             return (int)baseXp;
@@ -65,7 +65,7 @@ namespace KaosesTweaks.Models
                 baseXp *= Statics._settings.SmithingSmithingXpValue;
                 if (Statics._settings.CraftingDebug)
                 {
-                    IM.MessageDebug("GetSkillXpForSmithing  base: " + (MathF.Round(0.1f * item.Value)).ToString() + "  new :" + baseXp.ToString());
+                    IM.MessageDebug("GetSkillXpForSmithing  base: " + MathF.Round(0.1f * item.Value).ToString() + "  new :" + baseXp.ToString());
                 }
             }
             return (int)baseXp;

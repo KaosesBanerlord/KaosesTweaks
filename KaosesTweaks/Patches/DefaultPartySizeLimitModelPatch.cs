@@ -80,7 +80,7 @@ namespace KaosesTweaks.Patches
                         };
                     }
 
-                    if (num2 == 0f && party.LeaderHero.Clan.Kingdom.Leader == Hero.MainHero) num2 = (settings.KingdomBalanceStrengthCEKEnabled) ? settings.Player_CEK_Boost : settings.PlayerBoost;
+                    if (num2 == 0f && party.LeaderHero.Clan.Kingdom.Leader == Hero.MainHero) num2 = settings.KingdomBalanceStrengthCEKEnabled ? settings.Player_CEK_Boost : settings.PlayerBoost;
                     if (Statics._settings.PartySizeLimitsDebug)
                     {
                         IM.MessageDebug("BT Balancing Tweak: " + num2.ToString());

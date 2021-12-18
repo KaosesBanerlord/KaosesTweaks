@@ -19,7 +19,7 @@ namespace KaosesTweaks.Patches
             }
         }
 
-        static bool Prepare() => MCMSettings.Instance is { } settings && (settings.PrisonerPriceTweaksEnabled);
+        static bool Prepare() => MCMSettings.Instance is { } settings && settings.PrisonerPriceTweaksEnabled;
     }
 
 }

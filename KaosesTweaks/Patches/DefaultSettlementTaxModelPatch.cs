@@ -64,7 +64,7 @@ namespace KaosesTweaks.Patches
                         _ => 0f
                     };
                 }
-                if (num == 0f && town.Settlement.OwnerClan.Kingdom.Leader == Hero.MainHero) num = (settings.KingdomBalanceStrengthCEKEnabled) ? settings.Player_CEK_Boost : settings.PlayerBoost;
+                if (num == 0f && town.Settlement.OwnerClan.Kingdom.Leader == Hero.MainHero) num = settings.KingdomBalanceStrengthCEKEnabled ? settings.Player_CEK_Boost : settings.PlayerBoost;
                 float prosperity = town.Prosperity;
                 float num2 = 1f;
                 if (town.Settlement.OwnerClan.Kingdom != null && town.Settlement.OwnerClan.Kingdom.ActivePolicies.Contains(DefaultPolicies.CouncilOfTheCommons))
@@ -134,7 +134,7 @@ namespace KaosesTweaks.Patches
                         _ => 0f
                     };
                 }
-                if (num == 0f && village.Settlement.OwnerClan.Kingdom.Leader == Hero.MainHero) num = (settings.KingdomBalanceStrengthCEKEnabled) ? settings.Player_CEK_Boost : settings.PlayerBoost;
+                if (num == 0f && village.Settlement.OwnerClan.Kingdom.Leader == Hero.MainHero) num = settings.KingdomBalanceStrengthCEKEnabled ? settings.Player_CEK_Boost : settings.PlayerBoost;
                 //float oldresult = __result;
                 //float newresult = oldresult * (1 + num);
                 float newresult = __result * (1 + (num * 1.25f));

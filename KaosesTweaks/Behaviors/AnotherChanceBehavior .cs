@@ -103,7 +103,7 @@ namespace KaosesTweaks.Behaviors
             SubModule.LastAttempts[Hero.OneToOneConversationHero] = CampaignTime.DaysFromNow(Statics._settings.AnotherChanceAtMarriageDaysTillRetry);
             float relation = Hero.OneToOneConversationHero.GetRelationWithPlayer();
             // 30% chance at relation loss at 0 relation, 15% at 4, 0% at 15 
-            float criticalFailChance = (relation >= 15) ? 0 : (2f / 15f) * relation * relation - 4 * relation + 30;
+            float criticalFailChance = (relation >= 15) ? 0 : 2f / 15f * relation * relation - 4 * relation + 30;
             if (MBRandom.RandomFloat < criticalFailChance)
             {
                 InformationManager.DisplayMessage(new InformationMessage("Relation reduced"));

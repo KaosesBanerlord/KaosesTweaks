@@ -81,7 +81,7 @@ namespace KaosesTweaks.Behaviors
             {
                 if (Statics._settings.PregnancyDebug)
                 {
-                    IM.MessageDebug("KaosesPregnancyCampaignBehavior:  MBRandom.RandomFloat <=" + (MBRandom.RandomFloat).ToString() + " Hero Chance: " + Campaign.Current.Models.PregnancyModel.GetDailyChanceOfPregnancyForHero(hero).ToString());
+                    IM.MessageDebug("KaosesPregnancyCampaignBehavior:  MBRandom.RandomFloat <=" + MBRandom.RandomFloat.ToString() + " Hero Chance: " + Campaign.Current.Models.PregnancyModel.GetDailyChanceOfPregnancyForHero(hero).ToString());
                 }
                 MakePregnantAction.Apply(hero);
             }
@@ -112,7 +112,7 @@ namespace KaosesTweaks.Behaviors
             if (heroSettlement == null)
             {
                 MobileParty mobileParty2 = heroParty;
-                heroSettlement = ((mobileParty2 != null) ? mobileParty2.CurrentSettlement : null);
+                heroSettlement = (mobileParty2 != null) ? mobileParty2.CurrentSettlement : null;
             }
         }
 

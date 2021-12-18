@@ -2816,10 +2816,10 @@ namespace KaosesTweaks.Settings
         [SettingPropertyGroup("{=KTMCM_CXPTweaks}XP Tweaks" + "/" + "{=KTMCM_CLearningLimit}Learning Limit")]
         public bool LearningLimitEnabled { get; set; } = false;
 
-        [SettingPropertyFloatingInteger("{=KTMCM_XPMLLM}Learning Limit Multiplier", 0.0f, 1.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_XPMLLMH}Multiply Learning limit by the multiplier [Native : 0.0[0%]].")]
+        [SettingPropertyFloatingInteger("{=KTMCM_XPMLLM}Learning Limit Multiplier", 0.1f, 5.0f, "#0%", RequireRestart = false,
+            HintText = "{=KTMCM_XPMLLMH}Multiply Learning limit by the multiplier [Native : 1.0[100%]].")]
         [SettingPropertyGroup("{=KTMCM_CXPTweaks}XP Tweaks" + "/" + "{=KTMCM_CLearningLimit}Learning Limit")]
-        public float LearningLimitMultiplier { get; set; } = 0.0f;
+        public float LearningLimitMultiplier { get; set; } = 1.0f;
         #endregion //~ LearningLimitMultipliers
 
         //~ Troop Daily Experience Tweak

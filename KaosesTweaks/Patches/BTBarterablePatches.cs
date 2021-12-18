@@ -32,11 +32,11 @@ namespace KaosesTweaks.Patches
                 int relations = Hero.MainHero.GetRelation(factionLeader);
                 if (relations > 100) relations = 99;
 
-                double percent = Math.Abs(((double)(relations) / 100) - 1);
+                double percent = Math.Abs(((double)relations / 100) - 1);
 
-                double num2 = (relations > -1) ? (__result * percent) : (__result * percent) * 100;
+                double num2 = (relations > -1) ? (__result * percent) : __result * percent * 100;
 
-                __result = (int)(Math.Round(num2));
+                __result = (int)Math.Round(num2);
             }
         }
 

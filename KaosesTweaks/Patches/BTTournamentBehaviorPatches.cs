@@ -66,7 +66,7 @@ namespace KaosesTweaks.Patches
 
         static bool Prepare()
         {
-            return (MCMSettings.Instance is { } settings && settings.TournamentMaxBetAmountTweakEnabled);
+            return MCMSettings.Instance is { } settings && settings.TournamentMaxBetAmountTweakEnabled;
         }
     }
 }
