@@ -8,17 +8,15 @@ using TaleWorlds.Library;
 
 namespace KaosesTweaks.Patches
 {
-
-    [HarmonyPatch(typeof(TournamentBehavior), "get_Winner")]
-    public class get_WinnerPatch
+    [HarmonyPatch(typeof(TournamentBehavior), "OnPlayerWinTournament")]
+    public class OnPlayerWinTournamentPatch
     {
-        static bool Prefix(TournamentBehavior __instance)
+        static void Prefix(TournamentBehavior __instance)
         {
             if (MCMSettings.Instance is { } settings)
             {
                 typeof(TournamentBehavior).GetProperty("OverallExpectedDenars").SetValue(__instance, __instance.OverallExpectedDenars + settings.TournamentGoldRewardAmount);
             }
-            return true;
         }
 
         static bool Prepare() => MCMSettings.Instance is { } settings && settings.TournamentGoldRewardEnabled;

@@ -1,6 +1,8 @@
 ﻿using HarmonyLib;
 using KaosesTweaks.Settings;
 using KaosesTweaks.Utils;
+using SandBox.TournamentMissions.Missions;
+using SandBox.ViewModelCollection;
 using SandBox.ViewModelCollection.Tournament;
 using System;
 using System.Linq;
@@ -13,8 +15,6 @@ using TaleWorlds.Core;
 
 namespace KaosesTweaks.Patches
 {
-
-
     [HarmonyPatch(typeof(TournamentVM), "RefreshBetProperties")]
     public class RefreshBetPropertiesPatch
     {
