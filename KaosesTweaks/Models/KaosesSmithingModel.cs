@@ -14,13 +14,13 @@ namespace KaosesTweaks.Models
         // Token: 0x06002EBF RID: 11967 RVA: 0x000C0FD4 File Offset: 0x000BF1D4
         public override int GetSkillXpForRefining(ref Crafting.RefiningFormula refineFormula)
         {
-            float baseXp = MathF.Round(0.3f * (this.GetCraftingMaterialItem(refineFormula.Output).Value * refineFormula.OutputCount));
+            float baseXp = MathF.Round(0.3f * (GetCraftingMaterialItem(refineFormula.Output).Value * refineFormula.OutputCount));
             if (Statics._settings.SmithingXpModifiers)
             {
                 baseXp *= Statics._settings.SmithingRefiningXpValue;
                 if (Statics._settings.CraftingDebug)
                 {
-                    IM.MessageDebug("GetSkillXpForRefining  base: " + (MathF.Round(0.3f * (this.GetCraftingMaterialItem(refineFormula.Output).Value * refineFormula.OutputCount))).ToString() + "  new :" + baseXp.ToString());
+                    IM.MessageDebug("GetSkillXpForRefining  base: " + (MathF.Round(0.3f * (GetCraftingMaterialItem(refineFormula.Output).Value * refineFormula.OutputCount))).ToString() + "  new :" + baseXp.ToString());
                 }
             }
             return (int)baseXp;
@@ -178,11 +178,11 @@ namespace KaosesTweaks.Models
             {
 
             }
-            int num = this.CalculateWeaponDesignDifficulty(weaponDesign);
+            int num = CalculateWeaponDesignDifficulty(weaponDesign);
             int num2 = hero.CharacterObject.GetSkillValue(DefaultSkills.Crafting) - num;
             if (num2 < 0)
             {
-                return this.GetPenaltyForLowSkill(num2);
+                return GetPenaltyForLowSkill(num2);
             }
             float randomFloat = MBRandom.RandomFloat;
             if (hero.GetPerkValue(DefaultPerks.Crafting.ExperiencedSmith) && randomFloat < 0.2f)

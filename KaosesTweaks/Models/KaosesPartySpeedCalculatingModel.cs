@@ -20,14 +20,14 @@ namespace KaosesPartySpeeds.Model
         {
             if (mobileParty.Army != null && mobileParty.Army.LeaderParty.AttachedParties.Contains(mobileParty))
             {
-                return this.CalculatePureSpeed(mobileParty.Army.LeaderParty, includeDescriptions, 0, 0);
+                return CalculatePureSpeed(mobileParty.Army.LeaderParty, includeDescriptions, 0, 0);
             }
             PartyBase party = mobileParty.Party;
             int num = 0;
             float num2 = 0f;
             int num3 = 0;
             int num4 = mobileParty.MemberRoster.TotalManCount + additionalTroopOnFootCount + additionalTroopOnHorseCount;
-            KaosesPartySpeedCalculatingModel.AddCargoStats(mobileParty, ref num, ref num2, ref num3);
+            AddCargoStats(mobileParty, ref num, ref num2, ref num3);
             float num5 = mobileParty.ItemRoster.TotalWeight;
             new ExplainedNumber(0f, false, null);
             int num6 = (int)Campaign.Current.Models.InventoryCapacityModel.CalculateInventoryCapacity(mobileParty, false, additionalTroopOnFootCount, additionalTroopOnHorseCount, 0, false).ResultNumber;
@@ -40,7 +40,7 @@ namespace KaosesPartySpeeds.Model
             {
                 foreach (MobileParty mobileParty2 in mobileParty.AttachedParties)
                 {
-                    KaosesPartySpeedCalculatingModel.AddCargoStats(mobileParty2, ref num, ref num2, ref num3);
+                    AddCargoStats(mobileParty2, ref num, ref num2, ref num3);
                     num4 += mobileParty2.MemberRoster.TotalManCount;
                     num5 += mobileParty2.ItemRoster.TotalWeight;
                     num6 += mobileParty2.InventoryCapacity;
@@ -50,13 +50,13 @@ namespace KaosesPartySpeeds.Model
                     num10 += mobileParty2.PrisonRoster.TotalManCount;
                 }
             }
-            float baseNumber = this.CalculateBaseSpeedForParty(num4);
+            float baseNumber = CalculateBaseSpeedForParty(num4);
             ExplainedNumber result = new ExplainedNumber(baseNumber, includeDescriptions, null);
-            this.GetCavalryRatioModifier(mobileParty, num4, num7, ref result);
-            this.GetFootmenPerkBonus(mobileParty, num4, num8, ref result);
+            GetCavalryRatioModifier(mobileParty, num4, num7, ref result);
+            GetFootmenPerkBonus(mobileParty, num4, num8, ref result);
             int num11 = Math.Min(num8, num);
-            float mountedFootmenRatioModifier = this.GetMountedFootmenRatioModifier(num4, num11);
-            result.AddFactor(mountedFootmenRatioModifier, KaosesPartySpeedCalculatingModel._textMountedFootmen);
+            float mountedFootmenRatioModifier = GetMountedFootmenRatioModifier(num4, num11);
+            result.AddFactor(mountedFootmenRatioModifier, _textMountedFootmen);
             if (mountedFootmenRatioModifier > 0f && mobileParty.LeaderHero != null && mobileParty.LeaderHero.GetPerkValue(DefaultPerks.Riding.NomadicTraditions))
             {
                 result.AddFactor(mountedFootmenRatioModifier * DefaultPerks.Riding.NomadicTraditions.PrimaryBonus * 0.01f, DefaultPerks.Riding.NomadicTraditions.Name);
@@ -64,13 +64,13 @@ namespace KaosesPartySpeeds.Model
             float num12 = Math.Min(num5, num6);
             if (num12 > 0f)
             {
-                float cargoEffect = this.GetCargoEffect(num12, num6);
-                result.AddFactor(cargoEffect, KaosesPartySpeedCalculatingModel._textCargo);
+                float cargoEffect = GetCargoEffect(num12, num6);
+                result.AddFactor(cargoEffect, _textCargo);
             }
             if (num2 > num6)
             {
-                float overBurdenedEffect = this.GetOverBurdenedEffect(num2 - num6, num6);
-                result.AddFactor(overBurdenedEffect, KaosesPartySpeedCalculatingModel._textOverburdened);
+                float overBurdenedEffect = GetOverBurdenedEffect(num2 - num6, num6);
+                result.AddFactor(overBurdenedEffect, _textOverburdened);
                 if (mobileParty.HasPerk(DefaultPerks.Athletics.Energetic, false))
                 {
                     result.AddFactor(overBurdenedEffect * DefaultPerks.Athletics.Energetic.PrimaryBonus * 0.01f, DefaultPerks.Athletics.Energetic.Name);
@@ -86,38 +86,38 @@ namespace KaosesPartySpeeds.Model
             }
             if (mobileParty.Party.NumberOfAllMembers > mobileParty.Party.PartySizeLimit)
             {
-                float overPartySizeEffect = this.GetOverPartySizeEffect(mobileParty);
-                result.AddFactor(overPartySizeEffect, KaosesPartySpeedCalculatingModel._textOverPartySize);
+                float overPartySizeEffect = GetOverPartySizeEffect(mobileParty);
+                result.AddFactor(overPartySizeEffect, _textOverPartySize);
             }
             num3 += Math.Max(0, num - num11);
             if (!mobileParty.IsVillager)
             {
-                float herdingModifier = this.GetHerdingModifier(num4, num3);
-                result.AddFactor(herdingModifier, KaosesPartySpeedCalculatingModel._textHerd);
+                float herdingModifier = GetHerdingModifier(num4, num3);
+                result.AddFactor(herdingModifier, _textHerd);
                 if (mobileParty.HasPerk(DefaultPerks.Riding.Horde, false))
                 {
                     result.AddFactor(-herdingModifier * DefaultPerks.Riding.Horde.PrimaryBonus * 0.01f, DefaultPerks.Riding.Horde.Name);
                 }
             }
-            float woundedModifier = this.GetWoundedModifier(num4, num9, mobileParty);
-            result.AddFactor(woundedModifier, KaosesPartySpeedCalculatingModel._textWounded);
+            float woundedModifier = GetWoundedModifier(num4, num9, mobileParty);
+            result.AddFactor(woundedModifier, _textWounded);
             if (!mobileParty.IsCaravan)
             {
                 if (mobileParty.Party.NumberOfPrisoners > mobileParty.Party.PrisonerSizeLimit)
                 {
-                    float overPrisonerSizeEffect = this.GetOverPrisonerSizeEffect(mobileParty);
-                    result.AddFactor(overPrisonerSizeEffect, KaosesPartySpeedCalculatingModel._textOverPrisonerSize);
+                    float overPrisonerSizeEffect = GetOverPrisonerSizeEffect(mobileParty);
+                    result.AddFactor(overPrisonerSizeEffect, _textOverPrisonerSize);
                 }
-                float sizeModifierPrisoner = KaosesPartySpeedCalculatingModel.GetSizeModifierPrisoner(num4, num10);
-                result.AddFactor(1f / sizeModifierPrisoner - 1f, KaosesPartySpeedCalculatingModel._textPrisoners);
+                float sizeModifierPrisoner = GetSizeModifierPrisoner(num4, num10);
+                result.AddFactor(1f / sizeModifierPrisoner - 1f, _textPrisoners);
             }
             if (morale > 70f)
             {
-                result.AddFactor(0.05f * ((morale - 70f) / 30f), KaosesPartySpeedCalculatingModel._textHighMorale);
+                result.AddFactor(0.05f * ((morale - 70f) / 30f), _textHighMorale);
             }
             if (morale < 30f)
             {
-                result.AddFactor(-0.1f * (1f - mobileParty.Morale / 30f), KaosesPartySpeedCalculatingModel._textLowMorale);
+                result.AddFactor(-0.1f * (1f - mobileParty.Morale / 30f), _textLowMorale);
             }
             if (mobileParty == MobileParty.MainParty)
             {
@@ -129,11 +129,11 @@ namespace KaosesPartySpeeds.Model
             }
             if (mobileParty.IsCaravan)
             {
-                result.AddFactor(0.08f, KaosesPartySpeedCalculatingModel._textCaravan);
+                result.AddFactor(0.08f, _textCaravan);
             }
             if (mobileParty.IsDisorganized)
             {
-                result.AddFactor(-0.4f, KaosesPartySpeedCalculatingModel._textDisorganized);
+                result.AddFactor(-0.4f, _textDisorganized);
             }
             result.LimitMin(1f);
             return result;
@@ -176,17 +176,17 @@ namespace KaosesPartySpeeds.Model
                     }
                 }
                 float num2 = (num / mobileParty.MemberRoster.Count > 0.75f) ? -0.15f : -0.3f;
-                finalSpeed.AddFactor(num2, KaosesPartySpeedCalculatingModel._movingInForest);
-                CharacterObject leader = mobileParty.LeaderHero.CharacterObject;
-                if (leader != null && leader.Culture.GetCultureCode() == CultureCode.Battania)
+                finalSpeed.AddFactor(num2, _movingInForest);
+                Hero leader = mobileParty.LeaderHero;
+                if (leader != null && leader.CharacterObject.Culture.GetCultureCode() == CultureCode.Battania)
                 {
                     float value = DefaultCulturalFeats.BattanianForestSpeedFeat.EffectBonus * -num2;
-                    finalSpeed.AddFactor(value, KaosesPartySpeedCalculatingModel._culture);
+                    finalSpeed.AddFactor(value, _culture);
                 }
             }
             else if (faceTerrainType == TerrainType.Water || faceTerrainType == TerrainType.River || faceTerrainType == TerrainType.Bridge || faceTerrainType == TerrainType.ShallowRiver)
             {
-                finalSpeed.AddFactor(-0.3f, KaosesPartySpeedCalculatingModel._fordEffect);
+                finalSpeed.AddFactor(-0.3f, _fordEffect);
             }
             else if (effectiveScout != null)
             {
@@ -331,7 +331,7 @@ namespace KaosesPartySpeeds.Model
             if (totalMenCount > 0 && totalCavalryCount > 0)
             {
                 float value = 0.4f * totalCavalryCount / totalMenCount;
-                result.AddFactor(value, KaosesPartySpeedCalculatingModel._textCavalry);
+                result.AddFactor(value, _textCavalry);
             }
         }
 

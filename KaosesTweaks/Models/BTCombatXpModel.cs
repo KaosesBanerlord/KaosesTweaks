@@ -24,14 +24,14 @@ namespace KaosesTweaks.Models
 
             if (party != null && party.MapEvent != null)
             {
-                troopPowerBasedOnContext = Campaign.Current.Models.MilitaryPowerModel.GetTroopPowerBasedOnContext(attackerTroop, party.MapEvent.EventType, party.Side, missionType == CombatXpModel.MissionTypeEnum.SimulationBattle);
+                troopPowerBasedOnContext = Campaign.Current.Models.MilitaryPowerModel.GetTroopPowerBasedOnContext(attackerTroop, party.MapEvent.EventType, party.Side, missionType == MissionTypeEnum.SimulationBattle);
             }
             else
             {
                 troopPowerBasedOnContext = Campaign.Current.Models.MilitaryPowerModel.GetTroopPowerBasedOnContext(attackerTroop, MapEvent.BattleTypes.None, BattleSideEnum.None, false);
             }
             xpAmount = MathF.Round(0.4f * ((troopPowerBasedOnContext + 0.5f) * (Math.Min(damage, num) + (isFatal ? num : 0))));
-            if (missionType == CombatXpModel.MissionTypeEnum.NoXp)
+            if (missionType == MissionTypeEnum.NoXp)
             {
                 xpAmount = 0;
             }

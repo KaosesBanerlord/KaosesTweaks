@@ -15,7 +15,7 @@ namespace KaosesTweaks.BTTweaks
         public static void Apply(Campaign campaign)
         {
             if (campaign == null) throw new ArgumentNullException(nameof(campaign));
-            var escapeBehaviour = campaign.GetCampaignBehavior<PrisonerReleaseCampaignBehavior>();
+            PrisonerReleaseCampaignBehavior? escapeBehaviour = campaign.GetCampaignBehavior<PrisonerReleaseCampaignBehavior>();
             if (escapeBehaviour != null && CampaignEvents.DailyTickHeroEvent != null)
             {
                 CampaignEvents.DailyTickHeroEvent.ClearListeners(escapeBehaviour);

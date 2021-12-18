@@ -76,7 +76,7 @@ namespace KaosesTweaks.Models
             ExplainedNumber result = new ExplainedNumber(1.25f * learningMultiplier, true, null);
             result.AddFactor(((0.4f * attributeValue)), attrText);
             result.AddFactor((focusValue * 1f), focusText);
-            int num = MathF.Round(this.CalculateLearningLimit(attributeValue, focusValue, null, false).ResultNumber);
+            int num = MathF.Round(CalculateLearningLimit(attributeValue, focusValue, null, false).ResultNumber);
             int num2 = 0;
             if (skillValue > num)
             {

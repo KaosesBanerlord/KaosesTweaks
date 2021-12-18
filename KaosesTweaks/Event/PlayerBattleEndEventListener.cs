@@ -16,8 +16,8 @@ namespace KaosesTweaks.Event
 
         public PlayerBattleEndEventListener()
         {
-            this.BanditGroupCounter = Statics._settings.GroupsOfBandits;
-            this.BanditDeathCounter = 0;
+            BanditGroupCounter = Statics._settings.GroupsOfBandits;
+            BanditDeathCounter = 0;
             Logging.Lm("Killing Bandits : PlayerBattleEndEventListener Called" + "");
         }
 
@@ -45,12 +45,12 @@ namespace KaosesTweaks.Event
                 {
                     BanditDeathCounter += banditSide.Casualties;
                     //IM.ColorGreenMessage("BanditDeathCounter: " + BanditDeathCounter.ToString());
-                    if (this.BanditGroupCounter == 1)
+                    if (BanditGroupCounter == 1)
                     {
                         IncreaseLocalRelations(m);
-                        this.ResetBanditDeathCounter();
+                        ResetBanditDeathCounter();
                     }
-                    this.BanditGroupCounterUpdate();
+                    BanditGroupCounterUpdate();
                 }
             }
         }
@@ -60,7 +60,7 @@ namespace KaosesTweaks.Event
             float FinalRelationshipIncrease = Statics._settings.RelationshipIncrease;
             if (Statics._settings.SizeBonusEnabled)
             {
-                FinalRelationshipIncrease = Statics._settings.RelationshipIncrease * this.BanditDeathCounter * Statics._settings.SizeBonus;
+                FinalRelationshipIncrease = Statics._settings.RelationshipIncrease * BanditDeathCounter * Statics._settings.SizeBonus;
                 if (Statics._settings.KillingBanditsDebug)
                 {
                     IM.MessageDebug("Killing Bandits: SizeBonusEnabled: " + FinalRelationshipIncrease.ToString());
@@ -95,10 +95,10 @@ namespace KaosesTweaks.Event
 
         private void BanditGroupCounterUpdate()
         {
-            this.BanditGroupCounter--;
-            if (this.BanditGroupCounter == 0)
+            BanditGroupCounter--;
+            if (BanditGroupCounter == 0)
             {
-                this.BanditGroupCounter = Statics._settings.GroupsOfBandits;
+                BanditGroupCounter = Statics._settings.GroupsOfBandits;
             }
             if (Statics._settings.KillingBanditsDebug)
             {
@@ -108,7 +108,7 @@ namespace KaosesTweaks.Event
 
         private void ResetBanditDeathCounter()
         {
-            this.BanditDeathCounter = 0;
+            BanditDeathCounter = 0;
         }
 
         private bool IsDefeatedBanditLike(MapEvent m)

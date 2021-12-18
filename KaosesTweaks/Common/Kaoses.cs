@@ -136,7 +136,7 @@ namespace KaosesTweaks.Common
         public static bool IsMCMLoaded()
         {
             bool loaded = false;
-            var modnames = Utilities.GetModulesNames().ToList();
+            List<string>? modnames = Utilities.GetModulesNames().ToList();
             if (modnames.Contains("Bannerlord.MBOptionScreen"))// && !overrideSettings
             {
                 Statics.MCMModuleLoaded = true;
@@ -149,7 +149,7 @@ namespace KaosesTweaks.Common
         public static bool IsHarmonyLoaded()
         {
             bool loaded = false;
-            var modnames = Utilities.GetModulesNames().ToList();
+            List<string>? modnames = Utilities.GetModulesNames().ToList();
             //if (modnames.Contains("ModLib") && !overrideSettings)
             if (modnames.Contains("Bannerlord.Harmony"))// && !overrideSettings
             {

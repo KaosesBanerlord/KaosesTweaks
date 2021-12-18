@@ -9,7 +9,7 @@ namespace KaosesTweaks.BTTweaks
     {
         public static void Apply(Campaign campaign)
         {
-            var obj = new DailyTroopExperienceTweak();
+            DailyTroopExperienceTweak? obj = new DailyTroopExperienceTweak();
             CampaignEvents.DailyTickPartyEvent.AddNonSerializedListener(obj, (MobileParty mp) => { obj.DailyTick(mp); });
         }
 
@@ -25,7 +25,7 @@ namespace KaosesTweaks.BTTweaks
                     if (experienceAmount > 0)
                     {
                         int num = 0;
-                        foreach (var troop in party.MemberRoster.GetTroopRoster())
+                        foreach (TroopRosterElement troop in party.MemberRoster.GetTroopRoster())
                         {
                             if (!troop.Character.IsHero)
                             {

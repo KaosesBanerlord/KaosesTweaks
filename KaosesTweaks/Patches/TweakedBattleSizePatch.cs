@@ -7,7 +7,7 @@ using TaleWorlds.MountAndBlade;
 
 namespace KaosesTweaks.Patches
 {
-    [HarmonyPatch(typeof(MissionAgentSpawnLogic), MethodType.Constructor, new Type[] { typeof(IMissionTroopSupplier[]), typeof(BattleSideEnum) })]
+    [HarmonyPatch(typeof(MissionAgentSpawnLogic), MethodType.Constructor, new Type[] { typeof(IMissionTroopSupplier[]), typeof(BattleSideEnum), typeof(bool) })]
     public class TweakedBattleSizePatch
     {
         static void Postfix(MissionAgentSpawnLogic __instance, ref int ____battleSize)

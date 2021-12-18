@@ -12,12 +12,12 @@ namespace KaosesTweaks.Behaviors
     {
         public override void RegisterEvents()
         {
-            CampaignEvents.OnSessionLaunchedEvent.AddNonSerializedListener(this, new Action<CampaignGameStarter>(this.OnSessionLaunched));
+            CampaignEvents.OnSessionLaunchedEvent.AddNonSerializedListener(this, new Action<CampaignGameStarter>(OnSessionLaunched));
         }
 
         public void OnSessionLaunched(CampaignGameStarter campaignGameStarter)
         {
-            this.AddDialogs(campaignGameStarter);
+            AddDialogs(campaignGameStarter);
             if (Statics._settings.AnotherChanceAtMarriageDebug)
             {
                 IM.MessageDebug($"Another Chance At Marriage OnSessionLaunched Added Dialogs");
@@ -57,12 +57,12 @@ namespace KaosesTweaks.Behaviors
                 Romance.GetRomanticLevel(Hero.MainHero, Hero.OneToOneConversationHero) != Romance.RomanceLevelEnum.FailedInCompatibility)
                 return false;
 
-            var relation = Hero.OneToOneConversationHero.GetRelationWithPlayer();
+            float relation = Hero.OneToOneConversationHero.GetRelationWithPlayer();
             if (relation < 0)
                 return false;
 
-            var attraction = Campaign.Current.Models.RomanceModel.GetAttractionValuePercentage(Hero.OneToOneConversationHero, Hero.MainHero);
-            var chance = Math.Max(0.0f, Math.Min(20.0f + 2 * relation + 0.5f * attraction, 175.0f) / 200.0f);
+            int attraction = Campaign.Current.Models.RomanceModel.GetAttractionValuePercentage(Hero.OneToOneConversationHero, Hero.MainHero);
+            float chance = Math.Max(0.0f, Math.Min(20.0f + 2 * relation + 0.5f * attraction, 175.0f) / 200.0f);
             float randonNumber = MBRandom.RandomFloat;
             IM.MessageDebug($"attraction = {attraction} \n" +
                             $"relation = {relation}\n" +
@@ -77,7 +77,7 @@ namespace KaosesTweaks.Behaviors
         {
             SubModule.LastAttempts[Hero.OneToOneConversationHero] = CampaignTime.DaysFromNow(Statics._settings.AnotherChanceAtMarriageDaysTillRetry);
             // Go straight to 2nd stage if completed 1st stage successfully before
-            var toLevel = (Romance.GetRomanticLevel(Hero.MainHero, Hero.OneToOneConversationHero) == Romance.RomanceLevelEnum.FailedInPracticalities)
+            Romance.RomanceLevelEnum toLevel = (Romance.GetRomanticLevel(Hero.MainHero, Hero.OneToOneConversationHero) == Romance.RomanceLevelEnum.FailedInPracticalities)
                     ? Romance.RomanceLevelEnum.CoupleDecidedThatTheyAreCompatible
                     : Romance.RomanceLevelEnum.CourtshipStarted;
             ChangeRomanticStateAction.Apply(Hero.MainHero, Hero.OneToOneConversationHero, toLevel);
@@ -101,9 +101,9 @@ namespace KaosesTweaks.Behaviors
         private static void Another_chance_rejected_on_consequence()
         {
             SubModule.LastAttempts[Hero.OneToOneConversationHero] = CampaignTime.DaysFromNow(Statics._settings.AnotherChanceAtMarriageDaysTillRetry);
-            var relation = Hero.OneToOneConversationHero.GetRelationWithPlayer();
+            float relation = Hero.OneToOneConversationHero.GetRelationWithPlayer();
             // 30% chance at relation loss at 0 relation, 15% at 4, 0% at 15 
-            var criticalFailChance = (relation >= 15) ? 0 : (2f / 15f) * relation * relation - 4 * relation + 30;
+            float criticalFailChance = (relation >= 15) ? 0 : (2f / 15f) * relation * relation - 4 * relation + 30;
             if (MBRandom.RandomFloat < criticalFailChance)
             {
                 InformationManager.DisplayMessage(new InformationMessage("Relation reduced"));

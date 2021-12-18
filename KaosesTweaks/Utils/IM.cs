@@ -36,13 +36,13 @@ namespace KaosesTweaks.Utils
 
         public static void MessageInfo(string message)
         {
-            IM.ShowMessage(message, Color.ConvertStringToColor("#42FF00FF"), logToFile);
+            ShowMessage(message, Color.ConvertStringToColor("#42FF00FF"), logToFile);
         }
 
 
         public static void MessageError(string message)
         {
-            IM.ShowMessage(message, Color.ConvertStringToColor("#FF000000"));
+            ShowMessage(message, Color.ConvertStringToColor("#FF000000"));
             logMessage(message);
         }
 
@@ -60,22 +60,22 @@ namespace KaosesTweaks.Utils
         //~ BT
         public static void ColorRedMessage(string message)
         {
-            IM.ShowMessage(message, Color.ConvertStringToColor("#FF0042FF"), logToFile);
+            ShowMessage(message, Color.ConvertStringToColor("#FF0042FF"), logToFile);
         }
 
         public static void ColorGreenMessage(string message)
         {
-            IM.ShowMessage(message, Color.ConvertStringToColor("#42FF00FF"), logToFile);
+            ShowMessage(message, Color.ConvertStringToColor("#42FF00FF"), logToFile);
         }
 
         public static void ColorBlueMessage(string message)
         {
-            IM.ShowMessage(message, Color.ConvertStringToColor("#0042FFFF"), logToFile);
+            ShowMessage(message, Color.ConvertStringToColor("#0042FFFF"), logToFile);
         }
 
         public static void ColorOrangeMessage(string message)
         {
-            IM.ShowMessage(message, Color.ConvertStringToColor("#00F16D26"), logToFile);
+            ShowMessage(message, Color.ConvertStringToColor("#00F16D26"), logToFile);
         }
 
         public static void QuickInformationMessage(string message)
@@ -98,7 +98,7 @@ namespace KaosesTweaks.Utils
         {
             if (Debug)
             {
-                IM.ShowMessage(message, Color.ConvertStringToColor("#E6FF00FF"), true);
+                ShowMessage(message, Color.ConvertStringToColor("#E6FF00FF"), true);
             }
         }
 

@@ -33,7 +33,7 @@ namespace KaosesTweaks.Models
             for (int i = 0; i < _ItemsList.Count; i++)
             {
 
-                var item = _ItemsList[i];
+                ItemObject? item = _ItemsList[i];
                 if (item.IsTradeGood && !item.IsFood)
                 {
                     new TradeGoods(item);

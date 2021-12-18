@@ -46,7 +46,7 @@ namespace KaosesTweaks.Models
             }
             //~ KT
             ExplainedNumber result = new ExplainedNumber(baseNumber, includeDescription, null);
-            this.CalculatePerkEffects(party, ref result);
+            CalculatePerkEffects(party, ref result);
             return result;
         }
 

@@ -12,7 +12,7 @@ namespace KaosesTweaks.Behaviors
     {
         public static void Apply(Campaign campaign)
         {
-            var obj = new BTConspiracyQuestTimerTweak();
+            BTConspiracyQuestTimerTweak? obj = new BTConspiracyQuestTimerTweak();
             CampaignEvents.DailyTickEvent.AddNonSerializedListener(obj, new Action(obj.ExtendDeadline));
         }
 

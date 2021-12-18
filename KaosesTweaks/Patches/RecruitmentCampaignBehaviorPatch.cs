@@ -8,10 +8,10 @@ using TaleWorlds.Core;
 
 namespace KaosesTweaks.Patches
 {
-    [HarmonyPatch(typeof(RecruitmentCampaignBehavior), "UpdateVolunteersOfNotables")]
+    [HarmonyPatch(typeof(RecruitmentCampaignBehavior), "OnSettlementEntered")]
     class RecruitmentCampaignBehaviorPatch
     {
-        static void Postfix(bool initialRunning)
+        static void Postfix()
         {
             if (MCMSettings.Instance is { } settings && settings.BalancingUpgradeTroopsTweaksEnabled)
             {

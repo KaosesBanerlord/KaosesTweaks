@@ -26,7 +26,7 @@ namespace KaosesTweaks
         /* Another chance at marriage */
         public static Dictionary<Hero, CampaignTime> LastAttempts;
         public static readonly FastInvokeHandler RemoveUnneededPersuasionAttemptsHandler =
-        HarmonyLib.MethodInvoker.GetHandler(AccessTools.Method(typeof(RomanceCampaignBehavior), "RemoveUnneededPersuasionAttempts"));
+        MethodInvoker.GetHandler(AccessTools.Method(typeof(RomanceCampaignBehavior), "RemoveUnneededPersuasionAttempts"));
         /* Another chance at marriage */
 
         /* KaosesPartySpeeds */
@@ -114,7 +114,7 @@ namespace KaosesTweaks
             {
                 if (Statics._settings.MCMItemModifiers)
                 {
-                    new KaosesItemTweaks(TaleWorlds.CampaignSystem.Items.All);
+                    new KaosesItemTweaks(Items.All);
                     if (Statics._settings.Debug)
                     {
                         IM.MessageDebug("Loaded KaosesItemTweaks");
@@ -407,7 +407,7 @@ namespace KaosesTweaks
                         sb.AppendLine("There is a configuration error in the \'Age\' tweaks from Bannerlord Tweaks.");
                         sb.AppendLine("Please check the below errors and fix the age settings in the settings menu:");
                         sb.AppendLine();
-                        foreach (var e in configErrors)
+                        foreach (string? e in configErrors)
                             sb.AppendLine(e);
                         sb.AppendLine();
                         sb.AppendLine("The age tweaks will not be applied until these errors have been resolved.");
