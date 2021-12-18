@@ -1,17 +1,17 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Version>0.2.15</Version>
+    <Version>0.2.16</Version>
     <TargetFramework>net472</TargetFramework>
     <Platforms>x64</Platforms>
     <LangVersion>9.0</LangVersion>
     <Nullable>enable</Nullable>
     <ModuleName>KaosesTweaks</ModuleName>
     <GameFolder>G:\Games\Steam\steamapps\common\Mount &amp; Blade II Bannerlord</GameFolder>
-    <Authors>Patrick Scott, Cebullus</Authors>
+    <Authors>Patrick Scott, Cebullus, TheTornadoTitan</Authors>
     <Company />
     <Copyright>MIT</Copyright>
-    <PackageProjectUrl>https://www.nexusmods.com/mountandblade2bannerlord/mods/2911</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/lazeras/KaosesTweaks</RepositoryUrl>
+    <PackageProjectUrl>https://www.nexusmods.com/mountandblade2bannerlord/mods/3503</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/thetornadotitan/KaosesTweaks</RepositoryUrl>
     <RepositoryType>GitHub</RepositoryType>
     <PackageIcon></PackageIcon>
   </PropertyGroup>
