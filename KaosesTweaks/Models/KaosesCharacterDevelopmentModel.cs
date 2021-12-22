@@ -76,7 +76,6 @@ namespace KaosesTweaks.Models
             ExplainedNumber result = new ExplainedNumber(1.25f * learningMultiplier, true, null);
             result.AddFactor(0.4f * attributeValue, attrText);
             result.AddFactor(focusValue * 1f, focusText);
-            System.Diagnostics.Debug.WriteLine("Calc Learning Limit");
             int num = MathF.Round(CalculateLearningLimit(attributeValue, focusValue, attributeName, false).ResultNumber);
             int num2 = 0;
             if (skillValue > num)
@@ -97,14 +96,10 @@ namespace KaosesTweaks.Models
         {
             ExplainedNumber result = new ExplainedNumber(0f, includeDescriptions, null);
 
-
-            System.Diagnostics.Debug.WriteLine(Statics._settings.LearningLimitEnabled);
             if (Statics._settings.LearningLimitEnabled)
             {
                 result.Add(attributeValue * 10 * Statics._settings.LearningLimitMultiplier, attributeName, null);
                 result.Add(focusValue * 30 * Statics._settings.LearningLimitMultiplier, _skillFocusText, null);
-
-                System.Diagnostics.Debug.WriteLine(Statics._settings.LearningLimitMultiplier);
             }
             else
             {

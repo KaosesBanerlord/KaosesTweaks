@@ -1826,6 +1826,7 @@ namespace KaosesTweaks.Settings
 
         //~ Party Size Tweaks
         #region Party Size Tweaks
+
         [SettingPropertyBool("{=BT_Settings_006300}Party Size " + "*", Order = 1, RequireRestart = true, IsToggle = true,
             HintText = "{=BT_Settings_006300_Desc}Applies a bonues to you and AI lord's party size based on leadership and steward skills."),
             SettingPropertyGroup("{=BT_Settings_006000}Party Tweaks" + "/" + "{=BT_Settings_006300}Party Size", GroupOrder = 3)]
@@ -1855,6 +1856,31 @@ namespace KaosesTweaks.Settings
             HintText = "{=BT_Settings_006305_Desc}The percentage of the party size bonus set for the player to also apply for ai lords. 0% results in no bonus for ai. You may also want to increase food production amounts (Village Production, bigger demand)."),
             SettingPropertyGroup("{=BT_Settings_006000}Party Tweaks" + "/" + "{=BT_Settings_006300}Party Size")]
         public float PartySizeTweakAIFactor { get; set; } = 0f;
+
+        [SettingPropertyBool("{=Titan_Settings_000002}Enable Party Multipliers " + "*", Order = 7, IsToggle = true, RequireRestart = true,
+            HintText = "{=Titan_Settings_000002_desc}Mutipliers that increase the size of Bandit, Villager, Caravanx, and Militias. Tick the box to enable and configure. Restart Required."),
+            SettingPropertyGroup("{=BT_Settings_006000}Party Tweaks" + "/" + "{=BT_Settings_006300}Party Size" + "/" + "{=Titan_Settings_000001}Party Size Multipliers Group", GroupOrder = 5)]
+        public bool PartySizeMultipliersEnabled { get; set; } = false;
+
+        [SettingPropertyFloatingInteger("{=Titan_Settings_000003}Bandit Multiplier", 0.10f, 20f, "0%", Order = 8, RequireRestart = false,
+            HintText = "{=Titan_Settings_000003_desc}Multiply bandit party sizes by this amount."),
+            SettingPropertyGroup("{=BT_Settings_006000}Party Tweaks" + "/" + "{=BT_Settings_006300}Party Size" + "/" + "{=Titan_Settings_000001}Party Size Multipliers Group")]
+        public float PartySizeBanditMultiplier { get; set; } = 1f;
+
+        [SettingPropertyFloatingInteger("{=Titan_Settings_000004}Villager Multiplier", 0.10f, 20f, "0%", Order = 9, RequireRestart = false,
+           HintText = "{=Titan_Settings_000004_desc}Multiply villager party Sizes by this amount."),
+           SettingPropertyGroup("{=BT_Settings_006000}Party Tweaks" + "/" + "{=BT_Settings_006300}Party Size" + "/" + "{=Titan_Settings_000001}Party Size Multipliers Group")]
+        public float PartySizeVillagerMultiplier { get; set; } = 1f;
+
+        [SettingPropertyFloatingInteger("{=Titan_Settings_000005}Caravan Multiplier", 0.10f, 20f, "0%", Order = 10, RequireRestart = false,
+           HintText = "{=Titan_Settings_000005_desc}Multiply caravan party Sizes by this amount."),
+           SettingPropertyGroup("{=BT_Settings_006000}Party Tweaks" + "/" + "{=BT_Settings_006300}Party Size" + "/" + "{=Titan_Settings_000001}Party Size Multipliers Group")]
+        public float PartySizeCarvanMultiplier { get; set; } = 1f;
+
+        [SettingPropertyFloatingInteger("{=Titan_Settings_000006}Militia Multiplier", 0.10f, 20f, "0%", Order = 10, RequireRestart = false,
+           HintText = "{=Titan_Settings_000006_desc}Multiply Militia party Sizes by this amount."),
+           SettingPropertyGroup("{=BT_Settings_006000}Party Tweaks" + "/" + "{=BT_Settings_006300}Party Size" + "/" + "{=Titan_Settings_000001}Party Size Multipliers Group")]
+        public float PartySizeMilitiaMultiplier { get; set; } = 1f;
         #endregion //~ Party Size Tweaks
 
         //~ Party Wage Tweaks
@@ -3258,6 +3284,11 @@ namespace KaosesTweaks.Settings
                 StewardPartySizeBonusEnabled = false,
                 StewardPartySizeBonus = 0f,
                 PartySizeTweakAIFactor = 0f,
+                PartySizeMultipliersEnabled = false,
+                PartySizeBanditMultiplier = 1f,
+                PartySizeVillagerMultiplier = 1f,
+                PartySizeCarvanMultiplier = 1f,
+                PartySizeMilitiaMultiplier = 1f,
 
                 //~ Party Wage Tweaks
                 PartyWageTweaksEnabled = false,
@@ -3919,6 +3950,11 @@ namespace KaosesTweaks.Settings
                 StewardPartySizeBonusEnabled = true,
                 StewardPartySizeBonus = 0f,
                 PartySizeTweakAIFactor = 0f,
+                PartySizeMultipliersEnabled = true,
+                PartySizeBanditMultiplier = 1f,
+                PartySizeVillagerMultiplier = 1f,
+                PartySizeCarvanMultiplier = 1f,
+                PartySizeMilitiaMultiplier = 1f,
 
                 //~ Party Wage Tweaks
                 PartyWageTweaksEnabled = true,
@@ -4229,7 +4265,7 @@ namespace KaosesTweaks.Settings
                 ThrownMissionFixMultiplierEnabled = false
 
 
-            }); ;
+            });
 
             /*
             basePresets.Add("True", () => new MCMSettings()
