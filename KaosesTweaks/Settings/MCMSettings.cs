@@ -679,7 +679,7 @@ namespace KaosesTweaks.Settings
         [SettingPropertyGroup("{=BT_Settings_004000}Crafting Tweaks" + "/" + "{=KT_CTRFME}Refining Formula Tweaks")]
         public float RefiningFormulaInputCostValue { get; set; } = 1.0f;
 
-        [SettingPropertyFloatingInteger("{=KT_CTRFOTM}Input Cost Multiplier", 0.1f, 5.0f, "#0%", RequireRestart = false,
+        [SettingPropertyFloatingInteger("{=KT_CTRFOTM}Output Cost Multiplier", 0.1f, 5.0f, "#0%", RequireRestart = false,
             HintText = "{=KT_CTRFOTM_Desc}Multiply formula output result by the multiplier [Native : 1.0[100%]]. at 200% 2 wood = 2 charcoal, 300% 2 wood = 3 charcoal")]
         [SettingPropertyGroup("{=BT_Settings_004000}Crafting Tweaks" + "/" + "{=KT_CTRFME}Refining Formula Tweaks")]
         public float RefiningFormulaOutputValue { get; set; } = 1.0f;
