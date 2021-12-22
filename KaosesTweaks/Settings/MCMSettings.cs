@@ -1863,7 +1863,7 @@ namespace KaosesTweaks.Settings
         public float PartySizeTweakAIFactor { get; set; } = 0f;
 
         [SettingPropertyBool("{=Titan_Settings_000002}Enable Party Multipliers " + "*", Order = 7, IsToggle = true, RequireRestart = true,
-            HintText = "{=Titan_Settings_000002_desc}Mutipliers that increase the size of Bandit, Villager, Caravanx, and Militias. Tick the box to enable and configure. Restart Required."),
+            HintText = "{=Titan_Settings_000002_desc}Multipliers that increase the size of Bandit, Villager, Caravan, and Militias. Tick the box to enable and configure. Restart Required."),
             SettingPropertyGroup("{=BT_Settings_006000}Party Tweaks" + "/" + "{=BT_Settings_006300}Party Size" + "/" + "{=Titan_Settings_000001}Party Size Multipliers Group", GroupOrder = 5)]
         public bool PartySizeMultipliersEnabled { get; set; } = false;
 

@@ -1080,7 +1080,7 @@
     <!-- 0.3.00 -->
     <string id="Titan_Settings_000001" text="Party Size Multipliers Group" />
     <string id="Titan_Settings_000002" text="Enable Party Multipliers" />
-    <string id="Titan_Settings_000002_desc" text="Mutipliers that increase the size of Bandit, Villager, Caravanx, and Militias. Tick the box to enable and configure. Restart Required." />
+    <string id="Titan_Settings_000002_desc" text="Multipliers that increase the size of Bandit, Villager, Caravan, and Militias. Tick the box to enable and configure. Restart Required." />
     <string id="Titan_Settings_000003" text="Bandit Multiplier" />
     <string id="Titan_Settings_000003_desc" text="Multiply bandit party sizes by this amount." />
     <string id="Titan_Settings_000004" text="Villager Multiplier" />
