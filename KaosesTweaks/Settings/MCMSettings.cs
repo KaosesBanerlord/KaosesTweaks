@@ -379,6 +379,11 @@ namespace KaosesTweaks.Settings
             HintText = "{=BT_Settings_000502_Desc}Allows all single-handed weapon types to cut through and hit multiple people."),
             SettingPropertyGroup("{=BT_Settings_000000}Battle Tweaks" + "/" + "{=BT_Settings_000500}Weapon Cut Through Tweaks" + "*")]
         public bool SingleHandedWeaponsSliceThroughEnabled { get; set; } = false;
+
+        [SettingPropertyBool("{=Titan_Settings_000007}All Weapons Cut Through", Order = 3, RequireRestart = false,
+            HintText = "{=Titan_Settings_000007_Desc}Allows all weapon types to cut through and hit multiple people."),
+            SettingPropertyGroup("{=BT_Settings_000000}Battle Tweaks" + "/" + "{=BT_Settings_000500}Weapon Cut Through Tweaks" + "*")]
+        public bool AllWeaponsSliceThroughEnabled { get; set; } = false;
         #endregion //~ Weapon Cut Through Tweaks
         #endregion //~ Battle Tweaks 
 
@@ -2829,7 +2834,7 @@ namespace KaosesTweaks.Settings
         [SettingPropertyGroup("{=KTMCM_CXPTweaks}XP Tweaks" + "/" + "{=KTMCM_CLearning}Learning Rate")]
         public bool LearningRateEnabled { get; set; } = false;
 
-        [SettingPropertyFloatingInteger("{=KTMCM_XPMLRM}Learning Rate Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
+        [SettingPropertyFloatingInteger("{=KTMCM_XPMLRM}Learning Rate Multiplier", 0.1f, 100.0f, "#0%", RequireRestart = false,
             HintText = "{=KTMCM_XPMLRMH}Multiply Learning Rate by the multiplier [Native : 1.0[100%]].")]
         [SettingPropertyGroup("{=KTMCM_CXPTweaks}XP Tweaks" + "/" + "{=KTMCM_CLearning}Learning Rate")]
         public float LearningRateMultiplier { get; set; } = 1.0f;
@@ -2842,7 +2847,7 @@ namespace KaosesTweaks.Settings
         [SettingPropertyGroup("{=KTMCM_CXPTweaks}XP Tweaks" + "/" + "{=KTMCM_CLearningLimit}Learning Limit")]
         public bool LearningLimitEnabled { get; set; } = false;
 
-        [SettingPropertyFloatingInteger("{=KTMCM_XPMLLM}Learning Limit Multiplier", 0.1f, 5.0f, "#0%", RequireRestart = false,
+        [SettingPropertyFloatingInteger("{=KTMCM_XPMLLM}Learning Limit Multiplier", 0.1f, 2.0f, "#0%", RequireRestart = false,
             HintText = "{=KTMCM_XPMLLMH}Multiply Learning limit by the multiplier [Native : 1.0[100%]].")]
         [SettingPropertyGroup("{=KTMCM_CXPTweaks}XP Tweaks" + "/" + "{=KTMCM_CLearningLimit}Learning Limit")]
         public float LearningLimitMultiplier { get; set; } = 1.0f;
@@ -2893,7 +2898,7 @@ namespace KaosesTweaks.Settings
             SettingPropertyGroup("{=KTMCM_CXPTweaks}XP Tweaks" + "/" + "{=BT_Settings_000400}Troop Experience" + "/" + "{=BT_Settings_000401}Troop Battle Experience")]
         public bool TroopBattleExperienceMultiplierEnabled { get; set; } = false;
 
-        [SettingPropertyFloatingInteger("{=BT_Settings_000402}Troop Battle Experience Amount", .01f, 6f, "0%", RequireRestart = false, Order = 3,
+        [SettingPropertyFloatingInteger("{=BT_Settings_000402}Troop Battle Experience Amount", .01f, 10f, "0%", RequireRestart = false, Order = 3,
             HintText = "{=BT_Settings_000402_Desc}Native value is 100%. Modifies the amount of experience that ALL troops receive during fought battles (Note: Only troops, not heroes. Does not apply to simulated battles.)."),
             SettingPropertyGroup("{=KTMCM_CXPTweaks}XP Tweaks" + "/" + "{=BT_Settings_000400}Troop Experience" + "/" + "{=BT_Settings_000401}Troop Battle Experience")]
         public float TroopBattleExperienceMultiplier { get; set; } = 1.0f;
@@ -2903,7 +2908,7 @@ namespace KaosesTweaks.Settings
             SettingPropertyGroup("{=KTMCM_CXPTweaks}XP Tweaks" + "/" + "{=BT_Settings_000400}Troop Experience" + "/" + "{=BT_Settings_000403}Troop Simulation Experience", GroupOrder = 2)]
         public bool TroopBattleSimulationExperienceMultiplierEnabled { get; set; } = false;
 
-        [SettingPropertyFloatingInteger("{=BT_Settings_000404}Troop Simulation Experience Amount", .01f, 8f, "0%", RequireRestart = false, Order = 5,
+        [SettingPropertyFloatingInteger("{=BT_Settings_000404}Troop Simulation Experience Amount", .01f, 10f, "0%", RequireRestart = false, Order = 5,
             HintText = "{=BT_Settings_000404_Desc}Native value is 90%. Provides a multiplier to experience gained from simulated battles. This is applied to all simulated fights on the campaign map."),
             SettingPropertyGroup("{=KTMCM_CXPTweaks}XP Tweaks" + "/" + "{=BT_Settings_000400}Troop Experience" + "/" + "{=BT_Settings_000403}Troop Simulation Experience")]
         public float TroopBattleSimulationExperienceMultiplier { get; set; } = 0.9f;

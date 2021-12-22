@@ -1089,6 +1089,8 @@
     <string id="Titan_Settings_000005_desc" text="Multiply caravan party Sizes by this amount." />
     <string id="Titan_Settings_000006" text="Militia Multiplier" />
     <string id="Titan_Settings_000006_desc" text="Multiply Militia party Sizes by this amount." />
+    <string id="Titan_Settings_000007" text="All Weapons Cut Through" />
+    <string id="Titan_Settings_000007_desc" text="Allows all weapon types to cut through and hit multiple people." />
 
   </strings>
 </base>
