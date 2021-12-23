@@ -3,8 +3,10 @@ using KaosesTweaks.Settings;
 using KaosesTweaks.Utils;
 using System;
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.CampaignSystem.SandBox.CampaignBehaviors;
 using TaleWorlds.Core;
+using TaleWorlds.Localization;
 
 
 namespace KaosesTweaks.Patches
@@ -84,6 +86,31 @@ namespace KaosesTweaks.Patches
         static bool Prepare() => MCMSettings.Instance is { } settings && settings.EnableWorkshopBuyTweak;
     }
 
+    [HarmonyPatch(typeof(ChangeOwnerOfWorkshopAction), "ApplyByWarDeclaration")]
+    class KeepWorkshopsOnWarDeclarationPatch
+    {
+      private static bool Prefix(Workshop workshop, Hero newOwner, WorkshopType workshopType, int capital, bool upgradable, TextObject customName = null)
+      {
+        if(MCMSettings.Instance is { } settings && settings.KeepWorkshopsOnWarDeclaration)
+          return false;
+
+        return true;
+      }
+      static bool Prepare() => MCMSettings.Instance is { } settings && settings.KeepWorkshopsOnWarDeclaration;
+    }
+
+    [HarmonyPatch(typeof(ChangeOwnerOfWorkshopAction), "ApplyByBankruptcy")]
+    class KeepWorkshopsOnBankruptcyPatch
+    {
+      private static bool Prefix(Workshop workshop, Hero newOwner, WorkshopType workshopType, int capital, bool upgradable, TextObject customName = null)
+      {
+        if (MCMSettings.Instance is { } settings && settings.KeepWorkshopsOnBankruptcy)
+          return false;
+
+        return true;
+      }
+      static bool Prepare() => MCMSettings.Instance is { } settings && settings.KeepWorkshopsOnBankruptcy;
+    }
 
     /*
         [HarmonyPatch(typeof(DefaultWorkshopModel), "DaysForPlayerSaveWorkshopFromBankruptcy")]

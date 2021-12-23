@@ -883,6 +883,11 @@
     <string id="BT_Settings_008910_Desc" text="Alters the buying prices for input items of workshops."/>
     <string id="BT_Settings_008911" text="Workshop Products Buy Prices"/>
     <string id="BT_Settings_008911_Desc" text="Native value is 100%. Alters the buying prices for input items of workshops. Decrease for better profits." />
+    <string id="BT_Settings_008920" text="Workshop Ownership Changes"/>
+    <string id="BT_Settings_008921" text="Workshops Kept on War Declarations"/>
+    <string id="BT_Settings_008922" text="Allows Player to Keep Their Workshops When a Kingdom Declares War [Native : false]."/>
+    <string id="BT_Settings_008923" text="Workshops Kept on Bankruptcy"/>
+    <string id="BT_Settings_008924" text="Allows Player to Keep Their Workshops on Bankruptcy [Native : false]."/>
     <string id="BT_Settings_009000" text="Misc" />
     <string id="BT_Settings_009001" text="Disable Quest Troops Affecting Morale" />
     <string id="BT_Settings_009001_Desc" text="When enabled, quest troops such as Borrowed Troop in your party are ignored when party morale is calculated." />
