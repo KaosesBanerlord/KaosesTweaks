@@ -697,10 +697,10 @@ namespace KaosesTweaks.Settings
             SettingPropertyGroup("{=BT_Settings_004000}Crafting Tweaks" + "/" + "{=BT_Settings_004100}Crafting Stamina")]
         public bool CraftingStaminaTweakEnabled { get; set; } = false;
 
-        [SettingPropertyInteger("{=BT_Settings_004101}Max Crafting Stamina", 100, 1000, "0 Stamina", Order = 2, RequireRestart = false,
-            HintText = "{=BT_Settings_004101_Desc}Native value is 400. Sets the maximum crafting stamina value."),
+        [SettingPropertyFloatingInteger("{=BT_Settings_004101}Max Crafting Stamina Multiplier", 0.0f, 10.0f, "0.00", Order = 2, RequireRestart = false,
+            HintText = "{=BT_Settings_004101_Desc}Multiply max crafting stamina by the multiplier [Native: 1.0]"),
             SettingPropertyGroup("{=BT_Settings_004000}Crafting Tweaks" + "/" + "{=BT_Settings_004100}Crafting Stamina")]
-        public int MaxCraftingStamina { get; set; } = 400;
+        public float MaxCraftingStaminaMultiplier { get; set; } = 1.0f;
 
         //~ Stamina Gains
         #region StaminGain
@@ -3061,7 +3061,7 @@ namespace KaosesTweaks.Settings
 
                 //~ Stamina Tweaks
                 CraftingStaminaTweakEnabled = false,
-                MaxCraftingStamina = 400,
+                MaxCraftingStaminaMultiplier = 1.0f,
 
                 //~ Stamina Gains
                 CraftingStaminaGainAmount = 5,
@@ -3727,7 +3727,7 @@ namespace KaosesTweaks.Settings
 
                 //~ Stamina Tweaks
                 CraftingStaminaTweakEnabled = true,
-                MaxCraftingStamina = 400,
+                MaxCraftingStaminaMultiplier = 1.0f,
 
                 //~ Stamina Gains
                 CraftingStaminaGainAmount = 5,
@@ -4382,7 +4382,7 @@ namespace KaosesTweaks.Settings
                 PreventSmeltingLockedItems = false,
                 CraftingStaminaGainAmount = 10,
                 CraftingStaminaGainOutsideSettlementMultiplier = 1.0f,
-                MaxCraftingStamina = 400,
+                MaxCraftingStaminaMultiplier = 1.0f,
                 CraftingStaminaTweakEnabled = true,
                 //IgnoreCraftingStamina = false,
 

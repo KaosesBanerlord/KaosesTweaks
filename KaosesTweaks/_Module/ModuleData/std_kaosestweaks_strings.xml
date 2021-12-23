@@ -566,8 +566,8 @@
     <string id="BT_Settings_004000" text="Crafting Tweaks" />
     <string id="BT_Settings_004100" text="Crafting Stamina" />
     <string id="BT_Settings_004100_Desc" text="Enables tweaks which affect crafting stamina." />
-    <string id="BT_Settings_004101" text="Max Crafting Stamina"/>
-    <string id="BT_Settings_004101_Desc" text="Native value is 400. Sets the maximum crafting stamina value." />
+    <string id="BT_Settings_004101" text="Max Crafting Stamina Multiplier"/>
+    <string id="BT_Settings_004101_Desc" text="Multiply max crafting stamina by the multiplier [Native: 1.0]" />
     <string id="BT_Settings_004102" text="Crafting Stamina Gain"/>
     <string id="BT_Settings_004102_Desc" text="Native value is 5. You gain this amount of crafting stamina per hour." />
     <string id="BT_Settings_004103" text="Crafting Stamina Gain Outside Settlement"/>
