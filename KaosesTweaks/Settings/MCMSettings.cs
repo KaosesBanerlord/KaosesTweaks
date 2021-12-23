@@ -2684,6 +2684,19 @@ namespace KaosesTweaks.Settings
         [SettingPropertyGroup("{=BT_Settings_008900}Workshops" + "/" + "{=KTMCM_CBankruptcy}Bankruptcy")]
         public int WorkShopBankruptcyValue { get; set; } = 3;
         #endregion //~ Bankruptcy
+        
+        //~ Workshop Ownership Changes
+        #region Workshop Ownership Changes
+        [SettingPropertyBool("{=BT_Settings_008921}Workshops Kept on War Declarations", Order = 0, RequireRestart = true,
+            HintText = "{=BT_Settings_008922}Allows Player to Keep Their Workshops When a Kingdom Declares War [Native : false].")]
+        [SettingPropertyGroup("{=BT_Settings_008900}Workshops" + "/" + "{=BT_Settings_008920}Workshop Ownership Changes")]
+        public bool KeepWorkshopsOnWarDeclaration { get; set; } = false;
+
+        [SettingPropertyBool("{=BT_Settings_008923}Workshops Kept on Bankruptcy", Order = 0, RequireRestart = true,
+            HintText = "{=BT_Settings_008924}Allows Player to Keep Their Workshops on Bankruptcy [Native : false].")]
+        [SettingPropertyGroup("{=BT_Settings_008900}Workshops" + "/" + "{=BT_Settings_008920}Workshop Ownership Changes")]
+        public bool KeepWorkshopsOnBankruptcy { get; set; } = false;
+        #endregion //~ Workshop Ownership Changes
         #endregion //~ Workshops
 
         //~ XP Tweaks
