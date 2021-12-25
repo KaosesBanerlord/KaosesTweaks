@@ -656,6 +656,11 @@ namespace KaosesTweaks.Settings
             HintText = "{=BT_Settings_003101_Desc}Sets the base companion limit. [Native: 3].")]
         [SettingPropertyGroup("{=BT_Settings_003000}Clan Tweaks" + "/" + "{=KTMCM_CCompanionLimit}Companion Limit")]
         public int ClanCompanionBaseLimit { get; set; } = 3;
+
+        [SettingPropertyInteger("{=BT_Settings_00310}Companion Spawn Interval", 0, 20, "0 Weeks", Order = 0, RequireRestart = false,
+          HintText = "{=BT_Settings_003104_Desc}Number of weeks between a new companion being added to the world. Set to 0 for a new companion to be added to the taverns every week. [Native: 6]")]
+        [SettingPropertyGroup("{=BT_Settings_003000}Clan Tweaks" + "/" + "{=KTMCM_CCompanionLimit}Companion Limit")]
+        public int CompanionSpawnInterval { get; set; } = 6;
         #endregion //~ Companion Limit
         #endregion //~ Clan
 
