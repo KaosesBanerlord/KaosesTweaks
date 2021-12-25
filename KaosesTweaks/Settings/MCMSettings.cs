@@ -2609,12 +2609,12 @@ namespace KaosesTweaks.Settings
             SettingPropertyGroup("{=BT_Settings_008900}Workshops" + "/" + "{=BT_Settings_008901}Workshop Count Limit")]
         public bool MaxWorkshopCountTweakEnabled { get; set; } = false;
 
-        [SettingPropertyInteger("{=BT_Settings_008902}Base Workshop Count Limit", 0, 20, "0 Workshops", RequireRestart = false, Order = 2,
+        [SettingPropertyInteger("{=BT_Settings_008902}Base Workshop Count Limit", 0, 159, "0 Workshops", RequireRestart = false, Order = 2,
             HintText = "{=BT_Settings_008902_Desc}Native value is 1. Sets the base maximum number of workshops you can have."),
             SettingPropertyGroup("{=BT_Settings_008900}Workshops" + "/" + "{=BT_Settings_008901}Workshop Count Limit")]
         public int BaseWorkshopCount { get; set; } = 1;
 
-        [SettingPropertyInteger("{=BT_Settings_008903}Bonus Workshops Per Clan Tier", 0, 5, "0 Shops/Tier", RequireRestart = false, Order = 3,
+        [SettingPropertyInteger("{=BT_Settings_008903}Bonus Workshops Per Clan Tier", 0, 50, "0 Shops/Tier", RequireRestart = false, Order = 3,
             HintText = "{=BT_Settings_008903_Desc}Native value is 1. Sets the base maximum number of workshops you can have and the limit increase gained per clan tier."),
             SettingPropertyGroup("{=BT_Settings_008900}Workshops" + "/" + "{=BT_Settings_008901}Workshop Count Limit")]
         public int BonusWorkshopsPerClanTier { get; set; } = 1;
