@@ -15,10 +15,9 @@ namespace KaosesTweaks.Patches
     [HarmonyPatch(typeof(MobileParty), "FillPartyStacks")]
     public class TitanFillPartyStacksPatch
     {
-        static bool Prefix(ref MobileParty __instance, PartyTemplateObject pt, int troopNumberLimit)
+        private static bool HandlePartySizeMultipliers(ref MobileParty __instance, PartyTemplateObject pt, int troopNumberLimit)
         {
-
-            if (MCMSettings.Instance is { } settings)
+            if (MCMSettings.Instance is { } settings && settings.PartySizeMultipliersEnabled)
             {
                 if (__instance.IsBandit || __instance.IsBanditBossParty)
                 {
@@ -89,9 +88,63 @@ namespace KaosesTweaks.Patches
                     return false;
                 }
             }
-
             return true;
         }
-        static bool Prepare() => MCMSettings.Instance is { } settings && settings.PartySizeMultipliersEnabled;
+
+        private static bool HandlePartyCarvanSize(ref MobileParty __instance, PartyTemplateObject pt, int troopNumberLimit)
+        {
+            if (MCMSettings.Instance is { } settings && settings.PlayerCaravanPartySizeTweakEnabled)
+            {
+                if (__instance.IsCaravan && __instance.Party.Owner != null && __instance.Party.Owner == Hero.MainHero)
+                {
+                    troopNumberLimit = settings.PlayerCaravanPartySize;
+                    if (troopNumberLimit < 0)
+                    {
+                        float gameProcess = MiscHelper.GetGameProcess();
+                        for (int index = 0; index < pt.Stacks.Count; ++index)
+                        {
+                            int numberToAdd = (int)(gameProcess * (double)(pt.Stacks[index].MaxValue - pt.Stacks[index].MinValue)) + pt.Stacks[index].MinValue;
+                            __instance.AddElementToMemberRoster(pt.Stacks[index].Character, numberToAdd);
+                        }
+                    }
+                    else
+                    {
+                        for (int index1 = 0; index1 < troopNumberLimit; ++index1)
+                        {
+                            int index2 = -1;
+                            float num5 = 0.0f;
+                            for (int index3 = 0; index3 < pt.Stacks.Count; ++index3)
+                                num5 += (float)((!__instance.IsGarrison || !pt.Stacks[index3].Character.IsRanged ? (!__instance.IsGarrison || pt.Stacks[index3].Character.IsMounted ? 1.0 : 2.0) : 6.0) * ((pt.Stacks[index3].MaxValue + pt.Stacks[index3].MinValue) / 2.0));
+                            float num6 = MBRandom.RandomFloat * num5;
+                            for (int index4 = 0; index4 < pt.Stacks.Count; ++index4)
+                            {
+                                num6 -= (float)((!__instance.IsGarrison || !pt.Stacks[index4].Character.IsRanged ? (!__instance.IsGarrison || pt.Stacks[index4].Character.IsMounted ? 1.0 : 2.0) : 6.0) * ((pt.Stacks[index4].MaxValue + pt.Stacks[index4].MinValue) / 2.0));
+                                if (num6 < 0.0)
+                                {
+                                    index2 = index4;
+                                    break;
+                                }
+                            }
+                            if (index2 < 0)
+                                index2 = 0;
+                            __instance.AddElementToMemberRoster(pt.Stacks[index2].Character, 1);
+                        }
+                    }
+
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        static bool Prefix(ref MobileParty __instance, PartyTemplateObject pt, int troopNumberLimit)
+        {
+            bool result = true;
+            result = HandlePartySizeMultipliers(ref __instance, pt, troopNumberLimit);
+            result = HandlePartyCarvanSize(ref __instance, pt, troopNumberLimit);
+            return result;
+        }
+
+        static bool Prepare() => MCMSettings.Instance is { } settings && (settings.PartySizeMultipliersEnabled || settings.PlayerCaravanPartySizeTweakEnabled);
     }
 }

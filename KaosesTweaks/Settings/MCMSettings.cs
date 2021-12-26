@@ -1416,6 +1416,11 @@ namespace KaosesTweaks.Settings
         [SettingPropertyGroup("{=KTMCM_CKBRR}Killing Bandits Raises Relationships" + "/" + "{=KTMCM_CBandits}Bandits")]
         public bool IncludeMafia { get; set; } = false;
 
+        [SettingPropertyBool("{=Titan_Settings_000008}Report Relation Gain", Order = 0, RequireRestart = false,
+            HintText = "{=Titan_Settings_000008_desc}Set whether or not to report the relations gained from killing bandits to the player.")]
+        [SettingPropertyGroup("{=KTMCM_CKBRR}Killing Bandits Raises Relationships" + "/" + "{=KTMCM_CBandits}Bandits")]
+        public bool KillingBanditsRelationReportEnabled { get; set; } = true;
+
         #endregion //~ Killing Bandits Raises Relationships
 
         //~ Kingdom Tweaks
@@ -1901,12 +1906,12 @@ namespace KaosesTweaks.Settings
         public bool PartyWageTweaksHarmonyEnabled { get; set; } = false;
 
 
-        [SettingPropertyFloatingInteger("{=BT_Settings_006401}Party Wage Adjustment", .05f, 5f, "0%", Order = 2, RequireRestart = false,
+        [SettingPropertyFloatingInteger("{=BT_Settings_006401}Party Wage Adjustment", 0f, 5f, "0%", Order = 2, RequireRestart = false,
             HintText = "{=BT_Settings_006401_Desc}Adjusts party wages to a % of native value. Native is 100%."),
             SettingPropertyGroup("{=BT_Settings_006000}Party Tweaks" + "/" + "{=BT_Settings_006400}Wages")]
         public float PartyWagePercent { get; set; } = 1.0f;
 
-        [SettingPropertyFloatingInteger("{=BT_Settings_006402}Garrison Wage Adjustment", .05f, 5f, "0%", Order = 3, RequireRestart = false,
+        [SettingPropertyFloatingInteger("{=BT_Settings_006402}Garrison Wage Adjustment", 0f, 5f, "0%", Order = 3, RequireRestart = false,
             HintText = "{=BT_Settings_006402_Desc}Adjusts garrison wages to a % of native value. Native is 100%."),
             SettingPropertyGroup("{=BT_Settings_006000}Party Tweaks" + "/" + "{=BT_Settings_006400}Wages")]
         public float GarrisonWagePercent { get; set; } = 1.0f;
@@ -1929,7 +1934,7 @@ namespace KaosesTweaks.Settings
         [SettingPropertyGroup("{=BT_Settings_006000}Party Tweaks" + "/" + "{=KTMCM_CFood}Food Consumption")]
         public bool PartyFoodConsumptionEnabled { get; set; } = false;
 
-        [SettingPropertyFloatingInteger("{=KTMCM_XPMMPFM}Party Food Consumption Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
+        [SettingPropertyFloatingInteger("{=KTMCM_XPMMPFM}Party Food Consumption Multiplier", 0f, 10.0f, "#0%", RequireRestart = false,
             HintText = "{=KTMCM_XPMMPFMH}Multiply Party food consumption by the multiplier [Native : 1.0[100%]]. allows increasing or decreasing daily consumption of food")]
         [SettingPropertyGroup("{=BT_Settings_006000}Party Tweaks" + "/" + "{=KTMCM_CFood}Food Consumption")]
         public float PartyFoodConsumptionMultiplier { get; set; } = 1.0f;
@@ -2183,7 +2188,6 @@ namespace KaosesTweaks.Settings
             "paleician",
             "republic",
             "ariorum"
-
         }, 0);
 
         [SettingPropertyInteger("{=BT_Settings_008103}Weeks for Settlement Culture Change", 1, 52, "0 Weeks", Order = 2, RequireRestart = false,

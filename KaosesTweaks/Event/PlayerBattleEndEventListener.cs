@@ -72,7 +72,8 @@ namespace KaosesTweaks.Event
                 IM.MessageDebug("Killing Bandits: IncreaseLocalRelations: " + "Base Change: " + Statics._settings.RelationshipIncrease.ToString() + "Final Change: " + FinalRelationshipIncreaseInt.ToString());
             }
             FinalRelationshipIncreaseInt = FinalRelationshipIncreaseInt < 1 ? 1 : FinalRelationshipIncreaseInt;
-            IM.ColorGreenMessage("Final Relationship Increase: " + FinalRelationshipIncreaseInt.ToString());
+            if (Statics._settings.KillingBanditsRelationReportEnabled)
+                IM.ColorGreenMessage("Final Relationship Increase: " + FinalRelationshipIncreaseInt.ToString());
 
             List<Settlement> list = new List<Settlement>();
             foreach (Settlement settlement in Settlement.All)
@@ -90,7 +91,8 @@ namespace KaosesTweaks.Event
                     ChangeRelationAction.ApplyPlayerRelation(h, relation: FinalRelationshipIncreaseInt, affectRelatives: true, showQuickNotification: false);
                 }
             }
-            IM.ColorGreenMessage("Your relationship increased with nearby notables. " + FinalRelationshipIncreaseInt.ToString());
+            if (Statics._settings.KillingBanditsRelationReportEnabled)
+                IM.ColorGreenMessage("Your relationship increased with nearby notables. " + FinalRelationshipIncreaseInt.ToString());
         }
 
         private void BanditGroupCounterUpdate()

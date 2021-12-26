@@ -1091,6 +1091,8 @@
     <string id="Titan_Settings_000006_desc" text="Multiply Militia party Sizes by this amount." />
     <string id="Titan_Settings_000007" text="All Weapons Cut Through" />
     <string id="Titan_Settings_000007_desc" text="Allows all weapon types to cut through and hit multiple people." />
+    <string id="Titan_Settings_000008" text="Report Relation Gain" />
+    <string id="Titan_Settings_000008_desc" text="Set whether or not to report the relations gained from killing bandits to the player." />
 
   </strings>
 </base>
