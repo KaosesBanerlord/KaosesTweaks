@@ -14,12 +14,15 @@ namespace KaosesTweaks.Behaviors
 {
     class ChangeSettlementCulture : CampaignBehaviorBase
     {
+        private void OnSessionLaunched(CampaignGameStarter campaignGameStarter) => AddGameMenus(campaignGameStarter);
+
         public override void RegisterEvents()
         {
             CampaignEvents.ClanChangedKingdom.AddNonSerializedListener(this, new Action<Clan, Kingdom, Kingdom, ChangeKingdomAction.ChangeKingdomActionDetail, bool>(OnClanChangedKingdom));
             //CampaignEvents.ClanChangedKingdom.AddNonSerializedListener(this, new Action<Clan, Kingdom, Kingdom, bool, bool>(this.OnClanChangedKingdom));
             CampaignEvents.OnGameLoadedEvent.AddNonSerializedListener(this, new Action<CampaignGameStarter>(OnGameLoaded));
             //CampaignEvents.WeeklyTickSettlementEvent.AddNonSerializedListener(this, new Action<Settlement>(this.OnWeeklyTickSettlement));
+            CampaignEvents.OnSessionLaunchedEvent.AddNonSerializedListener(this, new Action<CampaignGameStarter>(OnSessionLaunched));
             CampaignEvents.DailyTickSettlementEvent.AddNonSerializedListener(this, new Action<Settlement>(OnDailyTickSettlement));
             CampaignEvents.OnNewGameCreatedEvent.AddNonSerializedListener(this, new Action<CampaignGameStarter>(OnGameLoaded));
             CampaignEvents.OnSiegeAftermathAppliedEvent.AddNonSerializedListener(this, new Action<MobileParty, Settlement, SiegeAftermathCampaignBehavior.SiegeAftermath, Clan, Dictionary<MobileParty, float>>(OnSiegeAftermathApplied));
@@ -55,12 +58,13 @@ namespace KaosesTweaks.Behaviors
                 }
             }
             initialCultureDictionary = startingCultures;
+        }
 
-            //TODO: Fix this error and reimplment this functionality.
-            //Crashing on campaign start due to key not found error
-            //obj.AddGameMenuOption("settlement", "village_culture_changer", "Culture Transformation", new GameMenuOption.OnConditionDelegate(Game_menu_settlement_change_culture_on_condition), new GameMenuOption.OnConsequenceDelegate(Game_menu_change_culture_on_consequence), false, 5, false);
-            //obj.AddGameMenuOption("town", "town_culture_changer", "Culture Transformation", new GameMenuOption.OnConditionDelegate(Game_menu_town_change_culture_on_condition), new GameMenuOption.OnConsequenceDelegate(Game_menu_change_culture_on_consequence), false, 5, false);
-            //obj.AddGameMenuOption("castle", "castle_culture_changer", "Culture Transformation", new GameMenuOption.OnConditionDelegate(Game_menu_castle_change_culture_on_condition), new GameMenuOption.OnConsequenceDelegate(Game_menu_change_culture_on_consequence), false, 5, false);
+        private void AddGameMenus(CampaignGameStarter campaignGameStarter)
+        {
+            campaignGameStarter.AddGameMenuOption("village", "village_culture_changer", "Culture Transformation", new GameMenuOption.OnConditionDelegate(Game_menu_village_change_culture_on_condition), new GameMenuOption.OnConsequenceDelegate(Game_menu_change_culture_on_consequence), false, 5, false);
+            campaignGameStarter.AddGameMenuOption("town", "town_culture_changer", "Culture Transformation", new GameMenuOption.OnConditionDelegate(Game_menu_town_change_culture_on_condition), new GameMenuOption.OnConsequenceDelegate(Game_menu_change_culture_on_consequence), false, 5, false);
+            campaignGameStarter.AddGameMenuOption("castle", "castle_culture_changer", "Culture Transformation", new GameMenuOption.OnConditionDelegate(Game_menu_castle_change_culture_on_condition), new GameMenuOption.OnConsequenceDelegate(Game_menu_change_culture_on_consequence), false, 5, false);
         }
 
         private void OnSiegeAftermathApplied(MobileParty arg1, Settlement settlement, SiegeAftermathCampaignBehavior.SiegeAftermath arg3, Clan arg4, Dictionary<MobileParty, float> arg5)
@@ -299,15 +303,6 @@ namespace KaosesTweaks.Behaviors
         {
             args.optionLeaveType = GameMenuOption.LeaveType.Manage;
             return Settlement.CurrentSettlement.IsVillage;
-        }
-
-        public static bool Game_menu_settlement_change_culture_on_condition(MenuCallbackArgs args)
-        {
-            args.optionLeaveType = GameMenuOption.LeaveType.Manage;
-            if (Settlement.CurrentSettlement.IsVillage) return true;
-            if (Settlement.CurrentSettlement.IsCastle) return true;
-            if (Settlement.CurrentSettlement.IsTown) return true;
-            return false;
         }
 
         public static void Game_menu_change_culture_on_consequence(MenuCallbackArgs args)
