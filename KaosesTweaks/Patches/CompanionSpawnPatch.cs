@@ -12,9 +12,9 @@ namespace KaosesTweaks.Patches
   [HarmonyPatch(typeof(UrbanCharactersCampaignBehavior), "WeeklyTick")]
   class CompanionSpawnPatch
   {
-    private static bool Prefix(ref int ___randomCompanionSpawnFrequencyInWeeks)
+    private static bool Prefix(ref int ____randomCompanionSpawnFrequencyInWeeks)
     {
-      ___randomCompanionSpawnFrequencyInWeeks = MCMSettings.Instance.CompanionSpawnInterval;
+      ____randomCompanionSpawnFrequencyInWeeks = MCMSettings.Instance.CompanionSpawnInterval;
       return true;
     }
     static bool Prepare() => MCMSettings.Instance is { } settings && settings.CompanionSpawnInterval != 6;
