@@ -1660,15 +1660,23 @@ namespace KaosesTweaks.Settings
         [SettingPropertyGroup("{=BT_Settings_009000}Misc")]
         public bool UnlimitedWanderersPatch { get; set; } = false;
 
-        /* Disable in 1.5.7.2 until we understand changes to the main quest.
-        [SettingPropertyBool("Enable Auto-Extension of the 'Stop the Conspiracy' Quest", RequireRestart = false, HintText = "Automatically extends the timer of the 'Stop the Conspiracy' quest as TW hasn't finished it yet.")]
-        public bool TweakedConspiracyQuestTimerEnabled { get; set; } = true;
-        */
-        #endregion
+        //~ MinimumLearningRate
+        #region MinimumLearningRate
+        [SettingPropertyFloatingInteger("{=KTMCM_XPMMLR}Minimum Learning Rate", 0.0f, 16.0f, "#0.00", RequireRestart = true,
+          HintText = "{=KTMCM_XPMMLRH}Sets the minimum learning rate [Native : 0.0].")]
+        [SettingPropertyGroup("{=BT_Settings_009000}Misc")]
+        public float MinimumLearningRate { get; set; } = 0.0f;
+        #endregion //~ LearningLimitMultipliers
 
-        //~ Party Speeds
-        #region Kaoses Party Speeds
-        [SettingPropertyFloatingInteger("{=KPS_MSL}Minimum Speed limit", 0.1f, 3.5f, Order = 2, RequireRestart = false,
+    /* Disable in 1.5.7.2 until we understand changes to the main quest.
+    [SettingPropertyBool("Enable Auto-Extension of the 'Stop the Conspiracy' Quest", RequireRestart = false, HintText = "Automatically extends the timer of the 'Stop the Conspiracy' quest as TW hasn't finished it yet.")]
+    public bool TweakedConspiracyQuestTimerEnabled { get; set; } = true;
+    */
+    #endregion
+
+    //~ Party Speeds
+    #region Kaoses Party Speeds
+    [SettingPropertyFloatingInteger("{=KPS_MSL}Minimum Speed limit", 0.1f, 3.5f, Order = 2, RequireRestart = false,
             HintText = "{=KPS_MSLH}Set the lowest speed allowed for any party, if a parties speed would fall below this it will changed to the limit. [Native: 1.0f]")] //, "#0%"
         [SettingPropertyGroup("{=KPS_PartySpeeds}Party Speeds" + "/" + "{=KPS_Gloabal}Global", GroupOrder = 3)]
         public float KaosesmininumSpeedAmount { get; set; } = 1.0f;
@@ -2710,14 +2718,6 @@ namespace KaosesTweaks.Settings
             HintText = "{=KTMCM_XPMH}Enable modifying XP tweak variables.")]
         [SettingPropertyGroup("{=KTMCM_CXPTweaks}XP Tweaks")]
         public bool MCMSkillsXp { get; set; } = false;
-
-        //~ MinimumLearningRate
-        #region MinimumLearningRate
-        [SettingPropertyFloatingInteger("{=KTMCM_XPMMLR}Minimum Learning Rate", 0.0f, 16.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_XPMMLRH}Sets the minimum learning rate [Native : 0.0].")]
-        [SettingPropertyGroup("{=KTMCM_CXPTweaks}XP Tweaks")]
-        public float MinimumLearningRate { get; set; } = 0.0f;
-        #endregion //~ LearningLimitMultipliers
 
         //~ Skills
         #region Skills
