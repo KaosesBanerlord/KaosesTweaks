@@ -2711,6 +2711,14 @@ namespace KaosesTweaks.Settings
         [SettingPropertyGroup("{=KTMCM_CXPTweaks}XP Tweaks")]
         public bool MCMSkillsXp { get; set; } = false;
 
+        //~ MinimumLearningRate
+        #region MinimumLearningRate
+        [SettingPropertyFloatingInteger("{=KTMCM_XPMMLR}Minimum Learning Rate", 0.0f, 16.0f, "#0%", RequireRestart = false,
+            HintText = "{=KTMCM_XPMMLRH}Sets the minimum learning rate [Native : 0.0].")]
+        [SettingPropertyGroup("{=KTMCM_CXPTweaks}XP Tweaks")]
+        public float MinimumLearningRate { get; set; } = 0.0f;
+        #endregion //~ LearningLimitMultipliers
+
         //~ Skills
         #region Skills
         [SettingPropertyBool("{=KTMCM_XPMSM}Skill XP Modifiers " + "*", IsToggle = true, Order = 0, RequireRestart = true,
