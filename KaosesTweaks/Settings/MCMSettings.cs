@@ -1660,22 +1660,14 @@ namespace KaosesTweaks.Settings
         [SettingPropertyGroup("{=BT_Settings_009000}Misc")]
         public bool UnlimitedWanderersPatch { get; set; } = false;
 
-        //~ MinimumLearningRate
-        #region MinimumLearningRate
-        [SettingPropertyFloatingInteger("{=KTMCM_XPMMLR}Minimum Learning Rate", 0.0f, 16.0f, "#0.00", RequireRestart = true,
-          HintText = "{=KTMCM_XPMMLRH}Sets the minimum learning rate [Native : 0.0].")]
-        [SettingPropertyGroup("{=BT_Settings_009000}Misc")]
-        public float MinimumLearningRate { get; set; } = 0.0f;
-        #endregion //~ LearningLimitMultipliers
+        /* Disable in 1.5.7.2 until we understand changes to the main quest.
+        [SettingPropertyBool("Enable Auto-Extension of the 'Stop the Conspiracy' Quest", RequireRestart = false, HintText = "Automatically extends the timer of the 'Stop the Conspiracy' quest as TW hasn't finished it yet.")]
+        public bool TweakedConspiracyQuestTimerEnabled { get; set; } = true;
+        */
+        #endregion
 
-    /* Disable in 1.5.7.2 until we understand changes to the main quest.
-    [SettingPropertyBool("Enable Auto-Extension of the 'Stop the Conspiracy' Quest", RequireRestart = false, HintText = "Automatically extends the timer of the 'Stop the Conspiracy' quest as TW hasn't finished it yet.")]
-    public bool TweakedConspiracyQuestTimerEnabled { get; set; } = true;
-    */
-    #endregion
-
-    //~ Party Speeds
-    #region Kaoses Party Speeds
+        //~ Party Speeds
+        #region Kaoses Party Speeds
     [SettingPropertyFloatingInteger("{=KPS_MSL}Minimum Speed limit", 0.1f, 3.5f, Order = 2, RequireRestart = false,
             HintText = "{=KPS_MSLH}Set the lowest speed allowed for any party, if a parties speed would fall below this it will changed to the limit. [Native: 1.0f]")] //, "#0%"
         [SettingPropertyGroup("{=KPS_PartySpeeds}Party Speeds" + "/" + "{=KPS_Gloabal}Global", GroupOrder = 3)]
@@ -2864,6 +2856,14 @@ namespace KaosesTweaks.Settings
             HintText = "{=KTMCM_XPMLRMH}Multiply Learning Rate by the multiplier [Native : 1.0[100%]].")]
         [SettingPropertyGroup("{=KTMCM_CXPTweaks}XP Tweaks" + "/" + "{=KTMCM_CLearning}Learning Rate")]
         public float LearningRateMultiplier { get; set; } = 1.0f;
+
+        //~ MinimumLearningRate
+        #region MinimumLearningRate
+        [SettingPropertyFloatingInteger("{=KTMCM_XPMMLR}Minimum Learning Rate", 0.0f, 16.0f, "#0.00", RequireRestart = true,
+          HintText = "{=KTMCM_XPMMLRH}Sets the minimum learning rate [Native : 0.0].")]
+        [SettingPropertyGroup("{=KTMCM_CXPTweaks}XP Tweaks" + "/" + "{=KTMCM_CLearning}Learning Rate")]
+        public float MinimumLearningRate { get; set; } = 0.0f;
+        #endregion //~ LearningLimitMultipliers
         #endregion //~ LearningRateMultipliers
 
         //~ LearningLimitMultipliers
