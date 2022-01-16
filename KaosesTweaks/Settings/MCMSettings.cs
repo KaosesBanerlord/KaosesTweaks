@@ -647,12 +647,12 @@ namespace KaosesTweaks.Settings
         [SettingPropertyGroup("{=BT_Settings_003000}Clan Tweaks" + "/" + "{=KTMCM_CCompanionLimit}Companion Limit")]
         public bool ClanCompanionLimitEnabled { get; set; } = false;
 
-        [SettingPropertyInteger("{=KTMCM_CLMCLBC}Bonus Companions", 0, 10, "0 Companions", Order = 0, RequireRestart = false,
+        [SettingPropertyInteger("{=KTMCM_CLMCLBC}Bonus Companions", 0, 50, "0 Companions", Order = 0, RequireRestart = false,
             HintText = "{=KTMCM_CLMCLBCH}Additional Companion limit per clan tier [Native: 0].")]
         [SettingPropertyGroup("{=BT_Settings_003000}Clan Tweaks" + "/" + "{=KTMCM_CCompanionLimit}Companion Limit")]
         public int ClanAdditionalCompanionLimit { get; set; } = 0;
 
-        [SettingPropertyInteger("{=BT_Settings_003101}Base Companion Limit", 1, 20, "0 Companions", Order = 0, RequireRestart = false,
+        [SettingPropertyInteger("{=BT_Settings_003101}Base Companion Limit", 1, 50, "0 Companions", Order = 0, RequireRestart = false,
             HintText = "{=BT_Settings_003101_Desc}Sets the base companion limit. [Native: 3].")]
         [SettingPropertyGroup("{=BT_Settings_003000}Clan Tweaks" + "/" + "{=KTMCM_CCompanionLimit}Companion Limit")]
         public int ClanCompanionBaseLimit { get; set; } = 3;
