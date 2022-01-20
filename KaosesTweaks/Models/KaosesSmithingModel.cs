@@ -208,10 +208,13 @@ namespace KaosesTweaks.Models
         //RefiningFormula(CraftingMaterials input1, int input1Count, CraftingMaterials input2, int input2Count, CraftingMaterials output, int outputCount = 1, CraftingMaterials output2 = CraftingMaterials.IronOre, int output2Count = 0);
         public override IEnumerable<Crafting.RefiningFormula> GetRefiningFormulas(Hero weaponsmith)
         {
-            yield return new Crafting.RefiningFormula(CraftingMaterials.Wood, GetModifiedFormulaInputCost(2), CraftingMaterials.Iron1, GetModifiedFormulaInputCost(0), CraftingMaterials.Charcoal, GetModifiedFormulaOutPut(1), CraftingMaterials.IronOre, 0);
             if (weaponsmith.GetPerkValue(DefaultPerks.Crafting.CharcoalMaker))
             {
                 yield return new Crafting.RefiningFormula(CraftingMaterials.Wood, GetModifiedFormulaInputCost(2), CraftingMaterials.Iron1, GetModifiedFormulaInputCost(0), CraftingMaterials.Charcoal, GetModifiedFormulaOutPut(3), CraftingMaterials.IronOre, GetModifiedFormulaOutPut(0));
+            }
+            else
+            {
+                yield return new Crafting.RefiningFormula(CraftingMaterials.Wood, GetModifiedFormulaInputCost(2), CraftingMaterials.Iron1, GetModifiedFormulaInputCost(0), CraftingMaterials.Charcoal, GetModifiedFormulaOutPut(1), CraftingMaterials.IronOre, 0);
             }
             yield return new Crafting.RefiningFormula(CraftingMaterials.IronOre, GetModifiedFormulaInputCost(1), CraftingMaterials.Charcoal, GetModifiedFormulaInputCost(1), CraftingMaterials.Iron1, GetModifiedFormulaOutPut(weaponsmith.GetPerkValue(DefaultPerks.Crafting.IronMaker) ? 3 : 2), CraftingMaterials.IronOre, 0);
             yield return new Crafting.RefiningFormula(CraftingMaterials.Iron1, GetModifiedFormulaInputCost(1), CraftingMaterials.Charcoal, GetModifiedFormulaInputCost(1), CraftingMaterials.Iron2, GetModifiedFormulaOutPut(1), CraftingMaterials.IronOre, 0);

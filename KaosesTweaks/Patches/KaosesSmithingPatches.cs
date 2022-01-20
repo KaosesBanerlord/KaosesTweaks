@@ -179,7 +179,7 @@ namespace KaosesTweaks.Patches
 
             if (MCMSettings.Instance is { } settings && settings.PreventSmeltingLockedItems)
             {
-                List<string> locked_items = Campaign.Current.GetCampaignBehavior<ViewDataTracker>().InventoryGetLocks().ToList<string>();
+                List<string> locked_items = Campaign.Current.GetCampaignBehavior<ViewDataTrackerCampaignBehavior>().GetInventoryLocks().ToList<string>();
 
                 bool isLocked(ItemRosterElement item)
                 {
