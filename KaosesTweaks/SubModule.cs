@@ -348,7 +348,7 @@ namespace KaosesTweaks
                     }
                     campaignGameStarter.AddModel(new KaosesBattleRewardModel());
                 }
-                if (settings.MCMCharacterDevlopmentModifiers || Statics._settings.LearningRateEnabled || Statics._settings.LearningLimitEnabled)
+                if (settings.MCMCharacterDevlopmentModifiers || Statics._settings.LearningRateMultiplier != 1.0  || Statics._settings.LearningLimitEnabled)
                 {
                     if (settings.Debug)
                     {

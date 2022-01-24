@@ -647,15 +647,20 @@ namespace KaosesTweaks.Settings
         [SettingPropertyGroup("{=BT_Settings_003000}Clan Tweaks" + "/" + "{=KTMCM_CCompanionLimit}Companion Limit")]
         public bool ClanCompanionLimitEnabled { get; set; } = false;
 
-        [SettingPropertyInteger("{=KTMCM_CLMCLBC}Bonus Companions", 0, 10, "0 Companions", Order = 0, RequireRestart = false,
+        [SettingPropertyInteger("{=KTMCM_CLMCLBC}Bonus Companions", 0, 50, "0 Companions", Order = 0, RequireRestart = false,
             HintText = "{=KTMCM_CLMCLBCH}Additional Companion limit per clan tier [Native: 0].")]
         [SettingPropertyGroup("{=BT_Settings_003000}Clan Tweaks" + "/" + "{=KTMCM_CCompanionLimit}Companion Limit")]
         public int ClanAdditionalCompanionLimit { get; set; } = 0;
 
-        [SettingPropertyInteger("{=BT_Settings_003101}Base Companion Limit", 1, 20, "0 Companions", Order = 0, RequireRestart = false,
+        [SettingPropertyInteger("{=BT_Settings_003101}Base Companion Limit", 1, 50, "0 Companions", Order = 0, RequireRestart = false,
             HintText = "{=BT_Settings_003101_Desc}Sets the base companion limit. [Native: 3].")]
         [SettingPropertyGroup("{=BT_Settings_003000}Clan Tweaks" + "/" + "{=KTMCM_CCompanionLimit}Companion Limit")]
         public int ClanCompanionBaseLimit { get; set; } = 3;
+
+        [SettingPropertyInteger("{=BT_Settings_00310}Companion Spawn Interval", 0, 20, "0 Weeks", Order = 0, RequireRestart = false,
+          HintText = "{=BT_Settings_003104_Desc}Number of weeks between a new companion being added to the world. Set to 0 for a new companion to be added to the taverns every week. [Native: 6]")]
+        [SettingPropertyGroup("{=BT_Settings_003000}Clan Tweaks" + "/" + "{=KTMCM_CCompanionLimit}Companion Limit")]
+        public int CompanionSpawnInterval { get; set; } = 6;
         #endregion //~ Companion Limit
         #endregion //~ Clan
 
@@ -697,10 +702,10 @@ namespace KaosesTweaks.Settings
             SettingPropertyGroup("{=BT_Settings_004000}Crafting Tweaks" + "/" + "{=BT_Settings_004100}Crafting Stamina")]
         public bool CraftingStaminaTweakEnabled { get; set; } = false;
 
-        [SettingPropertyInteger("{=BT_Settings_004101}Max Crafting Stamina", 100, 1000, "0 Stamina", Order = 2, RequireRestart = false,
-            HintText = "{=BT_Settings_004101_Desc}Native value is 400. Sets the maximum crafting stamina value."),
+        [SettingPropertyFloatingInteger("{=BT_Settings_004101}Max Crafting Stamina Multiplier", 0.0f, 10.0f, "0.00", Order = 2, RequireRestart = false,
+            HintText = "{=BT_Settings_004101_Desc}Multiply max crafting stamina by the multiplier [Native: 1.0]"),
             SettingPropertyGroup("{=BT_Settings_004000}Crafting Tweaks" + "/" + "{=BT_Settings_004100}Crafting Stamina")]
-        public int MaxCraftingStamina { get; set; } = 400;
+        public float MaxCraftingStaminaMultiplier { get; set; } = 1.0f;
 
         //~ Stamina Gains
         #region StaminGain
@@ -1668,7 +1673,7 @@ namespace KaosesTweaks.Settings
 
         //~ Party Speeds
         #region Kaoses Party Speeds
-        [SettingPropertyFloatingInteger("{=KPS_MSL}Minimum Speed limit", 0.1f, 3.5f, Order = 2, RequireRestart = false,
+    [SettingPropertyFloatingInteger("{=KPS_MSL}Minimum Speed limit", 0.1f, 3.5f, Order = 2, RequireRestart = false,
             HintText = "{=KPS_MSLH}Set the lowest speed allowed for any party, if a parties speed would fall below this it will changed to the limit. [Native: 1.0f]")] //, "#0%"
         [SettingPropertyGroup("{=KPS_PartySpeeds}Party Speeds" + "/" + "{=KPS_Gloabal}Global", GroupOrder = 3)]
         public float KaosesmininumSpeedAmount { get; set; } = 1.0f;
@@ -2613,12 +2618,12 @@ namespace KaosesTweaks.Settings
             SettingPropertyGroup("{=BT_Settings_008900}Workshops" + "/" + "{=BT_Settings_008901}Workshop Count Limit")]
         public bool MaxWorkshopCountTweakEnabled { get; set; } = false;
 
-        [SettingPropertyInteger("{=BT_Settings_008902}Base Workshop Count Limit", 0, 20, "0 Workshops", RequireRestart = false, Order = 2,
+        [SettingPropertyInteger("{=BT_Settings_008902}Base Workshop Count Limit", 0, 159, "0 Workshops", RequireRestart = false, Order = 2,
             HintText = "{=BT_Settings_008902_Desc}Native value is 1. Sets the base maximum number of workshops you can have."),
             SettingPropertyGroup("{=BT_Settings_008900}Workshops" + "/" + "{=BT_Settings_008901}Workshop Count Limit")]
         public int BaseWorkshopCount { get; set; } = 1;
 
-        [SettingPropertyInteger("{=BT_Settings_008903}Bonus Workshops Per Clan Tier", 0, 5, "0 Shops/Tier", RequireRestart = false, Order = 3,
+        [SettingPropertyInteger("{=BT_Settings_008903}Bonus Workshops Per Clan Tier", 0, 50, "0 Shops/Tier", RequireRestart = false, Order = 3,
             HintText = "{=BT_Settings_008903_Desc}Native value is 1. Sets the base maximum number of workshops you can have and the limit increase gained per clan tier."),
             SettingPropertyGroup("{=BT_Settings_008900}Workshops" + "/" + "{=BT_Settings_008901}Workshop Count Limit")]
         public int BonusWorkshopsPerClanTier { get; set; } = 1;
@@ -2688,6 +2693,19 @@ namespace KaosesTweaks.Settings
         [SettingPropertyGroup("{=BT_Settings_008900}Workshops" + "/" + "{=KTMCM_CBankruptcy}Bankruptcy")]
         public int WorkShopBankruptcyValue { get; set; } = 3;
         #endregion //~ Bankruptcy
+        
+        //~ Workshop Ownership Changes
+        #region Workshop Ownership Changes
+        [SettingPropertyBool("{=BT_Settings_008921}Workshops Kept on War Declarations", Order = 0, RequireRestart = true,
+            HintText = "{=BT_Settings_008922}Allows Player to Keep Their Workshops When a Kingdom Declares War [Native : false].")]
+        [SettingPropertyGroup("{=BT_Settings_008900}Workshops" + "/" + "{=BT_Settings_008920}Workshop Ownership Changes")]
+        public bool KeepWorkshopsOnWarDeclaration { get; set; } = false;
+
+        [SettingPropertyBool("{=BT_Settings_008923}Workshops Kept on Bankruptcy", Order = 0, RequireRestart = true,
+            HintText = "{=BT_Settings_008924}Allows Player to Keep Their Workshops on Bankruptcy [Native : false].")]
+        [SettingPropertyGroup("{=BT_Settings_008900}Workshops" + "/" + "{=BT_Settings_008920}Workshop Ownership Changes")]
+        public bool KeepWorkshopsOnBankruptcy { get; set; } = false;
+        #endregion //~ Workshop Ownership Changes
         #endregion //~ Workshops
 
         //~ XP Tweaks
@@ -2842,6 +2860,14 @@ namespace KaosesTweaks.Settings
             HintText = "{=KTMCM_XPMLRMH}Multiply Learning Rate by the multiplier [Native : 1.0[100%]].")]
         [SettingPropertyGroup("{=KTMCM_CXPTweaks}XP Tweaks" + "/" + "{=KTMCM_CLearning}Learning Rate")]
         public float LearningRateMultiplier { get; set; } = 1.0f;
+
+        //~ MinimumLearningRate
+        #region MinimumLearningRate
+        [SettingPropertyFloatingInteger("{=KTMCM_XPMMLR}Minimum Learning Rate", 0.0f, 16.0f, "#0.00", RequireRestart = true,
+          HintText = "{=KTMCM_XPMMLRH}Sets the minimum learning rate [Native : 0.0].")]
+        [SettingPropertyGroup("{=KTMCM_CXPTweaks}XP Tweaks" + "/" + "{=KTMCM_CLearning}Learning Rate")]
+        public float MinimumLearningRate { get; set; } = 0.0f;
+        #endregion //~ LearningLimitMultipliers
         #endregion //~ LearningRateMultipliers
 
         //~ LearningLimitMultipliers
@@ -3065,7 +3091,7 @@ namespace KaosesTweaks.Settings
 
                 //~ Stamina Tweaks
                 CraftingStaminaTweakEnabled = false,
-                MaxCraftingStamina = 400,
+                MaxCraftingStaminaMultiplier = 1.0f,
 
                 //~ Stamina Gains
                 CraftingStaminaGainAmount = 5,
@@ -3731,7 +3757,7 @@ namespace KaosesTweaks.Settings
 
                 //~ Stamina Tweaks
                 CraftingStaminaTweakEnabled = true,
-                MaxCraftingStamina = 400,
+                MaxCraftingStaminaMultiplier = 1.0f,
 
                 //~ Stamina Gains
                 CraftingStaminaGainAmount = 5,
@@ -4386,7 +4412,7 @@ namespace KaosesTweaks.Settings
                 PreventSmeltingLockedItems = false,
                 CraftingStaminaGainAmount = 10,
                 CraftingStaminaGainOutsideSettlementMultiplier = 1.0f,
-                MaxCraftingStamina = 400,
+                MaxCraftingStaminaMultiplier = 1.0f,
                 CraftingStaminaTweakEnabled = true,
                 //IgnoreCraftingStamina = false,
 

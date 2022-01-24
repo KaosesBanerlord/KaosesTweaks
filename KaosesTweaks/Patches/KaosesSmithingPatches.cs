@@ -98,10 +98,9 @@ namespace KaosesTweaks.Patches
     [HarmonyPatch(typeof(CraftingCampaignBehavior), "GetMaxHeroCraftingStamina")]
     public class GetMaxHeroCraftingStaminaPatch
     {
-        static bool Prefix(CraftingCampaignBehavior __instance, ref int __result)
+        static void Postfix(CraftingCampaignBehavior __instance, ref int __result)
         {
-            __result = MCMSettings.Instance is { } settings ? settings.MaxCraftingStamina : 100;
-            return false;
+            __result = MCMSettings.Instance is { } settings ? MathF.Round(settings.MaxCraftingStaminaMultiplier * __result)  : __result;
         }
 
         static bool Prepare() => MCMSettings.Instance is { } settings && settings.CraftingStaminaTweakEnabled;
@@ -125,18 +124,18 @@ namespace KaosesTweaks.Patches
             {
                 int curCraftingStamina = __instance.GetHeroCraftingStamina(hero);
 
-                if (!(MCMSettings.Instance is null) && curCraftingStamina < MCMSettings.Instance.MaxCraftingStamina)
+                if (!(MCMSettings.Instance is null) && curCraftingStamina < __instance.GetMaxHeroCraftingStamina(hero))
                 {
                     int staminaGainAmount = MCMSettings.Instance.CraftingStaminaGainAmount;
 
                     if (MCMSettings.Instance.CraftingStaminaGainOutsideSettlementMultiplier < 1 && hero.PartyBelongedTo?.CurrentSettlement == null)
                         staminaGainAmount = (int)Math.Ceiling(staminaGainAmount * MCMSettings.Instance.CraftingStaminaGainOutsideSettlementMultiplier);
 
-                    int diff = MCMSettings.Instance.MaxCraftingStamina - curCraftingStamina;
+                    int diff = __instance.GetMaxHeroCraftingStamina(hero) - curCraftingStamina;
                     if (diff < staminaGainAmount)
                         staminaGainAmount = diff;
 
-                    __instance.SetHeroCraftingStamina(hero, Math.Min(MCMSettings.Instance.MaxCraftingStamina, curCraftingStamina + staminaGainAmount));
+                    __instance.SetHeroCraftingStamina(hero, Math.Min(__instance.GetMaxHeroCraftingStamina(hero), curCraftingStamina + staminaGainAmount));
                 }
             }
             return false;
@@ -179,7 +178,7 @@ namespace KaosesTweaks.Patches
 
             if (MCMSettings.Instance is { } settings && settings.PreventSmeltingLockedItems)
             {
-                List<string> locked_items = Campaign.Current.GetCampaignBehavior<ViewDataTracker>().InventoryGetLocks().ToList<string>();
+                List<string> locked_items = Campaign.Current.GetCampaignBehavior<ViewDataTrackerCampaignBehavior>().GetInventoryLocks().ToList<string>();
 
                 bool isLocked(ItemRosterElement item)
                 {

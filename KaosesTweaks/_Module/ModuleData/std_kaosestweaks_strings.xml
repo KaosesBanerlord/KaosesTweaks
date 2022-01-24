@@ -545,6 +545,8 @@
     <string id="BT_Settings_003102_Desc" text="Native value is 1. Sets the bonus to companion limit per clan tier. This value is multiplied by your clan tier. Note that Leadership 'We Pledge Our Swords' perk will also increse this number by 1." />
     <string id="BT_Settings_003103" text="Enable Unlimited Wanderers Patch"/>
     <string id="BT_Settings_003103_Desc" text="Removes the soft cap on the maximum number of potential companions who can spawn. Native limits the # of wanderers to ~25. This will remove that limit. Note: Requires a new campaign to take effect, as the cap is set when a new game is generated. Credit to Bleinz for his UnlimitedWanderers mod." />
+    <string id="BT_Settings_003104" text="Companion Spawn Interval" />
+    <string id="BT_Settings_003104_Desc" text="Number of weeks between a new companion being added to the world. Set to 0 for a new companion to be added to the taverns every week. [Native: 6]" />
     <string id="BT_Settings_003200" text="Party Limits" />
     <string id="BT_Settings_003200_Desc" text="Changes the number of parties you and ai lords can field and the bonus gained per clan tier." />
     <string id="BT_Settings_003201" text="Player Parties Limit"/>
@@ -566,8 +568,8 @@
     <string id="BT_Settings_004000" text="Crafting Tweaks" />
     <string id="BT_Settings_004100" text="Crafting Stamina" />
     <string id="BT_Settings_004100_Desc" text="Enables tweaks which affect crafting stamina." />
-    <string id="BT_Settings_004101" text="Max Crafting Stamina"/>
-    <string id="BT_Settings_004101_Desc" text="Native value is 400. Sets the maximum crafting stamina value." />
+    <string id="BT_Settings_004101" text="Max Crafting Stamina Multiplier"/>
+    <string id="BT_Settings_004101_Desc" text="Multiply max crafting stamina by the multiplier [Native: 1.0]" />
     <string id="BT_Settings_004102" text="Crafting Stamina Gain"/>
     <string id="BT_Settings_004102_Desc" text="Native value is 5. You gain this amount of crafting stamina per hour." />
     <string id="BT_Settings_004103" text="Crafting Stamina Gain Outside Settlement"/>
@@ -883,6 +885,11 @@
     <string id="BT_Settings_008910_Desc" text="Alters the buying prices for input items of workshops."/>
     <string id="BT_Settings_008911" text="Workshop Products Buy Prices"/>
     <string id="BT_Settings_008911_Desc" text="Native value is 100%. Alters the buying prices for input items of workshops. Decrease for better profits." />
+    <string id="BT_Settings_008920" text="Workshop Ownership Changes"/>
+    <string id="BT_Settings_008921" text="Workshops Kept on War Declarations"/>
+    <string id="BT_Settings_008922" text="Allows Player to Keep Their Workshops When a Kingdom Declares War [Native : false]."/>
+    <string id="BT_Settings_008923" text="Workshops Kept on Bankruptcy"/>
+    <string id="BT_Settings_008924" text="Allows Player to Keep Their Workshops on Bankruptcy [Native : false]."/>
     <string id="BT_Settings_009000" text="Misc" />
     <string id="BT_Settings_009001" text="Disable Quest Troops Affecting Morale" />
     <string id="BT_Settings_009001_Desc" text="When enabled, quest troops such as Borrowed Troop in your party are ignored when party morale is calculated." />
