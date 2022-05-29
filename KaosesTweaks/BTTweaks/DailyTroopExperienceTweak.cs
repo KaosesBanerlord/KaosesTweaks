@@ -1,6 +1,8 @@
 ﻿using KaosesTweaks.Settings;
 using KaosesTweaks.Utils;
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.Party;
+using TaleWorlds.CampaignSystem.Roster;
 using TaleWorlds.Core;
 
 namespace KaosesTweaks.BTTweaks

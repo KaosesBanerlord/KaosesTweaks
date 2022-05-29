@@ -1,7 +1,8 @@
 ﻿using HarmonyLib;
 using KaosesTweaks.Settings;
 using TaleWorlds.CampaignSystem;
-using TaleWorlds.CampaignSystem.SandBox.GameComponents.Map;
+using TaleWorlds.CampaignSystem.GameComponents;
+using TaleWorlds.CampaignSystem.Settlements;
 
 namespace KaosesTweaks.Patches
 {

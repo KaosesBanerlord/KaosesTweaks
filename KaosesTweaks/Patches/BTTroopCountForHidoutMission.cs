@@ -2,7 +2,7 @@
 using KaosesTweaks.Settings;
 using KaosesTweaks.Utils;
 using System;
-using TaleWorlds.CampaignSystem.SandBox.GameComponents.Map;
+using TaleWorlds.CampaignSystem.GameComponents;
 
 namespace KaosesTweaks.Patches
 {

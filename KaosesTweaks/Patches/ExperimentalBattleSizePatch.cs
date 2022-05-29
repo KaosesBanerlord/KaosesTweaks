@@ -8,6 +8,9 @@ using System.Linq;
 using System.Reflection;
 using System.Reflection.Emit;
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.MapEvents;
+using TaleWorlds.CampaignSystem.Roster;
+using TaleWorlds.CampaignSystem.TroopSuppliers;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
@@ -134,7 +137,7 @@ namespace KaosesTweaks.Patches
 
         private static bool Prefix(MissionAgentSpawnLogic __instance)
         {
-            if (NumberOfTroopsCanBeSpawned > __instance.NumberOfTroopsCanBeSpawned)
+            if (NumberOfTroopsCanBeSpawned > MissionAgentSpawnLogic.MaxNumberOfAgentsForMission)
             {
                 int NumAttackersNew = __instance.NumberOfActiveAttackerTroops;
                 int NumDefendersNew = __instance.NumberOfActiveDefenderTroops;
@@ -150,7 +153,7 @@ namespace KaosesTweaks.Patches
             runs += 1;
             int mountAgents = 0;
             int mountNoRider = 0;
-            NumberOfTroopsCanBeSpawned = __instance.NumberOfTroopsCanBeSpawned;
+            NumberOfTroopsCanBeSpawned = MissionAgentSpawnLogic.MaxNumberOfAgentsForMission;
 
             foreach (Agent agent in __instance.Mission.AllAgents)
             {
@@ -178,8 +181,8 @@ namespace KaosesTweaks.Patches
                 if (Statics._settings.BattleSizeDebug)
                 {
                     IM.ColorGreenMessage("---------REPORT START------------");
-                    IM.ColorGreenMessage("Mounts: " + mountAgents + " | Troops: " + __instance.NumberOfActiveTroops + " | Agents: " + __instance.Mission.AllAgents.Count);
-                    IM.ColorGreenMessage("To be spawned: " + __instance.NumberOfRemainingTroops + " | Slots available: " + __instance.NumberOfTroopsCanBeSpawned);
+                    IM.ColorGreenMessage("Mounts: " + mountAgents + " | Troops: " + __instance.GetNumberOfPlayerControllableTroops() + " | Agents: " + __instance.Mission.AllAgents.Count);
+                    IM.ColorGreenMessage("To be spawned: " + __instance.NumberOfRemainingTroops + " | Slots available: " + MissionAgentSpawnLogic.MaxNumberOfAgentsForMission);
                     IM.ColorGreenMessage("Reinforcements mounted agent ratio: " + Math.Round(BattleSizePatchEx_PartyGroupTroopSupplier.mountfootratio, 2));
                 }
                 runs = 0;

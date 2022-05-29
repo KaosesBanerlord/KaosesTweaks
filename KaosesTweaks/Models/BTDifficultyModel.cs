@@ -1,6 +1,5 @@
 ﻿using KaosesTweaks.Settings;
-using TaleWorlds.CampaignSystem.SandBox.GameComponents;
-
+using TaleWorlds.CampaignSystem.GameComponents;
 
 namespace KaosesTweaks.Models
 {

@@ -4,6 +4,8 @@ using KaosesTweaks.Utils;
 using System;
 using System.Reflection;
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.Party;
+using TaleWorlds.CampaignSystem.Settlements;
 
 namespace KaosesTweaks.Patches
 {

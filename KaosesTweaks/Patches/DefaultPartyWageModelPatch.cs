@@ -1,15 +1,10 @@
 ﻿using HarmonyLib;
-using Helpers;
 using KaosesTweaks.Settings;
 using KaosesTweaks.Utils;
 using System;
-using System.Linq;
-using System.Reflection;
 using TaleWorlds.CampaignSystem;
-using TaleWorlds.CampaignSystem.SandBox.GameComponents.Party;
-using TaleWorlds.Core;
-using TaleWorlds.Library;
-using TaleWorlds.Localization;
+using TaleWorlds.CampaignSystem.GameComponents;
+using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Localization;
 
 namespace KaosesTweaks.Patches

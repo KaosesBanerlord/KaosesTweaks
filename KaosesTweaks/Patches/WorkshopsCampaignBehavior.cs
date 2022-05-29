@@ -4,7 +4,10 @@ using KaosesTweaks.Utils;
 using System;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
-using TaleWorlds.CampaignSystem.SandBox.CampaignBehaviors;
+using TaleWorlds.CampaignSystem.CampaignBehaviors;
+using TaleWorlds.CampaignSystem.Roster;
+using TaleWorlds.CampaignSystem.Settlements;
+using TaleWorlds.CampaignSystem.Settlements.Workshops;
 using TaleWorlds.Core;
 using TaleWorlds.Localization;
 
@@ -89,27 +92,27 @@ namespace KaosesTweaks.Patches
     [HarmonyPatch(typeof(ChangeOwnerOfWorkshopAction), "ApplyByWarDeclaration")]
     class KeepWorkshopsOnWarDeclarationPatch
     {
-      private static bool Prefix(Workshop workshop, Hero newOwner, WorkshopType workshopType, int capital, bool upgradable, TextObject customName = null)
-      {
-        if(MCMSettings.Instance is { } settings && settings.KeepWorkshopsOnWarDeclaration)
-          return false;
+        private static bool Prefix(Workshop workshop, Hero newOwner, WorkshopType workshopType, int capital, bool upgradable, TextObject customName = null)
+        {
+            if (MCMSettings.Instance is { } settings && settings.KeepWorkshopsOnWarDeclaration)
+                return false;
 
-        return true;
-      }
-      static bool Prepare() => MCMSettings.Instance is { } settings && settings.KeepWorkshopsOnWarDeclaration;
+            return true;
+        }
+        static bool Prepare() => MCMSettings.Instance is { } settings && settings.KeepWorkshopsOnWarDeclaration;
     }
 
     [HarmonyPatch(typeof(ChangeOwnerOfWorkshopAction), "ApplyByBankruptcy")]
     class KeepWorkshopsOnBankruptcyPatch
     {
-      private static bool Prefix(Workshop workshop, Hero newOwner, WorkshopType workshopType, int capital, bool upgradable, TextObject customName = null)
-      {
-        if (MCMSettings.Instance is { } settings && settings.KeepWorkshopsOnBankruptcy)
-          return false;
+        private static bool Prefix(Workshop workshop, Hero newOwner, WorkshopType workshopType, int capital, bool upgradable, TextObject customName = null)
+        {
+            if (MCMSettings.Instance is { } settings && settings.KeepWorkshopsOnBankruptcy)
+                return false;
 
-        return true;
-      }
-      static bool Prepare() => MCMSettings.Instance is { } settings && settings.KeepWorkshopsOnBankruptcy;
+            return true;
+        }
+        static bool Prepare() => MCMSettings.Instance is { } settings && settings.KeepWorkshopsOnBankruptcy;
     }
 
     /*

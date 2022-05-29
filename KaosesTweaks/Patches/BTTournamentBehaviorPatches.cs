@@ -1,9 +1,10 @@
 ﻿using HarmonyLib;
 using KaosesTweaks.Settings;
-using SandBox.TournamentMissions.Missions;
+using SandBox.Tournaments.MissionLogics;
 using System;
 using System.Reflection;
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.CharacterDevelopment;
 using TaleWorlds.Library;
 
 namespace KaosesTweaks.Patches

@@ -1,7 +1,7 @@
 ﻿using HarmonyLib;
 using KaosesTweaks.Settings;
 using System;
-using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.Settlements.Buildings;
 using TaleWorlds.Localization;
 
 namespace KaosesTweaks.Patches

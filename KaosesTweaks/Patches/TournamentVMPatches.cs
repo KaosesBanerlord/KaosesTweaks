@@ -1,15 +1,14 @@
 ﻿using HarmonyLib;
 using KaosesTweaks.Settings;
 using KaosesTweaks.Utils;
-using SandBox.TournamentMissions.Missions;
-using SandBox.ViewModelCollection;
 using SandBox.ViewModelCollection.Tournament;
 using System;
 using System.Linq;
 using System.Reflection;
 using System.Windows.Forms;
 using TaleWorlds.CampaignSystem;
-using TaleWorlds.CampaignSystem.SandBox.Source.TournamentGames;
+using TaleWorlds.CampaignSystem.CharacterDevelopment;
+using TaleWorlds.CampaignSystem.TournamentGames;
 using TaleWorlds.Core;
 
 

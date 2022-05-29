@@ -2,7 +2,8 @@
 using KaosesTweaks.Settings;
 using System;
 using TaleWorlds.CampaignSystem;
-using TaleWorlds.CampaignSystem.Barterables;
+using TaleWorlds.CampaignSystem.BarterSystem.Barterables;
+
 namespace KaosesTweaks.Patches
 {
     [HarmonyPatch(typeof(JoinKingdomAsClanBarterable), "GetUnitValueForFaction")]

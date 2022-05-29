@@ -1,6 +1,7 @@
 ﻿using KaosesTweaks;
 using KaosesTweaks.Common;
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Localization;
 
 namespace KaosesPartySpeeds.Objects

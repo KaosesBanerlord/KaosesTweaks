@@ -1,6 +1,6 @@
 ﻿using HarmonyLib;
 using KaosesTweaks.Settings;
-using SandBox.Source.Missions;
+using SandBox.Missions.MissionLogics;
 using System;
 using System.Collections;
 using System.Collections.Generic;

@@ -3,6 +3,7 @@ using KaosesTweaks.Settings;
 using System;
 using System.Reflection;
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Localization;
 
 namespace KaosesTweaks.Patches

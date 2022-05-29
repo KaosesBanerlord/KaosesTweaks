@@ -5,8 +5,9 @@ using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
+using TaleWorlds.CampaignSystem.CampaignBehaviors;
+using TaleWorlds.CampaignSystem.Conversation;
 using TaleWorlds.CampaignSystem.Conversation.Persuasion;
-using TaleWorlds.CampaignSystem.SandBox.CampaignBehaviors;
 
 /* Another chance at marriage */
 namespace KaosesTweaks.Patches

@@ -13,7 +13,10 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using TaleWorlds.CampaignSystem;
-using TaleWorlds.CampaignSystem.SandBox.CampaignBehaviors;
+using TaleWorlds.CampaignSystem.CampaignBehaviors;
+using TaleWorlds.CampaignSystem.Extensions;
+using TaleWorlds.CampaignSystem.MapEvents;
+using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Core;
 using TaleWorlds.MountAndBlade;
 
@@ -348,7 +351,7 @@ namespace KaosesTweaks
                     }
                     campaignGameStarter.AddModel(new KaosesBattleRewardModel());
                 }
-                if (settings.MCMCharacterDevlopmentModifiers || Statics._settings.LearningRateMultiplier != 1.0  || Statics._settings.LearningLimitEnabled)
+                if (settings.MCMCharacterDevlopmentModifiers || Statics._settings.LearningRateMultiplier != 1.0 || Statics._settings.LearningLimitEnabled)
                 {
                     if (settings.Debug)
                     {

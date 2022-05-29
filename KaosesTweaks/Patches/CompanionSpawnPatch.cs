@@ -1,22 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using HarmonyLib;
+﻿using HarmonyLib;
 using KaosesTweaks.Settings;
-using TaleWorlds.CampaignSystem.SandBox.CampaignBehaviors;
+using TaleWorlds.CampaignSystem.CampaignBehaviors;
 
 namespace KaosesTweaks.Patches
 {
-  [HarmonyPatch(typeof(UrbanCharactersCampaignBehavior), "WeeklyTick")]
-  class CompanionSpawnPatch
-  {
-    private static bool Prefix(ref int ____randomCompanionSpawnFrequencyInWeeks)
+    [HarmonyPatch(typeof(NotablesCampaignBehavior), "SpawnNotablesIfNeeded")]
+    class SpawnNotablesIfNeededPatch
     {
-      ____randomCompanionSpawnFrequencyInWeeks = MCMSettings.Instance.CompanionSpawnInterval;
-      return true;
+        private static bool Prefix(ref int ____randomCompanionSpawnFrequencyInWeeks)
+        {
+            //____randomCompanionSpawnFrequencyInWeeks = MCMSettings.Instance.CompanionSpawnInterval;
+            return true;
+        }
+        static bool Prepare() => MCMSettings.Instance is { } settings && settings.CompanionSpawnInterval != 6;
     }
-    static bool Prepare() => MCMSettings.Instance is { } settings && settings.CompanionSpawnInterval != 6;
-  }
 }
