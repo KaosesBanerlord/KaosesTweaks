@@ -81,7 +81,7 @@ namespace KaosesTweaks.Utils
         public static void QuickInformationMessage(string message)
         {
             //IM.ShowMessage(message, Color.ConvertStringToColor("#42FF00FF"), logToFile);
-            InformationManager.AddQuickInformation(new TextObject(message, null), 0, null, "");
+            InformationManager.DisplayMessage(new InformationMessage(new TextObject(message, null).ToString()));
         }
 
 

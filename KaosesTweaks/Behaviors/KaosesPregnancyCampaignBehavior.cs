@@ -11,6 +11,7 @@ using TaleWorlds.CampaignSystem.LogEntries;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
+using TaleWorlds.Library;
 using TaleWorlds.Localization;
 using TaleWorlds.SaveSystem;
 
@@ -257,7 +258,7 @@ namespace KaosesTweaks.Behaviors
                     textObject.SetTextVariable("DELIVERED_CHILDREN", new TextObject("{=EPbHr2DX}two healthy babies", null));
                 }
                 StringHelpers.SetCharacterProperties("MOTHER", mother.CharacterObject, textObject);
-                InformationManager.AddQuickInformation(textObject, 0, null, "");
+                InformationManager.DisplayMessage(new InformationMessage(textObject.ToString()));
             }
         }
 

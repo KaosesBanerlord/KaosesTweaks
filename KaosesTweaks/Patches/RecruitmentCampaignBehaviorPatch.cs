@@ -72,7 +72,7 @@ namespace KaosesTweaks.Patches
                                 {
                                     CultureObject cultureObject = (hero.CurrentSettlement != null) ? hero.CurrentSettlement.Culture : hero.Clan.Culture;
                                     CharacterObject basicTroop = cultureObject.BasicTroop;
-                                    CharacterObject basicVolunteer = Campaign.Current.Models.VolunteerProductionModel.GetBasicVolunteer(hero);
+                                    CharacterObject basicVolunteer = Campaign.Current.Models.VolunteerModel.GetBasicVolunteer(hero);
                                     bool flag2 = basicVolunteer != basicTroop;
 
                                     /*if (hero.VolunteerTypes[i] == basicTroop && HeroShouldGiveEliteTroop(hero))

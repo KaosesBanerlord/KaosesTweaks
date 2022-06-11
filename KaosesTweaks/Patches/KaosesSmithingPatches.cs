@@ -13,8 +13,8 @@ using TaleWorlds.CampaignSystem.CharacterDevelopment;
 using TaleWorlds.CampaignSystem.ComponentInterfaces;
 using TaleWorlds.CampaignSystem.GameComponents;
 using TaleWorlds.CampaignSystem.Roster;
-using TaleWorlds.CampaignSystem.ViewModelCollection;
-using TaleWorlds.CampaignSystem.ViewModelCollection.Craft.Smelting;
+using TaleWorlds.CampaignSystem.ViewModelCollection.WeaponCrafting;
+using TaleWorlds.CampaignSystem.ViewModelCollection.WeaponCrafting.Smelting;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
@@ -88,7 +88,7 @@ namespace KaosesTweaks.Patches
                                 ____openedParts.Add(craftingPiece);
                             }
                         }
-                        InformationManager.AddQuickInformation(new TextObject("{=p9F90bc0}KT All Smithing Parts Unlocked:", null), 0, null, "");
+                        InformationManager.DisplayMessage(new InformationMessage(new TextObject("{=p9F90bc0}KT All Smithing Parts Unlocked:", null).ToString()));
 
                     }
                 }

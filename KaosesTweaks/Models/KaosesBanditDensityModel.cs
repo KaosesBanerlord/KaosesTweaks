@@ -86,7 +86,7 @@ namespace KaosesTweaks.Models
         {
             get
             {
-                return MathF.Floor(6f * (2f + MiscHelper.GetGameProcess()));
+                return MathF.Floor((float)(6.0 * (2.0 + Campaign.Current.PlayerProgress)));
             }
         }
 
@@ -96,7 +96,7 @@ namespace KaosesTweaks.Models
         {
             get
             {
-                return MathF.Floor(1f + 5f * (1f + MiscHelper.GetGameProcess()));
+                return MathF.Floor((float)(1.0 + 5.0 * (1.0 + Campaign.Current.PlayerProgress)));
             }
         }
 

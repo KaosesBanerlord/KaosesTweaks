@@ -2,6 +2,7 @@
 using System;
 using TaleWorlds.CampaignSystem.Inventory;
 using TaleWorlds.CampaignSystem.ViewModelCollection;
+using TaleWorlds.CampaignSystem.ViewModelCollection.Inventory;
 using TaleWorlds.Core;
 
 namespace KaosesTweaks.Patches

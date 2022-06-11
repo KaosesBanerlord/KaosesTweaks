@@ -17,7 +17,7 @@ namespace KaosesTweaks.Patches
             {
                 if (__instance.IsBandit || __instance.IsBanditBossParty)
                 {
-                    float num1 = (float)(0.400000005960464 + 0.800000011920929 * MiscHelper.GetGameProcess());
+                    float num1 = (float)(0.400000005960464 + 0.800000011920929 * Campaign.Current.PlayerProgress);
                     int num2 = MBRandom.RandomInt(2);
                     float num3 = num2 == 0 ? MBRandom.RandomFloat : (float)(MBRandom.RandomFloat * (double)MBRandom.RandomFloat * MBRandom.RandomFloat * 4.0);
                     float num4 = num2 == 0 ? (float)(num3 * 0.800000011920929 + 0.200000002980232) : 1f + num3;
@@ -50,7 +50,7 @@ namespace KaosesTweaks.Patches
                 {
                     if (troopNumberLimit < 0)
                     {
-                        float gameProcess = MiscHelper.GetGameProcess();
+                        float gameProcess = Campaign.Current.PlayerProgress;
                         for (int index = 0; index < pt.Stacks.Count; ++index)
                         {
                             int numberToAdd = (int)(gameProcess * (double)(pt.Stacks[index].MaxValue - pt.Stacks[index].MinValue)) + pt.Stacks[index].MinValue;
@@ -96,7 +96,7 @@ namespace KaosesTweaks.Patches
                     troopNumberLimit = settings.PlayerCaravanPartySize;
                     if (troopNumberLimit < 0)
                     {
-                        float gameProcess = MiscHelper.GetGameProcess();
+                        float gameProcess = Campaign.Current.PlayerProgress;
                         for (int index = 0; index < pt.Stacks.Count; ++index)
                         {
                             int numberToAdd = (int)(gameProcess * (double)(pt.Stacks[index].MaxValue - pt.Stacks[index].MinValue)) + pt.Stacks[index].MinValue;

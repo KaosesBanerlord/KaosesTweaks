@@ -6,7 +6,7 @@ using TaleWorlds.CampaignSystem.Settlements;
 
 namespace KaosesTweaks.Patches
 {
-    [HarmonyPatch(typeof(DefaultVolunteerProductionModel), "GetDailyVolunteerProductionProbability")]
+    [HarmonyPatch(typeof(DefaultVolunteerModel), "GetDailyVolunteerProductionProbability")]
     class DefaultVolunteerProductionModelPatch
     {
         static void Postfix(Hero hero, int index, Settlement settlement, ref float __result)

@@ -16,11 +16,11 @@ namespace KaosesPartySpeeds.Model
     class KaosesPartySpeedCalculatingModel : DefaultPartySpeedCalculatingModel
     {
         // Token: 0x06002E24 RID: 11812 RVA: 0x000C20E4 File Offset: 0x000C02E4
-        public override ExplainedNumber CalculatePureSpeed(MobileParty mobileParty, bool includeDescriptions = false, int additionalTroopOnFootCount = 0, int additionalTroopOnHorseCount = 0)
+        public override ExplainedNumber CalculateBaseSpeed(MobileParty mobileParty, bool includeDescriptions = false, int additionalTroopOnFootCount = 0, int additionalTroopOnHorseCount = 0)
         {
             if (mobileParty.Army != null && mobileParty.Army.LeaderParty.AttachedParties.Contains(mobileParty))
             {
-                return CalculatePureSpeed(mobileParty.Army.LeaderParty, includeDescriptions, 0, 0);
+                return CalculateBaseSpeed(mobileParty.Army.LeaderParty, includeDescriptions, 0, 0);
             }
             PartyBase party = mobileParty.Party;
             int num = 0;
@@ -432,7 +432,7 @@ namespace KaosesPartySpeeds.Model
         private static readonly TextObject _culture = GameTexts.FindText("str_culture", null);
 
         // Token: 0x04000FDB RID: 4059
-        private const float BaseSpeed = 5f;
+        // private const float BaseSpeed = 5f;
 
         // Token: 0x04000FDC RID: 4060
         private const float MininumSpeed = 1f;

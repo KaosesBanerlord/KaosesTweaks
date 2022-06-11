@@ -16,7 +16,7 @@ namespace KaosesTweaks.BTTweaks
                 IM.ColorRedMessage("Error in Bannerlord Tweaks SmeltingHelper. Did not find" + item!.Name);
             }
 
-            return item.WeaponDesign.UsedPieces.Select(x => x.CraftingPiece).Where(x => x != null && x.IsValid && !Campaign.Current.GetCampaignBehavior<CraftingCampaignBehavior>().IsOpened(x));
+            return item.WeaponDesign.UsedPieces.Select(x => x.CraftingPiece).Where(x => x != null && x.IsValid && !Campaign.Current.GetCampaignBehavior<CraftingCampaignBehavior>().IsOpened(x, item.WeaponDesign.Template));
         }
     }
 }

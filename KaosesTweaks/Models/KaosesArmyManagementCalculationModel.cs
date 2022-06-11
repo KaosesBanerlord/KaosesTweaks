@@ -191,7 +191,7 @@ namespace KaosesTweaks.Models
                 }*/
 
         // Token: 0x06002D70 RID: 11632 RVA: 0x000B5834 File Offset: 0x000B3A34
-        public override ExplainedNumber CalculateCohesionChange(Army army, bool includeDescriptions = false)
+        public override ExplainedNumber CalculateDailyCohesionChange(Army army, bool includeDescriptions = false)
         {
             //~ KT
             float baseChange = Statics._settings.armyCohesionBaseChange;
@@ -418,10 +418,10 @@ namespace KaosesTweaks.Models
         private float _minimumPartySizeScoreNeeded = 0.4f;
 
         // Token: 0x04000F67 RID: 3943
-        public const int InfluenceValuePerGold = 40;
+        // public const int InfluenceValuePerGold = 40;
 
         // Token: 0x04000F68 RID: 3944
-        public const int AverageCallToArmyCost = 20;
+        // public const int AverageCallToArmyCost = 20;
         #endregion
 
     }

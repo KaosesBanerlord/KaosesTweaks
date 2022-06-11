@@ -202,5 +202,9 @@ namespace KaosesTweaks.Listeners
         public void OnDeploymentPlanMade(BattleSideEnum battleSide, bool isFirstPlan)
         {
         }
+
+        public void OnInitialDeploymentPlanMade(BattleSideEnum battleSide, bool isFirstPlan)
+        {
+        }
     }
 }
