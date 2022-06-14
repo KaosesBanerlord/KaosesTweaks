@@ -657,10 +657,6 @@ namespace KaosesTweaks.Settings
         [SettingPropertyGroup("{=BT_Settings_003000}Clan Tweaks" + "/" + "{=KTMCM_CCompanionLimit}Companion Limit")]
         public int ClanCompanionBaseLimit { get; set; } = 3;
 
-        [SettingPropertyInteger("{=BT_Settings_00310}Companion Spawn Interval", 0, 20, "0 Weeks", Order = 0, RequireRestart = false,
-          HintText = "{=BT_Settings_003104_Desc}Number of weeks between a new companion being added to the world. Set to 0 for a new companion to be added to the taverns every week. [Native: 6]")]
-        [SettingPropertyGroup("{=BT_Settings_003000}Clan Tweaks" + "/" + "{=KTMCM_CCompanionLimit}Companion Limit")]
-        public int CompanionSpawnInterval { get; set; } = 6;
         #endregion //~ Companion Limit
         #endregion //~ Clan
 
@@ -1673,8 +1669,8 @@ namespace KaosesTweaks.Settings
 
         //~ Party Speeds
         #region Kaoses Party Speeds
-    [SettingPropertyFloatingInteger("{=KPS_MSL}Minimum Speed limit", 0.1f, 3.5f, Order = 2, RequireRestart = false,
-            HintText = "{=KPS_MSLH}Set the lowest speed allowed for any party, if a parties speed would fall below this it will changed to the limit. [Native: 1.0f]")] //, "#0%"
+        [SettingPropertyFloatingInteger("{=KPS_MSL}Minimum Speed limit", 0.1f, 3.5f, Order = 2, RequireRestart = false,
+                HintText = "{=KPS_MSLH}Set the lowest speed allowed for any party, if a parties speed would fall below this it will changed to the limit. [Native: 1.0f]")] //, "#0%"
         [SettingPropertyGroup("{=KPS_PartySpeeds}Party Speeds" + "/" + "{=KPS_Gloabal}Global", GroupOrder = 3)]
         public float KaosesmininumSpeedAmount { get; set; } = 1.0f;
 
@@ -2693,7 +2689,7 @@ namespace KaosesTweaks.Settings
         [SettingPropertyGroup("{=BT_Settings_008900}Workshops" + "/" + "{=KTMCM_CBankruptcy}Bankruptcy")]
         public int WorkShopBankruptcyValue { get; set; } = 3;
         #endregion //~ Bankruptcy
-        
+
         //~ Workshop Ownership Changes
         #region Workshop Ownership Changes
         [SettingPropertyBool("{=BT_Settings_008921}Workshops Kept on War Declarations", Order = 0, RequireRestart = true,

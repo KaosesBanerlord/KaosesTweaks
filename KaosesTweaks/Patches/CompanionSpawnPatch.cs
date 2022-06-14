@@ -4,6 +4,7 @@ using TaleWorlds.CampaignSystem.CampaignBehaviors;
 
 namespace KaosesTweaks.Patches
 {
+    /*
     [HarmonyPatch(typeof(NotablesCampaignBehavior), "SpawnNotablesIfNeeded")]
     class SpawnNotablesIfNeededPatch
     {
@@ -14,4 +15,5 @@ namespace KaosesTweaks.Patches
         }
         static bool Prepare() => MCMSettings.Instance is { } settings && settings.CompanionSpawnInterval != 6;
     }
+    */
 }
