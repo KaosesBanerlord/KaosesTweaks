@@ -36,7 +36,7 @@ namespace KaosesTweaks.Patches
             foreach (CraftingPiece piece in SmeltingHelper.GetNewPartsFromSmelting(item))
             {
                 if (piece != null && piece.Name != null && openPartMethodInfo != null)
-                    openPartMethodInfo.Invoke(__instance, new object[] { piece, true });
+                    openPartMethodInfo.Invoke(__instance, new object[] { piece, item.WeaponDesign.Template, true });
             }
         }
 
