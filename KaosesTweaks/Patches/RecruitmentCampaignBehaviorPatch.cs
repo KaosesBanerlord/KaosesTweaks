@@ -1,21 +1,25 @@
 ﻿using HarmonyLib;
-using TaleWorlds.CampaignSystem;
-using TaleWorlds.CampaignSystem.SandBox.CampaignBehaviors;
-using System.Linq;
-using TaleWorlds.Core;
-using Helpers;
 using KaosesTweaks.Settings;
+using System.Linq;
+using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.CampaignBehaviors;
+using TaleWorlds.CampaignSystem.Settlements;
+using TaleWorlds.Core;
 
 namespace KaosesTweaks.Patches
 {
-    [HarmonyPatch(typeof(RecruitmentCampaignBehavior), "UpdateVolunteersOfNotables")]
+    [HarmonyPatch(typeof(RecruitmentCampaignBehavior), "OnSettlementEntered")]
     class RecruitmentCampaignBehaviorPatch
     {
-        static void Postfix(bool initialRunning)
+        static void Postfix()
         {
             if (MCMSettings.Instance is { } settings && settings.BalancingUpgradeTroopsTweaksEnabled)
             {
-                foreach (Settlement settlement in from settlement in Campaign.Current.Settlements where settlement.OwnerClan != null && settlement.OwnerClan.Kingdom != null && ((settlement.IsTown && !settlement.Town.InRebelliousState) || (settlement.IsVillage && !settlement.Village.Bound.Town.InRebelliousState)) select settlement)
+                foreach (Settlement settlement in from settlement in Campaign.Current.Settlements
+                                                  where settlement.OwnerClan != null
+  && settlement.OwnerClan.Kingdom != null && ((settlement.IsTown && !settlement.Town.InRebelliousState)
+  || (settlement.IsVillage && !settlement.Village.Bound.Town.InRebelliousState))
+                                                  select settlement)
                 {
                     float num = 0f;
                     if (settings.KingdomBalanceStrengthVanEnabled)
@@ -56,21 +60,28 @@ namespace KaosesTweaks.Patches
                             _ => 0f
                         };
                     }
-                    if (num == 0f && settlement.OwnerClan.Kingdom.Leader == Hero.MainHero) num = (settings.KingdomBalanceStrengthCEKEnabled) ? settings.Player_CEK_Boost : settings.PlayerBoost;
-
+                    if (num == 0f && settlement.OwnerClan.Kingdom.Leader == Hero.MainHero) num = settings.KingdomBalanceStrengthCEKEnabled ? settings.Player_CEK_Boost : settings.PlayerBoost;
                     foreach (Hero hero in settlement.Notables)
                     {
                         if (hero.CanHaveRecruits)
                         {
                             for (int i = 0; i < 6; i++)
                             {
-                                if (hero.VolunteerTypes[i] != null && MBRandom.RandomFloat < (num * 0.5) && hero.VolunteerTypes[i].UpgradeTargets != null && hero.VolunteerTypes[i].Level < 20)
+                                if (hero.VolunteerTypes[i] != null && MBRandom.RandomFloat < (num * 0.5) && hero.VolunteerTypes[i].UpgradeTargets != null
+                                    && hero.VolunteerTypes[i].Level < 20)
                                 {
                                     CultureObject cultureObject = (hero.CurrentSettlement != null) ? hero.CurrentSettlement.Culture : hero.Clan.Culture;
                                     CharacterObject basicTroop = cultureObject.BasicTroop;
-                                    if (hero.VolunteerTypes[i] == basicTroop && HeroHelper.HeroShouldGiveEliteTroop(hero))
+                                    CharacterObject basicVolunteer = Campaign.Current.Models.VolunteerModel.GetBasicVolunteer(hero);
+                                    bool flag2 = basicVolunteer != basicTroop;
+
+                                    /*if (hero.VolunteerTypes[i] == basicTroop && HeroShouldGiveEliteTroop(hero))
                                     {
                                         hero.VolunteerTypes[i] = cultureObject.EliteBasicTroop;
+                                    }*/
+                                    if (hero.VolunteerTypes[i] == basicTroop && flag2)
+                                    {
+                                        hero.VolunteerTypes[i] = basicVolunteer;
                                     }
                                     else
                                     {
@@ -84,6 +95,14 @@ namespace KaosesTweaks.Patches
                 }
             }
         }
+
+
+        // Token: 0x0600003C RID: 60 RVA: 0x000046A4 File Offset: 0x000028A4
+        public static bool HeroShouldGiveEliteTroop(Hero sellerHero)
+        {
+            return (sellerHero.IsRuralNotable || sellerHero.IsHeadman) && sellerHero.Power >= 200f;
+        }
+
         static bool Prepare() => MCMSettings.Instance is { } settings && settings.KingdomBalanceStrengthEnabled;
     }
 }

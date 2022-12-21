@@ -1,9 +1,9 @@
 ﻿using HarmonyLib;
 using System;
-using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.Inventory;
 using TaleWorlds.CampaignSystem.ViewModelCollection;
+using TaleWorlds.CampaignSystem.ViewModelCollection.Inventory;
 using TaleWorlds.Core;
-using TaleWorlds.Core.ViewModelCollection;
 
 namespace KaosesTweaks.Patches
 {
@@ -18,7 +18,7 @@ namespace KaosesTweaks.Patches
         typeof(InventoryLogic),
         typeof(bool),
         typeof(bool),
-        typeof(ItemVM.UsageType),
+        typeof(InventoryMode),
         typeof(ItemRosterElement),
         typeof(InventoryLogic.InventorySide),
         typeof(string),

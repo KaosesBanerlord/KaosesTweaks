@@ -315,7 +315,7 @@ namespace KaosesTweaks.Settings
             SettingPropertyGroup("{=BT_Settings_000000}Battle Tweaks" + "/" + "{=KTMCM_BSTEXP}Dynamic Battle Sizes !BETA! " + "*")]
         public float SlotsForReinforcements { get; set; } = 0.5f;
 
-        [SettingPropertyInteger("{=KTMCM_BSTEXP_04}Horses on Battlefield", 0,500, "0 Horses", Order = 3, RequireRestart = false,
+        [SettingPropertyInteger("{=KTMCM_BSTEXP_04}Horses on Battlefield", 0, 500, "0 Horses", Order = 3, RequireRestart = false,
             HintText = "{=KTMCM_BSTEXP_04_Desc}The amount of horses that will stay on the battlefield. Any horses exceeding that amount will flee from the battlefield and free up agent slots."),
             SettingPropertyGroup("{=BT_Settings_000000}Battle Tweaks" + "/" + "{=KTMCM_BSTEXP}Dynamic Battle Sizes !BETA! " + "*")]
         public int RetreatHorses { get; set; } = 50;
@@ -379,6 +379,11 @@ namespace KaosesTweaks.Settings
             HintText = "{=BT_Settings_000502_Desc}Allows all single-handed weapon types to cut through and hit multiple people."),
             SettingPropertyGroup("{=BT_Settings_000000}Battle Tweaks" + "/" + "{=BT_Settings_000500}Weapon Cut Through Tweaks" + "*")]
         public bool SingleHandedWeaponsSliceThroughEnabled { get; set; } = false;
+
+        [SettingPropertyBool("{=Titan_Settings_000007}All Weapons Cut Through", Order = 3, RequireRestart = false,
+            HintText = "{=Titan_Settings_000007_Desc}Allows all weapon types to cut through and hit multiple people."),
+            SettingPropertyGroup("{=BT_Settings_000000}Battle Tweaks" + "/" + "{=BT_Settings_000500}Weapon Cut Through Tweaks" + "*")]
+        public bool AllWeaponsSliceThroughEnabled { get; set; } = false;
         #endregion //~ Weapon Cut Through Tweaks
         #endregion //~ Battle Tweaks 
 
@@ -642,15 +647,16 @@ namespace KaosesTweaks.Settings
         [SettingPropertyGroup("{=BT_Settings_003000}Clan Tweaks" + "/" + "{=KTMCM_CCompanionLimit}Companion Limit")]
         public bool ClanCompanionLimitEnabled { get; set; } = false;
 
-        [SettingPropertyInteger("{=KTMCM_CLMCLBC}Bonus Companions", 0, 10, "0 Companions", Order = 0, RequireRestart = false,
+        [SettingPropertyInteger("{=KTMCM_CLMCLBC}Bonus Companions", 0, 50, "0 Companions", Order = 0, RequireRestart = false,
             HintText = "{=KTMCM_CLMCLBCH}Additional Companion limit per clan tier [Native: 0].")]
         [SettingPropertyGroup("{=BT_Settings_003000}Clan Tweaks" + "/" + "{=KTMCM_CCompanionLimit}Companion Limit")]
         public int ClanAdditionalCompanionLimit { get; set; } = 0;
 
-        [SettingPropertyInteger("{=BT_Settings_003101}Base Companion Limit", 1, 20, "0 Companions", Order = 0, RequireRestart = false,
+        [SettingPropertyInteger("{=BT_Settings_003101}Base Companion Limit", 1, 50, "0 Companions", Order = 0, RequireRestart = false,
             HintText = "{=BT_Settings_003101_Desc}Sets the base companion limit. [Native: 3].")]
         [SettingPropertyGroup("{=BT_Settings_003000}Clan Tweaks" + "/" + "{=KTMCM_CCompanionLimit}Companion Limit")]
         public int ClanCompanionBaseLimit { get; set; } = 3;
+
         #endregion //~ Companion Limit
         #endregion //~ Clan
 
@@ -668,7 +674,7 @@ namespace KaosesTweaks.Settings
         public bool MCMSmithingHarmoneyPatches { get; set; } = false; // Activates the Model Override
 
         //~ Refining Formula Multipliers
-        #region
+        #region Refining Formula Multipliers
         [SettingPropertyBool("{=KT_CTRFME}Refining Formula Tweaks" + "*", Order = 1, RequireRestart = true, IsToggle = true,
             HintText = "{=KT_CTRFME_Desc}Enables refining formula tweaks which adjust formula cost and output values."),
             SettingPropertyGroup("{=BT_Settings_004000}Crafting Tweaks" + "/" + "{=KT_CTRFME}Refining Formula Tweaks")]
@@ -679,7 +685,7 @@ namespace KaosesTweaks.Settings
         [SettingPropertyGroup("{=BT_Settings_004000}Crafting Tweaks" + "/" + "{=KT_CTRFME}Refining Formula Tweaks")]
         public float RefiningFormulaInputCostValue { get; set; } = 1.0f;
 
-        [SettingPropertyFloatingInteger("{=KT_CTRFOTM}Input Cost Multiplier", 0.1f, 5.0f, "#0%", RequireRestart = false,
+        [SettingPropertyFloatingInteger("{=KT_CTRFOTM}Output Cost Multiplier", 0.1f, 5.0f, "#0%", RequireRestart = false,
             HintText = "{=KT_CTRFOTM_Desc}Multiply formula output result by the multiplier [Native : 1.0[100%]]. at 200% 2 wood = 2 charcoal, 300% 2 wood = 3 charcoal")]
         [SettingPropertyGroup("{=BT_Settings_004000}Crafting Tweaks" + "/" + "{=KT_CTRFME}Refining Formula Tweaks")]
         public float RefiningFormulaOutputValue { get; set; } = 1.0f;
@@ -692,10 +698,10 @@ namespace KaosesTweaks.Settings
             SettingPropertyGroup("{=BT_Settings_004000}Crafting Tweaks" + "/" + "{=BT_Settings_004100}Crafting Stamina")]
         public bool CraftingStaminaTweakEnabled { get; set; } = false;
 
-        [SettingPropertyInteger("{=BT_Settings_004101}Max Crafting Stamina", 100, 1000, "0 Stamina", Order = 2, RequireRestart = false,
-            HintText = "{=BT_Settings_004101_Desc}Native value is 400. Sets the maximum crafting stamina value."),
+        [SettingPropertyFloatingInteger("{=BT_Settings_004101}Max Crafting Stamina Multiplier", 0.0f, 10.0f, "0.00", Order = 2, RequireRestart = false,
+            HintText = "{=BT_Settings_004101_Desc}Multiply max crafting stamina by the multiplier [Native: 1.0]"),
             SettingPropertyGroup("{=BT_Settings_004000}Crafting Tweaks" + "/" + "{=BT_Settings_004100}Crafting Stamina")]
-        public int MaxCraftingStamina { get; set; } = 400;
+        public float MaxCraftingStaminaMultiplier { get; set; } = 1.0f;
 
         //~ Stamina Gains
         #region StaminGain
@@ -753,6 +759,7 @@ namespace KaosesTweaks.Settings
             SettingPropertyGroup("{=BT_Settings_004000}Crafting Tweaks" + "/" + "{=BT_Settings_004200}Smelting")]
         public bool AutoLearnSmeltedParts { get; set; } = false;
 
+
         [SettingPropertyBool("{=BT_Settings_004203}Enable Unlocking All Parts Fror Smelted Weapons", Order = 4, RequireRestart = true,
             HintText = "{=BT_Settings_004203_Desc}Enables unlocking all wepaon parts for crafting weapons on next game load."),
             SettingPropertyGroup("{=BT_Settings_004000}Crafting Tweaks" + "/" + "{=BT_Settings_004200}Smelting")]
@@ -760,7 +767,7 @@ namespace KaosesTweaks.Settings
         #endregion
 
         //~ Crafting Quality Bonus
-        #region
+        #region Crafting Quality Bonus
         [SettingPropertyBool("{=KT_CTCQME}Quality Tweaks" + "*", Order = 1, RequireRestart = true, IsToggle = true,
             HintText = "{=KT_CTCQME_Desc}Enablessetting the base bonus for each of the crafting bonus types, fine, master and legendary."),
             SettingPropertyGroup("{=BT_Settings_004000}Crafting Tweaks" + "/" + "{=KT_CTCQME}Quality Tweaks")]
@@ -780,8 +787,6 @@ namespace KaosesTweaks.Settings
             HintText = "{=KT_CTCQLBV_Desc}Set bonus base value for Legendary quality crafting [Native : 3].")]
         [SettingPropertyGroup("{=BT_Settings_004000}Crafting Tweaks" + "/" + "{=KT_CTCQME}Quality Tweaks")]
         public int CraftingQualityLegendaryValue { get; set; } = 2;
-
-
         #endregion //~ Crafting Quality Bonus
 
         //~ Xp Modifiers
@@ -1166,7 +1171,7 @@ namespace KaosesTweaks.Settings
         #region Arrows
         [SettingPropertyBool("{=KPM_AME}Arrows Multipliers Enabled", IsToggle = true, Order = 1, RequireRestart = false,
             HintText = "{=KPM_AMEH}Enables arrows multipliers for price and stack size")]
-        [SettingPropertyGroup("{=KTMCM_ItemTweaks}Item Tweaks" + "/" +"{=KPM_Arrows}Arrows")]
+        [SettingPropertyGroup("{=KTMCM_ItemTweaks}Item Tweaks" + "/" + "{=KPM_Arrows}Arrows")]
         public bool ArrowMultipliersEnabled { get; set; } = false;
 
         [SettingPropertyFloatingInteger("{=KPM_ASSM}Arrows Stack Multiplier", 0.1f, 10.0f, "#0%", Order = 2, RequireRestart = false,
@@ -1287,108 +1292,6 @@ namespace KaosesTweaks.Settings
         public float ItemTradeGoodsPriceMultiplier { get; set; } = 1.0f;
         #endregion
         #endregion //~ TradeGoods
-
-
-        //~ Arrows
-        #region Arrows
-        [SettingPropertyBool("{=KPM_AME}Arrows Multipliers Enabled", IsToggle = true, Order = 1, RequireRestart = false,
-            HintText = "{=KPM_AMEH}Enables arrows multipliers for price and stack size")]
-        [SettingPropertyGroup("{=KTMCM_ItemTweaks}Item Tweaks" + "/" + "{=KPM_Arrows}Arrows")]
-        public bool ArrowMultipliersEnabled { get; set; } = false;
-
-        [SettingPropertyFloatingInteger("{=KPM_ASSM}Arrows Stack Multiplier", 0.1f, 10.0f, "#0%", Order = 2, RequireRestart = false,
-            HintText = "{=KPM_SSMH}Multiply stack sizes by the multiplier [Native: 1.0(100%)].")]
-        [SettingPropertyGroup("{=KTMCM_ItemTweaks}Item Tweaks" + "/" + "{=KPM_Arrows}Arrows")]
-        public float ArrowMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KPM_APM}Arrows Price Multiplier", 0.1f, 10.0f, "#0%", Order = 2, RequireRestart = false,
-            HintText = "{=KPM_PMH}Multiply price by the multiplier [Native: 1.0(100%)].")]
-        [SettingPropertyGroup("{=KTMCM_ItemTweaks}Item Tweaks" + "/" + "{=KPM_Arrows}Arrows")]
-        public float ArrowValueMultiplier { get; set; } = 1.0f;
-        //[SettingPropertyFloatingInteger("{=KPM_WM}Weight Multiplier", 0.1f, 10.0f, "#0%", Order = 2, RequireRestart = false,
-        //    HintText = "{=KPM_WMH}Multiply item weight by the multiplier [Native: 1.0(100%)]")]
-        //[SettingPropertyGroup("{=KTMCM_ItemTweaks}Item Tweaks" + "/" + "{=KPM_Arrows}Arrows")]
-        //public float ArrowWeightMultiplier { get; set; } = 1.0f;
-        #endregion
-
-        //~ Bolts
-        #region Bolts
-        [SettingPropertyBool("{=KPM_BME}Bolts Multiplier Enabled", IsToggle = true, Order = 1, RequireRestart = false,
-            HintText = "{=KPM_BMEH}Enables Bolts stack Multiplier")]
-        [SettingPropertyGroup("{=KTMCM_ItemTweaks}Item Tweaks" + "/" + "{=KPM_Bolts}Bolts")]
-        public bool BoltsMultipliersEnabled { get; set; } = false;
-
-        [SettingPropertyFloatingInteger("{=KPM_BSSM}Bolts Stack Multiplier", 0.1f, 10.0f, "#0%", Order = 2, RequireRestart = false,
-            HintText = "{=KPM_SSMH}Multiply stack sizes by the multiplier [Native: 1.0(100%)].")]
-        [SettingPropertyGroup("{=KTMCM_ItemTweaks}Item Tweaks" + "/" + "{=KPM_Bolts}Bolts")]
-        public float BoltsMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KPM_BPM}Bolts Price Multiplier", 0.1f, 10.0f, "#0%", Order = 2, RequireRestart = false,
-            HintText = "{=KPM_PMH}Multiply price by the multiplier [Native: 1.0(100%)].")]
-        [SettingPropertyGroup("{=KTMCM_ItemTweaks}Item Tweaks" + "/" + "{=KPM_Bolts}Bolts")]
-        public float BoltsValueMultiplier { get; set; } = 1.0f;
-
-        //[SettingPropertyFloatingInteger("{=KPM_WM}Weight Multiplier", 0.1f, 10.0f, "#0%", Order = 2, RequireRestart = false,
-        //    HintText = "{=KPM_WMH}Multiply item weight by the multiplier [Native: 1.0(100%)].")]
-        //[SettingPropertyGroup("{=KTMCM_ItemTweaks}Item Tweaks" + "/" + "{=KPM_Bolts}Bolts")]
-        public float BoltsWeightMultiplier { get; set; } = 1.0f;
-        #endregion
-
-        //~ Thrown
-        #region Thrown
-        [SettingPropertyBool("{=KPM_TWME}Thrown Multipliers Enabled", IsToggle = true, Order = 1, RequireRestart = false,
-            HintText = "{=KPM_TWMEH}Enables Thrown Multipliers")]
-        [SettingPropertyGroup("{=KTMCM_ItemTweaks}Item Tweaks" + "/" + "{=KPM_Thrown}Thrown")]
-        public bool ThrownMultiplierEnabled { get; set; } = false;
-
-        [SettingPropertyFloatingInteger("{=KPM_TSSM}Thrown Stack Multiplier", 0.1f, 10.0f, "#0%", Order = 2, RequireRestart = false,
-            HintText = "{=KPM_SSMH}Multiply stack sizes by the multiplier [Native: 1.0(100%)].")]
-        [SettingPropertyGroup("{=KTMCM_ItemTweaks}Item Tweaks" + "/" + "{=KPM_Thrown}Thrown")]
-        public float ThrownMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KPM_TPM}Thrown Price Multiplier", 0.1f, 10.0f, "#0%", Order = 2, RequireRestart = false,
-            HintText = "{=KPM_PMH}Multiply price by the multiplier [Native: 1.0(100%)].")]
-        [SettingPropertyGroup("{=KTMCM_ItemTweaks}Item Tweaks" + "/" + "{=KPM_Thrown}Thrown")]
-        public float ThrownValueMultiplier { get; set; } = 1.0f;
-
-        //[SettingPropertyFloatingInteger("{=KPM_WM}Weight Multiplier", 0.1f, 10.0f, "#0%", Order = 2, RequireRestart = false,
-        //    HintText = "{=KPM_WMH}Multiply item weight by the multiplier [Native: 1.0(100%)].")]
-        //[SettingPropertyGroup("{=KTMCM_ItemTweaks}Item Tweaks" + "/" + "{=KPM_Thrown}Thrown")]
-        public float ThrownWeightMultiplier { get; set; } = 1.0f;
-
-        //[SettingPropertyBool("{=KPM_MTWFE}Thrown Mission stack Fix Enabled", Order = 1, RequireRestart = false,
-        //    HintText = "{KPM_MTWFEH}Enables a temp fix for thrown weapon stack sizes in missions")]
-        //[SettingPropertyGroup("{=KTMCM_ItemTweaks}Item Tweaks" + "/" + "{=KPM_Thrown}Thrown")]
-        public bool ThrownMissionFixMultiplierEnabled { get; set; } = false;
-        #endregion
-
-        #region Bullets
-        [SettingPropertyBool("{=KPM_BWME}Bullets Multipliers Enabled", IsToggle = true, Order = 1, RequireRestart = true,
-            HintText = "{=KPM_BWMEH}Enables Bullets Multipliers")]
-        [SettingPropertyGroup("{=KTMCM_ItemTweaks}Item Tweaks" + "/" + "{=KPM_Bullets}Bullets")]
-        public bool BulletsMultiplierEnabled { get; set; } = true;
-
-        [SettingPropertyFloatingInteger("{=KPM_SSM}Stack Size Multiplier", 0.1f, 10.0f, "#0%", Order = 2, RequireRestart = false,
-            HintText = "{=KPM_SSMH}Multiply stack sizes by the multiplier [Native: 1.0(100%)].")]
-        [SettingPropertyGroup("{=KTMCM_ItemTweaks}Item Tweaks" + "/" + "{=KPM_Bullets}Bullets")]
-        public float BulletsMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=KPM_PM}Price Multiplier", 0.1f, 10.0f, "#0%", Order = 2, RequireRestart = false,
-            HintText = "{=KPM_PMH}Multiply price by the multiplier [Native: 1.0(100%)].")]
-        [SettingPropertyGroup("{=KTMCM_ItemTweaks}Item Tweaks" + "/" + "{=KPM_Bullets}Bullets")]
-        public float BulletsValueMultiplier { get; set; } = 1.0f;
-
-        /*[SettingPropertyFloatingInteger("{=KPM_WM}Weight Multiplier", 0.1f, 10.0f, "#0%", Order = 2, RequireRestart = false,
-            HintText = "{=KPM_WMH}Multiply item weight by the multiplier [Native: 1.0(100%)].")]
-        [SettingPropertyGroup("{=KTMCM_ItemTweaks}Item Tweaks" + "/" + "{=KPM_Bullets}Bullets")]*/
-        public float BulletsWeightMultiplier { get; set; } = 1.0f;
-
-        /*
-        [SettingPropertyBool("{=KPM_MTWFE}Thrown Mission stack Fix Enabled", Order = 1, RequireRestart = false,
-            HintText = "{KPM_MTWFEH}Enables a temp fix for thrown weapon stack sizes in missions")]
-        [SettingPropertyGroup("{=KPM_WorkAround}Work around")]
-        public bool BulletsMissionFixMultiplierEnabled { get; set; } = false;*/
-        #endregion
         #endregion //~ End Items
 
         //~ ItemLocks 
@@ -1514,6 +1417,11 @@ namespace KaosesTweaks.Settings
         [SettingPropertyGroup("{=KTMCM_CKBRR}Killing Bandits Raises Relationships" + "/" + "{=KTMCM_CBandits}Bandits")]
         public bool IncludeMafia { get; set; } = false;
 
+        [SettingPropertyBool("{=Titan_Settings_000008}Report Relation Gain", Order = 0, RequireRestart = false,
+            HintText = "{=Titan_Settings_000008_desc}Set whether or not to report the relations gained from killing bandits to the player.")]
+        [SettingPropertyGroup("{=KTMCM_CKBRR}Killing Bandits Raises Relationships" + "/" + "{=KTMCM_CBandits}Bandits")]
+        public bool KillingBanditsRelationReportEnabled { get; set; } = true;
+
         #endregion //~ Killing Bandits Raises Relationships
 
         //~ Kingdom Tweaks
@@ -1547,6 +1455,11 @@ namespace KaosesTweaks.Settings
             HintText = "{=BT_Settings_005200_Desc}Enables tweaks which affect the balancing of kingdoms."),
             SettingPropertyGroup("{=BT_Settings_005000}Kingdom Tweaks" + "/" + "{=BT_Settings_005200}Faction Balancing", GroupOrder = 2)]
         public bool KingdomBalanceStrengthEnabled { get; set; } = false;
+
+        //[SettingPropertyBool("{=BT_Settings_005236}Faction Balancing Harmony " + "*", Order = 1, RequireRestart = true, 
+        //    HintText = "{=BT_Settings_005200_Desc}Enables faction balancing of kingdoms via hormony patches instead of model."),
+        //    SettingPropertyGroup("{=BT_Settings_005000}Kingdom Tweaks" + "/" + "{=BT_Settings_005200}Faction Balancing", GroupOrder = 2)]
+        public bool KingdomBalanceStrengthHarmonyEnabled { get; set; } = false;
 
         [SettingPropertyBool("{=BT_Settings_005201}Balancing Modifiers For Vanilla Kingdoms", Order = 2, RequireRestart = false, IsToggle = true,
             HintText = "{=BT_Settings_005201_Desc}Enables tweaks which affect the balancing of kingdoms in vanilla game."),
@@ -1757,7 +1670,7 @@ namespace KaosesTweaks.Settings
         //~ Party Speeds
         #region Kaoses Party Speeds
         [SettingPropertyFloatingInteger("{=KPS_MSL}Minimum Speed limit", 0.1f, 3.5f, Order = 2, RequireRestart = false,
-            HintText = "{=KPS_MSLH}Set the lowest speed allowed for any party, if a parties speed would fall below this it will changed to the limit. [Native: 1.0f]")] //, "#0%"
+                HintText = "{=KPS_MSLH}Set the lowest speed allowed for any party, if a parties speed would fall below this it will changed to the limit. [Native: 1.0f]")] //, "#0%"
         [SettingPropertyGroup("{=KPS_PartySpeeds}Party Speeds" + "/" + "{=KPS_Gloabal}Global", GroupOrder = 3)]
         public float KaosesmininumSpeedAmount { get; set; } = 1.0f;
 
@@ -1924,6 +1837,7 @@ namespace KaosesTweaks.Settings
 
         //~ Party Size Tweaks
         #region Party Size Tweaks
+
         [SettingPropertyBool("{=BT_Settings_006300}Party Size " + "*", Order = 1, RequireRestart = true, IsToggle = true,
             HintText = "{=BT_Settings_006300_Desc}Applies a bonues to you and AI lord's party size based on leadership and steward skills."),
             SettingPropertyGroup("{=BT_Settings_006000}Party Tweaks" + "/" + "{=BT_Settings_006300}Party Size", GroupOrder = 3)]
@@ -1953,6 +1867,31 @@ namespace KaosesTweaks.Settings
             HintText = "{=BT_Settings_006305_Desc}The percentage of the party size bonus set for the player to also apply for ai lords. 0% results in no bonus for ai. You may also want to increase food production amounts (Village Production, bigger demand)."),
             SettingPropertyGroup("{=BT_Settings_006000}Party Tweaks" + "/" + "{=BT_Settings_006300}Party Size")]
         public float PartySizeTweakAIFactor { get; set; } = 0f;
+
+        [SettingPropertyBool("{=Titan_Settings_000002}Enable Party Multipliers " + "*", Order = 7, IsToggle = true, RequireRestart = true,
+            HintText = "{=Titan_Settings_000002_desc}Multipliers that increase the size of Bandit, Villager, Caravan, and Militias. Tick the box to enable and configure. Restart Required."),
+            SettingPropertyGroup("{=BT_Settings_006000}Party Tweaks" + "/" + "{=BT_Settings_006300}Party Size" + "/" + "{=Titan_Settings_000001}Party Size Multipliers Group", GroupOrder = 5)]
+        public bool PartySizeMultipliersEnabled { get; set; } = false;
+
+        [SettingPropertyFloatingInteger("{=Titan_Settings_000003}Bandit Multiplier", 0.10f, 20f, "0%", Order = 8, RequireRestart = false,
+            HintText = "{=Titan_Settings_000003_desc}Multiply bandit party sizes by this amount."),
+            SettingPropertyGroup("{=BT_Settings_006000}Party Tweaks" + "/" + "{=BT_Settings_006300}Party Size" + "/" + "{=Titan_Settings_000001}Party Size Multipliers Group")]
+        public float PartySizeBanditMultiplier { get; set; } = 1f;
+
+        [SettingPropertyFloatingInteger("{=Titan_Settings_000004}Villager Multiplier", 0.10f, 20f, "0%", Order = 9, RequireRestart = false,
+           HintText = "{=Titan_Settings_000004_desc}Multiply villager party Sizes by this amount."),
+           SettingPropertyGroup("{=BT_Settings_006000}Party Tweaks" + "/" + "{=BT_Settings_006300}Party Size" + "/" + "{=Titan_Settings_000001}Party Size Multipliers Group")]
+        public float PartySizeVillagerMultiplier { get; set; } = 1f;
+
+        [SettingPropertyFloatingInteger("{=Titan_Settings_000005}Caravan Multiplier", 0.10f, 20f, "0%", Order = 10, RequireRestart = false,
+           HintText = "{=Titan_Settings_000005_desc}Multiply caravan party Sizes by this amount."),
+           SettingPropertyGroup("{=BT_Settings_006000}Party Tweaks" + "/" + "{=BT_Settings_006300}Party Size" + "/" + "{=Titan_Settings_000001}Party Size Multipliers Group")]
+        public float PartySizeCarvanMultiplier { get; set; } = 1f;
+
+        [SettingPropertyFloatingInteger("{=Titan_Settings_000006}Militia Multiplier", 0.10f, 20f, "0%", Order = 10, RequireRestart = false,
+           HintText = "{=Titan_Settings_000006_desc}Multiply Militia party Sizes by this amount."),
+           SettingPropertyGroup("{=BT_Settings_006000}Party Tweaks" + "/" + "{=BT_Settings_006300}Party Size" + "/" + "{=Titan_Settings_000001}Party Size Multipliers Group")]
+        public float PartySizeMilitiaMultiplier { get; set; } = 1f;
         #endregion //~ Party Size Tweaks
 
         //~ Party Wage Tweaks
@@ -1962,12 +1901,18 @@ namespace KaosesTweaks.Settings
             SettingPropertyGroup("{=BT_Settings_006000}Party Tweaks" + "/" + "{=BT_Settings_006400}Wages", GroupOrder = 4)]
         public bool PartyWageTweaksEnabled { get; set; } = false;
 
-        [SettingPropertyFloatingInteger("{=BT_Settings_006401}Party Wage Adjustment", .05f, 5f, "0%", Order = 2, RequireRestart = false,
+        //[SettingPropertyBool("{=BT_Settings_006405}Wage Harmony Patches " + "*", Order = 1, RequireRestart = true, IsToggle = true,
+        //    HintText = "{=BT_Settings_006405_Desc}Enables Harmony Patches instead of model."),
+        //    SettingPropertyGroup("{=BT_Settings_006000}Party Tweaks" + "/" + "{=BT_Settings_006400}Wages", GroupOrder = 4)]
+        public bool PartyWageTweaksHarmonyEnabled { get; set; } = false;
+
+
+        [SettingPropertyFloatingInteger("{=BT_Settings_006401}Party Wage Adjustment", 0f, 5f, "0%", Order = 2, RequireRestart = false,
             HintText = "{=BT_Settings_006401_Desc}Adjusts party wages to a % of native value. Native is 100%."),
             SettingPropertyGroup("{=BT_Settings_006000}Party Tweaks" + "/" + "{=BT_Settings_006400}Wages")]
         public float PartyWagePercent { get; set; } = 1.0f;
 
-        [SettingPropertyFloatingInteger("{=BT_Settings_006402}Garrison Wage Adjustment", .05f, 5f, "0%", Order = 3, RequireRestart = false,
+        [SettingPropertyFloatingInteger("{=BT_Settings_006402}Garrison Wage Adjustment", 0f, 5f, "0%", Order = 3, RequireRestart = false,
             HintText = "{=BT_Settings_006402_Desc}Adjusts garrison wages to a % of native value. Native is 100%."),
             SettingPropertyGroup("{=BT_Settings_006000}Party Tweaks" + "/" + "{=BT_Settings_006400}Wages")]
         public float GarrisonWagePercent { get; set; } = 1.0f;
@@ -1990,7 +1935,7 @@ namespace KaosesTweaks.Settings
         [SettingPropertyGroup("{=BT_Settings_006000}Party Tweaks" + "/" + "{=KTMCM_CFood}Food Consumption")]
         public bool PartyFoodConsumptionEnabled { get; set; } = false;
 
-        [SettingPropertyFloatingInteger("{=KTMCM_XPMMPFM}Party Food Consumption Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
+        [SettingPropertyFloatingInteger("{=KTMCM_XPMMPFM}Party Food Consumption Multiplier", 0f, 10.0f, "#0%", RequireRestart = false,
             HintText = "{=KTMCM_XPMMPFMH}Multiply Party food consumption by the multiplier [Native : 1.0[100%]]. allows increasing or decreasing daily consumption of food")]
         [SettingPropertyGroup("{=BT_Settings_006000}Party Tweaks" + "/" + "{=KTMCM_CFood}Food Consumption")]
         public float PartyFoodConsumptionMultiplier { get; set; } = 1.0f;
@@ -2244,7 +2189,6 @@ namespace KaosesTweaks.Settings
             "paleician",
             "republic",
             "ariorum"
-
         }, 0);
 
         [SettingPropertyInteger("{=BT_Settings_008103}Weeks for Settlement Culture Change", 1, 52, "0 Weeks", Order = 2, RequireRestart = false,
@@ -2670,12 +2614,12 @@ namespace KaosesTweaks.Settings
             SettingPropertyGroup("{=BT_Settings_008900}Workshops" + "/" + "{=BT_Settings_008901}Workshop Count Limit")]
         public bool MaxWorkshopCountTweakEnabled { get; set; } = false;
 
-        [SettingPropertyInteger("{=BT_Settings_008902}Base Workshop Count Limit", 0, 20, "0 Workshops", RequireRestart = false, Order = 2,
+        [SettingPropertyInteger("{=BT_Settings_008902}Base Workshop Count Limit", 0, 159, "0 Workshops", RequireRestart = false, Order = 2,
             HintText = "{=BT_Settings_008902_Desc}Native value is 1. Sets the base maximum number of workshops you can have."),
             SettingPropertyGroup("{=BT_Settings_008900}Workshops" + "/" + "{=BT_Settings_008901}Workshop Count Limit")]
         public int BaseWorkshopCount { get; set; } = 1;
 
-        [SettingPropertyInteger("{=BT_Settings_008903}Bonus Workshops Per Clan Tier", 0, 5, "0 Shops/Tier", RequireRestart = false, Order = 3,
+        [SettingPropertyInteger("{=BT_Settings_008903}Bonus Workshops Per Clan Tier", 0, 50, "0 Shops/Tier", RequireRestart = false, Order = 3,
             HintText = "{=BT_Settings_008903_Desc}Native value is 1. Sets the base maximum number of workshops you can have and the limit increase gained per clan tier."),
             SettingPropertyGroup("{=BT_Settings_008900}Workshops" + "/" + "{=BT_Settings_008901}Workshop Count Limit")]
         public int BonusWorkshopsPerClanTier { get; set; } = 1;
@@ -2745,6 +2689,19 @@ namespace KaosesTweaks.Settings
         [SettingPropertyGroup("{=BT_Settings_008900}Workshops" + "/" + "{=KTMCM_CBankruptcy}Bankruptcy")]
         public int WorkShopBankruptcyValue { get; set; } = 3;
         #endregion //~ Bankruptcy
+
+        //~ Workshop Ownership Changes
+        #region Workshop Ownership Changes
+        [SettingPropertyBool("{=BT_Settings_008921}Workshops Kept on War Declarations", Order = 0, RequireRestart = true,
+            HintText = "{=BT_Settings_008922}Allows Player to Keep Their Workshops When a Kingdom Declares War [Native : false].")]
+        [SettingPropertyGroup("{=BT_Settings_008900}Workshops" + "/" + "{=BT_Settings_008920}Workshop Ownership Changes")]
+        public bool KeepWorkshopsOnWarDeclaration { get; set; } = false;
+
+        [SettingPropertyBool("{=BT_Settings_008923}Workshops Kept on Bankruptcy", Order = 0, RequireRestart = true,
+            HintText = "{=BT_Settings_008924}Allows Player to Keep Their Workshops on Bankruptcy [Native : false].")]
+        [SettingPropertyGroup("{=BT_Settings_008900}Workshops" + "/" + "{=BT_Settings_008920}Workshop Ownership Changes")]
+        public bool KeepWorkshopsOnBankruptcy { get; set; } = false;
+        #endregion //~ Workshop Ownership Changes
         #endregion //~ Workshops
 
         //~ XP Tweaks
@@ -2895,10 +2852,18 @@ namespace KaosesTweaks.Settings
         [SettingPropertyGroup("{=KTMCM_CXPTweaks}XP Tweaks" + "/" + "{=KTMCM_CLearning}Learning Rate")]
         public bool LearningRateEnabled { get; set; } = false;
 
-        [SettingPropertyFloatingInteger("{=KTMCM_XPMLRM}Learning Rate Multiplier", 0.1f, 10.0f, "#0%", RequireRestart = false,
+        [SettingPropertyFloatingInteger("{=KTMCM_XPMLRM}Learning Rate Multiplier", 0.1f, 100.0f, "#0%", RequireRestart = false,
             HintText = "{=KTMCM_XPMLRMH}Multiply Learning Rate by the multiplier [Native : 1.0[100%]].")]
         [SettingPropertyGroup("{=KTMCM_CXPTweaks}XP Tweaks" + "/" + "{=KTMCM_CLearning}Learning Rate")]
         public float LearningRateMultiplier { get; set; } = 1.0f;
+
+        //~ MinimumLearningRate
+        #region MinimumLearningRate
+        [SettingPropertyFloatingInteger("{=KTMCM_XPMMLR}Minimum Learning Rate", 0.0f, 16.0f, "#0.00", RequireRestart = true,
+          HintText = "{=KTMCM_XPMMLRH}Sets the minimum learning rate [Native : 0.0].")]
+        [SettingPropertyGroup("{=KTMCM_CXPTweaks}XP Tweaks" + "/" + "{=KTMCM_CLearning}Learning Rate")]
+        public float MinimumLearningRate { get; set; } = 0.0f;
+        #endregion //~ LearningLimitMultipliers
         #endregion //~ LearningRateMultipliers
 
         //~ LearningLimitMultipliers
@@ -2908,10 +2873,10 @@ namespace KaosesTweaks.Settings
         [SettingPropertyGroup("{=KTMCM_CXPTweaks}XP Tweaks" + "/" + "{=KTMCM_CLearningLimit}Learning Limit")]
         public bool LearningLimitEnabled { get; set; } = false;
 
-        [SettingPropertyFloatingInteger("{=KTMCM_XPMLLM}Learning Limit Multiplier", 0.0f, 1.0f, "#0%", RequireRestart = false,
-            HintText = "{=KTMCM_XPMLLMH}Multiply Learning limit by the multiplier [Native : 0.0[0%]].")]
+        [SettingPropertyFloatingInteger("{=KTMCM_XPMLLM}Learning Limit Multiplier", 0.1f, 2.0f, "#0%", RequireRestart = false,
+            HintText = "{=KTMCM_XPMLLMH}Multiply Learning limit by the multiplier [Native : 1.0[100%]].")]
         [SettingPropertyGroup("{=KTMCM_CXPTweaks}XP Tweaks" + "/" + "{=KTMCM_CLearningLimit}Learning Limit")]
-        public float LearningLimitMultiplier { get; set; } = 0.0f;
+        public float LearningLimitMultiplier { get; set; } = 1.0f;
         #endregion //~ LearningLimitMultipliers
 
         //~ Troop Daily Experience Tweak
@@ -2959,7 +2924,7 @@ namespace KaosesTweaks.Settings
             SettingPropertyGroup("{=KTMCM_CXPTweaks}XP Tweaks" + "/" + "{=BT_Settings_000400}Troop Experience" + "/" + "{=BT_Settings_000401}Troop Battle Experience")]
         public bool TroopBattleExperienceMultiplierEnabled { get; set; } = false;
 
-        [SettingPropertyFloatingInteger("{=BT_Settings_000402}Troop Battle Experience Amount", .01f, 6f, "0%", RequireRestart = false, Order = 3,
+        [SettingPropertyFloatingInteger("{=BT_Settings_000402}Troop Battle Experience Amount", .01f, 10f, "0%", RequireRestart = false, Order = 3,
             HintText = "{=BT_Settings_000402_Desc}Native value is 100%. Modifies the amount of experience that ALL troops receive during fought battles (Note: Only troops, not heroes. Does not apply to simulated battles.)."),
             SettingPropertyGroup("{=KTMCM_CXPTweaks}XP Tweaks" + "/" + "{=BT_Settings_000400}Troop Experience" + "/" + "{=BT_Settings_000401}Troop Battle Experience")]
         public float TroopBattleExperienceMultiplier { get; set; } = 1.0f;
@@ -2969,30 +2934,12 @@ namespace KaosesTweaks.Settings
             SettingPropertyGroup("{=KTMCM_CXPTweaks}XP Tweaks" + "/" + "{=BT_Settings_000400}Troop Experience" + "/" + "{=BT_Settings_000403}Troop Simulation Experience", GroupOrder = 2)]
         public bool TroopBattleSimulationExperienceMultiplierEnabled { get; set; } = false;
 
-        [SettingPropertyFloatingInteger("{=BT_Settings_000404}Troop Simulation Experience Amount", .01f, 8f, "0%", RequireRestart = false, Order = 5,
+        [SettingPropertyFloatingInteger("{=BT_Settings_000404}Troop Simulation Experience Amount", .01f, 10f, "0%", RequireRestart = false, Order = 5,
             HintText = "{=BT_Settings_000404_Desc}Native value is 90%. Provides a multiplier to experience gained from simulated battles. This is applied to all simulated fights on the campaign map."),
             SettingPropertyGroup("{=KTMCM_CXPTweaks}XP Tweaks" + "/" + "{=BT_Settings_000400}Troop Experience" + "/" + "{=BT_Settings_000403}Troop Simulation Experience")]
         public float TroopBattleSimulationExperienceMultiplier { get; set; } = 0.9f;
         #endregion //~ Troop Experience Tweaks
         #endregion //~ XP Tweaks
-
-
-        //~ To be deleted in 1.5.10
-        [SettingPropertyBool("{=BT_Settings_001203}Damage to Friends Tweak", Order = 4, RequireRestart = false, IsToggle = true,
-            HintText = "{=BT_Settings_001203_Desc}Allows you to change the damage the player's friends receive."),
-            SettingPropertyGroup("{=BT_Settings_001000}Campaign Tweaks" + "/" + "{=BT_Settings_001200}Difficulty Tweaks" + "/" + "{=BT_Settings_001203}Damage to Friends Tweak", GroupOrder = 2)]
-        public bool DamageToFriendsTweakEnabled { get; set; } = false;
-
-        [SettingPropertyFloatingInteger("{=BT_Settings_001204}Damage to Friends Tweak Amount", 0.1f, 5.0f, "0%", RequireRestart = false, Order = 5,
-            HintText = "{=BT_Settings_001204_Desc}Native values: Very Easy: 30%, Easy: 67%, Realistic: 100%. This value is used to calculate the damage the player's friends receive."),
-            SettingPropertyGroup("{=BT_Settings_001000}Campaign Tweaks" + "/" + "{=BT_Settings_001200}Difficulty Tweaks" + "/" + "{=BT_Settings_001203}Damage to Friends Tweak")]
-        public float DamageToFriendsMultiplier { get; set; } = 1.0f;
-
-        [SettingPropertyFloatingInteger("{=BT_Settings_008702}Elite Ranged Militia Spawn Chance", 0.01f, 1f, "0%", RequireRestart = false, Order = 3,
-            HintText = "{=BT_Settings_008702_Desc}Native value is 10%. Sets the chance that the militia spawning in towns and castles are elite ranged troops."),
-            SettingPropertyGroup("{=BT_Settings_008000}Settlement Tweaks" + "/" + "{=BT_Settings_008700}Elite Militia")]
-        public float SettlementEliteRangedSpawnRateBonus { get; set; } = 0.1f;
-        //~ To be deleted in 1.5.10
 
         //~ MobilePartyViewDistance
         #region MobilePartyViewDistance
@@ -3017,7 +2964,7 @@ namespace KaosesTweaks.Settings
         #region Presets
         public override IDictionary<string, Func<BaseSettings>> GetAvailablePresets()
         {
-            var basePresets = base.GetAvailablePresets(); // include the 'Default' preset that MCM provides
+            IDictionary<string, Func<BaseSettings>>? basePresets = base.GetAvailablePresets(); // include the 'Default' preset that MCM provides
 
             basePresets.Add("native all off", () => new MCMSettings()
             {
@@ -3140,7 +3087,7 @@ namespace KaosesTweaks.Settings
 
                 //~ Stamina Tweaks
                 CraftingStaminaTweakEnabled = false,
-                MaxCraftingStamina = 400,
+                MaxCraftingStaminaMultiplier = 1.0f,
 
                 //~ Stamina Gains
                 CraftingStaminaGainAmount = 5,
@@ -3368,6 +3315,11 @@ namespace KaosesTweaks.Settings
                 StewardPartySizeBonusEnabled = false,
                 StewardPartySizeBonus = 0f,
                 PartySizeTweakAIFactor = 0f,
+                PartySizeMultipliersEnabled = false,
+                PartySizeBanditMultiplier = 1f,
+                PartySizeVillagerMultiplier = 1f,
+                PartySizeCarvanMultiplier = 1f,
+                PartySizeMilitiaMultiplier = 1f,
 
                 //~ Party Wage Tweaks
                 PartyWageTweaksEnabled = false,
@@ -3801,7 +3753,7 @@ namespace KaosesTweaks.Settings
 
                 //~ Stamina Tweaks
                 CraftingStaminaTweakEnabled = true,
-                MaxCraftingStamina = 400,
+                MaxCraftingStaminaMultiplier = 1.0f,
 
                 //~ Stamina Gains
                 CraftingStaminaGainAmount = 5,
@@ -3815,7 +3767,7 @@ namespace KaosesTweaks.Settings
 
                 //~ BT Smelting Tweaks
                 SmeltingTweakEnabled = true,
-                PreventSmeltingLockedItems = true,
+                PreventSmeltingLockedItems = false,
                 AutoLearnSmeltedParts = true,
 
 
@@ -4029,6 +3981,11 @@ namespace KaosesTweaks.Settings
                 StewardPartySizeBonusEnabled = true,
                 StewardPartySizeBonus = 0f,
                 PartySizeTweakAIFactor = 0f,
+                PartySizeMultipliersEnabled = true,
+                PartySizeBanditMultiplier = 1f,
+                PartySizeVillagerMultiplier = 1f,
+                PartySizeCarvanMultiplier = 1f,
+                PartySizeMilitiaMultiplier = 1f,
 
                 //~ Party Wage Tweaks
                 PartyWageTweaksEnabled = true,
@@ -4451,7 +4408,7 @@ namespace KaosesTweaks.Settings
                 PreventSmeltingLockedItems = false,
                 CraftingStaminaGainAmount = 10,
                 CraftingStaminaGainOutsideSettlementMultiplier = 1.0f,
-                MaxCraftingStamina = 400,
+                MaxCraftingStaminaMultiplier = 1.0f,
                 CraftingStaminaTweakEnabled = true,
                 //IgnoreCraftingStamina = false,
 

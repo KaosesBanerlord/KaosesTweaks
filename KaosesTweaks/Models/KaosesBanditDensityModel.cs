@@ -1,6 +1,8 @@
 ﻿using Helpers;
 using TaleWorlds.CampaignSystem;
-using TaleWorlds.CampaignSystem.SandBox.GameComponents.Map;
+using TaleWorlds.CampaignSystem.CharacterDevelopment;
+using TaleWorlds.CampaignSystem.GameComponents;
+using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Library;
 
 namespace KaosesTweaks.Models
@@ -84,7 +86,7 @@ namespace KaosesTweaks.Models
         {
             get
             {
-                return MBMath.Floor(6f * (2f + MiscHelper.GetGameProcess()));
+                return MathF.Floor((float)(6.0 * (2.0 + Campaign.Current.PlayerProgress)));
             }
         }
 
@@ -94,7 +96,7 @@ namespace KaosesTweaks.Models
         {
             get
             {
-                return MBMath.Floor(1f + 5f * (1f + MiscHelper.GetGameProcess()));
+                return MathF.Floor((float)(1.0 + 5.0 * (1.0 + Campaign.Current.PlayerProgress)));
             }
         }
 

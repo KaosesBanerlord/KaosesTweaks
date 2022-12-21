@@ -5,7 +5,7 @@ using System.Linq;
 using System.Reflection;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
-using TaleWorlds.CampaignSystem.SandBox.CampaignBehaviors;
+using TaleWorlds.CampaignSystem.CampaignBehaviors;
 
 namespace KaosesTweaks.BTTweaks
 {
@@ -15,7 +15,7 @@ namespace KaosesTweaks.BTTweaks
         public static void Apply(Campaign campaign)
         {
             if (campaign == null) throw new ArgumentNullException(nameof(campaign));
-            var escapeBehaviour = campaign.GetCampaignBehavior<PrisonerReleaseCampaignBehavior>();
+            PrisonerReleaseCampaignBehavior? escapeBehaviour = campaign.GetCampaignBehavior<PrisonerReleaseCampaignBehavior>();
             if (escapeBehaviour != null && CampaignEvents.DailyTickHeroEvent != null)
             {
                 CampaignEvents.DailyTickHeroEvent.ClearListeners(escapeBehaviour);
@@ -73,7 +73,7 @@ namespace KaosesTweaks.BTTweaks
 
         public static void DailyTick()
         {
-            foreach (Hero hero in Hero.All)
+            foreach (Hero hero in Hero.AllAliveHeroes)
             {
                 if (hero == null) return;
                 if (hero.PartyBelongedToAsPrisoner == null && hero.IsPrisoner && hero.IsAlive && !hero.IsActive && !hero.IsNotSpawned && !hero.IsReleased)

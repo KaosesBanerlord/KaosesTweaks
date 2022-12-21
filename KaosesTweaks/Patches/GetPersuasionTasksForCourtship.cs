@@ -5,8 +5,9 @@ using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
+using TaleWorlds.CampaignSystem.CampaignBehaviors;
+using TaleWorlds.CampaignSystem.Conversation;
 using TaleWorlds.CampaignSystem.Conversation.Persuasion;
-using TaleWorlds.CampaignSystem.SandBox.CampaignBehaviors;
 
 /* Another chance at marriage */
 namespace KaosesTweaks.Patches
@@ -29,7 +30,7 @@ namespace KaosesTweaks.Patches
             [HarmonyPatch("conversation_player_can_open_courtship_on_condition")]
             public static bool Prefix1(ref bool __result)
             {
-                CampaignTime lastAttempt = SubModule.LastAttempts.TryGetValue(Hero.OneToOneConversationHero, out var value)
+                CampaignTime lastAttempt = SubModule.LastAttempts.TryGetValue(Hero.OneToOneConversationHero, out CampaignTime value)
                     ? value
                     : CampaignTime.DaysFromNow(-1f);
 
@@ -42,6 +43,7 @@ namespace KaosesTweaks.Patches
                     __result = false;
                     return false;
                 }
+
                 return true;
             }
 

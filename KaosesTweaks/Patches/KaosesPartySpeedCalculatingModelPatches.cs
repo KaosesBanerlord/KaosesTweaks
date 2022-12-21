@@ -3,8 +3,7 @@ using KaosesPartySpeeds.Objects;
 using KaosesTweaks;
 using System;
 using TaleWorlds.CampaignSystem;
-using TaleWorlds.CampaignSystem.SandBox.GameComponents.Map;
-
+/*
 namespace KaosesPartySpeeds.Patches
 {
     [HarmonyPatch(typeof(DefaultPartySpeedCalculatingModel), "CalculateFinalSpeed")]
@@ -127,3 +126,4 @@ namespace KaosesPartySpeeds.Patches
 
 
 }
+*/

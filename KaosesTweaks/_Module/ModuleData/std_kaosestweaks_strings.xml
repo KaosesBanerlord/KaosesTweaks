@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <base xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xmlns:xsd="http://www.w3.org/2001/XMLSchema" type="string">
-	<tags>
-		<tag language="English" />
-	</tags>
-	<strings>
+  <tags>
+    <tag language="English" />
+  </tags>
+  <strings>
     <string id="KaosesTweaksModDisplayName" text="Kaoses Tweaks" />
     <string id="KTMCM_PriceT1" text="Price Tier1 Multiplier" />
     <string id="KTMCM_PriceT2" text="Price Tier2 Multiplier" />
@@ -192,32 +192,32 @@
     <string id="KTMCM_SMECSH" text="Enable modify the energy used for Smelting." />
     <string id="KTMCM_SMECSM" text="Energy Smithing" />
     <string id="KTMCM_SMECSMH" text="Multiply the energy used for Smelting by the multiplier [Native : 1.0[100%]]." />
-    <string id="KTMCM_AL" text="Item Auto Locks" />	
-    <string id="KTMCM_ALH" text="Allows for auto locking horses, food , and smithing materials." />	
-    <string id="KTMCM_ALHS" text="Horses" />	
-    <string id="KTMCM_ALHSH" text="Auto lock horses except lame horses." />	
-    <string id="KTMCM_ALF" text="Food" />	
-    <string id="KTMCM_ALFH" text="Auto lock all food." />	
-    <string id="KTMCM_ALIB1" text="Crude Iron" />	
-    <string id="KTMCM_ALIB1H" text="Auto lock Crude Iron." />	
-    <string id="KTMCM_ALIB2" text="Wrought Iron" />	
-    <string id="KTMCM_ALIB2H" text="Auto lock Wrought Iron." />	
-    <string id="KTMCM_ALIB3" text="Iron" />	
-    <string id="KTMCM_ALIB3H" text="Auto lock Iron." />	
-    <string id="KTMCM_ALIB4" text="Steel" />	
-    <string id="KTMCM_ALIB4H" text="Auto lock Steel." />	
-    <string id="KTMCM_ALIB5" text="Fine Steel" />	
-    <string id="KTMCM_ALIB5H" text="Auto lock Fine Steel." />	
-    <string id="KTMCM_ALIB6" text="Thamaskene Steel" />	
-    <string id="KTMCM_ALIB6H" text="Auto lock Thamaskene Steel." />	
-    <string id="KTMCM_ALIO" text="Iron Ore" />	
-    <string id="KTMCM_ALIOH" text="Auto lock Iron Ore ." />	
-    <string id="KTMCM_ALSO" text="Silver Ore" />	
-    <string id="KTMCM_ALSOH" text="Auto lock Silver Ore." />	
-    <string id="KTMCM_ALHW" text="Hardwood" />	
-    <string id="KTMCM_ALHWH" text="Auto lock Hardwood." />	
-    <string id="KTMCM_ALCC" text="Charcoal" />	
-    <string id="KTMCM_ALCCH" text="Auto lock Charcoal." />	
+    <string id="KTMCM_AL" text="Item Auto Locks" />
+    <string id="KTMCM_ALH" text="Allows for auto locking horses, food , and smithing materials." />
+    <string id="KTMCM_ALHS" text="Horses" />
+    <string id="KTMCM_ALHSH" text="Auto lock horses except lame horses." />
+    <string id="KTMCM_ALF" text="Food" />
+    <string id="KTMCM_ALFH" text="Auto lock all food." />
+    <string id="KTMCM_ALIB1" text="Crude Iron" />
+    <string id="KTMCM_ALIB1H" text="Auto lock Crude Iron." />
+    <string id="KTMCM_ALIB2" text="Wrought Iron" />
+    <string id="KTMCM_ALIB2H" text="Auto lock Wrought Iron." />
+    <string id="KTMCM_ALIB3" text="Iron" />
+    <string id="KTMCM_ALIB3H" text="Auto lock Iron." />
+    <string id="KTMCM_ALIB4" text="Steel" />
+    <string id="KTMCM_ALIB4H" text="Auto lock Steel." />
+    <string id="KTMCM_ALIB5" text="Fine Steel" />
+    <string id="KTMCM_ALIB5H" text="Auto lock Fine Steel." />
+    <string id="KTMCM_ALIB6" text="Thamaskene Steel" />
+    <string id="KTMCM_ALIB6H" text="Auto lock Thamaskene Steel." />
+    <string id="KTMCM_ALIO" text="Iron Ore" />
+    <string id="KTMCM_ALIOH" text="Auto lock Iron Ore ." />
+    <string id="KTMCM_ALSO" text="Silver Ore" />
+    <string id="KTMCM_ALSOH" text="Auto lock Silver Ore." />
+    <string id="KTMCM_ALHW" text="Hardwood" />
+    <string id="KTMCM_ALHWH" text="Auto lock Hardwood." />
+    <string id="KTMCM_ALCC" text="Charcoal" />
+    <string id="KTMCM_ALCCH" text="Auto lock Charcoal." />
     <string id="KTMCM_AT" text="Army Tweaks" />
     <string id="KTMCM_AMH" text="Allows army modifiers." />
     <string id="KTMCM_AMCM" text="Cohesion Modifiers" />
@@ -391,516 +391,523 @@
     <string id="KTMCM_MWP" text="Melee Weapons Price" />
     <string id="KTMCM_BTH" text="Enables editing battle tweaks" />
     <string id="KTMCM_CTH" text="Enables editing campaign tweaks" />
-    
+
     <!-- BT Strings -->
-		<string id="BT_Settings_000000" text="Battle Tweaks" />
-		<string id="BT_Settings_000104" text="Also Apply To AI" />
-				<string id="BT_Settings_000104_Desc" text="Applies the renown, influence and morale modifiers to AI parties." />
-				<string id="BT_Settings_000105" text="Show Calculation Message" />
-				<string id="BT_Settings_000105_Desc" text="Shows detailed calculation for renown, influence and morale tweaks in message log." />
-			<string id="BT_Settings_000200" text="Hideout Tweaks" />
-			<string id="BT_Settings_000200_Desc" text="Changes game behavior inside hideout battles." />
-				<string id="BT_Settings_000201" text="Hideout Battle Troop Limit"/>
-				<string id="BT_Settings_000201_Desc" text="Native value is 9 or 10. Changes the maximum troop limit to the set value inside hideout battles. Cannot be higher than 90 because it causes bugs." />
-				<string id="BT_Settings_000202" text="Continue Hideout Battle On Player Death" />
-				<string id="BT_Settings_000202_Desc" text="Native value is false. If enabled, you will not automatically lose the hideout battle if you die. Your troops will charge and the boss duel will be disabled." />
-				<string id="BT_Settings_000203" text="Continue Battle On Losing Duel" />
-				<string id="BT_Settings_000203_Desc" text="Native value is false. If enabled, your troops will rush to avenge you and finish everyone off." />
-			<string id="BT_Settings_000300" text="Siege Tweaks" />
-			<string id="BT_Settings_000300_Desc" text="Tweaks for siege engine construction speed and collateral casulaties during sieges." />
-				<string id="BT_Settings_000301" text="Siege Construction Progress Per Day Amount"/>
-				<string id="BT_Settings_000301_Desc" text="This tweak adds a modifier to the construction progress per day for sieges. A smaller number results in longer siege times. [Native : 100%.]" />
-				<string id="BT_Settings_000302" text="Siege Collateral Damage Casualties" />
-				<string id="BT_Settings_000302_Desc" text="Native value is 0. This tweak adds to the base value (1 or 2 with Crossbow Terror Perk) used to calculate collateral casualties during the campaign map siege stage." />
-				<string id="BT_Settings_000303" text="Siege Destruction Casualties" />
-				<string id="BT_Settings_000303_Desc" text="Native value is 0. This tweak adds to the base value (2) used to calculate destruction casualties during the campaign map siege stage." />
-			<string id="BT_Settings_000400" text="Troop Experience" />
-			<string id="BT_Settings_000400_Desc" text="Tweaks for experience gain of troops in battles and simulations." />
-				<string id="BT_Settings_000401" text="Troop Battle Experience"/>
-				<string id="BT_Settings_000401_Desc" text="Modifies the amount of experience that ALL troops receive during battles (Note: Only troops, not heroes)." />
-				<string id="BT_Settings_000402" text="Troop Battle Experience Amount" />
-				<string id="BT_Settings_000402_Desc" text="Native value is 100%. Modifies the amount of experience that ALL troops receive during fought battles (Note: Only troops, not heroes. Does not apply to simulated battles.)." />
-				<string id="BT_Settings_000403" text="Troop Simulation Experience" />
-				<string id="BT_Settings_000403_Desc" text="Modifies the experience gained from simulated battles. This is applied to all fights (including NPC fights) on the campaign map." />
-				<string id="BT_Settings_000404" text="Troop Simulation Experience Amount" />
-				<string id="BT_Settings_000404_Desc" text="Native value is 90%. Provides a multiplier to experience gained from simulated battles. This is applied to all simulated fights on the campaign map." />
-			<string id="BT_Settings_000500" text="Weapon Cut Through Tweaks" />
-			<string id="BT_Settings_000500_Desc" text="Allows all weapon types to cut through and hit multiple people." />
-				<string id="BT_Settings_000501" text="All Two-Handed Weapons Cut Through"/>
-				<string id="BT_Settings_000501_Desc" text="Allows all two-handed weapon types to cut through and hit multiple people." />
-				<string id="BT_Settings_000502" text="All One-Handed Weapons Cut Through" />
-				<string id="BT_Settings_000502_Desc" text="Allows all single-handed weapon types to cut through and hit multiple people." />
-		<string id="BT_Settings_001000" text="Campaign Tweaks" />
-			<string id="BT_Settings_001100" text="Battle Size Tweak" />
-			<string id="BT_Settings_001100_Desc" text="Allows you to set the battle size limit outside of native values. WARNING: Setting this above 1000 can cause performance degradation and crashes." />
-				<string id="BT_Settings_001101" text="Battle Size Limit"/>
-				<string id="BT_Settings_001101_Desc" text="Sets the limit for number of troops on a battlefield, ignoring what is in Bannerlord Options. WARNING: Will crash if all troops + their horses exceed 2000." />
-			<string id="BT_Settings_001200" text="Difficulty Tweaks" />
-			<string id="BT_Settings_001200_Desc" text="Allows you to change the multiplier for several difficulty settings." />
-				<string id="BT_Settings_001201" text="Damage to Player Tweak"/>
-				<string id="BT_Settings_001201_Desc" text="Allows you to change the multiplier for damage the player receives." />
-				<string id="BT_Settings_001202" text="Damage to Player Tweak Amount"/>
-				<string id="BT_Settings_001202_Desc" text="Native values: Very Easy: 30%, Easy: 67%, Realistic: 100%. This value is used to calculate the damage player receives." />
-				<string id="BT_Settings_001203" text="Damage to Friends Tweak"/>
-				<string id="BT_Settings_001203_Desc" text="Allows you to change the damage the player's friends receive." />
-				<string id="BT_Settings_001204" text="Damage to Friends Tweak Amount"/>
-				<string id="BT_Settings_001204_Desc" text="Native values: Very Easy: 30%, Easy: 67%, Realistic: 100%. This value is used to calculate the damage the player's friends receive." />
-				<string id="BT_Settings_001205" text="Damage to Player's Troops Tweak"/>
-				<string id="BT_Settings_001205_Desc" text="Allows you to change the multiplier for damage the player's troops receive." />
-				<string id="BT_Settings_001206" text="Damage to Troops Tweak Amount"/>
-				<string id="BT_Settings_001206_Desc" text="Native values: Very Easy: 30%, Easy: 67%, Realistic: 100%. This value is used to calculate the damage to the player's troops." />
-				<string id="BT_Settings_001207" text="Combat AI Difficulty Tweak"/>
-				<string id="BT_Settings_001207_Desc" text="Allows you to change the AI combat difficulty." />
-				<string id="BT_Settings_001208" text="Combat AI Difficulty Tweak Amount"/>
-				<string id="BT_Settings_001208_Desc" text="Native values: Very Easy: 10%, Easy: 32%, Realistic: 96%. This value is used to calculate AI combat difficulty." />
-				<string id="BT_Settings_001209" text="Player Map Movement Speed Tweak"/>
-				<string id="BT_Settings_001209_Desc" text="Allows you to change the bonus map movement speed multiplier the player receives." />
-				<string id="BT_Settings_001210" text="Player Map Movement Tweak Amount"/>
-				<string id="BT_Settings_001210_Desc" text="Native values: Very Easy: 10%, Easy: 5%, Realistic: 0%. This value is used to calculate player's map movement speed." />
-		<string id="BT_Settings_002000" text="Character Tweaks" />
-			<string id="BT_Settings_002100" text="Age Tweaks" />
-			<string id="BT_Settings_002100_Desc" text="Enables the tweaking of character age behavior." />
-				<string id="BT_Settings_002101" text="Become Infant Age"/>
-				<string id="BT_Settings_002101_Desc" text="Native: 3. Must be less than Become Child Age." />
-				<string id="BT_Settings_002102" text="Become Child Age"/>
-				<string id="BT_Settings_002102_Desc" text="Native: 6. Must be less than Become Teenager Age." />
-				<string id="BT_Settings_002103" text="Become Teenager Age"/>
-				<string id="BT_Settings_002103_Desc" text="Native: 14. Must be less than Hero Comes Of Age." />
-				<string id="BT_Settings_002104" text="Hero Comes Of Age"/>
-				<string id="BT_Settings_002104_Desc" text="Native: 18. Must be less than Become Old Age." />
-				<string id="BT_Settings_002105" text="Become Old Age"/>
-				<string id="BT_Settings_002105_Desc" text="Native: 47. Must be less than Max Age." />
-				<string id="BT_Settings_002106" text="Max Age"/>
-				<string id="BT_Settings_002106_Desc" text="Native: 125." />
-			<string id="BT_Settings_002200" text="Attribute-Focus Points Tweaks" />
-			<string id="BT_Settings_002200_Desc" text="Changes the values used to calculate how many Attribute and Focus points Heroes gain." />
-				<string id="BT_Settings_002201" text="Levels per Attribute Point"/>
-				<string id="BT_Settings_002201_Desc" text="Native value is 4. How many levels you need to gain to receive an attribute point." />
-				<string id="BT_Settings_002202" text="Focus Point Per Level"/>
-				<string id="BT_Settings_002202_Desc" text="Native value is 1. This is the amount of focus points earned per level." />
-			<string id="BT_Settings_002300" text="Hero Skill Experience" />
-			<string id="BT_Settings_002300_Desc" text="Enable bonuses to the skill experience your hero and companions members gain." />
-				<string id="BT_Settings_002301" text="Player Skill Experience"/>
-				<string id="BT_Settings_002301_Desc" text="Applies a modifier to the amount of experience recieved for skills. Affects the player only. 100% = No Bonus." />
-				<string id="BT_Settings_002302" text="Player Skill Experience Amount"/>
-				<string id="BT_Settings_002302_Desc" text="Applies a modifier to the amount of experience recieved for skills. Affects the player only. 100% = No Bonus." />
-				<string id="BT_Settings_002303" text="Companion Skill Experience"/>
-				<string id="BT_Settings_002303_Desc" text="Applies a modifier to the amount of experience recieved for skills. Affects Compaions only. 100% = No Bonus." />
-				<string id="BT_Settings_002304" text="Companion Skill Experience Amount"/>
-				<string id="BT_Settings_002304_Desc" text="Applies a modifier to the amount of experience recieved for skills. Affects the Companion only. 100% = No Bonus." />
-				<string id="BT_Settings_002305" text="Per Skill Bonuses"/>
-				<string id="BT_Settings_002305_Desc" text="Modifies the amount of experience recieved for specific skills before applying global experience modifier. Affects the player and companions only. 1.0 = No Bonus. 1.1 = 10%, etc." />
-					<string id="BT_Settings_002306" text="Per-Skill Experience Amount: Engineering"/>
-					<string id="BT_Settings_002306_Desc" text="Modifies the amount of Engineering experience recieved." />
-					<string id="BT_Settings_002307" text="Per-Skill Experience Amount: Leadership"/>
-					<string id="BT_Settings_002307_Desc" text="Modifies the amount of Leadership experience recieved." />
-					<string id="BT_Settings_002308" text="Per-Skill Experience Amount: Medicine"/>
-					<string id="BT_Settings_002308_Desc" text="Modifies the amount of Medicine experience recieved." />
-					<string id="BT_Settings_002309" text="Per-Skill Experience Amount: Riding"/>
-					<string id="BT_Settings_002309_Desc" text="Modifies the amount of Riding experience recieved." />
-					<string id="BT_Settings_002310" text="Per-Skill Experience Amount: Roguery"/>
-					<string id="BT_Settings_002310_Desc" text="Modifies the amount of Roguery experience recieved." />
-					<string id="BT_Settings_002311" text="Per-Skill Experience Amount: Scouting"/>
-					<string id="BT_Settings_002311_Desc" text="Modifies the amount of Scouting experience recieved." />
-					<string id="BT_Settings_002312" text="Per-Skill Experience Amount: Trade"/>
-					<string id="BT_Settings_002312_Desc" text="Modifies the amount of Trade experience recieved." />
-					<string id="BT_Settings_002313" text="Per-Skill Experience Amount: Smithing"/>
-					<string id="BT_Settings_002313_Desc" text="Modifies the amount of Smithing experience recieved." />
-			<string id="BT_Settings_002400" text="Pregnancy Tweaks" />
-			<string id="BT_Settings_002400_Desc" text="Enables several tweaks related to pregnancy behavior." />
-				<string id="BT_Settings_002401" text="Disable Stillbirths"/>
-				<string id="BT_Settings_002401_Desc" text="Disables the chance of children dying when born." />
-				<string id="BT_Settings_002402" text="Disable Maternal Mortality"/>
-				<string id="BT_Settings_002402_Desc" text="Disables the chance of mothers dying when giving birth." />
-				<string id="BT_Settings_002403" text="Pregnancy Duration Tweak"/>
-				<string id="BT_Settings_002403_Desc" text="Allows for adjusting the duration for a pregnancy." />
-				<string id="BT_Settings_002404" text="Pregnancy Duration"/>
-				<string id="BT_Settings_002404_Desc" text="Native value is 36 days." />
-				<string id="BT_Settings_002405" text="Gender Ratio Tweak"/>
-				<string id="BT_Settings_002405_Desc" text="Allows for adjusting the gender ratio of births." />
-				<string id="BT_Settings_002406" text="Probability for female children"/>
-				<string id="BT_Settings_002406_Desc" text="Native value is 51%. Set to 0% to disable female births." />
-				<string id="BT_Settings_002407" text="Twins Probability Tweak"/>
-				<string id="BT_Settings_002407_Desc" text="Allows for adjusting the chance of giving birth to twins." />
-				<string id="BT_Settings_002408" text="Probability to deliver twins"/>
-				<string id="BT_Settings_002408_Desc" text="Native value is 3%. Determines the chance of giving birth to twins." />
-				<string id="BT_Settings_002409" text="Pregnancy Chance Tweaks"/>
-				<string id="BT_Settings_002409_Desc" text="Enabling this will completely override the daily pregnancy check. All settings below will be applied!" />
-				<string id="BT_Settings_002410" text="Player is Infertile"/>
-				<string id="BT_Settings_002410_Desc" text="Native: disabled. If enabled, the player will not be able to have children." />
-				<string id="BT_Settings_002411" text="Min Pregnancy Age"/>
-				<string id="BT_Settings_002411_Desc" text="Native: 18. Minimum age that someone can get pregnant." />
-				<string id="BT_Settings_002412" text="Max Pregnancy Age"/>
-				<string id="BT_Settings_002412_Desc" text="Native: 45. Maximum age that someone can get pregnant." />
-				<string id="BT_Settings_002413" text="Clan Fertility Bonus"/>
-				<string id="BT_Settings_002413_Desc" text="Adds modifier to your clan members to become pregnant. 100% = No Bonus, 200% = 2x chance. Note: May not do much after ~6-8 kids due to the base pregnancy calculations." />
-				<string id="BT_Settings_002414" text="Max Children"/>
-				<string id="BT_Settings_002414_Desc" text="Default: 5. Maximum number of children that someone can have." />
-		<string id="BT_Settings_003000" text="Clan Tweaks" />
-			<string id="BT_Settings_003100" text="Companion Limit Tweak" />
-			<string id="BT_Settings_003100_Desc" text="Sets the base companion limit and the bonus gained per clan tier." />
-				<string id="BT_Settings_003101" text="Base Companion Limit"/>
-				<string id="BT_Settings_003101_Desc" text="Sets the base companion limit. [Native: 3]." />
-				<string id="BT_Settings_003102" text="Companion Bonus Per Clan Tier"/>
-				<string id="BT_Settings_003102_Desc" text="Native value is 1. Sets the bonus to companion limit per clan tier. This value is multiplied by your clan tier. Note that Leadership 'We Pledge Our Swords' perk will also increse this number by 1." />
-				<string id="BT_Settings_003103" text="Enable Unlimited Wanderers Patch"/>
-				<string id="BT_Settings_003103_Desc" text="Removes the soft cap on the maximum number of potential companions who can spawn. Native limits the # of wanderers to ~25. This will remove that limit. Note: Requires a new campaign to take effect, as the cap is set when a new game is generated. Credit to Bleinz for his UnlimitedWanderers mod." />
-			<string id="BT_Settings_003200" text="Party Limits" />
-			<string id="BT_Settings_003200_Desc" text="Changes the number of parties you and ai lords can field and the bonus gained per clan tier." />
-				<string id="BT_Settings_003201" text="Player Parties Limit"/>
-				<string id="BT_Settings_003201_Desc" text="Changes the base number of parties you can field and the bonus gained per clan tier." />
-					<string id="BT_Settings_003202" text="Base Clan Parties Limit"/>
-					<string id="BT_Settings_003202_Desc" text="Native value is 1. This is the number of parties you can field at the start." />
-					<string id="BT_Settings_003203" text="Clan Parties Bonus Per Clan Tier"/>
-					<string id="BT_Settings_003203_Desc" text="Native has a calculation for this: 1 party for under tier 3, 2 parties for under tier 5, 3 parties for over tier 5. This setting is multiplied by your clan tier. A value of 0.5 will equate to 1 extra party per 2 clan tiers, which eqautes to the same as native." />
-				<string id="BT_Settings_003204" text="AI Lord Parties Limit"/>
-				<string id="BT_Settings_003204_Desc" text="Changes the base number of parties AI Lords can field." />
-					<string id="BT_Settings_003205" text="Add to AI Lord Parties Limit"/>
-					<string id="BT_Settings_003205_Desc" text="This adds to the the base number of parties AI Lords can field. [Native is 1 for Tier 3 and below, 2 at T4, 3 at T5 and up.] Minor Factions are not included unless the option below is also enabled." />
-					<string id="BT_Settings_003206" text="Also Adjust Minor Factions"/>
-					<string id="BT_Settings_003206_Desc" text="Changes the base number of parties AI Minor Faction Lords can field. [Native is 1-4, depending on Clan tier.]" />
-				<string id="BT_Settings_003207" text="Custom Spawn Parties Limit"/>
-				<string id="BT_Settings_003207_Desc" text="Changes the base number of parties Custom Spawn lords can field." />
-					<string id="BT_Settings_003208" text="Add to Custom Spawn Parties Limit"/>
-					<string id="BT_Settings_003208_Desc" text="This adds to the the base number of parties Custom Lords can field. [Native is 1 for Tier 3 and below, 2 at T4, 3 at T5 and up.]." />
-		<string id="BT_Settings_004000" text="Crafting Tweaks" />
-			<string id="BT_Settings_004100" text="Crafting Stamina" />
-			<string id="BT_Settings_004100_Desc" text="Enables tweaks which affect crafting stamina." />
-				<string id="BT_Settings_004101" text="Max Crafting Stamina"/>
-				<string id="BT_Settings_004101_Desc" text="Native value is 400. Sets the maximum crafting stamina value." />
-				<string id="BT_Settings_004102" text="Crafting Stamina Gain"/>
-				<string id="BT_Settings_004102_Desc" text="Native value is 5. You gain this amount of crafting stamina per hour." />
-				<string id="BT_Settings_004103" text="Crafting Stamina Gain Outside Settlement"/>
-				<string id="BT_Settings_004103_Desc" text="Native value is 0%. In % of Crafting Stamina Gain. In native, you do not gain crafting stamina if you are not resting inside a settlement." />
-				<string id="BT_Settings_004104" text="Ignore Crafting Stamina"/>
-				<string id="BT_Settings_004104_Desc" text="Native value is false. This disables crafting stamina completely. You will still lose crafting stamina when you craft, but you will still be able to craft when you hit zero." />
-			<string id="BT_Settings_004200" text="Smelting" />
-			<string id="BT_Settings_004200_Desc" text="Enables tweaks which affect smelting of weapons." />
-				<string id="BT_Settings_004201" text="Hide Locked Weapons in Smelting Menu"/>
-				<string id="BT_Settings_004201_Desc" text="Native value is false. Prevent weapons that you have locked in your inventory from showing up in the smelting list to prevent accidental smelting." />
-				<string id="BT_Settings_004202" text="Enable Unlocking Parts From Smelted Weapons"/>
-				<string id="BT_Settings_004202_Desc" text="Native value is false. Unlock the parts that a weapon is made of when you smelt it." />
-		<string id="BT_Settings_005000" text="Kingdom Tweaks" />
-			<string id="BT_Settings_005100" text="Lord Bartering" />
-			<string id="BT_Settings_005100_Desc" text="Enables tweaks which affect bartering (Marriage, Factions Joining You, etc.)" />
-				<string id="BT_Settings_005101" text="Faction Joining Barter Adjustment"/>
-				<string id="BT_Settings_005101_Desc" text="Adjust the % cost of swaying a faction to join your kingdom. Native value is 100% (no change)." />
-				<string id="BT_Settings_005102" text="Relationship favored Faction Joining Barter"/>
-				<string id="BT_Settings_005102_Desc" text="An alternate formula for calculating cost of swaying a faction to join your kingdom, with more emphasis on relationsip. [The higher your relationship to the lord, the cheaper the barter]." />
-			<string id="BT_Settings_005200" text="Faction Balancing" />
-			<string id="BT_Settings_005200_Desc" text="Enables tweaks which affect the balancing of kingdoms." />
-				<string id="BT_Settings_005201" text="Balancing Modifiers For Vanilla Kingdoms"/>
-				<string id="BT_Settings_005201_Desc" text="Enables tweaks which affect the balancing of kingdoms in vanilla game." />
-					<string id="BT_Settings_005202" text="Vlandia Balancing Strength"/>
-					<string id="BT_Settings_005202_Desc" text="Balancing strength for vlandia. Boosts or reduces the enabled balancing tweaks." />
-					<string id="BT_Settings_005203" text="Sturgia Balancing Strength"/>
-					<string id="BT_Settings_005203_Desc" text="Balancing strength for sturgia. Boosts or reduces the enabled balancing tweaks." />
-					<string id="BT_Settings_005204" text="Battania Balancing Strength"/>
-					<string id="BT_Settings_005204_Desc" text="Balancing strength for battania. Boosts or reduces the enabled balancing tweaks." />
-					<string id="BT_Settings_005205" text="Northern Empire Balancing Strength"/>
-					<string id="BT_Settings_005205_Desc" text="Balancing strength for northern empire. Boosts or reduces the enabled balancing tweaks." />
-					<string id="BT_Settings_005206" text="Southern Empire Balancing Strength"/>
-					<string id="BT_Settings_005206_Desc" text="Balancing strength for southern empire. Boosts or reduces the enabled balancing tweaks." />
-					<string id="BT_Settings_005207" text="Western Empire Balancing Strength"/>
-					<string id="BT_Settings_005207_Desc" text="Balancing strength for western empire. Boosts or reduces the enabled balancing tweaks." />
-					<string id="BT_Settings_005208" text="Aserai Balancing Strength"/>
-					<string id="BT_Settings_005208_Desc" text="Balancing strength for aserai. Boosts or reduces the enabled tweaks balancing tweaks." />
-					<string id="BT_Settings_005209" text="Khuzait Balancing Strength"/>
-					<string id="BT_Settings_005209_Desc" text="Balancing strength for khuzait. Boosts or reduces the enabled tweaks balancing tweaks." />
-					<string id="BT_Settings_005210" text="Player Kingdom Balancing Strength"/>
-					<string id="BT_Settings_005210_Desc" text="Balancing strength for player kingdom. Boosts or reduces the enabled balancing tweaks." />
-				<string id="BT_Settings_005211" text="Balancing Modifiers For Calradia Expanded Kingdoms"/>
-				<string id="BT_Settings_005211_Desc" text="Enables tweaks which affect the balancing of kingdoms in the mod Calradia Expanded Kingdoms." />
-					<string id="BT_Settings_005212" text="Nordlings Balancing Strength"/>
-					<string id="BT_Settings_005212_Desc" text="Balancing strength for nordlings. Boosts or reduces the enabled balancing tweaks." />
-					<string id="BT_Settings_005213" text="Vagir Balancing Strength"/>
-					<string id="BT_Settings_005213_Desc" text="Balancing strength for vagir. Boosts or reduces the enabled balancing tweaks." />
-					<string id="BT_Settings_005214" text="Royalist Vlandia Balancing Strength"/>
-					<string id="BT_Settings_005214_Desc" text="Balancing strength for royalist vlandia. Boosts or reduces the enabled balancing tweaks." />
-					<string id="BT_Settings_005215" text="Apolssaly Balancing Strength"/>
-					<string id="BT_Settings_005215_Desc" text="Balancing strength for apolssaly. Boosts or reduces the enabled balancing tweaks." />
-					<string id="BT_Settings_005216" text="Lyrion Balancing Strength"/>
-					<string id="BT_Settings_005216_Desc" text="Balancing strength for lyrion. Boosts or reduces the enabled balancing tweaks." />
-					<string id="BT_Settings_005217" text="Khergit Balancing Strength"/>
-					<string id="BT_Settings_005217_Desc" text="Balancing strength for khergit. Boosts or reduces the enabled balancing tweaks." />
-					<string id="BT_Settings_005218" text="Paleician Balancing Strength"/>
-					<string id="BT_Settings_005218_Desc" text="Balancing strength for paleician. Boosts or reduces the enabled balancing tweaks." />
-					<string id="BT_Settings_005219" text="Ariorum Balancing Strength"/>
-					<string id="BT_Settings_005219_Desc" text="Balancing strength for ariorum. Boosts or reduces the enabled balancing tweaks." />
-					<string id="BT_Settings_005220" text="Calradian Empire Balancing Strength"/>
-					<string id="BT_Settings_005220_Desc" text="Balancing strength for calradian empire. Boosts or reduces the enabled balancing tweaks." />
-					<string id="BT_Settings_005221" text="Dryatican Republic Balancing Strength"/>
-					<string id="BT_Settings_005221_Desc" text="BBalancing strength for dryatican republic. Boosts or reduces the enabled balancing tweaks." />
-					<string id="BT_Settings_005222" text="Battania Balancing Strength"/>
-					<string id="BT_Settings_005222_Desc" text="Balancing strength for battania. Boosts or reduces the enabled balancing tweaks." />
-					<string id="BT_Settings_005223" text="Cortanian Vlandia Balancing Strength"/>
-					<string id="BT_Settings_005223_Desc" text="Balancing strength for cortanian vlandia. Boosts or reduces the enabled balancing tweaks." />
-					<string id="BT_Settings_005224" text="Sturgia Balancing Strength"/>
-					<string id="BT_Settings_005224_Desc" text="Balancing strength for sturgia. Boosts or reduces the enabled balancing tweaks." />
-					<string id="BT_Settings_005225" text="Khuzait Balancing Strength"/>
-					<string id="BT_Settings_005225_Desc" text="Balancing strength for khuzait. Boosts or reduces the enabled balancing tweaks." />
-					<string id="BT_Settings_005226" text="Aserai Balancing Strength"/>
-					<string id="BT_Settings_005226_Desc" text="Balancing strength for aserai. Boosts or reduces the enabled balancing tweaks." />
-					<string id="BT_Settings_005227" text="Western Empire Balancing Strength"/>
-					<string id="BT_Settings_005227_Desc" text="Balancing strength for western empire. Boosts or reduces the enabled balancing tweaks." />
-					<string id="BT_Settings_005228" text="Player Kingdom Balancing Strength"/>
-					<string id="BT_Settings_005228_Desc" text="Balancing strength for player kingdom. Boosts or reduces the enabled balancing tweaks." />
-				<string id="BT_Settings_005229" text="Party Sizes Balancing"/>
-				<string id="BT_Settings_005229_Desc" text="Modifier for max party sizes (1.0 x Balancing Strength)." />
-				<string id="BT_Settings_005230" text="Party Count Limit Balancing"/>
-				<string id="BT_Settings_005230_Desc" text="Modifier for max party limit (1.0 x Balancing Strength)." />
-				<string id="BT_Settings_005231" text="Village Food Production Balancing"/>
-				<string id="BT_Settings_005231_Desc" text="Modifier for daily production of food goods in villages (1.0 x Balancing Strength)." />
-				<string id="BT_Settings_005232" text="Faster Recruiting Balancing"/>
-				<string id="BT_Settings_005232_Desc" text="Flat % bonus chance of new recruits to spawn in settlements (0.75 x Balancing Strength)." />
-				<string id="BT_Settings_005233" text="Taxation Efficiency Balancing"/>
-				<string id="BT_Settings_005233_Desc" text="Modifier for tax income from prosperity in towns and castles and trade tax income in villages (1.0 x Balancing Strength)." />
-				<string id="BT_Settings_005234" text="Wage costs Balancing"/>
-				<string id="BT_Settings_005234_Desc" text="Modifier for troop and garrison wages (1.0 x Balancing Strength)." />
-				<string id="BT_Settings_005235" text="Quality of Recruitment Balancing"/>
-				<string id="BT_Settings_005235_Desc" text="Increases the chance for upgraded recruits (1.0 x Balancing Strength). No effect if balancing strength is lower than 0% (no decrease in chance for upgrades)." />
-		<string id="BT_Settings_006000" text="Party Tweaks" />
-			<string id="BT_Settings_006100" text="Cohesion Tweaks" />
-			<string id="BT_Settings_006100_Desc" text="Enables tweaks affecting cohesion" />
-				<string id="BT_Settings_006101" text="Cohesion Degradation Factor"/>
-				<string id="BT_Settings_006101_Desc" text="Modifier to how much cohesion should degrade over time. Vanilla is 100%, 0% is disabled." />
-				<string id="BT_Settings_006102" text="All-Clan Armies Lose No Cohesion"/>
-				<string id="BT_Settings_006102_Desc" text="Armies composed of only clan parties lose no cohesion." />
-			<string id="BT_Settings_006200" text="Player Caravan Party Size" />
-			<string id="BT_Settings_006200_Desc" text="Applies a configured value to your caravan party size." />
-				<string id="BT_Settings_006201" text="Player Caravan Party Size Amount"/>
-				<string id="BT_Settings_006201_Desc" text="Native: 30. Be aware that bigger parties are also slower parties." />
-			<string id="BT_Settings_006300" text="Party Size" />
-			<string id="BT_Settings_006300_Desc" text="Applies a bonues to you and AI lord's party size based on leadership and steward skills." />
-				<string id="BT_Settings_006301" text="Leadership Bonus"/>
-				<string id="BT_Settings_006301_Desc" text="Applies a bonus equal to the set percentage of your leadership skill to your party size." />
-				<string id="BT_Settings_006302" text="Leadership Bonus Player"/>
-				<string id="BT_Settings_006302_Desc" text="Applies a bonus equal to the set percentage of your leadership skill to your party size." />
-				<string id="BT_Settings_006303" text="Steward Bonus"/>
-				<string id="BT_Settings_006303_Desc" text="Applies a bonus equal to the set percentage of your steward skill to your party size." />
-				<string id="BT_Settings_006304" text="Steward Bonus Player"/>
-				<string id="BT_Settings_006304_Desc" text="Applies a bonus equal to the set percentage of your steward skill to your party size." />
-				<string id="BT_Settings_006305" text="Party Size Relation Player-AI"/>
-				<string id="BT_Settings_006305_Desc" text="The percentage of the party size bonus set for the player to also apply for ai lords. 0% results in no bonus for ai. You may also want to increase food production amounts (Village Production, bigger demand)." />
-			<string id="BT_Settings_006400" text="Wages" />
-			<string id="BT_Settings_006400_Desc" text="Allows you to reduce/increase wages for various groups." />
-				<string id="BT_Settings_006401" text="Party Wage Adjustment"/>
-				<string id="BT_Settings_006401_Desc" text="Adjusts party wages to a % of native value. Native is 100%." />
-				<string id="BT_Settings_006402" text="Garrison Wage Adjustment"/>
-				<string id="BT_Settings_006402_Desc" text="Adjusts garrison wages to a % of native value. Native is 100%." />
-				<string id="BT_Settings_006403" text="Also Apply Wage Tweaks to Your Faction"/>
-				<string id="BT_Settings_006403_Desc" text="Applies the wage modifiers to your clan/faction parties as well." />
-				<string id="BT_Settings_006404" text="Also Apply Wage Tweaks to AI Lords"/>
-				<string id="BT_Settings_006404_Desc" text="Applies the wage modifiers to ai lord parties as well." />
-			<string id="BT_Settings_006500" text="Daily Troop Experience" />
-			<string id="BT_Settings_006500_Desc" text="Gives each troop roster (stack) in a party an amount of experience each day based upon the leader's Leadership skill. By default only applies to the player." />
-				<string id="BT_Settings_006501" text="Percentage of Leadership"/>
-				<string id="BT_Settings_006501_Desc" text="The percentage of the leader's Leadership skill to be given as experience to each of their troop rosters. With 100 leadership and a setting of 1000% each troop type stack will get 1.000 xp daily." />
-				<string id="BT_Settings_006502" text="Starting from Level Of Leadership"/>
-				<string id="BT_Settings_006502_Desc" text="The Leadership level required to start giving experience to troop rosters. With this setting at 20, daily training of your troop stacks will start from leadership 20 onwards (but be calculated with the full 20 skillpoints)." />
-				<string id="BT_Settings_006503" text="Apply to Player's Clan Members"/>
-				<string id="BT_Settings_006503_Desc" text="Applies the daily troop experience gain to members of the player's clan also." />
-				<string id="BT_Settings_006504" text="Apply to all NPC Lords"/>
-				<string id="BT_Settings_006504_Desc" text="Applies the daily troop experience gain to all NPC lords." />
-				<string id="BT_Settings_006505" text="Display Message"/>
-				<string id="BT_Settings_006505_Desc" text="Displays a message showing the amount of experience granted." />
-		<string id="BT_Settings_007000" text="Prisoner Tweaks" />
-			<string id="BT_Settings_007100" text="Imprisonment Time" />
-			<string id="BT_Settings_007100_Desc" text="Adds a minimum amount of time before lords can attempt to escape imprisonment." />
-				<string id="BT_Settings_007101" text="Player Prisoners Only"/>
-				<string id="BT_Settings_007101_Desc" text="Whether the tweak should be applied only to prisoners held by the player." />
-				<string id="BT_Settings_007102" text="Minimum Days of Imprisonment"/>
-				<string id="BT_Settings_007102_Desc" text="The minimum number of days a lord will remain imprisoned before they can attempt to escape." />
-				<string id="BT_Settings_007103" text="Enable Missing Prisoner Hero Fix"/>
-				<string id="BT_Settings_007103_Desc" text="Will attempt to detect and release prisoner Heroes who may be bugged and do not respawn. Will trigger 3 days after the Minimum Days of Imprisonment setting." />
-			<string id="BT_Settings_007200" text="Prisoner Size Bonus" />
-			<string id="BT_Settings_007200_Desc" text="Enables a % bonus to your party's maximum prisoner size." />
-				<string id="BT_Settings_007201" text="Prisoner Size Bonus"/>
-				<string id="BT_Settings_007201_Desc" text="Adds a % bonues to your party's maximum prisoner size. Native is 0%." />
-				<string id="BT_Settings_007202" text="Also apply to AI"/>
-				<string id="BT_Settings_007202_Desc" text="Wether the prisoner size bonus should apply to AI Lords." />
-			<string id="BT_Settings_007300" text="Prisoner Confirmity" />
-			<string id="BT_Settings_007300_Desc" text="Modifies the conformity rate of the base game, speeding the rate at which prisoners can be recruited." />
-				<string id="BT_Settings_007301" text="Prisoner Confirmity Bonus"/>
-				<string id="BT_Settings_007301_Desc" text="Adds a % bonues to the conformity generated each hour. Native is 0%." />
-				<string id="BT_Settings_007302" text="Apply Prisoner Confirmity Tweaks to Clan"/>
-				<string id="BT_Settings_007302_Desc" text="Applies Prisoner Conformity Tweaks to all clan parties as well." />
-				<string id="BT_Settings_007303" text="Apply Prisoner Confirmity Tweaks to AI"/>
-				<string id="BT_Settings_007303_Desc" text="Applies Prisoner Conformity Tweaks to all parties, including AI lords as well." />
-		<string id="BT_Settings_008000" text="Settlement Tweaks" />
-			<string id="BT_Settings_008100" text="Settlement Culture Transformation" />
-			<string id="BT_Settings_008100_Desc" text="Changes the culture of settlement in relation to the owner clan. On deactivation cultures revert back. The last town of a culture will not be changed!" />
-				<string id="BT_Settings_008101" text="Change To Culture Of Kingdom Faction Instead"/>
-				<string id="BT_Settings_008101_Desc" text="Instead of changing the culture to its owner-clan culture, change to its kingdom culture." />
-				<string id="BT_Settings_008102" text="Override Culture For Player Clan"/>
-				<string id="BT_Settings_008102_Desc" text="Overrides the culture to change to for player clan owned settlements." />
-				<string id="BT_Settings_008103" text="Weeks for Settlement Culture Change"/>
-				<string id="BT_Settings_008103_Desc" text="After how many weeks the culture of a settlement changes to its owner's culture (and produces recruits of the new culturegroup)." />
-			<string id="BT_Settings_008200" text="Disable Troop Donations" />
-			<string id="BT_Settings_008200_Desc" text="Disables your clan parties from donating troops to clan owned settlements." />
-				<string id="BT_Settings_008201" text="Disable Troop Donations - Any Settlement"/>
-				<string id="BT_Settings_008201_Desc" text="Additionally disables your clan parties from donating troops to ANY settlement." />
-			<string id="BT_Settings_008300" text="Village Productivity" />
-			<string id="BT_Settings_008300_Desc" text="Enables Tweaks for increased productivity in villages." />
-				<string id="BT_Settings_008301" text="Village Production: Food"/>
-				<string id="BT_Settings_008301_Desc" text="Modifies the daily production of food goods in villages." />
-				<string id="BT_Settings_008302" text="Village Production: Other goods"/>
-				<string id="BT_Settings_008302_Desc" text="Modifies the daily production of other goods in villages." />
-			<string id="BT_Settings_008400" text="Buildings" />
-				<string id="BT_Settings_008401" text="Castle"/>
-					<string id="BT_Settings_008402" text="Castle Training Field"/>
-					<string id="BT_Settings_008402_Desc" text="Changes the amount of experience the training fields provides for each level." />
-						<string id="BT_Settings_008403" text="Castle Training Fields Experience Level 1"/>
-						<string id="BT_Settings_008403_Desc" text="Native value is 1. Changes the amount of experience the training fields provides at level 1." />
-						<string id="BT_Settings_008404" text="Castle Training Fields Experience Level 2"/>
-						<string id="BT_Settings_008404_Desc" text="Native value is 2. Changes the amount of experience the training fields provides at level 2." />
-						<string id="BT_Settings_008405" text="Castle Training Fields Experience Level 3"/>
-						<string id="BT_Settings_008405_Desc" text="Native value is 3. Changes the amount of experience the training fields provides at level 3." />
-					<string id="BT_Settings_008406" text="Castle Granary"/>
-					<string id="BT_Settings_008406_Desc" text="Changes the amount of food storage the castle granary provides per level." />
-						<string id="BT_Settings_008407" text="Castle Granary Food Storage Level 1"/>
-						<string id="BT_Settings_008407_Desc" text="Native value is 100. Changes the amount of food storage the castle granary provides at level 1." />
-						<string id="BT_Settings_008408" text="Castle Granary Food Storage Level 2"/>
-						<string id="BT_Settings_008408_Desc" text="Native value is 200. Changes the amount of food storage the castle granary provides at level 2." />
-						<string id="BT_Settings_008409" text="Castle Granary Food Storage Level 3"/>
-						<string id="BT_Settings_008409_Desc" text="Native value is 300. Changes the amount of food storage the castle granary provides at level 3." />
-					<string id="BT_Settings_008410" text="Castle Gardens"/>
-					<string id="BT_Settings_008410_Desc" text="Changes the amount of food the castle gardens produce per level." />
-						<string id="BT_Settings_008411" text="Castle Garden Food Production Level 1"/>
-						<string id="BT_Settings_008411_Desc" text="Native value is 5. Changes the amount of food the castle gardens produce at level 1." />
-						<string id="BT_Settings_008412" text="Castle Garden Food Production Level 2"/>
-						<string id="BT_Settings_008412_Desc" text="Native value is 10. Changes the amount of food the castle gardens produce at level 2." />
-						<string id="BT_Settings_008413" text="Castle Garden Food Production Level 3"/>
-						<string id="BT_Settings_008413_Desc" text="Native value is 15. Changes the amount of food the castle gardens produce at level 3." />
-					<string id="BT_Settings_008414" text="Castle Militia Barracks"/>
-					<string id="BT_Settings_008414_Desc" text="Changes the militia production that the castle militia barracks provides per level." />
-						<string id="BT_Settings_008415" text="Castle Militia Barracks Production Level 1"/>
-						<string id="BT_Settings_008415_Desc" text="Native value is 1. Changes the militia production that the castle militia barracks provides at level 1." />
-						<string id="BT_Settings_008416" text="Castle Militia Barracks Production Level 2"/>
-						<string id="BT_Settings_008416_Desc" text="Native value is 2. Changes the militia production that the castle militia barracks provides at level 2." />
-						<string id="BT_Settings_008417" text="Castle Militia Barracks Production Level 3"/>
-						<string id="BT_Settings_008417_Desc" text="Native value is 3. Changes the militia production that the castle militia barracks provides at level 3." />
-				<string id="BT_Settings_008418" text="Town"/>
-					<string id="BT_Settings_008419" text="Town Training Fields"/>
-					<string id="BT_Settings_008419_Desc" text="Changes the amount of experience the training fields provides for each level." />
-						<string id="BT_Settings_008420" text="Town Training Fields Experience Level 1"/>
-						<string id="BT_Settings_008420_Desc" text="Native value is 30. Changes the amount of experience the training fields provides at level 1." />
-						<string id="BT_Settings_008421" text="Town Training Fields Experience Level 2"/>
-						<string id="BT_Settings_008421_Desc" text="Native value is 60. Changes the amount of experience the training fields provides at level 2." />
-						<string id="BT_Settings_008422" text="Town Training Fields Experience Level 3"/>
-						<string id="BT_Settings_008422_Desc" text="Native value is 100. Changes the amount of experience the training fields provides at level 3." />
-					<string id="BT_Settings_008423" text="Town Granary"/>
-					<string id="BT_Settings_008423_Desc" text="Changes the amount of food storage the town granary provides per level." />
-						<string id="BT_Settings_008424" text="Town Granary Food Storage Level 1"/>
-						<string id="BT_Settings_008424_Desc" text="Native value is 200. Changes the amount of food storage the town granary provides at level 1." />
-						<string id="BT_Settings_008425" text="Town Granary Food Storage Level 2"/>
-						<string id="BT_Settings_008425_Desc" text="Native value is 400. Changes the amount of food storage the town granary provides at level 2." />
-						<string id="BT_Settings_008426" text="Town Granary Food Storage Level 3"/>
-						<string id="BT_Settings_008426_Desc" text="Native value is 600. Changes the amount of food storage the town granary provides at level 3." />
-					<string id="BT_Settings_008427" text="Town Orchards"/>
-					<string id="BT_Settings_008427_Desc" text="Changes the amount of food the town orchards produce per level." />
-						<string id="BT_Settings_008428" text="Town Orchard Food Production Level 1"/>
-						<string id="BT_Settings_008428_Desc" text="Native value is 10. Changes the amount of food the town orchards produce at level 1." />
-						<string id="BT_Settings_008429" text="Town Orchard Food Production Level 2"/>
-						<string id="BT_Settings_008429_Desc" text="Native value is 20. Changes the amount of food the town orchards produce at level 2." />
-						<string id="BT_Settings_008430" text="Town Orchard Food Production Level 3"/>
-						<string id="BT_Settings_008430_Desc" text="Native value is 30. Changes the amount of food the town orchards produce at level 3." />
-					<string id="BT_Settings_008431" text="Town Militia Barracks"/>
-					<string id="BT_Settings_008431_Desc" text="Changes the militia production that the town militia barracks provides per level." />
-						<string id="BT_Settings_008432" text="Town Militia Barracks Production Level 1"/>
-						<string id="BT_Settings_008432_Desc" text="Native value is .5. Changes the militia production that the town militia barracks provides at level 1." />
-						<string id="BT_Settings_008433" text="Town Militia Barracks Production Level 2"/>
-						<string id="BT_Settings_008433_Desc" text="Native value is 1. Changes the militia production that the town militia barracks provides at level 2." />
-						<string id="BT_Settings_008434" text="Town Militia Barracks Production Level 3"/>
-						<string id="BT_Settings_008434_Desc" text="Native value is 1.5. Changes the militia production that the town militia barracks provides at level 3." />
-			<string id="BT_Settings_008500" text="Settlement Food" />
-			<string id="BT_Settings_008500_Desc" text="Enables tweaks which provide bonuses to food production in towns and castles." />
-				<string id="BT_Settings_008501" text="Castle Food Modifier"/>
-				<string id="BT_Settings_008501_Desc" text="Native value is 100%. Adds a modifier to food production in castles."/>
-				<string id="BT_Settings_008502" text="Town Food Modifier"/>
-				<string id="BT_Settings_008502_Desc" text="Native value is 100%. Adds a modifier to food production in towns." />
-				<string id="BT_Settings_008503" text="Food Loss From Prosperity"/>
-				<string id="BT_Settings_008503_Desc" text="Allows you to adjust the loss to food production received from settlement prosperity." />
-					<string id="BT_Settings_008504" text="Prosperity Food Loss Divisor"/>
-					<string id="BT_Settings_008504_Desc" text="Native value is 50. The prosperity of the settlement is divided by this value to calculate the loss. Increasing this value will decrease the amount of food lost." />
-			<string id="BT_Settings_008600" text="Normal Militia" />
-			<string id="BT_Settings_008600_Desc" text="Grants a flat bonus to militia growth and rate of retirement in towns and castles." />
-				<string id="BT_Settings_008601" text="Castle Militia Growth Bonus"/>
-				<string id="BT_Settings_008601_Desc" text="Native value is 0. Adds a flat bonus on how many militia gets recruited each day in castles."/>
-				<string id="BT_Settings_008602" text="Town Militia Growth Bonus"/>
-				<string id="BT_Settings_008602_Desc" text="Native value is 0. Adds a flat bonus on how many militia gets recruited each day in towns." />
-				<string id="BT_Settings_008603" text="Castle Militia Retirement Modifier"/>
-				<string id="BT_Settings_008603_Desc" text="Native value is 2.5%. Modifies the percentage of your militia retiring each day in castles." />
-				<string id="BT_Settings_008604" text="Town Militia Retirement Modifier"/>
-				<string id="BT_Settings_008604_Desc" text="Native value is 2.5%. Modifies the percentage of your militia retiring each day in towns." />
-				<string id="BT_Settings_008605" text="Village Militia Retirement Modifier"/>
-				<string id="BT_Settings_008605_Desc" text="Native value is 2.5%. Modifies the percentage of your militia retiring each day in villages." />
-			<string id="BT_Settings_008800" text="Tournaments" />
-				<string id="BT_Settings_008801" text="Renown Reward"/>
-				<string id="BT_Settings_008801_Desc" text="Sets the amount of renown awarded when you win a tournament."/>
-					<string id="BT_Settings_008802" text="Tournament Renown Reward"/>
-					<string id="BT_Settings_008802_Desc" text="Native value is 3. Increases the amount of renown awarded when you win a tournament." />
-				<string id="BT_Settings_008803" text="Gold Reward"/>
-				<string id="BT_Settings_008803_Desc" text="Adds the set amount of gold to the rewards when you win a tournament."/>
-					<string id="BT_Settings_008804" text="Tournament Gold Reward"/>
-					<string id="BT_Settings_008804_Desc" text="Native value is 0. Adds the set amount of gold to the rewards when you win a tournament." />
-				<string id="BT_Settings_008805" text="Maximum Bet"/>
-				<string id="BT_Settings_008805_Desc" text="Sets the maximum amount of gold that you can bet per round in tournaments."/>
-					<string id="BT_Settings_008806" text="Maximum Bet Amount"/>
-					<string id="BT_Settings_008806_Desc" text="Native value is 150. Sets the maximum amount of gold that you can bet per round in tournaments." />
-				<string id="BT_Settings_008807" text="Hero Experience Modifier"/>
-				<string id="BT_Settings_008807_Desc" text="Overrides the native multiplier value for experience gain in tournaments for hero characters."/>
-					<string id="BT_Settings_008808" text="Tournament Hero Experience Modifier"/>
-					<string id="BT_Settings_008808_Desc" text="Native value is 33%. Sets the modifier applied to experience gained in tournaments by hero characters. 100% = full real-world experience." />
-				<string id="BT_Settings_008809" text="Arena Hero Experience Modifier"/>
-				<string id="BT_Settings_008809_Desc" text="Overrides the native multiplier value for experience gain in arena fights for hero characters."/>
-					<string id="BT_Settings_008810" text="Arena Hero Experience Modifier"/>
-					<string id="BT_Settings_008810_Desc" text="Native value is 6%. Sets the modifier applied to experience gain in arena fights for hero characters. 100% = full real-world experience." />
-				<string id="BT_Settings_008811" text="Minimum Betting Odds"/>
-				<string id="BT_Settings_008811_Desc" text="Allows you to set the minimum betting odds in tournaments."/>
-					<string id="BT_Settings_008812" text="Minimum Betting Odds"/>
-					<string id="BT_Settings_008812_Desc" text="Native: 1.1. The minimum odds for tournament bets, higher means more yield for your bets, if won." />
-			<string id="BT_Settings_008900" text="Workshops" />
-				<string id="BT_Settings_008901" text="Workshop Count Limit"/>
-				<string id="BT_Settings_008901_Desc" text="Sets the base maximum number of workshops you can have and the limit increase gained per clan tier."/>
-					<string id="BT_Settings_008902" text="Base Workshop Count Limit"/>
-					<string id="BT_Settings_008902_Desc" text="Native value is 1. Sets the base maximum number of workshops you can have." />
-					<string id="BT_Settings_008903" text="Bonus Workshops Per Clan Tier"/>
-					<string id="BT_Settings_008903_Desc" text="Native value is 1. Sets the base maximum number of workshops you can have and the limit increase gained per clan tier."/>
-				<string id="BT_Settings_008904" text="Workshop Buy Cost"/>
-				<string id="BT_Settings_008904_Desc" text="Sets the base value used to calculate the cost of workshops. Reduce to reduce cost of workshops."/>
-					<string id="BT_Settings_008905" text="Workshop Base Cost"/>
-					<string id="BT_Settings_008905_Desc" text="Native value is 10,000. Sets the base value used to calculate the cost of workshops (+ workshop type base cost + 0.5 x town prosperity). Reduce to reduce cost of workshops." />
-				<string id="BT_Settings_008906" text="Workshop Effectivness"/>
-				<string id="BT_Settings_008906_Desc" text="Increases effectivness of workshops by decreasing its daily expenses."/>
-					<string id="BT_Settings_008907" text="Workshop Daily Cost Modifier"/>
-					<string id="BT_Settings_008907_Desc" text="Native value is 100%. Increases effectivness of workshops by decreasing its daily expenses." />
-				<string id="BT_Settings_008908" text="Workshop Products Sell Prices"/>
-				<string id="BT_Settings_008908_Desc" text="Alters the selling prices for products of workshops."/>
-					<string id="BT_Settings_008909" text="Workshop Products Sell Prices"/>
-					<string id="BT_Settings_008909_Desc" text="Native value is 100%. Alters the selling prices for products of workshops. Increase for better profits." />
-				<string id="BT_Settings_008910" text="Workshop Products Buy Prices"/>
-				<string id="BT_Settings_008910_Desc" text="Alters the buying prices for input items of workshops."/>
-					<string id="BT_Settings_008911" text="Workshop Products Buy Prices"/>
-					<string id="BT_Settings_008911_Desc" text="Native value is 100%. Alters the buying prices for input items of workshops. Decrease for better profits." />
-		<string id="BT_Settings_009000" text="Misc" />
-			<string id="BT_Settings_009001" text="Disable Quest Troops Affecting Morale" />
-			<string id="BT_Settings_009001_Desc" text="When enabled, quest troops such as Borrowed Troop in your party are ignored when party morale is calculated." />
-			<string id="BT_Settings_009002" text="Show Number of Days of Food"/>
-			<string id="BT_Settings_009002_Desc" text="Changes the number showing how much food you have to instead show how many days' worth of food you have. (Bottom right of campaign map UI)." />
-			<string id="BT_Settings_009003" text="Campaign Speed Fast Forward"/>
-			<string id="BT_Settings_009003_Desc" text="Sets the campaign speed in fast forward mode. Vanilla is 4." />
+    <string id="BT_Settings_000000" text="Battle Tweaks" />
+    <string id="BT_Settings_000104" text="Also Apply To AI" />
+    <string id="BT_Settings_000104_Desc" text="Applies the renown, influence and morale modifiers to AI parties." />
+    <string id="BT_Settings_000105" text="Show Calculation Message" />
+    <string id="BT_Settings_000105_Desc" text="Shows detailed calculation for renown, influence and morale tweaks in message log." />
+    <string id="BT_Settings_000200" text="Hideout Tweaks" />
+    <string id="BT_Settings_000200_Desc" text="Changes game behavior inside hideout battles." />
+    <string id="BT_Settings_000201" text="Hideout Battle Troop Limit"/>
+    <string id="BT_Settings_000201_Desc" text="Native value is 9 or 10. Changes the maximum troop limit to the set value inside hideout battles. Cannot be higher than 90 because it causes bugs." />
+    <string id="BT_Settings_000202" text="Continue Hideout Battle On Player Death" />
+    <string id="BT_Settings_000202_Desc" text="Native value is false. If enabled, you will not automatically lose the hideout battle if you die. Your troops will charge and the boss duel will be disabled." />
+    <string id="BT_Settings_000203" text="Continue Battle On Losing Duel" />
+    <string id="BT_Settings_000203_Desc" text="Native value is false. If enabled, your troops will rush to avenge you and finish everyone off." />
+    <string id="BT_Settings_000300" text="Siege Tweaks" />
+    <string id="BT_Settings_000300_Desc" text="Tweaks for siege engine construction speed and collateral casulaties during sieges." />
+    <string id="BT_Settings_000301" text="Siege Construction Progress Per Day Amount"/>
+    <string id="BT_Settings_000301_Desc" text="This tweak adds a modifier to the construction progress per day for sieges. A smaller number results in longer siege times. [Native : 100%.]" />
+    <string id="BT_Settings_000302" text="Siege Collateral Damage Casualties" />
+    <string id="BT_Settings_000302_Desc" text="Native value is 0. This tweak adds to the base value (1 or 2 with Crossbow Terror Perk) used to calculate collateral casualties during the campaign map siege stage." />
+    <string id="BT_Settings_000303" text="Siege Destruction Casualties" />
+    <string id="BT_Settings_000303_Desc" text="Native value is 0. This tweak adds to the base value (2) used to calculate destruction casualties during the campaign map siege stage." />
+    <string id="BT_Settings_000400" text="Troop Experience" />
+    <string id="BT_Settings_000400_Desc" text="Tweaks for experience gain of troops in battles and simulations." />
+    <string id="BT_Settings_000401" text="Troop Battle Experience"/>
+    <string id="BT_Settings_000401_Desc" text="Modifies the amount of experience that ALL troops receive during battles (Note: Only troops, not heroes)." />
+    <string id="BT_Settings_000402" text="Troop Battle Experience Amount" />
+    <string id="BT_Settings_000402_Desc" text="Native value is 100%. Modifies the amount of experience that ALL troops receive during fought battles (Note: Only troops, not heroes. Does not apply to simulated battles.)." />
+    <string id="BT_Settings_000403" text="Troop Simulation Experience" />
+    <string id="BT_Settings_000403_Desc" text="Modifies the experience gained from simulated battles. This is applied to all fights (including NPC fights) on the campaign map." />
+    <string id="BT_Settings_000404" text="Troop Simulation Experience Amount" />
+    <string id="BT_Settings_000404_Desc" text="Native value is 90%. Provides a multiplier to experience gained from simulated battles. This is applied to all simulated fights on the campaign map." />
+    <string id="BT_Settings_000500" text="Weapon Cut Through Tweaks" />
+    <string id="BT_Settings_000500_Desc" text="Allows all weapon types to cut through and hit multiple people." />
+    <string id="BT_Settings_000501" text="All Two-Handed Weapons Cut Through"/>
+    <string id="BT_Settings_000501_Desc" text="Allows all two-handed weapon types to cut through and hit multiple people." />
+    <string id="BT_Settings_000502" text="All One-Handed Weapons Cut Through" />
+    <string id="BT_Settings_000502_Desc" text="Allows all single-handed weapon types to cut through and hit multiple people." />
+    <string id="BT_Settings_001000" text="Campaign Tweaks" />
+    <string id="BT_Settings_001100" text="Battle Size Tweak" />
+    <string id="BT_Settings_001100_Desc" text="Allows you to set the battle size limit outside of native values. WARNING: Setting this above 1000 can cause performance degradation and crashes." />
+    <string id="BT_Settings_001101" text="Battle Size Limit"/>
+    <string id="BT_Settings_001101_Desc" text="Sets the limit for number of troops on a battlefield, ignoring what is in Bannerlord Options. WARNING: Will crash if all troops + their horses exceed 2000." />
+    <string id="BT_Settings_001200" text="Difficulty Tweaks" />
+    <string id="BT_Settings_001200_Desc" text="Allows you to change the multiplier for several difficulty settings." />
+    <string id="BT_Settings_001201" text="Damage to Player Tweak"/>
+    <string id="BT_Settings_001201_Desc" text="Allows you to change the multiplier for damage the player receives." />
+    <string id="BT_Settings_001202" text="Damage to Player Tweak Amount"/>
+    <string id="BT_Settings_001202_Desc" text="Native values: Very Easy: 30%, Easy: 67%, Realistic: 100%. This value is used to calculate the damage player receives." />
+    <string id="BT_Settings_001203" text="Damage to Friends Tweak"/>
+    <string id="BT_Settings_001203_Desc" text="Allows you to change the damage the player's friends receive." />
+    <string id="BT_Settings_001204" text="Damage to Friends Tweak Amount"/>
+    <string id="BT_Settings_001204_Desc" text="Native values: Very Easy: 30%, Easy: 67%, Realistic: 100%. This value is used to calculate the damage the player's friends receive." />
+    <string id="BT_Settings_001205" text="Damage to Player's Troops Tweak"/>
+    <string id="BT_Settings_001205_Desc" text="Allows you to change the multiplier for damage the player's troops receive." />
+    <string id="BT_Settings_001206" text="Damage to Troops Tweak Amount"/>
+    <string id="BT_Settings_001206_Desc" text="Native values: Very Easy: 30%, Easy: 67%, Realistic: 100%. This value is used to calculate the damage to the player's troops." />
+    <string id="BT_Settings_001207" text="Combat AI Difficulty Tweak"/>
+    <string id="BT_Settings_001207_Desc" text="Allows you to change the AI combat difficulty." />
+    <string id="BT_Settings_001208" text="Combat AI Difficulty Tweak Amount"/>
+    <string id="BT_Settings_001208_Desc" text="Native values: Very Easy: 10%, Easy: 32%, Realistic: 96%. This value is used to calculate AI combat difficulty." />
+    <string id="BT_Settings_001209" text="Player Map Movement Speed Tweak"/>
+    <string id="BT_Settings_001209_Desc" text="Allows you to change the bonus map movement speed multiplier the player receives." />
+    <string id="BT_Settings_001210" text="Player Map Movement Tweak Amount"/>
+    <string id="BT_Settings_001210_Desc" text="Native values: Very Easy: 10%, Easy: 5%, Realistic: 0%. This value is used to calculate player's map movement speed." />
+    <string id="BT_Settings_002000" text="Character Tweaks" />
+    <string id="BT_Settings_002100" text="Age Tweaks" />
+    <string id="BT_Settings_002100_Desc" text="Enables the tweaking of character age behavior." />
+    <string id="BT_Settings_002101" text="Become Infant Age"/>
+    <string id="BT_Settings_002101_Desc" text="Native: 3. Must be less than Become Child Age." />
+    <string id="BT_Settings_002102" text="Become Child Age"/>
+    <string id="BT_Settings_002102_Desc" text="Native: 6. Must be less than Become Teenager Age." />
+    <string id="BT_Settings_002103" text="Become Teenager Age"/>
+    <string id="BT_Settings_002103_Desc" text="Native: 14. Must be less than Hero Comes Of Age." />
+    <string id="BT_Settings_002104" text="Hero Comes Of Age"/>
+    <string id="BT_Settings_002104_Desc" text="Native: 18. Must be less than Become Old Age." />
+    <string id="BT_Settings_002105" text="Become Old Age"/>
+    <string id="BT_Settings_002105_Desc" text="Native: 47. Must be less than Max Age." />
+    <string id="BT_Settings_002106" text="Max Age"/>
+    <string id="BT_Settings_002106_Desc" text="Native: 125." />
+    <string id="BT_Settings_002200" text="Attribute-Focus Points Tweaks" />
+    <string id="BT_Settings_002200_Desc" text="Changes the values used to calculate how many Attribute and Focus points Heroes gain." />
+    <string id="BT_Settings_002201" text="Levels per Attribute Point"/>
+    <string id="BT_Settings_002201_Desc" text="Native value is 4. How many levels you need to gain to receive an attribute point." />
+    <string id="BT_Settings_002202" text="Focus Point Per Level"/>
+    <string id="BT_Settings_002202_Desc" text="Native value is 1. This is the amount of focus points earned per level." />
+    <string id="BT_Settings_002300" text="Hero Skill Experience" />
+    <string id="BT_Settings_002300_Desc" text="Enable bonuses to the skill experience your hero and companions members gain." />
+    <string id="BT_Settings_002301" text="Player Skill Experience"/>
+    <string id="BT_Settings_002301_Desc" text="Applies a modifier to the amount of experience recieved for skills. Affects the player only. 100% = No Bonus." />
+    <string id="BT_Settings_002302" text="Player Skill Experience Amount"/>
+    <string id="BT_Settings_002302_Desc" text="Applies a modifier to the amount of experience recieved for skills. Affects the player only. 100% = No Bonus." />
+    <string id="BT_Settings_002303" text="Companion Skill Experience"/>
+    <string id="BT_Settings_002303_Desc" text="Applies a modifier to the amount of experience recieved for skills. Affects Compaions only. 100% = No Bonus." />
+    <string id="BT_Settings_002304" text="Companion Skill Experience Amount"/>
+    <string id="BT_Settings_002304_Desc" text="Applies a modifier to the amount of experience recieved for skills. Affects the Companion only. 100% = No Bonus." />
+    <string id="BT_Settings_002305" text="Per Skill Bonuses"/>
+    <string id="BT_Settings_002305_Desc" text="Modifies the amount of experience recieved for specific skills before applying global experience modifier. Affects the player and companions only. 1.0 = No Bonus. 1.1 = 10%, etc." />
+    <string id="BT_Settings_002306" text="Per-Skill Experience Amount: Engineering"/>
+    <string id="BT_Settings_002306_Desc" text="Modifies the amount of Engineering experience recieved." />
+    <string id="BT_Settings_002307" text="Per-Skill Experience Amount: Leadership"/>
+    <string id="BT_Settings_002307_Desc" text="Modifies the amount of Leadership experience recieved." />
+    <string id="BT_Settings_002308" text="Per-Skill Experience Amount: Medicine"/>
+    <string id="BT_Settings_002308_Desc" text="Modifies the amount of Medicine experience recieved." />
+    <string id="BT_Settings_002309" text="Per-Skill Experience Amount: Riding"/>
+    <string id="BT_Settings_002309_Desc" text="Modifies the amount of Riding experience recieved." />
+    <string id="BT_Settings_002310" text="Per-Skill Experience Amount: Roguery"/>
+    <string id="BT_Settings_002310_Desc" text="Modifies the amount of Roguery experience recieved." />
+    <string id="BT_Settings_002311" text="Per-Skill Experience Amount: Scouting"/>
+    <string id="BT_Settings_002311_Desc" text="Modifies the amount of Scouting experience recieved." />
+    <string id="BT_Settings_002312" text="Per-Skill Experience Amount: Trade"/>
+    <string id="BT_Settings_002312_Desc" text="Modifies the amount of Trade experience recieved." />
+    <string id="BT_Settings_002313" text="Per-Skill Experience Amount: Smithing"/>
+    <string id="BT_Settings_002313_Desc" text="Modifies the amount of Smithing experience recieved." />
+    <string id="BT_Settings_002400" text="Pregnancy Tweaks" />
+    <string id="BT_Settings_002400_Desc" text="Enables several tweaks related to pregnancy behavior." />
+    <string id="BT_Settings_002401" text="Disable Stillbirths"/>
+    <string id="BT_Settings_002401_Desc" text="Disables the chance of children dying when born." />
+    <string id="BT_Settings_002402" text="Disable Maternal Mortality"/>
+    <string id="BT_Settings_002402_Desc" text="Disables the chance of mothers dying when giving birth." />
+    <string id="BT_Settings_002403" text="Pregnancy Duration Tweak"/>
+    <string id="BT_Settings_002403_Desc" text="Allows for adjusting the duration for a pregnancy." />
+    <string id="BT_Settings_002404" text="Pregnancy Duration"/>
+    <string id="BT_Settings_002404_Desc" text="Native value is 36 days." />
+    <string id="BT_Settings_002405" text="Gender Ratio Tweak"/>
+    <string id="BT_Settings_002405_Desc" text="Allows for adjusting the gender ratio of births." />
+    <string id="BT_Settings_002406" text="Probability for female children"/>
+    <string id="BT_Settings_002406_Desc" text="Native value is 51%. Set to 0% to disable female births." />
+    <string id="BT_Settings_002407" text="Twins Probability Tweak"/>
+    <string id="BT_Settings_002407_Desc" text="Allows for adjusting the chance of giving birth to twins." />
+    <string id="BT_Settings_002408" text="Probability to deliver twins"/>
+    <string id="BT_Settings_002408_Desc" text="Native value is 3%. Determines the chance of giving birth to twins." />
+    <string id="BT_Settings_002409" text="Pregnancy Chance Tweaks"/>
+    <string id="BT_Settings_002409_Desc" text="Enabling this will completely override the daily pregnancy check. All settings below will be applied!" />
+    <string id="BT_Settings_002410" text="Player is Infertile"/>
+    <string id="BT_Settings_002410_Desc" text="Native: disabled. If enabled, the player will not be able to have children." />
+    <string id="BT_Settings_002411" text="Min Pregnancy Age"/>
+    <string id="BT_Settings_002411_Desc" text="Native: 18. Minimum age that someone can get pregnant." />
+    <string id="BT_Settings_002412" text="Max Pregnancy Age"/>
+    <string id="BT_Settings_002412_Desc" text="Native: 45. Maximum age that someone can get pregnant." />
+    <string id="BT_Settings_002413" text="Clan Fertility Bonus"/>
+    <string id="BT_Settings_002413_Desc" text="Adds modifier to your clan members to become pregnant. 100% = No Bonus, 200% = 2x chance. Note: May not do much after ~6-8 kids due to the base pregnancy calculations." />
+    <string id="BT_Settings_002414" text="Max Children"/>
+    <string id="BT_Settings_002414_Desc" text="Default: 5. Maximum number of children that someone can have." />
+    <string id="BT_Settings_003000" text="Clan Tweaks" />
+    <string id="BT_Settings_003100" text="Companion Limit Tweak" />
+    <string id="BT_Settings_003100_Desc" text="Sets the base companion limit and the bonus gained per clan tier." />
+    <string id="BT_Settings_003101" text="Base Companion Limit"/>
+    <string id="BT_Settings_003101_Desc" text="Sets the base companion limit. [Native: 3]." />
+    <string id="BT_Settings_003102" text="Companion Bonus Per Clan Tier"/>
+    <string id="BT_Settings_003102_Desc" text="Native value is 1. Sets the bonus to companion limit per clan tier. This value is multiplied by your clan tier. Note that Leadership 'We Pledge Our Swords' perk will also increse this number by 1." />
+    <string id="BT_Settings_003103" text="Enable Unlimited Wanderers Patch"/>
+    <string id="BT_Settings_003103_Desc" text="Removes the soft cap on the maximum number of potential companions who can spawn. Native limits the # of wanderers to ~25. This will remove that limit. Note: Requires a new campaign to take effect, as the cap is set when a new game is generated. Credit to Bleinz for his UnlimitedWanderers mod." />
+    <string id="BT_Settings_003104" text="Companion Spawn Interval" />
+    <string id="BT_Settings_003104_Desc" text="Number of weeks between a new companion being added to the world. Set to 0 for a new companion to be added to the taverns every week. [Native: 6]" />
+    <string id="BT_Settings_003200" text="Party Limits" />
+    <string id="BT_Settings_003200_Desc" text="Changes the number of parties you and ai lords can field and the bonus gained per clan tier." />
+    <string id="BT_Settings_003201" text="Player Parties Limit"/>
+    <string id="BT_Settings_003201_Desc" text="Changes the base number of parties you can field and the bonus gained per clan tier." />
+    <string id="BT_Settings_003202" text="Base Clan Parties Limit"/>
+    <string id="BT_Settings_003202_Desc" text="Native value is 1. This is the number of parties you can field at the start." />
+    <string id="BT_Settings_003203" text="Clan Parties Bonus Per Clan Tier"/>
+    <string id="BT_Settings_003203_Desc" text="Native has a calculation for this: 1 party for under tier 3, 2 parties for under tier 5, 3 parties for over tier 5. This setting is multiplied by your clan tier. A value of 0.5 will equate to 1 extra party per 2 clan tiers, which eqautes to the same as native." />
+    <string id="BT_Settings_003204" text="AI Lord Parties Limit"/>
+    <string id="BT_Settings_003204_Desc" text="Changes the base number of parties AI Lords can field." />
+    <string id="BT_Settings_003205" text="Add to AI Lord Parties Limit"/>
+    <string id="BT_Settings_003205_Desc" text="This adds to the the base number of parties AI Lords can field. [Native is 1 for Tier 3 and below, 2 at T4, 3 at T5 and up.] Minor Factions are not included unless the option below is also enabled." />
+    <string id="BT_Settings_003206" text="Also Adjust Minor Factions"/>
+    <string id="BT_Settings_003206_Desc" text="Changes the base number of parties AI Minor Faction Lords can field. [Native is 1-4, depending on Clan tier.]" />
+    <string id="BT_Settings_003207" text="Custom Spawn Parties Limit"/>
+    <string id="BT_Settings_003207_Desc" text="Changes the base number of parties Custom Spawn lords can field." />
+    <string id="BT_Settings_003208" text="Add to Custom Spawn Parties Limit"/>
+    <string id="BT_Settings_003208_Desc" text="This adds to the the base number of parties Custom Lords can field. [Native is 1 for Tier 3 and below, 2 at T4, 3 at T5 and up.]." />
+    <string id="BT_Settings_004000" text="Crafting Tweaks" />
+    <string id="BT_Settings_004100" text="Crafting Stamina" />
+    <string id="BT_Settings_004100_Desc" text="Enables tweaks which affect crafting stamina." />
+    <string id="BT_Settings_004101" text="Max Crafting Stamina Multiplier"/>
+    <string id="BT_Settings_004101_Desc" text="Multiply max crafting stamina by the multiplier [Native: 1.0]" />
+    <string id="BT_Settings_004102" text="Crafting Stamina Gain"/>
+    <string id="BT_Settings_004102_Desc" text="Native value is 5. You gain this amount of crafting stamina per hour." />
+    <string id="BT_Settings_004103" text="Crafting Stamina Gain Outside Settlement"/>
+    <string id="BT_Settings_004103_Desc" text="Native value is 0%. In % of Crafting Stamina Gain. In native, you do not gain crafting stamina if you are not resting inside a settlement." />
+    <string id="BT_Settings_004104" text="Ignore Crafting Stamina"/>
+    <string id="BT_Settings_004104_Desc" text="Native value is false. This disables crafting stamina completely. You will still lose crafting stamina when you craft, but you will still be able to craft when you hit zero." />
+    <string id="BT_Settings_004200" text="Smelting" />
+    <string id="BT_Settings_004200_Desc" text="Enables tweaks which affect smelting of weapons." />
+    <string id="BT_Settings_004201" text="Hide Locked Weapons in Smelting Menu"/>
+    <string id="BT_Settings_004201_Desc" text="Native value is false. Prevent weapons that you have locked in your inventory from showing up in the smelting list to prevent accidental smelting." />
+    <string id="BT_Settings_004202" text="Enable Unlocking Parts From Smelted Weapons"/>
+    <string id="BT_Settings_004202_Desc" text="Native value is false. Unlock the parts that a weapon is made of when you smelt it." />
+    <string id="BT_Settings_005000" text="Kingdom Tweaks" />
+    <string id="BT_Settings_005100" text="Lord Bartering" />
+    <string id="BT_Settings_005100_Desc" text="Enables tweaks which affect bartering (Marriage, Factions Joining You, etc.)" />
+    <string id="BT_Settings_005101" text="Faction Joining Barter Adjustment"/>
+    <string id="BT_Settings_005101_Desc" text="Adjust the % cost of swaying a faction to join your kingdom. Native value is 100% (no change)." />
+    <string id="BT_Settings_005102" text="Relationship favored Faction Joining Barter"/>
+    <string id="BT_Settings_005102_Desc" text="An alternate formula for calculating cost of swaying a faction to join your kingdom, with more emphasis on relationsip. [The higher your relationship to the lord, the cheaper the barter]." />
+    <string id="BT_Settings_005200" text="Faction Balancing" />
+    <string id="BT_Settings_005200_Desc" text="Enables tweaks which affect the balancing of kingdoms." />
+    <string id="BT_Settings_005201" text="Balancing Modifiers For Vanilla Kingdoms"/>
+    <string id="BT_Settings_005201_Desc" text="Enables tweaks which affect the balancing of kingdoms in vanilla game." />
+    <string id="BT_Settings_005202" text="Vlandia Balancing Strength"/>
+    <string id="BT_Settings_005202_Desc" text="Balancing strength for vlandia. Boosts or reduces the enabled balancing tweaks." />
+    <string id="BT_Settings_005203" text="Sturgia Balancing Strength"/>
+    <string id="BT_Settings_005203_Desc" text="Balancing strength for sturgia. Boosts or reduces the enabled balancing tweaks." />
+    <string id="BT_Settings_005204" text="Battania Balancing Strength"/>
+    <string id="BT_Settings_005204_Desc" text="Balancing strength for battania. Boosts or reduces the enabled balancing tweaks." />
+    <string id="BT_Settings_005205" text="Northern Empire Balancing Strength"/>
+    <string id="BT_Settings_005205_Desc" text="Balancing strength for northern empire. Boosts or reduces the enabled balancing tweaks." />
+    <string id="BT_Settings_005206" text="Southern Empire Balancing Strength"/>
+    <string id="BT_Settings_005206_Desc" text="Balancing strength for southern empire. Boosts or reduces the enabled balancing tweaks." />
+    <string id="BT_Settings_005207" text="Western Empire Balancing Strength"/>
+    <string id="BT_Settings_005207_Desc" text="Balancing strength for western empire. Boosts or reduces the enabled balancing tweaks." />
+    <string id="BT_Settings_005208" text="Aserai Balancing Strength"/>
+    <string id="BT_Settings_005208_Desc" text="Balancing strength for aserai. Boosts or reduces the enabled tweaks balancing tweaks." />
+    <string id="BT_Settings_005209" text="Khuzait Balancing Strength"/>
+    <string id="BT_Settings_005209_Desc" text="Balancing strength for khuzait. Boosts or reduces the enabled tweaks balancing tweaks." />
+    <string id="BT_Settings_005210" text="Player Kingdom Balancing Strength"/>
+    <string id="BT_Settings_005210_Desc" text="Balancing strength for player kingdom. Boosts or reduces the enabled balancing tweaks." />
+    <string id="BT_Settings_005211" text="Balancing Modifiers For Calradia Expanded Kingdoms"/>
+    <string id="BT_Settings_005211_Desc" text="Enables tweaks which affect the balancing of kingdoms in the mod Calradia Expanded Kingdoms." />
+    <string id="BT_Settings_005212" text="Nordlings Balancing Strength"/>
+    <string id="BT_Settings_005212_Desc" text="Balancing strength for nordlings. Boosts or reduces the enabled balancing tweaks." />
+    <string id="BT_Settings_005213" text="Vagir Balancing Strength"/>
+    <string id="BT_Settings_005213_Desc" text="Balancing strength for vagir. Boosts or reduces the enabled balancing tweaks." />
+    <string id="BT_Settings_005214" text="Royalist Vlandia Balancing Strength"/>
+    <string id="BT_Settings_005214_Desc" text="Balancing strength for royalist vlandia. Boosts or reduces the enabled balancing tweaks." />
+    <string id="BT_Settings_005215" text="Apolssaly Balancing Strength"/>
+    <string id="BT_Settings_005215_Desc" text="Balancing strength for apolssaly. Boosts or reduces the enabled balancing tweaks." />
+    <string id="BT_Settings_005216" text="Lyrion Balancing Strength"/>
+    <string id="BT_Settings_005216_Desc" text="Balancing strength for lyrion. Boosts or reduces the enabled balancing tweaks." />
+    <string id="BT_Settings_005217" text="Khergit Balancing Strength"/>
+    <string id="BT_Settings_005217_Desc" text="Balancing strength for khergit. Boosts or reduces the enabled balancing tweaks." />
+    <string id="BT_Settings_005218" text="Paleician Balancing Strength"/>
+    <string id="BT_Settings_005218_Desc" text="Balancing strength for paleician. Boosts or reduces the enabled balancing tweaks." />
+    <string id="BT_Settings_005219" text="Ariorum Balancing Strength"/>
+    <string id="BT_Settings_005219_Desc" text="Balancing strength for ariorum. Boosts or reduces the enabled balancing tweaks." />
+    <string id="BT_Settings_005220" text="Calradian Empire Balancing Strength"/>
+    <string id="BT_Settings_005220_Desc" text="Balancing strength for calradian empire. Boosts or reduces the enabled balancing tweaks." />
+    <string id="BT_Settings_005221" text="Dryatican Republic Balancing Strength"/>
+    <string id="BT_Settings_005221_Desc" text="BBalancing strength for dryatican republic. Boosts or reduces the enabled balancing tweaks." />
+    <string id="BT_Settings_005222" text="Battania Balancing Strength"/>
+    <string id="BT_Settings_005222_Desc" text="Balancing strength for battania. Boosts or reduces the enabled balancing tweaks." />
+    <string id="BT_Settings_005223" text="Cortanian Vlandia Balancing Strength"/>
+    <string id="BT_Settings_005223_Desc" text="Balancing strength for cortanian vlandia. Boosts or reduces the enabled balancing tweaks." />
+    <string id="BT_Settings_005224" text="Sturgia Balancing Strength"/>
+    <string id="BT_Settings_005224_Desc" text="Balancing strength for sturgia. Boosts or reduces the enabled balancing tweaks." />
+    <string id="BT_Settings_005225" text="Khuzait Balancing Strength"/>
+    <string id="BT_Settings_005225_Desc" text="Balancing strength for khuzait. Boosts or reduces the enabled balancing tweaks." />
+    <string id="BT_Settings_005226" text="Aserai Balancing Strength"/>
+    <string id="BT_Settings_005226_Desc" text="Balancing strength for aserai. Boosts or reduces the enabled balancing tweaks." />
+    <string id="BT_Settings_005227" text="Western Empire Balancing Strength"/>
+    <string id="BT_Settings_005227_Desc" text="Balancing strength for western empire. Boosts or reduces the enabled balancing tweaks." />
+    <string id="BT_Settings_005228" text="Player Kingdom Balancing Strength"/>
+    <string id="BT_Settings_005228_Desc" text="Balancing strength for player kingdom. Boosts or reduces the enabled balancing tweaks." />
+    <string id="BT_Settings_005229" text="Party Sizes Balancing"/>
+    <string id="BT_Settings_005229_Desc" text="Modifier for max party sizes (1.0 x Balancing Strength)." />
+    <string id="BT_Settings_005230" text="Party Count Limit Balancing"/>
+    <string id="BT_Settings_005230_Desc" text="Modifier for max party limit (1.0 x Balancing Strength)." />
+    <string id="BT_Settings_005231" text="Village Food Production Balancing"/>
+    <string id="BT_Settings_005231_Desc" text="Modifier for daily production of food goods in villages (1.0 x Balancing Strength)." />
+    <string id="BT_Settings_005232" text="Faster Recruiting Balancing"/>
+    <string id="BT_Settings_005232_Desc" text="Flat % bonus chance of new recruits to spawn in settlements (0.75 x Balancing Strength)." />
+    <string id="BT_Settings_005233" text="Taxation Efficiency Balancing"/>
+    <string id="BT_Settings_005233_Desc" text="Modifier for tax income from prosperity in towns and castles and trade tax income in villages (1.0 x Balancing Strength)." />
+    <string id="BT_Settings_005234" text="Wage costs Balancing"/>
+    <string id="BT_Settings_005234_Desc" text="Modifier for troop and garrison wages (1.0 x Balancing Strength)." />
+    <string id="BT_Settings_005235" text="Quality of Recruitment Balancing"/>
+    <string id="BT_Settings_005235_Desc" text="Increases the chance for upgraded recruits (1.0 x Balancing Strength). No effect if balancing strength is lower than 0% (no decrease in chance for upgrades)." />
+    <string id="BT_Settings_006000" text="Party Tweaks" />
+    <string id="BT_Settings_006100" text="Cohesion Tweaks" />
+    <string id="BT_Settings_006100_Desc" text="Enables tweaks affecting cohesion" />
+    <string id="BT_Settings_006101" text="Cohesion Degradation Factor"/>
+    <string id="BT_Settings_006101_Desc" text="Modifier to how much cohesion should degrade over time. Vanilla is 100%, 0% is disabled." />
+    <string id="BT_Settings_006102" text="All-Clan Armies Lose No Cohesion"/>
+    <string id="BT_Settings_006102_Desc" text="Armies composed of only clan parties lose no cohesion." />
+    <string id="BT_Settings_006200" text="Player Caravan Party Size" />
+    <string id="BT_Settings_006200_Desc" text="Applies a configured value to your caravan party size." />
+    <string id="BT_Settings_006201" text="Player Caravan Party Size Amount"/>
+    <string id="BT_Settings_006201_Desc" text="Native: 30. Be aware that bigger parties are also slower parties." />
+    <string id="BT_Settings_006300" text="Party Size" />
+    <string id="BT_Settings_006300_Desc" text="Applies a bonues to you and AI lord's party size based on leadership and steward skills." />
+    <string id="BT_Settings_006301" text="Leadership Bonus"/>
+    <string id="BT_Settings_006301_Desc" text="Applies a bonus equal to the set percentage of your leadership skill to your party size." />
+    <string id="BT_Settings_006302" text="Leadership Bonus Player"/>
+    <string id="BT_Settings_006302_Desc" text="Applies a bonus equal to the set percentage of your leadership skill to your party size." />
+    <string id="BT_Settings_006303" text="Steward Bonus"/>
+    <string id="BT_Settings_006303_Desc" text="Applies a bonus equal to the set percentage of your steward skill to your party size." />
+    <string id="BT_Settings_006304" text="Steward Bonus Player"/>
+    <string id="BT_Settings_006304_Desc" text="Applies a bonus equal to the set percentage of your steward skill to your party size." />
+    <string id="BT_Settings_006305" text="Party Size Relation Player-AI"/>
+    <string id="BT_Settings_006305_Desc" text="The percentage of the party size bonus set for the player to also apply for ai lords. 0% results in no bonus for ai. You may also want to increase food production amounts (Village Production, bigger demand)." />
+    <string id="BT_Settings_006400" text="Wages" />
+    <string id="BT_Settings_006400_Desc" text="Allows you to reduce/increase wages for various groups." />
+    <string id="BT_Settings_006401" text="Party Wage Adjustment"/>
+    <string id="BT_Settings_006401_Desc" text="Adjusts party wages to a % of native value. Native is 100%." />
+    <string id="BT_Settings_006402" text="Garrison Wage Adjustment"/>
+    <string id="BT_Settings_006402_Desc" text="Adjusts garrison wages to a % of native value. Native is 100%." />
+    <string id="BT_Settings_006403" text="Also Apply Wage Tweaks to Your Faction"/>
+    <string id="BT_Settings_006403_Desc" text="Applies the wage modifiers to your clan/faction parties as well." />
+    <string id="BT_Settings_006404" text="Also Apply Wage Tweaks to AI Lords"/>
+    <string id="BT_Settings_006404_Desc" text="Applies the wage modifiers to ai lord parties as well." />
+    <string id="BT_Settings_006500" text="Daily Troop Experience" />
+    <string id="BT_Settings_006500_Desc" text="Gives each troop roster (stack) in a party an amount of experience each day based upon the leader's Leadership skill. By default only applies to the player." />
+    <string id="BT_Settings_006501" text="Percentage of Leadership"/>
+    <string id="BT_Settings_006501_Desc" text="The percentage of the leader's Leadership skill to be given as experience to each of their troop rosters. With 100 leadership and a setting of 1000% each troop type stack will get 1.000 xp daily." />
+    <string id="BT_Settings_006502" text="Starting from Level Of Leadership"/>
+    <string id="BT_Settings_006502_Desc" text="The Leadership level required to start giving experience to troop rosters. With this setting at 20, daily training of your troop stacks will start from leadership 20 onwards (but be calculated with the full 20 skillpoints)." />
+    <string id="BT_Settings_006503" text="Apply to Player's Clan Members"/>
+    <string id="BT_Settings_006503_Desc" text="Applies the daily troop experience gain to members of the player's clan also." />
+    <string id="BT_Settings_006504" text="Apply to all NPC Lords"/>
+    <string id="BT_Settings_006504_Desc" text="Applies the daily troop experience gain to all NPC lords." />
+    <string id="BT_Settings_006505" text="Display Message"/>
+    <string id="BT_Settings_006505_Desc" text="Displays a message showing the amount of experience granted." />
+    <string id="BT_Settings_007000" text="Prisoner Tweaks" />
+    <string id="BT_Settings_007100" text="Imprisonment Time" />
+    <string id="BT_Settings_007100_Desc" text="Adds a minimum amount of time before lords can attempt to escape imprisonment." />
+    <string id="BT_Settings_007101" text="Player Prisoners Only"/>
+    <string id="BT_Settings_007101_Desc" text="Whether the tweak should be applied only to prisoners held by the player." />
+    <string id="BT_Settings_007102" text="Minimum Days of Imprisonment"/>
+    <string id="BT_Settings_007102_Desc" text="The minimum number of days a lord will remain imprisoned before they can attempt to escape." />
+    <string id="BT_Settings_007103" text="Enable Missing Prisoner Hero Fix"/>
+    <string id="BT_Settings_007103_Desc" text="Will attempt to detect and release prisoner Heroes who may be bugged and do not respawn. Will trigger 3 days after the Minimum Days of Imprisonment setting." />
+    <string id="BT_Settings_007200" text="Prisoner Size Bonus" />
+    <string id="BT_Settings_007200_Desc" text="Enables a % bonus to your party's maximum prisoner size." />
+    <string id="BT_Settings_007201" text="Prisoner Size Bonus"/>
+    <string id="BT_Settings_007201_Desc" text="Adds a % bonues to your party's maximum prisoner size. Native is 0%." />
+    <string id="BT_Settings_007202" text="Also apply to AI"/>
+    <string id="BT_Settings_007202_Desc" text="Wether the prisoner size bonus should apply to AI Lords." />
+    <string id="BT_Settings_007300" text="Prisoner Confirmity" />
+    <string id="BT_Settings_007300_Desc" text="Modifies the conformity rate of the base game, speeding the rate at which prisoners can be recruited." />
+    <string id="BT_Settings_007301" text="Prisoner Confirmity Bonus"/>
+    <string id="BT_Settings_007301_Desc" text="Adds a % bonues to the conformity generated each hour. Native is 0%." />
+    <string id="BT_Settings_007302" text="Apply Prisoner Confirmity Tweaks to Clan"/>
+    <string id="BT_Settings_007302_Desc" text="Applies Prisoner Conformity Tweaks to all clan parties as well." />
+    <string id="BT_Settings_007303" text="Apply Prisoner Confirmity Tweaks to AI"/>
+    <string id="BT_Settings_007303_Desc" text="Applies Prisoner Conformity Tweaks to all parties, including AI lords as well." />
+    <string id="BT_Settings_008000" text="Settlement Tweaks" />
+    <string id="BT_Settings_008100" text="Settlement Culture Transformation" />
+    <string id="BT_Settings_008100_Desc" text="Changes the culture of settlement in relation to the owner clan. On deactivation cultures revert back. The last town of a culture will not be changed!" />
+    <string id="BT_Settings_008101" text="Change To Culture Of Kingdom Faction Instead"/>
+    <string id="BT_Settings_008101_Desc" text="Instead of changing the culture to its owner-clan culture, change to its kingdom culture." />
+    <string id="BT_Settings_008102" text="Override Culture For Player Clan"/>
+    <string id="BT_Settings_008102_Desc" text="Overrides the culture to change to for player clan owned settlements." />
+    <string id="BT_Settings_008103" text="Weeks for Settlement Culture Change"/>
+    <string id="BT_Settings_008103_Desc" text="After how many weeks the culture of a settlement changes to its owner's culture (and produces recruits of the new culturegroup)." />
+    <string id="BT_Settings_008200" text="Disable Troop Donations" />
+    <string id="BT_Settings_008200_Desc" text="Disables your clan parties from donating troops to clan owned settlements." />
+    <string id="BT_Settings_008201" text="Disable Troop Donations - Any Settlement"/>
+    <string id="BT_Settings_008201_Desc" text="Additionally disables your clan parties from donating troops to ANY settlement." />
+    <string id="BT_Settings_008300" text="Village Productivity" />
+    <string id="BT_Settings_008300_Desc" text="Enables Tweaks for increased productivity in villages." />
+    <string id="BT_Settings_008301" text="Village Production: Food"/>
+    <string id="BT_Settings_008301_Desc" text="Modifies the daily production of food goods in villages." />
+    <string id="BT_Settings_008302" text="Village Production: Other goods"/>
+    <string id="BT_Settings_008302_Desc" text="Modifies the daily production of other goods in villages." />
+    <string id="BT_Settings_008400" text="Buildings" />
+    <string id="BT_Settings_008401" text="Castle"/>
+    <string id="BT_Settings_008402" text="Castle Training Field"/>
+    <string id="BT_Settings_008402_Desc" text="Changes the amount of experience the training fields provides for each level." />
+    <string id="BT_Settings_008403" text="Castle Training Fields Experience Level 1"/>
+    <string id="BT_Settings_008403_Desc" text="Native value is 1. Changes the amount of experience the training fields provides at level 1." />
+    <string id="BT_Settings_008404" text="Castle Training Fields Experience Level 2"/>
+    <string id="BT_Settings_008404_Desc" text="Native value is 2. Changes the amount of experience the training fields provides at level 2." />
+    <string id="BT_Settings_008405" text="Castle Training Fields Experience Level 3"/>
+    <string id="BT_Settings_008405_Desc" text="Native value is 3. Changes the amount of experience the training fields provides at level 3." />
+    <string id="BT_Settings_008406" text="Castle Granary"/>
+    <string id="BT_Settings_008406_Desc" text="Changes the amount of food storage the castle granary provides per level." />
+    <string id="BT_Settings_008407" text="Castle Granary Food Storage Level 1"/>
+    <string id="BT_Settings_008407_Desc" text="Native value is 100. Changes the amount of food storage the castle granary provides at level 1." />
+    <string id="BT_Settings_008408" text="Castle Granary Food Storage Level 2"/>
+    <string id="BT_Settings_008408_Desc" text="Native value is 200. Changes the amount of food storage the castle granary provides at level 2." />
+    <string id="BT_Settings_008409" text="Castle Granary Food Storage Level 3"/>
+    <string id="BT_Settings_008409_Desc" text="Native value is 300. Changes the amount of food storage the castle granary provides at level 3." />
+    <string id="BT_Settings_008410" text="Castle Gardens"/>
+    <string id="BT_Settings_008410_Desc" text="Changes the amount of food the castle gardens produce per level." />
+    <string id="BT_Settings_008411" text="Castle Garden Food Production Level 1"/>
+    <string id="BT_Settings_008411_Desc" text="Native value is 5. Changes the amount of food the castle gardens produce at level 1." />
+    <string id="BT_Settings_008412" text="Castle Garden Food Production Level 2"/>
+    <string id="BT_Settings_008412_Desc" text="Native value is 10. Changes the amount of food the castle gardens produce at level 2." />
+    <string id="BT_Settings_008413" text="Castle Garden Food Production Level 3"/>
+    <string id="BT_Settings_008413_Desc" text="Native value is 15. Changes the amount of food the castle gardens produce at level 3." />
+    <string id="BT_Settings_008414" text="Castle Militia Barracks"/>
+    <string id="BT_Settings_008414_Desc" text="Changes the militia production that the castle militia barracks provides per level." />
+    <string id="BT_Settings_008415" text="Castle Militia Barracks Production Level 1"/>
+    <string id="BT_Settings_008415_Desc" text="Native value is 1. Changes the militia production that the castle militia barracks provides at level 1." />
+    <string id="BT_Settings_008416" text="Castle Militia Barracks Production Level 2"/>
+    <string id="BT_Settings_008416_Desc" text="Native value is 2. Changes the militia production that the castle militia barracks provides at level 2." />
+    <string id="BT_Settings_008417" text="Castle Militia Barracks Production Level 3"/>
+    <string id="BT_Settings_008417_Desc" text="Native value is 3. Changes the militia production that the castle militia barracks provides at level 3." />
+    <string id="BT_Settings_008418" text="Town"/>
+    <string id="BT_Settings_008419" text="Town Training Fields"/>
+    <string id="BT_Settings_008419_Desc" text="Changes the amount of experience the training fields provides for each level." />
+    <string id="BT_Settings_008420" text="Town Training Fields Experience Level 1"/>
+    <string id="BT_Settings_008420_Desc" text="Native value is 30. Changes the amount of experience the training fields provides at level 1." />
+    <string id="BT_Settings_008421" text="Town Training Fields Experience Level 2"/>
+    <string id="BT_Settings_008421_Desc" text="Native value is 60. Changes the amount of experience the training fields provides at level 2." />
+    <string id="BT_Settings_008422" text="Town Training Fields Experience Level 3"/>
+    <string id="BT_Settings_008422_Desc" text="Native value is 100. Changes the amount of experience the training fields provides at level 3." />
+    <string id="BT_Settings_008423" text="Town Granary"/>
+    <string id="BT_Settings_008423_Desc" text="Changes the amount of food storage the town granary provides per level." />
+    <string id="BT_Settings_008424" text="Town Granary Food Storage Level 1"/>
+    <string id="BT_Settings_008424_Desc" text="Native value is 200. Changes the amount of food storage the town granary provides at level 1." />
+    <string id="BT_Settings_008425" text="Town Granary Food Storage Level 2"/>
+    <string id="BT_Settings_008425_Desc" text="Native value is 400. Changes the amount of food storage the town granary provides at level 2." />
+    <string id="BT_Settings_008426" text="Town Granary Food Storage Level 3"/>
+    <string id="BT_Settings_008426_Desc" text="Native value is 600. Changes the amount of food storage the town granary provides at level 3." />
+    <string id="BT_Settings_008427" text="Town Orchards"/>
+    <string id="BT_Settings_008427_Desc" text="Changes the amount of food the town orchards produce per level." />
+    <string id="BT_Settings_008428" text="Town Orchard Food Production Level 1"/>
+    <string id="BT_Settings_008428_Desc" text="Native value is 10. Changes the amount of food the town orchards produce at level 1." />
+    <string id="BT_Settings_008429" text="Town Orchard Food Production Level 2"/>
+    <string id="BT_Settings_008429_Desc" text="Native value is 20. Changes the amount of food the town orchards produce at level 2." />
+    <string id="BT_Settings_008430" text="Town Orchard Food Production Level 3"/>
+    <string id="BT_Settings_008430_Desc" text="Native value is 30. Changes the amount of food the town orchards produce at level 3." />
+    <string id="BT_Settings_008431" text="Town Militia Barracks"/>
+    <string id="BT_Settings_008431_Desc" text="Changes the militia production that the town militia barracks provides per level." />
+    <string id="BT_Settings_008432" text="Town Militia Barracks Production Level 1"/>
+    <string id="BT_Settings_008432_Desc" text="Native value is .5. Changes the militia production that the town militia barracks provides at level 1." />
+    <string id="BT_Settings_008433" text="Town Militia Barracks Production Level 2"/>
+    <string id="BT_Settings_008433_Desc" text="Native value is 1. Changes the militia production that the town militia barracks provides at level 2." />
+    <string id="BT_Settings_008434" text="Town Militia Barracks Production Level 3"/>
+    <string id="BT_Settings_008434_Desc" text="Native value is 1.5. Changes the militia production that the town militia barracks provides at level 3." />
+    <string id="BT_Settings_008500" text="Settlement Food" />
+    <string id="BT_Settings_008500_Desc" text="Enables tweaks which provide bonuses to food production in towns and castles." />
+    <string id="BT_Settings_008501" text="Castle Food Modifier"/>
+    <string id="BT_Settings_008501_Desc" text="Native value is 100%. Adds a modifier to food production in castles."/>
+    <string id="BT_Settings_008502" text="Town Food Modifier"/>
+    <string id="BT_Settings_008502_Desc" text="Native value is 100%. Adds a modifier to food production in towns." />
+    <string id="BT_Settings_008503" text="Food Loss From Prosperity"/>
+    <string id="BT_Settings_008503_Desc" text="Allows you to adjust the loss to food production received from settlement prosperity." />
+    <string id="BT_Settings_008504" text="Prosperity Food Loss Divisor"/>
+    <string id="BT_Settings_008504_Desc" text="Native value is 50. The prosperity of the settlement is divided by this value to calculate the loss. Increasing this value will decrease the amount of food lost." />
+    <string id="BT_Settings_008600" text="Normal Militia" />
+    <string id="BT_Settings_008600_Desc" text="Grants a flat bonus to militia growth and rate of retirement in towns and castles." />
+    <string id="BT_Settings_008601" text="Castle Militia Growth Bonus"/>
+    <string id="BT_Settings_008601_Desc" text="Native value is 0. Adds a flat bonus on how many militia gets recruited each day in castles."/>
+    <string id="BT_Settings_008602" text="Town Militia Growth Bonus"/>
+    <string id="BT_Settings_008602_Desc" text="Native value is 0. Adds a flat bonus on how many militia gets recruited each day in towns." />
+    <string id="BT_Settings_008603" text="Castle Militia Retirement Modifier"/>
+    <string id="BT_Settings_008603_Desc" text="Native value is 2.5%. Modifies the percentage of your militia retiring each day in castles." />
+    <string id="BT_Settings_008604" text="Town Militia Retirement Modifier"/>
+    <string id="BT_Settings_008604_Desc" text="Native value is 2.5%. Modifies the percentage of your militia retiring each day in towns." />
+    <string id="BT_Settings_008605" text="Village Militia Retirement Modifier"/>
+    <string id="BT_Settings_008605_Desc" text="Native value is 2.5%. Modifies the percentage of your militia retiring each day in villages." />
+    <string id="BT_Settings_008800" text="Tournaments" />
+    <string id="BT_Settings_008801" text="Renown Reward"/>
+    <string id="BT_Settings_008801_Desc" text="Sets the amount of renown awarded when you win a tournament."/>
+    <string id="BT_Settings_008802" text="Tournament Renown Reward"/>
+    <string id="BT_Settings_008802_Desc" text="Native value is 3. Increases the amount of renown awarded when you win a tournament." />
+    <string id="BT_Settings_008803" text="Gold Reward"/>
+    <string id="BT_Settings_008803_Desc" text="Adds the set amount of gold to the rewards when you win a tournament."/>
+    <string id="BT_Settings_008804" text="Tournament Gold Reward"/>
+    <string id="BT_Settings_008804_Desc" text="Native value is 0. Adds the set amount of gold to the rewards when you win a tournament." />
+    <string id="BT_Settings_008805" text="Maximum Bet"/>
+    <string id="BT_Settings_008805_Desc" text="Sets the maximum amount of gold that you can bet per round in tournaments."/>
+    <string id="BT_Settings_008806" text="Maximum Bet Amount"/>
+    <string id="BT_Settings_008806_Desc" text="Native value is 150. Sets the maximum amount of gold that you can bet per round in tournaments." />
+    <string id="BT_Settings_008807" text="Hero Experience Modifier"/>
+    <string id="BT_Settings_008807_Desc" text="Overrides the native multiplier value for experience gain in tournaments for hero characters."/>
+    <string id="BT_Settings_008808" text="Tournament Hero Experience Modifier"/>
+    <string id="BT_Settings_008808_Desc" text="Native value is 33%. Sets the modifier applied to experience gained in tournaments by hero characters. 100% = full real-world experience." />
+    <string id="BT_Settings_008809" text="Arena Hero Experience Modifier"/>
+    <string id="BT_Settings_008809_Desc" text="Overrides the native multiplier value for experience gain in arena fights for hero characters."/>
+    <string id="BT_Settings_008810" text="Arena Hero Experience Modifier"/>
+    <string id="BT_Settings_008810_Desc" text="Native value is 6%. Sets the modifier applied to experience gain in arena fights for hero characters. 100% = full real-world experience." />
+    <string id="BT_Settings_008811" text="Minimum Betting Odds"/>
+    <string id="BT_Settings_008811_Desc" text="Allows you to set the minimum betting odds in tournaments."/>
+    <string id="BT_Settings_008812" text="Minimum Betting Odds"/>
+    <string id="BT_Settings_008812_Desc" text="Native: 1.1. The minimum odds for tournament bets, higher means more yield for your bets, if won." />
+    <string id="BT_Settings_008900" text="Workshops" />
+    <string id="BT_Settings_008901" text="Workshop Count Limit"/>
+    <string id="BT_Settings_008901_Desc" text="Sets the base maximum number of workshops you can have and the limit increase gained per clan tier."/>
+    <string id="BT_Settings_008902" text="Base Workshop Count Limit"/>
+    <string id="BT_Settings_008902_Desc" text="Native value is 1. Sets the base maximum number of workshops you can have." />
+    <string id="BT_Settings_008903" text="Bonus Workshops Per Clan Tier"/>
+    <string id="BT_Settings_008903_Desc" text="Native value is 1. Sets the base maximum number of workshops you can have and the limit increase gained per clan tier."/>
+    <string id="BT_Settings_008904" text="Workshop Buy Cost"/>
+    <string id="BT_Settings_008904_Desc" text="Sets the base value used to calculate the cost of workshops. Reduce to reduce cost of workshops."/>
+    <string id="BT_Settings_008905" text="Workshop Base Cost"/>
+    <string id="BT_Settings_008905_Desc" text="Native value is 10,000. Sets the base value used to calculate the cost of workshops (+ workshop type base cost + 0.5 x town prosperity). Reduce to reduce cost of workshops." />
+    <string id="BT_Settings_008906" text="Workshop Effectivness"/>
+    <string id="BT_Settings_008906_Desc" text="Increases effectivness of workshops by decreasing its daily expenses."/>
+    <string id="BT_Settings_008907" text="Workshop Daily Cost Modifier"/>
+    <string id="BT_Settings_008907_Desc" text="Native value is 100%. Increases effectivness of workshops by decreasing its daily expenses." />
+    <string id="BT_Settings_008908" text="Workshop Products Sell Prices"/>
+    <string id="BT_Settings_008908_Desc" text="Alters the selling prices for products of workshops."/>
+    <string id="BT_Settings_008909" text="Workshop Products Sell Prices"/>
+    <string id="BT_Settings_008909_Desc" text="Native value is 100%. Alters the selling prices for products of workshops. Increase for better profits." />
+    <string id="BT_Settings_008910" text="Workshop Products Buy Prices"/>
+    <string id="BT_Settings_008910_Desc" text="Alters the buying prices for input items of workshops."/>
+    <string id="BT_Settings_008911" text="Workshop Products Buy Prices"/>
+    <string id="BT_Settings_008911_Desc" text="Native value is 100%. Alters the buying prices for input items of workshops. Decrease for better profits." />
+    <string id="BT_Settings_008920" text="Workshop Ownership Changes"/>
+    <string id="BT_Settings_008921" text="Workshops Kept on War Declarations"/>
+    <string id="BT_Settings_008922" text="Allows Player to Keep Their Workshops When a Kingdom Declares War [Native : false]."/>
+    <string id="BT_Settings_008923" text="Workshops Kept on Bankruptcy"/>
+    <string id="BT_Settings_008924" text="Allows Player to Keep Their Workshops on Bankruptcy [Native : false]."/>
+    <string id="BT_Settings_009000" text="Misc" />
+    <string id="BT_Settings_009001" text="Disable Quest Troops Affecting Morale" />
+    <string id="BT_Settings_009001_Desc" text="When enabled, quest troops such as Borrowed Troop in your party are ignored when party morale is calculated." />
+    <string id="BT_Settings_009002" text="Show Number of Days of Food"/>
+    <string id="BT_Settings_009002_Desc" text="Changes the number showing how much food you have to instead show how many days' worth of food you have. (Bottom right of campaign map UI)." />
+    <string id="BT_Settings_009003" text="Campaign Speed Fast Forward"/>
+    <string id="BT_Settings_009003_Desc" text="Sets the campaign speed in fast forward mode. Vanilla is 4." />
     <!-- BT Strings -->
 
-		<!-- version 0.2.3 -->
+    <!-- version 0.2.3 -->
     <string id="KTMCM_XPMLL" text="Learning Limit Enable" />
     <string id="KTMCM_XPMLLH" text="Enable Learning Limit modifiers." />
     <string id="KTMCM_XPMLLM" text="Learning Limit Multiplier" />
     <string id="KTMCM_XPMLLMH" text="Multiply Learning limit by the multiplier [Native : 0.0[0%]]." />
     <string id="KTMCM_CLearningLimit" text="Learning Limit" />
     <!-- version 0.2.3 -->
-		
-    
+
+
     <!-- version 0.2.4 for 1.5.10 -->
     <string id="KT_PPBC" text="Player Persuasion Bonus Chance Tweak" />
     <string id="KT_PPBCH" text="Allows you to change the bonus persuasion chance multiplier the player receives." />
@@ -910,7 +917,7 @@
     <string id="KT_CMDCRH" text="Allows you to change the clan member death chance reduction multiplier." />
     <string id="KT_CMDCRM" text="Clan Member Death Chance Reduction Amount" />
     <string id="KT_CMDCRMH" text="Native values: Very Easy: 0.1%, Easy: 0.05%, Realistic: 0%. This value is used to calculate Clan member death chance reduction in missions." />
-    
+
     <string id="BT_Settings_008700" text="Elite Militia" />
     <string id="BT_Settings_008700_Desc" text="Adds a bonus to the chance that militia spawning in towns and castles are elite." />
     <string id="BT_Settings_008701" text="Elite Militia Spawn Chance"/>
@@ -919,35 +926,35 @@
     <string id="BT_Settings_008702_Desc" text="Native value is 10%. Sets the chance that the militia spawning in towns and castles are elite ranged troops." />
 		-->
 
-	<!-- version 0.2.6 for 1.5.10 -->
-	<string id="KT_Debug_000" text ="Debug" />
-	<string id="KT_Debug_001" text ="Show Battle Rewards Calculation Message" />
-	<string id="KT_Debug_002" text ="Debug mode - Army tweaks" />
-	<string id="KT_Debug_003" text ="Debug mode - Battle reward tweaks" />
-	<string id="KT_Debug_004" text ="Debug mode - Clan tweaks" />
-	<string id="KT_Debug_005" text ="Debug mode - Item tweaks" />
-	<string id="KT_Debug_006" text ="Debug mode - Pregnancy tweaks" />
-	<string id="KT_Debug_007" text ="Debug mode - Xp tweaks" />
-	<string id="KT_Debug_008" text ="Debug mode - Tournament tweaks" />
-	<string id="KT_Debug_009" text ="Debug mode - Prisoner tweaks" />
-	<string id="KT_Debug_010" text ="Debug mode - Settlement tweaks" />
-	<string id="KT_Debug_011" text ="Debug mode - Wanderer location tweaks" />
-	<string id="KT_Debug_012" text ="Debug mode - Party size tweaks" />
-	<string id="KT_Debug_013" text ="Debug mode - Workshop tweaks" />
-	<string id="KT_Debug_014" text ="Debug mode - Crafting tweaks" />
-	<string id="KT_Debug_015" text ="Debug mode - Learning tweaks" />
-	<string id="KT_Debug_016" text ="Debug mode - Battlesize tweaks" />
-	<string id="KT_Debug_017" text ="Debug mode - Culture transformation tweaks" />
-	<string id="KT_Debug_018" text ="Create logfile" />
-	<string id="KT_Debug_019" text ="Debug mode - Killing Bandits Raises RelationShips tweaks" />
-  <string id="KT_Debug_020" text ="Debug mode - Another Chance At marriage tweaks" />
+    <!-- version 0.2.6 for 1.5.10 -->
+    <string id="KT_Debug_000" text ="Debug" />
+    <string id="KT_Debug_001" text ="Show Battle Rewards Calculation Message" />
+    <string id="KT_Debug_002" text ="Debug mode - Army tweaks" />
+    <string id="KT_Debug_003" text ="Debug mode - Battle reward tweaks" />
+    <string id="KT_Debug_004" text ="Debug mode - Clan tweaks" />
+    <string id="KT_Debug_005" text ="Debug mode - Item tweaks" />
+    <string id="KT_Debug_006" text ="Debug mode - Pregnancy tweaks" />
+    <string id="KT_Debug_007" text ="Debug mode - Xp tweaks" />
+    <string id="KT_Debug_008" text ="Debug mode - Tournament tweaks" />
+    <string id="KT_Debug_009" text ="Debug mode - Prisoner tweaks" />
+    <string id="KT_Debug_010" text ="Debug mode - Settlement tweaks" />
+    <string id="KT_Debug_011" text ="Debug mode - Wanderer location tweaks" />
+    <string id="KT_Debug_012" text ="Debug mode - Party size tweaks" />
+    <string id="KT_Debug_013" text ="Debug mode - Workshop tweaks" />
+    <string id="KT_Debug_014" text ="Debug mode - Crafting tweaks" />
+    <string id="KT_Debug_015" text ="Debug mode - Learning tweaks" />
+    <string id="KT_Debug_016" text ="Debug mode - Battlesize tweaks" />
+    <string id="KT_Debug_017" text ="Debug mode - Culture transformation tweaks" />
+    <string id="KT_Debug_018" text ="Create logfile" />
+    <string id="KT_Debug_019" text ="Debug mode - Killing Bandits Raises RelationShips tweaks" />
+    <string id="KT_Debug_020" text ="Debug mode - Another Chance At marriage tweaks" />
 
     <string id="KT_ACAM" text="Another Chance At Marrige Enabled" />
     <string id="KT_ACAMH" text="Enables the another chance at marriage tweaks." />
     <string id="KT_ACAMC" text="Another Chance At Marrige" />
     <string id="KT_ACAMDBT" text="Days Between Tries" />
     <string id="KT_ACAMDBT_Desc" text="The number of days that has to pass between attempts to restart the courtship. [Native: N/A]." />
-    
+
     <string id="KT_CTRFME" text="Refining Formula Tweaks" />
     <string id="KT_CTRFME_Desc" text="Enables refining formula tweaks which adjust formula cost and output values." />
     <string id="KT_CTRFICM" text="Input Cost Multiplier" />
@@ -963,52 +970,50 @@
     <string id="KT_CTCQLBV" text="Quality Legendary Base Value" />
     <string id="KT_CTCQLBV_Desc" text="Set bonus base value for Legendary quality crafting [Native : 3]." />
     <!-- <string id="KTMCM_CLearningLimit" text="LearningLimit" /> -->
-		
-	<string id="KTMCM_BSTEXP" text="Dynamic Battle Sizes !BETA! " />
-	<string id="KTMCM_BSTEXP_Desc" text="Allows you to set the battle size limit outside of native values. Will be dynamically adjusted to actual battle parameters. WARNING: BETA." />
-	<string id="KTMCM_BSTEXP_01" text="Battle Size Limit" />
-	<string id="KTMCM_BSTEXP_01_Desc" text="Sets the limit for number of troops on a battlefield. May get automatically reduced when a crash is imminent because of a too large battle size limit for a given battle." />
-	<string id="KTMCM_BSTEXP_02" text="Min size of reinforcements" />
-	<string id="KTMCM_BSTEXP_02_Desc" text="Sets the amount of free slots needed in relation to battlesize before reinforcements can spawn. With a Battle Size Limit of 1000 and a set value of 10% --> Min size of reinforcement is 100 (for both sides combined). [Vanilla:10%]" />
-	<string id="KTMCM_BSTEXP_03" text="Reserved Slots for reinforcements" />
-	<string id="KTMCM_BSTEXP_03_Desc" text="Reserve this amount of slots in relation to Min size of reinforcements value if close to the max slots limit. If this is set to low and you are near the max slot limit of 2048 reinforcements spawn very late or wont spawn fully/at all." />
-	<string id="KTMCM_BSTEXP_04" text="Horses on Battlefield" />
-	<string id="KTMCM_BSTEXP_04_Desc" text="The amount of horses that will stay on the battlefield. Any horses exceeding that amount will flee from the battlefield and free up agent slots." />
-	<string id="KTMCM_BSTEXP_05" text="Safety Puffer" />
-	<string id="KTMCM_BSTEXP_05_Desc" text="Vanilla assumes each troop to spawn is mounted (2 agents). We instead get the mounted share in army composition before battle and update it during battle. This value increases that share for safety reasons, because reinforcements dont exactly spawn with initial army composition ratio. Increase if you get crashes." />
 
-	<string id="KTMCM_BMT" text="Battle Moral Tweaks" />
-	<string id="KTMCM_BMT_Desc" text="Tweaks for battle moral changes." />
-	<string id="KTMCM_MC" text="Moral Change Modifier" />
-	<string id="KTMCM_MC_Desc" text="Increases or decreases the amount battle moral changes when different effects get applied. 0 % results in no battle moral changes at all and will prevent any unit fleeing for example [Native : 100%.]" />
+    <string id="KTMCM_BSTEXP" text="Dynamic Battle Sizes !BETA! " />
+    <string id="KTMCM_BSTEXP_Desc" text="Allows you to set the battle size limit outside of native values. Will be dynamically adjusted to actual battle parameters. WARNING: BETA." />
+    <string id="KTMCM_BSTEXP_01" text="Battle Size Limit" />
+    <string id="KTMCM_BSTEXP_01_Desc" text="Sets the limit for number of troops on a battlefield. May get automatically reduced when a crash is imminent because of a too large battle size limit for a given battle." />
+    <string id="KTMCM_BSTEXP_02" text="Min size of reinforcements" />
+    <string id="KTMCM_BSTEXP_02_Desc" text="Sets the amount of free slots needed in relation to battlesize before reinforcements can spawn. With a Battle Size Limit of 1000 and a set value of 10% --> Min size of reinforcement is 100 (for both sides combined). [Vanilla:10%]" />
+    <string id="KTMCM_BSTEXP_03" text="Reserved Slots for reinforcements" />
+    <string id="KTMCM_BSTEXP_03_Desc" text="Reserve this amount of slots in relation to Min size of reinforcements value if close to the max slots limit. If this is set to low and you are near the max slot limit of 2048 reinforcements spawn very late or wont spawn fully/at all." />
+    <string id="KTMCM_BSTEXP_04" text="Horses on Battlefield" />
+    <string id="KTMCM_BSTEXP_04_Desc" text="The amount of horses that will stay on the battlefield. Any horses exceeding that amount will flee from the battlefield and free up agent slots." />
+    <string id="KTMCM_BSTEXP_05" text="Safety Puffer" />
+    <string id="KTMCM_BSTEXP_05_Desc" text="Vanilla assumes each troop to spawn is mounted (2 agents). We instead get the mounted share in army composition before battle and update it during battle. This value increases that share for safety reasons, because reinforcements dont exactly spawn with initial army composition ratio. Increase if you get crashes." />
 
+    <string id="KTMCM_BMT" text="Battle Moral Tweaks" />
+    <string id="KTMCM_BMT_Desc" text="Tweaks for battle moral changes." />
+    <string id="KTMCM_MC" text="Moral Change Modifier" />
+    <string id="KTMCM_MC_Desc" text="Increases or decreases the amount battle moral changes when different effects get applied. 0 % results in no battle moral changes at all and will prevent any unit fleeing for example [Native : 100%.]" />
 
-    
-	<!-- 0.2.7 -->  
-				<string id="BT_Settings_004203" text="Enable Unlocking All Parts Fror Smelted Weapons"/>
-				<string id="BT_Settings_004203_Desc" text="Enables unlocking all wepaon parts for crafting weapons on next game load." />
+    <!-- 0.2.7 -->
+    <string id="BT_Settings_004203" text="Enable Unlocking All Parts Fror Smelted Weapons"/>
+    <string id="BT_Settings_004203_Desc" text="Enables unlocking all wepaon parts for crafting weapons on next game load." />
 
- <!-- 0.2.9 -->
+    <!-- 0.2.9 -->
     <string id="KPM_Arrows" text="Arrows"/>
     <string id="KPM_AME" text="Arrows Multipliers Enabled"/>
     <string id="KPM_AMEH" text="Enables arrows multipliers for price and stack size"/>
     <string id="KPM_ASSM" text="Arrows Stack Multiplier"/>
     <string id="KPM_SSMH" text="Multiply stack sizes by the multiplier [Native: 1.0(100%)]."/>
-    <string id="KPM_APM" text="Arrows Price Multiplier"/>    
-    <string id="KPM_PMH" text="Multiply price by the multiplier [Native: 1.0(100%)]."/>    
-    <string id="KPM_Bolts" text="Bolts"/>    
-    <string id="KPM_BME" text="Bolts Multiplier Enabled"/>    
-    <string id="KPM_BMEH" text="Enables Bolts stack Multiplier"/>    
-    <string id="KPM_BSSM" text="Bolts Stack Multiplier"/>    
-    <string id="KPM_SSMH" text="Multiply stack sizes by the multiplier [Native: 1.0(100%)]."/>    
-    <string id="KPM_BPM" text="Bolts Price Multiplier"/>    
-    <string id="KPM_PMH" text="Multiply price by the multiplier [Native: 1.0(100%)]."/>    
-    <string id="KPM_Thrown" text="Thrown"/>    
-    <string id="KPM_TWME" text="Thrown Multipliers Enabled"/>    
-    <string id="KPM_TWMEH" text="Enables Thrown Multipliers"/>    
-    <string id="KPM_TSSM" text="Thrown Stack Multiplier"/>    
-    <string id="KPM_SSMH" text="Multiply stack sizes by the multiplier [Native: 1.0(100%)]."/>    
-    <string id="KPM_TPM" text="Thrown Price Multiplier"/>    
+    <string id="KPM_APM" text="Arrows Price Multiplier"/>
+    <string id="KPM_PMH" text="Multiply price by the multiplier [Native: 1.0(100%)]."/>
+    <string id="KPM_Bolts" text="Bolts"/>
+    <string id="KPM_BME" text="Bolts Multiplier Enabled"/>
+    <string id="KPM_BMEH" text="Enables Bolts stack Multiplier"/>
+    <string id="KPM_BSSM" text="Bolts Stack Multiplier"/>
+    <string id="KPM_SSMH" text="Multiply stack sizes by the multiplier [Native: 1.0(100%)]."/>
+    <string id="KPM_BPM" text="Bolts Price Multiplier"/>
+    <string id="KPM_PMH" text="Multiply price by the multiplier [Native: 1.0(100%)]."/>
+    <string id="KPM_Thrown" text="Thrown"/>
+    <string id="KPM_TWME" text="Thrown Multipliers Enabled"/>
+    <string id="KPM_TWMEH" text="Enables Thrown Multipliers"/>
+    <string id="KPM_TSSM" text="Thrown Stack Multiplier"/>
+    <string id="KPM_SSMH" text="Multiply stack sizes by the multiplier [Native: 1.0(100%)]."/>
+    <string id="KPM_TPM" text="Thrown Price Multiplier"/>
     <string id="KPM_PMH" text="Multiply price by the multiplier [Native: 1.0(100%)]."/>
 
     <string id="KPS_PartySpeeds" text="Party Speeds"/>
@@ -1065,7 +1070,7 @@
     <string id="KPM_BWME" text="Bullets Multipliers Enabled" />
     <string id="KPM_BWMEH" text="Enables Bullets Multipliers" />
     <string id="KPM_Bullets" text="Bullets" />
-		<!-- 0.2.11 -->
+    <!-- 0.2.11 -->
     <string id="KTMCM_BRMTHP" text="Battle Reward Tweaks Patches Only " />
     <string id="KTMCM_BRMTHPH" text="Use harmony patches only for battle reward tweaks. Use for comaptability with other mods." />
     <string id="KT_PPE" text="Prisoner Price Tweaks Enabled" />
@@ -1074,6 +1079,27 @@
     <string id="KT_PPM" text="Prisoner Price Multiplier" />
     <string id="KT_PPMH" text="Multiply the prisoner selling price [Native: 100%]." />
     <string id="KPM_Bullets" text="Bullets" />
-    
+    <!-- 0.2.13 -->
+    <string id="BT_Settings_006405" text="Wage Harmony Patches " />
+    <string id="BT_Settings_006405_Desc" text="Enables Harmony Patches instead of model." />
+    <string id="BT_Settings_005236" text="Faction Balancing Harmony " />
+    <string id="BT_Settings_005200_Desc" text="Enables faction balancing of kingdoms via hormony patches instead of model." />
+    <!-- 0.3.00 -->
+    <string id="Titan_Settings_000001" text="Party Size Multipliers Group" />
+    <string id="Titan_Settings_000002" text="Enable Party Multipliers" />
+    <string id="Titan_Settings_000002_desc" text="Multipliers that increase the size of Bandit, Villager, Caravan, and Militias. Tick the box to enable and configure. Restart Required." />
+    <string id="Titan_Settings_000003" text="Bandit Multiplier" />
+    <string id="Titan_Settings_000003_desc" text="Multiply bandit party sizes by this amount." />
+    <string id="Titan_Settings_000004" text="Villager Multiplier" />
+    <string id="Titan_Settings_000004_desc" text="Multiply villager party Sizes by this amount." />
+    <string id="Titan_Settings_000005" text="Caravan Multiplier" />
+    <string id="Titan_Settings_000005_desc" text="Multiply caravan party Sizes by this amount." />
+    <string id="Titan_Settings_000006" text="Militia Multiplier" />
+    <string id="Titan_Settings_000006_desc" text="Multiply Militia party Sizes by this amount." />
+    <string id="Titan_Settings_000007" text="All Weapons Cut Through" />
+    <string id="Titan_Settings_000007_desc" text="Allows all weapon types to cut through and hit multiple people." />
+    <string id="Titan_Settings_000008" text="Report Relation Gain" />
+    <string id="Titan_Settings_000008_desc" text="Set whether or not to report the relations gained from killing bandits to the player." />
+
   </strings>
 </base>

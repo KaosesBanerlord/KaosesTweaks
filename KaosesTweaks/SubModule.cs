@@ -1,34 +1,35 @@
 ﻿using HarmonyLib;
+using KaosesPartySpeeds.Model;
 using KaosesTweaks.Behaviors;
-using KaosesTweaks.Event;
+using KaosesTweaks.BTTweaks;
 using KaosesTweaks.Common;
+using KaosesTweaks.Event;
 using KaosesTweaks.Models;
 using KaosesTweaks.Settings;
 using KaosesTweaks.Utils;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
+using System.Text;
 using TaleWorlds.CampaignSystem;
-using TaleWorlds.CampaignSystem.SandBox.CampaignBehaviors;
+using TaleWorlds.CampaignSystem.CampaignBehaviors;
+using TaleWorlds.CampaignSystem.Extensions;
+using TaleWorlds.CampaignSystem.MapEvents;
+using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Core;
 using TaleWorlds.MountAndBlade;
-using KaosesTweaks.BTTweaks;
-using System.Text;
-using System.Linq;
-
 
 namespace KaosesTweaks
 {
     public class SubModule : MBSubModuleBase
     {
-
-
         private Harmony? harmonyKT;
 
         /* Another chance at marriage */
         public static Dictionary<Hero, CampaignTime> LastAttempts;
         public static readonly FastInvokeHandler RemoveUnneededPersuasionAttemptsHandler =
-        HarmonyLib.MethodInvoker.GetHandler(AccessTools.Method(typeof(RomanceCampaignBehavior), "RemoveUnneededPersuasionAttempts"));
+        MethodInvoker.GetHandler(AccessTools.Method(typeof(RomanceCampaignBehavior), "RemoveUnneededPersuasionAttempts"));
         /* Another chance at marriage */
 
         /* KaosesPartySpeeds */
@@ -59,6 +60,7 @@ namespace KaosesTweaks
                         IM.DisplayModLoadedMessage();
                         if (harmonyKT == null)
                         {
+                            Harmony.DEBUG = true;
                             harmonyKT = new Harmony(Statics.HarmonyId);
                             harmonyKT.PatchAll(Assembly.GetExecutingAssembly());
                         }
@@ -93,7 +95,7 @@ namespace KaosesTweaks
             //~ BT PrisonerImprisonmentTweak
             try
             {
-                if (Statics._settings is { } settings && (settings.EnableMissingHeroFix && settings.PrisonerImprisonmentTweakEnabled)) //
+                if (Statics._settings is { } settings && settings.EnableMissingHeroFix && settings.PrisonerImprisonmentTweakEnabled) //
                 {
                     CampaignEvents.DailyTickEvent.AddNonSerializedListener(this, delegate
                     {
@@ -115,7 +117,7 @@ namespace KaosesTweaks
             {
                 if (Statics._settings.MCMItemModifiers)
                 {
-                    new KaosesItemTweaks(gameType.Items);
+                    new KaosesItemTweaks(Items.All);
                     if (Statics._settings.Debug)
                     {
                         IM.MessageDebug("Loaded KaosesItemTweaks");
@@ -210,7 +212,7 @@ namespace KaosesTweaks
                 //~ KaosesCraftingCampaignBehaviors
                 try
                 {
-                    if (Statics._settings.ArrowMultipliersEnabled || Statics._settings.BoltsMultipliersEnabled 
+                    if (Statics._settings.ArrowMultipliersEnabled || Statics._settings.BoltsMultipliersEnabled
                         || Statics._settings.ThrownMultiplierEnabled)
                     {
                         if (Statics._settings.Debug)
@@ -307,6 +309,15 @@ namespace KaosesTweaks
                     }
                     campaignGameStarter.AddModel(new KaosesClanTierModel());
                 }
+                if (settings.KaosesStaticSpeedModifiersEnabled || settings.KaosesDynamicSpeedModifiersEnabled)
+                {
+
+                    if (settings.Debug)
+                    {
+                        IM.MessageDebug("Loaded Kaoses Party Speed model Model Override");
+                    }
+                    campaignGameStarter.AddModel(new KaosesPartySpeedCalculatingModel());
+                }
                 if (settings.HideoutBattleTroopLimitTweakEnabled)
                 {
                     /*
@@ -315,6 +326,14 @@ namespace KaosesTweaks
                         IM.MessageDebug("Loaded Kaoses Bandit Density model Model Override");
                     }*/
                     //campaignGameStarter.AddModel(new KaosesBanditDensityModel());
+                }
+                if ((settings.PartyWageTweaksEnabled && !settings.PartyWageTweaksHarmonyEnabled) || (settings.KingdomBalanceStrengthEnabled && !settings.KingdomBalanceStrengthHarmonyEnabled))
+                {
+                    if (settings.Debug)
+                    {
+                        IM.MessageDebug("Loaded BT Wage model Model Override");
+                    }
+                    campaignGameStarter.AddModel(new BTDefaultPartyWageModel());
                 }
                 if (settings.MCMArmy)
                 {
@@ -332,7 +351,7 @@ namespace KaosesTweaks
                     }
                     campaignGameStarter.AddModel(new KaosesBattleRewardModel());
                 }
-                if (settings.MCMCharacterDevlopmentModifiers || (Statics._settings.LearningRateEnabled || Statics._settings.LearningLimitEnabled))
+                if (settings.MCMCharacterDevlopmentModifiers || Statics._settings.LearningRateMultiplier != 1.0 || Statics._settings.LearningLimitEnabled)
                 {
                     if (settings.Debug)
                     {
@@ -391,7 +410,7 @@ namespace KaosesTweaks
                         sb.AppendLine("There is a configuration error in the \'Age\' tweaks from Bannerlord Tweaks.");
                         sb.AppendLine("Please check the below errors and fix the age settings in the settings menu:");
                         sb.AppendLine();
-                        foreach (var e in configErrors)
+                        foreach (string? e in configErrors)
                             sb.AppendLine(e);
                         sb.AppendLine();
                         sb.AppendLine("The age tweaks will not be applied until these errors have been resolved.");
@@ -446,5 +465,6 @@ namespace KaosesTweaks
             }
         }
         //~ BT
+
     }
 }

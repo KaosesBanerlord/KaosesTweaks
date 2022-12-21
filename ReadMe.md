@@ -1,4 +1,4 @@
-# Kaoses Tweaks
+﻿# Kaoses Tweaks
 
 ## Mod Page
 https://www.nexusmods.com/mountandblade2bannerlord/mods/2911
@@ -10,7 +10,7 @@ A collection of tweaks that aims to allow the player to configure Bannerlords to
 
 All tweaks can be set through Mod Configuration Menu integration. The tweaks cover the following area's.
 - Items 
-- Battle rewards 
+﻿- Battle rewards 
 - Clan limits
 - Workshop
 - Levels per attribute
@@ -37,11 +37,11 @@ All tweaks can be set through Mod Configuration Menu integration. The tweaks cov
 ## Detail's:
 
 ### Age  :
-- Become Infant Age
+﻿- Become Infant Age
 - Become Child Age
 - Become Teenager Age
 - Hero Comes Of Age
-- Become Old Age
+- ﻿Become Old Age
 - Max Age 
 
 ### Items 
@@ -63,21 +63,21 @@ All tweaks can be set through Mod Configuration Menu integration. The tweaks cov
 - Static Battle Size Modifier (old version)
 - Dynamic Battle Size Modifer (BETA)
 - Battle Morale Effect Modifier
-- Hideout Battle Troop Limit
+﻿- Hideout Battle Troop Limit
 - Continue Hideout Battle On Player Death
-- Continue Battle On Losing Duel
-- Siege Construction Progress Per Day
+﻿- Continue Battle On Losing Duel
+﻿- Siege Construction Progress Per Day
 - Siege Collateral Damage Casualties
 - Siege Destruction Casualties
 - Troop Battle Experience
-- Troop Simulation Experience
+- ﻿Troop Simulation Experience
 - All Two-Handed Weapons Cut Through
 - All One-Handed Weapons Cut Through
 
 ### Campaign Tweaks:
 - Battle Size Limit
 - Damage to Player Tweak
-- Damage to Friends Tweak
+﻿- Damage to Friends Tweak
 - Damage to Player's Troops
 - Combat AI Difficulty
 - Player Map Movement Speed
@@ -86,8 +86,8 @@ All tweaks can be set through Mod Configuration Menu integration. The tweaks cov
 - Party Limits
 - Companion Limits
 - Unlimited Wanderers Patch
-- Add to AI Lord Parties Limit
-- Also Adjust Minor Factions
+﻿- Add to AI Lord Parties Limit
+﻿- Also Adjust Minor Factions
 - Custom Spawn Parties Limit
 
 ### Workshops:
@@ -117,7 +117,7 @@ All tweaks can be set through Mod Configuration Menu integration. The tweaks cov
 - Crafting Stamina Gain
 - Crafting Stamina Gain Outside Settlement
 - Hide Locked Weapons in Smelting Menu
-- Unlocking Parts From Smelted Weapons
+- ﻿Unlocking Parts From Smelted Weapons
 - modify refing formula cost and output
 - set base bonus for crafted quality types fine, master and legendary
 
@@ -167,11 +167,11 @@ All tweaks can be set through Mod Configuration Menu integration. The tweaks cov
 
 ### Prisoner Tweaks:
 - Minimum Days of Imprisonment
-- Player Prisoners Only
+- ﻿﻿Player Prisoners Only
 - Missing Prisoner Hero Fix
-- Prisoner Size Bonus
-- Also apply to AI
-- Prisoner Confirmity
+﻿- Prisoner Size Bonus
+- ﻿Also apply to AI
+﻿- Prisoner Confirmity
 
 ### Party :
 - Global party food consumption rate modifier
@@ -196,71 +196,71 @@ All tweaks can be set through Mod Configuration Menu integration. The tweaks cov
 - Player is Infertile
 
 ### Settlement Tweaks:
-- Settlement Culture Transformation
-- Change To Culture Of Kingdom Faction Instead
-- Culture For Player Clan
-- Weeks for Settlement Culture Change 
-- Disable Troop Donations 
-- Disable Troop Donations .
-- Village Production: Food 
-- Village Production: Other goods 
-- Castle Training Fields Experience Level 1 
-- Castle Training Fields Experience Level 2 
-- Castle Training Fields Experience Level 3 
+﻿- Settlement Culture Transformation
+- ﻿Change To Culture Of Kingdom Faction Instead
+- ﻿Culture For Player Clan
+- ﻿Weeks for Settlement Culture Change 
+﻿- Disable Troop Donations 
+﻿- Disable Troop Donations .
+﻿- Village Production: Food 
+﻿- Village Production: Other goods 
+- ﻿Castle Training Fields Experience Level 1 
+- ﻿Castle Training Fields Experience Level 2 
+- ﻿Castle Training Fields Experience Level 3 
 - Castle Granary Food Storage Level 1
-- Castle Granary Food Storage Level 2 
-- Castle Granary Food Storage Level 3 
-- Castle Garden Food Production Level 1
-- Castle Garden Food Production Level 2 
-- Castle Garden Food Production Level 3
-- Castle Militia Barracks Production Level 1
+- ﻿Castle Granary Food Storage Level 2 
+- ﻿Castle Granary Food Storage Level 3 
+- ﻿Castle Garden Food Production Level 1
+- ﻿Castle Garden Food Production Level 2 
+﻿- Castle Garden Food Production Level 3
+﻿- Castle Militia Barracks Production Level 1
 - Castle Militia Barracks Production Level 2
-- Castle Militia Barracks Production Level 3
-- Town Training Fields Experience Level 1
-- Town Training Fields Experience Level 2
-- Town Training Fields Experience Level 3
-- Town Granary Food Storage Level 1
-- Town Granary Food Storage Level 2
-- Town Granary Food Storage Level 3
-- Town Orchard Food Production Level 1
-- Town Orchard Food Production Level 2
-- Town Orchard Food Production Level 3 
-- Town Militia Barracks Production Level 1 
-- Town Militia Barracks Production Level 2
-- Town Militia Barracks Production Level 3
-- Castle Food Modifier
-- Town Food Modifier
-- Food Loss From Prosperity
-- Castle Militia Growth Bonus.
-- Town Militia Growth Bonus
-- Castle Militia Retirement Modifier
-- Town Militia Retirement Modifier 
-- Elite Melee Militia Spawn Chance
-- Elite Ranged Militia Spawn Chance
+﻿- Castle Militia Barracks Production Level 3
+- ﻿Town Training Fields Experience Level 1
+﻿- Town Training Fields Experience Level 2
+﻿- Town Training Fields Experience Level 3
+﻿- Town Granary Food Storage Level 1
+- ﻿Town Granary Food Storage Level 2
+﻿- Town Granary Food Storage Level 3
+- ﻿Town Orchard Food Production Level 1
+- ﻿Town Orchard Food Production Level 2
+- ﻿Town Orchard Food Production Level 3 
+- ﻿Town Militia Barracks Production Level 1 
+﻿- Town Militia Barracks Production Level 2
+- ﻿Town Militia Barracks Production Level 3
+- ﻿Castle Food Modifier
+- ﻿Town Food Modifier
+﻿- Food Loss From Prosperity
+﻿- Castle Militia Growth Bonus.
+- ﻿Town Militia Growth Bonus
+- ﻿Castle Militia Retirement Modifier
+- ﻿Town Militia Retirement Modifier 
+- ﻿Elite Melee Militia Spawn Chance
+﻿- Elite Ranged Militia Spawn Chance
 - Village Food Production Balancing
-- Faster Recruiting Balancing
+- ﻿Faster Recruiting Balancing
 - Taxation Efficiency Balancing
-- Wage costs Balancing
+- ﻿Wage costs Balancing
 - Quality of Recruitment Balancing
 
 ### Tournament :
-- Tournament Renown Reward 
-- Tournament Gold Reward
-- Maximum Bet Amount
-- Tournament Hero Experience Modifier
-- Arena Hero Experience Modifier
-- Minimum Betting Odds
+﻿- Tournament Renown Reward 
+﻿- Tournament Gold Reward
+- ﻿Maximum Bet Amount
+- ﻿Tournament Hero Experience Modifier
+﻿- Arena Hero Experience Modifier
+﻿- Minimum Betting Odds
 - Workshop 
-- Workshop Count Limit
+- ﻿Workshop Count Limit
 - Workshop Buy Cost.
-- Workshop Effectivness 
-- Workshop Products Sell Prices
-- Workshop Products Buy Prices 
+﻿- Workshop Effectivness 
+- ﻿Workshop Products Sell Prices
+- ﻿Workshop Products Buy Prices 
 
 ### Misc
-- Disable Quest Troops Affecting Morale 
-- Show Number of Days of Food 
-- Campaign Speed Fast Forward 
+﻿- Disable Quest Troops Affecting Morale 
+﻿- Show Number of Days of Food 
+﻿- Campaign Speed Fast Forward 
 
 ## ChangeLog
 refer to mod page

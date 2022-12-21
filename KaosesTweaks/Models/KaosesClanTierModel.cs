@@ -1,7 +1,8 @@
 ﻿using KaosesTweaks.Settings;
 using System;
 using TaleWorlds.CampaignSystem;
-using TaleWorlds.CampaignSystem.SandBox.GameComponents;
+using TaleWorlds.CampaignSystem.CharacterDevelopment;
+using TaleWorlds.CampaignSystem.GameComponents;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
@@ -13,37 +14,44 @@ namespace KaosesTweaks.Models
         // Token: 0x06002C15 RID: 11285 RVA: 0x000AAEB8 File Offset: 0x000A90B8
         public override int GetPartyLimitForTier(Clan clan, int clanTierToCheck)
         {
+            ExplainedNumber result = new ExplainedNumber();
             MCMSettings _settings = MCMSettings.Instance;
-            ExplainedNumber explainedNumber = new ExplainedNumber(0f, false, null);
             if (_settings.ClanAdditionalPartyLimitEnabled && clan == Clan.PlayerClan && _settings.ClanPlayerPartiesLimitEnabled)
             {
-                explainedNumber.Add((float)(_settings.ClanPlayerBasePartiesLimit + Math.Floor(clanTierToCheck * _settings.ClanPlayerPartiesBonusPerClanTier)), new TextObject("KT Player Clan Parties Tweak", null));
+                result.Add((float)(_settings.ClanPlayerBasePartiesLimit + Math.Floor(clanTierToCheck * _settings.ClanPlayerPartiesBonusPerClanTier)), new TextObject("KT Player Clan Parties Tweak", null));
             }
             else if (_settings.ClanAIPartiesLimitTweakEnabled && clan.IsClan && !clan.StringId.Contains("_deserters"))
             {
 
                 if (_settings.AICustomSpawnPartiesLimitTweakEnabled && clan.StringId.StartsWith("cs_"))
                 {
-                    explainedNumber.Add((float)(_settings.BaseAICustomSpawnPartiesLimit + Math.Floor(clanTierToCheck * _settings.ClanCSPartiesBonusPerClanTier)), new TextObject("KT Custom Spawn Parties Tweak", null));
+                    result.Add((float)(_settings.BaseAICustomSpawnPartiesLimit + Math.Floor(clanTierToCheck * _settings.ClanCSPartiesBonusPerClanTier)), new TextObject("KT Custom Spawn Parties Tweak", null));
 
                 }
                 else if (_settings.ClanAIMinorClanPartiesLimitTweakEnabled && clan.IsMinorFaction && !clan.StringId.StartsWith("cs_"))
                 {
-                    explainedNumber.Add((float)(base.GetPartyLimitForTier(clan, clanTierToCheck) + _settings.ClanAIBaseClanPartiesLimit), new TextObject("KT Minor Clan Parties Tweak", null));
+                    result.Add(base.GetPartyLimitForTier(clan, clanTierToCheck) + _settings.ClanAIBaseClanPartiesLimit, new TextObject("KT Minor Clan Parties Tweak", null));
                 }
                 else if (clan.IsClan)
                 {
-                    explainedNumber.Add((float)(_settings.ClanAIBaseClanPartiesLimit + Math.Floor(clanTierToCheck * _settings.ClanAIPartiesBonusPerClanTier)), new TextObject("KT AI Clan Parties Tweak", null));
+                    result.Add((float)(_settings.ClanAIBaseClanPartiesLimit + Math.Floor(clanTierToCheck * _settings.ClanAIPartiesBonusPerClanTier)), new TextObject("KT AI Clan Parties Tweak", null));
                 }
-
+            }
+            else if (!clan.IsMinorFaction)
+            {
+                if (clanTierToCheck < 3)
+                    result.Add(1f);
+                else if (clanTierToCheck < 5)
+                    result.Add(2f);
+                else
+                    result.Add(3f);
             }
             else
-            {
-                explainedNumber.Add((float)(base.GetPartyLimitForTier(clan, clanTierToCheck)), null);
-            }
-            AddPartyLimitPerkEffects(clan, ref explainedNumber);
-            //return (int)Math.Ceiling(explainedNumber.ResultNumber);
-            return MathF.Round(explainedNumber.ResultNumber);
+                result.Add(MathF.Clamp(clanTierToCheck, 1f, 4f));
+
+
+            AddPartyLimitPerkEffects(clan, ref result);
+            return MathF.Round(result.ResultNumber);
         }
 
         // Token: 0x06002C17 RID: 11287 RVA: 0x000AAF7C File Offset: 0x000A917C
@@ -113,26 +121,27 @@ namespace KaosesTweaks.Models
         private readonly TextObject _kingdomEligibleText = GameTexts.FindText("str_clan_tier_kingdom_eligible", null);
 
         // Token: 0x06002C13 RID: 11283 RVA: 0x000AAD60 File Offset: 0x000A8F60
-        public override ValueTuple<ExplainedNumber, bool> HasUpcomingTier(Clan clan, bool includeDescriptions = false)
+        public override ValueTuple<ExplainedNumber, bool> HasUpcomingTier(Clan clan, out TextObject extraExplanation, bool includeDescriptions = false)
         {
             bool flag = clan.Tier < MaxClanTier;
             ExplainedNumber item = new ExplainedNumber(0f, includeDescriptions, null);
+            extraExplanation = TextObject.Empty;
             if (flag)
             {
                 int num = GetPartyLimitForTier(clan, clan.Tier + 1) - GetPartyLimitForTier(clan, clan.Tier);
                 if (num != 0)
                 {
-                    item.Add((float)num, _partyLimitBonusText, null);
+                    item.Add(num, _partyLimitBonusText, null);
                 }
                 int num2 = GetCompanionLimitFromTier(clan.Tier + 1) - GetCompanionLimitFromTier(clan.Tier);
                 if (num2 != 0)
                 {
-                    item.Add((float)num2, _companionLimitBonusText, null);
+                    item.Add(num2, _companionLimitBonusText, null);
                 }
                 int num3 = Campaign.Current.Models.PartySizeLimitModel.GetTierPartySizeEffect(clan.Tier + 1) - Campaign.Current.Models.PartySizeLimitModel.GetTierPartySizeEffect(clan.Tier);
                 if (num3 > 0)
                 {
-                    item.Add((float)num3, _additionalCurrentPartySizeBonus, null);
+                    item.Add(num3, _additionalCurrentPartySizeBonus, null);
                 }
                 if (clan.Tier + 1 == MercenaryEligibleTier)
                 {

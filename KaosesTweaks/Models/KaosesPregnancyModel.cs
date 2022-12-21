@@ -4,7 +4,8 @@ using KaosesTweaks.Utils;
 using System;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
-using TaleWorlds.CampaignSystem.SandBox.GameComponents;
+using TaleWorlds.CampaignSystem.CharacterDevelopment;
+using TaleWorlds.CampaignSystem.GameComponents;
 
 namespace KaosesTweaks.Models
 {
@@ -132,7 +133,7 @@ namespace KaosesTweaks.Models
                 {
                     if (Statics._settings.PregnancyDebug)
                     {
-                        IM.MessageDebug("PlayerCharacterInfertileEnabled: " + num.ToString());
+                        //IM.MessageDebug("PlayerCharacterInfertileEnabled: " + num.ToString());
                     }
                     return num;
                 }
@@ -141,7 +142,7 @@ namespace KaosesTweaks.Models
                 {
                     if (Statics._settings.PregnancyDebug)
                     {
-                        IM.MessageDebug("New hero.Children.Count >= MCMSettings.Instance.MaxChildren: " + num.ToString());
+                        //IM.MessageDebug("New hero.Children.Count >= MCMSettings.Instance.MaxChildren: " + num.ToString());
                     }
                     return num;
                 }
@@ -153,7 +154,7 @@ namespace KaosesTweaks.Models
                     num = (float)((6.9 - ((double)hero.Age - settings.MinPregnancyAge) * 0.2) * 0.02) / ((hero.Children!.Count + 1) * 0.2f) * bonuses.ResultNumber;
                     if (Statics._settings.PregnancyDebug)
                     {
-                        IM.MessageDebug("Pregnancy Chance: " + num.ToString());
+                        //IM.MessageDebug("Pregnancy Chance: " + num.ToString());
                     }
                 }
 
@@ -162,7 +163,7 @@ namespace KaosesTweaks.Models
                     num *= settings.ClanFertilityBonus;
                     if (Statics._settings.PregnancyDebug)
                     {
-                        IM.MessageDebug("ClanFertilityBonus: " + num.ToString());
+                        //IM.MessageDebug("ClanFertilityBonus: " + num.ToString());
                     }
                 }
                 return num;
@@ -189,6 +190,12 @@ namespace KaosesTweaks.Models
             return false;
         }
 
+
+        // Token: 0x04000ED4 RID: 3796
+        private const int MinPregnancyAge = 18;
+
+        // Token: 0x04000ED5 RID: 3797
+        private const int MaxPregnancyAge = 45;
 
     }
 }

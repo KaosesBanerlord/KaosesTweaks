@@ -1,8 +1,8 @@
-﻿using System;
+﻿using KaosesTweaks.Utils;
+using StoryMode.StoryModePhases;
+using System;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
-using StoryMode.StoryModePhases;
-using KaosesTweaks.Utils;
 /*
  1.5.7.2 - Disable until we understand main quest changes.
  */
@@ -12,7 +12,7 @@ namespace KaosesTweaks.Behaviors
     {
         public static void Apply(Campaign campaign)
         {
-            var obj = new BTConspiracyQuestTimerTweak();
+            BTConspiracyQuestTimerTweak? obj = new BTConspiracyQuestTimerTweak();
             CampaignEvents.DailyTickEvent.AddNonSerializedListener(obj, new Action(obj.ExtendDeadline));
         }
 

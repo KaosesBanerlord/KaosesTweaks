@@ -4,7 +4,11 @@ using KaosesTweaks.Settings;
 using KaosesTweaks.Utils;
 using System;
 using TaleWorlds.CampaignSystem;
-using TaleWorlds.CampaignSystem.SandBox.GameComponents.Map;
+using TaleWorlds.CampaignSystem.CharacterDevelopment;
+using TaleWorlds.CampaignSystem.Encounters;
+using TaleWorlds.CampaignSystem.GameComponents;
+using TaleWorlds.CampaignSystem.MapEvents;
+using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Core;
 using TaleWorlds.Localization;
 
@@ -23,9 +27,9 @@ namespace KaosesTweaks.Patches
                 __result = new ExplainedNumber(modifiedRenownGain, true, new TextObject("KT Renown Tweak", null));
                 if (party.IsMobile)
                 {
-                    if (party.MobileParty.HasPerk(DefaultPerks.Charm.ShowYourScars, false))
+                    if (party.MobileParty.HasPerk(DefaultPerks.Charm.Warlord, false))
                     {
-                        PerkHelper.AddPerkBonusForParty(DefaultPerks.Charm.ShowYourScars, party.MobileParty, true, ref __result);
+                        PerkHelper.AddPerkBonusForParty(DefaultPerks.Charm.Warlord, party.MobileParty, true, ref __result);
                     }
                     if (party.MobileParty.HasPerk(DefaultPerks.Throwing.LongReach, true))
                     {
@@ -33,12 +37,12 @@ namespace KaosesTweaks.Patches
                     }
                     PerkObject famousCommander = DefaultPerks.Leadership.FamousCommander;
                     MobileParty mobileParty = party.MobileParty;
-                    PerkHelper.AddPerkBonusForCharacter(famousCommander, (mobileParty != null) ? mobileParty.Leader : null, true, ref __result);
+                    PerkHelper.AddPerkBonusForCharacter(famousCommander, (mobileParty != null) ? mobileParty.LeaderHero.CharacterObject : null, true, ref __result);
                 }
                 if (party.LeaderHero == Hero.MainHero && MCMSettings.Instance.BattleRewardShowDebug)
                 {
                     IM.DebugMessage("Harmony Patch Renown Value = " +
-                                                (float)Math.Round((double)renownValueOfBattle, 2) +
+                                                (float)Math.Round(renownValueOfBattle, 2) +
                                                 "| Your share = " + (float)Math.Round((double)renownValueOfBattle * contributionShare, 2) +
                                                 "(" + (float)Math.Round((double)contributionShare * 100f, 1) + "%)" +
                                                 //"\nPerkBonus = " + (float)Math.Round((double)result.ResultNumber - result.BaseNumber, 2) +
@@ -53,7 +57,7 @@ namespace KaosesTweaks.Patches
             return true;
         }
 
-        static bool Prepare() => MCMSettings.Instance is { } settings && (settings.MCMBattleRewardModifiers && settings.BattleRewardModifiersPatchOnly && settings.BattleRewardsRenownGainModifiers);
+        static bool Prepare() => MCMSettings.Instance is { } settings && settings.MCMBattleRewardModifiers && settings.BattleRewardModifiersPatchOnly && settings.BattleRewardsRenownGainModifiers;
     }
 
     [HarmonyPatch(typeof(DefaultBattleRewardModel), "CalculateInfluenceGain")]
@@ -66,13 +70,13 @@ namespace KaosesTweaks.Patches
                 //~ KT
                 float originalInfluenceGain = influenceValueOfBattle * contributionShare;
                 float modifiedInfluenceGain = originalInfluenceGain * Statics._settings.BattleRewardsInfluenceGainMultiplier;
-                __result = new ExplainedNumber(party.MapFaction.IsKingdomFaction ? (modifiedInfluenceGain) : 0f, true, new TextObject("KT influence Tweak", null));
+                __result = new ExplainedNumber(party.MapFaction.IsKingdomFaction ? modifiedInfluenceGain : 0f, true, new TextObject("KT influence Tweak", null));
                 //~ KT
 
                 if (party.LeaderHero == Hero.MainHero && MCMSettings.Instance.BattleRewardShowDebug)
                 {
                     IM.DebugMessage("Harmony Patch Influence Value = " +
-                                                (float)Math.Round((double)influenceValueOfBattle, 2) +
+                                                (float)Math.Round(influenceValueOfBattle, 2) +
                                                 "| Your share = " + (float)Math.Round((double)influenceValueOfBattle * contributionShare, 2) +
                                                 "(" + (float)Math.Round((double)contributionShare * 100f, 1) + "%)" +
                                                 //"\nPerkBonus = " + (float)Math.Round((double)result.ResultNumber - result.BaseNumber, 2) +
@@ -87,7 +91,7 @@ namespace KaosesTweaks.Patches
             return true;
         }
 
-        static bool Prepare() => MCMSettings.Instance is { } settings && (settings.MCMBattleRewardModifiers && settings.BattleRewardModifiersPatchOnly && settings.BattleRewardsInfluenceGainModifiers);
+        static bool Prepare() => MCMSettings.Instance is { } settings && settings.MCMBattleRewardModifiers && settings.BattleRewardModifiersPatchOnly && settings.BattleRewardsInfluenceGainModifiers;
     }
 
     [HarmonyPatch(typeof(DefaultBattleRewardModel), "CalculateMoraleGainVictory")]
@@ -113,7 +117,7 @@ namespace KaosesTweaks.Patches
                 if (party.LeaderHero == Hero.MainHero && MCMSettings.Instance.BattleRewardShowDebug)
                 {
                     IM.DebugMessage("Harmony Patch Morale Value = " +
-                                                (float)Math.Round((double)renownValueOfBattle, 2) +
+                                                (float)Math.Round(renownValueOfBattle, 2) +
                                                 "| Your share = " + (float)Math.Round((double)renownValueOfBattle * contributionShare, 2) +
                                                 "(" + (float)Math.Round((double)contributionShare * 100f, 1) + "%)" +
                                                 //"\nPerkBonus = " + (float)Math.Round((double)result.ResultNumber - result.BaseNumber, 2) +
@@ -128,7 +132,7 @@ namespace KaosesTweaks.Patches
             return true;
         }
 
-        static bool Prepare() => MCMSettings.Instance is { } settings && (settings.MCMBattleRewardModifiers && settings.BattleRewardModifiersPatchOnly && settings.BattleRewardsMoraleGainModifiers);
+        static bool Prepare() => MCMSettings.Instance is { } settings && settings.MCMBattleRewardModifiers && settings.BattleRewardModifiersPatchOnly && settings.BattleRewardsMoraleGainModifiers;
     }
 
     [HarmonyPatch(typeof(DefaultBattleRewardModel), "CalculateGoldLossAfterDefeat")]
@@ -138,7 +142,7 @@ namespace KaosesTweaks.Patches
         {
             if (MCMSettings.Instance.MCMBattleRewardModifiers && MCMSettings.Instance.BattleRewardsGoldLossModifiers)
             {
-                float originalGoldLoss = (float)partyLeaderHero.Gold * 0.05f;
+                float originalGoldLoss = partyLeaderHero.Gold * 0.05f;
                 if (originalGoldLoss > 10000f)
                 {
                     originalGoldLoss = 10000f;
@@ -148,7 +152,7 @@ namespace KaosesTweaks.Patches
                 if (partyLeaderHero == Hero.MainHero && MCMSettings.Instance.BattleRewardShowDebug)
                 {
                     IM.DebugMessage("Harmony Patch Gold Loss = " +
-                                                (float)Math.Round((double)originalGoldLoss, 2) +
+                                                (float)Math.Round(originalGoldLoss, 2) +
                                                 "\nBT Tweak = " + (float)Math.Round(modifiedGoldLoss, 2) +
                                                 "\n\n");
                 }
@@ -158,7 +162,7 @@ namespace KaosesTweaks.Patches
             return true;
         }
 
-        static bool Prepare() => MCMSettings.Instance is { } settings && (settings.MCMBattleRewardModifiers && settings.BattleRewardModifiersPatchOnly && settings.BattleRewardsGoldLossModifiers);
+        static bool Prepare() => MCMSettings.Instance is { } settings && settings.MCMBattleRewardModifiers && settings.BattleRewardModifiersPatchOnly && settings.BattleRewardsGoldLossModifiers;
     }
 
     [HarmonyPatch(typeof(DefaultBattleRewardModel), "GetPlayerGainedRelationAmount")]
@@ -174,7 +178,7 @@ namespace KaosesTweaks.Patches
                 float num2 = (num < 1f) ? (1f + (1f - num)) : ((num < 3f) ? (0.5f * (3f - num)) : 0f);
                 float renownValue = mapEvent.GetRenownValue((mapEventSide == mapEvent.AttackerSide) ? BattleSideEnum.Attacker : BattleSideEnum.Defender);
                 //~ KT
-                double relationShipGain = GetPlayerGainedRelationAmount(0.75 + Math.Pow((double)(playerPartyContributionRate * 1.3f * (num2 + renownValue)), 0.6700000166893005));
+                double relationShipGain = GetPlayerGainedRelationAmount(0.75 + Math.Pow(playerPartyContributionRate * 1.3f * (num2 + renownValue), 0.6700000166893005));
                 __result = (int)relationShipGain;
                 //~ KT
 
@@ -183,7 +187,7 @@ namespace KaosesTweaks.Patches
             return true;
         }
 
-        static bool Prepare() => MCMSettings.Instance is { } settings && (settings.MCMBattleRewardModifiers && settings.BattleRewardModifiersPatchOnly && settings.BattleRewardsRelationShipGainModifiers);
+        static bool Prepare() => MCMSettings.Instance is { } settings && settings.MCMBattleRewardModifiers && settings.BattleRewardModifiersPatchOnly && settings.BattleRewardsRelationShipGainModifiers;
 
         //~ KT
         public static int GetPlayerGainedRelationAmount(double relationShipGain)
@@ -205,22 +209,6 @@ namespace KaosesTweaks.Patches
 
     }
 
-    [HarmonyPatch(typeof(DefaultBattleRewardModel), "GetPlayerGainedRelationAmount")]
-    class KTBattleRewardsGainedRelationAmountPatch
-    {
-        private static bool Prefix(MapEvent mapEvent, Hero hero, ref int __result)
-        {
-            if (MCMSettings.Instance.BattleRewardsRelationShipGainModifiers)
-            {
-                MapEventSide mapEventSide = mapEvent.AttackerSide.IsMainPartyAmongParties() ? mapEvent.AttackerSide : mapEvent.DefenderSide;
-                float playerPartyContributionRate = mapEventSide.GetPlayerPartyContributionRate();
-                float num = (mapEvent.StrengthOfSide[(int)PartyBase.MainParty.Side] - PlayerEncounter.Current.PlayerPartyInitialStrength) / mapEvent.StrengthOfSide[(int)PartyBase.MainParty.OpponentSide];
-                float num2 = (num < 1f) ? (1f + (1f - num)) : ((num < 3f) ? (0.5f * (3f - num)) : 0f);
-                float renownValue = mapEvent.GetRenownValue((mapEventSide == mapEvent.AttackerSide) ? BattleSideEnum.Attacker : BattleSideEnum.Defender);
-                //~ KT
-                double relationShipGain = GetPlayerGainedRelationAmount(0.75 + Math.Pow((double)(playerPartyContributionRate * 1.3f * (num2 + renownValue)), 0.6700000166893005));
-                __result = (int)relationShipGain;
-                //~ KT
 
 
 
