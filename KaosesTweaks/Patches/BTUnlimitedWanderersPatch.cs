@@ -2,13 +2,13 @@
 using KaosesTweaks.Settings;
 using System.Collections.Generic;
 using System.Linq;
-using TaleWorlds.CampaignSystem.SandBox.CampaignBehaviors;
+using TaleWorlds.CampaignSystem.CampaignBehaviors;
 
 namespace KaosesTweaks.Patches
 {
-    [HarmonyPatch(typeof(UrbanCharactersCampaignBehavior), "SpawnUrbanCharactersAtGameStart")]
+    [HarmonyPatch(typeof(NotablesCampaignBehavior), "SpawnNotablesAtGameStart")]
 
-    public static class SpawnUrbanCharactersPatch
+    public static class SpawnNotablesAtGameStartPatch
     {
 
         private static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)

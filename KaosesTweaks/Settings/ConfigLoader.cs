@@ -78,7 +78,7 @@ namespace KaosesTweaks.Settings
 
         private static void IsMCMLoaded()
         {
-            var modnames = Utilities.GetModulesNames().ToList();
+            System.Collections.Generic.List<string>? modnames = Utilities.GetModulesNames().ToList();
             if (modnames.Contains("Bannerlord.MBOptionScreen"))// && !overrideSettings
             {
                 Statics.MCMModuleLoaded = true;
@@ -89,11 +89,11 @@ namespace KaosesTweaks.Settings
         private static void CheckMcmConfig()
         {
             string RootFolder = System.IO.Path.Combine(FSIOHelper.GetConfigPath(), "ModSettings/Global/" + Statics.ModuleFolder);
-            if (System.IO.Directory.Exists(RootFolder))
+            if (Directory.Exists(RootFolder))
             {
                 Statics.MCMConfigFolder = RootFolder;
                 string fileLoc = System.IO.Path.Combine(RootFolder, Statics.ModuleFolder + ".json");
-                if (System.IO.File.Exists(fileLoc))
+                if (File.Exists(fileLoc))
                 {
                     Statics.MCMConfigFileExists = true;
                     Statics.MCMConfigFile = fileLoc;

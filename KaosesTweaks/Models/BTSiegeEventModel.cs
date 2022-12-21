@@ -1,6 +1,8 @@
 ﻿using KaosesTweaks.Settings;
 using TaleWorlds.CampaignSystem;
-using TaleWorlds.CampaignSystem.SandBox.GameComponents;
+using TaleWorlds.CampaignSystem.GameComponents;
+using TaleWorlds.CampaignSystem.Party;
+using TaleWorlds.CampaignSystem.Siege;
 using TaleWorlds.Core;
 
 namespace KaosesTweaks.Models
@@ -23,12 +25,12 @@ namespace KaosesTweaks.Models
                 return base.GetColleteralDamageCasualties(siegeEngineType, party);
         }
 
-        public override int GetDestructionCasualties(SiegeEvent siegeEvent, BattleSideEnum side, SiegeEngineType destroyedSiegeEngine)
+        public override int GetSiegeEngineDestructionCasualties(SiegeEvent siegeEvent, BattleSideEnum side, SiegeEngineType destroyedSiegeEngine)
         {
             if (MCMSettings.Instance is { } settings)
-                return base.GetDestructionCasualties(siegeEvent, side, destroyedSiegeEngine) + settings.SiegeDestructionCasualties;
+                return base.GetSiegeEngineDestructionCasualties(siegeEvent, side, destroyedSiegeEngine) + settings.SiegeDestructionCasualties;
             else
-                return base.GetDestructionCasualties(siegeEvent, side, destroyedSiegeEngine);
+                return base.GetSiegeEngineDestructionCasualties(siegeEvent, side, destroyedSiegeEngine);
         }
     }
 }

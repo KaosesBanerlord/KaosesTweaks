@@ -1,19 +1,22 @@
 ﻿using HarmonyLib;
-using KaosesTweaks.Settings;
-using TaleWorlds.CampaignSystem.ViewModelCollection;
-using System.Collections.Generic;
-using System.Linq;
-using TaleWorlds.CampaignSystem;
-using TaleWorlds.CampaignSystem.SandBox.CampaignBehaviors;
-using TaleWorlds.CampaignSystem.ViewModelCollection.Craft.Smelting;
-using TaleWorlds.Core;
-using TaleWorlds.Library;
 using KaosesTweaks.BTTweaks;
+using KaosesTweaks.Settings;
+using KaosesTweaks.Utils;
 using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
-using TaleWorlds.CampaignSystem.SandBox.GameComponents.Map;
-using KaosesTweaks.Utils;
+using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.CampaignBehaviors;
+using TaleWorlds.CampaignSystem.CharacterDevelopment;
+using TaleWorlds.CampaignSystem.ComponentInterfaces;
+using TaleWorlds.CampaignSystem.GameComponents;
+using TaleWorlds.CampaignSystem.Roster;
+using TaleWorlds.CampaignSystem.ViewModelCollection.WeaponCrafting;
+using TaleWorlds.CampaignSystem.ViewModelCollection.WeaponCrafting.Smelting;
+using TaleWorlds.Core;
+using TaleWorlds.Library;
 using TaleWorlds.Localization;
 
 namespace KaosesTweaks.Patches
@@ -33,7 +36,7 @@ namespace KaosesTweaks.Patches
             foreach (CraftingPiece piece in SmeltingHelper.GetNewPartsFromSmelting(item))
             {
                 if (piece != null && piece.Name != null && openPartMethodInfo != null)
-                    openPartMethodInfo.Invoke(__instance, new object[] { piece, true });
+                    openPartMethodInfo.Invoke(__instance, new object[] { piece, item.WeaponDesign.Template, true });
             }
         }
 
@@ -85,7 +88,7 @@ namespace KaosesTweaks.Patches
                                 ____openedParts.Add(craftingPiece);
                             }
                         }
-                        InformationManager.AddQuickInformation(new TextObject("{=p9F90bc0}KT All Smithing Parts Unlocked:", null), 0, null, "");
+                        InformationManager.DisplayMessage(new InformationMessage(new TextObject("{=p9F90bc0}KT All Smithing Parts Unlocked:", null).ToString()));
 
                     }
                 }
@@ -95,14 +98,12 @@ namespace KaosesTweaks.Patches
         static bool Prepare() => MCMSettings.Instance is { } settings && settings.craftingUnlockAllParts;
     }
 
-
     [HarmonyPatch(typeof(CraftingCampaignBehavior), "GetMaxHeroCraftingStamina")]
     public class GetMaxHeroCraftingStaminaPatch
     {
-        static bool Prefix(CraftingCampaignBehavior __instance, ref int __result)
+        static void Postfix(CraftingCampaignBehavior __instance, ref int __result)
         {
-            __result = MCMSettings.Instance is { } settings ? settings.MaxCraftingStamina : 100;
-            return false;
+            __result = MCMSettings.Instance is { } settings ? MathF.Round(settings.MaxCraftingStaminaMultiplier * __result) : __result;
         }
 
         static bool Prepare() => MCMSettings.Instance is { } settings && settings.CraftingStaminaTweakEnabled;
@@ -126,18 +127,18 @@ namespace KaosesTweaks.Patches
             {
                 int curCraftingStamina = __instance.GetHeroCraftingStamina(hero);
 
-                if (!(MCMSettings.Instance is null) && curCraftingStamina < MCMSettings.Instance.MaxCraftingStamina)
+                if (!(MCMSettings.Instance is null) && curCraftingStamina < __instance.GetMaxHeroCraftingStamina(hero))
                 {
                     int staminaGainAmount = MCMSettings.Instance.CraftingStaminaGainAmount;
 
                     if (MCMSettings.Instance.CraftingStaminaGainOutsideSettlementMultiplier < 1 && hero.PartyBelongedTo?.CurrentSettlement == null)
                         staminaGainAmount = (int)Math.Ceiling(staminaGainAmount * MCMSettings.Instance.CraftingStaminaGainOutsideSettlementMultiplier);
 
-                    int diff = MCMSettings.Instance.MaxCraftingStamina - curCraftingStamina;
+                    int diff = __instance.GetMaxHeroCraftingStamina(hero) - curCraftingStamina;
                     if (diff < staminaGainAmount)
                         staminaGainAmount = diff;
 
-                    __instance.SetHeroCraftingStamina(hero, Math.Min(MCMSettings.Instance.MaxCraftingStamina, curCraftingStamina + staminaGainAmount));
+                    __instance.SetHeroCraftingStamina(hero, Math.Min(__instance.GetMaxHeroCraftingStamina(hero), curCraftingStamina + staminaGainAmount));
                 }
             }
             return false;
@@ -175,11 +176,12 @@ namespace KaosesTweaks.Patches
     [HarmonyPatch(typeof(SmeltingVM), "RefreshList")]
     class RefreshListPatch
     {
-        private static void Postfix(SmeltingVM __instance, ItemRoster ____playerItemRoster)
+        private static void Postfix(SmeltingVM __instance, ItemRoster ____playerItemRoster, Action ____updateValuesOnSelectItemAction)
         {
+
             if (MCMSettings.Instance is { } settings && settings.PreventSmeltingLockedItems)
             {
-                List<string> locked_items = Campaign.Current.GetCampaignBehavior<IInventoryLockTracker>().GetLocks().ToList<string>();
+                List<string> locked_items = Campaign.Current.GetCampaignBehavior<ViewDataTrackerCampaignBehavior>().GetInventoryLocks().ToList<string>();
 
                 bool isLocked(ItemRosterElement item)
                 {
@@ -190,9 +192,7 @@ namespace KaosesTweaks.Patches
                     }
                     return locked_items.Contains(text);
                 }
-
                 MBBindingList<SmeltingItemVM> filteredList = new MBBindingList<SmeltingItemVM>();
-
                 foreach (SmeltingItemVM sItem in __instance.SmeltableItemList)
                 {
                     if (!____playerItemRoster.Any(rItem =>
@@ -204,6 +204,7 @@ namespace KaosesTweaks.Patches
                 }
 
                 __instance.SmeltableItemList = filteredList;
+                __instance.SortController.SetListToControl(__instance.SmeltableItemList);
 
                 if (__instance.SmeltableItemList.Count == 0)
                 {
@@ -211,6 +212,7 @@ namespace KaosesTweaks.Patches
                 }
             }
         }
+
 
         static bool Prepare() => MCMSettings.Instance is { } settings && settings.SmeltingTweakEnabled;
     }
@@ -249,11 +251,11 @@ namespace KaosesTweaks.Patches
         {
             if (Statics._settings.SmithingXpModifiers)
             {
-                float baseXp = MathF.Round(0.3f * (float)(__instance.GetCraftingMaterialItem(refineFormula.Output).Value * refineFormula.OutputCount));
+                float baseXp = MathF.Round(0.3f * (__instance.GetCraftingMaterialItem(refineFormula.Output).Value * refineFormula.OutputCount));
                 baseXp *= Statics._settings.SmithingRefiningXpValue;
                 if (Statics._settings.CraftingDebug)
                 {
-                    IM.MessageDebug("GetSkillXpForRefining  base: " + (MathF.Round(0.3f * (float)(__instance.GetCraftingMaterialItem(refineFormula.Output).Value * refineFormula.OutputCount))).ToString() + "  new :" + baseXp.ToString());
+                    IM.MessageDebug("GetSkillXpForRefining  base: " + MathF.Round(0.3f * (__instance.GetCraftingMaterialItem(refineFormula.Output).Value * refineFormula.OutputCount)).ToString() + "  new :" + baseXp.ToString());
                 }
                 __result = (int)baseXp;
                 return false;
@@ -272,9 +274,9 @@ namespace KaosesTweaks.Patches
             if (Statics._settings.SmithingXpModifiers)
             {
                 IM.MessageDebug("GetSkillXpForSmelting Patch called");
-                float baseXp = MathF.Round(0.02f * (float)item.Value);
+                float baseXp = MathF.Round(0.02f * item.Value);
                 baseXp *= Statics._settings.SmithingSmeltingXpValue;
-                IM.MessageDebug("GetSkillXpForSmelting  base: " + (MathF.Round(0.02f * (float)item.Value)).ToString() + "  new :" + baseXp.ToString());
+                IM.MessageDebug("GetSkillXpForSmelting  base: " + MathF.Round(0.02f * item.Value).ToString() + "  new :" + baseXp.ToString());
                 __result = (int)baseXp;
                 return false;
             }
@@ -291,11 +293,11 @@ namespace KaosesTweaks.Patches
         {
             if (Statics._settings.SmithingXpModifiers)
             {
-                float baseXp = MathF.Round(0.1f * (float)item.Value);
+                float baseXp = MathF.Round(0.1f * item.Value);
                 baseXp *= Statics._settings.SmithingSmithingXpValue;
                 if (Statics._settings.CraftingDebug)
                 {
-                    IM.MessageDebug("GetSkillXpForSmithing  base: " + (MathF.Round(0.1f * (float)item.Value)).ToString() + "  new :" + baseXp.ToString());
+                    IM.MessageDebug("GetSkillXpForSmithing  base: " + MathF.Round(0.1f * item.Value).ToString() + "  new :" + baseXp.ToString());
                 }
                 __result = (int)baseXp;
                 return false;
@@ -350,7 +352,7 @@ namespace KaosesTweaks.Patches
             {
                 int.TryParse(item.Tier.ToString(), out int itemTier);
                 int tier6 = 6;
-                int num = (int)(10 + tier6 * itemTier);
+                int num = 10 + tier6 * itemTier;
                 if (Statics._settings.SmithingEnergyDisable)
                 {
                     if (Statics._settings.CraftingDebug)

@@ -44,11 +44,11 @@ namespace KaosesTweaks.Objects.Experience
                 {
                     _isPlayer = _hero.IsHumanPlayerCharacter;
                 }
-                else if (Common.Kaoses.IsLord(_hero) && Kaoses.IsPlayerClan(_hero))
+                else if (Kaoses.IsLord(_hero) && Kaoses.IsPlayerClan(_hero))
                 {
                     _isPlayerClan = Kaoses.IsPlayerClan(_hero);
                 }
-                if (Common.Kaoses.IsLord(_hero))
+                if (Kaoses.IsLord(_hero))
                 {
 
                     _isAILord = _hero.CharacterObject.IsHero;

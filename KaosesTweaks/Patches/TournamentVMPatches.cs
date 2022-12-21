@@ -7,14 +7,13 @@ using System.Linq;
 using System.Reflection;
 using System.Windows.Forms;
 using TaleWorlds.CampaignSystem;
-using TaleWorlds.CampaignSystem.SandBox.Source.TournamentGames;
+using TaleWorlds.CampaignSystem.CharacterDevelopment;
+using TaleWorlds.CampaignSystem.TournamentGames;
 using TaleWorlds.Core;
 
 
 namespace KaosesTweaks.Patches
 {
-
-
     [HarmonyPatch(typeof(TournamentVM), "RefreshBetProperties")]
     public class RefreshBetPropertiesPatch
     {

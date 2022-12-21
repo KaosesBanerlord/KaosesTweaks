@@ -5,9 +5,13 @@ using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
+using TaleWorlds.CampaignSystem.CampaignBehaviors;
+using TaleWorlds.CampaignSystem.ComponentInterfaces;
 using TaleWorlds.CampaignSystem.LogEntries;
-using TaleWorlds.CampaignSystem.SandBox.CampaignBehaviors;
+using TaleWorlds.CampaignSystem.Party;
+using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
+using TaleWorlds.Library;
 using TaleWorlds.Localization;
 using TaleWorlds.SaveSystem;
 
@@ -19,10 +23,10 @@ namespace KaosesTweaks.Behaviors
         public override void RegisterEvents()
         {
             //CampaignEvents.OnNewGameCreatedEvent2.AddNonSerializedListener(this, new Action(this.OnAfterNewGameCreated));
-            CampaignEvents.HeroKilledEvent.AddNonSerializedListener(this, new Action<Hero, Hero, KillCharacterAction.KillCharacterActionDetail, bool>(this.OnHeroKilled));
-            CampaignEvents.DailyTickHeroEvent.AddNonSerializedListener(this, new Action<Hero>(this.DailyTickHero));
-            CampaignEvents.OnGameLoadedEvent.AddNonSerializedListener(this, new Action<CampaignGameStarter>(this.GameLoaded));
-            CampaignEvents.OnChildConceivedEvent.AddNonSerializedListener(this, new Action<Hero>(this.ChildConceived));
+            CampaignEvents.HeroKilledEvent.AddNonSerializedListener(this, new Action<Hero, Hero, KillCharacterAction.KillCharacterActionDetail, bool>(OnHeroKilled));
+            CampaignEvents.DailyTickHeroEvent.AddNonSerializedListener(this, new Action<Hero>(DailyTickHero));
+            CampaignEvents.OnGameLoadedEvent.AddNonSerializedListener(this, new Action<CampaignGameStarter>(GameLoaded));
+            CampaignEvents.OnChildConceivedEvent.AddNonSerializedListener(this, new Action<Hero>(ChildConceived));
 
         }
 
@@ -43,15 +47,15 @@ namespace KaosesTweaks.Behaviors
         // Token: 0x06002FC1 RID: 12225 RVA: 0x000C9470 File Offset: 0x000C7670
         private void DailyTickHero(Hero hero)
         {
-            if (this.HeroPregnancyCheckCondition(hero))
+            if (HeroPregnancyCheckCondition(hero))
             {
-                if (hero.Age >= (float)Campaign.Current.Models.AgeModel.HeroComesOfAge && hero.Spouse != null && hero.Spouse.IsAlive && !hero.IsPregnant)
+                if (hero.Age >= Campaign.Current.Models.AgeModel.HeroComesOfAge && hero.Spouse != null && hero.Spouse.IsAlive && !hero.IsPregnant)
                 {
-                    this.RefreshSpouseVisit(hero);
+                    RefreshSpouseVisit(hero);
                 }
                 if (hero.IsPregnant)
                 {
-                    this.CheckOffspringsToDeliver(hero);
+                    CheckOffspringsToDeliver(hero);
                 }
             }
         }
@@ -59,29 +63,29 @@ namespace KaosesTweaks.Behaviors
         // Token: 0x06002FC2 RID: 12226 RVA: 0x000C94C8 File Offset: 0x000C76C8
         private bool HeroPregnancyCheckCondition(Hero hero)
         {
-            return hero.IsFemale && hero.IsAlive && hero.Age >= (float)Campaign.Current.Models.AgeModel.HeroComesOfAge && (hero.Clan == null || !hero.Clan.IsRebelClan) && !CampaignOptions.IsLifeDeathCycleDisabled;
+            return hero.IsFemale && hero.IsAlive && hero.Age >= Campaign.Current.Models.AgeModel.HeroComesOfAge && (hero.Clan == null || !hero.Clan.IsRebelClan) && !CampaignOptions.IsLifeDeathCycleDisabled;
         }
 
         // Token: 0x06002FC3 RID: 12227 RVA: 0x000C9524 File Offset: 0x000C7724
         private void CheckOffspringsToDeliver(Hero hero)
         {
-            KaosesPregnancyCampaignBehavior.Pregnancy pregnancy = this._heroPregnancies.Find((KaosesPregnancyCampaignBehavior.Pregnancy x) => x.Mother == hero);
+            KaosesPregnancyCampaignBehavior.Pregnancy pregnancy = _heroPregnancies.Find((KaosesPregnancyCampaignBehavior.Pregnancy x) => x.Mother == hero);
             if (pregnancy == null)
             {
                 hero.IsPregnant = false;
                 return;
             }
-            this.CheckOffspringsToDeliver(pregnancy);
+            CheckOffspringsToDeliver(pregnancy);
         }
 
         // Token: 0x06002FC4 RID: 12228 RVA: 0x000C956D File Offset: 0x000C776D
         private void RefreshSpouseVisit(Hero hero)
         {
-            if (this.CheckAreNearby(hero, hero.Spouse) && MBRandom.RandomFloat <= Campaign.Current.Models.PregnancyModel.GetDailyChanceOfPregnancyForHero(hero))
+            if (CheckAreNearby(hero, hero.Spouse) && MBRandom.RandomFloat <= Campaign.Current.Models.PregnancyModel.GetDailyChanceOfPregnancyForHero(hero))
             {
                 if (Statics._settings.PregnancyDebug)
                 {
-                    IM.MessageDebug("KaosesPregnancyCampaignBehavior:  MBRandom.RandomFloat <=" + (MBRandom.RandomFloat).ToString() + " Hero Chance: " + Campaign.Current.Models.PregnancyModel.GetDailyChanceOfPregnancyForHero(hero).ToString());
+                    IM.MessageDebug("KaosesPregnancyCampaignBehavior:  MBRandom.RandomFloat <=" + MBRandom.RandomFloat.ToString() + " Hero Chance: " + Campaign.Current.Models.PregnancyModel.GetDailyChanceOfPregnancyForHero(hero).ToString());
                 }
                 MakePregnantAction.Apply(hero);
             }
@@ -92,10 +96,10 @@ namespace KaosesTweaks.Behaviors
         {
             Settlement settlement;
             MobileParty mobileParty;
-            this.GetLocation(hero, out settlement, out mobileParty);
+            GetLocation(hero, out settlement, out mobileParty);
             Settlement settlement2;
             MobileParty mobileParty2;
-            this.GetLocation(spouse, out settlement2, out mobileParty2);
+            GetLocation(spouse, out settlement2, out mobileParty2);
             return (settlement != null && settlement == settlement2) || (hero.Clan != Hero.MainHero.Clan && MBRandom.RandomFloat < 0.2f);
         }
 
@@ -112,7 +116,7 @@ namespace KaosesTweaks.Behaviors
             if (heroSettlement == null)
             {
                 MobileParty mobileParty2 = heroParty;
-                heroSettlement = ((mobileParty2 != null) ? mobileParty2.CurrentSettlement : null);
+                heroSettlement = (mobileParty2 != null) ? mobileParty2.CurrentSettlement : null;
             }
         }
 
@@ -132,7 +136,7 @@ namespace KaosesTweaks.Behaviors
                     if (MBRandom.RandomFloat > pregnancyModel.StillbirthProbability)
                     {
                         bool isOffspringFemale = MBRandom.RandomFloat <= pregnancyModel.DeliveringFemaleOffspringProbability;
-                        Hero item = HeroCreator.DeliverOffSpring(mother, pregnancy.Father, isOffspringFemale, null, 0);
+                        Hero item = HeroCreator.DeliverOffSpring(mother, pregnancy.Father, isOffspringFemale, null);
                         list.Add(item);
                     }
                     else
@@ -147,7 +151,7 @@ namespace KaosesTweaks.Behaviors
                 OnGivenBirth(mother, list, num2);
 
                 mother.IsPregnant = false;
-                this._heroPregnancies.Remove(pregnancy);
+                _heroPregnancies.Remove(pregnancy);
                 if (mother != Hero.MainHero && MBRandom.RandomFloat <= pregnancyModel.MaternalMortalityProbabilityInLabor)
                 {
                     KillCharacterAction.ApplyInLabor(mother, true);
@@ -158,13 +162,13 @@ namespace KaosesTweaks.Behaviors
         // Token: 0x06002FC8 RID: 12232 RVA: 0x000C9764 File Offset: 0x000C7964
         private void ChildConceived(Hero mother)
         {
-            this._heroPregnancies.Add(new KaosesPregnancyCampaignBehavior.Pregnancy(mother, mother.Spouse, CampaignTime.DaysFromNow(Campaign.Current.Models.PregnancyModel.PregnancyDurationInDays)));
+            _heroPregnancies.Add(new KaosesPregnancyCampaignBehavior.Pregnancy(mother, mother.Spouse, CampaignTime.DaysFromNow(Campaign.Current.Models.PregnancyModel.PregnancyDurationInDays)));
         }
 
         // Token: 0x06002FCB RID: 12235 RVA: 0x000C97F8 File Offset: 0x000C79F8
         private void CreateYoungCharactersForFactions()
         {
-            foreach (Hero hero2 in from hero in Hero.All.ToList<Hero>()
+            foreach (Hero hero2 in from hero in Hero.AllAliveHeroes.ToList<Hero>()
                                    where !hero.IsNotSpawned
                                    select hero)
             {
@@ -173,9 +177,9 @@ namespace KaosesTweaks.Behaviors
                     int num = 0;
                     for (int i = 17; i > 0; i--)
                     {
-                        if (MBRandom.RandomFloat < this.GetChanceOfChild(hero2, i) && num < 6)
+                        if (MBRandom.RandomFloat < GetChanceOfChild(hero2, i) && num < 6)
                         {
-                            HeroCreator.DeliverOffSpring(hero2, hero2.Spouse, MBRandom.RandomFloat <= Campaign.Current.Models.PregnancyModel.DeliveringFemaleOffspringProbability, null, i);
+                            HeroCreator.DeliverOffSpring(hero2, hero2.Spouse, MBRandom.RandomFloat <= Campaign.Current.Models.PregnancyModel.DeliveringFemaleOffspringProbability, null);
                             num++;
                         }
                     }
@@ -188,18 +192,18 @@ namespace KaosesTweaks.Behaviors
         {
             int count = mother.Children.Count;
             float num = 48f;
-            float num2 = mother.CharacterObject.Age - (float)yearsAgo;
+            float num2 = mother.CharacterObject.Age - yearsAgo;
             foreach (Hero hero in mother.Children)
             {
-                if (hero.CharacterObject.Age - (float)yearsAgo < num)
+                if (hero.CharacterObject.Age - yearsAgo < num)
                 {
-                    num = hero.CharacterObject.Age - (float)yearsAgo;
+                    num = hero.CharacterObject.Age - yearsAgo;
                 }
             }
             float result = 0f;
             if (num > 2f && num2 > 18f)
             {
-                result = (num + 2f) * (42f - num2) / (float)(count + 1) / 100f;
+                result = (num + 2f) * (42f - num2) / (count + 1) / 100f;
             }
             return result;
         }
@@ -207,7 +211,7 @@ namespace KaosesTweaks.Behaviors
         // Token: 0x06002FCD RID: 12237 RVA: 0x000C99A0 File Offset: 0x000C7BA0
         public override void SyncData(IDataStore dataStore)
         {
-            dataStore.SyncData<List<KaosesPregnancyCampaignBehavior.Pregnancy>>("_heroPregnancies", ref this._heroPregnancies);
+            dataStore.SyncData<List<KaosesPregnancyCampaignBehavior.Pregnancy>>("_heroPregnancies", ref _heroPregnancies);
         }
 
         // Token: 0x04001007 RID: 4103
@@ -254,7 +258,7 @@ namespace KaosesTweaks.Behaviors
                     textObject.SetTextVariable("DELIVERED_CHILDREN", new TextObject("{=EPbHr2DX}two healthy babies", null));
                 }
                 StringHelpers.SetCharacterProperties("MOTHER", mother.CharacterObject, textObject);
-                InformationManager.AddQuickInformation(textObject, 0, null, "");
+                InformationManager.DisplayMessage(new InformationMessage(textObject.ToString()));
             }
         }
 
@@ -272,9 +276,9 @@ namespace KaosesTweaks.Behaviors
             // Token: 0x06004381 RID: 17281 RVA: 0x001215B6 File Offset: 0x0011F7B6
             protected virtual void AutoGeneratedInstanceCollectObjects(List<object> collectedObjects)
             {
-                collectedObjects.Add(this.Mother);
-                collectedObjects.Add(this.Father);
-                CampaignTime.AutoGeneratedStaticCollectObjectsCampaignTime(this.DueDate, collectedObjects);
+                collectedObjects.Add(Mother);
+                collectedObjects.Add(Father);
+                CampaignTime.AutoGeneratedStaticCollectObjectsCampaignTime(DueDate, collectedObjects);
             }
 
             // Token: 0x06004382 RID: 17282 RVA: 0x001215E1 File Offset: 0x0011F7E1
@@ -298,9 +302,9 @@ namespace KaosesTweaks.Behaviors
             // Token: 0x06004385 RID: 17285 RVA: 0x0012160D File Offset: 0x0011F80D
             public Pregnancy(Hero pregnantHero, Hero father, CampaignTime dueDate)
             {
-                this.Mother = pregnantHero;
-                this.Father = father;
-                this.DueDate = dueDate;
+                Mother = pregnantHero;
+                Father = father;
+                DueDate = dueDate;
             }
 
             // Token: 0x040018A9 RID: 6313

@@ -2,7 +2,8 @@
 using KaosesTweaks.Settings;
 using KaosesTweaks.Utils;
 using TaleWorlds.CampaignSystem;
-using TaleWorlds.CampaignSystem.SandBox.GameComponents.Map;
+using TaleWorlds.CampaignSystem.GameComponents;
+using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
 
 namespace KaosesTweaks.Patches
@@ -22,7 +23,7 @@ namespace KaosesTweaks.Patches
                         + " final " + (__result * settings.ProductionFoodTweakAmount).ToString() + "\r\n"
                         );
                 }
-                __result = (__result * settings.ProductionFoodTweakAmount);
+                __result = __result * settings.ProductionFoodTweakAmount;
             }
             if (village != null && MCMSettings.Instance is { } settings2 && settings2.BalancingFoodTweakEnabled && settings2.KingdomBalanceStrengthEnabled && village.Settlement.OwnerClan.Kingdom != null)
             {
@@ -65,8 +66,8 @@ namespace KaosesTweaks.Patches
                         _ => 0f
                     };
                 }
-                if (num == 0f && village.Settlement.OwnerClan.Kingdom.Leader == Hero.MainHero) num = (settings2.KingdomBalanceStrengthCEKEnabled) ? settings2.Player_CEK_Boost : settings2.PlayerBoost;
-                __result += (__result * num);
+                if (num == 0f && village.Settlement.OwnerClan.Kingdom.Leader == Hero.MainHero) num = settings2.KingdomBalanceStrengthCEKEnabled ? settings2.Player_CEK_Boost : settings2.PlayerBoost;
+                __result += __result * num;
             }
         }
 

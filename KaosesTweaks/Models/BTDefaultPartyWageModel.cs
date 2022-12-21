@@ -1,34 +1,38 @@
-﻿using HarmonyLib;
+﻿
+
+using Helpers;
 using KaosesTweaks.Settings;
 using KaosesTweaks.Utils;
 using System;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.GameComponents;
 using TaleWorlds.CampaignSystem.Party;
+using TaleWorlds.Core;
+using TaleWorlds.Library;
 using TaleWorlds.Localization;
 
-namespace KaosesTweaks.Patches
+namespace KaosesTweaks.Models
 {
-
-    [HarmonyPatch(typeof(DefaultPartyWageModel), "GetTotalWage")]
-    public class DefaultPartyWageModelPatch
+    class BTDefaultPartyWageModel : DefaultPartyWageModel
     {
 
-        public static void Postfix(ref ExplainedNumber __result, MobileParty mobileParty, bool includeDescriptions = false)
+        // Token: 0x06002D1E RID: 11550 RVA: 0x000B70B8 File Offset: 0x000B52B8
+        public override ExplainedNumber GetTotalWage(MobileParty mobileParty, bool includeDescriptions = false)
         {
+            ExplainedNumber result = base.GetTotalWage(mobileParty, includeDescriptions);
 
             try
             {
                 if (MCMSettings.Instance is { } settings && settings.PartyWageTweaksEnabled && mobileParty != null)
                 {
-                    float orig_result = __result.ResultNumber;
+                    float orig_result = result.ResultNumber;
                     if (!mobileParty.IsGarrison && (mobileParty.IsMainParty
                         || (mobileParty.Party.MapFaction == Hero.MainHero.MapFaction && settings.ApplyWageTweakToFaction)
                         || settings.ApplyWageTweakToAI))
                     {
                         float num = settings.PartyWagePercent;
                         num = orig_result * num - orig_result;
-                        __result.Add(num, new TextObject("BT Party Wage Tweak", null));//
+                        result.Add(num, new TextObject("BT Party Wage Tweak"));//
                     }
                     if (mobileParty.IsGarrison && (mobileParty.CurrentSettlement.OwnerClan == Clan.PlayerClan ||
                         (mobileParty.Party.MapFaction == Hero.MainHero.MapFaction && settings.ApplyWageTweakToFaction)
@@ -36,7 +40,7 @@ namespace KaosesTweaks.Patches
                     {
                         float num2 = settings.GarrisonWagePercent;
                         num2 = orig_result * num2 - orig_result;
-                        __result.Add(num2, new TextObject("BT Garrison Wage Tweak", null));//
+                        result.Add(num2, new TextObject("BT Garrison Wage Tweak"));//
                     }
                 }
 
@@ -84,26 +88,18 @@ namespace KaosesTweaks.Patches
                         };
                     }
                     if (num == 0f && mobileParty.LeaderHero.Clan.Kingdom.Leader == Hero.MainHero) num = settings2.KingdomBalanceStrengthCEKEnabled ? settings2.Player_CEK_Boost : settings2.PlayerBoost;
-                    num = __result.ResultNumber * -num;
-                    __result.Add(num, new TextObject("BT Balancing Tweak", null));
+                    num = result.ResultNumber * -num;
+                    result.Add(num, new TextObject("BT Balancing Tweak"));
                 }
             }
             catch (Exception ex)
             {
                 IM.ShowError("GetWagePostFix", "Exception GEtWage", ex);
             }
+
+
+            return result;
         }
 
-        public static bool Prepare() => MCMSettings.Instance is { } settings && ((settings.PartyWageTweaksEnabled && settings.PartyWageTweaksHarmonyEnabled) || (settings.KingdomBalanceStrengthEnabled && settings.KingdomBalanceStrengthHarmonyEnabled));
-
-
-
     }
-
-
-
-
-
-
-
 }

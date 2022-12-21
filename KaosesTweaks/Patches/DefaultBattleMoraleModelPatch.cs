@@ -1,14 +1,12 @@
 ﻿using HarmonyLib;
 using KaosesTweaks.Settings;
-using KaosesTweaks.Utils;
-using SandBox;
+using SandBox.GameComponents;
 using System;
-using TaleWorlds.CampaignSystem.SandBox.GameComponents;
 
 namespace KaosesTweaks.Patches
 {
-    [HarmonyPatch(typeof(DefaultBattleMoraleModel), "CalculateMoraleChangeAfterAgentKilled")]
-    class CalculateMoraleChangeAfterAgentKilledPatch
+    [HarmonyPatch(typeof(SandboxBattleMoraleModel), "CalculateMaxMoraleChangeDueToAgentIncapacitated")]
+    class CalculateMaxMoraleChangeDueToAgentIncapacitatedPatch
     {
         static void Postfix(ref ValueTuple<float, float> __result)
         {
@@ -22,8 +20,8 @@ namespace KaosesTweaks.Patches
         static bool Prepare() => MCMSettings.Instance is { } settings && settings.BattleMoralTweaksEnabled;
     }
 
-    [HarmonyPatch(typeof(DefaultBattleMoraleModel), "CalculateMoraleChangeAfterAgentPanicked")]
-    class CalculateMoraleChangeAfterAgentPanickedPatch
+    [HarmonyPatch(typeof(SandboxBattleMoraleModel), "CalculateMaxMoraleChangeDueToAgentPanicked")]
+    class CalculateMaxMoraleChangeDueToAgentPanickedPatch
     {
         static void Postfix(ref ValueTuple<float, float> __result)
         {
@@ -37,7 +35,7 @@ namespace KaosesTweaks.Patches
         static bool Prepare() => MCMSettings.Instance is { } settings && settings.BattleMoralTweaksEnabled;
     }
 
-    [HarmonyPatch(typeof(DefaultBattleMoraleModel), "CalculateMoraleChangeToCharacter")]
+    [HarmonyPatch(typeof(SandboxBattleMoraleModel), "CalculateMoraleChangeToCharacter")]
     class CalculateMoraleChangeToCharacterPatch
     {
         static void Postfix(ref float __result)

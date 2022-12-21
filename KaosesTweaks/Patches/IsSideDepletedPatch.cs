@@ -1,14 +1,15 @@
 ﻿using HarmonyLib;
-using SandBox.Source.Missions;
+using KaosesTweaks.Settings;
+using SandBox.Missions.MissionLogics;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Windows.Forms;
 using System.Linq;
 using System.Reflection;
+using System.Windows.Forms;
 using TaleWorlds.Core;
+using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
-using KaosesTweaks.Settings;
 using static TaleWorlds.MountAndBlade.Agent;
 
 namespace KaosesTweaks.Patches
@@ -88,7 +89,7 @@ namespace KaosesTweaks.Patches
         {
             IList missionSides = (IList)typeof(HideoutMissionController).GetField("_missionSides", BindingFlags.NonPublic | BindingFlags.Instance)
                 .GetValue(controller);
-            var mSide = missionSides[(int)side];
+            object? mSide = missionSides[(int)side];
             int numTroops = (int)typeof(HideoutMissionController).GetNestedType("MissionSide", BindingFlags.NonPublic)
                 .GetProperty("NumberOfActiveTroops", BindingFlags.Public | BindingFlags.Instance).GetValue(mSide);
             return numTroops > 0;
@@ -96,7 +97,7 @@ namespace KaosesTweaks.Patches
 
         private static bool PlayerIsDead()
         {
-            return Agent.Main == null || !Agent.Main.IsActive();
+            return Main == null || !Main.IsActive();
         }
 
         private static void TrySetFormationsCharge(HideoutMissionController controller, BattleSideEnum side)
@@ -106,12 +107,16 @@ namespace KaosesTweaks.Patches
                                 select t).ToList();
             if (teams != null && teams.Count > 0)
             {
-                foreach (var team in teams)
+                foreach (Team? team in teams)
                 {
-                    foreach (var formation in team.Formations)
+                    foreach (Formation? formation in team.Formations)
                     {
+
+                        if (formation.GetReadonlyMovementOrderReference().OrderType != OrderType.Charge)
+                            formation.SetMovementOrder(MovementOrder.MovementOrderCharge);
+                        /*
                         if (formation.MovementOrder.OrderType != OrderType.Charge)
-                            formation.MovementOrder = MovementOrder.MovementOrderCharge;
+                            formation.MovementOrder = MovementOrder.MovementOrderCharge;*/
                     }
                 }
             }
@@ -119,18 +124,19 @@ namespace KaosesTweaks.Patches
 
         private static void TryAlarmAgents(HideoutMissionController controller)
         {
-            foreach (var agent in controller.Mission.Agents)
+            foreach (Agent? agent in controller.Mission.Agents)
             {
-                if (agent.IsAIControlled && !agent.IsAlarmed())
+
+                if (agent.IsAIControlled && agent.CurrentWatchState != WatchState.Alarmed)
                 {
-                    agent.SetWatchState(AgentAIStateFlagComponent.WatchState.Alarmed);
+                    agent.SetWatchState(WatchState.Alarmed);
                 }
             }
         }
 
         private static void MakeAgentsYell(HideoutMissionController controller, BattleSideEnum side)
         {
-            foreach (var agent in controller.Mission.Agents)
+            foreach (Agent? agent in controller.Mission.Agents)
             {
                 if (agent.IsActive() && agent.Team.Side == side)
                     agent.SetWantsToYell();
@@ -151,7 +157,7 @@ namespace KaosesTweaks.Patches
             if (passivePlayerTeam != null)
             {
                 List<Agent> list = new List<Agent>(passivePlayerTeam.ActiveAgents);
-                foreach (var agent in list)
+                foreach (Agent? agent in list)
                 {
                     agent.SetTeam(controller.Mission.Teams.Attacker, true);
                 }
@@ -159,7 +165,7 @@ namespace KaosesTweaks.Patches
             if (passiveEnemyTeam != null)
             {
                 List<Agent> list = new List<Agent>(passiveEnemyTeam.ActiveAgents);
-                foreach (var agent in list)
+                foreach (Agent? agent in list)
                 {
                     agent.SetTeam(controller.Mission.Teams.Defender, true);
                 }
@@ -169,7 +175,7 @@ namespace KaosesTweaks.Patches
 
         private static void FreeAgentsToMove(HideoutMissionController controller)
         {
-            foreach (var agent in controller.Mission.Agents)
+            foreach (Agent? agent in controller.Mission.Agents)
             {
                 if (agent.IsActive())
                     agent.DisableScriptedMovement();

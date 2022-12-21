@@ -1,7 +1,10 @@
 ﻿using KaosesTweaks.Utils;
 using System;
 using TaleWorlds.CampaignSystem;
-using TaleWorlds.CampaignSystem.SandBox.GameComponents.Map;
+using TaleWorlds.CampaignSystem.CharacterDevelopment;
+using TaleWorlds.CampaignSystem.GameComponents;
+using TaleWorlds.CampaignSystem.Party;
+using TaleWorlds.CampaignSystem.Siege;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
@@ -188,10 +191,10 @@ namespace KaosesTweaks.Models
                 }*/
 
         // Token: 0x06002D70 RID: 11632 RVA: 0x000B5834 File Offset: 0x000B3A34
-        public override ExplainedNumber CalculateCohesionChange(Army army, bool includeDescriptions = false)
+        public override ExplainedNumber CalculateDailyCohesionChange(Army army, bool includeDescriptions = false)
         {
             //~ KT
-            float baseChange = (float)Statics._settings.armyCohesionBaseChange;
+            float baseChange = Statics._settings.armyCohesionBaseChange;
             bool IsClanOnlyarmy = IsClanOnlyArmy(army);
             if (IsClanOnlyarmy && Statics._settings.armyDisableCohesionLossClanOnlyParties)
             {
@@ -292,15 +295,15 @@ namespace KaosesTweaks.Models
             //cohesionChange.Add((float)(-(float)num4), _numberOfPartiesText, null);
             if (starvingCohesion > 0)
             {
-                cohesionChange.Add((float)(-(float)starvingCohesion), _numberOfStarvingPartiesText, null);
+                cohesionChange.Add((float)-(float)starvingCohesion, _numberOfStarvingPartiesText, null);
             }
             if (lowMoraleCohesion > 0)
             {
-                cohesionChange.Add((float)(-(float)lowMoraleCohesion), _numberOfLowMoralePartiesText, null);
+                cohesionChange.Add((float)-(float)lowMoraleCohesion, _numberOfLowMoralePartiesText, null);
             }
             if (lowHealthyTroops > 0)
             {
-                cohesionChange.Add((float)(-(float)lowHealthyTroops), _numberOfLessMemberPartiesText, null);
+                cohesionChange.Add((float)-(float)lowHealthyTroops, _numberOfLessMemberPartiesText, null);
             }
 
 
@@ -364,7 +367,7 @@ namespace KaosesTweaks.Models
         // Token: 0x06002D73 RID: 11635 RVA: 0x000B5A27 File Offset: 0x000B3C27
         public override int GetCohesionBoostInfluenceCost(Army army, int percentageToBoost = 100)
         {
-            return CalculateTotalInfluenceCost(army, (float)percentageToBoost);
+            return CalculateTotalInfluenceCost(army, percentageToBoost);
         }
 
         // Token: 0x06002D74 RID: 11636 RVA: 0x000B5A32 File Offset: 0x000B3C32
@@ -390,7 +393,7 @@ namespace KaosesTweaks.Models
         // Token: 0x06002D76 RID: 11638 RVA: 0x000B5A5D File Offset: 0x000B3C5D
         public override int GetPartyStrength(PartyBase party)
         {
-            return MBMath.Round(party.TotalStrength);
+            return MathF.Round(party.TotalStrength);
         }
 
         // Token: 0x06002D77 RID: 11639 RVA: 0x000B5A6A File Offset: 0x000B3C6A
@@ -415,10 +418,10 @@ namespace KaosesTweaks.Models
         private float _minimumPartySizeScoreNeeded = 0.4f;
 
         // Token: 0x04000F67 RID: 3943
-        public const int InfluenceValuePerGold = 40;
+        // public const int InfluenceValuePerGold = 40;
 
         // Token: 0x04000F68 RID: 3944
-        public const int AverageCallToArmyCost = 20;
+        // public const int AverageCallToArmyCost = 20;
         #endregion
 
     }

@@ -25,7 +25,7 @@ namespace KaosesTweaks.Objects
         protected void SetItemsValue(int multiplePriceValue, float multiplier = 0.0f)
         {
             DebugValue(_item, multiplePriceValue, multiplier);
-            typeof(ItemObject).GetProperty("Value").SetValue(_item, (int)multiplePriceValue);
+            typeof(ItemObject).GetProperty("Value").SetValue(_item, multiplePriceValue);
         }
 
         protected void SetItemsWeight(float multipleWeightValue, float multiplier = 0.0f)

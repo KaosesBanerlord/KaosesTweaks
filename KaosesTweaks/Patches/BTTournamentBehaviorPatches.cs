@@ -1,22 +1,23 @@
 ﻿using HarmonyLib;
 using KaosesTweaks.Settings;
-using SandBox.TournamentMissions.Missions;
+using SandBox.Tournaments.MissionLogics;
+using System;
 using System.Reflection;
+using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.CharacterDevelopment;
 using TaleWorlds.Library;
 
 namespace KaosesTweaks.Patches
 {
-
     [HarmonyPatch(typeof(TournamentBehavior), "OnPlayerWinTournament")]
     public class OnPlayerWinTournamentPatch
     {
-        static bool Prefix(TournamentBehavior __instance)
+        static void Prefix(TournamentBehavior __instance)
         {
             if (MCMSettings.Instance is { } settings)
             {
                 typeof(TournamentBehavior).GetProperty("OverallExpectedDenars").SetValue(__instance, __instance.OverallExpectedDenars + settings.TournamentGoldRewardAmount);
             }
-            return true;
         }
 
         static bool Prepare() => MCMSettings.Instance is { } settings && settings.TournamentGoldRewardEnabled;
@@ -43,6 +44,28 @@ namespace KaosesTweaks.Patches
                 return true;
             }
             return false;
+        }
+    }
+
+    [HarmonyPatch(typeof(TournamentBehavior), "GetMaximumBet")]
+    public class GetMaximumBetPatch
+    {
+        static void Postfix(TournamentBehavior __instance, ref int __result)
+        {
+            if (MCMSettings.Instance is { } settings)
+            {
+                int num = settings.TournamentMaxBetAmount;
+                if (Hero.MainHero.GetPerkValue(DefaultPerks.Roguery.DeepPockets))
+                {
+                    num *= (int)DefaultPerks.Roguery.DeepPockets.PrimaryBonus;
+                }
+                __result = Math.Min(num, Hero.MainHero.Gold);
+            }
+        }
+
+        static bool Prepare()
+        {
+            return MCMSettings.Instance is { } settings && settings.TournamentMaxBetAmountTweakEnabled;
         }
     }
 }

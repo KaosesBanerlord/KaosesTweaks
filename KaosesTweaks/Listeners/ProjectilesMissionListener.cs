@@ -198,5 +198,13 @@ namespace KaosesTweaks.Listeners
             short ammoCount2 = (short)tmp;
             return ammoCount2;
         }
+
+        public void OnDeploymentPlanMade(BattleSideEnum battleSide, bool isFirstPlan)
+        {
+        }
+
+        public void OnInitialDeploymentPlanMade(BattleSideEnum battleSide, bool isFirstPlan)
+        {
+        }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using KaosesTweaks.Settings;
 using TaleWorlds.CampaignSystem;
-using TaleWorlds.CampaignSystem.SandBox.GameComponents;
+using TaleWorlds.CampaignSystem.GameComponents;
+using TaleWorlds.CampaignSystem.Settlements.Workshops;
 using TaleWorlds.Library;
 
 namespace KaosesTweaks.Models
@@ -21,12 +22,12 @@ namespace KaosesTweaks.Models
             }
         }
 
-        public override int GetMaxWorkshopCountForPlayer()
+        public override int GetMaxWorkshopCountForTier(int tier)
         {
             if (MCMSettings.Instance is { } settings && settings.MaxWorkshopCountTweakEnabled)
                 return settings.BaseWorkshopCount + Clan.PlayerClan.Tier * settings.BonusWorkshopsPerClanTier;
             else
-                return base.GetMaxWorkshopCountForPlayer();
+                return base.GetMaxWorkshopCountForTier(tier);
         }
 
         public override int GetBuyingCostForPlayer(Workshop workshop)
@@ -39,7 +40,7 @@ namespace KaosesTweaks.Models
         public override int GetDailyExpense(int level)
         {
             if (MCMSettings.Instance is { } settings && settings.WorkshopEffectivnessEnabled)
-                return (int)MathF.Round(base.GetDailyExpense(level) * (settings.WorkshopEffectivnessv2Factor));
+                return MathF.Round(base.GetDailyExpense(level) * settings.WorkshopEffectivnessv2Factor);
             else
                 return base.GetDailyExpense(level);
         }

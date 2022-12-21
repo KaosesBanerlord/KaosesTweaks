@@ -2,7 +2,7 @@
 using KaosesTweaks.Settings;
 using KaosesTweaks.Utils;
 using TaleWorlds.CampaignSystem;
-using TaleWorlds.CampaignSystem.SandBox.GameComponents;
+using TaleWorlds.CampaignSystem.GameComponents;
 
 namespace KaosesTweaks.Patches
 {
@@ -19,7 +19,7 @@ namespace KaosesTweaks.Patches
             }
         }
 
-        static bool Prepare() => MCMSettings.Instance is { } settings && (settings.PrisonerPriceTweaksEnabled);
+        static bool Prepare() => MCMSettings.Instance is { } settings && settings.PrisonerPriceTweaksEnabled;
     }
 
 }

@@ -1,29 +1,34 @@
-﻿using System;
+﻿using KaosesTweaks.Settings;
+using KaosesTweaks.Utils;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
-using TaleWorlds.CampaignSystem.SandBox.CampaignBehaviors;
+using TaleWorlds.CampaignSystem.CampaignBehaviors;
 using TaleWorlds.CampaignSystem.GameMenus;
+using TaleWorlds.CampaignSystem.Party;
+using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
-using KaosesTweaks.Settings;
-using KaosesTweaks.Utils;
+using TaleWorlds.Library;
 
 namespace KaosesTweaks.Behaviors
 {
     class ChangeSettlementCulture : CampaignBehaviorBase
     {
+        private void OnSessionLaunched(CampaignGameStarter campaignGameStarter) => AddGameMenus(campaignGameStarter);
+
         public override void RegisterEvents()
         {
-            CampaignEvents.ClanChangedKingdom.AddNonSerializedListener(this, new Action<Clan, Kingdom, Kingdom, bool, bool>(this.OnClanChangedKingdom));
-            CampaignEvents.OnGameLoadedEvent.AddNonSerializedListener(this, new Action<CampaignGameStarter>(this.OnGameLoaded));
+            CampaignEvents.ClanChangedKingdom.AddNonSerializedListener(this, new Action<Clan, Kingdom, Kingdom, ChangeKingdomAction.ChangeKingdomActionDetail, bool>(OnClanChangedKingdom));
+            //CampaignEvents.ClanChangedKingdom.AddNonSerializedListener(this, new Action<Clan, Kingdom, Kingdom, bool, bool>(this.OnClanChangedKingdom));
+            CampaignEvents.OnGameLoadedEvent.AddNonSerializedListener(this, new Action<CampaignGameStarter>(OnGameLoaded));
             //CampaignEvents.WeeklyTickSettlementEvent.AddNonSerializedListener(this, new Action<Settlement>(this.OnWeeklyTickSettlement));
-            CampaignEvents.DailyTickSettlementEvent.AddNonSerializedListener(this, new Action<Settlement>(this.OnDailyTickSettlement));
-            CampaignEvents.OnNewGameCreatedEvent.AddNonSerializedListener(this, new Action<CampaignGameStarter>(this.OnGameLoaded));
-            CampaignEvents.OnSiegeAftermathAppliedEvent.AddNonSerializedListener(this, new Action<MobileParty, Settlement, SiegeAftermathCampaignBehavior.SiegeAftermath, Clan, Dictionary<MobileParty, float>>(this.OnSiegeAftermathApplied));
-            CampaignEvents.OnSettlementOwnerChangedEvent.AddNonSerializedListener(this, new Action<Settlement, bool, Hero, Hero, Hero, ChangeOwnerOfSettlementAction.ChangeOwnerOfSettlementDetail>(this.OnSettlementOwnerChanged));
-
-
+            CampaignEvents.OnSessionLaunchedEvent.AddNonSerializedListener(this, new Action<CampaignGameStarter>(OnSessionLaunched));
+            CampaignEvents.DailyTickSettlementEvent.AddNonSerializedListener(this, new Action<Settlement>(OnDailyTickSettlement));
+            CampaignEvents.OnNewGameCreatedEvent.AddNonSerializedListener(this, new Action<CampaignGameStarter>(OnGameLoaded));
+            CampaignEvents.OnSiegeAftermathAppliedEvent.AddNonSerializedListener(this, new Action<MobileParty, Settlement, SiegeAftermathCampaignBehavior.SiegeAftermath, Clan, Dictionary<MobileParty, float>>(OnSiegeAftermathApplied));
+            CampaignEvents.OnSettlementOwnerChangedEvent.AddNonSerializedListener(this, new Action<Settlement, bool, Hero, Hero, Hero, ChangeOwnerOfSettlementAction.ChangeOwnerOfSettlementDetail>(OnSettlementOwnerChanged));
         }
 
         private void OnGameLoaded(CampaignGameStarter obj)
@@ -46,24 +51,27 @@ namespace KaosesTweaks.Behaviors
 
                     if ((PlayerOverride || KingdomOverride || ClanCulture) && !WeekCounter.ContainsKey(settlement))
                     {
-                        this.AddCounter(settlement);
+                        AddCounter(settlement);
                     }
-                    else if ((PlayerOverride || KingdomOverride || ClanCulture) && this.IsSettlementDue(settlement))
+                    else if ((PlayerOverride || KingdomOverride || ClanCulture) && IsSettlementDue(settlement))
                     {
-                        this.Transform(settlement, false);
+                        Transform(settlement, false);
                     }
                 }
             }
-            ChangeSettlementCulture.initialCultureDictionary = startingCultures;
+            initialCultureDictionary = startingCultures;
+        }
 
-            obj.AddGameMenuOption("village", "village_culture_changer", "Culture Transformation", new GameMenuOption.OnConditionDelegate(ChangeSettlementCulture.Game_menu_village_change_culture_on_condition), new GameMenuOption.OnConsequenceDelegate(ChangeSettlementCulture.Game_menu_change_culture_on_consequence), false, 5, false);
-            obj.AddGameMenuOption("town", "town_culture_changer", "Culture Transformation", new GameMenuOption.OnConditionDelegate(ChangeSettlementCulture.Game_menu_town_change_culture_on_condition), new GameMenuOption.OnConsequenceDelegate(ChangeSettlementCulture.Game_menu_change_culture_on_consequence), false, 5, false);
-            obj.AddGameMenuOption("castle", "castle_culture_changer", "Culture Transformation", new GameMenuOption.OnConditionDelegate(ChangeSettlementCulture.Game_menu_castle_change_culture_on_condition), new GameMenuOption.OnConsequenceDelegate(ChangeSettlementCulture.Game_menu_change_culture_on_consequence), false, 5, false);
+        private void AddGameMenus(CampaignGameStarter campaignGameStarter)
+        {
+            campaignGameStarter.AddGameMenuOption("village", "village_culture_changer", "Culture Transformation", new GameMenuOption.OnConditionDelegate(Game_menu_village_change_culture_on_condition), new GameMenuOption.OnConsequenceDelegate(Game_menu_change_culture_on_consequence), false, 5, false);
+            campaignGameStarter.AddGameMenuOption("town", "town_culture_changer", "Culture Transformation", new GameMenuOption.OnConditionDelegate(Game_menu_town_change_culture_on_condition), new GameMenuOption.OnConsequenceDelegate(Game_menu_change_culture_on_consequence), false, 5, false);
+            campaignGameStarter.AddGameMenuOption("castle", "castle_culture_changer", "Culture Transformation", new GameMenuOption.OnConditionDelegate(Game_menu_castle_change_culture_on_condition), new GameMenuOption.OnConsequenceDelegate(Game_menu_change_culture_on_consequence), false, 5, false);
         }
 
         private void OnSiegeAftermathApplied(MobileParty arg1, Settlement settlement, SiegeAftermathCampaignBehavior.SiegeAftermath arg3, Clan arg4, Dictionary<MobileParty, float> arg5)
         {
-            this.AddCounter(settlement);
+            AddCounter(settlement);
         }
 
         private void OnSettlementOwnerChanged(Settlement settlement, bool arg2, Hero arg3, Hero arg4, Hero arg5, ChangeOwnerOfSettlementAction.ChangeOwnerOfSettlementDetail detail)
@@ -75,15 +83,17 @@ namespace KaosesTweaks.Behaviors
                 {
                     UpdatePlayerOverride();
                 }
-                this.AddCounter(settlement);
+                AddCounter(settlement);
             }
             else
             {
-                settlement.Culture = ChangeSettlementCulture.initialCultureDictionary[settlement];
+                settlement.Culture = initialCultureDictionary[settlement];
             }
         }
 
-        private void OnClanChangedKingdom(Clan clan, Kingdom arg2, Kingdom arg3, bool arg4, bool arg5)
+
+        // Token: 0x06000E45 RID: 3653 RVA: 0x000630F6 File Offset: 0x000612F6
+        private void OnClanChangedKingdom(Clan clan, Kingdom oldKingdom, Kingdom newKingdom, ChangeKingdomAction.ChangeKingdomActionDetail detail, bool showNotification = true)
         {
             if (MCMSettings.Instance is { } settings && settings.ChangeToKingdomCulture)
             {
@@ -95,7 +105,7 @@ namespace KaosesTweaks.Behaviors
                 {
                     foreach (Settlement settlement in from settlement in clan.Settlements where settlement.IsTown || settlement.IsCastle || settlement.IsVillage select settlement)
                     {
-                        this.AddCounter(settlement);
+                        AddCounter(settlement);
                     }
                 }
             }
@@ -139,7 +149,7 @@ namespace KaosesTweaks.Behaviors
                                 settlement.Culture = newculture;
                                 if (removeTroops)
                                 {
-                                    ChangeSettlementCulture.RemoveTroopsfromNotable(settlement);
+                                    RemoveTroopsfromNotable(settlement);
                                 }
                                 foreach (Village boundVillage in settlement.BoundVillages)
                                 {
@@ -161,7 +171,6 @@ namespace KaosesTweaks.Behaviors
 
         public void UpdatePlayerOverride()
         {
-            IM.MessageDebug($" settings.PlayerCultureOverride.SelectedValue:  {MCMSettings.Instance.PlayerCultureOverride.SelectedValue}");
             if (MCMSettings.Instance is { } settings)
             {
                 OverrideCulture = null;
@@ -203,18 +212,18 @@ namespace KaosesTweaks.Behaviors
             if (WeekCounter.ContainsKey(settlement))
             {
                 Dictionary<Settlement, int> dictionary = WeekCounter;
-                if ((int)(dictionary[settlement] / 7) <= Statics._settings.TimeToChanceCulture)
+                if (dictionary[settlement] / 7 <= Statics._settings.TimeToChanceCulture)
                 {
                     dictionary[settlement]++;
                     if (Statics._settings.CultureChangeDebug)
                     {
                         IM.MessageDebug($"OnDailyTickSettlement : {settlement.Name.ToString()} counter: {dictionary[settlement].ToString()}");
-                        IM.MessageDebug($"OnDailyTickSettlement condition: {((int)(dictionary[settlement] / 7) <= Statics._settings.TimeToChanceCulture).ToString()} ");
-                        IM.MessageDebug($"OnDailyTickSettlement (dictionary[settlement] / 7) : {((dictionary[settlement] / 7)).ToString()} ");
+                        IM.MessageDebug($"OnDailyTickSettlement condition: {(dictionary[settlement] / 7 <= Statics._settings.TimeToChanceCulture).ToString()} ");
+                        IM.MessageDebug($"OnDailyTickSettlement (dictionary[settlement] / 7) : {(dictionary[settlement] / 7).ToString()} ");
                         IM.MessageDebug($"OnDailyTickSettlement TimeToChanceCulture: {Statics._settings.TimeToChanceCulture.ToString()} ");
                     }
 
-                    if (this.IsSettlementDue(settlement))
+                    if (IsSettlementDue(settlement))
                     {
                         Transform(settlement, true);
                     }
@@ -234,7 +243,7 @@ namespace KaosesTweaks.Behaviors
                     IM.MessageDebug($"OnWeeklyTickSettlement : {settlement.Name.ToString()} Added 1 week : {dictionary[settlement].ToString()} ");
                 }
 
-                if (this.IsSettlementDue(settlement))
+                if (IsSettlementDue(settlement))
                 {
                     Transform(settlement, true);
                 }
@@ -245,7 +254,7 @@ namespace KaosesTweaks.Behaviors
         {
             if (MCMSettings.Instance is { } settings && settings.TimeToChanceCulture > 0)
             {
-                return (int)(WeekCounter[settlement] / 7) >= settings.TimeToChanceCulture;
+                return WeekCounter[settlement] / 7 >= settings.TimeToChanceCulture;
             }
             else
             {
@@ -278,7 +287,7 @@ namespace KaosesTweaks.Behaviors
 
         public override void SyncData(IDataStore dataStore)
         {
-            dataStore.SyncData<Dictionary<Settlement, int>>("SettlementCultureTransformation", ref WeekCounter);
+            dataStore.SyncData("SettlementCultureTransformation", ref WeekCounter);
         }
 
         public static bool Game_menu_castle_change_culture_on_condition(MenuCallbackArgs args)
@@ -291,6 +300,7 @@ namespace KaosesTweaks.Behaviors
             args.optionLeaveType = GameMenuOption.LeaveType.Manage;
             return Settlement.CurrentSettlement.IsTown;
         }
+
         public static bool Game_menu_village_change_culture_on_condition(MenuCallbackArgs args)
         {
             args.optionLeaveType = GameMenuOption.LeaveType.Manage;
@@ -319,7 +329,6 @@ namespace KaosesTweaks.Behaviors
                 }
             }
         }
-
 
         private static Dictionary<Settlement, CultureObject> initialCultureDictionary = new();
         public static Dictionary<Settlement, int> WeekCounter = new();

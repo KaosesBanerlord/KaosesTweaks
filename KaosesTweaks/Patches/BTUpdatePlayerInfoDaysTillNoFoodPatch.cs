@@ -1,7 +1,7 @@
 ﻿using HarmonyLib;
 using KaosesTweaks.Settings;
-using TaleWorlds.CampaignSystem;
-using TaleWorlds.CampaignSystem.ViewModelCollection.Map;
+using TaleWorlds.CampaignSystem.Party;
+using TaleWorlds.CampaignSystem.ViewModelCollection.Map.MapBar;
 
 namespace KaosesTweaks.Patches
 {

@@ -1,7 +1,6 @@
 ﻿using KaosesTweaks.Utils;
-using System;
 using TaleWorlds.CampaignSystem;
-using TaleWorlds.CampaignSystem.SandBox.GameComponents;
+using TaleWorlds.CampaignSystem.GameComponents;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
@@ -46,7 +45,7 @@ namespace KaosesTweaks.Models
         public override float CalculateLearningRate(Hero hero, SkillObject skill)
         {
             int level = hero.Level;
-            int attributeValue = hero.GetAttributeValue(skill.CharacterAttributeEnum);
+            int attributeValue = hero.GetAttributeValue(skill.CharacterAttribute);
             int focus = hero.HeroDeveloper.GetFocus(skill);
             int skillValue = hero.GetSkillValue(skill);
             if (Statics._settings.LearningDebug)
@@ -74,9 +73,9 @@ namespace KaosesTweaks.Models
                 focusText = new TextObject("KT " + _skillFocusText, null);
             }
             ExplainedNumber result = new ExplainedNumber(1.25f * learningMultiplier, true, null);
-            result.AddFactor(((0.4f * (float)attributeValue)), attrText);
-            result.AddFactor(((float)focusValue * 1f), focusText);
-            int num = MBMath.Round(this.CalculateLearningLimit(attributeValue, focusValue, null, false).ResultNumber);
+            result.AddFactor(0.4f * attributeValue, attrText);
+            result.AddFactor(focusValue * 1f, focusText);
+            int num = MathF.Round(CalculateLearningLimit(attributeValue, focusValue, attributeName, false).ResultNumber);
             int num2 = 0;
             if (skillValue > num)
             {
@@ -85,7 +84,7 @@ namespace KaosesTweaks.Models
                 {
                     IM.MessageDebug("_overLimitText REDUCED VALUE: " + num2.ToString());
                 }
-                result.AddFactor(-1f - 0.1f * (float)num2, _overLimitText);
+                result.AddFactor(-1f - 0.1f * num2, _overLimitText);
             }
             result.LimitMin(0f);
             return result;
@@ -95,17 +94,18 @@ namespace KaosesTweaks.Models
         public override ExplainedNumber CalculateLearningLimit(int attributeValue, int focusValue, TextObject attributeName, bool includeDescriptions = false)
         {
             ExplainedNumber result = new ExplainedNumber(0f, includeDescriptions, null);
+
             if (Statics._settings.LearningLimitEnabled)
             {
-                result.Add((float)((((attributeValue - 1)) * 10) * (1 + Statics._settings.LearningLimitMultiplier)), attributeName, null);
+                result.Add(attributeValue * 10 * Statics._settings.LearningLimitMultiplier, attributeName, null);
+                result.Add(focusValue * 30 * Statics._settings.LearningLimitMultiplier, _skillFocusText, null);
             }
             else
             {
-                result.Add((float)(((attributeValue - 1)) * 10), attributeName, null);
+                result.Add(attributeValue * 10, attributeName, null);
+                result.Add(focusValue * 1 * 30, _skillFocusText, null);
             }
 
-            result.Add((float)(((focusValue * 1)) * 30), _skillFocusText, null);
-            //result.Add((float)((((focusValue * 1)) * 30) * (1 + Statics._settings.LearningLimitMultiplier)), _skillFocusText, null);
             result.LimitMin(0f);
             return result;
         }

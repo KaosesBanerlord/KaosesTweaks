@@ -11,13 +11,19 @@ namespace KaosesTweaks.Patches
         {
             if (MCMSettings.Instance is { } settings)
             {
-                __result = (settings.TwoHandedWeaponsSliceThroughEnabled && __instance.WeaponClass == WeaponClass.TwoHandedAxe || __instance.WeaponClass == WeaponClass.TwoHandedMace ||
-                    __instance.WeaponClass == WeaponClass.TwoHandedPolearm || __instance.WeaponClass == WeaponClass.TwoHandedSword) ||
-                    (settings.SingleHandedWeaponsSliceThroughEnabled && __instance.WeaponClass == WeaponClass.OneHandedSword ||
-                    __instance.WeaponClass == WeaponClass.OneHandedPolearm || __instance.WeaponClass == WeaponClass.OneHandedAxe);
+                bool twoHanded = settings.TwoHandedWeaponsSliceThroughEnabled && __instance.WeaponClass == WeaponClass.TwoHandedAxe ||
+                    __instance.WeaponClass == WeaponClass.TwoHandedMace || __instance.WeaponClass == WeaponClass.TwoHandedPolearm ||
+                    __instance.WeaponClass == WeaponClass.TwoHandedSword;
+
+                bool oneHanded = settings.SingleHandedWeaponsSliceThroughEnabled && __instance.WeaponClass == WeaponClass.OneHandedSword ||
+                    __instance.WeaponClass == WeaponClass.OneHandedPolearm || __instance.WeaponClass == WeaponClass.OneHandedAxe;
+
+                bool all = settings.AllWeaponsSliceThroughEnabled;
+
+                __result = twoHanded || oneHanded || all;
             }
         }
 
-        static bool Prepare() => MCMSettings.Instance is { } settings && (settings.SliceThroughEnabled);
+        static bool Prepare() => MCMSettings.Instance is { } settings && settings.SliceThroughEnabled;
     }
 }
