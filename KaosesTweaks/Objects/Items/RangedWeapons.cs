@@ -9,31 +9,31 @@ namespace KaosesTweaks.Objects
         public RangedWeapons(ItemObject itemObject) :
             base(itemObject)
         {
-            if (_settings.ItemDebugMode)
+            if (_settings.ItemDebugMode && _settings.MCMRagedWeaponsModifiers)
             {
-                //IM.MessageDebug("RangedWeapons : ObjectsBase");
+                IM.MessageDebug("RangedWeapons : ObjectsBase");
             }
             TweakValues();
         }
 
         protected void TweakValues()
         {
-            if (_settings.ItemDebugMode)
+            if (_settings.ItemDebugMode && _settings.MCMRagedWeaponsModifiers)
             {
-                IM.MessageDebug("String ID: " + _item.StringId.ToString() + "  Tier: " + _item.Tier.ToString() + "  IsCivilian: " + _item.IsCivilian.ToString() + "  ");
+                //IM.MessageDebug("String ID: " + _item.StringId.ToString() + "  Tier: " + _item.Tier.ToString() + "  IsCivilian: " + _item.IsCivilian.ToString() + "  ");
             }
             float multiplerPrice = 1.0f;
             float multiplerWeight = 1.0f;
             GetMultiplierValues(ref multiplerPrice, ref multiplerWeight);
             if (_settings.ItemRangedWeaponsValueModifiers && _settings.MCMRagedWeaponsModifiers)
             {
-                SetItemsValue((int)(_item.Value * multiplerPrice), multiplerPrice);
+                SetItemsValue((int)(_item.Value * multiplerPrice), multiplerPrice, _settings.MCMRagedWeaponsModifiers);
             }
             if (_settings.ItemRangedWeaponsWeightModifiers && _settings.MCMRagedWeaponsModifiers)
             {
                 if (_item.Type != ItemObject.ItemTypeEnum.Thrown)
                 {
-                    //SetItemsWeight(_item.Weight * multiplerWeight, multiplerWeight);
+                    //SetItemsWeight(_item.Weight * multiplerWeight, multiplerWeight, _settings.MCMRagedWeaponsModifiers);
                 }
 
             }

@@ -14,7 +14,7 @@ namespace KaosesTweaks.Patches
     {
         static void Postfix(Town town, ref ExplainedNumber __result)
         {
-            if (MCMSettings.Instance is { } settings && settings.SettlementFoodBonusEnabled && !(town is null))
+            if (KTSettings.Instance is { } settings && settings.SettlementFoodBonusEnabled && !(town is null))
             {
                 if (settings.SettlementProsperityFoodMalusTweakEnabled && settings.SettlementProsperityFoodMalusDivisor != 50)
                 {
@@ -47,6 +47,6 @@ namespace KaosesTweaks.Patches
             }
             return;
         }
-        static bool Prepare() => MCMSettings.Instance is { } settings && settings.SettlementFoodBonusEnabled;
+        static bool Prepare() => KTSettings.Instance is { } settings && settings.SettlementFoodBonusEnabled;
     }
 }

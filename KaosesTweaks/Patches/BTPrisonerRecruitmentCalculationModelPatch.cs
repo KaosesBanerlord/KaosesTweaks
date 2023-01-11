@@ -14,7 +14,7 @@ namespace KaosesTweaks.Patches
     {
         static void Postfix(PartyBase party, CharacterObject troopToBoost, ref int __result)
         {
-            if (MCMSettings.Instance is { } settings && settings.PrisonerConformityTweaksEnabled && !(party.LeaderHero is null))
+            if (KTSettings.Instance is { } settings && settings.PrisonerConformityTweaksEnabled && !(party.LeaderHero is null))
             {
                 float num;
                 if (party.LeaderHero == Hero.MainHero ||
@@ -38,6 +38,6 @@ namespace KaosesTweaks.Patches
             // Add Tier-Specific Boosts?
         }
 
-        static bool Prepare() => MCMSettings.Instance is { } settings && settings.PrisonerConformityTweaksEnabled;
+        static bool Prepare() => KTSettings.Instance is { } settings && settings.PrisonerConformityTweaksEnabled;
     }
 }

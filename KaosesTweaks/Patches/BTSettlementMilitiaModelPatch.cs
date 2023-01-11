@@ -12,7 +12,7 @@ namespace KaosesTweaks.Patches
     {
         static void Postfix(Settlement settlement, ref ExplainedNumber __result)
         {
-            if (MCMSettings.Instance is { } settings && settings.SettlementMilitiaBonusEnabled && !(settlement is null))
+            if (KTSettings.Instance is { } settings && settings.SettlementMilitiaBonusEnabled && !(settlement is null))
             {
                 if (settlement.IsCastle)
                 {
@@ -35,6 +35,6 @@ namespace KaosesTweaks.Patches
             return;
         }
 
-        static bool Prepare() => MCMSettings.Instance is { } settings && settings.SettlementMilitiaBonusEnabled;
+        static bool Prepare() => KTSettings.Instance is { } settings && settings.SettlementMilitiaBonusEnabled;
     }
 }

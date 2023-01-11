@@ -24,7 +24,7 @@ namespace KaosesTweaks.Patches
         public static void Postfix()
         {
             /*
-                        if ((MCMSettings.Instance is { } settings && settings.ProductionTweakEnabled))
+                        if ((KTSettings.Instance is { } settings && settings.ProductionTweakEnabled))
                         {
                             if (Statics._settings.SettlementsDebug)
                             {
@@ -66,6 +66,6 @@ namespace KaosesTweaks.Patches
                         }*/
         }
 
-        static bool Prepare() => MCMSettings.Instance is { } settings && settings.UnlimitedWanderersPatch;
+        static bool Prepare() => KTSettings.Instance is { } settings && settings.UnlimitedWanderersPatch;
     }
 }

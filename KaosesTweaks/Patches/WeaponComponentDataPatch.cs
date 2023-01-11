@@ -9,7 +9,7 @@ namespace KaosesTweaks.Patches
     {
         static void Postfix(ref bool __result, WeaponComponentData __instance)
         {
-            if (MCMSettings.Instance is { } settings)
+            if (KTSettings.Instance is { } settings)
             {
                 bool twoHanded = settings.TwoHandedWeaponsSliceThroughEnabled && __instance.WeaponClass == WeaponClass.TwoHandedAxe ||
                     __instance.WeaponClass == WeaponClass.TwoHandedMace || __instance.WeaponClass == WeaponClass.TwoHandedPolearm ||
@@ -24,6 +24,6 @@ namespace KaosesTweaks.Patches
             }
         }
 
-        static bool Prepare() => MCMSettings.Instance is { } settings && settings.SliceThroughEnabled;
+        static bool Prepare() => KTSettings.Instance is { } settings && settings.SliceThroughEnabled;
     }
 }

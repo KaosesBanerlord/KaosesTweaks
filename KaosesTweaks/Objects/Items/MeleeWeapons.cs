@@ -8,29 +8,29 @@ namespace KaosesTweaks.Objects
         public MeleeWeapons(ItemObject itemObject) :
             base(itemObject)
         {
-            if (_settings.ItemDebugMode)
+            if (_settings.ItemDebugMode && _settings.MCMMeleeWeaponModifiers)
             {
-                //IM.MessageDebug("MeleeWeapons : ObjectsBase");
+                IM.MessageDebug("MeleeWeapons : ObjectsBase");
             }
             TweakValues();
         }
 
         protected void TweakValues()
         {
-            if (_settings.ItemDebugMode)
+            if (_settings.ItemDebugMode && _settings.MCMMeleeWeaponModifiers)
             {
-                IM.MessageDebug("String ID: " + _item.StringId.ToString() + "  Tier: " + _item.Tier.ToString() + "  IsCivilian: " + _item.IsCivilian.ToString() + "  ");
+                //IM.MessageDebug("String ID: " + _item.StringId.ToString() + "  Tier: " + _item.Tier.ToString() + "  IsCivilian: " + _item.IsCivilian.ToString() + "  ");
             }
             float multiplerPrice = 1.0f;
             float multiplerWeight = 1.0f;
             GetMultiplierValues(ref multiplerPrice, ref multiplerWeight);
             if (_settings.ItemMeleeWeaponValueModifiers && _settings.MCMMeleeWeaponModifiers)
             {
-                SetItemsValue((int)(_item.Value * multiplerPrice), multiplerPrice);
+                SetItemsValue((int)(_item.Value * multiplerPrice), multiplerPrice, _settings.MCMMeleeWeaponModifiers);
             }
             if (_settings.ItemMeleeWeaponWeightModifiers && _settings.MCMMeleeWeaponModifiers)
             {
-                //SetItemsWeight(_item.Weight * multiplerWeight, multiplerWeight);
+                //SetItemsWeight(_item.Weight * multiplerWeight, multiplerWeight, _settings.MCMMeleeWeaponModifiers);
             }
         }
 

@@ -15,7 +15,7 @@ namespace KaosesTweaks.Patches
     {
         static void Postfix(MobileParty party, ref ExplainedNumber __result)
         {
-            if (MCMSettings.Instance is { } settings && party != null)
+            if (KTSettings.Instance is { } settings && party != null)
             {
                 if (party.LeaderHero != null)
                 {
@@ -122,7 +122,7 @@ namespace KaosesTweaks.Patches
             }
         }
 
-        static bool Prepare() => MCMSettings.Instance is { } settings && (settings.PartySizeTweakEnabled || settings.KingdomBalanceStrengthEnabled || settings.PlayerCaravanPartySizeTweakEnabled || settings.PartySizeMultipliersEnabled);
+        static bool Prepare() => KTSettings.Instance is { } settings && (settings.PartySizeTweakEnabled || settings.KingdomBalanceStrengthEnabled || settings.PlayerCaravanPartySizeTweakEnabled || settings.PartySizeMultipliersEnabled);
     }
 
     [HarmonyPatch(typeof(DefaultPartySizeLimitModel), "GetPartyPrisonerSizeLimit")]
@@ -132,7 +132,7 @@ namespace KaosesTweaks.Patches
         {
             if (party.LeaderHero != null)// && party.LeaderHero == Hero.MainHero
             {
-                if (MCMSettings.Instance is { } settings && settings.PrisonerSizeTweakEnabled)
+                if (KTSettings.Instance is { } settings && settings.PrisonerSizeTweakEnabled)
                 {
                     double num = (int)Math.Ceiling(__result.ResultNumber * settings.PrisonerSizeTweakPercent);
                     if (Statics._settings.PrisonersDebug)
@@ -153,6 +153,6 @@ namespace KaosesTweaks.Patches
             }
         }
 
-        static bool Prepare() => MCMSettings.Instance is { } settings && settings.PrisonerSizeTweakEnabled;
+        static bool Prepare() => KTSettings.Instance is { } settings && settings.PrisonerSizeTweakEnabled;
     }
 }

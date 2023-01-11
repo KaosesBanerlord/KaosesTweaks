@@ -8,7 +8,7 @@ namespace KaosesTweaks.Objects.Items
         public Bullets(ItemObject itemObject) :
             base(itemObject)
         {
-            if (_settings.ItemDebugMode)
+            if (_settings.ItemDebugMode && _settings.BulletsMultiplierEnabled)
             {
                 IM.MessageDebug("Bullets : ObjectsBase");
             }
@@ -17,27 +17,27 @@ namespace KaosesTweaks.Objects.Items
 
         protected void TweakValues()
         {
-            if (_settings.ItemDebugMode)
+            if (_settings.ItemDebugMode && _settings.BulletsMultiplierEnabled)
             {
-                IM.MessageDebug("String ID: " + _item.StringId.ToString() + "  Tier: " + _item.Tier.ToString() + "  IsCivilian: " + _item.IsCivilian.ToString() + "  ");
+                //IM.MessageDebug("String ID: " + _item.StringId.ToString() + "  Tier: " + _item.Tier.ToString() + "  IsCivilian: " + _item.IsCivilian.ToString() + "  ");
             }
             float multiplerPrice = 1.0f;
             float multiplerWeight = 1.0f;
             float multiplerStack = 1.0f;
             GetMultiplierValues(ref multiplerPrice, ref multiplerWeight, ref multiplerStack);
-            if (Statics._settings.BulletsMultiplierEnabled)
+            if (_settings.BulletsMultiplierEnabled)
             {
-                SetItemsValue((int)(_item.Value * multiplerPrice), multiplerPrice);
-                //SetItemsWeight((int)(_item.Value * multiplerPrice), multiplerPrice);
+                SetItemsValue((int)(_item.Value * multiplerPrice), multiplerPrice, _settings.BulletsMultiplierEnabled);
+                //SetItemsWeight((int)(_item.Value * multiplerPrice), multiplerPrice, _settings.BulletsMultiplierEnabled);
                 SetItemsStack(multiplerStack);
             }
         }
 
         protected void GetMultiplierValues(ref float multiplierPrice, ref float multiplierWeight, ref float multiplierStack)
         {
-            multiplierPrice = Statics._settings.BulletsValueMultiplier;
+            multiplierPrice = _settings.BulletsValueMultiplier;
             //multiplierWeight = Statics._settings.BoltsWeightMultiplier;
-            multiplierStack = Statics._settings.BulletsMultiplier;
+            multiplierStack = _settings.BulletsMultiplier;
         }
     }
 }

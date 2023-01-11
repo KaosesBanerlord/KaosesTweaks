@@ -31,7 +31,8 @@ namespace KaosesTweaks.Utils
 
         private static void logMessage(string message)
         {
-            Logging.Lm(message + "; GameVersion: " + Statics.GameVersion + "; ModVersion: " + Statics.ModVersion);
+            //@UPDATE ERROR Logging.Lm(message + "; GameVersion: " + Statics.GameVersion + "; ModVersion: " + Statics.ModVersion);
+            Logging.Lm(message);
         }
 
         public static void MessageInfo(string message)
@@ -101,6 +102,15 @@ namespace KaosesTweaks.Utils
                 ShowMessage(message, Color.ConvertStringToColor("#E6FF00FF"), true);
             }
         }
+
+        public static void ModInfoDebug()
+        {
+            if (Debug)
+            {
+                logMessage("ModVersion: " + Statics.ModVersion);
+            }
+        }
+
 
         // From Modlib---
         public static void ShowError(string message, string title = "", Exception? exception = null, bool ShowVersionsInfo = true)

@@ -26,7 +26,7 @@ namespace KaosesTweaks.Patches
         {
             if (settlement == null || mobileParty == null) return;
 
-            if (MCMSettings.Instance is { } settings && mobileParty.LeaderHero.Clan == Clan.PlayerClan)
+            if (KTSettings.Instance is { } settings && mobileParty.LeaderHero.Clan == Clan.PlayerClan)
             {
                 bool DisableDonationClan = settlement.OwnerClan == Clan.PlayerClan && settings.DisableTroopDonationPatchEnabled;
                 bool DisableForAnySettlement = settings.DisableTroopDonationAnyEnabled;
@@ -41,6 +41,6 @@ namespace KaosesTweaks.Patches
                 }
             }
         }
-        static bool Prepare() => MCMSettings.Instance is { } settings && settings.DisableTroopDonationPatchEnabled;
+        static bool Prepare() => KTSettings.Instance is { } settings && settings.DisableTroopDonationPatchEnabled;
     }
 }

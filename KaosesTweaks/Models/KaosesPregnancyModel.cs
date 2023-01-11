@@ -123,7 +123,7 @@ namespace KaosesTweaks.Models
         {
             if (hero == null) throw new ArgumentNullException(nameof(hero));
 
-            if (MCMSettings.Instance is { } settings && hero != null)
+            if (KTSettings.Instance is { } settings && hero != null)
             {
                 if (!settings.DailyChancePregnancyTweakEnabled)
                     return base.GetDailyChanceOfPregnancyForHero(hero);
@@ -138,11 +138,11 @@ namespace KaosesTweaks.Models
                     return num;
                 }
 
-                if (hero.Children != null && hero.Children.Any() && hero.Children.Count >= MCMSettings.Instance.MaxChildren)
+                if (hero.Children != null && hero.Children.Any() && hero.Children.Count >= KTSettings.Instance.MaxChildren)
                 {
                     if (Statics._settings.PregnancyDebug)
                     {
-                        //IM.MessageDebug("New hero.Children.Count >= MCMSettings.Instance.MaxChildren: " + num.ToString());
+                        //IM.MessageDebug("New hero.Children.Count >= KTSettings.Instance.MaxChildren: " + num.ToString());
                     }
                     return num;
                 }
@@ -176,7 +176,7 @@ namespace KaosesTweaks.Models
             if (!hero.IsFemale)
                 return true;
 
-            return (double)hero.Age >= MCMSettings.Instance!.MinPregnancyAge && (double)hero.Age <= MCMSettings.Instance!.MaxPregnancyAge;
+            return (double)hero.Age >= KTSettings.Instance!.MinPregnancyAge && (double)hero.Age <= KTSettings.Instance!.MaxPregnancyAge;
         }
 
         private bool HeroIsMainOrSpouseOfMain(Hero hero)

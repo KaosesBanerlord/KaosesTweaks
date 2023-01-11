@@ -42,7 +42,7 @@ namespace KaosesTweaks.Models
 
             if (attackerTroop.IsHero && missionType == MissionTypeEnum.Tournament)
             {
-                if (MCMSettings.Instance is { } settings && settings.TournamentHeroExperienceMultiplierEnabled)
+                if (KTSettings.Instance is { } settings && settings.TournamentHeroExperienceMultiplierEnabled)
                 {
                     if (Statics._settings.TournamentDebug)
                     {
@@ -59,7 +59,7 @@ namespace KaosesTweaks.Models
 
             else if (attackerTroop.IsHero && missionType == MissionTypeEnum.PracticeFight)
             {
-                if (MCMSettings.Instance is { } settings && settings.ArenaHeroExperienceMultiplierEnabled)
+                if (KTSettings.Instance is { } settings && settings.ArenaHeroExperienceMultiplierEnabled)
                 {
                     if (Statics._settings.TournamentDebug)
                     {
@@ -76,7 +76,7 @@ namespace KaosesTweaks.Models
 
             else if (missionType == MissionTypeEnum.Battle)
             {
-                if (MCMSettings.Instance is { } settings && settings.TroopBattleExperienceMultiplierEnabled)
+                if (KTSettings.Instance is { } settings && settings.TroopBattleExperienceMultiplierEnabled)
                 {
                     if (Statics._settings.XpModifiersDebug)
                     {
@@ -93,7 +93,7 @@ namespace KaosesTweaks.Models
 
             else if (missionType == MissionTypeEnum.SimulationBattle)
             {
-                if (MCMSettings.Instance is { } settings && settings.TroopBattleSimulationExperienceMultiplierEnabled)
+                if (KTSettings.Instance is { } settings && settings.TroopBattleSimulationExperienceMultiplierEnabled)
                 {
                     if (Statics._settings.XpModifiersDebug)
                     {

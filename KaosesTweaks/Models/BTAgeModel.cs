@@ -6,17 +6,17 @@ namespace KaosesTweaks.Models
 {
     public class BTAgeModel : DefaultAgeModel
     {
-        public override int BecomeInfantAge => MCMSettings.Instance is { } settings && settings.AgeTweaksEnabled ? settings.BecomeInfantAge : base.BecomeInfantAge;
+        public override int BecomeInfantAge => KTSettings.Instance is { } settings && settings.AgeTweaksEnabled ? settings.BecomeInfantAge : base.BecomeInfantAge;
 
-        public override int BecomeChildAge => MCMSettings.Instance is { } settings && settings.AgeTweaksEnabled ? settings.BecomeChildAge : base.BecomeChildAge;
+        public override int BecomeChildAge => KTSettings.Instance is { } settings && settings.AgeTweaksEnabled ? settings.BecomeChildAge : base.BecomeChildAge;
 
-        public override int BecomeTeenagerAge => MCMSettings.Instance is { } settings && settings.AgeTweaksEnabled ? settings.BecomeTeenagerAge : base.BecomeTeenagerAge;
+        public override int BecomeTeenagerAge => KTSettings.Instance is { } settings && settings.AgeTweaksEnabled ? settings.BecomeTeenagerAge : base.BecomeTeenagerAge;
 
-        public override int HeroComesOfAge => MCMSettings.Instance is { } settings && settings.AgeTweaksEnabled ? settings.HeroComesOfAge : base.HeroComesOfAge;
+        public override int HeroComesOfAge => KTSettings.Instance is { } settings && settings.AgeTweaksEnabled ? settings.HeroComesOfAge : base.HeroComesOfAge;
 
-        public override int BecomeOldAge => MCMSettings.Instance is { } settings && settings.AgeTweaksEnabled ? settings.BecomeOldAge : base.BecomeOldAge;
+        public override int BecomeOldAge => KTSettings.Instance is { } settings && settings.AgeTweaksEnabled ? settings.BecomeOldAge : base.BecomeOldAge;
 
-        public override int MaxAge => MCMSettings.Instance is { } settings && settings.AgeTweaksEnabled ? settings.MaxAge : base.MaxAge;
+        public override int MaxAge => KTSettings.Instance is { } settings && settings.AgeTweaksEnabled ? settings.MaxAge : base.MaxAge;
 
         public IEnumerable<string> GetConfigErrors()
         {

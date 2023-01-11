@@ -1,0 +1,1576 @@
+﻿      //~ Presets
+        #region Presets
+
+
+        public virtual IEnumerable<ISettingsPreset> GetBuiltInPresets()
+        {
+            foreach (var preset in base.GetBuiltInPresets())
+            {
+                yield return preset;
+            }
+
+            yield return new MemorySettingsPreset("native_all_off", "native_all_off", "native all off", () => new CustomSettings
+            {
+                Property1 = false,
+                Property2 = true
+            });
+
+            yield return new MemorySettingsPreset(Id, "false", "False", () => new CustomSettings
+            {
+                Property1 = false,
+                Property2 = false
+            });
+
+            yield return new MemorySettingsPreset(Id, "true", "True", () => new CustomSettings
+            {
+                Property1 = true,
+                Property2 = true
+            });
+        }
+
+
+
+
+        public override IDictionary<string, Func<BaseSettings>> GetBuiltInPresets()
+        {
+            IDictionary<string, Func<BaseSettings>>? basePresets = base.GetBuiltInPresets(); // include the 'Default' preset that MCM provides
+
+            basePresets.Add(, () => new KTSettings()
+            {
+                //~ Age Tweaks
+                AgeTweaksEnabled = false,
+                BecomeInfantAge = 3,
+                BecomeChildAge = 6,
+                BecomeTeenagerAge = 14,
+                HeroComesOfAge = 18,
+                BecomeOldAge = 47,
+                MaxAge = 125,
+
+
+                //~ ArmyManagement
+                MCMArmy = false,
+                //~ Cohesion
+                armyCohesionMultipliers = false,
+                armyCohesionBaseChange = -2,
+                armyDisableCohesionLossClanOnlyParties = false,
+                armyApplyMultiplerToClanOnlyParties = false,
+                armyCohesionLossMultiplier = 1.0f,
+
+                //~ Battle Tweaks 
+                battleTweaksEnabled = false,
+
+                //~ Hideout Tweaks
+                HideoutBattleTroopLimitTweakEnabled = false,
+                HideoutBattleTroopLimit = 10,
+                ContinueHideoutBattleOnPlayerDeath = false,
+                ContinueHideoutBattleOnPlayerLoseDuel = false,
+
+                //~ Battle Size Tweak
+                BattleSizeTweakEnabled = false,
+                BattleSize = 1000,
+
+                //~ Siege Tweaks
+                SiegeTweaksEnabled = false,
+                SiegeConstructionProgressPerDayMultiplier = 1f,
+                SiegeCollateralDamageCasualties = 0,
+                SiegeDestructionCasualties = 0,
+
+                //~ Weapon Cut Through Tweaks
+                SliceThroughEnabled = false,
+                TwoHandedWeaponsSliceThroughEnabled = false,
+                SingleHandedWeaponsSliceThroughEnabled = false,
+
+                //~ Battle Rewards
+                MCMBattleRewardModifiers = false,
+                BattleRewardApplyToAI = false,
+
+                //~ Relationship Gain
+                BattleRewardsRelationShipGainModifiers = false,
+                BattleRewardsRelationShipGainMultiplier = 1.0f,
+
+                //~ Renown Gain
+                BattleRewardsRenownGainModifiers = false,
+                BattleRewardsRenownGainMultiplier = 1.0f,
+
+                //~ Influence Gain
+                BattleRewardsInfluenceGainModifiers = false,
+                BattleRewardsInfluenceGainMultiplier = 1.0f,
+
+                //~ Morale Gain
+                BattleRewardsMoraleGainModifiers = false,
+                BattleRewardsMoraleGainMultiplier = 1.0f,
+
+                //~ Gold loss after defeat
+                BattleRewardsGoldLossModifiers = false,
+                BattleRewardsGoldLossMultiplier = 1.0f,
+
+                //~ Campaign Tweaks
+                CampaignTweaksEnabled = false,
+
+                //~ Difficulty Settings
+                DifficultyTweakEnabled = false,
+                DamageToPlayerTweakEnabled = false,
+                DamageToPlayerMultiplier = 0.67f,
+                //DamageToFriendsTweakEnabled = false,
+                //DamageToFriendsMultiplier = 0.67f,
+                DamageToTroopsTweakEnabled = false,
+                DamageToTroopsMultiplier = 0.67f,
+                CombatAIDifficultyTweakEnabled = false,
+                CombatAIDifficultyMultiplier = 0.67f,
+                PlayerMapMovementSpeedBonusTweakEnabled = false,
+                PlayerMapMovementSpeedBonusMultiplier = 0.5f,
+
+
+                //~ Clan *AI Tweaks need Checking
+                MCMClanModifiers = false,
+
+                //~ Party Limit
+                ClanAdditionalPartyLimitEnabled = false,
+                ClanPlayerPartiesLimitEnabled = false,
+
+                //~ Limits Player
+                ClanPlayerBasePartiesLimit = 1,
+                ClanPlayerPartiesBonusPerClanTier = 0.5f,
+                ClanAIPartiesLimitTweakEnabled = false,
+
+                //~ AI Parties Limits
+                ClanAIBaseClanPartiesLimit = 1,
+                ClanAIPartiesBonusPerClanTier = 0.5f,
+                ClanAIMinorClanPartiesLimitTweakEnabled = false,
+                AICustomSpawnPartiesLimitTweakEnabled = false,
+
+                //~ CS Parties
+                BaseAICustomSpawnPartiesLimit = 0,
+                ClanCSPartiesBonusPerClanTier = 0.5f,
+
+
+                //~ Companion Limit
+                ClanCompanionLimitEnabled = false,
+                ClanAdditionalCompanionLimit = 0,
+                ClanCompanionBaseLimit = 3,
+
+
+                //~ Crafting Tweaks
+                MCMSmithingModifiers = false, // Activates the Model Override
+                MCMSmithingHarmoneyPatches = false, // Activates the Model Override
+
+                //~ Stamina Tweaks
+                CraftingStaminaTweakEnabled = false,
+                MaxCraftingStaminaMultiplier = 1.0f,
+
+                //~ Stamina Gains
+                CraftingStaminaGainAmount = 5,
+                CraftingStaminaGainOutsideSettlementMultiplier = 0f,
+
+                //~ Energy Cost Multipliers
+                SmithingEnergySmithingValue = 1.0f,
+                SmithingEnergySmeltingValue = 1.0f,
+                SmithingEnergyRefiningValue = 1.0f,
+                SmithingEnergyDisable = false,
+
+                //~ BT Smelting Tweaks
+                SmeltingTweakEnabled = false,
+                PreventSmeltingLockedItems = false,
+                AutoLearnSmeltedParts = false,
+
+
+                //~ Xp Modifiers
+
+                SmithingXpModifiers = false,
+                SmithingRefiningXpValue = 1.0f,
+                SmithingSmeltingXpValue = 1.0f,
+                SmithingSmithingXpValue = 1.0f,
+
+                //~ CharacterDevelopment
+                MCMCharacterDevlopmentModifiers = false,
+
+                //~ Levels Per Attribute
+                CharacterLevelsPerAttributeModifiers = false,
+                CharacterLevelsPerAttributeValue = 4,
+
+                //~ Focus Per Level
+                CharacterFocusPerLevelModifiers = false,
+                CharacterFocusPerLevelValue = 1,
+
+
+                //~ Items
+                MCMItemModifiers = false,
+
+                //~ Armor
+                MCMArmorModifiers = false,
+
+                //~ Weight
+                ItemArmorWeightModifiers = false,
+                ItemArmorTier1WeightMultiplier = 1.0f,
+                ItemArmorTier2WeightMultiplier = 1.0f,
+                ItemArmorTier3WeightMultiplier = 1.0f,
+                ItemArmorTier4WeightMultiplier = 1.0f,
+                ItemArmorTier5WeightMultiplier = 1.0f,
+                ItemArmorTier6WeightMultiplier = 1.0f,
+
+                //~ Price
+                ItemArmorValueModifiers = false,
+                ItemArmorTier1PriceMultiplier = 1.0f,
+                ItemArmorTier2PriceMultiplier = 1.0f,
+                ItemArmorTier3PriceMultiplier = 1.0f,
+                ItemArmorTier4PriceMultiplier = 1.0f,
+                ItemArmorTier5PriceMultiplier = 1.0f,
+                ItemArmorTier6PriceMultiplier = 1.0f,
+
+
+                //~ Food
+                MCMFoodModifiers = false,
+
+                //~ Weight
+                ItemFoodWeightMorale0Multiplier = 1.0f,
+                ItemFoodWeightMorale1Multiplier = 1.0f,
+                ItemFoodWeightMorale2Multiplier = 1.0f,
+                ItemFoodWeightMorale3Multiplier = 1.0f,
+
+                //~ Price
+                ItemFoodPriceMorale0Multiplier = 1.0f,
+                ItemFoodPriceMorale1Multiplier = 1.0f,
+                ItemFoodPriceMorale2Multiplier = 1.0f,
+                ItemFoodPriceMorale3Multiplier = 1.0f,
+
+
+                //~ Melee Weapons
+                MCMMeleeWeaponModifiers = false,
+
+                //~ Weight
+                ItemMeleeWeaponWeightModifiers = false,
+                ItemMeleeWeaponTier1WeightMultiplier = 1.0f,
+                ItemMeleeWeaponTier2WeightMultiplier = 1.0f,
+                ItemMeleeWeaponTier3WeightMultiplier = 1.0f,
+                ItemMeleeWeaponTier4WeightMultiplier = 1.0f,
+                ItemMeleeWeaponTier5WeightMultiplier = 1.0f,
+                ItemMeleeWeaponTier6WeightMultiplier = 1.0f,
+
+                //~ Price
+                ItemMeleeWeaponValueModifiers = false,
+                ItemMeleeWeaponTier1PriceMultiplier = 1.0f,
+                ItemMeleeWeaponTier2PriceMultiplier = 1.0f,
+                ItemMeleeWeaponTier3PriceMultiplier = 1.0f,
+                ItemMeleeWeaponTier4PriceMultiplier = 1.0f,
+                ItemMeleeWeaponTier5PriceMultiplier = 1.0f,
+                ItemMeleeWeaponTier6PriceMultiplier = 1.0f,
+
+
+                //~ Ranged Weapons
+                MCMRagedWeaponsModifiers = false,
+
+                //~ Weight
+                ItemRangedWeaponsWeightModifiers = false,
+                ItemRangedWeaponsTier1WeightMultiplier = 1.0f,
+                ItemRangedWeaponsTier2WeightMultiplier = 1.0f,
+                ItemRangedWeaponsTier3WeightMultiplier = 1.0f,
+                ItemRangedWeaponsTier4WeightMultiplier = 1.0f,
+                ItemRangedWeaponsTier5WeightMultiplier = 1.0f,
+                ItemRangedWeaponsTier6WeightMultiplier = 1.0f,
+
+                //~ Price
+                ItemRangedWeaponsValueModifiers = false,
+                ItemRangedWeaponsTier1PriceMultiplier = 1.0f,
+                ItemRangedWeaponsTier2PriceMultiplier = 1.0f,
+                ItemRangedWeaponsTier3PriceMultiplier = 1.0f,
+                ItemRangedWeaponsTier4PriceMultiplier = 1.0f,
+                ItemRangedWeaponsTier5PriceMultiplier = 1.0f,
+                ItemRangedWeaponsTier6PriceMultiplier = 1.0f,
+
+                //~ Trade Goods
+                MCMTradeGoodsModifiers = false,
+
+                //~ Weight
+                ItemTradeGoodsWeightMultiplier = 1.0f,
+
+                //~ Price
+                ItemTradeGoodsPriceMultiplier = 1.0f,
+
+
+                //~ ItemLocks 
+                MCMAutoLocks = false,
+                autoLockHorses = false,
+                autoLockFood = false,
+                autoLockIronBar1 = false,
+                autoLockIronBar2 = false,
+                autoLockIronBar3 = false,
+                autoLockIronBar4 = false,
+                autoLockIronBar5 = false,
+                autoLockIronBar6 = false,
+                autoLockIronOre = false,
+                autoLockSilverOre = false,
+                autoLockHardwood = false,
+                autoLockCharcol = false,
+
+
+
+                //~ Killing Bandits Raises Relationships
+                MCMKillingBanditsEnabled = false,
+                GroupsOfBandits = 1,
+                RelationshipIncrease = 1,
+                Radius = 1000,
+                SizeBonusEnabled = false,
+                SizeBonus = 0.05f,
+                PrisonersOnly = false,
+                IncludeBandits = false,
+                IncludeOutlaws = false,
+                IncludeMafia = false,
+
+
+                //~ Kingdom Tweaks
+                MCMKingdomTweaksEnabled = false,
+
+                //~ Lord Bartering
+                BarterablesTweaksEnabled = false,
+                BarterablesJoinKingdomAsClanAdjustment = 1,
+                BarterablesJoinKingdomAsClanAltFormulaEnabled = false,
+
+                //~ Balancing Tweaks
+                KingdomBalanceStrengthEnabled = false,
+                KingdomBalanceStrengthVanEnabled = false,
+                VlandiaBoost = 0.00f,
+                SturgiaBoost = 0.00f,
+                BattaniaBoost = 0.00f,
+                Empire_N_Boost = 0.00f,
+                Empire_S_Boost = 0.00f,
+                Empire_W_Boost = 0.00f,
+                AseraiBoost = 0.00f,
+                KhuzaitBoost = 0.00f,
+                PlayerBoost = 0.00f,
+                KingdomBalanceStrengthCEKEnabled = false,
+                NordlingsBoost = 0.00f,
+                VagirBoost = 0.00f,
+                RoyalistVlandiaBoost = 0.00f,
+                ApolssalyBoost = 0.00f,
+                LyrionBoost = 0.00f,
+                RebelKhuzaitBoost = 0.00f,
+                PaleicianBoost = 0.00f,
+                AriorumBoost = 0.00f,
+                Empire_S_CEK_Boost = 0.00f,
+                Empire_CEK_Boost = 0.00f,
+                Battania_CEK_Boost = 0.00f,
+                Vlandia_CEK_Boost = 0.00f,
+                Sturgia_CEK_Boost = 0.00f,
+                Khuzait_CEK_Boost = 0.00f,
+                Aserai_CEK_Boost = 0.00f,
+                Empire_W_CEK_Boost = 0.00f,
+                Player_CEK_Boost = 0.00f,
+                BalancingPartySizeTweaksEnabled = false,
+                BalancingPartyLimitTweaksEnabled = false,
+                BalancingFoodTweakEnabled = false,
+                BalancingTimeRecruitsTweaksEnabled = false,
+                BalancingTaxTweaksEnabled = false,
+                BalancingWagesTweaksEnabled = false,
+                BalancingUpgradeTroopsTweaksEnabled = false,
+
+
+                //~ Miscellaneous
+                QuestCharactersIgnorePartySize = false,
+                ShowFoodDaysRemaining = false,
+                CampaignSpeed = 4,
+                UnlimitedWanderersPatch = false,
+
+                //~ Party Tweaks
+                MCMPartyTweaksEnabled = false,
+
+                //~ Caravan Tweaks
+                PlayerCaravanPartySizeTweakEnabled = false,
+                PlayerCaravanPartySize = 30,
+
+                //~ Party Size Tweaks
+                PartySizeTweakEnabled = false,
+                LeadershipPartySizeBonusEnabled = false,
+                LeadershipPartySizeBonus = 0.0f,
+                StewardPartySizeBonusEnabled = false,
+                StewardPartySizeBonus = 0f,
+                PartySizeTweakAIFactor = 0f,
+                PartySizeMultipliersEnabled = false,
+                PartySizeBanditMultiplier = 1f,
+                PartySizeVillagerMultiplier = 1f,
+                PartySizeCarvanMultiplier = 1f,
+                PartySizeMilitiaMultiplier = 1f,
+
+                //~ Party Wage Tweaks
+                PartyWageTweaksEnabled = false,
+                PartyWagePercent = 1.0f,
+                GarrisonWagePercent = 1.0f,
+                ApplyWageTweakToFaction = false,
+                ApplyWageTweakToAI = false,
+
+                //~ MobilePartyFoodConsumption
+                PartyFoodConsumptionEnabled = false,
+                PartyFoodConsumptionMultiplier = 1.0f,
+
+
+                //~ Pregnancy 
+                MCMPregnancyModifiers = false,
+
+                //~ Duration
+                PregnancyDurationModifiers = false,
+                PregnancyDurationValue = 36,
+
+
+                //~ MortalityProbabilityInLabor
+                NoMaternalMortalityTweakEnabled = false,
+                PregnancyLaborMortalityChanceModifiers = false,
+                PregnancyLaborMortalityChanceValue = 0.015f,
+
+                //~ StillbirthProbability
+                NoStillbirthsTweakEnabled = false,
+                PregnancyStillbirthChanceModifiers = false,
+                PregnancyStillbirthChanceValue = 0.01f,
+
+
+                //~ DeliveringFemaleOffspringProbability
+                PregnancyFemaleOffspringChanceModifiers = false,
+                PregnancyFemaleOffspringChanceValue = 0.51f,
+
+                //~ DeliveringTwinsProbability
+                PregnancyTwinsChanceModifiers = false,
+                PregnancyTwinsChanceValue = 0.03f,
+
+                //~ Chance Tweaks
+                DailyChancePregnancyTweakEnabled = false,
+                PlayerCharacterInfertileEnabled = false,
+                MinPregnancyAge = 18,
+                MaxPregnancyAge = 45,
+                ClanFertilityBonus = 1f,
+                MaxChildren = 5,
+
+
+                //~ Prisoner Tweaks
+                MCMPrisonerTweaksEnabled = false,
+
+                //~ Imprisonment Time Tweaks
+                PrisonerImprisonmentTweakEnabled = false,
+                PrisonerImprisonmentPlayerOnly = false,
+                MinimumDaysOfImprisonment = 0,
+                EnableMissingHeroFix = false,
+
+
+                //~ Party Prisoner Size Tweak
+                PrisonerSizeTweakEnabled = false,
+                PrisonerSizeTweakPercent = 0,
+                PrisonerSizeTweakAI = false,
+
+
+                //~ Prisoner Conformity Tweaks
+                PrisonerConformityTweaksEnabled = false,
+                PrisonerConformityTweakBonus = 0,
+                PrisonerConformityTweaksApplyToClan = false,
+                PrisonerConformityTweaksApplyToAi = false,
+
+
+                //~ Settlement Tweaks
+                MCMSettlementTweaksEnabled = false,
+
+                //~ Settlement Culture Transformation
+                EnableCultureChanger = false,
+                ChangeToKingdomCulture = false,
+                TimeToChanceCulture = 10,
+
+                //~ Settlement Tweaks - Disable Troop Donations
+                DisableTroopDonationPatchEnabled = false,
+                DisableTroopDonationAnyEnabled = false,
+
+                //~ Settlement Tweaks - Production Tweaks
+                ProductionTweakEnabled = false,
+                ProductionFoodTweakAmount = 1f,
+                ProductionOtherTweakAmount = 1f,
+
+
+                CastleTrainingFieldsBonusEnabled = false,
+                CastleTrainingFieldsXpAmountLevel1 = 1,
+                CastleTrainingFieldsXpAmountLevel2 = 2,
+                CastleTrainingFieldsXpAmountLevel3 = 3,
+
+                //~ Settlement Tweaks - Buildings - Castle - Granary 
+                CastleGranaryBonusEnabled = false,
+                CastleGranaryStorageAmountLevel1 = 100,
+                CastleGranaryStorageAmountLevel2 = 200,
+                CastleGranaryStorageAmountLevel3 = 300,
+
+                //~ Settlement Tweaks - Buildings - Castle - Gardens
+                CastleGardensBonusEnabled = false,
+                CastleGardensFoodProductionAmountLevel1 = 5,
+                CastleGardensFoodProductionAmountLevel2 = 10,
+                CastleGardensFoodProductionAmountLevel3 = 15,
+
+                //~ Settlement Tweaks - Buildings - Castle - Militia Barracks
+                CastleMilitiaBarracksBonusEnabled = false,
+                CastleMilitiaBarracksAmountLevel1 = 1,
+                CastleMilitiaBarracksAmountLevel2 = 2,
+                CastleMilitiaBarracksAmountLevel3 = 3,
+
+
+                //~ Settlement Tweaks - Buildings - Town
+
+                //~ Settlement Tweaks - Buildings - Town - Training Fields
+                TownTrainingFieldsBonusEnabled = false,
+                TownTrainingFieldsXpAmountLevel1 = 30,
+                TownTrainingFieldsXpAmountLevel2 = 60,
+                TownTrainingFieldsXpAmountLevel3 = 100,
+
+                //~ Settlement Tweaks - Buildings - Town - Granary
+                TownGranaryBonusEnabled = false,
+                TownGranaryStorageAmountLevel1 = 200,
+                TownGranaryStorageAmountLevel2 = 400,
+                TownGranaryStorageAmountLevel3 = 600,
+
+                //~ Settlement Tweaks - Settlement Buildings Tweaks - Town Buildings Tweaks - Orchards Tweak
+                TownOrchardsBonusEnabled = false,
+                TownOrchardsFoodProductionAmountLevel1 = 10,
+                TownOrchardsFoodProductionAmountLevel2 = 20,
+                TownOrchardsFoodProductionAmountLevel3 = 30,
+
+                //~ Settlement Tweaks - Settlement Buildings Tweaks - Town Buildings Tweaks - Militia Barracks Tweak
+                TownMilitiaBarracksBonusEnabled = false,
+                TownMilitiaBarracksAmountLevel1 = 0.5f,
+                TownMilitiaBarracksAmountLevel2 = 1.0f,
+                TownMilitiaBarracksAmountLevel3 = 1.5f,
+
+
+                //~ Settlement Tweaks - Settlement Food
+                SettlementFoodBonusEnabled = false,
+                CastleFoodBonus = 0f,
+                TownFoodBonus = 0f,
+
+                //~ Settlement Tweaks - Settlement Food Bonus - Food Loss from Prosperity Tweak
+                SettlementProsperityFoodMalusTweakEnabled = false,
+                SettlementProsperityFoodMalusDivisor = 50,
+
+                //~ Settlement Tweaks - Normal Militia
+                SettlementMilitiaBonusEnabled = false,
+                CastleMilitiaBonusFlat = 0f,
+                TownMilitiaBonusFlat = 0f,
+                CastleMilitiaRetirementModifier = 0.025f,
+                TownMilitiaRetirementModifier = 0.025f,
+                VillageMilitiaRetirementModifier = 0.025f,
+
+                //~ Settlement Tweaks - Militia Bonus Tweaks - Elite Militia
+                SettlementMilitiaEliteSpawnRateBonusEnabled = false,
+                SettlementEliteMeleeSpawnRateBonus = 0.1f,
+                //SettlementEliteRangedSpawnRateBonus = 0.1f,
+
+                //~ Tournaments
+                MCMTournamentsEnabled = false,
+
+                //~ Renown Reward
+                TournamentRenownIncreaseEnabled = false,
+                TournamentRenownAmount = 3,
+
+                //~ Gold Reward
+                TournamentGoldRewardEnabled = false,
+                TournamentGoldRewardAmount = 0,
+
+                //~ Maximum Bet
+                TournamentMaxBetAmountTweakEnabled = false,
+                TournamentMaxBetAmount = 150,
+
+                //~ Hero Experience
+                TournamentHeroExperienceMultiplierEnabled = false,
+                TournamentHeroExperienceMultiplier = 0.33f,
+
+                //~ Arena Hero Experience
+                ArenaHeroExperienceMultiplierEnabled = false,
+                ArenaHeroExperienceMultiplier = 0.06f,
+
+                //~ Minimum Betting Odds
+                MinimumBettingOddsTweakEnabled = false,
+                MinimumBettingOdds = 1.1f,
+
+                //~ Workshops
+                MCMWorkshopsEnabled = false,
+
+                //~ Workshop Limit
+                MaxWorkshopCountTweakEnabled = false,
+                BaseWorkshopCount = 1,
+                BonusWorkshopsPerClanTier = 1,
+
+                //~ Workshop Cost Tweak
+                WorkshopBuyingCostTweakEnabled = false,
+                WorkshopBaseCost = 10000,
+
+                //~ Workshop Effectivness
+                WorkshopEffectivnessEnabled = false,
+                WorkshopEffectivnessv2Factor = 1f,
+
+                //~ Workshop SellPrices
+                EnableWorkshopSellTweak = false,
+                WorkshopSellTweak = 1f,
+
+                //~ Workshop Buy Prices
+                EnableWorkshopBuyTweak = false,
+                WorkshopBuyTweak = 1f,
+
+
+                //~ Bankruptcy
+                WorkShopBankruptcyModifiers = false,
+                WorkShopBankruptcyValue = 3,
+
+                //~ XP Tweaks
+                MCMSkillsXp = false,
+
+                //~ Skills
+                SkillXpEnabled = false,
+                SkillXpUseForPlayer = false,
+                SkillXpUseForPlayerClan = false,
+                SkillXpUseForAI = false,
+
+                //~ IndividualMultipliers
+                SkillXpUseIndividualMultiplers = false,
+                SkillsXPMultiplierAthletics = 1.0f,
+                SkillsXPMultiplierBow = 1.0f,
+                SkillsXPMultiplierCharm = 1.0f,
+                SkillsXPMultiplierCrafting = 1.0f,
+                SkillsXPMultiplierCrossbow = 1.0f,
+                SkillsXPMultiplierEngineering = 1.0f,
+                SkillsXPMultiplierLeadership = 1.0f,
+                SkillsXPMultiplierMedicine = 1.0f,
+                SkillsXPMultiplierOneHanded = 1.0f,
+                SkillsXPMultiplierPolearm = 1.0f,
+                SkillsXPMultiplierRiding = 1.0f,
+                SkillsXPMultiplierRoguery = 1.0f,
+                SkillsXPMultiplierScouting = 1.0f,
+                SkillsXPMultiplierSteward = 1.0f,
+                SkillsXPMultiplierTactics = 1.0f,
+                SkillsXPMultiplierThrowing = 1.0f,
+                SkillsXPMultiplierTrade = 1.0f,
+                SkillsXPMultiplierTwoHanded = 1.0f,
+
+                //~ Global
+                SkillXpUseGlobalMultipler = false,
+                SkillsXpGlobalMultiplier = 1.0f,
+
+
+                //~ LearningRateMultipliers
+                LearningRateEnabled = false,
+                LearningRateMultiplier = 1.0f,
+
+                //~ Troop Daily Experience Tweak
+                DailyTroopExperienceTweakEnabled = false,
+                LeadershipPercentageForDailyExperienceGain = 0f,
+                DailyTroopExperienceRequiredLeadershipLevel = 30,
+                DailyTroopExperienceApplyToPlayerClanMembers = false,
+                DailyTroopExperienceApplyToAllNPC = false,
+                DisplayMessageDailyExperienceGain = false,
+
+                //~ Troop Experience Tweaks
+                TroopExperienceTweakEnabled = false,
+                TroopBattleExperienceMultiplierEnabled = false,
+                TroopBattleExperienceMultiplier = 1.0f,
+                TroopBattleSimulationExperienceMultiplierEnabled = false,
+                TroopBattleSimulationExperienceMultiplier = 0.9f,
+
+                KaosesDynamicSpeedModifiersEnabled = false,
+                DynamicFleeingSpeedReductionAmount = 0.0f,
+                DynamicFleeingSpeedReductionHours = 1,
+                KaosesStaticSpeedModifiersEnabled = false,
+                KaosesmininumSpeedAmount = 1.0f,
+                LooterSpeedReductionAmount = 0.0f,
+                SteppeSpeedReductionAmount = 0.0f,
+                DesertSpeedReductionAmount = 0.0f,
+                MountainSpeedReductionAmount = 0.0f,
+                ForestSpeedReductionAmount = 0.0f,
+                SeaRaiderSpeedReductionAmount = 0.0f,
+                CaravanSpeedReductiontEnabled = false,
+                CaravanSpeedReductionAmount = 0.0f,
+                EliteCaravanSpeedReductionAmount = 0.0f,
+                VillagerSpeedReductiontEnabled = false,
+                VillagerSpeedReductionAmount = -0.5f,
+                PlayerSpeedReductiontEnabled = false,
+                PlayerSpeedReductionAmount = 0.0f,
+                PlayerClanSpeedReductionAmount = 0.0f,
+                KingdomSpeedReductiontEnabled = false,
+                KingdomSpeedReductionAmount = 0.0f,
+                OtherKingdomSpeedReductionAmount = 0.0f,
+
+                ArrowMultipliersEnabled = false,
+                ArrowMultiplier = 1.0f,
+                ArrowValueMultiplier = 1.0f,
+                BoltsMultipliersEnabled = false,
+                BoltsMultiplier = 1.0f,
+                BoltsValueMultiplier = 1.0f,
+                BoltsWeightMultiplier = 1.0f,
+                ThrownMultiplierEnabled = false,
+                ThrownMultiplier = 1.0f,
+                ThrownValueMultiplier = 1.0f,
+                ThrownWeightMultiplier = 1.0f,
+                ThrownMissionFixMultiplierEnabled = false
+
+
+            });
+
+            basePresets.Add("native all on", () => new KTSettings()
+            {
+
+                AgeTweaksEnabled = true,
+                BecomeInfantAge = 3,
+                BecomeChildAge = 6,
+                BecomeTeenagerAge = 14,
+                HeroComesOfAge = 18,
+                BecomeOldAge = 47,
+                MaxAge = 125,
+
+
+                //~ ArmyManagement
+                MCMArmy = true,
+                //~ Cohesion
+                armyCohesionMultipliers = true,
+                armyCohesionBaseChange = -2,
+                armyDisableCohesionLossClanOnlyParties = true,
+                armyApplyMultiplerToClanOnlyParties = true,
+                armyCohesionLossMultiplier = 1.0f,
+
+                //~ Battle Tweaks 
+                battleTweaksEnabled = true,
+
+                //~ Hideout Tweaks
+                HideoutBattleTroopLimitTweakEnabled = true,
+                HideoutBattleTroopLimit = 10,
+                ContinueHideoutBattleOnPlayerDeath = true,
+                ContinueHideoutBattleOnPlayerLoseDuel = true,
+
+                //~ Battle Size Tweak
+                BattleSizeTweakEnabled = true,
+                BattleSize = 1000,
+
+                //~ Siege Tweaks
+                SiegeTweaksEnabled = true,
+                SiegeConstructionProgressPerDayMultiplier = 1f,
+                SiegeCollateralDamageCasualties = 0,
+                SiegeDestructionCasualties = 0,
+
+                //~ Weapon Cut Through Tweaks
+                SliceThroughEnabled = true,
+                TwoHandedWeaponsSliceThroughEnabled = true,
+                SingleHandedWeaponsSliceThroughEnabled = true,
+
+                //~ Battle Rewards
+                MCMBattleRewardModifiers = true,
+                BattleRewardApplyToAI = true,
+
+                //~ Relationship Gain
+                BattleRewardsRelationShipGainModifiers = true,
+                BattleRewardsRelationShipGainMultiplier = 1.0f,
+
+                //~ Renown Gain
+                BattleRewardsRenownGainModifiers = true,
+                BattleRewardsRenownGainMultiplier = 1.0f,
+
+                //~ Influence Gain
+                BattleRewardsInfluenceGainModifiers = true,
+                BattleRewardsInfluenceGainMultiplier = 1.0f,
+
+                //~ Morale Gain
+                BattleRewardsMoraleGainModifiers = true,
+                BattleRewardsMoraleGainMultiplier = 1.0f,
+
+                //~ Gold loss after defeat
+                BattleRewardsGoldLossModifiers = true,
+                BattleRewardsGoldLossMultiplier = 1.0f,
+
+                //~ Campaign Tweaks
+                CampaignTweaksEnabled = true,
+
+                //~ Difficulty Settings
+                DifficultyTweakEnabled = true,
+                DamageToPlayerTweakEnabled = true,
+                DamageToPlayerMultiplier = 0.35f,
+                //DamageToFriendsTweakEnabled = true,
+                //DamageToFriendsMultiplier = 0.35f,
+                DamageToTroopsTweakEnabled = true,
+                DamageToTroopsMultiplier = 0.35f,
+                CombatAIDifficultyTweakEnabled = true,
+                CombatAIDifficultyMultiplier = 0.35f,
+                PlayerMapMovementSpeedBonusTweakEnabled = true,
+                PlayerMapMovementSpeedBonusMultiplier = 0.5f,
+
+
+                //~ Clan *AI Tweaks need Checking
+                MCMClanModifiers = true,
+
+                //~ Party Limit
+                ClanAdditionalPartyLimitEnabled = true,
+                ClanPlayerPartiesLimitEnabled = true,
+
+                //~ Limits Player
+                ClanPlayerBasePartiesLimit = 1,
+                ClanPlayerPartiesBonusPerClanTier = 0.5f,
+                ClanAIPartiesLimitTweakEnabled = true,
+
+                //~ AI Parties Limits
+                ClanAIBaseClanPartiesLimit = 1,
+                ClanAIPartiesBonusPerClanTier = 0.5f,
+                ClanAIMinorClanPartiesLimitTweakEnabled = true,
+                AICustomSpawnPartiesLimitTweakEnabled = true,
+
+                //~ CS Parties
+                BaseAICustomSpawnPartiesLimit = 0,
+                ClanCSPartiesBonusPerClanTier = 0.5f,
+
+
+                //~ Companion Limit
+                ClanCompanionLimitEnabled = true,
+                ClanAdditionalCompanionLimit = 0,
+                ClanCompanionBaseLimit = 3,
+
+
+                //~ Crafting Tweaks
+                MCMSmithingModifiers = true, // Activates the Model Override
+                MCMSmithingHarmoneyPatches = false, // Activates the Model Override
+
+                //~ Stamina Tweaks
+                CraftingStaminaTweakEnabled = true,
+                MaxCraftingStaminaMultiplier = 1.0f,
+
+                //~ Stamina Gains
+                CraftingStaminaGainAmount = 5,
+                CraftingStaminaGainOutsideSettlementMultiplier = 0f,
+
+                //~ Energy Cost Multipliers
+                SmithingEnergySmithingValue = 1.0f,
+                SmithingEnergySmeltingValue = 1.0f,
+                SmithingEnergyRefiningValue = 1.0f,
+                SmithingEnergyDisable = true,
+
+                //~ BT Smelting Tweaks
+                SmeltingTweakEnabled = true,
+                PreventSmeltingLockedItems = false,
+                AutoLearnSmeltedParts = true,
+
+
+                //~ Xp Modifiers
+
+                SmithingXpModifiers = true,
+                SmithingRefiningXpValue = 1.0f,
+                SmithingSmeltingXpValue = 1.0f,
+                SmithingSmithingXpValue = 1.0f,
+
+                //~ CharacterDevelopment
+                MCMCharacterDevlopmentModifiers = true,
+
+                //~ Levels Per Attribute
+                CharacterLevelsPerAttributeModifiers = true,
+                CharacterLevelsPerAttributeValue = 4,
+
+                //~ Focus Per Level
+                CharacterFocusPerLevelModifiers = true,
+                CharacterFocusPerLevelValue = 1,
+
+
+                //~ Items
+                MCMItemModifiers = true,
+
+                //~ Armor
+                MCMArmorModifiers = true,
+
+                //~ Weight
+                ItemArmorWeightModifiers = true,
+                ItemArmorTier1WeightMultiplier = 1.0f,
+                ItemArmorTier2WeightMultiplier = 1.0f,
+                ItemArmorTier3WeightMultiplier = 1.0f,
+                ItemArmorTier4WeightMultiplier = 1.0f,
+                ItemArmorTier5WeightMultiplier = 1.0f,
+                ItemArmorTier6WeightMultiplier = 1.0f,
+
+                //~ Price
+                ItemArmorValueModifiers = true,
+                ItemArmorTier1PriceMultiplier = 1.0f,
+                ItemArmorTier2PriceMultiplier = 1.0f,
+                ItemArmorTier3PriceMultiplier = 1.0f,
+                ItemArmorTier4PriceMultiplier = 1.0f,
+                ItemArmorTier5PriceMultiplier = 1.0f,
+                ItemArmorTier6PriceMultiplier = 1.0f,
+
+
+                //~ Food
+                MCMFoodModifiers = true,
+
+                //~ Weight
+                ItemFoodWeightMorale0Multiplier = 1.0f,
+                ItemFoodWeightMorale1Multiplier = 1.0f,
+                ItemFoodWeightMorale2Multiplier = 1.0f,
+                ItemFoodWeightMorale3Multiplier = 1.0f,
+
+                //~ Price
+                ItemFoodPriceMorale0Multiplier = 1.0f,
+                ItemFoodPriceMorale1Multiplier = 1.0f,
+                ItemFoodPriceMorale2Multiplier = 1.0f,
+                ItemFoodPriceMorale3Multiplier = 1.0f,
+
+
+                //~ Melee Weapons
+                MCMMeleeWeaponModifiers = true,
+
+                //~ Weight
+                ItemMeleeWeaponWeightModifiers = false,
+                ItemMeleeWeaponTier1WeightMultiplier = 1.0f,
+                ItemMeleeWeaponTier2WeightMultiplier = 1.0f,
+                ItemMeleeWeaponTier3WeightMultiplier = 1.0f,
+                ItemMeleeWeaponTier4WeightMultiplier = 1.0f,
+                ItemMeleeWeaponTier5WeightMultiplier = 1.0f,
+                ItemMeleeWeaponTier6WeightMultiplier = 1.0f,
+
+                //~ Price
+                ItemMeleeWeaponValueModifiers = true,
+                ItemMeleeWeaponTier1PriceMultiplier = 1.0f,
+                ItemMeleeWeaponTier2PriceMultiplier = 1.0f,
+                ItemMeleeWeaponTier3PriceMultiplier = 1.0f,
+                ItemMeleeWeaponTier4PriceMultiplier = 1.0f,
+                ItemMeleeWeaponTier5PriceMultiplier = 1.0f,
+                ItemMeleeWeaponTier6PriceMultiplier = 1.0f,
+
+
+                //~ Ranged Weapons
+                MCMRagedWeaponsModifiers = true,
+
+                //~ Weight
+                ItemRangedWeaponsWeightModifiers = false,
+                ItemRangedWeaponsTier1WeightMultiplier = 1.0f,
+                ItemRangedWeaponsTier2WeightMultiplier = 1.0f,
+                ItemRangedWeaponsTier3WeightMultiplier = 1.0f,
+                ItemRangedWeaponsTier4WeightMultiplier = 1.0f,
+                ItemRangedWeaponsTier5WeightMultiplier = 1.0f,
+                ItemRangedWeaponsTier6WeightMultiplier = 1.0f,
+
+                //~ Price
+                ItemRangedWeaponsValueModifiers = true,
+                ItemRangedWeaponsTier1PriceMultiplier = 1.0f,
+                ItemRangedWeaponsTier2PriceMultiplier = 1.0f,
+                ItemRangedWeaponsTier3PriceMultiplier = 1.0f,
+                ItemRangedWeaponsTier4PriceMultiplier = 1.0f,
+                ItemRangedWeaponsTier5PriceMultiplier = 1.0f,
+                ItemRangedWeaponsTier6PriceMultiplier = 1.0f,
+
+                //~ Trade Goods
+                MCMTradeGoodsModifiers = true,
+
+                //~ Weight
+                ItemTradeGoodsWeightMultiplier = 1.0f,
+
+                //~ Price
+                ItemTradeGoodsPriceMultiplier = 1.0f,
+
+
+                //~ ItemLocks 
+                MCMAutoLocks = true,
+                autoLockHorses = true,
+                autoLockFood = true,
+                autoLockIronBar1 = true,
+                autoLockIronBar2 = true,
+                autoLockIronBar3 = true,
+                autoLockIronBar4 = true,
+                autoLockIronBar5 = true,
+                autoLockIronBar6 = true,
+                autoLockIronOre = true,
+                autoLockSilverOre = true,
+                autoLockHardwood = true,
+                autoLockCharcol = true,
+
+
+
+                //~ Killing Bandits Raises Relationships
+                MCMKillingBanditsEnabled = true,
+                GroupsOfBandits = 1,
+                RelationshipIncrease = 1,
+                Radius = 1000,
+                SizeBonusEnabled = true,
+                SizeBonus = 0.00f,
+                PrisonersOnly = true,
+                IncludeBandits = true,
+                IncludeOutlaws = true,
+                IncludeMafia = true,
+
+
+                //~ Kingdom Tweaks
+                MCMKingdomTweaksEnabled = true,
+
+                //~ Lord Bartering
+                BarterablesTweaksEnabled = true,
+                BarterablesJoinKingdomAsClanAdjustment = 1,
+                BarterablesJoinKingdomAsClanAltFormulaEnabled = true,
+
+                //~ Balancing Tweaks
+                KingdomBalanceStrengthEnabled = true,
+                KingdomBalanceStrengthVanEnabled = true,
+                VlandiaBoost = 0.00f,
+                SturgiaBoost = 0.00f,
+                BattaniaBoost = 0.00f,
+                Empire_N_Boost = 0.00f,
+                Empire_S_Boost = 0.00f,
+                Empire_W_Boost = 0.00f,
+                AseraiBoost = 0.00f,
+                KhuzaitBoost = 0.00f,
+                PlayerBoost = 0.00f,
+                KingdomBalanceStrengthCEKEnabled = true,
+                NordlingsBoost = 0.00f,
+                VagirBoost = 0.00f,
+                RoyalistVlandiaBoost = 0.00f,
+                ApolssalyBoost = 0.00f,
+                LyrionBoost = 0.00f,
+                RebelKhuzaitBoost = 0.00f,
+                PaleicianBoost = 0.00f,
+                AriorumBoost = 0.00f,
+                Empire_S_CEK_Boost = 0.00f,
+                Empire_CEK_Boost = 0.00f,
+                Battania_CEK_Boost = 0.00f,
+                Vlandia_CEK_Boost = 0.00f,
+                Sturgia_CEK_Boost = 0.00f,
+                Khuzait_CEK_Boost = 0.00f,
+                Aserai_CEK_Boost = 0.00f,
+                Empire_W_CEK_Boost = 0.00f,
+                Player_CEK_Boost = 0.00f,
+                BalancingPartySizeTweaksEnabled = true,
+                BalancingPartyLimitTweaksEnabled = true,
+                BalancingFoodTweakEnabled = true,
+                BalancingTimeRecruitsTweaksEnabled = true,
+                BalancingTaxTweaksEnabled = true,
+                BalancingWagesTweaksEnabled = true,
+                BalancingUpgradeTroopsTweaksEnabled = true,
+
+
+                //~ Miscellaneous
+                QuestCharactersIgnorePartySize = true,
+                ShowFoodDaysRemaining = false,
+                CampaignSpeed = 4,
+                UnlimitedWanderersPatch = false,
+
+                //~ Party Tweaks
+                MCMPartyTweaksEnabled = true,
+
+                //~ Caravan Tweaks
+                PlayerCaravanPartySizeTweakEnabled = true,
+                PlayerCaravanPartySize = 30,
+
+                //~ Party Size Tweaks
+                PartySizeTweakEnabled = true,
+                LeadershipPartySizeBonusEnabled = true,
+                LeadershipPartySizeBonus = 0.0f,
+                StewardPartySizeBonusEnabled = true,
+                StewardPartySizeBonus = 0f,
+                PartySizeTweakAIFactor = 0f,
+                PartySizeMultipliersEnabled = true,
+                PartySizeBanditMultiplier = 1f,
+                PartySizeVillagerMultiplier = 1f,
+                PartySizeCarvanMultiplier = 1f,
+                PartySizeMilitiaMultiplier = 1f,
+
+                //~ Party Wage Tweaks
+                PartyWageTweaksEnabled = true,
+                PartyWagePercent = 1.0f,
+                GarrisonWagePercent = 1.0f,
+                ApplyWageTweakToFaction = true,
+                ApplyWageTweakToAI = true,
+
+                //~ MobilePartyFoodConsumption
+                PartyFoodConsumptionEnabled = true,
+                PartyFoodConsumptionMultiplier = 1.0f,
+
+
+                //~ Pregnancy 
+                MCMPregnancyModifiers = true,
+
+                //~ Duration
+                PregnancyDurationModifiers = true,
+                PregnancyDurationValue = 36,
+
+
+                //~ MortalityProbabilityInLabor
+                NoMaternalMortalityTweakEnabled = true,
+                PregnancyLaborMortalityChanceModifiers = true,
+                PregnancyLaborMortalityChanceValue = 0.015f,
+
+                //~ StillbirthProbability
+                NoStillbirthsTweakEnabled = true,
+                PregnancyStillbirthChanceModifiers = true,
+                PregnancyStillbirthChanceValue = 0.01f,
+
+
+                //~ DeliveringFemaleOffspringProbability
+                PregnancyFemaleOffspringChanceModifiers = true,
+                PregnancyFemaleOffspringChanceValue = 0.51f,
+
+                //~ DeliveringTwinsProbability
+                PregnancyTwinsChanceModifiers = true,
+                PregnancyTwinsChanceValue = 0.03f,
+
+                //~ Chance Tweaks
+                DailyChancePregnancyTweakEnabled = true,
+                PlayerCharacterInfertileEnabled = true,
+                MinPregnancyAge = 18,
+                MaxPregnancyAge = 45,
+                ClanFertilityBonus = 1f,
+                MaxChildren = 5,
+
+
+                //~ Prisoner Tweaks
+                MCMPrisonerTweaksEnabled = true,
+
+                //~ Imprisonment Time Tweaks
+                PrisonerImprisonmentTweakEnabled = true,
+                PrisonerImprisonmentPlayerOnly = true,
+                MinimumDaysOfImprisonment = 0,
+                EnableMissingHeroFix = true,
+
+
+                //~ Party Prisoner Size Tweak
+                PrisonerSizeTweakEnabled = true,
+                PrisonerSizeTweakPercent = 0,
+                PrisonerSizeTweakAI = true,
+
+
+                //~ Prisoner Confirmity Tweaks
+                PrisonerConformityTweaksEnabled = true,
+                PrisonerConformityTweakBonus = 0,
+                PrisonerConformityTweaksApplyToClan = true,
+                PrisonerConformityTweaksApplyToAi = true,
+
+
+                //~ Settlement Tweaks
+                MCMSettlementTweaksEnabled = true,
+
+                //~ Settlement Culture Transformation
+                EnableCultureChanger = false,
+                ChangeToKingdomCulture = false,
+                TimeToChanceCulture = 10,
+
+                //~ Settlement Tweaks - Disable Troop Donations
+                DisableTroopDonationPatchEnabled = false,
+                DisableTroopDonationAnyEnabled = false,
+
+                //~ Settlement Tweaks - Production Tweaks
+                ProductionTweakEnabled = true,
+                ProductionFoodTweakAmount = 1f,
+                ProductionOtherTweakAmount = 1f,
+
+
+                CastleTrainingFieldsBonusEnabled = false,
+                CastleTrainingFieldsXpAmountLevel1 = 1,
+                CastleTrainingFieldsXpAmountLevel2 = 2,
+                CastleTrainingFieldsXpAmountLevel3 = 3,
+
+                //~ Settlement Tweaks - Buildings - Castle - Granary 
+                CastleGranaryBonusEnabled = false,
+                CastleGranaryStorageAmountLevel1 = 100,
+                CastleGranaryStorageAmountLevel2 = 200,
+                CastleGranaryStorageAmountLevel3 = 300,
+
+                //~ Settlement Tweaks - Buildings - Castle - Gardens
+                CastleGardensBonusEnabled = false,
+                CastleGardensFoodProductionAmountLevel1 = 5,
+                CastleGardensFoodProductionAmountLevel2 = 10,
+                CastleGardensFoodProductionAmountLevel3 = 15,
+
+                //~ Settlement Tweaks - Buildings - Castle - Militia Barracks
+                CastleMilitiaBarracksBonusEnabled = false,
+                CastleMilitiaBarracksAmountLevel1 = 1,
+                CastleMilitiaBarracksAmountLevel2 = 2,
+                CastleMilitiaBarracksAmountLevel3 = 3,
+
+
+                //~ Settlement Tweaks - Buildings - Town
+
+                //~ Settlement Tweaks - Buildings - Town - Training Fields
+                TownTrainingFieldsBonusEnabled = false,
+                TownTrainingFieldsXpAmountLevel1 = 30,
+                TownTrainingFieldsXpAmountLevel2 = 60,
+                TownTrainingFieldsXpAmountLevel3 = 100,
+
+                //~ Settlement Tweaks - Buildings - Town - Granary
+                TownGranaryBonusEnabled = false,
+                TownGranaryStorageAmountLevel1 = 200,
+                TownGranaryStorageAmountLevel2 = 400,
+                TownGranaryStorageAmountLevel3 = 600,
+
+                //~ Settlement Tweaks - Settlement Buildings Tweaks - Town Buildings Tweaks - Orchards Tweak
+                TownOrchardsBonusEnabled = false,
+                TownOrchardsFoodProductionAmountLevel1 = 10,
+                TownOrchardsFoodProductionAmountLevel2 = 20,
+                TownOrchardsFoodProductionAmountLevel3 = 30,
+
+                //~ Settlement Tweaks - Settlement Buildings Tweaks - Town Buildings Tweaks - Militia Barracks Tweak
+                TownMilitiaBarracksBonusEnabled = false,
+                TownMilitiaBarracksAmountLevel1 = 0.5f,
+                TownMilitiaBarracksAmountLevel2 = 1.0f,
+                TownMilitiaBarracksAmountLevel3 = 1.5f,
+
+
+                //~ Settlement Tweaks - Settlement Food
+                SettlementFoodBonusEnabled = false,
+                CastleFoodBonus = 0f,
+                TownFoodBonus = 0f,
+
+                //~ Settlement Tweaks - Settlement Food Bonus - Food Loss from Prosperity Tweak
+                SettlementProsperityFoodMalusTweakEnabled = false,
+                SettlementProsperityFoodMalusDivisor = 50,
+
+                //~ Settlement Tweaks - Normal Militia
+                SettlementMilitiaBonusEnabled = true,
+                CastleMilitiaBonusFlat = 0f,
+                TownMilitiaBonusFlat = 0f,
+                CastleMilitiaRetirementModifier = 0.025f,
+                TownMilitiaRetirementModifier = 0.025f,
+                VillageMilitiaRetirementModifier = 0.025f,
+
+                //~ Settlement Tweaks - Militia Bonus Tweaks - Elite Militia
+                SettlementMilitiaEliteSpawnRateBonusEnabled = true,
+                SettlementEliteMeleeSpawnRateBonus = 0.1f,
+                //SettlementEliteRangedSpawnRateBonus = 0.1f,
+
+                //~ Tournaments
+                MCMTournamentsEnabled = true,
+
+                //~ Renown Reward
+                TournamentRenownIncreaseEnabled = true,
+                TournamentRenownAmount = 3,
+
+                //~ Gold Reward
+                TournamentGoldRewardEnabled = true,
+                TournamentGoldRewardAmount = 0,
+
+                //~ Maximum Bet
+                TournamentMaxBetAmountTweakEnabled = true,
+                TournamentMaxBetAmount = 150,
+
+                //~ Hero Experience
+                TournamentHeroExperienceMultiplierEnabled = true,
+                TournamentHeroExperienceMultiplier = 0.33f,
+
+                //~ Arena Hero Experience
+                ArenaHeroExperienceMultiplierEnabled = true,
+                ArenaHeroExperienceMultiplier = 0.06f,
+
+                //~ Minimum Betting Odds
+                MinimumBettingOddsTweakEnabled = true,
+                MinimumBettingOdds = 1.1f,
+
+                //~ Workshops
+                MCMWorkshopsEnabled = true,
+
+                //~ Workshop Limit
+                MaxWorkshopCountTweakEnabled = true,
+                BaseWorkshopCount = 1,
+                BonusWorkshopsPerClanTier = 1,
+
+                //~ Workshop Cost Tweak
+                WorkshopBuyingCostTweakEnabled = true,
+                WorkshopBaseCost = 10000,
+
+                //~ Workshop Effectivness
+                WorkshopEffectivnessEnabled = true,
+                WorkshopEffectivnessv2Factor = 1f,
+
+                //~ Workshop SellPrices
+                EnableWorkshopSellTweak = true,
+                WorkshopSellTweak = 1f,
+
+                //~ Workshop Buy Prices
+                EnableWorkshopBuyTweak = true,
+                WorkshopBuyTweak = 1f,
+
+
+                //~ Bankruptcy
+                WorkShopBankruptcyModifiers = true,
+                WorkShopBankruptcyValue = 3,
+
+                //~ XP Tweaks
+                MCMSkillsXp = true,
+
+                //~ Skills
+                SkillXpEnabled = true,
+                SkillXpUseForPlayer = true,
+                SkillXpUseForPlayerClan = true,
+                SkillXpUseForAI = true,
+
+                //~ IndividualMultipliers
+                SkillXpUseIndividualMultiplers = true,
+                SkillsXPMultiplierAthletics = 1.0f,
+                SkillsXPMultiplierBow = 1.0f,
+                SkillsXPMultiplierCharm = 1.0f,
+                SkillsXPMultiplierCrafting = 1.0f,
+                SkillsXPMultiplierCrossbow = 1.0f,
+                SkillsXPMultiplierEngineering = 1.0f,
+                SkillsXPMultiplierLeadership = 1.0f,
+                SkillsXPMultiplierMedicine = 1.0f,
+                SkillsXPMultiplierOneHanded = 1.0f,
+                SkillsXPMultiplierPolearm = 1.0f,
+                SkillsXPMultiplierRiding = 1.0f,
+                SkillsXPMultiplierRoguery = 1.0f,
+                SkillsXPMultiplierScouting = 1.0f,
+                SkillsXPMultiplierSteward = 1.0f,
+                SkillsXPMultiplierTactics = 1.0f,
+                SkillsXPMultiplierThrowing = 1.0f,
+                SkillsXPMultiplierTrade = 1.0f,
+                SkillsXPMultiplierTwoHanded = 1.0f,
+
+                //~ Global
+                SkillXpUseGlobalMultipler = false,
+                SkillsXpGlobalMultiplier = 1.0f,
+
+
+                //~ LearningRateMultipliers
+                LearningRateEnabled = true,
+                LearningRateMultiplier = 1.0f,
+
+                //~ Troop Daily Experience Tweak
+                DailyTroopExperienceTweakEnabled = true,
+                LeadershipPercentageForDailyExperienceGain = 0f,
+                DailyTroopExperienceRequiredLeadershipLevel = 30,
+                DailyTroopExperienceApplyToPlayerClanMembers = true,
+                DailyTroopExperienceApplyToAllNPC = true,
+                DisplayMessageDailyExperienceGain = true,
+
+                //~ Troop Experience Tweaks
+                TroopExperienceTweakEnabled = true,
+                TroopBattleExperienceMultiplierEnabled = true,
+                TroopBattleExperienceMultiplier = 1.0f,
+                TroopBattleSimulationExperienceMultiplierEnabled = true,
+                TroopBattleSimulationExperienceMultiplier = 0.9f,
+
+                KaosesDynamicSpeedModifiersEnabled = true,
+                DynamicFleeingSpeedReductionAmount = 0.0f,
+                DynamicFleeingSpeedReductionHours = 1,
+                KaosesStaticSpeedModifiersEnabled = true,
+                KaosesmininumSpeedAmount = 1.0f,
+                LooterSpeedReductionAmount = 0.0f,
+                SteppeSpeedReductionAmount = 0.0f,
+                DesertSpeedReductionAmount = 0.0f,
+                MountainSpeedReductionAmount = 0.0f,
+                ForestSpeedReductionAmount = 0.0f,
+                SeaRaiderSpeedReductionAmount = 0.0f,
+                CaravanSpeedReductiontEnabled = true,
+                CaravanSpeedReductionAmount = 0.0f,
+                EliteCaravanSpeedReductionAmount = 0.0f,
+                VillagerSpeedReductiontEnabled = true,
+                VillagerSpeedReductionAmount = -0.5f,
+                PlayerSpeedReductiontEnabled = true,
+                PlayerSpeedReductionAmount = 0.0f,
+                PlayerClanSpeedReductionAmount = 0.0f,
+                KingdomSpeedReductiontEnabled = true,
+                KingdomSpeedReductionAmount = 0.0f,
+                OtherKingdomSpeedReductionAmount = 0.0f,
+
+                ArrowMultipliersEnabled = true,
+                ArrowMultiplier = 1.0f,
+                ArrowValueMultiplier = 1.0f,
+                BoltsMultipliersEnabled = true,
+                BoltsMultiplier = 1.0f,
+                BoltsValueMultiplier = 1.0f,
+                BoltsWeightMultiplier = 1.0f,
+                ThrownMultiplierEnabled = true,
+                ThrownMultiplier = 1.0f,
+                ThrownValueMultiplier = 1.0f,
+                ThrownWeightMultiplier = 1.0f,
+                ThrownMissionFixMultiplierEnabled = false
+
+
+            });
+
+            /*
+            basePresets.Add("True", () => new MCMSettings()
+            {
+                Property1 = true,
+                Property2 = true
+            });
+            */
+
+            basePresets.Add("Bannerlord Tweaks defaults 1.5.7.2", () => new KTSettings()
+            {
+                #region Preset Restore defaults from 1.5.7.2
+                QuestCharactersIgnorePartySize = false,
+                ShowFoodDaysRemaining = false,
+                MinimumDaysOfImprisonment = 10,
+                PrisonerImprisonmentTweakEnabled = false,
+                PrisonerImprisonmentPlayerOnly = true,
+                EnableMissingHeroFix = true,
+                PrisonerSizeTweakEnabled = false,
+                PrisonerSizeTweakPercent = 0f,
+                PrisonerConformityTweaksApplyToAi = false,
+                PrisonerConformityTweaksApplyToClan = false,
+                PrisonerConformityTweaksEnabled = false,
+                PrisonerConformityTweakBonus = 0f,
+                CastleMilitiaBonusFlat = 1.25f,
+                TownMilitiaBonusFlat = 2.5f,
+                SettlementMilitiaBonusEnabled = false,
+                SettlementEliteMeleeSpawnRateBonus = 0.15f,
+                //SettlementEliteRangedSpawnRateBonus = 0.1f,
+                SettlementMilitiaEliteSpawnRateBonusEnabled = true,
+                CastleFoodBonus = 2.0f,
+                TownFoodBonus = 4.0f,
+                SettlementFoodBonusEnabled = true,
+                SettlementProsperityFoodMalusDivisor = 100,
+                SettlementProsperityFoodMalusTweakEnabled = true,
+                DisableTroopDonationPatchEnabled = false,
+                DisableTroopDonationAnyEnabled = false,
+                BaseWorkshopCount = 2,
+                BonusWorkshopsPerClanTier = 1,
+                MaxWorkshopCountTweakEnabled = true,
+                WorkshopBaseCost = 10000,
+                WorkshopBuyingCostTweakEnabled = false,
+                TournamentHeroExperienceMultiplier = 0.25f,
+                TournamentHeroExperienceMultiplierEnabled = false,
+                TournamentRenownAmount = 3,
+                TournamentRenownIncreaseEnabled = true,
+                MinimumBettingOdds = 1.1f,
+                MinimumBettingOddsTweakEnabled = false,
+                TournamentMaxBetAmount = 500,
+                TournamentMaxBetAmountTweakEnabled = true,
+                TournamentGoldRewardAmount = 500,
+                TournamentGoldRewardEnabled = true,
+                ArenaHeroExperienceMultiplier = 0.06f,
+                ArenaHeroExperienceMultiplierEnabled = false,
+                TownTrainingFieldsXpAmountLevel1 = 30,
+                TownTrainingFieldsXpAmountLevel2 = 60,
+                TownTrainingFieldsXpAmountLevel3 = 100,
+                TownTrainingFieldsBonusEnabled = true,
+                TownOrchardsFoodProductionAmountLevel1 = 10,
+                TownOrchardsFoodProductionAmountLevel2 = 20,
+                TownOrchardsFoodProductionAmountLevel3 = 30,
+                TownOrchardsBonusEnabled = true,
+                TownMilitiaBarracksAmountLevel1 = 0.5f,
+                TownMilitiaBarracksAmountLevel2 = 1.0f,
+                TownMilitiaBarracksAmountLevel3 = 1.5f,
+                TownMilitiaBarracksBonusEnabled = true,
+                TownGranaryStorageAmountLevel1 = 200,
+                TownGranaryStorageAmountLevel2 = 400,
+                TownGranaryStorageAmountLevel3 = 600,
+                TownGranaryBonusEnabled = true,
+                CastleTrainingFieldsXpAmountLevel1 = 1,
+                CastleTrainingFieldsXpAmountLevel2 = 2,
+                CastleTrainingFieldsXpAmountLevel3 = 3,
+                CastleTrainingFieldsBonusEnabled = true,
+                CastleMilitiaBarracksAmountLevel1 = 1,
+                CastleMilitiaBarracksAmountLevel2 = 2,
+                CastleMilitiaBarracksAmountLevel3 = 3,
+                CastleMilitiaBarracksBonusEnabled = true,
+                CastleGranaryStorageAmountLevel1 = 100,
+                CastleGranaryStorageAmountLevel2 = 200,
+                CastleGranaryStorageAmountLevel3 = 300,
+                CastleGranaryBonusEnabled = true,
+                CastleGardensFoodProductionAmountLevel1 = 5,
+                CastleGardensFoodProductionAmountLevel2 = 10,
+                CastleGardensFoodProductionAmountLevel3 = 15,
+                CastleGardensBonusEnabled = true,
+                ApplyWageTweakToFaction = false,
+                PartyWageTweaksEnabled = false,
+                PartyWagePercent = 1.0f,
+                GarrisonWagePercent = 1.0f,
+                LeadershipPercentageForDailyExperienceGain = 0.5f,
+                DailyTroopExperienceRequiredLeadershipLevel = 30,
+                DailyTroopExperienceApplyToPlayerClanMembers = false,
+                DailyTroopExperienceApplyToAllNPC = false,
+                DisplayMessageDailyExperienceGain = false,
+                DailyTroopExperienceTweakEnabled = false,
+                LeadershipPartySizeBonus = 0.3f,
+                StewardPartySizeBonus = 0.3f,
+                LeadershipPartySizeBonusEnabled = true,
+                PartySizeTweakEnabled = true,
+                StewardPartySizeBonusEnabled = true,
+                PlayerCaravanPartySize = 30,
+                PlayerCaravanPartySizeTweakEnabled = false,
+                //ClanArmyLosesNoCohesionEnabled = false,
+                BarterablesTweaksEnabled = true,
+                BarterablesJoinKingdomAsClanAdjustment = 100,
+                BarterablesJoinKingdomAsClanAltFormulaEnabled = false,
+                AutoLearnSmeltedParts = true,
+                PreventSmeltingLockedItems = false,
+                CraftingStaminaGainAmount = 10,
+                CraftingStaminaGainOutsideSettlementMultiplier = 1.0f,
+                MaxCraftingStaminaMultiplier = 1.0f,
+                CraftingStaminaTweakEnabled = true,
+                //IgnoreCraftingStamina = false,
+
+                /*
+                                CompanionBaseLimit = 3,
+                                CompanionLimitBonusPerClanTier = 3,
+                                CompanionLimitTweakEnabled = false,
+                                UnlimitedWanderersPatch = false,
+                                BaseClanPartiesLimit = 1,
+                                ClanPartiesBonusPerClanTier = 0.5f,
+                                ClanPartiesLimitTweakEnabled = false,
+                                BaseAICustomSpawnPartiesLimit = 1,
+                                AICustomSpawnPartiesLimitTweakEnabled = false,
+                                BaseAIClanPartiesLimit = 1,
+                                AIMinorClanPartiesLimitTweakEnabled = false,
+                                AIClanPartiesLimitTweakEnabled = false,*/
+
+                NoMaternalMortalityTweakEnabled = false,
+                NoStillbirthsTweakEnabled = false,
+                /*
+                                TwinsProbability = 0.03f,
+                                TwinsProbabilityTweakEnabled = false,
+                                PregnancyDuration = 36,
+                                PregnancyDurationTweakEnabled = false,*/
+                MaxPregnancyAge = 45,
+                MinPregnancyAge = 18,
+                DailyChancePregnancyTweakEnabled = false,
+                PlayerCharacterInfertileEnabled = false,
+                MaxChildren = 5,
+                ClanFertilityBonus = 1.1f,
+                /*
+                                FemaleOffspringProbability = 0.51f,
+                                FemaleOffspringProbabilityTweakEnabled = false,*/
+                /*
+                                CompanionSkillExperienceMultiplier = 1.0f,
+                                HeroSkillExperienceMultiplier = 1.0f,
+                                CompanionSkillExperienceMultiplierEnabled = false,
+                                HeroSkillExperienceMultiplierEnabled = false,
+                                SkillExperienceMultipliersEnabled = false,
+                                SkillBonusEngineering = 1.0f,
+                                SkillBonusLeadership = 1.0f,
+                                SkillBonusMedicine = 1.0f,
+                                SkillBonusRiding = 1.0f,
+                                SkillBonusRoguery = 1.0f,
+                                SkillBonusScouting = 1.0f,
+                                SkillBonusTrade = 1.0f,
+                                PerSkillBonusEnabled = false,*/
+                //FocusPointsPerLevel = 1,
+                //AttributePointRequiredLevel = 4,
+                //AttributeFocusPointTweakEnabled = false,
+                AgeTweaksEnabled = false,
+                BecomeChildAge = 6,
+                BecomeInfantAge = 3,
+                BecomeTeenagerAge = 14,
+                HeroComesOfAge = 18,
+                BecomeOldAge = 47,
+                MaxAge = 125,
+                DifficultyTweakEnabled = false,
+                PlayerMapMovementSpeedBonusMultiplier = 0.0f,
+                PlayerMapMovementSpeedBonusTweakEnabled = false,
+                DamageToTroopsMultiplier = 1.0f,
+                DamageToTroopsTweakEnabled = false,
+                DamageToPlayerMultiplier = 1.0f,
+                DamageToPlayerTweakEnabled = false,
+                //DamageToFriendsMultiplier = 1.0f,
+                //DamageToFriendsTweakEnabled = false,
+                CombatAIDifficultyMultiplier = 0.96f,
+                CombatAIDifficultyTweakEnabled = false,
+                BattleSize = 1000,
+                BattleSizeTweakEnabled = false,
+                SingleHandedWeaponsSliceThroughEnabled = false,
+                TwoHandedWeaponsSliceThroughEnabled = false,
+                TroopBattleExperienceMultiplier = 1.0f,
+                TroopBattleExperienceMultiplierEnabled = false,
+                TroopBattleSimulationExperienceMultiplier = 1.0f,
+                TroopBattleSimulationExperienceMultiplierEnabled = false,
+                SiegeTweaksEnabled = false,
+                SiegeConstructionProgressPerDayMultiplier = 0.8f,
+                SiegeCollateralDamageCasualties = 1,
+                SiegeDestructionCasualties = 0,
+                HideoutBattleTroopLimit = 90,
+                ContinueHideoutBattleOnPlayerLoseDuel = true,
+                ContinueHideoutBattleOnPlayerDeath = false,
+                HideoutBattleTroopLimitTweakEnabled = true,
+                /*
+                                BattleInfluenceMultiplier = 1.0f,
+                                BattleRenownMultiplier = 2.0f,
+                                BattleRewardTweaksEnabled = true,*/
+
+                BattleRewardApplyToAI = true,
+
+                #endregion
+            });
+            return basePresets;
+        }
+        #endregion

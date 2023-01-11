@@ -15,7 +15,7 @@ namespace KaosesTweaks.Models
         public override int GetPartyLimitForTier(Clan clan, int clanTierToCheck)
         {
             ExplainedNumber result = new ExplainedNumber();
-            MCMSettings _settings = MCMSettings.Instance;
+            KTSettings _settings = KTSettings.Instance;
             if (_settings.ClanAdditionalPartyLimitEnabled && clan == Clan.PlayerClan && _settings.ClanPlayerPartiesLimitEnabled)
             {
                 result.Add((float)(_settings.ClanPlayerBasePartiesLimit + Math.Floor(clanTierToCheck * _settings.ClanPlayerPartiesBonusPerClanTier)), new TextObject("KT Player Clan Parties Tweak", null));
@@ -57,7 +57,7 @@ namespace KaosesTweaks.Models
         // Token: 0x06002C17 RID: 11287 RVA: 0x000AAF7C File Offset: 0x000A917C
         public override int GetCompanionLimit(Clan clan)
         {
-            MCMSettings _settings = MCMSettings.Instance;
+            KTSettings _settings = KTSettings.Instance;
             int num = GetCompanionLimitFromTier(clan.Tier);
             if (_settings.ClanCompanionLimitEnabled)
             {
@@ -73,9 +73,9 @@ namespace KaosesTweaks.Models
         // Token: 0x06002C18 RID: 11288 RVA: 0x000AAFB7 File Offset: 0x000A91B7
         private int GetCompanionLimitFromTier(int clanTier)
         {
-            if (MCMSettings.Instance.ClanCompanionLimitEnabled)
+            if (KTSettings.Instance.ClanCompanionLimitEnabled)
             {
-                return clanTier + MCMSettings.Instance.ClanCompanionBaseLimit;
+                return clanTier + KTSettings.Instance.ClanCompanionBaseLimit;
             }
             return clanTier + 3;
         }

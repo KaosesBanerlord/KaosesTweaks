@@ -13,7 +13,7 @@ namespace KaosesTweaks.Patches
     {
         private static bool HandlePartySizeMultipliers(ref MobileParty __instance, PartyTemplateObject pt, int troopNumberLimit)
         {
-            if (MCMSettings.Instance is { } settings && settings.PartySizeMultipliersEnabled)
+            if (KTSettings.Instance is { } settings && settings.PartySizeMultipliersEnabled)
             {
                 if (__instance.IsBandit || __instance.IsBanditBossParty)
                 {
@@ -89,7 +89,7 @@ namespace KaosesTweaks.Patches
 
         private static bool HandlePartyCarvanSize(ref MobileParty __instance, PartyTemplateObject pt, int troopNumberLimit)
         {
-            if (MCMSettings.Instance is { } settings && settings.PlayerCaravanPartySizeTweakEnabled)
+            if (KTSettings.Instance is { } settings && settings.PlayerCaravanPartySizeTweakEnabled)
             {
                 if (__instance.IsCaravan && __instance.Party.Owner != null && __instance.Party.Owner == Hero.MainHero)
                 {
@@ -141,6 +141,6 @@ namespace KaosesTweaks.Patches
             return result;
         }
 
-        static bool Prepare() => MCMSettings.Instance is { } settings && (settings.PartySizeMultipliersEnabled || settings.PlayerCaravanPartySizeTweakEnabled);
+        static bool Prepare() => KTSettings.Instance is { } settings && (settings.PartySizeMultipliersEnabled || settings.PlayerCaravanPartySizeTweakEnabled);
     }
 }

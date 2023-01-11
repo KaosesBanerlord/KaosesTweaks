@@ -14,7 +14,7 @@ namespace KaosesTweaks.Patches
     {
         static void Postfix(Village village, ref float __result)
         {
-            if (village != null && MCMSettings.Instance is { } settings && settings.ProductionTweakEnabled)
+            if (village != null && KTSettings.Instance is { } settings && settings.ProductionTweakEnabled)
             {
                 if (Statics._settings.SettlementsDebug)
                 {
@@ -25,7 +25,7 @@ namespace KaosesTweaks.Patches
                 }
                 __result = __result * settings.ProductionFoodTweakAmount;
             }
-            if (village != null && MCMSettings.Instance is { } settings2 && settings2.BalancingFoodTweakEnabled && settings2.KingdomBalanceStrengthEnabled && village.Settlement.OwnerClan.Kingdom != null)
+            if (village != null && KTSettings.Instance is { } settings2 && settings2.BalancingFoodTweakEnabled && settings2.KingdomBalanceStrengthEnabled && village.Settlement.OwnerClan.Kingdom != null)
             {
                 float num = 0f;
                 if (settings2.KingdomBalanceStrengthVanEnabled)
@@ -71,7 +71,7 @@ namespace KaosesTweaks.Patches
             }
         }
 
-        static bool Prepare() => MCMSettings.Instance is { } settings && (settings.ProductionTweakEnabled || settings.KingdomBalanceStrengthEnabled);
+        static bool Prepare() => KTSettings.Instance is { } settings && (settings.ProductionTweakEnabled || settings.KingdomBalanceStrengthEnabled);
     }
 
     [HarmonyPatch(typeof(DefaultVillageProductionCalculatorModel), "CalculateDailyProductionAmount")]
@@ -80,7 +80,7 @@ namespace KaosesTweaks.Patches
         static void Postfix(Village village, ItemObject item, ref float __result)
         {
             /*
-                        if ((MCMSettings.Instance is { } settings && settings.ProductionTweakEnabled))
+                        if ((KTSettings.Instance is { } settings && settings.ProductionTweakEnabled))
                         {
                             if (Statics._settings.SettlementsDebug)
                             {
@@ -122,7 +122,7 @@ namespace KaosesTweaks.Patches
                         }*/
 
         }
-        static bool Prepare() => MCMSettings.Instance is { } settings && (settings.ProductionTweakEnabled || Statics._settings.WandererLocationDebug);
+        static bool Prepare() => KTSettings.Instance is { } settings && (settings.ProductionTweakEnabled || Statics._settings.WandererLocationDebug);
 
     }
 }

@@ -34,7 +34,7 @@ namespace KaosesTweaks.Models
                 num += DefaultPerks.Leadership.CitizenMilitia.PrimaryBonus * 0.01f;
             }
 
-            if (MCMSettings.Instance is { } settings && settings.SettlementMilitiaEliteSpawnRateBonusEnabled)
+            if (KTSettings.Instance is { } settings && settings.SettlementMilitiaEliteSpawnRateBonusEnabled)
             {
                 num = settings.SettlementEliteMeleeSpawnRateBonus;
                 //_rangedEliteTroopRate = settings.SettlementEliteRangedSpawnRateBonus;

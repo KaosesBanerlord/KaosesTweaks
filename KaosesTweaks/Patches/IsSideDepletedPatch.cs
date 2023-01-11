@@ -29,7 +29,7 @@ namespace KaosesTweaks.Patches
                 {
                     if (HasTroopsRemaining(__instance, side))
                     {
-                        if (PlayerIsDead() && MCMSettings.Instance is { } settings)
+                        if (PlayerIsDead() && KTSettings.Instance is { } settings)
                         {
                             if (____hideoutMissionState == 5 || ____hideoutMissionState == 6)
                             {
@@ -82,7 +82,7 @@ namespace KaosesTweaks.Patches
             }
         }
 
-        static bool Prepare() => MCMSettings.Instance is { } settings && (settings.ContinueHideoutBattleOnPlayerDeath || settings.ContinueHideoutBattleOnPlayerLoseDuel);
+        static bool Prepare() => KTSettings.Instance is { } settings && (settings.ContinueHideoutBattleOnPlayerDeath || settings.ContinueHideoutBattleOnPlayerLoseDuel);
 
 
         private static bool HasTroopsRemaining(HideoutMissionController controller, BattleSideEnum side)
@@ -193,6 +193,6 @@ namespace KaosesTweaks.Patches
             IsSideDepletedPatch.Dueled = false;
         }
 
-        static bool Prepare() => MCMSettings.Instance is { } settings && (settings.ContinueHideoutBattleOnPlayerDeath || settings.ContinueHideoutBattleOnPlayerLoseDuel);
+        static bool Prepare() => KTSettings.Instance is { } settings && (settings.ContinueHideoutBattleOnPlayerDeath || settings.ContinueHideoutBattleOnPlayerLoseDuel);
     }
 }

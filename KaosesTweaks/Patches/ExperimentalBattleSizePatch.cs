@@ -23,7 +23,7 @@ namespace KaosesTweaks.Patches
     {
         static void Postfix(ref int __result)
         {
-            if (MCMSettings.Instance is { } settings)
+            if (KTSettings.Instance is { } settings)
             {
                 if (BattleSizePatchEx_PartyGroupTroopSupplier.mountfootratio * settings.BattleSizeEx * (1f + (Statics._settings.ReinforcementQuota * Statics._settings.SlotsForReinforcements * 0.01f)) > 2048)
                 {
@@ -41,7 +41,7 @@ namespace KaosesTweaks.Patches
                 IM.ColorRedMessage("Battlesize was set to " + __result + ".");
             }
         }
-        static bool Prepare() => MCMSettings.Instance is { } settings && settings.BattleSizeTweakExEnabled;
+        static bool Prepare() => KTSettings.Instance is { } settings && settings.BattleSizeTweakExEnabled;
     }
 
 
@@ -50,7 +50,7 @@ namespace KaosesTweaks.Patches
     {
         private static void Postfix(ref int __result)
         {
-            if (MCMSettings.Instance is { } settings)
+            if (KTSettings.Instance is { } settings)
             {
                 if (BattleSizePatchEx_PartyGroupTroopSupplier.mountfootratio * settings.BattleSizeEx * (1f + (Statics._settings.ReinforcementQuota * Statics._settings.SlotsForReinforcements * 0.01f)) > 2048)
                 {
@@ -59,7 +59,7 @@ namespace KaosesTweaks.Patches
                 else __result = settings.BattleSizeEx;
             }
         }
-        static bool Prepare() => MCMSettings.Instance is { } settings && settings.BattleSizeTweakExEnabled;
+        static bool Prepare() => KTSettings.Instance is { } settings && settings.BattleSizeTweakExEnabled;
     }
 
 
@@ -68,7 +68,7 @@ namespace KaosesTweaks.Patches
     {
         static void Postfix(MapEvent mapEvent, BattleSideEnum side, FlattenedTroopRoster priorTroops)
         {
-            if (MCMSettings.Instance is { } settings)
+            if (KTSettings.Instance is { } settings)
             {
                 BattleSizePatchEx_BattleSizeSpawnTick.AgentTrackerTroop.Clear();
                 BattleSizePatchEx_BattleSizeSpawnTick.AgentTrackerMount.Clear();
@@ -110,7 +110,7 @@ namespace KaosesTweaks.Patches
                 }
             }
         }
-        static bool Prepare() => MCMSettings.Instance is { } settings && settings.BattleSizeTweakExEnabled;
+        static bool Prepare() => KTSettings.Instance is { } settings && settings.BattleSizeTweakExEnabled;
         public static float mountfootratio = 0f;
         public static float troops = 0f;
         public static float mounts = 0f;
@@ -121,7 +121,7 @@ namespace KaosesTweaks.Patches
     [HarmonyPatch(typeof(MissionAgentSpawnLogic), "BattleSizeSpawnTick")]
     internal class BattleSizePatchEx_BattleSizeSpawnTick
     {
-        static bool Prepare() => MCMSettings.Instance is { } settings && settings.BattleSizeTweakExEnabled;
+        static bool Prepare() => KTSettings.Instance is { } settings && settings.BattleSizeTweakExEnabled;
         public static int runs = 0;
         public static int NumberOfTroopsCanBeSpawned = 0;
         public static int NumAttackers = 0;

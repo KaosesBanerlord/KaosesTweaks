@@ -10,7 +10,7 @@ namespace KaosesTweaks
 {
     public static class Statics
     {
-        public static MCMSettings? _settings;
+        public static KTSettings? _settings;
         public const string ModuleFolder = "KaosesTweaks";
         public const string InstanceID = ModuleFolder;
         public const string DisplayName = "Kaoses Tweaks";
@@ -19,7 +19,7 @@ namespace KaosesTweaks
         public const string ConfigFilePath = @"..\\..\\Modules\\" + ModuleFolder + "\\config.json";
         public static string PrePrend { get; set; } = DisplayName;
         public const string HarmonyId = ModuleFolder + ".harmony";
-        public static string GameVersion = ApplicationVersionHelper.GameVersionStr();
+        public static string GameVersion = EngineController.GetVersionStr();
         public static string ModVersion = Assembly.GetExecutingAssembly().GetName().Version.ToString();
         public const bool UsesHarmony = true;
 

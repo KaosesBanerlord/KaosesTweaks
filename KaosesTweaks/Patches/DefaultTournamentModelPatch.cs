@@ -10,18 +10,18 @@ namespace KaosesTweaks.Patches
     {
         static bool Prefix(ref int __result)
         {
-            if (!(MCMSettings.Instance is null))
+            if (!(KTSettings.Instance is null))
             {
-                __result = MCMSettings.Instance.TournamentRenownAmount;
+                __result = KTSettings.Instance.TournamentRenownAmount;
                 if (Statics._settings.TournamentDebug)
                 {
-                    IM.MessageDebug("Patches TournamentRenownAmount Tweak: " + MCMSettings.Instance.TournamentRenownAmount.ToString());
+                    IM.MessageDebug("Patches TournamentRenownAmount Tweak: " + KTSettings.Instance.TournamentRenownAmount.ToString());
                 }
                 return false;
             }
             return true;
         }
 
-        static bool Prepare() => MCMSettings.Instance is { } settings && settings.TournamentRenownIncreaseEnabled;
+        static bool Prepare() => KTSettings.Instance is { } settings && settings.TournamentRenownIncreaseEnabled;
     }
 }

@@ -19,7 +19,7 @@ namespace KaosesTweaks.Patches
 
             try
             {
-                if (MCMSettings.Instance is { } settings && settings.PartyWageTweaksEnabled && mobileParty != null)
+                if (KTSettings.Instance is { } settings && settings.PartyWageTweaksEnabled && mobileParty != null)
                 {
                     float orig_result = __result.ResultNumber;
                     if (!mobileParty.IsGarrison && (mobileParty.IsMainParty
@@ -40,7 +40,7 @@ namespace KaosesTweaks.Patches
                     }
                 }
 
-                if (MCMSettings.Instance is { } settings2 && settings2.BalancingWagesTweaksEnabled &&
+                if (KTSettings.Instance is { } settings2 && settings2.BalancingWagesTweaksEnabled &&
                     settings2.KingdomBalanceStrengthEnabled && mobileParty != null &&
                     mobileParty.LeaderHero != null && mobileParty.LeaderHero.Clan.Kingdom != null)
                 {
@@ -94,7 +94,7 @@ namespace KaosesTweaks.Patches
             }
         }
 
-        public static bool Prepare() => MCMSettings.Instance is { } settings && ((settings.PartyWageTweaksEnabled && settings.PartyWageTweaksHarmonyEnabled) || (settings.KingdomBalanceStrengthEnabled && settings.KingdomBalanceStrengthHarmonyEnabled));
+        public static bool Prepare() => KTSettings.Instance is { } settings && ((settings.PartyWageTweaksEnabled && settings.PartyWageTweaksHarmonyEnabled) || (settings.KingdomBalanceStrengthEnabled && settings.KingdomBalanceStrengthHarmonyEnabled));
 
 
 

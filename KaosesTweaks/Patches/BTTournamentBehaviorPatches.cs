@@ -14,13 +14,13 @@ namespace KaosesTweaks.Patches
     {
         static void Prefix(TournamentBehavior __instance)
         {
-            if (MCMSettings.Instance is { } settings)
+            if (KTSettings.Instance is { } settings)
             {
                 typeof(TournamentBehavior).GetProperty("OverallExpectedDenars").SetValue(__instance, __instance.OverallExpectedDenars + settings.TournamentGoldRewardAmount);
             }
         }
 
-        static bool Prepare() => MCMSettings.Instance is { } settings && settings.TournamentGoldRewardEnabled;
+        static bool Prepare() => KTSettings.Instance is { } settings && settings.TournamentGoldRewardEnabled;
     }
 
     [HarmonyPatch(typeof(TournamentBehavior), "CalculateBet")]
@@ -30,7 +30,7 @@ namespace KaosesTweaks.Patches
 
         static void Postfix(TournamentBehavior __instance)
         {
-            if (MCMSettings.Instance is { } settings)
+            if (KTSettings.Instance is { } settings)
             {
                 betOdd?.SetValue(__instance, MathF.Max((float)betOdd.GetValue(__instance), settings.MinimumBettingOdds, 0));
             }
@@ -38,7 +38,7 @@ namespace KaosesTweaks.Patches
 
         static bool Prepare()
         {
-            if (MCMSettings.Instance is { } settings && settings.MinimumBettingOddsTweakEnabled)
+            if (KTSettings.Instance is { } settings && settings.MinimumBettingOddsTweakEnabled)
             {
                 betOdd = typeof(TournamentBehavior).GetProperty(nameof(TournamentBehavior.BetOdd), BindingFlags.Public | BindingFlags.Instance);
                 return true;
@@ -52,7 +52,7 @@ namespace KaosesTweaks.Patches
     {
         static void Postfix(TournamentBehavior __instance, ref int __result)
         {
-            if (MCMSettings.Instance is { } settings)
+            if (KTSettings.Instance is { } settings)
             {
                 int num = settings.TournamentMaxBetAmount;
                 if (Hero.MainHero.GetPerkValue(DefaultPerks.Roguery.DeepPockets))
@@ -65,7 +65,7 @@ namespace KaosesTweaks.Patches
 
         static bool Prepare()
         {
-            return MCMSettings.Instance is { } settings && settings.TournamentMaxBetAmountTweakEnabled;
+            return KTSettings.Instance is { } settings && settings.TournamentMaxBetAmountTweakEnabled;
         }
     }
 }

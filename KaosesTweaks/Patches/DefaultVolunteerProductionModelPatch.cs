@@ -11,7 +11,7 @@ namespace KaosesTweaks.Patches
     {
         static void Postfix(Hero hero, int index, Settlement settlement, ref float __result)
         {
-            if (MCMSettings.Instance is { } settings && settings.BalancingTimeRecruitsTweaksEnabled && hero.CurrentSettlement != null && hero.CurrentSettlement.OwnerClan.Kingdom != null)
+            if (KTSettings.Instance is { } settings && settings.BalancingTimeRecruitsTweaksEnabled && hero.CurrentSettlement != null && hero.CurrentSettlement.OwnerClan.Kingdom != null)
             {
                 float num = 0f;
                 if (settings.KingdomBalanceStrengthVanEnabled)
@@ -56,6 +56,6 @@ namespace KaosesTweaks.Patches
                 __result += num * 0.75f;
             }
         }
-        static bool Prepare() => MCMSettings.Instance is { } settings && settings.KingdomBalanceStrengthEnabled;
+        static bool Prepare() => KTSettings.Instance is { } settings && settings.KingdomBalanceStrengthEnabled;
     }
 }

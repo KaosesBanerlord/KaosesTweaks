@@ -25,7 +25,7 @@ namespace KaosesTweaks.BTTweaks
 
         private static void Check(PrisonerReleaseCampaignBehavior escapeBehaviour, Hero hero)
         {
-            if (escapeBehaviour == null || !(MCMSettings.Instance is { } settings) || !hero.IsPrisoner) return;
+            if (escapeBehaviour == null || !(KTSettings.Instance is { } settings) || !hero.IsPrisoner) return;
 
             if (hero.PartyBelongedToAsPrisoner != null && (hero.PartyBelongedToAsPrisoner.MapFaction != null
                 || hero.PartyBelongedToAsPrisoner.LeaderHero?.Clan == Hero.MainHero.Clan))
@@ -79,11 +79,12 @@ namespace KaosesTweaks.BTTweaks
                 if (hero.PartyBelongedToAsPrisoner == null && hero.IsPrisoner && hero.IsAlive && !hero.IsActive && !hero.IsNotSpawned && !hero.IsReleased)
                 {
                     float days = hero.CaptivityStartTime.ElapsedDaysUntilNow;
-                    if (MCMSettings.Instance is { } settings && (days > (settings.MinimumDaysOfImprisonment + 3)))
+                    if (KTSettings.Instance is { } settings && (days > (settings.MinimumDaysOfImprisonment + 3)))
                     {
                         IM.ColorGreenMessage("Releasing " + hero.Name + " due to Missing Hero Bug. (" + (int)days + " days)");
                         IM.QuickInformationMessage("Releasing " + hero.Name + " due to Missing Hero Bug. (" + (int)days + " days)");
-                        EndCaptivityAction.ApplyByReleasing(hero);
+                        //@update EndCaptivityAction.ApplyByReleasing(hero);
+                        EndCaptivityAction.ApplyByReleasedByChoice(hero);
                     }
                 }
             }

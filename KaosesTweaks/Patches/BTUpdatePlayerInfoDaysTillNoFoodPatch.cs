@@ -13,6 +13,6 @@ namespace KaosesTweaks.Patches
             __instance.TotalFood = MobileParty.MainParty.GetNumDaysForFoodToLast() + 1;
         }
 
-        static bool Prepare() => MCMSettings.Instance is { } settings && settings.ShowFoodDaysRemaining;
+        static bool Prepare() => KTSettings.Instance is { } settings && settings.ShowFoodDaysRemaining;
     }
 }

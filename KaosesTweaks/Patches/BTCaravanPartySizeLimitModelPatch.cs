@@ -8,6 +8,6 @@
             {
             }
 
-            static bool Prepare() => MCMSettings.Instance is { } settings && settings.PlayerCaravanPartySizeTweakEnabled;
+            static bool Prepare() => KTSettings.Instance is { } settings && settings.PlayerCaravanPartySizeTweakEnabled;
         }*/
 }

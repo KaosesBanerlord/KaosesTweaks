@@ -82,7 +82,7 @@ namespace KaosesTweaks.Models
                 num2 = skillValue - num;
                 if (Statics._settings.LearningDebug)
                 {
-                    IM.MessageDebug("_overLimitText REDUCED VALUE: " + num2.ToString());
+                    IM.MessageDebug(attrText.ToString() +" _overLimitText REDUCED VALUE: " + num2.ToString());
                 }
                 result.AddFactor(-1f - 0.1f * num2, _overLimitText);
             }

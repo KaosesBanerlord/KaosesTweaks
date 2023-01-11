@@ -23,7 +23,7 @@ namespace KaosesTweaks.Models
 
             try
             {
-                if (MCMSettings.Instance is { } settings && settings.PartyWageTweaksEnabled && mobileParty != null)
+                if (KTSettings.Instance is { } settings && settings.PartyWageTweaksEnabled && mobileParty != null)
                 {
                     float orig_result = result.ResultNumber;
                     if (!mobileParty.IsGarrison && (mobileParty.IsMainParty
@@ -44,7 +44,7 @@ namespace KaosesTweaks.Models
                     }
                 }
 
-                if (MCMSettings.Instance is { } settings2 && settings2.BalancingWagesTweaksEnabled &&
+                if (KTSettings.Instance is { } settings2 && settings2.BalancingWagesTweaksEnabled &&
                     settings2.KingdomBalanceStrengthEnabled && mobileParty != null &&
                     mobileParty.LeaderHero != null && mobileParty.LeaderHero.Clan.Kingdom != null)
                 {

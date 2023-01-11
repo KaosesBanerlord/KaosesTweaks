@@ -24,7 +24,7 @@ namespace KaosesTweaks.Patches
         {
             if (town == null) return;
 
-            if (MCMSettings.Instance is { } settings && settings.BalancingTaxTweaksEnabled && town.Settlement.OwnerClan.Kingdom != null)
+            if (KTSettings.Instance is { } settings && settings.BalancingTaxTweaksEnabled && town.Settlement.OwnerClan.Kingdom != null)
             {
                 float num = 0f;
                 if (settings.KingdomBalanceStrengthVanEnabled)
@@ -77,7 +77,7 @@ namespace KaosesTweaks.Patches
                 __result.Add(value, new TextObject("BT Balancing Tax Tweak"));
             }
         }
-        static bool Prepare() => MCMSettings.Instance is { } settings && settings.KingdomBalanceStrengthEnabled;
+        static bool Prepare() => KTSettings.Instance is { } settings && settings.KingdomBalanceStrengthEnabled;
     }
 
     [HarmonyPatch]
@@ -94,7 +94,7 @@ namespace KaosesTweaks.Patches
 
         private static void Postfix(Village village, int marketIncome, ref int __result)
         {
-            if (MCMSettings.Instance is { } settings && settings.BalancingTaxTweaksEnabled && village.Settlement.OwnerClan.Kingdom != null)
+            if (KTSettings.Instance is { } settings && settings.BalancingTaxTweaksEnabled && village.Settlement.OwnerClan.Kingdom != null)
             {
                 float num = 0f;
                 if (settings.KingdomBalanceStrengthVanEnabled)
@@ -144,6 +144,6 @@ namespace KaosesTweaks.Patches
                 __result = (int)newresult;
             }
         }
-        static bool Prepare() => MCMSettings.Instance is { } settings && settings.KingdomBalanceStrengthEnabled;
+        static bool Prepare() => KTSettings.Instance is { } settings && settings.KingdomBalanceStrengthEnabled;
     }
 }

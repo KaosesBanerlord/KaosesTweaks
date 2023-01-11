@@ -1,9 +1,10 @@
 ﻿using Bannerlord.BUTR.Shared.Helpers;
+using MCM.Abstractions;
 using MCM.Abstractions.Attributes;
 using MCM.Abstractions.Attributes.v2;
-using MCM.Abstractions.Dropdown;
-using MCM.Abstractions.Settings.Base;
-using MCM.Abstractions.Settings.Base.Global;
+using MCM.Abstractions.Base;
+using MCM.Abstractions.Base.Global;
+using MCM.Common;
 using System;
 //using MCM.Abstractions.Settings.Base.PerSave;
 using System.Collections.Generic;
@@ -13,7 +14,7 @@ namespace KaosesTweaks.Settings
 {
     //public class MCMSettings : AttributePerSaveSettings<MCMSettings>, ISettingsProviderInterface
     //public class MCMSettings : AttributeGlobalSettings<MCMSettings>, ISettingsProviderInterface 
-    public class MCMSettings : AttributeGlobalSettings<MCMSettings>
+    public class KTSettings : AttributeGlobalSettings<KTSettings>
     {
         #region ModSettingsStandard
         public override string Id => Statics.InstanceID;
@@ -21,10 +22,8 @@ namespace KaosesTweaks.Settings
         // Build mod display name with name and version form the project properties version
 #pragma warning disable CS8620 // Argument cannot be used for parameter due to differences in the nullability of reference types.
         string modName = Statics.DisplayName;
-        public override string DisplayName => TextObjectHelper.Create("{=KaosesTweaksModDisplayName}" + modName + " {VERSION}", new Dictionary<string, TextObject>()
-        {
-            { "VERSION", TextObjectHelper.Create(typeof(MCMSettings).Assembly.GetName().Version?.ToString(3) ?? "")! }
-        })!.ToString();
+        TextObject to = new TextObject(typeof(KTSettings).Assembly.GetName().Version?.ToString(3) ?? "");
+        public override string DisplayName => new TextObject("{=KaosesTweaksModDisplayName}" + modName + " " + to.ToString())!.ToString();
 #pragma warning restore CS8620 // Argument cannot be used for parameter due to differences in the nullability of reference types.
 
         public override string FolderName => Statics.ModuleFolder;
@@ -159,6 +158,19 @@ namespace KaosesTweaks.Settings
             HintText = "{=KT_Debug_019}Debug mode - Killing Bandits Raises RelationShips tweaks")]
         [SettingPropertyGroup("Debug", GroupOrder = 100)]
         public bool KillingBanditsDebug { get; set; } = false;
+
+
+        [SettingPropertyBool("{=KT_Debug_020}Debug mode - Party Speeds", IsToggle = false, Order = 0, RequireRestart = true,
+            HintText = "{=KT_Debug_020}Debug mode - Party Speeds")]
+        [SettingPropertyGroup("Debug", GroupOrder = 100)]
+        public bool PartySpeedDebug { get; set; } = false;
+
+        [SettingPropertyBool("{=KT_Debug_020}Debug mode - Dynamic Party Speeds", IsToggle = false, Order = 0, RequireRestart = true,
+            HintText = "{=KT_Debug_020}Debug mode - Dynamic Party Speeds")]
+        [SettingPropertyGroup("Debug", GroupOrder = 100)]
+        public bool DynamicPartySpeedDebug { get; set; } = false;
+
+
         #endregion
 
         //~ Age Tweaks
@@ -295,34 +307,34 @@ namespace KaosesTweaks.Settings
 
         //~ Dynamic Battle Sizes
         #region Dynamic Battle Sizes
-        [SettingPropertyBool("{=KTMCM_BSTEXP}Dynamic Battle Sizes !BETA! " + "*", Order = 1, IsToggle = true, RequireRestart = true,
-            HintText = "{=KTMCM_BSTEXP_Desc}Allows you to set the battle size limit outside of native values. Will be dynamically adjusted to actual battle parameters. WARNING: BETA."),
-            SettingPropertyGroup("{=BT_Settings_000000}Battle Tweaks" + "/" + "{=KTMCM_BSTEXP}Dynamic Battle Sizes !BETA! " + "*")]
+        //[SettingPropertyBool("{=KTMCM_BSTEXP}Dynamic Battle Sizes !BETA! " + "*", Order = 1, IsToggle = true, RequireRestart = true,
+        //    HintText = "{=KTMCM_BSTEXP_Desc}Allows you to set the battle size limit outside of native values. Will be dynamically adjusted to actual battle parameters. WARNING: BETA."),
+        //    SettingPropertyGroup("{=BT_Settings_000000}Battle Tweaks" + "/" + "{=KTMCM_BSTEXP}Dynamic Battle Sizes !BETA! " + "*")]
         public bool BattleSizeTweakExEnabled { get; set; } = false;
 
-        [SettingPropertyInteger("{=KTMCM_BSTEXP_01}Battle Size Limit", 2, 2000, "0 Soldiers", Order = 2, RequireRestart = false,
-            HintText = "{=KTMCM_BSTEXP_01_Desc}Sets the limit for number of troops on a battlefield. May get automatically reduced when a crash is imminent because of a too large battle size limit for a given battle."),
-            SettingPropertyGroup("{=BT_Settings_000000}Battle Tweaks" + "/" + "{=KTMCM_BSTEXP}Dynamic Battle Sizes !BETA! " + "*")]
+        //[SettingPropertyInteger("{=KTMCM_BSTEXP_01}Battle Size Limit", 2, 2000, "0 Soldiers", Order = 2, RequireRestart = false,
+        //    HintText = "{=KTMCM_BSTEXP_01_Desc}Sets the limit for number of troops on a battlefield. May get automatically reduced when a crash is imminent because of a too large battle size limit for a given battle."),
+        //    SettingPropertyGroup("{=BT_Settings_000000}Battle Tweaks" + "/" + "{=KTMCM_BSTEXP}Dynamic Battle Sizes !BETA! " + "*")]
         public int BattleSizeEx { get; set; } = 1000;
 
-        [SettingPropertyInteger("{=KTMCM_BSTEXP_02}Min size of reinforcements", 0, 50, "0'%'", Order = 2, RequireRestart = false,
-            HintText = "{=KTMCM_BSTEXP_02_Desc}Sets the amount of free slots needed in relation to battlesize before reinforcements can spawn. With a Battle Size Limit of 1000 and a set value of 10% --> Min size of reinforcement is 100 (for both sides combined). [Vanilla:10%]"),
-            SettingPropertyGroup("{=BT_Settings_000000}Battle Tweaks" + "/" + "{=KTMCM_BSTEXP}Dynamic Battle Sizes !BETA! " + "*")]
+        //[SettingPropertyInteger("{=KTMCM_BSTEXP_02}Min size of reinforcements", 0, 50, "0'%'", Order = 2, RequireRestart = false,
+        //    HintText = "{=KTMCM_BSTEXP_02_Desc}Sets the amount of free slots needed in relation to battlesize before reinforcements can spawn. With a Battle Size Limit of 1000 and a set value of 10% --> Min size of reinforcement is 100 (for both sides combined). [Vanilla:10%]"),
+        //    SettingPropertyGroup("{=BT_Settings_000000}Battle Tweaks" + "/" + "{=KTMCM_BSTEXP}Dynamic Battle Sizes !BETA! " + "*")]
         public int ReinforcementQuota { get; set; } = 20;
 
-        [SettingPropertyFloatingInteger("{=KTMCM_BSTEXP_03}Reserved Slots for reinforcements", 0f, 1f, "0 %", Order = 3, RequireRestart = false,
-            HintText = "{=KTMCM_BSTEXP_03_Desc}Reserve this amount of slots in relation to Min size of reinforcements value if close to the max slots limit. If this is set to low and you are near the max slot limit of 2048 reinforcements spawn very late or wont spawn fully/at all."),
-            SettingPropertyGroup("{=BT_Settings_000000}Battle Tweaks" + "/" + "{=KTMCM_BSTEXP}Dynamic Battle Sizes !BETA! " + "*")]
+        //[SettingPropertyFloatingInteger("{=KTMCM_BSTEXP_03}Reserved Slots for reinforcements", 0f, 1f, "0 %", Order = 3, RequireRestart = false,
+        //    HintText = "{=KTMCM_BSTEXP_03_Desc}Reserve this amount of slots in relation to Min size of reinforcements value if close to the max slots limit. If this is set to low and you are near the max slot limit of 2048 reinforcements spawn very late or wont spawn fully/at all."),
+        //    SettingPropertyGroup("{=BT_Settings_000000}Battle Tweaks" + "/" + "{=KTMCM_BSTEXP}Dynamic Battle Sizes !BETA! " + "*")]
         public float SlotsForReinforcements { get; set; } = 0.5f;
 
-        [SettingPropertyInteger("{=KTMCM_BSTEXP_04}Horses on Battlefield", 0, 500, "0 Horses", Order = 3, RequireRestart = false,
-            HintText = "{=KTMCM_BSTEXP_04_Desc}The amount of horses that will stay on the battlefield. Any horses exceeding that amount will flee from the battlefield and free up agent slots."),
-            SettingPropertyGroup("{=BT_Settings_000000}Battle Tweaks" + "/" + "{=KTMCM_BSTEXP}Dynamic Battle Sizes !BETA! " + "*")]
+        //[SettingPropertyInteger("{=KTMCM_BSTEXP_04}Horses on Battlefield", 0, 500, "0 Horses", Order = 3, RequireRestart = false,
+        //    HintText = "{=KTMCM_BSTEXP_04_Desc}The amount of horses that will stay on the battlefield. Any horses exceeding that amount will flee from the battlefield and free up agent slots."),
+        //    SettingPropertyGroup("{=BT_Settings_000000}Battle Tweaks" + "/" + "{=KTMCM_BSTEXP}Dynamic Battle Sizes !BETA! " + "*")]
         public int RetreatHorses { get; set; } = 50;
 
-        [SettingPropertyFloatingInteger("{=KTMCM_BSTEXP_05}Safety Puffer", 1, 1.5f, "0 %", Order = 3, RequireRestart = false,
-            HintText = "{=KTMCM_BSTEXP_05_Desc}Vanilla assumes each troop to spawn is mounted (2 agents). We instead get the mounted share in army composition before battle and update it during battle. This value increases that share for safety reasons, because reinforcements dont exactly spawn with initial army composition ratio. Increase if you get crashes."),
-            SettingPropertyGroup("{=BT_Settings_000000}Battle Tweaks" + "/" + "{=KTMCM_BSTEXP}Dynamic Battle Sizes !BETA! " + "*")]
+        //[SettingPropertyFloatingInteger("{=KTMCM_BSTEXP_05}Safety Puffer", 1, 1.5f, "0 %", Order = 3, RequireRestart = false,
+        //    HintText = "{=KTMCM_BSTEXP_05_Desc}Vanilla assumes each troop to spawn is mounted (2 agents). We instead get the mounted share in army composition before battle and update it during battle. This value increases that share for safety reasons, because reinforcements dont exactly spawn with initial army composition ratio. Increase if you get crashes."),
+        //    SettingPropertyGroup("{=BT_Settings_000000}Battle Tweaks" + "/" + "{=KTMCM_BSTEXP}Dynamic Battle Sizes !BETA! " + "*")]
         public float BattleSizeExSafePuffer { get; set; } = 1.1f;
 
         #endregion 
@@ -2170,7 +2182,7 @@ namespace KaosesTweaks.Settings
         [SettingPropertyDropdown("{=BT_Settings_008102}Override Culture For Player Clan" + "*", Order = 3, RequireRestart = true,
             HintText = "{=BT_Settings_008102_Desc}Overrides the culture to change to for player clan owned settlements."),
             SettingPropertyGroup("{=BT_Settings_008000}Settlement Tweaks" + "/" + "{=BT_Settings_008100}Settlement Culture Transformation")]
-        public DropdownDefault<string> PlayerCultureOverride { get; } = new(new string[]
+        public Dropdown<string> PlayerCultureOverride { get; } = new(new string[]
         {
             "No Override",
             "battania",
@@ -2959,14 +2971,47 @@ namespace KaosesTweaks.Settings
         public float MobilePartyViewDistanceMultiplier { get; set; } = 1.0f;
         #endregion //~ MobilePartyViewDistance
 
+        public KTSettings()
+        {
+            PropertyChanged += MCMSettings_PropertyChanged;
+        }
+
+        private void MCMSettings_PropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(Debug))
+            {
+                BattleRewardShowDebug = false;
+                ArmyDebug = false;
+                BattleRewardsDebug = false;
+                ClanDebugging = false;
+                ItemDebugMode = false;
+                PregnancyDebug = false;
+                XpModifiersDebug = false;
+                TournamentDebug = false;
+                PrisonersDebug = false;
+                SettlementsDebug = false;
+                WandererLocationDebug = false;
+                PartySizeLimitsDebug = false;
+                WorkshopsDebug = false;
+                CraftingDebug = false;
+                LearningDebug = false;
+                BattleSizeDebug = false;
+                CultureChangeDebug = false;
+                LogToFile = false;
+            }
+        }
+
 
         //~ Presets
         #region Presets
-        public override IDictionary<string, Func<BaseSettings>> GetAvailablePresets()
+        public override IEnumerable<ISettingsPreset> GetBuiltInPresets()
         {
-            IDictionary<string, Func<BaseSettings>>? basePresets = base.GetAvailablePresets(); // include the 'Default' preset that MCM provides
+            foreach (var preset in base.GetBuiltInPresets())
+            {
+                yield return preset;
+            }
 
-            basePresets.Add("native all off", () => new MCMSettings()
+            yield return new MemorySettingsPreset(Id, "native all off", "Native All Off", () => new KTSettings
             {
                 //~ Age Tweaks
                 AgeTweaksEnabled = false,
@@ -3628,13 +3673,11 @@ namespace KaosesTweaks.Settings
                 ThrownValueMultiplier = 1.0f,
                 ThrownWeightMultiplier = 1.0f,
                 ThrownMissionFixMultiplierEnabled = false
-
-
             });
 
-            basePresets.Add("native all on", () => new MCMSettings()
-            {
 
+            yield return new MemorySettingsPreset(Id, "native all on", "Native All On", () => new KTSettings
+            {
                 AgeTweaksEnabled = true,
                 BecomeInfantAge = 3,
                 BecomeChildAge = 6,
@@ -4298,15 +4341,13 @@ namespace KaosesTweaks.Settings
 
             });
 
-            /*
-            basePresets.Add("True", () => new MCMSettings()
-            {
-                Property1 = true,
-                Property2 = true
-            });
-            */
+            // yield return new MemorySettingsPreset(Id, "reverse", "Reverse", () => new CustomSettings
+            // {
+            //     Property1 = false,
+            //     Property2 = true
+            // });
 
-            basePresets.Add("Bannerlord Tweaks defaults 1.5.7.2", () => new MCMSettings()
+            yield return new MemorySettingsPreset(Id, "Bannerlord Tweaks defaults 1.5.7.2", "Bannerlord Tweaks defaults 1.5.7.2", () => new KTSettings
             {
                 #region Preset Restore defaults from 1.5.7.2
                 QuestCharactersIgnorePartySize = false,
@@ -4502,39 +4543,8 @@ namespace KaosesTweaks.Settings
 
                 #endregion
             });
-            return basePresets;
         }
         #endregion
 
-
-        public MCMSettings()
-        {
-            PropertyChanged += MCMSettings_PropertyChanged;
-        }
-
-        private void MCMSettings_PropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
-        {
-            if (e.PropertyName == nameof(Debug))
-            {
-                BattleRewardShowDebug = false;
-                ArmyDebug = false;
-                BattleRewardsDebug = false;
-                ClanDebugging = false;
-                ItemDebugMode = false;
-                PregnancyDebug = false;
-                XpModifiersDebug = false;
-                TournamentDebug = false;
-                PrisonersDebug = false;
-                SettlementsDebug = false;
-                WandererLocationDebug = false;
-                PartySizeLimitsDebug = false;
-                WorkshopsDebug = false;
-                CraftingDebug = false;
-                LearningDebug = false;
-                BattleSizeDebug = false;
-                CultureChangeDebug = false;
-                LogToFile = false;
-            }
-        }
     }
 }

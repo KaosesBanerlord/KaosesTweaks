@@ -59,9 +59,9 @@ namespace KaosesTweaks.Settings
         {
             if (Statics.MCMModuleLoaded)
             {
-                if (MCMSettings.Instance is not null)
+                if (KTSettings.Instance is not null)
                 {
-                    Statics._settings = MCMSettings.Instance;
+                    Statics._settings = KTSettings.Instance;
                     IM.MessageDebug("using MCM");
                     //IM.MessageDebug("Not Using config settings");
                 }
@@ -88,27 +88,29 @@ namespace KaosesTweaks.Settings
 
         private static void CheckMcmConfig()
         {
-            string RootFolder = System.IO.Path.Combine(FSIOHelper.GetConfigPath(), "ModSettings/Global/" + Statics.ModuleFolder);
-            if (Directory.Exists(RootFolder))
-            {
-                Statics.MCMConfigFolder = RootFolder;
-                string fileLoc = System.IO.Path.Combine(RootFolder, Statics.ModuleFolder + ".json");
-                if (File.Exists(fileLoc))
-                {
-                    Statics.MCMConfigFileExists = true;
-                    Statics.MCMConfigFile = fileLoc;
-                    IM.MessageDebug("MCM Module Config file found");
-                }
-            }
+            //Bannerlord.BUTR.Shared.Helpers.PlatformFileHelperPCExtended.
+
+            //string RootFolder = System.IO.Path.Combine(FSIOHelper.GetConfigPath(), "ModSettings/Global/" + Statics.ModuleFolder);
+            //if (Directory.Exists(RootFolder))
+            //{
+            //    Statics.MCMConfigFolder = RootFolder;
+            //    string fileLoc = System.IO.Path.Combine(RootFolder, Statics.ModuleFolder + ".json");
+            //    if (File.Exists(fileLoc))
+            //    {
+            //        Statics.MCMConfigFileExists = true;
+            //        Statics.MCMConfigFile = fileLoc;
+            //        IM.MessageDebug("MCM Module Config file found");
+            //    }
+            //}
         }
 
         private static void CheckModConfig()
         {
-            if (File.Exists(Statics.ConfigFilePath))
-            {
-                Statics.ModConfigFileExists = true;
+            //if (File.Exists(Statics.ConfigFilePath))
+            //{
+            //    Statics.ModConfigFileExists = true;
                 //IM.MessageDebug("Config File FOUND");
-            }
+            //}
         }
 
     }

@@ -25,7 +25,7 @@ namespace KaosesTweaks.Patches
                             );*/
         }
 
-        static bool Prepare() => MCMSettings.Instance is { } settings && settings.MobilePartyViewDistanceEnabled;
+        static bool Prepare() => KTSettings.Instance is { } settings && settings.MobilePartyViewDistanceEnabled;
     }
 
 }

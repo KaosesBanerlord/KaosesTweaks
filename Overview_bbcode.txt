@@ -1,0 +1,384 @@
+[size=6][color=#f1c232][u]Overview[/u][/color][/size]
+
+A collection of tweaks that aims to allow the player to configure Bannerlords to their own liking, options are configured via MCM menu. Most of the tweaks can be enabled or disabled individually.
+Any tweak that has an option to use patches instead of model is for compatability and will change the code to use a harmony patch instead of over writing a game model.
+
+[size=5][color=#f1c232]Requirements:[/color][/size]
+The easiest way to get the mod requirements is to use[url=https://next.nexusmods.com/mountandblade2bannerlord/collections/n4byjn] BUTR Stack[/url] collection.
+
+[size=5][color=#f1c232]Documentation[/color][/size]
+For detailed information and API docs visit [url=http://bannerlord.kaoses.com/doku.php?id=mods:kaosestweaks]Kaoses Tweaks Wiki page[/url].
+
+[size=5][color=#f1c232]Features:[/color][/size]
+[list]
+[*]Age
+[*]Another chance at marriage (source code updated from [url=https://www.nexusmods.com/mountandblade2bannerlord/users/33743500]Jicksaw[/url]  [url=https://www.nexusmods.com/mountandblade2bannerlord/mods/388]Another Chance at Marriage[/url]﻿   )
+[*]Army Cohesion
+[*]Auto lock items 
+[*]Battle Settings
+[*]﻿Battle rewards 
+[*]Campaign Tweaks
+[*]Character Tweaks
+[*]Clan limits
+[*]Crafting
+[*]Focus points per level
+[*]Items 
+[*]Integrated Kaoses Party Speeds
+[*]Integrated Kaoses Projectiles
+[*]Killing bandits raises relationships (source code updated from [url=https://www.nexusmods.com/mountandblade2bannerlord/users/61177901]Clickers2223[/url]  [url=https://www.nexusmods.com/mountandblade2bannerlord/mods/500?tab=description]Kill Bandits Raise Relations[/url]﻿ )
+[*]Kingdom Tweaks[*]Learning Rate Modifiers
+[*]Learning Limit Modifiers
+[*]Levels per attribute
+[*]Miscellaneous
+[*]Party Food consumption modifiers
+[*]Party Tweaks
+[*]Pregnancy's
+[*]Prisoner Tweaks
+[*]Settlement Tweaks
+[*]Skill Xp Modifiers
+[*]Tournament
+[*]Workshop
+[/list]
+
+[size=5][color=#f1c232]Detailed Features List:[/color][/size]
+
+[size=4][color=#f1c232]Age:[/color][/size]
+[spoiler]
+[list]
+[*]﻿Become Infant Age
+[*]Become Child Age
+[*]Become Teenager Age
+[*]Hero Comes Of Age
+[*]﻿Become Old Age
+[*]Max Age
+[/list]
+[/spoiler] 
+
+[size=4][color=#f1c232]Another Chance at marriage:[/color][/size]
+[spoiler]
+[list]
+[*]Implemented and updated   [url=https://www.nexusmods.com/mountandblade2bannerlord/users/33743500]Jicksaw[/url]  [url=https://www.nexusmods.com/mountandblade2bannerlord/mods/388]Another Chance at Marriage[/url]
+[/list]
+[/spoiler]
+
+[size=4][color=#f1c232]Army Cohesion:[/color][/size]
+[spoiler]
+[list]
+[*]Cohesion Base Change
+[*]Disable Cohesion change for armies with only same Clan Parties
+[*]Cohesion change Multiplier  allows to increase or decrease cohesion change by a multiplier
+[*]Apply Multiplier to armies with only same Clan Parties
+[/list]
+[/spoiler]
+
+[size=4][color=#f1c232]Auto Item Locks:[/color][/size]
+[spoiler]
+[list]
+[*]Toggle Auto lock all horses except lame  
+[*]Toggle Auto lock all food
+[*]Toggle Auto lock  Crude Iron
+[*]Toggle Auto lock Wrought Iron
+[*]Toggle Auto lock Iron
+[*]Toggle Auto lock Steel
+[*]Toggle Auto lock Fine Steel
+[*]Toggle Auto lock Thamaskene Steel
+[*]Toggle Auto lock Iron Ore
+[*]Toggle Auto lock Silver Ore
+[*]Toggle Auto lock Hardwood
+[*]Toggle Auto lock Charcoal
+[/list]
+[/spoiler]
+
+[size=4][color=#f1c232]Battle Rewards::[/color][/size]
+[spoiler]
+[list]
+[*]Relationship gains
+[*]Renown gains
+[*]Influence gains
+[*]Morale gains
+[*]Gold loss after a defeat
+[/list]
+[/spoiler]
+
+[size=4][color=#f1c232]Battle Tweaks:[/color][/size]
+[spoiler]
+[list]
+[*]﻿Dynamic Battle Size Modifer (BETA) 
+[*]Battle Morale Effect Modifier
+[*]Hideout Battle Troop Limit
+[*]Continue Hideout Battle On Player Death
+[*]﻿Continue Battle On Losing Duel
+[*]﻿Siege Construction Progress Per Day
+[*]Siege Collateral Damage Casualties
+[*]Siege Destruction Casualties
+[*]Troop Battle Experience
+[*]﻿Troop Simulation Experience
+[*]All Two-Handed Weapons Cut Through
+[*]All One-Handed Weapons Cut Through
+[/list]
+[/spoiler]
+
+[size=4][color=#f1c232]Campaign Tweaks:[/color][/size]
+[spoiler]
+[list]
+[*]Battle Size Limit
+[*]Damage to Player Tweak
+[*]﻿Damage to Friends Tweak
+[*]Damage to Player's Troops
+[*]Combat AI Difficulty
+[*]Player Map Movement Speed
+[/list]
+[/spoiler]
+
+[size=4][color=#f1c232]Character:[/color][/size]
+[spoiler]
+[list]
+[*]Levels per attribute point
+[*]Focus points per level
+[/list]
+[/spoiler]
+
+[size=4][color=#f1c232]Clan Limits:[/color][/size]
+[spoiler]
+[list]
+[*]Party Limits
+[*]Companion Limits
+[*]Unlimited Wanderers Patch
+[*]﻿Add to AI Lord Parties Limit
+[*]﻿Also Adjust Minor Factions
+[*]Custom Spawn Parties Limit
+[/list]
+[/spoiler]
+
+[size=4][color=#f1c232]Crafting:[/color][/size]
+[spoiler]
+[list]
+[*]Refining Xp increase or decrease by multiplier
+[*]Smelting Xp increase or decrease by multiplier
+[*]Crafting Xp increase or decrease by multiplier
+[*]Disable Energy
+[*]Energy Refining increase or decrease by multiplier
+[*]Energy Crafting increase or decrease by multiplier
+[*]Energy Smelting increase or decrease by multiplier
+[*]Max Crafting Stamina
+[*]Crafting Stamina Gain
+[*]Crafting Stamina Gain Outside Settlement
+[*]Hide Locked Weapons in Smelting Menu
+[*]﻿Unlocking Parts From Smelted Weapons
+[*]modify refining formula cost and output. Needs adjustment currently is basically a cheat
+[*]set base bonus for crafted quality types fine, master and legendary
+[/list]
+[/spoiler]
+
+[size=4][color=#f1c232]Items:[/color][/size]
+Covers the following each one can have weight and/or price increased or decreased based on tier,  except weapons have no weight modifiers:
+[spoiler]
+[list]
+[*]Armors
+[*]Melee Weapons
+[*]Ranged Weapons
+[*]Goods
+[*]Food
+[*]Projectile Stack and Price multipliers
+[/list]
+[/spoiler]
+
+[size=4][color=#f1c232]Kaoses Party Speeds:[/color][/size]
+[spoiler]
+[list]
+[*]Implemented Kaoses Party Speed mod
+[/list]
+[/spoiler]
+
+[size=4][color=#f1c232]Kaoses Projectiles:[/color][/size]
+[spoiler]
+[list]
+[*]Implemented Kaoses Projectiles mod
+[/list]
+[/spoiler]
+
+[size=4][color=#f1c232]Killing bandits raises relations:[/color][/size]
+[spoiler]
+[list]
+[*]Implemented and updated [url=https://www.nexusmods.com/mountandblade2bannerlord/users/61177901]Clickers2223[/url]  [url=https://www.nexusmods.com/mountandblade2bannerlord/mods/500?tab=description]Kill Bandits Raise Relations[/url]
+[/list]
+[/spoiler]
+
+[size=4][color=#f1c232]Kingdom:[/color][/size]
+[spoiler]
+[list]
+[*]Faction Joining Barter Adjustment
+[*]Relationship favored Faction Joining Barter
+[*]Faction Balancing
+[*]Modifiers For Vanilla Kingdoms
+[/list]
+[/spoiler]
+
+[size=4][color=#f1c232]Learning Rate Modifiers:[/color][/size]
+[spoiler]
+[list]
+[*]Global Learning rate modifier
+[/list]
+[/spoiler]
+
+[size=4][color=#f1c232]Miscellaneous:[/color][/size]
+[spoiler]
+[list]
+[*][size=3]﻿Disable Quest Troops Affecting Morale [/size]
+[*][size=3]﻿Show Number of Days of Food [/size]
+[*][size=3]﻿Campaign Speed Fast Forward [/size]
+[/list][/size]
+[/spoiler]
+
+[size=4][color=#f1c232]Party:[/color][/size]
+[spoiler]
+[list]
+[*]Global party food consumption rate modifier
+[*]Party Wage Adjustment
+[*]Garrison Wage Adjustment
+[*]Apply Wage Tweaks to Your Faction
+[*]Daily Troop Experience
+[/list]
+[/spoiler]
+
+[size=4][color=#f1c232]Pregnancy:[/color][/size]
+[spoiler]
+[list]
+[*]Duration
+[*]Gender Ratio
+[*]Probability of Female Child
+[*]Twins Probability
+[*]Min Pregnancy Age
+[*]Max Pregnancy Age
+[*]Stillbirth chance
+[*]Death in labour chance
+[*]Disable Stillbirths
+[*]Disable Maternal Mortality 
+[*]Clan Fertility Bonus
+[*]Max Children
+[*]Player is Infertile
+[/list]
+[/spoiler]
+
+[size=4][color=#f1c232]Prisoner Tweaks:[/color][/size]
+[spoiler]
+[list]
+[*]Minimum Days of Imprisonment
+[*]﻿﻿Player Prisoners Only
+[*]Missing Prisoner Hero Fix
+[*]﻿Prisoner Size Bonus
+[*]﻿Also apply to AI
+[*]﻿Prisoner Confirmity
+[*]Prisoner sell price multiplier
+[/list]
+[/spoiler]
+
+[size=4][color=#f1c232]Settlement Tweaks:[/color][/size]
+[spoiler]
+[list]
+[*][size=3]﻿Settlement Culture Transformation[/size]
+[*][size=3]﻿Change To Culture Of Kingdom Faction Instead[/size]
+[*][size=3]﻿Culture For Player Clan[/size]
+[*][size=3]﻿Weeks for Settlement Culture Change [/size]
+[*][size=3]﻿Disable Troop Donations [/size]
+[*][size=3]﻿Disable Troop Donations .[/size]
+[*][size=3]﻿Village Production: Food [/size]
+[*][size=3]﻿Village Production: Other goods [/size]
+[*][size=3]﻿Castle Training Fields Experience Level 1 [/size]
+[*][size=3]﻿Castle Training Fields Experience Level 2 [/size]
+[*][size=3]﻿Castle Training Fields Experience Level 3 [/size]
+[*][size=3]Castle Granary Food Storage Level 1[/size]
+[*][size=3]﻿Castle Granary Food Storage Level 2 [/size]
+[*][size=3]﻿Castle Granary Food Storage Level 3 [/size]
+[*][size=3]﻿Castle Garden Food Production Level 1[/size]
+[*][size=3]﻿Castle Garden Food Production Level 2 [/size]
+[*][size=3]﻿Castle Garden Food Production Level 3[/size]
+[*][size=3]﻿Castle Militia Barracks Production Level 1[/size]
+[*][size=3]Castle Militia Barracks Production Level 2[/size]
+[*][size=3]﻿Castle Militia Barracks Production Level 3[/size]
+[*][size=3]﻿Town Training Fields Experience Level 1[/size]
+[*][size=3]﻿Town Training Fields Experience Level 2[/size]
+[*][size=3]﻿Town Training Fields Experience Level 3[/size]
+[*][size=3]﻿Town Granary Food Storage Level 1[/size]
+[*][size=3]﻿Town Granary Food Storage Level 2[/size]
+[*][size=3]﻿Town Granary Food Storage Level 3[/size]
+[*][size=3]﻿Town Orchard Food Production Level 1[/size]
+[*][size=3]﻿Town Orchard Food Production Level 2[/size]
+[*][size=3]﻿Town Orchard Food Production Level 3 [/size]
+[*][size=3]﻿Town Militia Barracks Production Level 1 [/size]
+[*][size=3]﻿Town Militia Barracks Production Level 2[/size]
+[*][size=3]﻿Town Militia Barracks Production Level 3[/size]
+[*][size=3]﻿Castle Food Modifier[/size]
+[*][size=3]﻿Town Food Modifier[/size]
+[*][size=3]﻿Food Loss From Prosperity[/size]
+[*][size=3]﻿Castle Militia Growth Bonus.[/size]
+[*][size=3]﻿Town Militia Growth Bonus[/size]
+[*][size=3]﻿Castle Militia Retirement Modifier[/size]
+[*][size=3]﻿Town Militia Retirement Modifier [/size]
+[*][size=3]﻿Elite Melee Militia Spawn Chance[/size]
+[*][size=3]﻿Elite Ranged Militia Spawn Chance[/size]
+[*][size=3]Village Food Production Balancing[/size]
+[*][size=3]﻿Faster Recruiting Balancing[/size]
+[*][size=3]Taxation Efficiency Balancing[/size]
+[*][size=3]﻿Wage costs Balancing[/size]
+[*][size=3]Quality of Recruitment Balancing[/size]
+[/list]
+[/spoiler]
+
+[size=4][color=#f1c232]Skill Xp Modifiers:[/color][/size]
+[spoiler]
+[list]
+[*]Global skill xp modifiers
+[*]Individual skill modifiers
+[/list]
+[/spoiler]
+
+[size=4][color=#f1c232]Tournament:[/color][/size]
+[spoiler]
+[list]
+[*][size=3]﻿Tournament Renown Reward [/size]
+[*][size=3]﻿Tournament Gold Reward[/size]
+[*][size=3]﻿Maximum Bet Amount[/size]
+[*][size=3]﻿Tournament Hero Experience Modifier[/size]
+[*][size=3]﻿Arena Hero Experience Modifier[/size]
+[*][size=3]﻿Minimum Betting Odds[/size]
+[/list]
+[/spoiler]
+
+[size=4][color=#f1c232]Workshop:[/color][/size]
+[spoiler] 
+[list]
+[*][size=3]﻿Workshop Count Limit[/size]
+[*][size=3]Workshop Buy Cost.[/size]
+[*][size=3]﻿Workshop Effectivness [/size]
+[*][size=3]﻿Workshop Products Sell Prices[/size]
+[*][size=3]﻿Workshop Products Buy Prices [/size]
+[*][size=3]Days to save from bankruptcy[/size]
+[*][size=3]Player limit[/size]
+[/list]
+[/spoiler]
+
+[size=5][color=#f1c232]Installation:[/color][/size]
+[size=3]It is best to install the mod via vortex if you are not an advanced user[/size]
+Add the mod folder to your modules folder (C:\Program Files (x86)\Steam\steamapps\common\Mount
+& Blade II Bannerlord\Modules) unblock the dll and then activate it.
+
+[size=5][color=#f1c232]Translations:[/color][/size]
+The mod should be fully translatable and the strings file can be found in the download section, or in the folder ModuleData inside of the mod folder.
+
+[size=5][color=#f1c232]Source Code:[/color][/size]
+The source code for the mod is available here [url=https://github.com/lazeras/KaosesTweaks]github[/url]  contributions are welcome.
+
+[size=5][color=#f1c232]My Other Mods:[/color][/size]
+[list]
+[*][url=https://www.nexusmods.com/mountandblade2bannerlord/mods/2911]Kaoses tweaks[/url]
+[*][url=https://www.nexusmods.com/mountandblade2bannerlord/mods/4994]Kaoses Common[/url]
+[*][url=https://www.nexusmods.com/mountandblade2bannerlord/mods/684]Kaoses Party sizes[/url]
+[*][url=https://www.nexusmods.com/mountandblade2bannerlord/mods/1333]Kaoses Troop Wages[/url]
+[*][url=https://www.nexusmods.com/mountandblade2bannerlord/mods/1335]Kaoses Trade Goods[/url]
+[*][url=https://www.nexusmods.com/mountandblade2bannerlord/mods/726]Kaoses Projectiles[/url]
+[*][url=https://www.nexusmods.com/mountandblade2bannerlord/mods/2912/]Kaoses Party Speeds[/url]
+[*][url=https://www.nexusmods.com/mountandblade2bannerlord/mods/77]More Bandits[/url]
+[*][url=https://www.nexusmods.com/mountandblade2bannerlord/mods/79]More Projectiles[/url]
+[*][url=https://www.nexusmods.com/mountandblade2bannerlord/mods/335]Expanded Bandits[/url]
+[/list]

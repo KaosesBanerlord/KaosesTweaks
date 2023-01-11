@@ -35,7 +35,7 @@ namespace KaosesTweaks.Behaviors
         {
             Dictionary<Settlement, CultureObject> startingCultures = new();
 
-            if (MCMSettings.Instance is { } settings)
+            if (KTSettings.Instance is { } settings)
             {
                 UpdatePlayerOverride();
             }
@@ -43,7 +43,7 @@ namespace KaosesTweaks.Behaviors
             foreach (Settlement settlement in from settlement in Campaign.Current.Settlements where settlement.IsTown || settlement.IsCastle || settlement.IsVillage select settlement)
             {
                 startingCultures.Add(settlement, settlement.Culture);
-                if (MCMSettings.Instance is { } settings2)
+                if (KTSettings.Instance is { } settings2)
                 {
                     bool PlayerOverride = settlement.OwnerClan == Clan.PlayerClan && OverrideCulture != settlement.Culture;
                     bool KingdomOverride = settlement.OwnerClan != Clan.PlayerClan && settings2.ChangeToKingdomCulture && settlement.OwnerClan.Kingdom != null && settlement.OwnerClan.Kingdom.Culture != settlement.Culture;
@@ -95,7 +95,7 @@ namespace KaosesTweaks.Behaviors
         // Token: 0x06000E45 RID: 3653 RVA: 0x000630F6 File Offset: 0x000612F6
         private void OnClanChangedKingdom(Clan clan, Kingdom oldKingdom, Kingdom newKingdom, ChangeKingdomAction.ChangeKingdomActionDetail detail, bool showNotification = true)
         {
-            if (MCMSettings.Instance is { } settings && settings.ChangeToKingdomCulture)
+            if (KTSettings.Instance is { } settings && settings.ChangeToKingdomCulture)
             {
                 if (clan == Clan.PlayerClan)
                 {
@@ -115,13 +115,13 @@ namespace KaosesTweaks.Behaviors
         {
 
 
-            if (MCMSettings.Instance is { } settings && settlement.OwnerClan == Clan.PlayerClan)
+            if (KTSettings.Instance is { } settings && settlement.OwnerClan == Clan.PlayerClan)
             {
                 UpdatePlayerOverride();
             }
             if (settlement.IsVillage || settlement.IsCastle || settlement.IsTown)
             {
-                if (MCMSettings.Instance is { } settings2)
+                if (KTSettings.Instance is { } settings2)
                 {
                     bool PlayerOverride = settlement.OwnerClan == Clan.PlayerClan && OverrideCulture != settlement.Culture;
                     bool KingdomOverride = settlement.OwnerClan != Clan.PlayerClan && settings2.ChangeToKingdomCulture && settlement.OwnerClan.Kingdom != null && settlement.OwnerClan.Kingdom.Culture != settlement.Culture;
@@ -171,7 +171,7 @@ namespace KaosesTweaks.Behaviors
 
         public void UpdatePlayerOverride()
         {
-            if (MCMSettings.Instance is { } settings)
+            if (KTSettings.Instance is { } settings)
             {
                 OverrideCulture = null;
                 foreach (CultureObject Culture in from kingdom in Campaign.Current.Kingdoms where settings.PlayerCultureOverride.SelectedValue == kingdom.Culture.StringId || (settings.PlayerCultureOverride.SelectedValue == "khergit" && kingdom.Culture.StringId == "rebkhu") select kingdom.Culture)
@@ -252,7 +252,7 @@ namespace KaosesTweaks.Behaviors
 
         public bool IsSettlementDue(Settlement settlement)
         {
-            if (MCMSettings.Instance is { } settings && settings.TimeToChanceCulture > 0)
+            if (KTSettings.Instance is { } settings && settings.TimeToChanceCulture > 0)
             {
                 return WeekCounter[settlement] / 7 >= settings.TimeToChanceCulture;
             }
@@ -309,7 +309,7 @@ namespace KaosesTweaks.Behaviors
 
         public static void Game_menu_change_culture_on_consequence(MenuCallbackArgs args)
         {
-            if (MCMSettings.Instance is { } settings)
+            if (KTSettings.Instance is { } settings)
             {
                 bool PlayerOverride = Settlement.CurrentSettlement.OwnerClan == Clan.PlayerClan && OverrideCulture != Settlement.CurrentSettlement.Culture;
                 bool KingdomOverride = Settlement.CurrentSettlement.OwnerClan != Clan.PlayerClan && settings.ChangeToKingdomCulture && Settlement.CurrentSettlement.OwnerClan.Kingdom != null && Settlement.CurrentSettlement.OwnerClan.Kingdom.Culture != Settlement.CurrentSettlement.Culture;

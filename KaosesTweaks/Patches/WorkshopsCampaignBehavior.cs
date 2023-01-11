@@ -33,14 +33,14 @@ namespace KaosesTweaks.Patches
         }
         private static void Postfix(ItemObject outputItem, Town town, Workshop workshop, int count, bool doNotEffectCapital, int __state)
         {
-            if (Campaign.Current.GameStarted && !doNotEffectCapital && MCMSettings.Instance is { } settings && settings.EnableWorkshopSellTweak)
+            if (Campaign.Current.GameStarted && !doNotEffectCapital && KTSettings.Instance is { } settings && settings.EnableWorkshopSellTweak)
             {
                 float num = Math.Min(1000, __state) * count * (settings.WorkshopSellTweak - 1f);
                 workshop.ChangeGold((int)num);
                 town.ChangeGold((int)-num);
             }
         }
-        static bool Prepare() => MCMSettings.Instance is { } settings && settings.EnableWorkshopSellTweak;
+        static bool Prepare() => KTSettings.Instance is { } settings && settings.EnableWorkshopSellTweak;
     }
 
 
@@ -75,7 +75,7 @@ namespace KaosesTweaks.Patches
         private static void Postfix(ItemCategory productionInput, Town town, Workshop workshop, bool doNotEffectCapital, int __state)
         {
 
-            if (Campaign.Current.GameStarted && !doNotEffectCapital && MCMSettings.Instance is { } settings && settings.EnableWorkshopBuyTweak)
+            if (Campaign.Current.GameStarted && !doNotEffectCapital && KTSettings.Instance is { } settings && settings.EnableWorkshopBuyTweak)
             {
                 float num = __state * (settings.WorkshopBuyTweak - 1f);
                 if (Statics._settings.WorkshopsDebug)
@@ -86,7 +86,7 @@ namespace KaosesTweaks.Patches
                 town.ChangeGold((int)num);
             }
         }
-        static bool Prepare() => MCMSettings.Instance is { } settings && settings.EnableWorkshopBuyTweak;
+        static bool Prepare() => KTSettings.Instance is { } settings && settings.EnableWorkshopBuyTweak;
     }
 
     [HarmonyPatch(typeof(ChangeOwnerOfWorkshopAction), "ApplyByWarDeclaration")]
@@ -94,12 +94,12 @@ namespace KaosesTweaks.Patches
     {
         private static bool Prefix(Workshop workshop, Hero newOwner, WorkshopType workshopType, int capital, bool upgradable, TextObject customName = null)
         {
-            if (MCMSettings.Instance is { } settings && settings.KeepWorkshopsOnWarDeclaration)
+            if (KTSettings.Instance is { } settings && settings.KeepWorkshopsOnWarDeclaration)
                 return false;
 
             return true;
         }
-        static bool Prepare() => MCMSettings.Instance is { } settings && settings.KeepWorkshopsOnWarDeclaration;
+        static bool Prepare() => KTSettings.Instance is { } settings && settings.KeepWorkshopsOnWarDeclaration;
     }
 
     [HarmonyPatch(typeof(ChangeOwnerOfWorkshopAction), "ApplyByBankruptcy")]
@@ -107,12 +107,12 @@ namespace KaosesTweaks.Patches
     {
         private static bool Prefix(Workshop workshop, Hero newOwner, WorkshopType workshopType, int capital, bool upgradable, TextObject customName = null)
         {
-            if (MCMSettings.Instance is { } settings && settings.KeepWorkshopsOnBankruptcy)
+            if (KTSettings.Instance is { } settings && settings.KeepWorkshopsOnBankruptcy)
                 return false;
 
             return true;
         }
-        static bool Prepare() => MCMSettings.Instance is { } settings && settings.KeepWorkshopsOnBankruptcy;
+        static bool Prepare() => KTSettings.Instance is { } settings && settings.KeepWorkshopsOnBankruptcy;
     }
 
     /*
@@ -121,11 +121,11 @@ namespace KaosesTweaks.Patches
         {
             private static void Postfix(ref int __result)
             {
-                if (MCMSettings.Instance is { } settings && settings.WorkShopBankruptcyModifiers)
+                if (KTSettings.Instance is { } settings && settings.WorkShopBankruptcyModifiers)
                 {
                     __result = settings.WorkShopBankruptcyValue;
                 }
             }
-            static bool Prepare() => MCMSettings.Instance is { } settings && settings.WorkShopBankruptcyModifiers;
+            static bool Prepare() => KTSettings.Instance is { } settings && settings.WorkShopBankruptcyModifiers;
         }*/
 }

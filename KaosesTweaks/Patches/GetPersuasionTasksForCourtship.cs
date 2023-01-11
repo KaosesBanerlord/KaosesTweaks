@@ -80,7 +80,7 @@ namespace KaosesTweaks.Patches
             }
         }
 
-        static bool Prepare() => MCMSettings.Instance is { } settings && settings.AnotherChanceAtMarriageEnabled;
+        static bool Prepare() => KTSettings.Instance is { } settings && settings.AnotherChanceAtMarriageEnabled;
     }
 }
 /* Another chance at marriage */

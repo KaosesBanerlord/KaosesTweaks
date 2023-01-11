@@ -27,16 +27,16 @@ namespace KaosesTweaks
         private Harmony? harmonyKT;
 
         /* Another chance at marriage */
-        public static Dictionary<Hero, CampaignTime> LastAttempts;
+        public static Dictionary<Hero, CampaignTime>? LastAttempts;
         public static readonly FastInvokeHandler RemoveUnneededPersuasionAttemptsHandler =
         MethodInvoker.GetHandler(AccessTools.Method(typeof(RomanceCampaignBehavior), "RemoveUnneededPersuasionAttempts"));
         /* Another chance at marriage */
 
         /* KaosesPartySpeeds */
-        public static Dictionary<MobileParty, CampaignTime> FleeingParties;
-        public static Dictionary<MobileParty, int> FleeingHours;
-        public static Dictionary<MobileParty, float> FleeingSpeedReduction;
-        public static MobileParty FleeingPartyPlayer;
+        public static Dictionary<MobileParty, CampaignTime> FleeingParties = new Dictionary<MobileParty, CampaignTime>();
+        public static Dictionary<MobileParty, int> FleeingHours = new Dictionary<MobileParty, int>();
+        public static Dictionary<MobileParty, float> FleeingSpeedReduction = new Dictionary<MobileParty, float>();
+        public static MobileParty? FleeingPartyPlayer;
         /* KaosesPartySpeeds */
 
 
@@ -52,6 +52,7 @@ namespace KaosesTweaks
             try
             {
                 ConfigLoader.LoadConfig();
+                IM.ModInfoDebug();
                 bool modUsesHarmoney = Statics.UsesHarmony;
                 if (modUsesHarmoney)
                 {
@@ -68,6 +69,9 @@ namespace KaosesTweaks
                     else { IM.DisplayModHarmonyErrorMessage(); }
                 }
                 else { IM.DisplayModLoadedMessage(); }
+                //IM.MessageDebug("GetVersionStr :- " + TaleWorlds.Engine.EngineController.GetVersionStr());
+                //IM.MessageDebug("GetApplicationPlatformName :- " + TaleWorlds.Engine.EngineController.GetApplicationPlatformName());
+                //IM.MessageDebug("GetModulesVersionStr :- " + TaleWorlds.Engine.EngineController.GetModulesVersionStr());
             }
             catch (Exception ex)
             {
@@ -86,11 +90,6 @@ namespace KaosesTweaks
             {
                 return;
             }
-            //~ KT Party Speeds
-            FleeingParties = new Dictionary<MobileParty, CampaignTime>();
-            FleeingHours = new Dictionary<MobileParty, int>();
-            FleeingSpeedReduction = new Dictionary<MobileParty, float>();
-            //~ KT Party Speeds
 
             //~ BT PrisonerImprisonmentTweak
             try
@@ -235,7 +234,7 @@ namespace KaosesTweaks
             //~ PrisonerImprisonmentTweakEnabled
             try
             {
-                if (Campaign.Current != null && MCMSettings.Instance is { } settings)
+                if (Campaign.Current != null && KTSettings.Instance is { } settings)
                 {
                     if (settings.PrisonerImprisonmentTweakEnabled)
                         PrisonerImprisonmentTweak.Apply(Campaign.Current);
@@ -249,7 +248,7 @@ namespace KaosesTweaks
             //~ DailyTroopExperienceTweakEnabled
             try
             {
-                if (Campaign.Current != null && MCMSettings.Instance is { } settings)
+                if (Campaign.Current != null && KTSettings.Instance is { } settings)
                 {
                     if (settings.DailyTroopExperienceTweakEnabled)
                         DailyTroopExperienceTweak.Apply(Campaign.Current);
@@ -263,7 +262,7 @@ namespace KaosesTweaks
             //~ TweakedConspiracyQuestTimerEnabled
             try
             {
-                if (Campaign.Current != null && MCMSettings.Instance is { } settings)
+                if (Campaign.Current != null && KTSettings.Instance is { } settings)
                 {
                     // 1.5.7.2 - Disable until we understand main quest changes.
                     //if (settings.TweakedConspiracyQuestTimerEnabled)
@@ -299,7 +298,7 @@ namespace KaosesTweaks
         private void AddModels(CampaignGameStarter campaignGameStarter)
         {
 
-            if (campaignGameStarter != null && MCMSettings.Instance is { } settings)
+            if (campaignGameStarter != null && KTSettings.Instance is { } settings)
             {
                 if (settings.MCMClanModifiers)
                 {
@@ -459,7 +458,7 @@ namespace KaosesTweaks
 
         protected override void OnApplicationTick(float dt)
         {
-            if (Campaign.Current != null && MCMSettings.Instance is { } settings2 && settings2.CampaignSpeed != 4)
+            if (Campaign.Current != null && KTSettings.Instance is { } settings2 && settings2.CampaignSpeed != 4)
             {
                 Campaign.Current.SpeedUpMultiplier = settings2.CampaignSpeed;
             }
