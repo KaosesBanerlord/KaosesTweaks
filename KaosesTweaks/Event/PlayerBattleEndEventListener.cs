@@ -134,21 +134,26 @@ namespace KaosesTweaks.Event
                     return true;
                 }
 
-                if (m.GetLeaderParty(m.DefeatedSide).Owner.Clan.IsMafia && Factory.Settings.IncludeMafia)
+                PartyBase partyBase = m.GetLeaderParty(m.DefeatedSide);
+                if (partyBase.Owner.Clan != null)
                 {
-                    //~ bugged
-                    /* triggered when beat thugs in a town
-                     * System.NullReferenceException
-  HResult=0x80004003
-  Message=Object reference not set to an instance of an object.
-  Source=KaosesTweaks
-  StackTrace:
-   at KaosesTweaks.Event.PlayerBattleEndEventListener.IsDefeatedBanditLike(MapEvent m) in U:\BannerLord\MyMods\KaosesTweaks\KaosesTweaks\Event\PlayerBattleEndEventListener.cs:line 137
+                    if (partyBase.Owner.Clan.IsMafia && Factory.Settings.IncludeMafia)
+                    {
+                        //~ bugged
+                        /* triggered when beat thugs in a town
+                         * System.NullReferenceException
+      HResult=0x80004003
+      Message=Object reference not set to an instance of an object.
+      Source=KaosesTweaks
+      StackTrace:
+       at KaosesTweaks.Event.PlayerBattleEndEventListener.IsDefeatedBanditLike(MapEvent m) in U:\BannerLord\MyMods\KaosesTweaks\KaosesTweaks\Event\PlayerBattleEndEventListener.cs:line 137
 
-                     */
-                    return true;
+                         */
+                        return true;
 
+                    }
                 }
+
             }
 
             catch (Exception ex)
