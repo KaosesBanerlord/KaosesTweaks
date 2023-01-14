@@ -1,11 +1,12 @@
 ﻿using HarmonyLib;
 using KaosesTweaks.Settings;
-using KaosesTweaks.Utils;
+using KaosesCommon.Utils;
 using System;
 using System.Reflection;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Settlements;
+using KaosesTweaks.Objects;
 
 namespace KaosesTweaks.Patches
 {
@@ -26,14 +27,14 @@ namespace KaosesTweaks.Patches
         {
             if (settlement == null || mobileParty == null) return;
 
-            if (KTSettings.Instance is { } settings && mobileParty.LeaderHero.Clan == Clan.PlayerClan)
+            if (Factory.Settings is { } settings && mobileParty.LeaderHero.Clan == Clan.PlayerClan)
             {
                 bool DisableDonationClan = settlement.OwnerClan == Clan.PlayerClan && settings.DisableTroopDonationPatchEnabled;
                 bool DisableForAnySettlement = settings.DisableTroopDonationAnyEnabled;
 
                 if (DisableDonationClan || DisableForAnySettlement)
                 {
-                    if (Statics._settings.SettlementsDebug)
+                    if (Factory.Settings.SettlementsDebug)
                     {
                         IM.MessageDebug("FindNumberOfTroopsToLeaveToGarrison: IS DISABLED");
                     }
@@ -41,6 +42,6 @@ namespace KaosesTweaks.Patches
                 }
             }
         }
-        static bool Prepare() => KTSettings.Instance is { } settings && settings.DisableTroopDonationPatchEnabled;
+        static bool Prepare() => Factory.Settings is { } settings && settings.DisableTroopDonationPatchEnabled;
     }
 }

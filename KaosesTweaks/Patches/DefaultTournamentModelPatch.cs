@@ -1,7 +1,8 @@
 ﻿using HarmonyLib;
 using KaosesTweaks.Settings;
-using KaosesTweaks.Utils;
+using KaosesCommon.Utils;
 using TaleWorlds.CampaignSystem.GameComponents;
+using KaosesTweaks.Objects;
 
 namespace KaosesTweaks.Patches
 {
@@ -10,18 +11,18 @@ namespace KaosesTweaks.Patches
     {
         static bool Prefix(ref int __result)
         {
-            if (!(KTSettings.Instance is null))
+            if (!(Factory.Settings is null))
             {
-                __result = KTSettings.Instance.TournamentRenownAmount;
-                if (Statics._settings.TournamentDebug)
+                __result = Factory.Settings.TournamentRenownAmount;
+                if (Factory.Settings.TournamentDebug)
                 {
-                    IM.MessageDebug("Patches TournamentRenownAmount Tweak: " + KTSettings.Instance.TournamentRenownAmount.ToString());
+                    IM.MessageDebug("Patches TournamentRenownAmount Tweak: " + Factory.Settings.TournamentRenownAmount.ToString());
                 }
                 return false;
             }
             return true;
         }
 
-        static bool Prepare() => KTSettings.Instance is { } settings && settings.TournamentRenownIncreaseEnabled;
+        static bool Prepare() => Factory.Settings is { } settings && settings.TournamentRenownIncreaseEnabled;
     }
 }

@@ -1,11 +1,12 @@
 ﻿using HarmonyLib;
 using KaosesTweaks.Settings;
-using KaosesTweaks.Utils;
+using KaosesCommon.Utils;
 using System;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.GameComponents;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Localization;
+using KaosesTweaks.Objects;
 
 namespace KaosesTweaks.Patches
 {
@@ -19,7 +20,7 @@ namespace KaosesTweaks.Patches
 
             try
             {
-                if (KTSettings.Instance is { } settings && settings.PartyWageTweaksEnabled && mobileParty != null)
+                if (Factory.Settings is { } settings && settings.PartyWageTweaksEnabled && mobileParty != null)
                 {
                     float orig_result = __result.ResultNumber;
                     if (!mobileParty.IsGarrison && (mobileParty.IsMainParty
@@ -40,7 +41,7 @@ namespace KaosesTweaks.Patches
                     }
                 }
 
-                if (KTSettings.Instance is { } settings2 && settings2.BalancingWagesTweaksEnabled &&
+                if (Factory.Settings is { } settings2 && settings2.BalancingWagesTweaksEnabled &&
                     settings2.KingdomBalanceStrengthEnabled && mobileParty != null &&
                     mobileParty.LeaderHero != null && mobileParty.LeaderHero.Clan.Kingdom != null)
                 {
@@ -90,11 +91,11 @@ namespace KaosesTweaks.Patches
             }
             catch (Exception ex)
             {
-                IM.ShowError("GetWagePostFix", "Exception GEtWage", ex);
+                IM.ShowError(ex, "Kaoses Tweaks GetWagePostFix");
             }
         }
 
-        public static bool Prepare() => KTSettings.Instance is { } settings && ((settings.PartyWageTweaksEnabled && settings.PartyWageTweaksHarmonyEnabled) || (settings.KingdomBalanceStrengthEnabled && settings.KingdomBalanceStrengthHarmonyEnabled));
+        public static bool Prepare() => Factory.Settings is { } settings && ((settings.PartyWageTweaksEnabled && settings.PartyWageTweaksHarmonyEnabled) || (settings.KingdomBalanceStrengthEnabled && settings.KingdomBalanceStrengthHarmonyEnabled));
 
 
 

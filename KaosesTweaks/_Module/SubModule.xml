@@ -1,29 +1,45 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<Module>
-  <Name value="Kaoses Tweaks" />
-  <Id value="$modulename$" />
-  <Version value="v$version$" />
-  <Official value="false" />
-  <DefaultModule value="false" />
-  <SingleplayerModule value="true" />
-  <MultiplayerModule value="false" />
-  <Url value="https://www.nexusmods.com/mountandblade2bannerlord/mods/2911" />
-  <DependedModules>
-    <DependedModule Id="Bannerlord.Harmony"/>
-    <DependedModule Id="Bannerlord.ButterLib"/>
-    <DependedModule Id="Bannerlord.UIExtenderEx" />
-    <DependedModule Id="Bannerlord.MBOptionScreen" />
-    <DependedModule Id="Native"/>
-    <DependedModule Id="SandBoxCore"/>
-    <DependedModule Id="Sandbox"/>
-    <DependedModule Id="StoryMode"/>
-  </DependedModules>
-  <SubModules>
-    <SubModule>
-      <Name value="$moduleid$" />
-      <DLLName value="$moduleid$.dll" />
-	  <SubModuleClassType value="$moduleid$.SubModule" />
-      <Tags />
-    </SubModule>
-  </SubModules>
+<Module xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+        xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/BUTR/Bannerlord.XmlSchemas/master/SubModule.xsd" >
+    <Id value="$moduleid$" />
+    <Name value="$modulename$" />
+    <Version value="v$version$" />
+    <DefaultModule value="false" />
+    <ModuleCategory value="Singleplayer"/>
+    <ModuleType value="Community" />
+    <DependedModules>
+        <DependedModule Id="Bannerlord.Harmony" />
+        <DependedModule Id="Bannerlord.ButterLib" />
+        <DependedModule Id="Bannerlord.UIExtenderEx" />
+        <DependedModule Id="Bannerlord.MBOptionScreen" />
+        <DependedModule Id="KaosesCommon" />
+        <DependedModule Id="Native" />
+        <DependedModule Id="SandBoxCore" />
+        <DependedModule Id="Sandbox" />
+        <DependedModule Id="StoryMode" />
+        <DependedModule Id="CustomBattle" />
+    </DependedModules>
+    <!-- Community Dependency Metadata -->
+    <!-- https://github.com/BUTR/Bannerlord.BUTRLoader#for-modders -->
+    <DependedModuleMetadatas>
+        <DependedModuleMetadata id="Bannerlord.Harmony" order="LoadBeforeThis" />
+        <DependedModuleMetadata id="Bannerlord.ButterLib" order="LoadBeforeThis" />
+        <DependedModuleMetadata id="Bannerlord.UIExtenderEx" order="LoadBeforeThis" />
+        <DependedModuleMetadata id="Bannerlord.MBOptionScreen" order="LoadBeforeThis" />
+        <DependedModuleMetadata id="KaosesCommon" order="LoadBeforeThis" />
+        <DependedModuleMetadata id="Native" order="LoadBeforeThis" />
+        <DependedModuleMetadata id="SandBoxCore" order="LoadBeforeThis" />
+        <DependedModuleMetadata id="Sandbox" order="LoadBeforeThis" />
+        <DependedModuleMetadata id="StoryMode" order="LoadBeforeThis" />
+        <DependedModuleMetadata id="CustomBattle" order="LoadBeforeThis" />
+    </DependedModuleMetadatas>
+    <!-- Community Dependency Metadata -->
+    <SubModules>
+        <SubModule>
+            <Name value="$moduleid$" />
+            <DLLName value="$moduleid$.dll" />
+            <SubModuleClassType value="$moduleid$.SubModule" />
+            <Tags />
+        </SubModule>
+    </SubModules>
 </Module>

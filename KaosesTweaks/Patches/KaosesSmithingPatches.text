@@ -42,7 +42,7 @@ namespace KaosesTweaks.Patches
 
         static bool Prepare()
         {
-            if (KTSettings.Instance is { } settings)
+            if (Factory.Settings is { } settings)
             {
                 if (settings.AutoLearnSmeltedParts)
                     GetMethodInfo();
@@ -63,7 +63,7 @@ namespace KaosesTweaks.Patches
         static void Postfix(CraftingCampaignBehavior __instance, CraftingPiece[] ____allCraftingParts, List<CraftingPiece> ____openedParts)
         {
 
-            if (Statics._settings.craftingUnlockAllParts)
+            if (Factory.Settings.craftingUnlockAllParts)
             {
                 if (____allCraftingParts == null)
                 {
@@ -77,7 +77,7 @@ namespace KaosesTweaks.Patches
                 CraftingPiece[] array = (from x in ____allCraftingParts
                                          where !____openedParts.Contains(x)
                                          select x).ToArray<CraftingPiece>();
-                if (Statics._settings.craftingUnlockAllParts)
+                if (Factory.Settings.craftingUnlockAllParts)
                 {
                     if (array.Length != 0 && count < num)
                     {
@@ -95,7 +95,7 @@ namespace KaosesTweaks.Patches
             }
         }
 
-        static bool Prepare() => KTSettings.Instance is { } settings && settings.craftingUnlockAllParts;
+        static bool Prepare() => Factory.Settings is { } settings && settings.craftingUnlockAllParts;
     }
 
     [HarmonyPatch(typeof(CraftingCampaignBehavior), "GetMaxHeroCraftingStamina")]
@@ -103,10 +103,10 @@ namespace KaosesTweaks.Patches
     {
         static void Postfix(CraftingCampaignBehavior __instance, ref int __result)
         {
-            __result = KTSettings.Instance is { } settings ? MathF.Round(settings.MaxCraftingStaminaMultiplier * __result) : __result;
+            __result = Factory.Settings is { } settings ? MathF.Round(settings.MaxCraftingStaminaMultiplier * __result) : __result;
         }
 
-        static bool Prepare() => KTSettings.Instance is { } settings && settings.CraftingStaminaTweakEnabled;
+        static bool Prepare() => Factory.Settings is { } settings && settings.CraftingStaminaTweakEnabled;
     }
 
     [HarmonyPatch(typeof(CraftingCampaignBehavior), "HourlyTick")]
@@ -127,12 +127,12 @@ namespace KaosesTweaks.Patches
             {
                 int curCraftingStamina = __instance.GetHeroCraftingStamina(hero);
 
-                if (!(KTSettings.Instance is null) && curCraftingStamina < __instance.GetMaxHeroCraftingStamina(hero))
+                if (!(Factory.Settings is null) && curCraftingStamina < __instance.GetMaxHeroCraftingStamina(hero))
                 {
-                    int staminaGainAmount = KTSettings.Instance.CraftingStaminaGainAmount;
+                    int staminaGainAmount = Factory.Settings.CraftingStaminaGainAmount;
 
-                    if (KTSettings.Instance.CraftingStaminaGainOutsideSettlementMultiplier < 1 && hero.PartyBelongedTo?.CurrentSettlement == null)
-                        staminaGainAmount = (int)Math.Ceiling(staminaGainAmount * KTSettings.Instance.CraftingStaminaGainOutsideSettlementMultiplier);
+                    if (Factory.Settings.CraftingStaminaGainOutsideSettlementMultiplier < 1 && hero.PartyBelongedTo?.CurrentSettlement == null)
+                        staminaGainAmount = (int)Math.Ceiling(staminaGainAmount * Factory.Settings.CraftingStaminaGainOutsideSettlementMultiplier);
 
                     int diff = __instance.GetMaxHeroCraftingStamina(hero) - curCraftingStamina;
                     if (diff < staminaGainAmount)
@@ -146,7 +146,7 @@ namespace KaosesTweaks.Patches
 
         static bool Prepare()
         {
-            if (KTSettings.Instance is { } settings)
+            if (Factory.Settings is { } settings)
             {
                 if (settings.CraftingStaminaTweakEnabled)
                     GetRecordsInfo();
@@ -170,7 +170,7 @@ namespace KaosesTweaks.Patches
             return false;
         }
 
-        static bool Prepare() => KTSettings.Instance is { } settings && settings.SmithingEnergyDisable;
+        static bool Prepare() => Factory.Settings is { } settings && settings.SmithingEnergyDisable;
     }
 
     [HarmonyPatch(typeof(SmeltingVM), "RefreshList")]
@@ -179,7 +179,7 @@ namespace KaosesTweaks.Patches
         private static void Postfix(SmeltingVM __instance, ItemRoster ____playerItemRoster, Action ____updateValuesOnSelectItemAction)
         {
 
-            if (KTSettings.Instance is { } settings && settings.PreventSmeltingLockedItems)
+            if (Factory.Settings is { } settings && settings.PreventSmeltingLockedItems)
             {
                 List<string> locked_items = Campaign.Current.GetCampaignBehavior<ViewDataTrackerCampaignBehavior>().GetInventoryLocks().ToList<string>();
 
@@ -214,7 +214,7 @@ namespace KaosesTweaks.Patches
         }
 
 
-        static bool Prepare() => KTSettings.Instance is { } settings && settings.SmeltingTweakEnabled;
+        static bool Prepare() => Factory.Settings is { } settings && settings.SmeltingTweakEnabled;
     }
 
     [HarmonyPatch(typeof(SmeltingVM), "RefreshList")]
@@ -223,7 +223,7 @@ namespace KaosesTweaks.Patches
     {
         private static void Postfix(SmeltingVM __instance, ItemRoster ____playerItemRoster)
         {
-            if (KTSettings.Instance is { } settings && settings.AutoLearnSmeltedParts)
+            if (Factory.Settings is { } settings && settings.AutoLearnSmeltedParts)
             {
                 foreach (SmeltingItemVM item in __instance.SmeltableItemList)
                 {
@@ -237,7 +237,7 @@ namespace KaosesTweaks.Patches
             }
         }
 
-        static bool Prepare() => KTSettings.Instance is { } settings && settings.SmeltingTweakEnabled;
+        static bool Prepare() => Factory.Settings is { } settings && settings.SmeltingTweakEnabled;
     }
 
 
@@ -249,11 +249,11 @@ namespace KaosesTweaks.Patches
     {
         static bool Prefix(DefaultSmithingModel __instance, ref Crafting.RefiningFormula refineFormula, ref int __result)
         {
-            if (Statics._settings.SmithingXpModifiers)
+            if (Factory.Settings.SmithingXpModifiers)
             {
                 float baseXp = MathF.Round(0.3f * (__instance.GetCraftingMaterialItem(refineFormula.Output).Value * refineFormula.OutputCount));
-                baseXp *= Statics._settings.SmithingRefiningXpValue;
-                if (Statics._settings.CraftingDebug)
+                baseXp *= Factory.Settings.SmithingRefiningXpValue;
+                if (Factory.Settings.CraftingDebug)
                 {
                     IM.MessageDebug("GetSkillXpForRefining  base: " + MathF.Round(0.3f * (__instance.GetCraftingMaterialItem(refineFormula.Output).Value * refineFormula.OutputCount)).ToString() + "  new :" + baseXp.ToString());
                 }
@@ -263,7 +263,7 @@ namespace KaosesTweaks.Patches
             return true;
         }
 
-        static bool Prepare() => KTSettings.Instance != null && KTSettings.Instance.SmithingXpModifiers && KTSettings.Instance.MCMSmithingHarmoneyPatches;
+        static bool Prepare() => Factory.Settings != null && Factory.Settings.SmithingXpModifiers && Factory.Settings.MCMSmithingHarmoneyPatches;
     }
 
     [HarmonyPatch(typeof(DefaultSmithingModel), "GetSkillXpForSmelting")]
@@ -271,11 +271,11 @@ namespace KaosesTweaks.Patches
     {
         static bool Prefix(ItemObject item, ref int __result)
         {
-            if (Statics._settings.SmithingXpModifiers)
+            if (Factory.Settings.SmithingXpModifiers)
             {
                 IM.MessageDebug("GetSkillXpForSmelting Patch called");
                 float baseXp = MathF.Round(0.02f * item.Value);
-                baseXp *= Statics._settings.SmithingSmeltingXpValue;
+                baseXp *= Factory.Settings.SmithingSmeltingXpValue;
                 IM.MessageDebug("GetSkillXpForSmelting  base: " + MathF.Round(0.02f * item.Value).ToString() + "  new :" + baseXp.ToString());
                 __result = (int)baseXp;
                 return false;
@@ -283,7 +283,7 @@ namespace KaosesTweaks.Patches
             return true;
         }
 
-        static bool Prepare() => KTSettings.Instance != null && KTSettings.Instance.SmithingXpModifiers && KTSettings.Instance.MCMSmithingHarmoneyPatches;
+        static bool Prepare() => Factory.Settings != null && Factory.Settings.SmithingXpModifiers && Factory.Settings.MCMSmithingHarmoneyPatches;
     }
 
     [HarmonyPatch(typeof(DefaultSmithingModel), "GetSkillXpForSmithing")]
@@ -291,11 +291,11 @@ namespace KaosesTweaks.Patches
     {
         static bool Prefix(DefaultSmithingModel __instance, ItemObject item, ref int __result)
         {
-            if (Statics._settings.SmithingXpModifiers)
+            if (Factory.Settings.SmithingXpModifiers)
             {
                 float baseXp = MathF.Round(0.1f * item.Value);
-                baseXp *= Statics._settings.SmithingSmithingXpValue;
-                if (Statics._settings.CraftingDebug)
+                baseXp *= Factory.Settings.SmithingSmithingXpValue;
+                if (Factory.Settings.CraftingDebug)
                 {
                     IM.MessageDebug("GetSkillXpForSmithing  base: " + MathF.Round(0.1f * item.Value).ToString() + "  new :" + baseXp.ToString());
                 }
@@ -305,7 +305,7 @@ namespace KaosesTweaks.Patches
             return true;
         }
 
-        static bool Prepare() => KTSettings.Instance != null && KTSettings.Instance.SmithingXpModifiers && KTSettings.Instance.MCMSmithingHarmoneyPatches;
+        static bool Prepare() => Factory.Settings != null && Factory.Settings.SmithingXpModifiers && Factory.Settings.MCMSmithingHarmoneyPatches;
     }
 
     //~ Energy Tweaks
@@ -314,19 +314,19 @@ namespace KaosesTweaks.Patches
     {
         static bool Prefix(Hero hero, ref int __result)
         {
-            if (Statics._settings.SmithingEnergyDisable || Statics._settings.CraftingStaminaTweakEnabled)
+            if (Factory.Settings.SmithingEnergyDisable || Factory.Settings.CraftingStaminaTweakEnabled)
             {
                 IM.MessageDebug("GetEnergyCostForRefining Patch called");
                 int num = 6;
-                if (Statics._settings.SmithingEnergyDisable)
+                if (Factory.Settings.SmithingEnergyDisable)
                 {
                     IM.MessageDebug("GetEnergyCostForRefining: DISABLED ");
                     __result = 0;
                     return false;
                 }
-                else //if (Statics._settings.CraftingStaminaTweakEnabled)
+                else //if (Factory.Settings.CraftingStaminaTweakEnabled)
                 {
-                    float tmp = num * Statics._settings.SmithingEnergyRefiningValue;
+                    float tmp = num * Factory.Settings.SmithingEnergyRefiningValue;
                     IM.MessageDebug("GetEnergyCostForRefining Old : " + num.ToString() + " New : " + tmp.ToString());
                     num = (int)tmp;
                     if (hero.GetPerkValue(DefaultPerks.Crafting.PracticalRefiner))
@@ -340,7 +340,7 @@ namespace KaosesTweaks.Patches
             return true;
         }
 
-        static bool Prepare() => KTSettings.Instance is { } settings && (settings.SmithingEnergyDisable || settings.CraftingStaminaTweakEnabled) && KTSettings.Instance.MCMSmithingHarmoneyPatches;
+        static bool Prepare() => Factory.Settings is { } settings && (settings.SmithingEnergyDisable || settings.CraftingStaminaTweakEnabled) && Factory.Settings.MCMSmithingHarmoneyPatches;
     }
 
     [HarmonyPatch(typeof(DefaultSmithingModel), "GetEnergyCostForSmithing")]
@@ -348,14 +348,14 @@ namespace KaosesTweaks.Patches
     {
         static bool Prefix(ItemObject item, Hero hero, ref int __result)
         {
-            if (Statics._settings.SmithingEnergyDisable || Statics._settings.CraftingStaminaTweakEnabled)
+            if (Factory.Settings.SmithingEnergyDisable || Factory.Settings.CraftingStaminaTweakEnabled)
             {
                 int.TryParse(item.Tier.ToString(), out int itemTier);
                 int tier6 = 6;
                 int num = 10 + tier6 * itemTier;
-                if (Statics._settings.SmithingEnergyDisable)
+                if (Factory.Settings.SmithingEnergyDisable)
                 {
-                    if (Statics._settings.CraftingDebug)
+                    if (Factory.Settings.CraftingDebug)
                     {
                         IM.MessageDebug("GetEnergyCostForSmithing: DISABLED ");
                     }
@@ -364,8 +364,8 @@ namespace KaosesTweaks.Patches
                 }
                 else
                 {
-                    float tmp = num * Statics._settings.SmithingEnergySmithingValue;
-                    if (Statics._settings.CraftingDebug)
+                    float tmp = num * Factory.Settings.SmithingEnergySmithingValue;
+                    if (Factory.Settings.CraftingDebug)
                     {
                         IM.MessageDebug("GetEnergyCostForSmithing Old : " + num.ToString() + " New : " + tmp.ToString());
                     }
@@ -381,7 +381,7 @@ namespace KaosesTweaks.Patches
             return true;
         }
 
-        static bool Prepare() => KTSettings.Instance is { } settings && (settings.SmithingEnergyDisable || settings.CraftingStaminaTweakEnabled) && KTSettings.Instance.MCMSmithingHarmoneyPatches;
+        static bool Prepare() => Factory.Settings is { } settings && (settings.SmithingEnergyDisable || settings.CraftingStaminaTweakEnabled) && Factory.Settings.MCMSmithingHarmoneyPatches;
     }
 
     [HarmonyPatch(typeof(DefaultSmithingModel), "GetEnergyCostForSmelting")]
@@ -390,13 +390,13 @@ namespace KaosesTweaks.Patches
         static bool Prefix(Hero hero, ref int __result)
         {
 
-            if (Statics._settings.SmithingEnergyDisable || Statics._settings.CraftingStaminaTweakEnabled)
+            if (Factory.Settings.SmithingEnergyDisable || Factory.Settings.CraftingStaminaTweakEnabled)
             {
                 IM.MessageDebug("GetEnergyCostForSmelting Patch called");
                 int num = 10;
-                if (Statics._settings.SmithingEnergyDisable)
+                if (Factory.Settings.SmithingEnergyDisable)
                 {
-                    if (Statics._settings.CraftingDebug)
+                    if (Factory.Settings.CraftingDebug)
                     {
                         IM.MessageDebug("GetEnergyCostForSmelting: DISABLED ");
                     }
@@ -405,8 +405,8 @@ namespace KaosesTweaks.Patches
                 }
                 else
                 {
-                    float tmp = num * Statics._settings.SmithingEnergySmeltingValue;
-                    if (Statics._settings.CraftingDebug)
+                    float tmp = num * Factory.Settings.SmithingEnergySmeltingValue;
+                    if (Factory.Settings.CraftingDebug)
                     {
                         IM.MessageDebug("GetEnergyCostForSmelting Old : " + num.ToString() + " New : " + tmp.ToString());
                     }
@@ -422,7 +422,7 @@ namespace KaosesTweaks.Patches
             return true;
         }
 
-        static bool Prepare() => KTSettings.Instance is { } settings && (settings.SmithingEnergyDisable || settings.CraftingStaminaTweakEnabled) && KTSettings.Instance.MCMSmithingHarmoneyPatches;
+        static bool Prepare() => Factory.Settings is { } settings && (settings.SmithingEnergyDisable || settings.CraftingStaminaTweakEnabled) && Factory.Settings.MCMSmithingHarmoneyPatches;
 
     }
 

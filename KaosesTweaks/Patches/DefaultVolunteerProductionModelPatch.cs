@@ -1,4 +1,5 @@
 ﻿using HarmonyLib;
+using KaosesTweaks.Objects;
 using KaosesTweaks.Settings;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.GameComponents;
@@ -11,7 +12,7 @@ namespace KaosesTweaks.Patches
     {
         static void Postfix(Hero hero, int index, Settlement settlement, ref float __result)
         {
-            if (KTSettings.Instance is { } settings && settings.BalancingTimeRecruitsTweaksEnabled && hero.CurrentSettlement != null && hero.CurrentSettlement.OwnerClan.Kingdom != null)
+            if (Factory.Settings is { } settings && settings.BalancingTimeRecruitsTweaksEnabled && hero.CurrentSettlement != null && hero.CurrentSettlement.OwnerClan.Kingdom != null)
             {
                 float num = 0f;
                 if (settings.KingdomBalanceStrengthVanEnabled)
@@ -56,6 +57,6 @@ namespace KaosesTweaks.Patches
                 __result += num * 0.75f;
             }
         }
-        static bool Prepare() => KTSettings.Instance is { } settings && settings.KingdomBalanceStrengthEnabled;
+        static bool Prepare() => Factory.Settings is { } settings && settings.KingdomBalanceStrengthEnabled;
     }
 }

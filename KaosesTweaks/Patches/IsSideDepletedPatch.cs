@@ -1,4 +1,5 @@
 ﻿using HarmonyLib;
+using KaosesTweaks.Objects;
 using KaosesTweaks.Settings;
 using SandBox.Missions.MissionLogics;
 using System;
@@ -29,7 +30,7 @@ namespace KaosesTweaks.Patches
                 {
                     if (HasTroopsRemaining(__instance, side))
                     {
-                        if (PlayerIsDead() && KTSettings.Instance is { } settings)
+                        if (PlayerIsDead() && Factory.Settings is { } settings)
                         {
                             if (____hideoutMissionState == 5 || ____hideoutMissionState == 6)
                             {
@@ -82,7 +83,7 @@ namespace KaosesTweaks.Patches
             }
         }
 
-        static bool Prepare() => KTSettings.Instance is { } settings && (settings.ContinueHideoutBattleOnPlayerDeath || settings.ContinueHideoutBattleOnPlayerLoseDuel);
+        static bool Prepare() => Factory.Settings is { } settings && (settings.ContinueHideoutBattleOnPlayerDeath || settings.ContinueHideoutBattleOnPlayerLoseDuel);
 
 
         private static bool HasTroopsRemaining(HideoutMissionController controller, BattleSideEnum side)
@@ -193,6 +194,6 @@ namespace KaosesTweaks.Patches
             IsSideDepletedPatch.Dueled = false;
         }
 
-        static bool Prepare() => KTSettings.Instance is { } settings && (settings.ContinueHideoutBattleOnPlayerDeath || settings.ContinueHideoutBattleOnPlayerLoseDuel);
+        static bool Prepare() => Factory.Settings is { } settings && (settings.ContinueHideoutBattleOnPlayerDeath || settings.ContinueHideoutBattleOnPlayerLoseDuel);
     }
 }

@@ -1,6 +1,6 @@
 ﻿using HarmonyLib;
 using KaosesTweaks.Settings;
-using KaosesTweaks.Utils;
+using KaosesCommon.Utils;
 using SandBox.ViewModelCollection.Tournament;
 using System;
 using System.Linq;
@@ -10,7 +10,7 @@ using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.CharacterDevelopment;
 using TaleWorlds.CampaignSystem.TournamentGames;
 using TaleWorlds.Core;
-
+using KaosesTweaks.Objects;
 
 namespace KaosesTweaks.Patches
 {
@@ -21,7 +21,7 @@ namespace KaosesTweaks.Patches
 
         static void Postfix(TournamentVM __instance)
         {
-            if (!(KTSettings.Instance is { } settings)) return;
+            if (!(Factory.Settings is { } settings)) return;
 
             if (bettedAmountFieldInfo == null) GetFieldInfo();
             int thisRoundBettedAmount = !(bettedAmountFieldInfo is null) ? (int)bettedAmountFieldInfo.GetValue(__instance) : 0;
@@ -35,7 +35,7 @@ namespace KaosesTweaks.Patches
 
         static bool Prepare()
         {
-            if (KTSettings.Instance is { } settings && settings.TournamentMaxBetAmountTweakEnabled)
+            if (Factory.Settings is { } settings && settings.TournamentMaxBetAmountTweakEnabled)
             {
                 GetFieldInfo();
                 return true;
@@ -55,7 +55,7 @@ namespace KaosesTweaks.Patches
     {
         static void Postfix(TournamentVM __instance)
         {
-            int num = KTSettings.Instance is { } settings ? settings.TournamentMaxBetAmount : __instance.MaximumBetValue;
+            int num = Factory.Settings is { } settings ? settings.TournamentMaxBetAmount : __instance.MaximumBetValue;
             if (Hero.MainHero.GetPerkValue(DefaultPerks.Roguery.DeepPockets))
             {
                 num *= (int)DefaultPerks.Roguery.DeepPockets.PrimaryBonus;
@@ -64,7 +64,7 @@ namespace KaosesTweaks.Patches
             __instance.BetDescriptionText = GameTexts.FindText("str_tournament_bet_description").ToString();
         }
 
-        static bool Prepare() => KTSettings.Instance is { } settings && settings.TournamentMaxBetAmountTweakEnabled;
+        static bool Prepare() => Factory.Settings is { } settings && settings.TournamentMaxBetAmountTweakEnabled;
     }
 
 
@@ -84,7 +84,7 @@ namespace KaosesTweaks.Patches
                 {
                     int thisRoundBettedAmount = !(bettedAmountFieldInfo is null) ? (int)bettedAmountFieldInfo.GetValue(__instance) : 0;
                     bool flag = __instance.Tournament.CurrentMatch.Participants.Any((TournamentParticipant x) => x.Character == CharacterObject.PlayerCharacter);
-                    int num = KTSettings.Instance is { } settings ? settings.TournamentMaxBetAmount : __instance.MaximumBetValue;
+                    int num = Factory.Settings is { } settings ? settings.TournamentMaxBetAmount : __instance.MaximumBetValue;
                     if (Hero.MainHero.GetPerkValue(DefaultPerks.Roguery.DeepPockets))
                     {
                         num *= (int)DefaultPerks.Roguery.DeepPockets.PrimaryBonus;
@@ -97,14 +97,14 @@ namespace KaosesTweaks.Patches
             catch (Exception ex)
             {
                 failed = true;
-                MessageBox.Show($"An error occurred while trying to get IsBetButtonEnabled. Reverting to original...\n\n{ex.ToStringFull()}");
+                IM.ShowError(ex, "IsBetButtonEnabledPatch: An error occurred while trying to get IsBetButtonEnabled. Reverting to original");
             }
             return failed;
         }
 
         static bool Prepare()
         {
-            if (KTSettings.Instance is { } settings && settings.TournamentMaxBetAmountTweakEnabled)
+            if (Factory.Settings is { } settings && settings.TournamentMaxBetAmountTweakEnabled)
             {
                 GetFieldInfo();
                 return true;

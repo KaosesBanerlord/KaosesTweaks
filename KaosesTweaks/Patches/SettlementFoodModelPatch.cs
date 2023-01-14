@@ -1,4 +1,5 @@
 ﻿using HarmonyLib;
+using KaosesTweaks.Objects;
 using KaosesTweaks.Settings;
 using System;
 using TaleWorlds.CampaignSystem;
@@ -14,7 +15,7 @@ namespace KaosesTweaks.Patches
     {
         static void Postfix(Town town, ref ExplainedNumber __result)
         {
-            if (KTSettings.Instance is { } settings && settings.SettlementFoodBonusEnabled && !(town is null))
+            if (Factory.Settings is { } settings && settings.SettlementFoodBonusEnabled && !(town is null))
             {
                 if (settings.SettlementProsperityFoodMalusTweakEnabled && settings.SettlementProsperityFoodMalusDivisor != 50)
                 {
@@ -47,6 +48,6 @@ namespace KaosesTweaks.Patches
             }
             return;
         }
-        static bool Prepare() => KTSettings.Instance is { } settings && settings.SettlementFoodBonusEnabled;
+        static bool Prepare() => Factory.Settings is { } settings && settings.SettlementFoodBonusEnabled;
     }
 }

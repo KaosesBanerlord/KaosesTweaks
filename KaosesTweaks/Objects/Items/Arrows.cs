@@ -1,8 +1,10 @@
-﻿using KaosesTweaks.Utils;
+﻿using KaosesCommon.Utils;
+using System.Runtime;
 using TaleWorlds.Core;
 
 namespace KaosesTweaks.Objects.Items
 {
+
     class Arrows : ItemModifiersBase
     {
         public Arrows(ItemObject itemObject) :
@@ -35,9 +37,9 @@ namespace KaosesTweaks.Objects.Items
 
         protected void GetMultiplierValues(ref float multiplierPrice, ref float multiplierWeight, ref float multiplierStack)
         {
-            multiplierPrice = Statics._settings.ArrowValueMultiplier;
-            //multiplierWeight = Statics._settings.ArrowWeightMultiplier;
-            multiplierStack = Statics._settings.ArrowMultiplier;
+            multiplierPrice = Factory.Settings.ArrowValueMultiplier;
+            //multiplierWeight = Factory.Settings.ArrowWeightMultiplier;
+            multiplierStack = Factory.Settings.ArrowMultiplier;
         }
     }
 }

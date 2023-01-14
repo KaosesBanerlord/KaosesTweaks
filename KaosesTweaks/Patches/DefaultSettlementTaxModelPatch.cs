@@ -1,4 +1,5 @@
 ﻿using HarmonyLib;
+using KaosesTweaks.Objects;
 using KaosesTweaks.Settings;
 using System;
 using System.Reflection;
@@ -24,7 +25,7 @@ namespace KaosesTweaks.Patches
         {
             if (town == null) return;
 
-            if (KTSettings.Instance is { } settings && settings.BalancingTaxTweaksEnabled && town.Settlement.OwnerClan.Kingdom != null)
+            if (Factory.Settings is { } settings && settings.BalancingTaxTweaksEnabled && town.Settlement.OwnerClan.Kingdom != null)
             {
                 float num = 0f;
                 if (settings.KingdomBalanceStrengthVanEnabled)
@@ -77,7 +78,7 @@ namespace KaosesTweaks.Patches
                 __result.Add(value, new TextObject("BT Balancing Tax Tweak"));
             }
         }
-        static bool Prepare() => KTSettings.Instance is { } settings && settings.KingdomBalanceStrengthEnabled;
+        static bool Prepare() => Factory.Settings is { } settings && settings.KingdomBalanceStrengthEnabled;
     }
 
     [HarmonyPatch]
@@ -94,7 +95,7 @@ namespace KaosesTweaks.Patches
 
         private static void Postfix(Village village, int marketIncome, ref int __result)
         {
-            if (KTSettings.Instance is { } settings && settings.BalancingTaxTweaksEnabled && village.Settlement.OwnerClan.Kingdom != null)
+            if (Factory.Settings is { } settings && settings.BalancingTaxTweaksEnabled && village.Settlement.OwnerClan.Kingdom != null)
             {
                 float num = 0f;
                 if (settings.KingdomBalanceStrengthVanEnabled)
@@ -144,6 +145,6 @@ namespace KaosesTweaks.Patches
                 __result = (int)newresult;
             }
         }
-        static bool Prepare() => KTSettings.Instance is { } settings && settings.KingdomBalanceStrengthEnabled;
+        static bool Prepare() => Factory.Settings is { } settings && settings.KingdomBalanceStrengthEnabled;
     }
 }

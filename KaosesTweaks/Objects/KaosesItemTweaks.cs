@@ -1,11 +1,13 @@
 ﻿using KaosesTweaks.Objects;
 using KaosesTweaks.Objects.Items;
+using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
 using static TaleWorlds.Core.ItemObject;
 
-namespace KaosesTweaks.Models
+namespace KaosesTweaks.Objects
 {
+
     public class KaosesItemTweaks
     {
         MBReadOnlyList<ItemObject> _ItemsList;

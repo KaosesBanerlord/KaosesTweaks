@@ -1,10 +1,10 @@
 ﻿using HarmonyLib;
 using KaosesTweaks.Settings;
-using KaosesTweaks.Utils;
+using KaosesCommon.Utils;
 using System;
 using TaleWorlds.Core;
 using TaleWorlds.MountAndBlade;
-
+using KaosesTweaks.Objects;
 
 /**
  * 
@@ -29,17 +29,17 @@ namespace TaleWorlds.MountAndBlade
 
 namespace KaosesTweaks.Patches
 {
-    [HarmonyPatch(typeof(MissionAgentSpawnLogic), MethodType.Constructor, new Type[] { typeof(IMissionTroopSupplier[]), typeof(BattleSideEnum), typeof(Mission.BattleSizeType)})]
+    [HarmonyPatch(typeof(MissionAgentSpawnLogic), MethodType.Constructor, new Type[] { typeof(IMissionTroopSupplier[]), typeof(BattleSideEnum), typeof(Mission.BattleSizeType) })]
     public class TweakedBattleSizePatch
     {
         static void Postfix(MissionAgentSpawnLogic __instance, ref int ____battleSize)
         {
-            if (Statics._settings.BattleSize > 0)
+            if (Factory.Settings.BattleSize > 0)
             {
-                ____battleSize = Statics._settings.BattleSize;
-                if (Statics._settings.BattleSizeDebug)
+                ____battleSize = Factory.Settings.BattleSize;
+                if (Factory.Settings.BattleSizeDebug)
                 {
-                    IM.ColorGreenMessage("Max Battle Size Modified to: " + Statics._settings.BattleSize + "  original size: " + ____battleSize);
+                    IM.MessageGreen("Max Battle Size Modified to: " + Factory.Settings.BattleSize + "  original size: " + ____battleSize);
                 }
 
             }
@@ -47,7 +47,7 @@ namespace KaosesTweaks.Patches
             return;
         }
 
-        static bool Prepare() => KTSettings.Instance is { } settings && settings.BattleSizeTweakEnabled && !settings.BattleSizeTweakExEnabled;
+        static bool Prepare() => Factory.Settings is { } settings && settings.BattleSizeTweakEnabled && !settings.BattleSizeTweakExEnabled;
     }
 }
 

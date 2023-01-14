@@ -1,11 +1,15 @@
-﻿using System.Collections.Generic;
+﻿using KaosesTweaks.Objects;
+using System.Collections.Generic;
 using TaleWorlds.Core;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.ObjectSystem;
 
-
+///
+/// Deprecated believe this is no longer needed
+///
 namespace KaosesTweaks.Listeners
 {
+
     public class ProjectilesMissionListener : IMissionListener
     {
 
@@ -194,7 +198,7 @@ namespace KaosesTweaks.Listeners
 
         public short GetNewAmmoSize(int ammo)
         {
-            float tmp = ammo * Statics._settings.ThrownMultiplier;
+            float tmp = ammo * Factory.Settings.ThrownMultiplier;
             short ammoCount2 = (short)tmp;
             return ammoCount2;
         }

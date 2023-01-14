@@ -1,4 +1,5 @@
-﻿using KaosesTweaks.Utils;
+﻿using KaosesCommon.Utils;
+using KaosesTweaks.Objects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,8 +12,10 @@ using TaleWorlds.CampaignSystem.Roster;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
 
+
 namespace KaosesTweaks.Event
 {
+
     class PlayerBattleEndEventListener
     {
         private int BanditGroupCounter { get; set; }
@@ -20,14 +23,14 @@ namespace KaosesTweaks.Event
 
         public PlayerBattleEndEventListener()
         {
-            BanditGroupCounter = Statics._settings.GroupsOfBandits;
+            BanditGroupCounter = Factory.Settings.GroupsOfBandits;
             BanditDeathCounter = 0;
-            Logging.Lm("Killing Bandits : PlayerBattleEndEventListener Called" + "");
+            Logger.Lm("Killing Bandits : PlayerBattleEndEventListener Called" + "");
         }
 
         public void IncreaseLocalRelationsAfterBanditFight(MapEvent m)
         {
-            Logging.Lm("Killing Bandits : IncreaseLocalRelationsAfterBanditFight Called" + "");
+            Logger.Lm("Killing Bandits : IncreaseLocalRelationsAfterBanditFight Called" + "");
             TroopRoster rosterReceivingLootShare;
             int mainPartSideInt = (int)PartyBase.MainParty.Side;
             rosterReceivingLootShare = PlayerEncounter.Current.RosterToReceiveLootMembers;
@@ -45,7 +48,7 @@ namespace KaosesTweaks.Event
             }
             if (!((int)m.DefeatedSide == -1 || (int)m.DefeatedSide == 2))
             {
-                if (IsDefeatedBanditLike(m) && (rosterReceivingLootShare.TotalHealthyCount > 0 || !Statics._settings.PrisonersOnly))
+                if (IsDefeatedBanditLike(m) && (rosterReceivingLootShare.TotalHealthyCount > 0 || !Factory.Settings.PrisonersOnly))
                 {
                     BanditDeathCounter += banditSide.Casualties;
                     //IM.ColorGreenMessage("BanditDeathCounter: " + BanditDeathCounter.ToString());
@@ -61,28 +64,28 @@ namespace KaosesTweaks.Event
 
         private void IncreaseLocalRelations(MapEvent m)
         {
-            float FinalRelationshipIncrease = Statics._settings.RelationshipIncrease;
-            if (Statics._settings.SizeBonusEnabled)
+            float FinalRelationshipIncrease = Factory.Settings.RelationshipIncrease;
+            if (Factory.Settings.SizeBonusEnabled)
             {
-                FinalRelationshipIncrease = Statics._settings.RelationshipIncrease * BanditDeathCounter * Statics._settings.SizeBonus;
-                if (Statics._settings.KillingBanditsDebug)
+                FinalRelationshipIncrease = Factory.Settings.RelationshipIncrease * BanditDeathCounter * Factory.Settings.SizeBonus;
+                if (Factory.Settings.KillingBanditsDebug)
                 {
                     IM.MessageDebug("Killing Bandits: SizeBonusEnabled: " + FinalRelationshipIncrease.ToString());
                 }
             }
             int FinalRelationshipIncreaseInt = (int)Math.Floor(FinalRelationshipIncrease);
-            if (Statics._settings.KillingBanditsDebug)
+            if (Factory.Settings.KillingBanditsDebug)
             {
-                IM.MessageDebug("Killing Bandits: IncreaseLocalRelations: " + "Base Change: " + Statics._settings.RelationshipIncrease.ToString() + "Final Change: " + FinalRelationshipIncreaseInt.ToString());
+                IM.MessageDebug("Killing Bandits: IncreaseLocalRelations: " + "Base Change: " + Factory.Settings.RelationshipIncrease.ToString() + "Final Change: " + FinalRelationshipIncreaseInt.ToString());
             }
             FinalRelationshipIncreaseInt = FinalRelationshipIncreaseInt < 1 ? 1 : FinalRelationshipIncreaseInt;
-            if (Statics._settings.KillingBanditsRelationReportEnabled)
-                IM.ColorGreenMessage("Final Relationship Increase: " + FinalRelationshipIncreaseInt.ToString());
+            if (Factory.Settings.KillingBanditsRelationReportEnabled)
+                IM.MessageGreen("Final Relationship Increase: " + FinalRelationshipIncreaseInt.ToString());
 
             List<Settlement> list = new List<Settlement>();
             foreach (Settlement settlement in Settlement.All)
             {
-                if ((settlement.IsVillage || settlement.IsTown) && settlement.Position2D.DistanceSquared(m.Position) <= Statics._settings.Radius)
+                if ((settlement.IsVillage || settlement.IsTown) && settlement.Position2D.DistanceSquared(m.Position) <= Factory.Settings.Radius)
                 {
                     list.Add(settlement);
                 }
@@ -95,8 +98,8 @@ namespace KaosesTweaks.Event
                     ChangeRelationAction.ApplyPlayerRelation(h, relation: FinalRelationshipIncreaseInt, affectRelatives: true, showQuickNotification: false);
                 }
             }
-            if (Statics._settings.KillingBanditsRelationReportEnabled)
-                IM.ColorGreenMessage("Your relationship increased with nearby notables. " + FinalRelationshipIncreaseInt.ToString());
+            if (Factory.Settings.KillingBanditsRelationReportEnabled)
+                IM.MessageGreen("Your relationship increased with nearby notables. " + FinalRelationshipIncreaseInt.ToString());
         }
 
         private void BanditGroupCounterUpdate()
@@ -104,9 +107,9 @@ namespace KaosesTweaks.Event
             BanditGroupCounter--;
             if (BanditGroupCounter == 0)
             {
-                BanditGroupCounter = Statics._settings.GroupsOfBandits;
+                BanditGroupCounter = Factory.Settings.GroupsOfBandits;
             }
-            if (Statics._settings.KillingBanditsDebug)
+            if (Factory.Settings.KillingBanditsDebug)
             {
                 IM.MessageDebug("Killing Bandits : BanditGroupCounterUpdate: " + BanditGroupCounter.ToString());
             }
@@ -121,17 +124,17 @@ namespace KaosesTweaks.Event
         {
             try
             {
-                if (m.GetLeaderParty(m.DefeatedSide).MapFaction.IsBanditFaction && Statics._settings.IncludeBandits)
+                if (m.GetLeaderParty(m.DefeatedSide).MapFaction.IsBanditFaction && Factory.Settings.IncludeBandits)
                 {
                     return true;
                 }
 
-                if (m.GetLeaderParty(m.DefeatedSide).MapFaction.IsOutlaw && Statics._settings.IncludeOutlaws)
+                if (m.GetLeaderParty(m.DefeatedSide).MapFaction.IsOutlaw && Factory.Settings.IncludeOutlaws)
                 {
                     return true;
                 }
 
-                if (m.GetLeaderParty(m.DefeatedSide).Owner.Clan.IsMafia && Statics._settings.IncludeMafia)
+                if (m.GetLeaderParty(m.DefeatedSide).Owner.Clan.IsMafia && Factory.Settings.IncludeMafia)
                 {
                     return true;
                 }

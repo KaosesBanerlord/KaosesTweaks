@@ -1,8 +1,9 @@
-﻿using KaosesTweaks.Utils;
+﻿using KaosesCommon.Utils;
 using TaleWorlds.Core;
 
 namespace KaosesTweaks.Objects.Items
 {
+
     class Thrown : ItemModifiersBase
     {
         public Thrown(ItemObject itemObject) :
@@ -36,8 +37,8 @@ namespace KaosesTweaks.Objects.Items
         protected void GetMultiplierValues(ref float multiplierPrice, ref float multiplierWeight, ref float multiplierStack)
         {
             multiplierPrice = _settings.ThrownValueMultiplier;
-            //multiplierWeight = Statics._settings.ThrownWeightMultiplier;
-            multiplierStack = Statics._settings.ThrownMultiplier;
+            //multiplierWeight = Factory.Settings.ThrownWeightMultiplier;
+            multiplierStack = Factory.Settings.ThrownMultiplier;
         }
     }
 }

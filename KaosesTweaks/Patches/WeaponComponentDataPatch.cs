@@ -1,4 +1,5 @@
 ﻿using HarmonyLib;
+using KaosesTweaks.Objects;
 using KaosesTweaks.Settings;
 using TaleWorlds.Core;
 
@@ -9,7 +10,7 @@ namespace KaosesTweaks.Patches
     {
         static void Postfix(ref bool __result, WeaponComponentData __instance)
         {
-            if (KTSettings.Instance is { } settings)
+            if (Factory.Settings is { } settings)
             {
                 bool twoHanded = settings.TwoHandedWeaponsSliceThroughEnabled && __instance.WeaponClass == WeaponClass.TwoHandedAxe ||
                     __instance.WeaponClass == WeaponClass.TwoHandedMace || __instance.WeaponClass == WeaponClass.TwoHandedPolearm ||
@@ -24,6 +25,6 @@ namespace KaosesTweaks.Patches
             }
         }
 
-        static bool Prepare() => KTSettings.Instance is { } settings && settings.SliceThroughEnabled;
+        static bool Prepare() => Factory.Settings is { } settings && settings.SliceThroughEnabled;
     }
 }

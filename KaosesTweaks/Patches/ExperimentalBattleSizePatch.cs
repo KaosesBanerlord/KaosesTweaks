@@ -1,6 +1,6 @@
 ﻿using HarmonyLib;
 using KaosesTweaks.Settings;
-using KaosesTweaks.Utils;
+using KaosesCommon.Utils;
 using SandBox;
 using System;
 using System.Collections.Generic;
@@ -14,6 +14,7 @@ using TaleWorlds.CampaignSystem.TroopSuppliers;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
+using KaosesTweaks.Objects;
 
 namespace KaosesTweaks.Patches
 {
@@ -23,25 +24,25 @@ namespace KaosesTweaks.Patches
     {
         static void Postfix(ref int __result)
         {
-            if (KTSettings.Instance is { } settings)
+            if (Factory.Settings is { } settings)
             {
-                if (BattleSizePatchEx_PartyGroupTroopSupplier.mountfootratio * settings.BattleSizeEx * (1f + (Statics._settings.ReinforcementQuota * Statics._settings.SlotsForReinforcements * 0.01f)) > 2048)
+                if (BattleSizePatchEx_PartyGroupTroopSupplier.mountfootratio * settings.BattleSizeEx * (1f + (Factory.Settings.ReinforcementQuota * Factory.Settings.SlotsForReinforcements * 0.01f)) > 2048)
                 {
-                    __result = (int)(2048 / BattleSizePatchEx_PartyGroupTroopSupplier.mountfootratio / (1f + (Statics._settings.ReinforcementQuota * Statics._settings.SlotsForReinforcements * 0.01f)));
-                    IM.ColorRedMessage("Battlesize was adjusted to prevent crashing and ensure reinforcments.");
-                    if (Statics._settings.BattleSizeDebug)
+                    __result = (int)(2048 / BattleSizePatchEx_PartyGroupTroopSupplier.mountfootratio / (1f + (Factory.Settings.ReinforcementQuota * Factory.Settings.SlotsForReinforcements * 0.01f)));
+                    IM.MessageError("Battlesize was adjusted to prevent crashing and ensure reinforcments.");
+                    if (Factory.Settings.BattleSizeDebug)
                     {
                         int SlotsForMounts = (int)(2048 - 2048 / BattleSizePatchEx_PartyGroupTroopSupplier.mountfootratio);
-                        int SlotsForReinforcements = (int)(2048 - SlotsForMounts - (2048 - SlotsForMounts) / (1f + (Statics._settings.ReinforcementQuota * Statics._settings.SlotsForReinforcements * 0.01f)));
-                        IM.ColorRedMessage("MountedRatio: " + BattleSizePatchEx_PartyGroupTroopSupplier.mountfootratio + " | Reserved: " + (1f + (Statics._settings.ReinforcementQuota * Statics._settings.SlotsForReinforcements * 0.01f)));
-                        IM.ColorRedMessage("2048 - Slots mounts (" + SlotsForMounts + ") - Slots reinforcements(" + SlotsForReinforcements + ")");
+                        int SlotsForReinforcements = (int)(2048 - SlotsForMounts - (2048 - SlotsForMounts) / (1f + (Factory.Settings.ReinforcementQuota * Factory.Settings.SlotsForReinforcements * 0.01f)));
+                        IM.MessageError("MountedRatio: " + BattleSizePatchEx_PartyGroupTroopSupplier.mountfootratio + " | Reserved: " + (1f + (Factory.Settings.ReinforcementQuota * Factory.Settings.SlotsForReinforcements * 0.01f)));
+                        IM.MessageError("2048 - Slots mounts (" + SlotsForMounts + ") - Slots reinforcements(" + SlotsForReinforcements + ")");
                     }
                 }
                 else __result = settings.BattleSizeEx;
-                IM.ColorRedMessage("Battlesize was set to " + __result + ".");
+                IM.MessageError("Battlesize was set to " + __result + ".");
             }
         }
-        static bool Prepare() => KTSettings.Instance is { } settings && settings.BattleSizeTweakExEnabled;
+        static bool Prepare() => Factory.Settings is { } settings && settings.BattleSizeTweakExEnabled;
     }
 
 
@@ -50,16 +51,16 @@ namespace KaosesTweaks.Patches
     {
         private static void Postfix(ref int __result)
         {
-            if (KTSettings.Instance is { } settings)
+            if (Factory.Settings is { } settings)
             {
-                if (BattleSizePatchEx_PartyGroupTroopSupplier.mountfootratio * settings.BattleSizeEx * (1f + (Statics._settings.ReinforcementQuota * Statics._settings.SlotsForReinforcements * 0.01f)) > 2048)
+                if (BattleSizePatchEx_PartyGroupTroopSupplier.mountfootratio * settings.BattleSizeEx * (1f + (Factory.Settings.ReinforcementQuota * Factory.Settings.SlotsForReinforcements * 0.01f)) > 2048)
                 {
-                    __result = (int)(2048 / BattleSizePatchEx_PartyGroupTroopSupplier.mountfootratio / (1f + (Statics._settings.ReinforcementQuota * Statics._settings.SlotsForReinforcements * 0.01f)));
+                    __result = (int)(2048 / BattleSizePatchEx_PartyGroupTroopSupplier.mountfootratio / (1f + (Factory.Settings.ReinforcementQuota * Factory.Settings.SlotsForReinforcements * 0.01f)));
                 }
                 else __result = settings.BattleSizeEx;
             }
         }
-        static bool Prepare() => KTSettings.Instance is { } settings && settings.BattleSizeTweakExEnabled;
+        static bool Prepare() => Factory.Settings is { } settings && settings.BattleSizeTweakExEnabled;
     }
 
 
@@ -68,7 +69,7 @@ namespace KaosesTweaks.Patches
     {
         static void Postfix(MapEvent mapEvent, BattleSideEnum side, FlattenedTroopRoster priorTroops)
         {
-            if (KTSettings.Instance is { } settings)
+            if (Factory.Settings is { } settings)
             {
                 BattleSizePatchEx_BattleSizeSpawnTick.AgentTrackerTroop.Clear();
                 BattleSizePatchEx_BattleSizeSpawnTick.AgentTrackerMount.Clear();
@@ -102,7 +103,7 @@ namespace KaosesTweaks.Patches
                         }
                     }
                 }
-                mountfootratio = 1f + mounts / troops * Statics._settings.BattleSizeExSafePuffer;
+                mountfootratio = 1f + mounts / troops * Factory.Settings.BattleSizeExSafePuffer;
                 if (MapEvent.PlayerMapEvent.EventType == MapEvent.BattleTypes.Siege)
                 {
                     mountfootratio = 1f;
@@ -110,7 +111,7 @@ namespace KaosesTweaks.Patches
                 }
             }
         }
-        static bool Prepare() => KTSettings.Instance is { } settings && settings.BattleSizeTweakExEnabled;
+        static bool Prepare() => Factory.Settings is { } settings && settings.BattleSizeTweakExEnabled;
         public static float mountfootratio = 0f;
         public static float troops = 0f;
         public static float mounts = 0f;
@@ -121,7 +122,7 @@ namespace KaosesTweaks.Patches
     [HarmonyPatch(typeof(MissionAgentSpawnLogic), "BattleSizeSpawnTick")]
     internal class BattleSizePatchEx_BattleSizeSpawnTick
     {
-        static bool Prepare() => KTSettings.Instance is { } settings && settings.BattleSizeTweakExEnabled;
+        static bool Prepare() => Factory.Settings is { } settings && settings.BattleSizeTweakExEnabled;
         public static int runs = 0;
         public static int NumberOfTroopsCanBeSpawned = 0;
         public static int NumAttackers = 0;
@@ -143,9 +144,9 @@ namespace KaosesTweaks.Patches
                 int NumDefendersNew = __instance.NumberOfActiveDefenderTroops;
                 if (NumAttackers != 0 && NumDefenders != 0 && (NumAttackers < NumAttackersNew || NumDefenders < NumDefendersNew))
                 {
-                    IM.ColorRedMessage("Attackers got " + (NumAttackersNew - NumAttackers) + " reinforcements!");
-                    IM.ColorRedMessage("Defenders got " + (NumDefendersNew - NumDefenders) + " reinforcements!");
-                    IM.ColorRedMessage("Slots were: " + NumberOfTroopsCanBeSpawned + ".");
+                    IM.MessageRed("Attackers got " + (NumAttackersNew - NumAttackers) + " reinforcements!");
+                    IM.MessageRed("Defenders got " + (NumDefendersNew - NumDefenders) + " reinforcements!");
+                    IM.MessageRed("Slots were: " + NumberOfTroopsCanBeSpawned + ".");
                 }
             }
             NumAttackers = __instance.NumberOfActiveAttackerTroops;
@@ -164,7 +165,7 @@ namespace KaosesTweaks.Patches
                     if (agent.RiderAgent == null || agent.RiderAgent.State != AgentState.Active)
                     {
                         mountNoRider += 1;
-                        if (mountNoRider > Statics._settings.RetreatHorses) agent.Retreat(__instance.Mission.GetClosestFleePositionForAgent(agent)); //Mounts retreat more, freeing up agents
+                        if (mountNoRider > Factory.Settings.RetreatHorses) agent.Retreat(__instance.Mission.GetClosestFleePositionForAgent(agent)); //Mounts retreat more, freeing up agents
                     }
                 }
                 else if (agent.IsHuman)
@@ -172,18 +173,18 @@ namespace KaosesTweaks.Patches
                     if (!AgentTrackerTroop.Contains(agent)) AgentTrackerTroop.Add(agent);
                 }
             }
-            BattleSizePatchEx_PartyGroupTroopSupplier.mountfootratio = (BattleSizePatchEx_PartyGroupTroopSupplier.troops == AgentTrackerTroop.Count) ? 1f : 1f + (BattleSizePatchEx_PartyGroupTroopSupplier.mounts - AgentTrackerMount.Count) / (BattleSizePatchEx_PartyGroupTroopSupplier.troops - AgentTrackerTroop.Count) * Statics._settings.BattleSizeExSafePuffer;
+            BattleSizePatchEx_PartyGroupTroopSupplier.mountfootratio = (BattleSizePatchEx_PartyGroupTroopSupplier.troops == AgentTrackerTroop.Count) ? 1f : 1f + (BattleSizePatchEx_PartyGroupTroopSupplier.mounts - AgentTrackerMount.Count) / (BattleSizePatchEx_PartyGroupTroopSupplier.troops - AgentTrackerTroop.Count) * Factory.Settings.BattleSizeExSafePuffer;
             if (BattleSizePatchEx_PartyGroupTroopSupplier.isSiege == true) BattleSizePatchEx_PartyGroupTroopSupplier.mountfootratio = 1f;
 
 
             if (runs > 200)
             {
-                if (Statics._settings.BattleSizeDebug)
+                if (Factory.Settings.BattleSizeDebug)
                 {
-                    IM.ColorGreenMessage("---------REPORT START------------");
-                    IM.ColorGreenMessage("Mounts: " + mountAgents + " | Troops: " + __instance.GetNumberOfPlayerControllableTroops() + " | Agents: " + __instance.Mission.AllAgents.Count);
-                    IM.ColorGreenMessage("To be spawned: " + __instance.NumberOfRemainingTroops + " | Slots available: " + MissionAgentSpawnLogic.MaxNumberOfAgentsForMission);
-                    IM.ColorGreenMessage("Reinforcements mounted agent ratio: " + Math.Round(BattleSizePatchEx_PartyGroupTroopSupplier.mountfootratio, 2));
+                    IM.MessageGreen("---------REPORT START------------");
+                    IM.MessageGreen("Mounts: " + mountAgents + " | Troops: " + __instance.GetNumberOfPlayerControllableTroops() + " | Agents: " + __instance.Mission.AllAgents.Count);
+                    IM.MessageGreen("To be spawned: " + __instance.NumberOfRemainingTroops + " | Slots available: " + MissionAgentSpawnLogic.MaxNumberOfAgentsForMission);
+                    IM.MessageGreen("Reinforcements mounted agent ratio: " + Math.Round(BattleSizePatchEx_PartyGroupTroopSupplier.mountfootratio, 2));
                 }
                 runs = 0;
                 return true;
@@ -202,7 +203,7 @@ namespace KaosesTweaks.Patches
                 list.Insert(72, new CodeInstruction(OpCodes.Conv_R4, null)); //  (MissionAgentSpawnLogic.MaxNumberOfAgentsForMission - base.Mission.AllAgents.Count) --> float
                 list.Insert(74, new CodeInstruction(OpCodes.Conv_R4, null)); // >= numberOfTroopsCanBeSpawned --> float
                 list[75] = new CodeInstruction(OpCodes.Call, SymbolExtensions.GetMethodInfo(() => GetMountRatio())); // >= numberOfTroopsCanBeSpawned * mountfootratio
-                list[83].operand = Statics._settings.ReinforcementQuota * 0.01f; //>= (float)this._battleSize * _ReinforcementQuota * 0.01f_ --> Percentage of Battlesize each reinforcement
+                list[83].operand = Factory.Settings.ReinforcementQuota * 0.01f; //>= (float)this._battleSize * _ReinforcementQuota * 0.01f_ --> Percentage of Battlesize each reinforcement
                 list.RemoveRange(85, 6); // remove  _ || num4 >= 0.5f || num5 >= 0.5f_
             }
 

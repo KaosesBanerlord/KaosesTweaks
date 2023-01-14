@@ -1,8 +1,9 @@
-﻿using KaosesTweaks.Utils;
+﻿using KaosesCommon.Utils;
 using TaleWorlds.Core;
 
-namespace KaosesTweaks.Objects
+namespace KaosesTweaks.Objects.Items
 {
+
     public class MeleeWeapons : ItemModifiersBase
     {
         public MeleeWeapons(ItemObject itemObject) :

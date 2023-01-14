@@ -1,5 +1,5 @@
 ﻿using KaosesTweaks.Settings;
-using KaosesTweaks.Utils;
+using KaosesCommon.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,9 +11,12 @@ using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
+using System.Runtime;
+using KaosesTweaks.Objects;
 
 namespace KaosesTweaks.Behaviors
 {
+
     class ChangeSettlementCulture : CampaignBehaviorBase
     {
         private void OnSessionLaunched(CampaignGameStarter campaignGameStarter) => AddGameMenus(campaignGameStarter);
@@ -35,7 +38,7 @@ namespace KaosesTweaks.Behaviors
         {
             Dictionary<Settlement, CultureObject> startingCultures = new();
 
-            if (KTSettings.Instance is { } settings)
+            if (Factory.Settings is { } settings)
             {
                 UpdatePlayerOverride();
             }
@@ -43,7 +46,7 @@ namespace KaosesTweaks.Behaviors
             foreach (Settlement settlement in from settlement in Campaign.Current.Settlements where settlement.IsTown || settlement.IsCastle || settlement.IsVillage select settlement)
             {
                 startingCultures.Add(settlement, settlement.Culture);
-                if (KTSettings.Instance is { } settings2)
+                if (Factory.Settings is { } settings2)
                 {
                     bool PlayerOverride = settlement.OwnerClan == Clan.PlayerClan && OverrideCulture != settlement.Culture;
                     bool KingdomOverride = settlement.OwnerClan != Clan.PlayerClan && settings2.ChangeToKingdomCulture && settlement.OwnerClan.Kingdom != null && settlement.OwnerClan.Kingdom.Culture != settlement.Culture;
@@ -95,7 +98,7 @@ namespace KaosesTweaks.Behaviors
         // Token: 0x06000E45 RID: 3653 RVA: 0x000630F6 File Offset: 0x000612F6
         private void OnClanChangedKingdom(Clan clan, Kingdom oldKingdom, Kingdom newKingdom, ChangeKingdomAction.ChangeKingdomActionDetail detail, bool showNotification = true)
         {
-            if (KTSettings.Instance is { } settings && settings.ChangeToKingdomCulture)
+            if (Factory.Settings is { } settings && settings.ChangeToKingdomCulture)
             {
                 if (clan == Clan.PlayerClan)
                 {
@@ -115,13 +118,13 @@ namespace KaosesTweaks.Behaviors
         {
 
 
-            if (KTSettings.Instance is { } settings && settlement.OwnerClan == Clan.PlayerClan)
+            if (Factory.Settings is { } settings && settlement.OwnerClan == Clan.PlayerClan)
             {
                 UpdatePlayerOverride();
             }
             if (settlement.IsVillage || settlement.IsCastle || settlement.IsTown)
             {
-                if (KTSettings.Instance is { } settings2)
+                if (Factory.Settings is { } settings2)
                 {
                     bool PlayerOverride = settlement.OwnerClan == Clan.PlayerClan && OverrideCulture != settlement.Culture;
                     bool KingdomOverride = settlement.OwnerClan != Clan.PlayerClan && settings2.ChangeToKingdomCulture && settlement.OwnerClan.Kingdom != null && settlement.OwnerClan.Kingdom.Culture != settlement.Culture;
@@ -171,7 +174,7 @@ namespace KaosesTweaks.Behaviors
 
         public void UpdatePlayerOverride()
         {
-            if (KTSettings.Instance is { } settings)
+            if (Factory.Settings is { } settings)
             {
                 OverrideCulture = null;
                 foreach (CultureObject Culture in from kingdom in Campaign.Current.Kingdoms where settings.PlayerCultureOverride.SelectedValue == kingdom.Culture.StringId || (settings.PlayerCultureOverride.SelectedValue == "khergit" && kingdom.Culture.StringId == "rebkhu") select kingdom.Culture)
@@ -212,15 +215,15 @@ namespace KaosesTweaks.Behaviors
             if (WeekCounter.ContainsKey(settlement))
             {
                 Dictionary<Settlement, int> dictionary = WeekCounter;
-                if (dictionary[settlement] / 7 <= Statics._settings.TimeToChanceCulture)
+                if (dictionary[settlement] / 7 <= Factory.Settings.TimeToChanceCulture)
                 {
                     dictionary[settlement]++;
-                    if (Statics._settings.CultureChangeDebug)
+                    if (Factory.Settings.CultureChangeDebug)
                     {
                         IM.MessageDebug($"OnDailyTickSettlement : {settlement.Name.ToString()} counter: {dictionary[settlement].ToString()}");
-                        IM.MessageDebug($"OnDailyTickSettlement condition: {(dictionary[settlement] / 7 <= Statics._settings.TimeToChanceCulture).ToString()} ");
+                        IM.MessageDebug($"OnDailyTickSettlement condition: {(dictionary[settlement] / 7 <= Factory.Settings.TimeToChanceCulture).ToString()} ");
                         IM.MessageDebug($"OnDailyTickSettlement (dictionary[settlement] / 7) : {(dictionary[settlement] / 7).ToString()} ");
-                        IM.MessageDebug($"OnDailyTickSettlement TimeToChanceCulture: {Statics._settings.TimeToChanceCulture.ToString()} ");
+                        IM.MessageDebug($"OnDailyTickSettlement TimeToChanceCulture: {Factory.Settings.TimeToChanceCulture.ToString()} ");
                     }
 
                     if (IsSettlementDue(settlement))
@@ -238,7 +241,7 @@ namespace KaosesTweaks.Behaviors
             {
                 Dictionary<Settlement, int> dictionary = WeekCounter;
                 dictionary[settlement]++;
-                if (Statics._settings.CultureChangeDebug)
+                if (Factory.Settings.CultureChangeDebug)
                 {
                     IM.MessageDebug($"OnWeeklyTickSettlement : {settlement.Name.ToString()} Added 1 week : {dictionary[settlement].ToString()} ");
                 }
@@ -252,7 +255,7 @@ namespace KaosesTweaks.Behaviors
 
         public bool IsSettlementDue(Settlement settlement)
         {
-            if (KTSettings.Instance is { } settings && settings.TimeToChanceCulture > 0)
+            if (Factory.Settings is { } settings && settings.TimeToChanceCulture > 0)
             {
                 return WeekCounter[settlement] / 7 >= settings.TimeToChanceCulture;
             }
@@ -268,7 +271,7 @@ namespace KaosesTweaks.Behaviors
             {
                 if (WeekCounter.ContainsKey(settlement))
                 {
-                    if (Statics._settings.CultureChangeDebug)
+                    if (Factory.Settings.CultureChangeDebug)
                     {
                         IM.MessageDebug($"AddCounter : {settlement.Name.ToString()} set exisiting");
                     }
@@ -276,7 +279,7 @@ namespace KaosesTweaks.Behaviors
                 }
                 else
                 {
-                    if (Statics._settings.CultureChangeDebug)
+                    if (Factory.Settings.CultureChangeDebug)
                     {
                         IM.MessageDebug($"AddCounter : {settlement.Name.ToString()} add new");
                     }
@@ -309,7 +312,7 @@ namespace KaosesTweaks.Behaviors
 
         public static void Game_menu_change_culture_on_consequence(MenuCallbackArgs args)
         {
-            if (KTSettings.Instance is { } settings)
+            if (Factory.Settings is { } settings)
             {
                 bool PlayerOverride = Settlement.CurrentSettlement.OwnerClan == Clan.PlayerClan && OverrideCulture != Settlement.CurrentSettlement.Culture;
                 bool KingdomOverride = Settlement.CurrentSettlement.OwnerClan != Clan.PlayerClan && settings.ChangeToKingdomCulture && Settlement.CurrentSettlement.OwnerClan.Kingdom != null && Settlement.CurrentSettlement.OwnerClan.Kingdom.Culture != Settlement.CurrentSettlement.Culture;

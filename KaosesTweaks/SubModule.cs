@@ -1,12 +1,12 @@
 ﻿using HarmonyLib;
-using KaosesPartySpeeds.Model;
+using KaosesCommon;
+using KaosesCommon.Utils;
 using KaosesTweaks.Behaviors;
-using KaosesTweaks.BTTweaks;
-using KaosesTweaks.Common;
 using KaosesTweaks.Event;
 using KaosesTweaks.Models;
+using KaosesTweaks.Objects;
 using KaosesTweaks.Settings;
-using KaosesTweaks.Utils;
+using KaosesTweaks.Tweaks;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,15 +16,23 @@ using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.CampaignBehaviors;
 using TaleWorlds.CampaignSystem.Extensions;
 using TaleWorlds.CampaignSystem.MapEvents;
-using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Core;
 using TaleWorlds.MountAndBlade;
+using TaleWorlds.ObjectSystem;
+
 
 namespace KaosesTweaks
 {
+    /// <summary>
+    /// KaosesTweaks Mod
+    /// </summary>
     public class SubModule : MBSubModuleBase
     {
-        private Harmony? harmonyKT;
+        public const bool UsesHarmony = true;
+        public const string ModuleId = "KaosesTweaks";
+        public const string modulePath = @"..\\..\\Modules\\" + ModuleId + "\\";
+        public const string HarmonyId = ModuleId + ".harmony";
+        private Harmony? _harmony;
 
         /* Another chance at marriage */
         public static Dictionary<Hero, CampaignTime>? LastAttempts;
@@ -32,58 +40,67 @@ namespace KaosesTweaks
         MethodInvoker.GetHandler(AccessTools.Method(typeof(RomanceCampaignBehavior), "RemoveUnneededPersuasionAttempts"));
         /* Another chance at marriage */
 
-        /* KaosesPartySpeeds */
-        public static Dictionary<MobileParty, CampaignTime> FleeingParties = new Dictionary<MobileParty, CampaignTime>();
-        public static Dictionary<MobileParty, int> FleeingHours = new Dictionary<MobileParty, int>();
-        public static Dictionary<MobileParty, float> FleeingSpeedReduction = new Dictionary<MobileParty, float>();
-        public static MobileParty? FleeingPartyPlayer;
-        /* KaosesPartySpeeds */
+        /// <summary>
+        /// Called just before the main menu first appears, helpful if your mod depends on other things being set up during the initial load
+        /// </summary>
+        protected override void OnBeforeInitialModuleScreenSetAsRoot()
+        {
+            base.OnBeforeInitialModuleScreenSetAsRoot();
+            new Init();
+            try
+            {
+                if (UsesHarmony)
+                {
+                    if (Kaoses.IsHarmonyLoaded())
+                    {
+                        IM.MessageModLoaded();
+                        try
+                        {
+                            if (_harmony == null)
+                            {
+                                Harmony.DEBUG = Factory.Settings.IsHarmonyDebug;
+#pragma warning disable CS8602 // Dereference of a possibly null reference.
+                                _harmony = new Harmony(ModuleId);
+                                _harmony.PatchAll(Assembly.GetExecutingAssembly());
+#pragma warning restore CS8602 // Dereference of a possibly null reference.
+                            }
 
+                        }
+                        catch (Exception ex)
+                        {
+                            IM.ShowError(ex, Factory.Settings.ModName + " Harmony Error:");
+                        }
+                    }
+                    else { IM.MessageHarmonyLoadError(); }
+                }
+                else
+                {
+#pragma warning disable CS0162 // Unreachable code detected
+                    IM.MessageModLoaded();
+#pragma warning restore CS0162 // Unreachable code detected
+                }
+            }
+            catch (Exception ex)
+            {
+                IM.ShowError(ex, "initial Loading Error " + Factory.Settings.ModName);
+            }
+        }
 
+        /// <summary>
+        /// Called during the first loading screen of the game, always the first override to be called, this is where you should be doing the bulk of your initial setup
+        /// </summary>
         protected override void OnSubModuleLoad()
         {
             base.OnSubModuleLoad();
         }
 
-
-        protected override void OnBeforeInitialModuleScreenSetAsRoot()
-        {
-            base.OnBeforeInitialModuleScreenSetAsRoot();
-            try
-            {
-                ConfigLoader.LoadConfig();
-                IM.ModInfoDebug();
-                bool modUsesHarmoney = Statics.UsesHarmony;
-                if (modUsesHarmoney)
-                {
-                    if (Kaoses.IsHarmonyLoaded())
-                    {
-                        IM.DisplayModLoadedMessage();
-                        if (harmonyKT == null)
-                        {
-                            Harmony.DEBUG = true;
-                            harmonyKT = new Harmony(Statics.HarmonyId);
-                            harmonyKT.PatchAll(Assembly.GetExecutingAssembly());
-                        }
-                    }
-                    else { IM.DisplayModHarmonyErrorMessage(); }
-                }
-                else { IM.DisplayModLoadedMessage(); }
-                //IM.MessageDebug("GetVersionStr :- " + TaleWorlds.Engine.EngineController.GetVersionStr());
-                //IM.MessageDebug("GetApplicationPlatformName :- " + TaleWorlds.Engine.EngineController.GetApplicationPlatformName());
-                //IM.MessageDebug("GetModulesVersionStr :- " + TaleWorlds.Engine.EngineController.GetModulesVersionStr());
-            }
-            catch (Exception ex)
-            {
-                IM.ShowError("Error loading", "initial config", ex);
-            }
-        }
-
-
-
-        // Called 4th after choosing (Resume Game, Campaign, Custom Battle) from the main menu.
+        /// <summary>
+        /// Called once the initialization for a game mode has finished
+        /// </summary>
+        /// <param name="game"></param>
         public override void OnGameInitializationFinished(Game game)
         {
+
             base.OnGameInitializationFinished(game);
             Campaign gameType = game.GameType as Campaign;
             if (!(gameType is Campaign))
@@ -94,13 +111,13 @@ namespace KaosesTweaks
             //~ BT PrisonerImprisonmentTweak
             try
             {
-                if (Statics._settings is { } settings && settings.EnableMissingHeroFix && settings.PrisonerImprisonmentTweakEnabled) //
+                if (Factory.Settings is { } settings && settings.EnableMissingHeroFix && settings.PrisonerImprisonmentTweakEnabled) //
                 {
                     CampaignEvents.DailyTickEvent.AddNonSerializedListener(this, delegate
                     {
                         PrisonerImprisonmentTweak.DailyTick();
                     });
-                    if (Statics._settings.Debug)
+                    if (Factory.Settings.Debug)
                     {
                         IM.MessageDebug("Loaded DailyTickEvent PrisonerImprisonmentTweak");
                     }
@@ -108,16 +125,16 @@ namespace KaosesTweaks
             }
             catch (Exception ex)
             {
-                IM.ShowError("Prisoner Imprisonment Tweak Error", " Game Initialization Finished Error", ex);
+                IM.ShowError(ex, "Game Initialization : Kaoses Tweaks Prisoner Imprisonment Tweak Error");
             }
 
             //~ KaosesItemTweaks
             try
             {
-                if (Statics._settings.MCMItemModifiers)
+                if (Factory.Settings.MCMItemModifiers)
                 {
                     new KaosesItemTweaks(Items.All);
-                    if (Statics._settings.Debug)
+                    if (Factory.Settings.Debug)
                     {
                         IM.MessageDebug("Loaded KaosesItemTweaks");
                     }
@@ -125,13 +142,18 @@ namespace KaosesTweaks
             }
             catch (Exception ex)
             {
-                IM.ShowError("Kaoses Item Tweaks Error", "Game Initialization Finished Error", ex);
+                IM.ShowError(ex, "Game Initialization: Kaoses Tweaks Item Tweaks Error");
             }
-
         }
 
+        /// <summary>
+        /// Called immediately upon loading after selecting a game mode (submodule) from the main menu
+        /// </summary>
+        /// <param name="game"></param>
+        /// <param name="gameStarter"></param>
         protected override void OnGameStart(Game game, IGameStarter gameStarter)
         {
+
             base.OnGameStart(game, gameStarter);
 
             if (game.GameType is Campaign)
@@ -141,21 +163,22 @@ namespace KaosesTweaks
                 //~ BT initializing game models
                 try
                 {
-                    AddModels(campaignGameStarter);
+                    ModelsManager _modelsManager = new ModelsManager(campaignGameStarter);
+                    _modelsManager.AddGameModels();
                 }
                 catch (Exception ex)
                 {
-                    IM.ShowError("Error initializing game models", "Game Start Error", ex);
+                    IM.ShowError(ex, "Game Start : Kaoses Tweaks Error initializing game models");
                 }
 
                 //~ BT MCMKillingBanditsEnabled
                 try
                 {
-                    if (Statics._settings.MCMKillingBanditsEnabled)
+                    if (Factory.Settings.MCMKillingBanditsEnabled)
                     {
                         PlayerBattleEndEventListener playerBattleEndEventListener = new PlayerBattleEndEventListener();
                         CampaignEvents.OnPlayerBattleEndEvent.AddNonSerializedListener(playerBattleEndEventListener, new Action<MapEvent>(playerBattleEndEventListener.IncreaseLocalRelationsAfterBanditFight));
-                        if (Statics._settings.Debug)
+                        if (Factory.Settings.Debug)
                         {
                             IM.MessageDebug("Loaded Killing Bandits raises relationships playerBattleEndEventListener Behavior");
                         }
@@ -163,7 +186,7 @@ namespace KaosesTweaks
                 }
                 catch (Exception ex)
                 {
-                    IM.ShowError("Error initializing Killing Bandits raises relationships", "Game Start Error", ex);
+                    IM.ShowError(ex, "Game Start: Kaoses Tweaks Error initializing Killing Bandits");
                 }
 
                 //~ Another Chance At Marriage
@@ -171,14 +194,14 @@ namespace KaosesTweaks
                 try
                 {
                     /* Another chance at marriage */
-                    if (Statics._settings.AnotherChanceAtMarriageEnabled)
+                    if (Factory.Settings.AnotherChanceAtMarriageEnabled)
                     {
-                        if (Statics._settings.AnotherChanceAtMarriageDebug)
+                        if (Factory.Settings.AnotherChanceAtMarriageDebug)
                         {
                             IM.MessageDebug($"Another Chance At Marriage ENABLED");
                         }
                         campaignGameStarter.CampaignBehaviors.Add(new AnotherChanceBehavior());
-                        if (Statics._settings.Debug)
+                        if (Factory.Settings.Debug)
                         {
                             IM.MessageDebug("Loaded AnotherChanceBehavior Behavior");
                         }
@@ -187,16 +210,16 @@ namespace KaosesTweaks
                 }
                 catch (Exception ex)
                 {
-                    IM.ShowError("Error initializing Another chance at marriage", "Game Start Error", ex);
+                    IM.ShowError(ex, "Game Start:Kaoses Tweaks Error initializing Another chance");
                 }
 
                 //~ ChangeSettlementCulture
                 try
                 {
                     //~BT
-                    if (Statics._settings.EnableCultureChanger)
+                    if (Factory.Settings.EnableCultureChanger)
                     {
-                        if (Statics._settings.Debug)
+                        if (Factory.Settings.Debug)
                         {
                             IM.MessageDebug("Loaded ChangeSettlementCulture Behavior");
                         }
@@ -205,36 +228,67 @@ namespace KaosesTweaks
                 }
                 catch (Exception ex)
                 {
-                    IM.ShowError("Error initializing Culture Changer", "Game Start Error", ex);
+                    IM.ShowError(ex, "Game Start: Kaoses Tweaks Error initializing Culture Changer");
                 }
 
                 //~ KaosesCraftingCampaignBehaviors
                 try
                 {
-                    if (Statics._settings.ArrowMultipliersEnabled || Statics._settings.BoltsMultipliersEnabled
-                        || Statics._settings.ThrownMultiplierEnabled)
+                    if (Factory.Settings.ArrowMultipliersEnabled || Factory.Settings.BoltsMultipliersEnabled
+                        || Factory.Settings.ThrownMultiplierEnabled)
                     {
-                        if (Statics._settings.Debug)
+                        if (Factory.Settings.Debug)
                         {
                             IM.MessageDebug("Loaded KaosesCraftingCampaignBehaviors Behavior");
                         }
-                        campaignGameStarter.AddBehavior(new KaosesCraftingCampaignBehaviors());
+                        campaignGameStarter.AddBehavior(new CraftingCampaignBehaviors());
                     }
                 }
                 catch (Exception ex)
                 {
-                    IM.ShowError("Error initializing KaosesCraftingCampaignBehaviors Changer", "Game Start Error", ex);
+                    IM.ShowError(ex, "Game Start: Kaoses Tweaks Error initializing CraftingCampaignBehaviors");
+                }
+
+                //~ KaosesWorkshopCampaignBehaviors
+                try
+                {
+                    if (Factory.Settings.EnableWorkshopSellTweak || Factory.Settings.EnableWorkshopBuyTweak
+                        || Factory.Settings.KeepWorkshopsOnWarDeclaration || Factory.Settings.KeepWorkshopsOnBankruptcy)
+                    {
+                        if (Factory.Settings.Debug)
+                        {
+                            IM.MessageDebug("Loaded KaosesWorkshopCampaignBehaviors Behavior");
+                        }
+                        campaignGameStarter.AddBehavior(new WorkshopsBehavior());
+                    }
+                }
+                catch (Exception ex)
+                {
+                    IM.ShowError(ex, "Game Start: Kaoses Tweaks Error initializing WorkshopsCampaignBehavior");
                 }
             }
         }
 
+        /// <summary>
+        /// Called immediately after loading the selected game mode (submodule) has completed
+        /// </summary>
+        /// <param name="game"></param>
+        public override void BeginGameStart(Game game)
+        {
+            base.BeginGameStart(game);
+        }
 
+        /// <summary>
+        /// Called seemingly as loading is ending, not entirely sure of this one
+        /// </summary>
+        /// <param name="game"></param>
+        /// <returns></returns>
         public override bool DoLoading(Game game)
         {
             //~ PrisonerImprisonmentTweakEnabled
             try
             {
-                if (Campaign.Current != null && KTSettings.Instance is { } settings)
+                if (Campaign.Current != null && Config.Instance is { } settings)
                 {
                     if (settings.PrisonerImprisonmentTweakEnabled)
                         PrisonerImprisonmentTweak.Apply(Campaign.Current);
@@ -242,13 +296,13 @@ namespace KaosesTweaks
             }
             catch (Exception ex)
             {
-                IM.ShowError("Error initializing PrisonerImprisonmentTweakEnabled tweak calls", "Game Loading Error", ex);
+                IM.ShowError(ex, "Game Loading: Kaoses Tweaks Error initializing PrisonerImprisonmentTweakEnabled");
             }
 
             //~ DailyTroopExperienceTweakEnabled
             try
             {
-                if (Campaign.Current != null && KTSettings.Instance is { } settings)
+                if (Campaign.Current != null && Config.Instance is { } settings)
                 {
                     if (settings.DailyTroopExperienceTweakEnabled)
                         DailyTroopExperienceTweak.Apply(Campaign.Current);
@@ -256,13 +310,13 @@ namespace KaosesTweaks
             }
             catch (Exception ex)
             {
-                IM.ShowError("Error initializing DailyTroopExperienceTweakEnabled tweak calls", "Game Loading Error", ex);
+                IM.ShowError(ex, "Game Loading: Kaoses Tweaks Error initializing DailyTroopExperienceTweakEnabled");
             }
 
             //~ TweakedConspiracyQuestTimerEnabled
             try
             {
-                if (Campaign.Current != null && KTSettings.Instance is { } settings)
+                if (Campaign.Current != null && Config.Instance is { } settings)
                 {
                     // 1.5.7.2 - Disable until we understand main quest changes.
                     //if (settings.TweakedConspiracyQuestTimerEnabled)
@@ -271,199 +325,83 @@ namespace KaosesTweaks
             }
             catch (Exception ex)
             {
-                IM.ShowError("Error initializing TweakedConspiracyQuestTimerEnabled tweak calls", "Game Loading Error", ex);
+                IM.ShowError(ex, "Game Loading : Kaoses Tweaks Error initializing TweakedConspiracyQuestTimerEnabled");
             }
             return base.DoLoading(game);
         }
 
+        /// <summary>
+        /// Called once any game mode is started
+        /// </summary>
+        /// <param name="game"></param>
+        /// <param name="starterObject"></param>
+        public override void OnCampaignStart(Game game, object starterObject)
+        {
+            base.OnCampaignStart(game, starterObject);
+        }
+
+        /// <summary>
+        /// Called on exiting out of a mission/campaign
+        /// </summary>
+        /// <param name="game"></param>
+        public override void OnGameEnd(Game game)
+        {
+            base.OnGameEnd(game);
+        }
+
+        /// <summary>
+        /// Called only after loading a save
+        /// </summary>
+        /// <param name="game"></param>
+        /// <param name="initializerObject"></param>
+        public override void OnGameLoaded(Game game, object initializerObject)
+        {
+            base.OnGameLoaded(game, initializerObject);
+        }
+
+        /// <summary>
+        /// Called when starting a new save in the campaign mode specifically
+        /// </summary>
+        /// <param name="game"></param>
+        /// <param name="initializerObject"></param>
+        public override void OnNewGameCreated(Game game, object initializerObject)
+        {
+            base.OnNewGameCreated(game, initializerObject);
+        }
+
+        /// <summary>
+        /// This is called once every frame, you should avoid expensive operations being called directly here and instead do as little work as possible for performance reasons.
+        /// </summary>
+        /// <param name="dt">The time in milliseconds the frame took to complete</param> 
+        public override void OnMissionBehaviorInitialize(Mission mission)
+        {
+
+        }
+
+
+        /// <summary>
+        /// Called when exiting Bannerlord entirely
+        /// </summary>
         protected override void OnSubModuleUnloaded()
         {
             base.OnSubModuleUnloaded();
         }
 
-        public override void OnGameEnd(Game game)
-        {
-
-        }
-
-
-        //~ BT
-        /*
-        public override void OnMissionBehaviourInitialize(Mission mission)
-        {
-            if (mission == null) return;
-            base.OnMissionBehaviourInitialize(mission);
-        }*/
 
         private void AddModels(CampaignGameStarter campaignGameStarter)
         {
 
-            if (campaignGameStarter != null && KTSettings.Instance is { } settings)
-            {
-                if (settings.MCMClanModifiers)
-                {
-                    if (settings.Debug)
-                    {
-                        IM.MessageDebug("Loaded Kaoses Clan Model Override");
-                    }
-                    campaignGameStarter.AddModel(new KaosesClanTierModel());
-                }
-                if (settings.KaosesStaticSpeedModifiersEnabled || settings.KaosesDynamicSpeedModifiersEnabled)
-                {
-
-                    if (settings.Debug)
-                    {
-                        IM.MessageDebug("Loaded Kaoses Party Speed model Model Override");
-                    }
-                    campaignGameStarter.AddModel(new KaosesPartySpeedCalculatingModel());
-                }
-                if (settings.HideoutBattleTroopLimitTweakEnabled)
-                {
-                    /*
-                    if (settings.Debug)
-                    {
-                        IM.MessageDebug("Loaded Kaoses Bandit Density model Model Override");
-                    }*/
-                    //campaignGameStarter.AddModel(new KaosesBanditDensityModel());
-                }
-                if ((settings.PartyWageTweaksEnabled && !settings.PartyWageTweaksHarmonyEnabled) || (settings.KingdomBalanceStrengthEnabled && !settings.KingdomBalanceStrengthHarmonyEnabled))
-                {
-                    if (settings.Debug)
-                    {
-                        IM.MessageDebug("Loaded BT Wage model Model Override");
-                    }
-                    campaignGameStarter.AddModel(new BTDefaultPartyWageModel());
-                }
-                if (settings.MCMArmy)
-                {
-                    if (settings.Debug)
-                    {
-                        IM.MessageDebug("Loaded Kaoses Army Model Override");
-                    }
-                    campaignGameStarter.AddModel(new KaosesArmyManagementCalculationModel());
-                }
-                if (settings.MCMBattleRewardModifiers && !settings.BattleRewardModifiersPatchOnly)
-                {
-                    if (settings.Debug)
-                    {
-                        IM.MessageDebug("Loading Kaoses Battle rewards Model");
-                    }
-                    campaignGameStarter.AddModel(new KaosesBattleRewardModel());
-                }
-                if (settings.MCMCharacterDevlopmentModifiers || Statics._settings.LearningRateMultiplier != 1.0 || Statics._settings.LearningLimitEnabled)
-                {
-                    if (settings.Debug)
-                    {
-                        IM.MessageDebug("Loaded Kaoses Character Development Model Override");
-                    }
-                    campaignGameStarter.AddModel(new KaosesCharacterDevelopmentModel());
-                }
-                if (settings.MCMPregnancyModifiers)
-                {
-                    if (settings.Debug)
-                    {
-                        IM.MessageDebug("Loaded Kaoses Pregnancy Model Override");
-                    }
-                    campaignGameStarter.AddModel(new KaosesPregnancyModel());
-                }
-                if (settings.MCMSmithingModifiers && !settings.MCMSmithingHarmoneyPatches)
-                {
-                    if (settings.Debug)
-                    {
-                        IM.MessageDebug("Loaded Kaoses Smithing Model Override");
-                    }
-                    campaignGameStarter.AddModel(new KaosesSmithingModel());
-                }
-                if (settings.PartyFoodConsumptionEnabled)
-                {
-                    if (settings.Debug)
-                    {
-                        IM.MessageDebug("Loaded Kaoses party Food Consumption Model Override");
-                    }
-                    campaignGameStarter.AddModel(new KaosesMobilePartyFoodConsumptionModel());
-                }
-                if (settings.DifficultyTweakEnabled)
-                {
-                    if (settings.Debug)
-                    {
-                        IM.MessageDebug("Loaded BT Difficulty Model Override");
-                    }
-                    campaignGameStarter.AddModel(new BTDifficultyModel());
-                }
-                if (settings.SettlementMilitiaEliteSpawnRateBonusEnabled)
-                {
-                    if (settings.Debug)
-                    {
-                        IM.MessageDebug("Loaded BT Settlement Militia Model Override");
-                    }
-                    campaignGameStarter.AddModel(new BTSettlementMilitiaModel());
-                }
-                if (settings.AgeTweaksEnabled)
-                {
-                    BTAgeModel model = new();
-                    List<string> configErrors = model.GetConfigErrors().ToList();
-
-                    if (configErrors.Any())
-                    {
-                        StringBuilder sb = new();
-                        sb.AppendLine("There is a configuration error in the \'Age\' tweaks from Bannerlord Tweaks.");
-                        sb.AppendLine("Please check the below errors and fix the age settings in the settings menu:");
-                        sb.AppendLine();
-                        foreach (string? e in configErrors)
-                            sb.AppendLine(e);
-                        sb.AppendLine();
-                        sb.AppendLine("The age tweaks will not be applied until these errors have been resolved.");
-                        sb.Append("Note that this is only a warning message and not a crash.");
-                        //MessageBox.Show(sb.ToString(), "Configuration Error in Age Tweaks");
-                        IM.ShowError(sb.ToString(), "Configuration Error in Age Tweaks");
-                    }
-                    else
-                    {
-                        if (settings.Debug)
-                        {
-                            IM.MessageDebug("Loaded BT Age Model Override");
-                        }
-                        campaignGameStarter.AddModel(new BTAgeModel());
-                    }
-
-                }
-                if (settings.SiegeTweaksEnabled)
-                {
-                    if (settings.Debug)
-                    {
-                        IM.MessageDebug("Loaded BT Siege Model Override");
-                    }
-                    campaignGameStarter.AddModel(new BTSiegeEventModel());
-                }
-                if (settings.MaxWorkshopCountTweakEnabled || settings.WorkshopBuyingCostTweakEnabled || settings.WorkshopEffectivnessEnabled)
-                {
-                    if (settings.Debug)
-                    {
-                        IM.MessageDebug("Loaded BT Workshop Model Override");
-                    }
-                    campaignGameStarter.AddModel(new BTWorkshopModel());
-                }
-                if (settings.TroopExperienceTweakEnabled || settings.ArenaHeroExperienceMultiplierEnabled || settings.TournamentHeroExperienceMultiplierEnabled)
-                {
-                    if (settings.Debug)
-                    {
-                        IM.MessageDebug("Loaded BT ComabatXP Model Override");
-                    }
-                    campaignGameStarter.AddModel(new BTCombatXpModel());
-                }
-            }
         }
 
 
 
         protected override void OnApplicationTick(float dt)
         {
-            if (Campaign.Current != null && KTSettings.Instance is { } settings2 && settings2.CampaignSpeed != 4)
+            if (Campaign.Current != null && Config.Instance is { } settings2 && settings2.CampaignSpeed != 4)
             {
                 Campaign.Current.SpeedUpMultiplier = settings2.CampaignSpeed;
             }
         }
         //~ BT
-
     }
 }

@@ -1,6 +1,6 @@
-﻿using KaosesTweaks.Common;
-using KaosesTweaks.Settings;
-using KaosesTweaks.Utils;
+﻿using KaosesTweaks.Settings;
+using KaosesCommon.Utils;
+using KaosesCommon.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,12 +8,15 @@ using System.Text;
 using System.Threading.Tasks;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
+using KaosesCommon;
+using System.Runtime;
 
 namespace KaosesTweaks.Objects.Experience
 {
+
     public class KaosesAddSkillXp
     {
-        protected KTSettings? _settings;
+        protected Config? _settings;
         protected Hero _hero;
         protected bool _isPlayerClan = false;
         protected bool _isPlayer = false;
@@ -27,7 +30,7 @@ namespace KaosesTweaks.Objects.Experience
 
         public KaosesAddSkillXp(Hero hero, SkillObject skill, float xpAmount)
         {
-            _settings = Statics._settings;
+            _settings = Factory.Settings;
             _hero = hero;
             _skill = skill;
             _xpAmount = xpAmount;
@@ -44,11 +47,11 @@ namespace KaosesTweaks.Objects.Experience
                 {
                     _isPlayer = _hero.IsHumanPlayerCharacter;
                 }
-                else if (Kaoses.IsLord(_hero) && Kaoses.IsPlayerClan(_hero))
+                else if (KHero.IsLord(_hero) && KFaction.IsPlayerClan(_hero))
                 {
-                    _isPlayerClan = Kaoses.IsPlayerClan(_hero);
+                    _isPlayerClan = KFaction.IsPlayerClan(_hero);
                 }
-                if (Kaoses.IsLord(_hero))
+                if (KHero.IsLord(_hero))
                 {
 
                     _isAILord = _hero.CharacterObject.IsHero;
@@ -199,7 +202,7 @@ namespace KaosesTweaks.Objects.Experience
         public float GetNewSkillXp()
         {
             float newXp = 0.0f;
-            if (Statics._settings.XpModifiersDebug && HasModifiedXP())
+            if (Factory.Settings.XpModifiersDebug && HasModifiedXP())
             {
                 DebugDump();
             }
@@ -217,11 +220,11 @@ namespace KaosesTweaks.Objects.Experience
                 + " Name: " + _hero.CharacterObject.Name.ToString() + "\r\n"
                 + "  Skill Name: " + _skill.GetName().ToString() + "\r\n"
                 + "  _isPlayerClan: " + _isPlayerClan.ToString() + "\r\n"
-                + "  SkillXpUseForPlayerClan: " + Statics._settings.SkillXpUseForPlayerClan.ToString() + "\r\n"
+                + "  SkillXpUseForPlayerClan: " + Factory.Settings.SkillXpUseForPlayerClan.ToString() + "\r\n"
                 + "  _isPlayer: " + _isPlayer.ToString() + "\r\n"
-                + "  SkillXpUseForPlayer: " + Statics._settings.SkillXpUseForPlayer.ToString() + "\r\n"
+                + "  SkillXpUseForPlayer: " + Factory.Settings.SkillXpUseForPlayer.ToString() + "\r\n"
                 + "  _isAILord: " + _isAILord.ToString() + "\r\n"
-                + "  SkillXpUseForAI: " + Statics._settings.SkillXpUseForAI.ToString() + "\r\n"
+                + "  SkillXpUseForAI: " + Factory.Settings.SkillXpUseForAI.ToString() + "\r\n"
                 + "  _ValidHeroForUse: " + _ValidHeroForUse.ToString() + "\r\n"
                 + "  _ValidSkillForUse: " + _ValidSkillForUse.ToString() + "\r\n"
                 + "  _skillMultiplier: " + _skillMultiplier.ToString() + "\r\n"

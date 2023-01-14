@@ -1,8 +1,10 @@
-﻿using KaosesTweaks.Utils;
+﻿using KaosesCommon.Utils;
 using TaleWorlds.Core;
 
-namespace KaosesTweaks.Objects
+
+namespace KaosesTweaks.Objects.Items
 {
+
     public class TradeGoods : ItemModifiersBase
     {
 

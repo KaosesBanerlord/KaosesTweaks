@@ -10,10 +10,10 @@ namespace KaosesTweaks.Patches
     {
         private static bool Prefix(ref int ____randomCompanionSpawnFrequencyInWeeks)
         {
-            //____randomCompanionSpawnFrequencyInWeeks = KTSettings.Instance.CompanionSpawnInterval;
+            //____randomCompanionSpawnFrequencyInWeeks = Factory.Settings.CompanionSpawnInterval;
             return true;
         }
-        static bool Prepare() => KTSettings.Instance is { } settings && settings.CompanionSpawnInterval != 6;
+        static bool Prepare() => Factory.Settings is { } settings && settings.CompanionSpawnInterval != 6;
     }
     */
 }

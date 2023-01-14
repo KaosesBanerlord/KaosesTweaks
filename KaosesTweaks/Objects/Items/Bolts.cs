@@ -1,8 +1,10 @@
-﻿using KaosesTweaks.Utils;
+﻿using KaosesCommon.Utils;
+using System.Runtime;
 using TaleWorlds.Core;
 
 namespace KaosesTweaks.Objects.Items
 {
+
     class Bolts : ItemModifiersBase
     {
         public Bolts(ItemObject itemObject) :
@@ -35,9 +37,9 @@ namespace KaosesTweaks.Objects.Items
 
         protected void GetMultiplierValues(ref float multiplierPrice, ref float multiplierWeight, ref float multiplierStack)
         {
-            multiplierPrice = Statics._settings.BoltsValueMultiplier;
-            //multiplierWeight = Statics._settings.BoltsWeightMultiplier;
-            multiplierStack = Statics._settings.BoltsMultiplier;
+            multiplierPrice = Factory.Settings.BoltsValueMultiplier;
+            //multiplierWeight = Factory.Settings.BoltsWeightMultiplier;
+            multiplierStack = Factory.Settings.BoltsMultiplier;
         }
     }
 }

@@ -1,8 +1,15 @@
-﻿using KaosesTweaks.Utils;
+﻿using KaosesCommon.Utils;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Runtime;
+using System.Text;
+using System.Threading.Tasks;
 using TaleWorlds.Core;
 
-namespace KaosesTweaks.Objects
+namespace KaosesTweaks.Objects.Items
 {
+
     public class Food : ItemModifiersBase
     {
 
@@ -39,23 +46,23 @@ namespace KaosesTweaks.Objects
                 TradeItemComponent tc = _item.FoodComponent;
                 if (tc.MoraleBonus == 0)
                 {
-                    multiplierPrice = Statics._settings.ItemFoodPriceMorale0Multiplier;
-                    multiplierWeight = Statics._settings.ItemFoodWeightMorale0Multiplier;
+                    multiplierPrice = Factory.Settings.ItemFoodPriceMorale0Multiplier;
+                    multiplierWeight = Factory.Settings.ItemFoodWeightMorale0Multiplier;
                 }
                 else if (tc.MoraleBonus == 1)
                 {
-                    multiplierPrice = Statics._settings.ItemFoodPriceMorale1Multiplier;
-                    multiplierWeight = Statics._settings.ItemFoodWeightMorale1Multiplier;
+                    multiplierPrice = Factory.Settings.ItemFoodPriceMorale1Multiplier;
+                    multiplierWeight = Factory.Settings.ItemFoodWeightMorale1Multiplier;
                 }
                 else if (tc.MoraleBonus == 2)
                 {
-                    multiplierPrice = Statics._settings.ItemFoodPriceMorale2Multiplier;
-                    multiplierWeight = Statics._settings.ItemFoodWeightMorale2Multiplier;
+                    multiplierPrice = Factory.Settings.ItemFoodPriceMorale2Multiplier;
+                    multiplierWeight = Factory.Settings.ItemFoodWeightMorale2Multiplier;
                 }
                 else if (tc.MoraleBonus == 3)
                 {
-                    multiplierPrice = Statics._settings.ItemFoodPriceMorale3Multiplier;
-                    multiplierWeight = Statics._settings.ItemFoodWeightMorale3Multiplier;
+                    multiplierPrice = Factory.Settings.ItemFoodPriceMorale3Multiplier;
+                    multiplierWeight = Factory.Settings.ItemFoodWeightMorale3Multiplier;
                 }
             }
 

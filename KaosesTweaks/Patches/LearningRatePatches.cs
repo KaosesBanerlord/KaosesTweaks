@@ -1,5 +1,6 @@
 ﻿using System;
 using HarmonyLib;
+using KaosesTweaks.Objects;
 using KaosesTweaks.Settings;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.GameComponents;
@@ -12,9 +13,9 @@ namespace KaosesTweaks.Patches
     {
         static void Postfix(ref ExplainedNumber __result)
         {
-            __result.LimitMin(KTSettings.Instance.MinimumLearningRate);
+            __result.LimitMin(Factory.Settings.MinimumLearningRate);
         }
 
-        static bool Prepare() => KTSettings.Instance is { } settings && settings.MinimumLearningRate != 0.0f;
+        static bool Prepare() => Factory.Settings is { } settings && settings.MinimumLearningRate != 0.0f;
     }
 }

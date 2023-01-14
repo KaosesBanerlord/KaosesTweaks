@@ -14,49 +14,15 @@ using TaleWorlds.Localization;
 
 namespace KaosesTweaks.Patches
 {
-
-    [HarmonyPatch(typeof(WorkshopsCampaignBehavior), "ProduceOutput")]
-    public class ProductionOutputPatch
-    {
-        private static bool Prefix(ItemObject outputItem, Town town, Workshop workshop, int count, bool doNotEffectCapital, out int __state)
+    /*
+        [HarmonyPatch(typeof(WorkshopsCampaignBehavior), "ProduceOutput")]
+        public class ProductionOutputPatch
         {
-            if (Campaign.Current.GameStarted && !doNotEffectCapital)
+            private static bool Prefix(ItemObject outputItem, Town town, Workshop workshop, int count, bool doNotEffectCapital, out int __state)
             {
-                __state = town.GetItemPrice(outputItem, null, false);
-                return true;
-            }
-            else
-            {
-                __state = 0;
-                return true;
-            }
-        }
-        private static void Postfix(ItemObject outputItem, Town town, Workshop workshop, int count, bool doNotEffectCapital, int __state)
-        {
-            if (Campaign.Current.GameStarted && !doNotEffectCapital && KTSettings.Instance is { } settings && settings.EnableWorkshopSellTweak)
-            {
-                float num = Math.Min(1000, __state) * count * (settings.WorkshopSellTweak - 1f);
-                workshop.ChangeGold((int)num);
-                town.ChangeGold((int)-num);
-            }
-        }
-        static bool Prepare() => KTSettings.Instance is { } settings && settings.EnableWorkshopSellTweak;
-    }
-
-
-    [HarmonyPatch(typeof(WorkshopsCampaignBehavior), "ConsumeInput")]
-    public class ConsumeInputPatch
-    {
-        private static bool Prefix(ItemCategory productionInput, Town town, Workshop workshop, bool doNotEffectCapital, out int __state)
-        {
-            if (Campaign.Current.GameStarted && !doNotEffectCapital)
-            {
-                ItemRoster itemRoster = town.Owner.ItemRoster;
-                int num2 = itemRoster.FindIndex((ItemObject x) => x.ItemCategory == productionInput);
-                if (num2 >= 0)
+                if (Campaign.Current.GameStarted && !doNotEffectCapital)
                 {
-                    ItemObject itemAtIndex = itemRoster.GetItemAtIndex(num2);
-                    __state = town.GetItemPrice(itemAtIndex, null, false);
+                    __state = town.GetItemPrice(outputItem, null, false);
                     return true;
                 }
                 else
@@ -65,55 +31,89 @@ namespace KaosesTweaks.Patches
                     return true;
                 }
             }
-            else
+            private static void Postfix(ItemObject outputItem, Town town, Workshop workshop, int count, bool doNotEffectCapital, int __state)
             {
-                __state = 0;
+                if (Campaign.Current.GameStarted && !doNotEffectCapital && KTSettings.Instance is { } settings && settings.EnableWorkshopSellTweak)
+                {
+                    float num = Math.Min(1000, __state) * count * (settings.WorkshopSellTweak - 1f);
+                    workshop.ChangeGold((int)num);
+                    town.ChangeGold((int)-num);
+                }
+            }
+            static bool Prepare() => KTSettings.Instance is { } settings && settings.EnableWorkshopSellTweak;
+        }
+
+
+        [HarmonyPatch(typeof(WorkshopsCampaignBehavior), "ConsumeInput")]
+        public class ConsumeInputPatch
+        {
+            private static bool Prefix(ItemCategory productionInput, Town town, Workshop workshop, bool doNotEffectCapital, out int __state)
+            {
+                if (Campaign.Current.GameStarted && !doNotEffectCapital)
+                {
+                    ItemRoster itemRoster = town.Owner.ItemRoster;
+                    int num2 = itemRoster.FindIndex((ItemObject x) => x.ItemCategory == productionInput);
+                    if (num2 >= 0)
+                    {
+                        ItemObject itemAtIndex = itemRoster.GetItemAtIndex(num2);
+                        __state = town.GetItemPrice(itemAtIndex, null, false);
+                        return true;
+                    }
+                    else
+                    {
+                        __state = 0;
+                        return true;
+                    }
+                }
+                else
+                {
+                    __state = 0;
+                    return true;
+                }
+            }
+
+            private static void Postfix(ItemCategory productionInput, Town town, Workshop workshop, bool doNotEffectCapital, int __state)
+            {
+
+                if (Campaign.Current.GameStarted && !doNotEffectCapital && KTSettings.Instance is { } settings && settings.EnableWorkshopBuyTweak)
+                {
+                    float num = __state * (settings.WorkshopBuyTweak - 1f);
+                    if (Statics._settings.WorkshopsDebug)
+                    {
+                        IM.MessageDebug("Patches WorkshopsCampaignBehavior ProduceOutput: " + num.ToString() + "  Tweak : " + settings.WorkshopBuyTweak.ToString());
+                    }
+                    workshop.ChangeGold((int)-num);
+                    town.ChangeGold((int)num);
+                }
+            }
+            static bool Prepare() => KTSettings.Instance is { } settings && settings.EnableWorkshopBuyTweak;
+        }
+
+        [HarmonyPatch(typeof(ChangeOwnerOfWorkshopAction), "ApplyByWarDeclaration")]
+        class KeepWorkshopsOnWarDeclarationPatch
+        {
+            private static bool Prefix(Workshop workshop, Hero newOwner, WorkshopType workshopType, int capital, bool upgradable, TextObject customName = null)
+            {
+                if (KTSettings.Instance is { } settings && settings.KeepWorkshopsOnWarDeclaration)
+                    return false;
+
                 return true;
             }
+            static bool Prepare() => KTSettings.Instance is { } settings && settings.KeepWorkshopsOnWarDeclaration;
         }
 
-        private static void Postfix(ItemCategory productionInput, Town town, Workshop workshop, bool doNotEffectCapital, int __state)
+        [HarmonyPatch(typeof(ChangeOwnerOfWorkshopAction), "ApplyByBankruptcy")]
+        class KeepWorkshopsOnBankruptcyPatch
         {
-
-            if (Campaign.Current.GameStarted && !doNotEffectCapital && KTSettings.Instance is { } settings && settings.EnableWorkshopBuyTweak)
+            private static bool Prefix(Workshop workshop, Hero newOwner, WorkshopType workshopType, int capital, bool upgradable, TextObject customName = null)
             {
-                float num = __state * (settings.WorkshopBuyTweak - 1f);
-                if (Statics._settings.WorkshopsDebug)
-                {
-                    IM.MessageDebug("Patches WorkshopsCampaignBehavior ProduceOutput: " + num.ToString() + "  Tweak : " + settings.WorkshopBuyTweak.ToString());
-                }
-                workshop.ChangeGold((int)-num);
-                town.ChangeGold((int)num);
+                if (KTSettings.Instance is { } settings && settings.KeepWorkshopsOnBankruptcy)
+                    return false;
+
+                return true;
             }
-        }
-        static bool Prepare() => KTSettings.Instance is { } settings && settings.EnableWorkshopBuyTweak;
-    }
-
-    [HarmonyPatch(typeof(ChangeOwnerOfWorkshopAction), "ApplyByWarDeclaration")]
-    class KeepWorkshopsOnWarDeclarationPatch
-    {
-        private static bool Prefix(Workshop workshop, Hero newOwner, WorkshopType workshopType, int capital, bool upgradable, TextObject customName = null)
-        {
-            if (KTSettings.Instance is { } settings && settings.KeepWorkshopsOnWarDeclaration)
-                return false;
-
-            return true;
-        }
-        static bool Prepare() => KTSettings.Instance is { } settings && settings.KeepWorkshopsOnWarDeclaration;
-    }
-
-    [HarmonyPatch(typeof(ChangeOwnerOfWorkshopAction), "ApplyByBankruptcy")]
-    class KeepWorkshopsOnBankruptcyPatch
-    {
-        private static bool Prefix(Workshop workshop, Hero newOwner, WorkshopType workshopType, int capital, bool upgradable, TextObject customName = null)
-        {
-            if (KTSettings.Instance is { } settings && settings.KeepWorkshopsOnBankruptcy)
-                return false;
-
-            return true;
-        }
-        static bool Prepare() => KTSettings.Instance is { } settings && settings.KeepWorkshopsOnBankruptcy;
-    }
+            static bool Prepare() => KTSettings.Instance is { } settings && settings.KeepWorkshopsOnBankruptcy;
+        }*/
 
     /*
         [HarmonyPatch(typeof(DefaultWorkshopModel), "DaysForPlayerSaveWorkshopFromBankruptcy")]

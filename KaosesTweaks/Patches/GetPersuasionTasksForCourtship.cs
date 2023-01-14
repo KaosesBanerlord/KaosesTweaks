@@ -1,6 +1,6 @@
 ﻿using HarmonyLib;
 using KaosesTweaks.Settings;
-using KaosesTweaks.Utils;
+using KaosesCommon.Utils;
 using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
@@ -8,6 +8,7 @@ using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.CampaignSystem.CampaignBehaviors;
 using TaleWorlds.CampaignSystem.Conversation;
 using TaleWorlds.CampaignSystem.Conversation.Persuasion;
+using KaosesTweaks.Objects;
 
 /* Another chance at marriage */
 namespace KaosesTweaks.Patches
@@ -34,7 +35,7 @@ namespace KaosesTweaks.Patches
                     ? value
                     : CampaignTime.DaysFromNow(-1f);
 
-                if (Statics._settings.AnotherChanceAtMarriageDebug)
+                if (Factory.Settings.AnotherChanceAtMarriageDebug)
                 {
                     IM.MessageDebug($"Another Chance At Marriage:can_open_courtship  CampaignTime.Now.ToDays < lastAttempt.ToDays = {CampaignTime.Now.ToDays < lastAttempt.ToDays}");
                 }
@@ -80,7 +81,7 @@ namespace KaosesTweaks.Patches
             }
         }
 
-        static bool Prepare() => KTSettings.Instance is { } settings && settings.AnotherChanceAtMarriageEnabled;
+        static bool Prepare() => Factory.Settings is { } settings && settings.AnotherChanceAtMarriageEnabled;
     }
 }
 /* Another chance at marriage */

@@ -1,5 +1,6 @@
 ﻿using HarmonyLib;
 using Helpers;
+using KaosesTweaks.Objects;
 using KaosesTweaks.Settings;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
@@ -13,7 +14,7 @@ namespace KaosesTweaks.Patches
     {
         private static bool HandlePartySizeMultipliers(ref MobileParty __instance, PartyTemplateObject pt, int troopNumberLimit)
         {
-            if (KTSettings.Instance is { } settings && settings.PartySizeMultipliersEnabled)
+            if (Factory.Settings is { } settings && settings.PartySizeMultipliersEnabled)
             {
                 if (__instance.IsBandit || __instance.IsBanditBossParty)
                 {
@@ -89,7 +90,7 @@ namespace KaosesTweaks.Patches
 
         private static bool HandlePartyCarvanSize(ref MobileParty __instance, PartyTemplateObject pt, int troopNumberLimit)
         {
-            if (KTSettings.Instance is { } settings && settings.PlayerCaravanPartySizeTweakEnabled)
+            if (Factory.Settings is { } settings && settings.PlayerCaravanPartySizeTweakEnabled)
             {
                 if (__instance.IsCaravan && __instance.Party.Owner != null && __instance.Party.Owner == Hero.MainHero)
                 {
@@ -141,6 +142,6 @@ namespace KaosesTweaks.Patches
             return result;
         }
 
-        static bool Prepare() => KTSettings.Instance is { } settings && (settings.PartySizeMultipliersEnabled || settings.PlayerCaravanPartySizeTweakEnabled);
+        static bool Prepare() => Factory.Settings is { } settings && (settings.PartySizeMultipliersEnabled || settings.PlayerCaravanPartySizeTweakEnabled);
     }
 }

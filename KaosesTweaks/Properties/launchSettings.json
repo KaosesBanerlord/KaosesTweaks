@@ -2,9 +2,9 @@
   "profiles": {
     "Bannerlord": {
       "commandName": "Executable",
-      "executablePath": "$(BANNERLORD_GAME_DIR)\\bin\\Win64_Shipping_Client\\Bannerlord.exe",
-      "commandLineArgs": "/singleplayer _MODULES_*Bannerlord.Harmony*BetterExceptionWindow*Bannerlord.ButterLib*Bannerlord.UIExtenderEx*Bannerlord.MBOptionScreen*Native*SandBoxCore*CustomBattle*Sandbox*StoryMode*BirthAndDeath*$(ModuleId)*_MODULES_",
-      "workingDirectory": "$(BANNERLORD_GAME_DIR)\\bin\\Win64_Shipping_Client"
+      "executablePath": "$(GameFolder)\\bin\\Win64_Shipping_Client\\Bannerlord.exe",
+      "commandLineArgs": "/singleplayer _MODULES_*Bannerlord.Harmony*BetterExceptionWindow*Bannerlord.ButterLib*Bannerlord.UIExtenderEx*Bannerlord.MBOptionScreen*Native*SandBoxCore*Sandbox*StoryMode*BirthAndDeath*KaosesCommon*$(ModuleId)*_MODULES_",
+      "workingDirectory": "$(GameFolder)\\bin\\Win64_Shipping_Client"
     }
   }
 }

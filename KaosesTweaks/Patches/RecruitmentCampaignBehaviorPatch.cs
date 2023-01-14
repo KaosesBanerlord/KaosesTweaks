@@ -1,4 +1,5 @@
 ﻿using HarmonyLib;
+using KaosesTweaks.Objects;
 using KaosesTweaks.Settings;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
@@ -13,7 +14,7 @@ namespace KaosesTweaks.Patches
     {
         static void Postfix()
         {
-            if (KTSettings.Instance is { } settings && settings.BalancingUpgradeTroopsTweaksEnabled)
+            if (Factory.Settings is { } settings && settings.BalancingUpgradeTroopsTweaksEnabled)
             {
                 foreach (Settlement settlement in from settlement in Campaign.Current.Settlements
                                                   where settlement.OwnerClan != null
@@ -103,6 +104,6 @@ namespace KaosesTweaks.Patches
             return (sellerHero.IsRuralNotable || sellerHero.IsHeadman) && sellerHero.Power >= 200f;
         }
 
-        static bool Prepare() => KTSettings.Instance is { } settings && settings.KingdomBalanceStrengthEnabled;
+        static bool Prepare() => Factory.Settings is { } settings && settings.KingdomBalanceStrengthEnabled;
     }
 }

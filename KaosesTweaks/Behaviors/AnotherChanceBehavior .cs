@@ -1,4 +1,5 @@
-﻿using KaosesTweaks.Utils;
+﻿using KaosesCommon.Utils;
+using KaosesTweaks.Objects;
 using System;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
@@ -6,9 +7,11 @@ using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
 
+
 /* Another chance at marriage */
 namespace KaosesTweaks.Behaviors
 {
+
     class AnotherChanceBehavior : CampaignBehaviorBase
     {
         public override void RegisterEvents()
@@ -19,7 +22,7 @@ namespace KaosesTweaks.Behaviors
         public void OnSessionLaunched(CampaignGameStarter campaignGameStarter)
         {
             AddDialogs(campaignGameStarter);
-            if (Statics._settings.AnotherChanceAtMarriageDebug)
+            if (Factory.Settings.AnotherChanceAtMarriageDebug)
             {
                 IM.MessageDebug($"Another Chance At Marriage OnSessionLaunched Added Dialogs");
             }
@@ -76,7 +79,7 @@ namespace KaosesTweaks.Behaviors
 
         private static void Another_chance_success_on_consequence()
         {
-            SubModule.LastAttempts[Hero.OneToOneConversationHero] = CampaignTime.DaysFromNow(Statics._settings.AnotherChanceAtMarriageDaysTillRetry);
+            SubModule.LastAttempts[Hero.OneToOneConversationHero] = CampaignTime.DaysFromNow(Factory.Settings.AnotherChanceAtMarriageDaysTillRetry);
             // Go straight to 2nd stage if completed 1st stage successfully before
             Romance.RomanceLevelEnum toLevel = (Romance.GetRomanticLevel(Hero.MainHero, Hero.OneToOneConversationHero) == Romance.RomanceLevelEnum.FailedInPracticalities)
                     ? Romance.RomanceLevelEnum.CoupleDecidedThatTheyAreCompatible
@@ -101,7 +104,7 @@ namespace KaosesTweaks.Behaviors
 
         private static void Another_chance_rejected_on_consequence()
         {
-            SubModule.LastAttempts[Hero.OneToOneConversationHero] = CampaignTime.DaysFromNow(Statics._settings.AnotherChanceAtMarriageDaysTillRetry);
+            SubModule.LastAttempts[Hero.OneToOneConversationHero] = CampaignTime.DaysFromNow(Factory.Settings.AnotherChanceAtMarriageDaysTillRetry);
             float relation = Hero.OneToOneConversationHero.GetRelationWithPlayer();
             // 30% chance at relation loss at 0 relation, 15% at 4, 0% at 15 
             float criticalFailChance = (relation >= 15) ? 0 : 2f / 15f * relation * relation - 4 * relation + 30;

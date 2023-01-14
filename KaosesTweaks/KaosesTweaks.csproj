@@ -1,70 +1,79 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <TargetFramework>net472</TargetFramework>
-    <Platforms>x64</Platforms>
-    <LangVersion>9.0</LangVersion>
-    <Nullable>enable</Nullable>
-    <ModuleId>KaosesTweaks</ModuleId>
-    <ModuleName>KaosesTweaks</ModuleName>
-    <Version>1.0.0</Version>
-    <GameFolder>E:\SteamLibrary\steamapps\common\Mount &amp; Blade II Bannerlord\</GameFolder>
-    <BANNERLORD_GAME_DIR>$(GameFolder)</BANNERLORD_GAME_DIR>
-    <BANNERLORD_STABLE_DIR></BANNERLORD_STABLE_DIR>
-    <BANNERLORD_BETA_DIR></BANNERLORD_BETA_DIR>
-    <Authors>Patrick Scott, Cebullus, TheTornadoTitan</Authors>
-    <Company />
-    <Copyright>MIT</Copyright>
-    <PackageProjectUrl>https://www.nexusmods.com/mountandblade2bannerlord/mods/2911</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/lazeras/KaosesTweaks</RepositoryUrl>
-    <RepositoryType>GitHub</RepositoryType>
-    <PackageIcon>K-logo-Small-ManB2-B.jpg</PackageIcon>
-    <PackageIconUrl />
-  </PropertyGroup>
+<Project Sdk="Microsoft.NET.Sdk">
 
-  <ItemGroup>
-    <Reference Include="$(BANNERLORD_GAME_DIR)\Modules\SandBoxCore\bin\Win64_Shipping_Client\*.dll">
-      <HintPath>%(Identity)</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="System.Windows.Forms" />
-  </ItemGroup>
+	<PropertyGroup>
+		<Version>1.0.1</Version>
+		<TargetFramework>net472</TargetFramework>
+		<Platforms>x64</Platforms>
+		<LangVersion>10.0</LangVersion>
+		<Nullable>enable</Nullable>
+		<ModuleId>$(MSBuildProjectName)</ModuleId>
+		<ModuleName>Kaoses Tweaks</ModuleName>
+		<GameFolder>$(BANNERLORD_GAME_DIR)</GameFolder>
+		<GameVersion>1.0.3</GameVersion>
+		<!-- The directory .nuget packages are ouputed to if build .nuget package option is selected under build options in visual studio -->
+		<NugetsOutput>U:\Nuget.Local</NugetsOutput>
 
-  <ItemGroup>
-    <PackageReference Include="Bannerlord.ReferenceAssemblies.BirthAndDeath" Version="1.0.2.8368" />
-    <PackageReference Include="Bannerlord.ReferenceAssemblies.Core" Version="1.0.2.8368" />
-    <PackageReference Include="Bannerlord.ReferenceAssemblies.Native" Version="1.0.2.8368" />
-    <PackageReference Include="Bannerlord.ReferenceAssemblies.SandBox" Version="1.0.2.8368" />
-    <PackageReference Include="Bannerlord.ReferenceAssemblies.StoryMode" Version="1.0.2.8368" />
-    <PackageReference Include="Nullable" Version="1.3.1">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="IsExternalInit" Version="1.0.3">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="Bannerlord.BuildResources" Version="1.0.1.87">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="Lib.Harmony" Version="2.2.2" IncludeAssets="compile" />
-    <PackageReference Include="Harmony.Extensions" Version="3.2.0.72">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="Bannerlord.ButterLib" Version="2.6.1" IncludeAssets="compile" />
-    <PackageReference Include="Bannerlord.UIExtenderEx" Version="2.5.5" IncludeAssets="compile" />
-    <PackageReference Include="Bannerlord.MCM" Version="5.5.4" IncludeAssets="compile" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.2">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>compile</IncludeAssets>
-    </PackageReference>
-  </ItemGroup>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <None Include="..\..\..\MediFiles\K-logo-Small-ManB2-B.jpg">
-      <Pack>True</Pack>
-      <PackagePath></PackagePath>
-    </None>
-  </ItemGroup>
+	<ItemGroup>
+		<Reference Include="$(BANNERLORD_GAME_DIR)\bin\Win64_Shipping_Client\TaleWorlds.*.dll" Exclude="$(GameFolder)\bin\Win64_Shipping_Client\TaleWorlds.Native.dll">
+			<HintPath>%(Identity)</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="$(BANNERLORD_GAME_DIR)\Modules\Native\bin\Win64_Shipping_Client\*.dll">
+			<HintPath>%(Identity)</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="$(BANNERLORD_GAME_DIR)\Modules\SandBox\bin\Win64_Shipping_Client\*.dll">
+			<HintPath>%(Identity)</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="$(BANNERLORD_GAME_DIR)\Modules\SandBoxCore\bin\Win64_Shipping_Client\*.dll">
+			<HintPath>%(Identity)</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="$(BANNERLORD_GAME_DIR)\Modules\StoryMode\bin\Win64_Shipping_Client\*.dll">
+			<HintPath>%(Identity)</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="$(BANNERLORD_GAME_DIR)\Modules\CustomBattle\bin\Win64_Shipping_Client\*.dll">
+			<HintPath>%(Identity)</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="$(BANNERLORD_GAME_DIR)\Modules\BirthAndDeath\bin\Win64_Shipping_Client\*.dll">
+			<HintPath>%(Identity)</HintPath>
+			<Private>False</Private>
+		</Reference>
+	</ItemGroup>
+
+
+	<ItemGroup>
+		<Reference Include="System.Windows.Forms" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Nullable" Version="1.3.1" PrivateAssets="all" IncludeAssets="runtime; build; native; contentfiles; analyzers; buildtransitive" />
+		<PackageReference Include="IsExternalInit" Version="1.0.3" PrivateAssets="all" IncludeAssets="runtime; build; native; contentfiles; analyzers; buildtransitive" />
+		<PackageReference Include="Bannerlord.BuildResources" Version="1.0.1.87" PrivateAssets="all" IncludeAssets="runtime; build; native; contentfiles; analyzers; buildtransitive" />
+		<PackageReference Include="Lib.Harmony" Version="2.2.2" IncludeAssets="compile" />
+		<PackageReference Include="Harmony.Extensions" Version="3.2.0.72" PrivateAssets="all" IncludeAssets="runtime; build; native; contentfiles; analyzers; buildtransitive" />
+		<PackageReference Include="BUTR.Harmony.Analyzer" Version="1.0.1.44" PrivateAssets="all" IncludeAssets="runtime; build; native; contentfiles; analyzers; buildtransitive" />
+		<PackageReference Include="Bannerlord.UIExtenderEx" Version="2.5.5" IncludeAssets="compile" />
+		<PackageReference Include="Bannerlord.ButterLib" Version="2.6.1" IncludeAssets="compile" />
+		<PackageReference Include="Bannerlord.MCM" Version="5.5.4" IncludeAssets="compile" />
+		<PackageReference Include="Bannerlord.ReferenceAssemblies.Core" Version="$(GameVersion).*-*" PrivateAssets="All" />
+		<PackageReference Include="Bannerlord.ReferenceAssemblies.Native" Version="$(GameVersion).*-*" PrivateAssets="All" />
+		<PackageReference Include="Bannerlord.ReferenceAssemblies.StoryMode" Version="$(GameVersion).*-*" PrivateAssets="All" />
+		<PackageReference Include="Bannerlord.ReferenceAssemblies.SandBox" Version="$(GameVersion).*-*" PrivateAssets="All" />
+		<PackageReference Include="Bannerlord.ReferenceAssemblies.CustomBattle" Version="$(GameVersion).*-*" PrivateAssets="All" />
+		<PackageReference Include="Bannerlord.ReferenceAssemblies.BirthAndDeath" Version="$(GameVersion).*-*" PrivateAssets="All" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.2" PrivateAssets="all" IncludeAssets="compile" />
+		<PackageReference Include="KaosesCommon" Version="1.0.8" />
+	</ItemGroup>
+
+	<!-- Copies built .nuget packages to the NugetsOutput directory -->
+	<Target Name="CopyPackage" AfterTargets="Pack">
+		<Copy SourceFiles="$(ProjectDir)\bin\x64\Debug\$(PackageId).$(PackageVersion).nupkg" DestinationFolder="$(NugetsOutput)\$(PackageId).$(PackageVersion).nupkg" />
+	</Target>
+
 </Project>

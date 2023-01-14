@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30907.101
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33122.133
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KaosesTweaks", "KaosesTweaks\KaosesTweaks.csproj", "{27B19B98-67DE-4B9F-9A12-2CABB6DC48D6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KaosesTweaks", "KaosesTweaks\KaosesTweaks.csproj", "{8BB09525-5BD0-41A2-841E-DBA299A4EA42}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|x64 = Release|x64
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{27B19B98-67DE-4B9F-9A12-2CABB6DC48D6}.Debug|x64.ActiveCfg = Debug|x64
-		{27B19B98-67DE-4B9F-9A12-2CABB6DC48D6}.Debug|x64.Build.0 = Debug|x64
-		{27B19B98-67DE-4B9F-9A12-2CABB6DC48D6}.Release|x64.ActiveCfg = Release|x64
-		{27B19B98-67DE-4B9F-9A12-2CABB6DC48D6}.Release|x64.Build.0 = Release|x64
+		{8BB09525-5BD0-41A2-841E-DBA299A4EA42}.Debug|x64.ActiveCfg = Debug|x64
+		{8BB09525-5BD0-41A2-841E-DBA299A4EA42}.Debug|x64.Build.0 = Debug|x64
+		{8BB09525-5BD0-41A2-841E-DBA299A4EA42}.Release|x64.ActiveCfg = Release|x64
+		{8BB09525-5BD0-41A2-841E-DBA299A4EA42}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {38B16A56-EAA7-4AE7-8FCD-5F1168BBABD6}
+		SolutionGuid = {972A0B7A-2931-4678-B43E-1D71BA842996}
 	EndGlobalSection
 EndGlobal
