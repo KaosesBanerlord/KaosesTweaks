@@ -41,13 +41,7 @@ namespace KaosesTweaks.Patches
                 {
                     IM.MessageGreen("Max Battle Size Modified to: " + Factory.Settings.BattleSize + "  original size: " + ____battleSize);
                 }
-
-            if (MCMSettings.Instance is { } settings && settings.BattleSize > 0)
-            {
-                ____battleSize = settings.BattleSize;
-                IM.ColorGreenMessage("Max Battle Size Modified to: " + settings.BattleSize);
             }
-
             return;
         }
 
