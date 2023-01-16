@@ -29,6 +29,6 @@ namespace KaosesTweaks.Patches
 
         }
 
-        //static bool Prepare() => Factory.Settings is { } settings && settings.HideoutBattleTroopLimitTweakEnabled;
+        static bool Prepare() => Factory.Settings is { } settings && settings.HideoutBattleTroopLimitTweakEnabled;
     }
 }

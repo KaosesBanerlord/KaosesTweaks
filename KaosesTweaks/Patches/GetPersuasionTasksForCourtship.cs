@@ -17,7 +17,7 @@ namespace KaosesTweaks.Patches
     {
 
         // These are Harmony patches because player lines cannot be removed or replaced
-        [HarmonyPatch(typeof(RomanceCampaignBehavior))]
+        //[HarmonyPatch(typeof(RomanceCampaignBehavior))]
         internal class Patches
         {
             private static readonly FastInvokeHandler GetReservationsStage1Handler =
@@ -28,7 +28,7 @@ namespace KaosesTweaks.Patches
 
             // Checks the 1 day cool down
             [HarmonyPrefix]
-            [HarmonyPatch("conversation_player_can_open_courtship_on_condition")]
+            [HarmonyPatch(typeof(RomanceCampaignBehavior), "conversation_player_can_open_courtship_on_condition")]
             public static bool Prefix1(ref bool __result)
             {
                 CampaignTime lastAttempt = SubModule.LastAttempts.TryGetValue(Hero.OneToOneConversationHero, out CampaignTime value)
@@ -50,7 +50,7 @@ namespace KaosesTweaks.Patches
 
             // Replaces 1st persuasion stage setup code in order to reset progress
             [HarmonyPrefix]
-            [HarmonyPatch("conversation_start_courtship_persuasion_pt1_on_consequence")]
+            [HarmonyPatch(typeof(RomanceCampaignBehavior), "conversation_start_courtship_persuasion_pt1_on_consequence")]
             private static bool Prefix2(ref RomanceCampaignBehavior __instance, ref List<PersuasionTask> ____allReservations, ref float ____maximumScoreCap, float ____successValue, float ____failValue, float ____criticalSuccessValue, float ____criticalFailValue)
             {
                 if (Romance.GetRomanticLevel(Hero.MainHero, Hero.OneToOneConversationHero) == Romance.RomanceLevelEnum.MatchMadeByFamily)
@@ -67,7 +67,7 @@ namespace KaosesTweaks.Patches
 
             // Replaces 2nd persuasion stage setup code in order to reset progress
             [HarmonyPrefix]
-            [HarmonyPatch("conversation_continue_courtship_stage_2_on_consequence")]
+            [HarmonyPatch(typeof(RomanceCampaignBehavior), "conversation_continue_courtship_stage_2_on_consequence")]
             private static bool Prefix3(ref RomanceCampaignBehavior __instance, ref List<PersuasionTask> ____allReservations, ref float ____maximumScoreCap, float ____successValue, float ____failValue, float ____criticalSuccessValue, float ____criticalFailValue)
             {
                 Hero wooer = Hero.MainHero.MapFaction.Leader;

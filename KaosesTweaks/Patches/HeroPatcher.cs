@@ -1,17 +1,18 @@
 ﻿using HarmonyLib;
 using KaosesTweaks.Objects.Experience;
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.CampaignBehaviors;
 using TaleWorlds.Core;
 
 namespace KaosesTweaks.Patches
 {
     class HeroPatcher
     {
-        [HarmonyPatch(typeof(Hero))]//, "AddSkillXp"
+        //[HarmonyPatch(typeof(Hero))]//, "AddSkillXp"
         public class Patches
         {
             [HarmonyPrefix]
-            [HarmonyPatch("AddSkillXp")]
+            [HarmonyPatch(typeof(Hero), "AddSkillXp")]
             public static void Prefix(Hero __instance, SkillObject skill, ref float xpAmount)
             {
                 if (__instance != null && skill != null && __instance.HeroDeveloper != null && skill.GetName() != null && Hero.MainHero != null)
