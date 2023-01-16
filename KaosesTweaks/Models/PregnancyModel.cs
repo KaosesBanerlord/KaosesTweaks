@@ -43,7 +43,7 @@ namespace KaosesTweaks.Models
                 {
                     if (Factory.Settings.PregnancyDebug)
                     {
-                        //IM.MessageDebug("New MortalityProbabilityInLabor: " + Factory.Settings.PregnancyLaborMortalityChanceValue.ToString());
+                        IM.MessageDebug("New MortalityProbabilityInLabor: " + Factory.Settings.PregnancyLaborMortalityChanceValue.ToString());
                     }
                     return Factory.Settings.PregnancyLaborMortalityChanceValue;
                 }
@@ -51,7 +51,7 @@ namespace KaosesTweaks.Models
                 {
                     if (Factory.Settings.PregnancyDebug)
                     {
-                        //IM.MessageDebug("New MortalityProbabilityInLabor: DISABLED");
+                        IM.MessageDebug("New MortalityProbabilityInLabor: DISABLED");
                     }
                     return 0.0f;
                 }
@@ -69,7 +69,7 @@ namespace KaosesTweaks.Models
                 {
                     if (Factory.Settings.PregnancyDebug)
                     {
-                        //IM.MessageDebug("New StillbirthProbability: " + Factory.Settings.PregnancyStillbirthChanceValue.ToString());
+                        IM.MessageDebug("New StillbirthProbability: " + Factory.Settings.PregnancyStillbirthChanceValue.ToString());
                     }
                     return Factory.Settings.PregnancyStillbirthChanceValue;
                 }
@@ -77,7 +77,7 @@ namespace KaosesTweaks.Models
                 {
                     if (Factory.Settings.PregnancyDebug)
                     {
-                        //IM.MessageDebug("New StillbirthProbability: DISABLED");
+                        IM.MessageDebug("New StillbirthProbability: DISABLED");
                     }
                     return 0.0f;
                 }
@@ -95,7 +95,7 @@ namespace KaosesTweaks.Models
                 {
                     if (Factory.Settings.PregnancyDebug)
                     {
-                        //IM.MessageDebug("New FemaleOffspring Probability: " + Factory.Settings.PregnancyFemaleOffspringChanceValue.ToString());
+                        IM.MessageDebug("New FemaleOffspring Probability: " + Factory.Settings.PregnancyFemaleOffspringChanceValue.ToString());
                     }
                     return Factory.Settings.PregnancyFemaleOffspringChanceValue;
                 }
@@ -113,7 +113,7 @@ namespace KaosesTweaks.Models
                 {
                     if (Factory.Settings.PregnancyDebug)
                     {
-                        //IM.MessageDebug("New Twins Probability: " + Factory.Settings.PregnancyTwinsChanceValue.ToString());
+                        IM.MessageDebug("New Twins Probability: " + Factory.Settings.PregnancyTwinsChanceValue.ToString());
                     }
                     return Factory.Settings.PregnancyTwinsChanceValue;
                 }
@@ -136,7 +136,7 @@ namespace KaosesTweaks.Models
                 {
                     if (Factory.Settings.PregnancyDebug)
                     {
-                        //IM.MessageDebug("PlayerCharacterInfertileEnabled: " + num.ToString());
+                        IM.MessageDebug("PlayerCharacterInfertileEnabled: " + num.ToString());
                     }
                     return num;
                 }
@@ -145,7 +145,7 @@ namespace KaosesTweaks.Models
                 {
                     if (Factory.Settings.PregnancyDebug)
                     {
-                        //IM.MessageDebug("New hero.Children.Count >= Factory.Settings.MaxChildren: " + num.ToString());
+                        IM.MessageDebug("New hero.Children.Count >= Factory.Settings.MaxChildren: " + num.ToString());
                     }
                     return num;
                 }
@@ -157,7 +157,7 @@ namespace KaosesTweaks.Models
                     num = (float)((6.9 - ((double)hero.Age - settings.MinPregnancyAge) * 0.2) * 0.02) / ((hero.Children!.Count + 1) * 0.2f) * bonuses.ResultNumber;
                     if (Factory.Settings.PregnancyDebug)
                     {
-                        //IM.MessageDebug("Pregnancy Chance: " + num.ToString());
+                        IM.MessageDebug("Pregnancy Chance: " + num.ToString());
                     }
                 }
 
@@ -166,7 +166,7 @@ namespace KaosesTweaks.Models
                     num *= settings.ClanFertilityBonus;
                     if (Factory.Settings.PregnancyDebug)
                     {
-                        //IM.MessageDebug("ClanFertilityBonus: " + num.ToString());
+                        IM.MessageDebug("ClanFertilityBonus: " + num.ToString());
                     }
                 }
                 return num;

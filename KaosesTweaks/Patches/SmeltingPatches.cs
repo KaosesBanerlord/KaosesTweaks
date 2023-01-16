@@ -1,0 +1,508 @@
+﻿using HarmonyLib;
+using KaosesCommon.Utils;
+using KaosesTweaks.Objects;
+using KaosesTweaks.Tweaks;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using System.Text;
+using System.Threading.Tasks;
+using TaleWorlds.CampaignSystem.CampaignBehaviors;
+using TaleWorlds.CampaignSystem.CharacterDevelopment;
+using TaleWorlds.CampaignSystem.GameComponents;
+using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.Roster;
+using TaleWorlds.CampaignSystem.ViewModelCollection.WeaponCrafting;
+using TaleWorlds.CampaignSystem.ViewModelCollection.WeaponCrafting.Smelting;
+using TaleWorlds.Core;
+using TaleWorlds.Library;
+using TaleWorlds.Localization;
+using TaleWorlds.CampaignSystem.ComponentInterfaces;
+
+namespace KaosesTweaks.Patches
+{
+
+    //~ BT Tweaks
+    [HarmonyPatch(typeof(CraftingCampaignBehavior), "DoSmelting")]
+    public class DoSmeltingPatch
+    {
+        private static MethodInfo? openPartMethodInfo;
+
+        static void Postfix(CraftingCampaignBehavior __instance, EquipmentElement equipmentElement)
+        {
+            ItemObject item = equipmentElement.Item;
+            if (item == null) return;
+            if (__instance == null) throw new ArgumentNullException(nameof(__instance), $"Tried to run postfix for {nameof(CraftingCampaignBehavior)}.DoSmelting but the instance was null.");
+            if (openPartMethodInfo == null) GetMethodInfo();
+            foreach (CraftingPiece piece in SmeltingHelper.GetNewPartsFromSmelting(item))
+            {
+                if (piece != null && piece.Name != null && openPartMethodInfo != null)
+                    openPartMethodInfo.Invoke(__instance, new object[] { piece, item.WeaponDesign.Template, true });
+            }
+        }
+
+        static bool Prepare()
+        {
+            if (Factory.Settings is { } settings)
+            {
+                if (settings.AutoLearnSmeltedParts)
+                    GetMethodInfo();
+                return settings.AutoLearnSmeltedParts;
+            }
+            else return false;
+        }
+
+        private static void GetMethodInfo()
+        {
+            openPartMethodInfo = typeof(CraftingCampaignBehavior).GetMethod("OpenPart", BindingFlags.NonPublic | BindingFlags.Instance);
+        }
+    }
+
+    [HarmonyPatch(typeof(CraftingCampaignBehavior), "OnSessionLaunched")]
+    public class OnSessionLaunchedPatch
+    {
+        //static void Postfix(CraftingCampaignBehavior __instance, CraftingPiece[] ____allCraftingParts, List<CraftingPiece> ____openedParts)
+        static void Postfix(CraftingCampaignBehavior __instance)
+        {
+
+            if (Factory.Settings.craftingUnlockAllParts)
+            {
+                Dictionary<CraftingTemplate, List<CraftingPiece>> ____openedPartsDictionary =
+                    (Dictionary<CraftingTemplate, List<CraftingPiece>>)AccessTools.Field(typeof(CraftingCampaignBehavior), "_openedPartsDictionary").GetValue(__instance);
+                MBReadOnlyList<CraftingTemplate> ____allCraftingTemplates = CraftingTemplate.All;
+                List<CraftingPiece> ____openedParts = new();
+
+                foreach (CraftingTemplate template in ____allCraftingTemplates)
+                {
+                    ____openedParts.AddRange(____openedPartsDictionary[template]);
+                }
+
+                CraftingPiece[] ____allCraftingParts = (from x in CraftingPiece.All
+                                                        orderby x.Id
+                                                        select x).ToArray<CraftingPiece>();
+
+                int num = ____allCraftingParts.Length;
+                int count = ____openedParts.Count;
+                SmithingModel smithingModel = Campaign.Current.Models.SmithingModel;
+                CraftingPiece[] array = (from x in ____allCraftingParts
+                                         where !____openedParts.Contains(x)
+                                         select x).ToArray<CraftingPiece>();
+                if (Factory.Settings.craftingUnlockAllParts)
+                {
+                    if (array.Length != 0 && count < num)
+                    {
+                        foreach (CraftingPiece craftingPiece in array)
+                        {
+                            if (!____openedParts.Contains(craftingPiece))
+                            {
+                                ____openedParts.Add(craftingPiece);
+                            }
+                        }
+                        InformationManager.DisplayMessage(new InformationMessage(new TextObject("{=p9F90bc0}KT All Smithing Parts Unlocked:", null).ToString()));
+
+                    }
+                }
+            }
+        }
+
+        static bool Prepare() => Factory.Settings is { } settings && settings.craftingUnlockAllParts;
+    }
+
+    [HarmonyPatch(typeof(CraftingCampaignBehavior), "GetMaxHeroCraftingStamina")]
+    public class GetMaxHeroCraftingStaminaPatch
+    {
+        static void Postfix(CraftingCampaignBehavior __instance, ref int __result)
+        {
+            if (Factory.Settings.CraftingDebug)
+            {
+                IM.MessageDebug("GetMaxHeroCraftingStaminaPatch: original stamina:" + __result + " new multiplied stamina " + (Factory.Settings.MaxCraftingStaminaMultiplier * __result) + " using multiplier: " + Factory.Settings.MaxCraftingStaminaMultiplier);
+            }
+            __result = Factory.Settings is { } settings ? MathF.Round(settings.MaxCraftingStaminaMultiplier * __result) : __result;
+        }
+
+        static bool Prepare() => Factory.Settings is { } settings && settings.CraftingStaminaTweakEnabled;
+    }
+
+    [HarmonyPatch(typeof(CraftingCampaignBehavior), "HourlyTick")]
+    public class HourlyTickPatch
+    {
+        private static FieldInfo? recordsInfo;
+
+        static bool Prefix(CraftingCampaignBehavior __instance)
+        {
+            if (recordsInfo == null)
+                GetRecordsInfo();
+
+            if (recordsInfo == null || __instance == null) throw new ArgumentNullException(nameof(__instance), $"Tried to run postfix for {nameof(CraftingCampaignBehavior)}.HourlyTickPatch but the recordsInfo or __instance was null.");
+
+            IDictionary records = (IDictionary)recordsInfo.GetValue(__instance);
+
+            foreach (Hero hero in records.Keys)
+            {
+                int curCraftingStamina = __instance.GetHeroCraftingStamina(hero);
+
+                if (!(Factory.Settings is null) && curCraftingStamina < __instance.GetMaxHeroCraftingStamina(hero))
+                {
+                    int staminaGainAmount = Factory.Settings.CraftingStaminaGainAmount;
+
+                    if (Factory.Settings.CraftingStaminaGainOutsideSettlementMultiplier < 1 && hero.PartyBelongedTo?.CurrentSettlement == null)
+                    {
+                        staminaGainAmount = (int)Math.Ceiling(staminaGainAmount * Factory.Settings.CraftingStaminaGainOutsideSettlementMultiplier);
+                        if (Factory.Settings.CraftingDebug)
+                        {
+                            IM.MessageDebug("HourlyTickPatch: original stamina gain:" + staminaGainAmount + " new multiplied stamina " + (staminaGainAmount * Factory.Settings.CraftingStaminaGainOutsideSettlementMultiplier) + " using multiplier: " + Factory.Settings.CraftingStaminaGainOutsideSettlementMultiplier);
+                        }
+                    }
+
+
+                    int diff = __instance.GetMaxHeroCraftingStamina(hero) - curCraftingStamina;
+                    if (diff < staminaGainAmount)
+                        staminaGainAmount = diff;
+
+                    __instance.SetHeroCraftingStamina(hero, Math.Min(__instance.GetMaxHeroCraftingStamina(hero), curCraftingStamina + staminaGainAmount));
+                }
+            }
+            return false;
+        }
+
+        static bool Prepare()
+        {
+            if (Factory.Settings is { } settings)
+            {
+                if (settings.CraftingStaminaTweakEnabled)
+                    GetRecordsInfo();
+                return settings.CraftingStaminaTweakEnabled;
+            }
+            else return false;
+        }
+
+        private static void GetRecordsInfo()
+        {
+            recordsInfo = typeof(CraftingCampaignBehavior).GetField("_heroCraftingRecords", BindingFlags.Instance | BindingFlags.NonPublic);
+        }
+    }
+
+    class BTCraftingVMPatch
+    {
+        [HarmonyPatch(typeof(CraftingVM), "HaveEnergy")]
+        static bool Prefix(ref bool __result)
+        {
+            __result = true;
+            return false;
+        }
+
+        static bool Prepare() => Factory.Settings is { } settings && settings.SmithingEnergyDisable;
+    }
+
+    [HarmonyPatch(typeof(SmeltingVM), "RefreshList")]
+    class RefreshListPatch
+    {
+        private static void Postfix(SmeltingVM __instance, ItemRoster ____playerItemRoster, Action ____updateValuesOnSelectItemAction)
+        {
+
+            if (Factory.Settings is { } settings && settings.PreventSmeltingLockedItems)
+            {
+                List<string> locked_items = Campaign.Current.GetCampaignBehavior<ViewDataTrackerCampaignBehavior>().GetInventoryLocks().ToList<string>();
+
+                bool isLocked(ItemRosterElement item)
+                {
+                    string text = item.EquipmentElement.Item.StringId;
+                    if (locked_items.Contains(text))
+                    {
+                        return locked_items.Contains(text);
+                    }
+                    if (item.EquipmentElement.ItemModifier != null)
+                    {
+                        text += item.EquipmentElement.ItemModifier.StringId;
+                    }
+                    return locked_items.Contains(text);
+                }
+
+                MBBindingList<SmeltingItemVM> filteredList = new MBBindingList<SmeltingItemVM>();
+                foreach (SmeltingItemVM sItem in __instance.SmeltableItemList)
+                {
+                    if (!____playerItemRoster.Any(rItem =>
+                        sItem.EquipmentElement.Item == rItem.EquipmentElement.Item && isLocked(rItem)
+                    ))
+                    {
+                        filteredList.Add(sItem);
+                    }
+                }
+
+                __instance.SmeltableItemList = filteredList;
+                __instance.SortController.SetListToControl(__instance.SmeltableItemList);
+
+                if (__instance.SmeltableItemList.Count == 0)
+                {
+                    __instance.CurrentSelectedItem = null;
+                }
+            }
+
+        }
+
+
+        static bool Prepare() => Factory.Settings is { } settings && settings.SmeltingTweakEnabled;
+    }
+
+    [HarmonyPatch(typeof(SmeltingVM), "RefreshList")]
+    [HarmonyPriority(Priority.VeryLow)]
+    public class RefreshListRenamePatch
+    {
+        private static void Postfix(SmeltingVM __instance, ItemRoster ____playerItemRoster)
+        {
+            if (Factory.Settings is { } settings && settings.AutoLearnSmeltedParts)
+            {
+                foreach (SmeltingItemVM item in __instance.SmeltableItemList)
+                {
+                    int count = SmeltingHelper.GetNewPartsFromSmelting(item.EquipmentElement.Item).Count();
+                    if (count > 0)
+                    {
+                        string parts = count == 1 ? "part" : "parts";
+                        item.Name = $"{item.Name} ({count} new {parts})";
+                    }
+                }
+            }
+        }
+
+        static bool Prepare() => Factory.Settings is { } settings && settings.SmeltingTweakEnabled;
+    }
+    //~ KT Tweaks
+
+    //~ XP Tweaks
+    [HarmonyPatch(typeof(DefaultSmithingModel), "GetSkillXpForRefining")]
+    public class GetSkillXpForRefiningPatch
+    {
+        static bool Prefix(DefaultSmithingModel __instance, ref Crafting.RefiningFormula refineFormula, ref int __result)
+        {
+            if (Factory.Settings.SmithingXpModifiers)
+            {
+                float baseXp = MathF.Round(0.3f * (__instance.GetCraftingMaterialItem(refineFormula.Output).Value * refineFormula.OutputCount));
+                baseXp *= Factory.Settings.SmithingRefiningXpValue;
+                if (Factory.Settings.CraftingDebug)
+                {
+                    IM.MessageDebug("GetSkillXpForRefining  base: " + MathF.Round(0.3f * (__instance.GetCraftingMaterialItem(refineFormula.Output).Value * refineFormula.OutputCount)).ToString() + "  new :" + baseXp.ToString());
+                }
+                __result = (int)baseXp;
+                return false;
+            }
+            return true;
+        }
+
+        static bool Prepare() => Factory.Settings != null && Factory.Settings.SmithingXpModifiers && Factory.Settings.MCMSmithingHarmoneyPatches;
+    }
+
+    [HarmonyPatch(typeof(DefaultSmithingModel), "GetSkillXpForSmelting")]
+    public class GetSkillXpForSmeltingPatch
+    {
+        static bool Prefix(ItemObject item, ref int __result)
+        {
+            if (Factory.Settings.SmithingXpModifiers)
+            {
+                float baseXp = MathF.Round(0.02f * item.Value);
+                baseXp *= Factory.Settings.SmithingSmeltingXpValue;
+                if (Factory.Settings.CraftingDebug)
+                {
+                    IM.MessageDebug("GetSkillXpForSmeltingPatch  base: " + MathF.Round(0.02f * item.Value).ToString() + "  new :" + baseXp.ToString());
+                }
+                __result = (int)baseXp;
+                return false;
+            }
+            return true;
+        }
+
+        static bool Prepare() => Factory.Settings != null && Factory.Settings.SmithingXpModifiers && Factory.Settings.MCMSmithingHarmoneyPatches;
+    }
+
+    /*    [HarmonyPatch(typeof(DefaultSmithingModel), "GetSkillXpForSmithing")]
+        public class GetSkillXpForSmithingPatch
+        {
+            static bool Prefix(DefaultSmithingModel __instance, ItemObject item, ref int __result)
+            {
+                if (Factory.Settings.SmithingXpModifiers)
+                {
+                    float baseXp = MathF.Round(0.1f * item.Value);
+                    baseXp *= Factory.Settings.SmithingSmithingXpValue;
+                    if (Factory.Settings.CraftingDebug)
+                    {
+                        IM.MessageDebug("GetSkillXpForSmithing  base: " + MathF.Round(0.1f * item.Value).ToString() + "  new :" + baseXp.ToString());
+                    }
+                    __result = (int)baseXp;
+                    return false;
+                }
+                return true;
+            }
+
+    static bool Prepare() => Factory.Settings != null && Factory.Settings.SmithingXpModifiers && Factory.Settings.MCMSmithingHarmoneyPatches;
+    }*/
+
+    [HarmonyPatch(typeof(DefaultSmithingModel), "GetSkillXpForSmithingInFreeBuildMode")]
+    public class GetSkillXpForSmithingInFreeBuildModePatch
+    {
+        static bool Prefix(DefaultSmithingModel __instance, ItemObject item, ref int __result)
+        {
+            if (Factory.Settings.SmithingXpModifiers)
+            {
+                float baseXp = MathF.Round(0.1f * item.Value);
+                baseXp *= Factory.Settings.SmithingSmithingXpValue;
+                if (Factory.Settings.CraftingDebug)
+                {
+                    IM.MessageDebug("GetSkillXpForSmithingInFreeBuildModePatch base: " + MathF.Round(0.1f * item.Value).ToString() + "  new :" + baseXp.ToString());
+                }
+                __result = (int)baseXp;
+                return false;
+            }
+            return true;
+        }
+
+        static bool Prepare() => Factory.Settings != null && Factory.Settings.SmithingXpModifiers && Factory.Settings.MCMSmithingHarmoneyPatches;
+    }
+
+    [HarmonyPatch(typeof(DefaultSmithingModel), "GetSkillXpForSmithingInCraftingOrderMode")]
+    public class GetSkillXpForSmithingInCraftingOrderModePatch
+    {
+        static bool Prefix(DefaultSmithingModel __instance, ItemObject item, ref int __result)
+        {
+            if (Factory.Settings.SmithingXpModifiers)
+            {
+                float baseXp = MathF.Round(0.1f * item.Value);
+                baseXp *= Factory.Settings.SmithingSmithingXpValue;
+                if (Factory.Settings.CraftingDebug)
+                {
+                    IM.MessageDebug("GetSkillXpForSmithingInCraftingOrderModePatch  base: " + MathF.Round(0.1f * item.Value).ToString() + "  new :" + baseXp.ToString());
+                }
+                __result = (int)baseXp;
+                return false;
+            }
+            return true;
+        }
+
+        static bool Prepare() => Factory.Settings != null && Factory.Settings.SmithingXpModifiers && Factory.Settings.MCMSmithingHarmoneyPatches;
+    }
+
+    //~ Energy Tweaks
+    [HarmonyPatch(typeof(DefaultSmithingModel), "GetEnergyCostForRefining")]
+    public class GetEnergyCostForRefiningPatch
+    {
+        static bool Prefix(Hero hero, ref int __result)
+        {
+            if (Factory.Settings.SmithingEnergyDisable || Factory.Settings.CraftingStaminaTweakEnabled)
+            {
+                IM.MessageDebug("GetEnergyCostForRefining Patch called");
+                int num = 6;
+                if (Factory.Settings.SmithingEnergyDisable)
+                {
+                    if (Factory.Settings.CraftingDebug)
+                    {
+                        IM.MessageDebug("GetEnergyCostForRefining: DISABLED ");
+                    }
+                    __result = 0;
+                    return false;
+                }
+                else //if (Factory.Settings.CraftingStaminaTweakEnabled)
+                {
+                    float tmp = num * Factory.Settings.SmithingEnergyRefiningValue;
+                    if (Factory.Settings.CraftingDebug)
+                    {
+                        IM.MessageDebug("GetEnergyCostForRefiningPatch: original stamina:" + __result + " new multiplied stamina " + (Factory.Settings.MaxCraftingStaminaMultiplier * __result) + " using multiplier: " + Factory.Settings.MaxCraftingStaminaMultiplier);
+                    }
+                    num = (int)tmp;
+                    if (hero.GetPerkValue(DefaultPerks.Crafting.PracticalRefiner))
+                    {
+                        num = (num + 1) / 2;
+                    }
+                    __result = num;
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        static bool Prepare() => Factory.Settings is { } settings && (settings.SmithingEnergyDisable || settings.CraftingStaminaTweakEnabled) && Factory.Settings.MCMSmithingHarmoneyPatches;
+    }
+
+    [HarmonyPatch(typeof(DefaultSmithingModel), "GetEnergyCostForSmithing")]
+    public class GetEnergyCostForSmithingPatch
+    {
+        static bool Prefix(ItemObject item, Hero hero, ref int __result)
+        {
+            if (Factory.Settings.SmithingEnergyDisable || Factory.Settings.CraftingStaminaTweakEnabled)
+            {
+                int.TryParse(item.Tier.ToString(), out int itemTier);
+                int tier6 = 6;
+                int num = 10 + tier6 * itemTier;
+                if (Factory.Settings.SmithingEnergyDisable)
+                {
+                    if (Factory.Settings.CraftingDebug)
+                    {
+                        IM.MessageDebug("GetEnergyCostForSmithing: DISABLED ");
+                    }
+                    __result = 0;
+                    return false;
+                }
+                else
+                {
+                    float tmp = num * Factory.Settings.SmithingEnergySmithingValue;
+                    if (Factory.Settings.CraftingDebug)
+                    {
+                        IM.MessageDebug("GetEnergyCostForSmithing Old : " + num.ToString() + " New : " + tmp.ToString());
+                    }
+                    num = (int)tmp;
+                    if (hero.GetPerkValue(DefaultPerks.Crafting.PracticalSmith))
+                    {
+                        num = (num + 1) / 2;
+                    }
+                    __result = num;
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        static bool Prepare() => Factory.Settings is { } settings && (settings.SmithingEnergyDisable || settings.CraftingStaminaTweakEnabled) && Factory.Settings.MCMSmithingHarmoneyPatches;
+    }
+
+    [HarmonyPatch(typeof(DefaultSmithingModel), "GetEnergyCostForSmelting")]
+    public class GetEnergyCostForSmeltingPatch
+    {
+        static bool Prefix(Hero hero, ref int __result)
+        {
+
+            if (Factory.Settings.SmithingEnergyDisable || Factory.Settings.CraftingStaminaTweakEnabled)
+            {
+                int num = 10;
+                if (Factory.Settings.SmithingEnergyDisable)
+                {
+                    if (Factory.Settings.CraftingDebug)
+                    {
+                        IM.MessageDebug("GetEnergyCostForSmelting: DISABLED ");
+                    }
+                    __result = 0;
+                    return false;
+                }
+                else
+                {
+                    float tmp = num * Factory.Settings.SmithingEnergySmeltingValue;
+                    if (Factory.Settings.CraftingDebug)
+                    {
+                        IM.MessageDebug("GetEnergyCostForSmelting Old : " + num.ToString() + " New : " + tmp.ToString());
+                    }
+                    num = (int)tmp;
+                    if (hero.GetPerkValue(DefaultPerks.Crafting.PracticalSmelter))
+                    {
+                        num = (num + 1) / 2;
+                    }
+                    __result = num;
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        static bool Prepare() => Factory.Settings is { } settings && (settings.SmithingEnergyDisable || settings.CraftingStaminaTweakEnabled) && Factory.Settings.MCMSmithingHarmoneyPatches;
+
+    }
+
+
+}

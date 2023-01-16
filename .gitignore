@@ -352,3 +352,5 @@ MigrationBackup/
 KaosesTweaks/Behaviors/TempBehaviour.cs
 KaosesTweaks/Patches/KaosesMobilePartyHelperPatches.cs
 KaosesTweaks/smithingChanceResearch.txt
+
+JSON/Schemas/index.json
