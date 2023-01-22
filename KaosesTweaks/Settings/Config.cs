@@ -186,6 +186,19 @@ namespace KaosesTweaks.Settings
         #endregion //~Debug
 
 
+        [SettingPropertyBool("{=KT_BannerQuest_Complete}Complete Banner Quest", Order = 1, RequireRestart = true, IsToggle = true,
+        HintText = "{=KT_BannerQuest_Complete_Desc}Auto Complete Banner quest for new characters."),
+        SettingPropertyGroup("{=KT_BannerQuest_Complete}Age Tweaks", GroupOrder = 1)] //, GroupOrder = 1
+        public bool AutoCompleteBannerQuest { get; set; } = true;
+
+        [SettingPropertyBool("{=KT_skipTutorial}Skip Tutorial", Order = 2, RequireRestart = true, IsToggle = true,
+        HintText = "{=KT_skipTutorial_Desc}Skip the tutorial mission on new characters."),
+        SettingPropertyGroup("{=KT_skipTutorial}Age Tweaks", GroupOrder = 2)] //, GroupOrder = 1
+        public bool SkipTutorial { get; set; } = true;
+
+
+
+
         ///~ Mod Specific settings 
         #region Mod Specific settings
 

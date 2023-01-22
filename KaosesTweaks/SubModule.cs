@@ -7,6 +7,8 @@ using KaosesTweaks.Models;
 using KaosesTweaks.Objects;
 using KaosesTweaks.Settings;
 using KaosesTweaks.Tweaks;
+using SandBox;
+using StoryMode;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -367,6 +369,11 @@ namespace KaosesTweaks
         public override void OnNewGameCreated(Game game, object initializerObject)
         {
             base.OnNewGameCreated(game, initializerObject);
+            if (Factory.Settings.SkipTutorial)
+            {
+                //_harmony.Patch(AccessTools.Method(typeof(SandBoxGameManager), "OnLoadFinished"), transpiler: new HarmonyMethod(AccessTools.Method(typeof(CSPatchGameManager), "Transpiler")));
+                //_harmony.Patch(AccessTools.Method(typeof(StoryModeGameManager), "OnLoadFinished"), transpiler: new HarmonyMethod(AccessTools.Method(typeof(CSPatchGameManager), "Transpiler")));
+            }
         }
 
         /// <summary>
