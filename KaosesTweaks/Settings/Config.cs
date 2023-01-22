@@ -196,6 +196,17 @@ namespace KaosesTweaks.Settings
         SettingPropertyGroup("{=KT_General}General Tweaks")] //, GroupOrder = 1
         public bool SkipTutorial { get; set; } = true;
 
+        [SettingPropertyBool("{=KT_skipIntroVideo}Disable Intro Video", Order = 2, RequireRestart = true, IsToggle = false,
+        HintText = "{=KT_skipIntroVideo_Desc}Disable the Intro Video."),
+        SettingPropertyGroup("{=KT_General}General Tweaks")] //, GroupOrder = 1
+        public bool DisableIntroVideo { get; set; } = true;
+
+        [SettingPropertyBool("{=KT_skipCCVideo}Disable Character Creation Video", Order = 2, RequireRestart = true, IsToggle = false,
+        HintText = "{=KT_skipCCVideo_Desc}Disable the Character creation Intro Video."),
+        SettingPropertyGroup("{=KT_General}General Tweaks")] //, GroupOrder = 1
+        public bool DisableCharacterIntroVideo { get; set; } = true;
+
+
 
 
 

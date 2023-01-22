@@ -1118,6 +1118,11 @@
 		<string id="KT_BannerQuest_Complete" text="Complete Banner Quest" />
 		<string id="KT_BannerQuest_Complete_Desc" text="Auto Complete Banner quest for new characters." />
 
+		<string id="KT_skipIntroVideo" text="Disable Intro Video" />
+		<string id="KT_skipIntroVideo_Desc" text="Disable the Intro Video." />
+		<string id="KT_skipCCVideo" text="Disable Character Creation Video" />
+		<string id="KT_skipCCVideo_Desc" text="Disable the Character creation Intro Video." />
+
 
 	</strings>
 </base>

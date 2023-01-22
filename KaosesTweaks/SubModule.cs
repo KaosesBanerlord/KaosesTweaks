@@ -8,6 +8,7 @@ using KaosesTweaks.Objects;
 using KaosesTweaks.Settings;
 using KaosesTweaks.Tweaks;
 using SandBox;
+using Serilog;
 using StoryMode;
 using System;
 using System.Collections.Generic;
@@ -21,7 +22,7 @@ using TaleWorlds.CampaignSystem.MapEvents;
 using TaleWorlds.Core;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.ObjectSystem;
-
+using Module = TaleWorlds.MountAndBlade.Module;
 
 namespace KaosesTweaks
 {
@@ -86,6 +87,12 @@ namespace KaosesTweaks
             {
                 IM.ShowError(ex, "initial Loading Error " + Factory.Settings.ModName);
             }
+
+            if (Factory.Settings.DisableIntroVideo)
+            {
+                AccessTools.DeclaredField(typeof(Module), "_splashScreenPlayed")?.SetValue(Module.CurrentModule, true);
+            }
+
         }
 
         /// <summary>
@@ -369,10 +376,11 @@ namespace KaosesTweaks
         public override void OnNewGameCreated(Game game, object initializerObject)
         {
             base.OnNewGameCreated(game, initializerObject);
-            if (Factory.Settings.SkipTutorial)
+
+            if (Factory.Settings.DisableCharacterIntroVideo)
             {
-                //_harmony.Patch(AccessTools.Method(typeof(SandBoxGameManager), "OnLoadFinished"), transpiler: new HarmonyMethod(AccessTools.Method(typeof(CSPatchGameManager), "Transpiler")));
-                //_harmony.Patch(AccessTools.Method(typeof(StoryModeGameManager), "OnLoadFinished"), transpiler: new HarmonyMethod(AccessTools.Method(typeof(CSPatchGameManager), "Transpiler")));
+                _harmony.Patch(AccessTools.Method(typeof(SandBoxGameManager), "OnLoadFinished"), transpiler: new HarmonyMethod(AccessTools.Method(typeof(Patches.PatchGameManager), "Transpiler")));
+                _harmony.Patch(AccessTools.Method(typeof(StoryModeGameManager), "OnLoadFinished"), transpiler: new HarmonyMethod(AccessTools.Method(typeof(Patches.PatchGameManager), "Transpiler")));
             }
         }
 
