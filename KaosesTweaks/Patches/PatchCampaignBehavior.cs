@@ -17,7 +17,7 @@ namespace KaosesTweaks.Patches
     public class PatchCampaignBehavior
     {
         [HarmonyPatch(typeof(TrainingFieldCampaignBehavior), "OnCharacterCreationIsOver")]
-        public class CSPatchTrainingFieldCampaignBehavior
+        public class PatchTrainingFieldCampaignBehavior
         {
             // Skip the tutorial.
             private static void Prefix(ref bool ___SkipTutorialMission)
@@ -28,17 +28,17 @@ namespace KaosesTweaks.Patches
             }
         }
 
-        /*        [HarmonyPatch(typeof(TutorialPhaseCampaignBehavior), "OnStoryModeTutorialEnded")]
-                public class CSPatchTutorialPhaseCampaignBehavior
-                {
-                    // Skip the vanilla code that sets the player's items and gold.
-                    private static bool Prefix()
-                    {
-                        DisableHeroAction.Apply(StoryModeHeroes.ElderBrother);
-                        StoryModeHeroes.ElderBrother.Clan = CampaignData.NeutralFaction;
-                        return false;
-                    }
-                }*/
+        [HarmonyPatch(typeof(TutorialPhaseCampaignBehavior), "OnStoryModeTutorialEnded")]
+        public class CSPatchTutorialPhaseCampaignBehavior
+        {
+            // Skip the vanilla code that sets the player's items and gold.
+            private static bool Prefix()
+            {
+                DisableHeroAction.Apply(StoryModeHeroes.ElderBrother);
+                StoryModeHeroes.ElderBrother.Clan = CampaignData.NeutralFaction;
+                return false;
+            }
+        }
 
         static bool Prepare => Factory.Settings is { } settings && settings.SkipTutorial;
     }
