@@ -8,7 +8,7 @@ namespace KaosesTweaks.Patches
 {
     class HeroPatcher
     {
-        //[HarmonyPatch(typeof(Hero))]//, "AddSkillXp"
+        [HarmonyPatch(typeof(Hero))]//, "AddSkillXp"
         public class Patches
         {
             [HarmonyPrefix]
