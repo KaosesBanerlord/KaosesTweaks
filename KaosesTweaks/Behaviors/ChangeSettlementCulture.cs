@@ -30,7 +30,9 @@ namespace KaosesTweaks.Behaviors
             CampaignEvents.OnSessionLaunchedEvent.AddNonSerializedListener(this, new Action<CampaignGameStarter>(OnSessionLaunched));
             CampaignEvents.DailyTickSettlementEvent.AddNonSerializedListener(this, new Action<Settlement>(OnDailyTickSettlement));
             CampaignEvents.OnNewGameCreatedEvent.AddNonSerializedListener(this, new Action<CampaignGameStarter>(OnGameLoaded));
-            CampaignEvents.OnSiegeAftermathAppliedEvent.AddNonSerializedListener(this, new Action<MobileParty, Settlement, SiegeAftermathCampaignBehavior.SiegeAftermath, Clan, Dictionary<MobileParty, float>>(OnSiegeAftermathApplied));
+            CampaignEvents.OnSiegeAftermathAppliedEvent.AddNonSerializedListener(this, new Action<MobileParty, Settlement, SiegeAftermathAction.SiegeAftermath, Clan, Dictionary<MobileParty, float>>(OnSiegeAftermathApplied));
+
+
             CampaignEvents.OnSettlementOwnerChangedEvent.AddNonSerializedListener(this, new Action<Settlement, bool, Hero, Hero, Hero, ChangeOwnerOfSettlementAction.ChangeOwnerOfSettlementDetail>(OnSettlementOwnerChanged));
         }
 
@@ -72,7 +74,8 @@ namespace KaosesTweaks.Behaviors
             campaignGameStarter.AddGameMenuOption("castle", "castle_culture_changer", "Culture Transformation", new GameMenuOption.OnConditionDelegate(Game_menu_castle_change_culture_on_condition), new GameMenuOption.OnConsequenceDelegate(Game_menu_change_culture_on_consequence), false, 5, false);
         }
 
-        private void OnSiegeAftermathApplied(MobileParty arg1, Settlement settlement, SiegeAftermathCampaignBehavior.SiegeAftermath arg3, Clan arg4, Dictionary<MobileParty, float> arg5)
+        //private void OnSiegeAftermathApplied(MobileParty arg1, Settlement settlement, SiegeAftermathCampaignBehavior.SiegeAftermath arg3, Clan arg4, Dictionary<MobileParty, float> arg5)
+        private void OnSiegeAftermathApplied(MobileParty arg1, Settlement settlement, SiegeAftermathAction.SiegeAftermath arg3, Clan arg4, Dictionary<MobileParty, float> arg5)
         {
             AddCounter(settlement);
         }

@@ -137,7 +137,7 @@ namespace KaosesTweaks.Behaviors
                     if (MBRandom.RandomFloat > pregnancyModel.StillbirthProbability)
                     {
                         bool isOffspringFemale = MBRandom.RandomFloat <= pregnancyModel.DeliveringFemaleOffspringProbability;
-                        Hero item = HeroCreator.DeliverOffSpring(mother, pregnancy.Father, isOffspringFemale, null);
+                        Hero item = HeroCreator.DeliverOffSpring(mother, pregnancy.Father, isOffspringFemale);
                         list.Add(item);
                     }
                     else
@@ -180,7 +180,7 @@ namespace KaosesTweaks.Behaviors
                     {
                         if (MBRandom.RandomFloat < GetChanceOfChild(hero2, i) && num < 6)
                         {
-                            HeroCreator.DeliverOffSpring(hero2, hero2.Spouse, MBRandom.RandomFloat <= Campaign.Current.Models.PregnancyModel.DeliveringFemaleOffspringProbability, null);
+                            HeroCreator.DeliverOffSpring(hero2, hero2.Spouse, MBRandom.RandomFloat <= Campaign.Current.Models.PregnancyModel.DeliveringFemaleOffspringProbability);
                             num++;
                         }
                     }

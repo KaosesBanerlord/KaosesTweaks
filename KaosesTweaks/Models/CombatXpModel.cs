@@ -153,7 +153,7 @@ namespace KaosesTweaks.Models
                     Settlement currentSettlement = party.MobileParty.CurrentSettlement;
                     if (((currentSettlement != null) ? currentSettlement.Town.Governor : null) != null)
                     {
-                        PerkHelper.AddPerkBonusForTown(DefaultPerks.TwoHanded.ArrowDeflection, party.MobileParty.CurrentSettlement.Town, ref xpToGain);
+                        PerkHelper.AddPerkBonusForTown(DefaultPerks.TwoHanded.ProjectileDeflection, party.MobileParty.CurrentSettlement.Town, ref xpToGain);
                         if (attackerTroop.IsMounted)
                         {
                             PerkHelper.AddPerkBonusForTown(DefaultPerks.Polearm.Guards, party.MobileParty.CurrentSettlement.Town, ref xpToGain);

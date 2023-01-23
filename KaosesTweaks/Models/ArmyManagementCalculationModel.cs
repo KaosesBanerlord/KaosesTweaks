@@ -2,6 +2,7 @@
 using KaosesCommon.Utils;
 using KaosesTweaks.Objects;
 using System;
+using System.Collections.Generic;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.CharacterDevelopment;
 using TaleWorlds.CampaignSystem.GameComponents;
@@ -55,7 +56,7 @@ namespace KaosesTweaks.Models
             float _finalNumberOfLessMemberParties = (float)-((_numberOfLessMemberParties + 1) / 2);
             float _finalNumberOfParties = _numberOfParties;
 
-            foreach (MobileParty andAttachedParty in army.LeaderPartyAndAttachedParties)
+            foreach (MobileParty andAttachedParty in (List<MobileParty>)army.LeaderParty.AttachedParties)
             {
                 if (andAttachedParty != army.LeaderParty)
                 {

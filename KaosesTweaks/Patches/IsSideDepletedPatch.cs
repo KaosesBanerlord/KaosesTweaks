@@ -110,7 +110,7 @@ namespace KaosesTweaks.Patches
             {
                 foreach (Team? team in teams)
                 {
-                    foreach (Formation? formation in team.Formations)
+                    foreach (Formation? formation in team.FormationsIncludingSpecialAndEmpty)
                     {
 
                         if (formation.GetReadonlyMovementOrderReference().OrderType != OrderType.Charge)

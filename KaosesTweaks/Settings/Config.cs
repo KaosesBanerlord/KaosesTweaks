@@ -214,7 +214,13 @@ namespace KaosesTweaks.Settings
         #region Mod Specific settings
 
 
-        //~ Age Tweaks
+        [SettingPropertyInteger("{=KTMCM_PriceT1}New Campaign Totla Companions", 1, 53, RequireRestart = false,
+            HintText = "{=KTMCM_ITMPT1H}The total number of companions to spawn on new games [Native : 32].")]
+        [SettingPropertyGroup("{=KTMCM_ItemTweaks}Comapnions")]
+        public int DesiredTotalCompanionCount { get; set; } = 32;
+
+
+        //~ Age Tweaks 
         #region Age Tweaks
         [SettingPropertyBool("{=BT_Settings_002100}Age Tweaks" + "*", Order = 1, RequireRestart = true, IsToggle = true,
             HintText = "{=BT_Settings_002100_Desc}Enables the tweaking of character age behavior."),
@@ -1709,10 +1715,10 @@ namespace KaosesTweaks.Settings
             SettingPropertyGroup("{=BT_Settings_009000}Misc")]
         public int CampaignSpeed { get; set; } = 4;
 
-        [SettingPropertyBool("{=BT_Settings_003103}Enable Unlimited Wanderers Patch" + "*", Order = 0, RequireRestart = true,
-            HintText = "{=BT_Settings_003103_Desc}Removes the soft cap on the maximum number of potential companions who can spawn. Native limits the # of wanderers to ~25. This will remove that limit. Note: Requires a new campaign to take effect, as the cap is set when a new game is generated. Credit to Bleinz for his UnlimitedWanderers mod.")]
-        [SettingPropertyGroup("{=BT_Settings_009000}Misc")]
-        public bool UnlimitedWanderersPatch { get; set; } = false;
+        //[SettingPropertyBool("{=BT_Settings_003103}Enable Unlimited Wanderers Patch" + "*", Order = 0, RequireRestart = true,
+        //    HintText = "{=BT_Settings_003103_Desc}Removes the soft cap on the maximum number of potential companions who can spawn. Native limits the # of wanderers to ~25. This will remove that limit. Note: Requires a new campaign to take effect, as the cap is set when a new game is generated. Credit to Bleinz for his UnlimitedWanderers mod.")]
+        //[SettingPropertyGroup("{=BT_Settings_009000}Misc")]
+        //public bool UnlimitedWanderersPatch { get; set; } = false;
 
         /* Disable in 1.5.7.2 until we understand changes to the main quest.
         [SettingPropertyBool("Enable Auto-Extension of the 'Stop the Conspiracy' Quest", RequireRestart = false, HintText = "Automatically extends the timer of the 'Stop the Conspiracy' quest as TW hasn't finished it yet.")]
@@ -3357,7 +3363,7 @@ namespace KaosesTweaks.Settings
                 QuestCharactersIgnorePartySize = false,
                 ShowFoodDaysRemaining = false,
                 CampaignSpeed = 4,
-                UnlimitedWanderersPatch = false,
+                //UnlimitedWanderersPatch = false,
 
                 //~ Party Tweaks
                 MCMPartyTweaksEnabled = false,
@@ -4021,7 +4027,7 @@ namespace KaosesTweaks.Settings
                 QuestCharactersIgnorePartySize = true,
                 ShowFoodDaysRemaining = false,
                 CampaignSpeed = 4,
-                UnlimitedWanderersPatch = false,
+                //UnlimitedWanderersPatch = false,
 
                 //~ Party Tweaks
                 MCMPartyTweaksEnabled = true,

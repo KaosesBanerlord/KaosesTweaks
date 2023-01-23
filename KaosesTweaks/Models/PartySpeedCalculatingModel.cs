@@ -133,8 +133,8 @@ namespace KaosesTweaks.Models
             {
                 float herdingModifier = this.GetHerdingModifier(num1, herdSize2);
                 result.AddFactor(herdingModifier, PartySpeedCalculatingModel._textHerd);
-                if (mobileParty.HasPerk(DefaultPerks.Riding.Horde))
-                    result.AddFactor((float)(-(double)herdingModifier * (double)DefaultPerks.Riding.Horde.PrimaryBonus * 0.00999999977648258), DefaultPerks.Riding.Horde.Name);
+                if (mobileParty.HasPerk(DefaultPerks.Riding.Shepherd))
+                    result.AddFactor((float)(-(double)herdingModifier * (double)DefaultPerks.Riding.Shepherd.PrimaryBonus * 0.00999999977648258), DefaultPerks.Riding.Shepherd.Name);
             }
             float woundedModifier = this.GetWoundedModifier(num1, totalWounded, mobileParty);
             result.AddFactor(woundedModifier, PartySpeedCalculatingModel._textWounded);

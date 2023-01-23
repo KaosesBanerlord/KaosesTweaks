@@ -1,5 +1,6 @@
 ﻿using HarmonyLib;
 using KaosesCommon;
+using KaosesCommon.Helpers;
 using KaosesCommon.Utils;
 using KaosesTweaks.Behaviors;
 using KaosesTweaks.Event;
@@ -19,7 +20,10 @@ using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.CampaignBehaviors;
 using TaleWorlds.CampaignSystem.Extensions;
 using TaleWorlds.CampaignSystem.MapEvents;
+using TaleWorlds.CampaignSystem.Party;
+using TaleWorlds.CampaignSystem.Settlements.Workshops;
 using TaleWorlds.Core;
+using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.ObjectSystem;
 using Module = TaleWorlds.MountAndBlade.Module;
@@ -382,6 +386,37 @@ namespace KaosesTweaks
                 _harmony.Patch(AccessTools.Method(typeof(SandBoxGameManager), "OnLoadFinished"), transpiler: new HarmonyMethod(AccessTools.Method(typeof(Patches.PatchGameManager), "Transpiler")));
                 _harmony.Patch(AccessTools.Method(typeof(StoryModeGameManager), "OnLoadFinished"), transpiler: new HarmonyMethod(AccessTools.Method(typeof(Patches.PatchGameManager), "Transpiler")));
             }
+
+            //AccessTools.DeclaredField(typeof(CompanionsCampaignBehavior), "DesiredCompanionPerTown")?.SetValue(typeof(CompanionsCampaignBehavior), 3.0);
+            //AccessTools.DeclaredField(typeof(CompanionsCampaignBehavior), "_desiredTotalCompanionCount")?.SetValue(typeof(CompanionsCampaignBehavior), 100);
+
+
+            /*
+                    private static readonly MethodInfo GetLocalizedText = AccessTools.Method(typeof(MBTextManager), "GetLocalizedText");
+        AccessTools.Field(typeof(Module), "_splashScreenPlayed").SetValue(Module.CurrentModule, true);
+        AccessTools.FieldRef<CampaignObjectManager, List<Hero>> DeadOrDisabledHeroes =
+            AccessTools.FieldRefAccess<CampaignObjectManager, List<Hero>>("_deadOrDisabledHeroes");
+
+        private static readonly AccessTools.FieldRef<MobileParty, bool> IsCurrentlyUsedByAQuest =
+            AccessTools.FieldRefAccess<MobileParty, bool>("_isCurrentlyUsedByAQuest");
+
+        AccessTools.Property(hero.GetType(), "StaticBodyProperties")
+                .SetValue(hero, BodyProperties.GetRandomBodyProperties(mother.CharacterObject.Race, isOffspringFemale,
+                bodyProperties, bodyProperties2, 1, seed, hairTags, father.BeardTags, tattooTags).StaticProperties);
+
+                        AccessTools.Field("_proposedSpouseForPlayerRelative").SetValue(__instance, hero);
+
+        AccessTools.Property(workshop.GetType(), "ConstructionTimeRemained").SetValue(workshop, 3);
+        AccessTools.Property(workshop.GetType(), "Level").SetValue(workshop, workshop.Level + 1);
+            */
+            //_harmony.Patch(AccessTools.Field(typeof(CompanionsCampaignBehavior), "_desiredTotalCompanionCount").SetValue(TaleWorlds.CampaignSystem.CampaignBehaviors.CompanionsCampaignBehavior._desiredTotalCompanionCount, 100));
+
+
+            //AccessTools.Property(typeof(CompanionsCampaignBehavior).GetType(), "_desiredTotalCompanionCount").SetValue(typeof(CompanionsCampaignBehavior), 100);
+
+
+
+
         }
 
         /// <summary>

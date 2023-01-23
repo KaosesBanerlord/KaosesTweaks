@@ -33,7 +33,7 @@ namespace KaosesTweaks.Behaviors
             CampaignEvents.OnNewGameCreatedPartialFollowUpEvent.AddNonSerializedListener((object)this, new Action<CampaignGameStarter, int>(this.OnNewGameCreatedPartialFollowUp));
             CampaignEvents.OnSettlementOwnerChangedEvent.AddNonSerializedListener((object)this, new Action<Settlement, bool, Hero, Hero, Hero, ChangeOwnerOfSettlementAction.ChangeOwnerOfSettlementDetail>(this.OnSettlementOwnerChanged));
             CampaignEvents.HeroKilledEvent.AddNonSerializedListener((object)this, new Action<Hero, Hero, KillCharacterAction.KillCharacterActionDetail, bool>(this.OnHeroKilled));
-            CampaignEvents.WarDeclared.AddNonSerializedListener((object)this, new Action<IFaction, IFaction>(this.OnWarDeclared));
+            CampaignEvents.WarDeclared.AddNonSerializedListener((object)this, new Action<IFaction, IFaction, DeclareWarAction.DeclareWarDetail>(this.OnWarDeclared));
             CampaignEvents.OnWorkshopChangedEvent.AddNonSerializedListener((object)this, new Action<Workshop, Hero, WorkshopType>(this.OnWorkshopChanged));
             CampaignEvents.OnSessionLaunchedEvent.AddNonSerializedListener((object)this, new Action<CampaignGameStarter>(this.OnSessionLaunched));
         }
@@ -123,7 +123,7 @@ namespace KaosesTweaks.Behaviors
             }
         }
 
-        private void OnWarDeclared(IFaction faction1, IFaction faction2)
+        private void OnWarDeclared(IFaction faction1, IFaction faction2, DeclareWarAction.DeclareWarDetail declareWarDetail)
         {
             if (!Factory.Settings.KeepWorkshopsOnWarDeclaration)
             {
@@ -453,7 +453,7 @@ namespace KaosesTweaks.Behaviors
             bool flag2 = false;
             for (int index = 0; index < workshopType.Productions.Count; ++index)
             {
-                float num1 = workshop.ProductionProgress[index];
+                float num1 = workshop.GetProductionProgress(index);
                 if ((double)num1 > 1.0)
                     num1 = 1f;
                 float effectToProduction = Campaign.Current.Models.WorkshopModel.GetPolicyEffectToProduction(townComponent);
