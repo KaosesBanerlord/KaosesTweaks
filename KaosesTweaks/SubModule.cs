@@ -90,7 +90,7 @@ namespace KaosesTweaks
 
             if (Factory.Settings.DisableIntroVideo)
             {
-                AccessTools.DeclaredField(typeof(Module), "_splashScreenPlayed")?.SetValue(Module.CurrentModule, true);
+                //AccessTools.DeclaredField(typeof(Module), "_splashScreenPlayed")?.SetValue(Module.CurrentModule, true);
             }
 
         }
@@ -379,8 +379,8 @@ namespace KaosesTweaks
 
             if (Factory.Settings.DisableCharacterIntroVideo)
             {
-                _harmony.Patch(AccessTools.Method(typeof(SandBoxGameManager), "OnLoadFinished"), transpiler: new HarmonyMethod(AccessTools.Method(typeof(Patches.PatchGameManager), "Transpiler")));
-                _harmony.Patch(AccessTools.Method(typeof(StoryModeGameManager), "OnLoadFinished"), transpiler: new HarmonyMethod(AccessTools.Method(typeof(Patches.PatchGameManager), "Transpiler")));
+                //_harmony.Patch(AccessTools.Method(typeof(SandBoxGameManager), "OnLoadFinished"), transpiler: new HarmonyMethod(AccessTools.Method(typeof(Patches.PatchGameManager), "Transpiler")));
+                //_harmony.Patch(AccessTools.Method(typeof(StoryModeGameManager), "OnLoadFinished"), transpiler: new HarmonyMethod(AccessTools.Method(typeof(Patches.PatchGameManager), "Transpiler")));
             }
         }
 

@@ -1,0 +1,11 @@
+banners included in the auto-lock tweak
+
+horse price tweaking
+
+after new game companion spawn rate tweaking
+
+
+add "horse price" "construction power/time" "combat health regen" sliders?
+
+armor effectiveness is quite a sensitive topic, is it possible to let the player tweak the value of the vannilla system 
+( Modifiable Armor modifiers mod like ), or let the player input their own damage calculation formula

@@ -15,8 +15,12 @@ namespace KaosesTweaks.Patches
         // Skip the first quest "Investigate Neretzes' Folly".
         private static void Postfix(BannerInvestigationQuest __instance)
         {
+            if (!Factory.Settings.AutoCompleteBannerQuest)
+            {
+                return;
+            }
             __instance.CompleteQuestWithSuccess();
         }
-        static bool Prepare => Factory.Settings is { } settings && settings.AutoCompleteBannerQuest;
+        //static bool Prepare => Factory.Settings is { } settings && settings.AutoCompleteBannerQuest;
     }
 }

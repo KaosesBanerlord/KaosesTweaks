@@ -6,11 +6,18 @@ using System.Reflection.Emit;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using KaosesTweaks.Objects;
 
 namespace KaosesTweaks.Patches
 {
     public class PatchGameManager
     {
+        /*        public static bool Prefix()
+                {
+
+                }
+        */
+
         // Remove the instructions which play the campaign intro.
         public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
         {
@@ -39,6 +46,8 @@ namespace KaosesTweaks.Patches
             codes.InsertRange(codes.IndexOf(codeAtIndex), codesToInsert);
             return codes;
         }
+
+        static bool Prepare => Factory.Settings is { } settings && settings.DisableCharacterIntroVideo;
     }
 }
 

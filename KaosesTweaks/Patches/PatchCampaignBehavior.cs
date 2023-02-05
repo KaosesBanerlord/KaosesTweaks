@@ -22,6 +22,10 @@ namespace KaosesTweaks.Patches
             // Skip the tutorial.
             private static void Prefix(ref bool ___SkipTutorialMission)
             {
+                if (!Factory.Settings.SkipTutorial)
+                {
+                    return;
+                }
                 ___SkipTutorialMission = true;
                 TutorialPhase.Instance.PlayerTalkedWithBrotherForTheFirstTime();
                 StoryModeManager.Current.MainStoryLine.CompleteTutorialPhase(true);
@@ -34,12 +38,16 @@ namespace KaosesTweaks.Patches
             // Skip the vanilla code that sets the player's items and gold.
             private static bool Prefix()
             {
+                if (!Factory.Settings.SkipTutorial)
+                {
+                    return true;
+                }
                 DisableHeroAction.Apply(StoryModeHeroes.ElderBrother);
                 StoryModeHeroes.ElderBrother.Clan = CampaignData.NeutralFaction;
                 return false;
             }
         }
 
-        static bool Prepare => Factory.Settings is { } settings && settings.SkipTutorial;
+        //static bool Prepare => Factory.Settings is { } settings && settings.SkipTutorial;
     }
 }
