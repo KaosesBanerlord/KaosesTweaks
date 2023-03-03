@@ -1,3 +1,4 @@
+using KaosesCommon.Objects;
 using KaosesCommon.Utils;
 using KaosesTweaks.Objects.PartySpeeds;
 using KaosesTweaks.Settings;
@@ -109,5 +110,49 @@ namespace KaosesTweaks.Objects
         }
         //~ KT Party Speeds
         /* KaosesPartySpeeds */
+
+        private static InfoMgr? _im = null;
+
+        public static InfoMgr IM
+        {
+            get
+            {
+                return _im;
+            }
+            set
+            {
+                _im = value;
+            }
+        }
+
+
+
+        //private static ConfigOther? _settings2 = null;
+        //private static CoreConfig? _settingscore = null;
+        /*        public static CoreConfig SettingsCore
+                {
+                    get
+                    {
+                        if (_settingscore == null)
+                        {
+                            _settingscore = CoreConfig.Instance;
+                            if (_settingscore is null)
+                            {
+                                Factory.IM.ShowMessageBox("KaosesCharacterTweaks Core Failed to load config provider", "KaosesCharacterTweaks Core Error");
+                            }
+                        }
+                        return _settingscore;
+                    }
+                    set
+                    {
+                        _settingscore = value;
+                    }
+                }*/
+
+
+
+
+
     }
+
 }

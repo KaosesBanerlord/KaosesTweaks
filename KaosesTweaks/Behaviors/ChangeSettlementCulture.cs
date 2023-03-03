@@ -221,7 +221,7 @@ namespace KaosesTweaks.Behaviors
                 if (dictionary[settlement] / 7 <= Factory.Settings.TimeToChanceCulture)
                 {
                     dictionary[settlement]++;
-                    if (Factory.Settings.CultureChangeDebug)
+                    if (Factory.Settings.IsCultureChangeDebug)
                     {
                         IM.MessageDebug($"OnDailyTickSettlement : {settlement.Name.ToString()} counter: {dictionary[settlement].ToString()}");
                         IM.MessageDebug($"OnDailyTickSettlement condition: {(dictionary[settlement] / 7 <= Factory.Settings.TimeToChanceCulture).ToString()} ");
@@ -244,7 +244,7 @@ namespace KaosesTweaks.Behaviors
             {
                 Dictionary<Settlement, int> dictionary = WeekCounter;
                 dictionary[settlement]++;
-                if (Factory.Settings.CultureChangeDebug)
+                if (Factory.Settings.IsCultureChangeDebug)
                 {
                     IM.MessageDebug($"OnWeeklyTickSettlement : {settlement.Name.ToString()} Added 1 week : {dictionary[settlement].ToString()} ");
                 }
@@ -274,7 +274,7 @@ namespace KaosesTweaks.Behaviors
             {
                 if (WeekCounter.ContainsKey(settlement))
                 {
-                    if (Factory.Settings.CultureChangeDebug)
+                    if (Factory.Settings.IsCultureChangeDebug)
                     {
                         IM.MessageDebug($"AddCounter : {settlement.Name.ToString()} set exisiting");
                     }
@@ -282,7 +282,7 @@ namespace KaosesTweaks.Behaviors
                 }
                 else
                 {
-                    if (Factory.Settings.CultureChangeDebug)
+                    if (Factory.Settings.IsCultureChangeDebug)
                     {
                         IM.MessageDebug($"AddCounter : {settlement.Name.ToString()} add new");
                     }

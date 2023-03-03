@@ -112,7 +112,7 @@ namespace KaosesTweaks.Models
             if (Factory.Settings.BattleRewardsRelationShipGainModifiers)
             {
                 modifiedRelationShipGain = relationShipGain * Factory.Settings.BattleRewardsRelationShipGainMultiplier;
-                if (Factory.Settings.BattleRewardsDebug)
+                if (Factory.Settings.IsBattleRewardsDebug)
                 {
                     IM.MessageDebug("Original RelationShipGain : " + relationShipGain.ToString() +
                     "   Modified Gain : " + modifiedRelationShipGain.ToString() +
@@ -129,7 +129,7 @@ namespace KaosesTweaks.Models
             {
                 modifiedRenownGain = renownGain * Factory.Settings.BattleRewardsRenownGainMultiplier;
                 //result.Add(modifiedRenownGain, new TextObject("KT renown tweak", null), null);
-                if (Factory.Settings.BattleRewardsDebug)
+                if (Factory.Settings.IsBattleRewardsDebug)
                 {
                     IM.MessageDebug("Original Renown Gain : " + renownGain.ToString() +
                         "   Modified Gain : " + modifiedRenownGain.ToString() +
@@ -145,7 +145,7 @@ namespace KaosesTweaks.Models
             if (Factory.Settings.BattleRewardsInfluenceGainModifiers)
             {
                 modifiedInfluenceGain = influenceGain * Factory.Settings.BattleRewardsInfluenceGainMultiplier;
-                if (Factory.Settings.BattleRewardsDebug)
+                if (Factory.Settings.IsBattleRewardsDebug)
                 {
                     IM.MessageDebug("Original Influence Gain : " + influenceGain.ToString() +
                         "   Modified Gain : " + modifiedInfluenceGain.ToString() +
@@ -161,7 +161,7 @@ namespace KaosesTweaks.Models
             if (Factory.Settings.BattleRewardsMoraleGainModifiers)
             {
                 modifiedMoraleGain = moraleGain * Factory.Settings.BattleRewardsMoraleGainMultiplier;
-                if (Factory.Settings.BattleRewardsDebug)
+                if (Factory.Settings.IsBattleRewardsDebug)
                 {
                     IM.MessageDebug("Original Morale Gain : " + moraleGain.ToString() +
                         "   Modified Gain : " + modifiedMoraleGain.ToString() +
@@ -177,7 +177,7 @@ namespace KaosesTweaks.Models
             if (Factory.Settings.BattleRewardsGoldLossModifiers)
             {
                 modifiedGoldLoss = originalGoldLoss * Factory.Settings.BattleRewardsGoldLossMultiplier;
-                if (Factory.Settings.BattleRewardsDebug)
+                if (Factory.Settings.IsBattleRewardsDebug)
                 {
                     IM.MessageDebug("Original gold loss : " + originalGoldLoss.ToString() +
                         "   Modified loss : " + modifiedGoldLoss.ToString() +

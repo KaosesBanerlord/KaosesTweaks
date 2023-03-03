@@ -202,7 +202,7 @@ namespace KaosesTweaks.Objects.Experience
         public float GetNewSkillXp()
         {
             float newXp = 0.0f;
-            if (Factory.Settings.XpModifiersDebug && HasModifiedXP())
+            if (Factory.Settings.IsXpModifiersDebug && HasModifiedXP())
             {
                 DebugDump();
             }

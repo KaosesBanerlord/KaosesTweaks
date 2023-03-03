@@ -68,13 +68,13 @@ namespace KaosesTweaks.Event
             if (Factory.Settings.SizeBonusEnabled)
             {
                 FinalRelationshipIncrease = Factory.Settings.RelationshipIncrease * BanditDeathCounter * Factory.Settings.SizeBonus;
-                if (Factory.Settings.KillingBanditsDebug)
+                if (Factory.Settings.IsKillingBanditsDebug)
                 {
                     IM.MessageDebug("Killing Bandits: SizeBonusEnabled: " + FinalRelationshipIncrease.ToString());
                 }
             }
             int FinalRelationshipIncreaseInt = (int)Math.Floor(FinalRelationshipIncrease);
-            if (Factory.Settings.KillingBanditsDebug)
+            if (Factory.Settings.IsKillingBanditsDebug)
             {
                 IM.MessageDebug("Killing Bandits: IncreaseLocalRelations: " + "Base Change: " + Factory.Settings.RelationshipIncrease.ToString() + "Final Change: " + FinalRelationshipIncreaseInt.ToString());
             }
@@ -109,7 +109,7 @@ namespace KaosesTweaks.Event
             {
                 BanditGroupCounter = Factory.Settings.GroupsOfBandits;
             }
-            if (Factory.Settings.KillingBanditsDebug)
+            if (Factory.Settings.IsKillingBanditsDebug)
             {
                 IM.MessageDebug("Killing Bandits : BanditGroupCounterUpdate: " + BanditGroupCounter.ToString());
             }

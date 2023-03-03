@@ -34,7 +34,7 @@ namespace KaosesTweaks.Objects.PartySpeeds
         {
             _mobileParty = mobileParty;
             _settings = Factory.Settings;
-            _debug = Factory.Settings.Debug;
+            _debug = Factory.Settings.IsDebug;
             _enabled = Factory.Settings.KaosesStaticSpeedModifiersEnabled;
             //calculateNewPartySpeed();
         }
@@ -49,7 +49,7 @@ namespace KaosesTweaks.Objects.PartySpeeds
                     ModifiedSpeed = Factory.Settings.LooterSpeedReductionAmount;
                     Message = _slowMessage;
                     HasModifiedSpeed = true;
-                    if (_debug && Factory.Settings.PartySpeedDebug) { IM.MessageDebug("DPS: Modifying looters Speed: " + Factory.Settings.LooterSpeedReductionAmount); }
+                    if (_debug && Factory.Settings.IsPartySpeedDebug) { IM.MessageDebug("DPS: Modifying looters Speed: " + Factory.Settings.LooterSpeedReductionAmount); }
                 }
                 if (_mobileParty.StringId.Contains("caravan") && Factory.Settings.CaravanSpeedReductiontEnabled)
                 {
@@ -58,14 +58,14 @@ namespace KaosesTweaks.Objects.PartySpeeds
                         ModifiedSpeed = Factory.Settings.EliteCaravanSpeedReductionAmount;
                         Message = _slowCaravansMessage;
                         HasModifiedSpeed = true;
-                        if (_debug && Factory.Settings.PartySpeedDebug) { IM.MessageDebug("DPS: Modifying elite caravan Speed: " + Factory.Settings.EliteCaravanSpeedReductionAmount); }
+                        if (_debug && Factory.Settings.IsPartySpeedDebug) { IM.MessageDebug("DPS: Modifying elite caravan Speed: " + Factory.Settings.EliteCaravanSpeedReductionAmount); }
                     }
                     else if (Factory.Settings.CaravanSpeedReductionAmount != 0.0f)
                     {
                         ModifiedSpeed = Factory.Settings.CaravanSpeedReductionAmount;
                         Message = _slowCaravansMessage;
                         HasModifiedSpeed = true;
-                        if (_debug && Factory.Settings.PartySpeedDebug) { IM.MessageDebug("DPS: Modifying caravan Speed: " + Factory.Settings.CaravanSpeedReductionAmount); }
+                        if (_debug && Factory.Settings.IsPartySpeedDebug) { IM.MessageDebug("DPS: Modifying caravan Speed: " + Factory.Settings.CaravanSpeedReductionAmount); }
                     }
                 }
                 if (_mobileParty.StringId.Contains("desert") && Factory.Settings.DesertSpeedReductionAmount != 0.0f)
@@ -73,35 +73,35 @@ namespace KaosesTweaks.Objects.PartySpeeds
                     ModifiedSpeed = Factory.Settings.DesertSpeedReductionAmount;
                     Message = _slowMessage;
                     HasModifiedSpeed = true;
-                    if (_debug && Factory.Settings.PartySpeedDebug) { IM.MessageDebug("DPS: Modifying desert bandits Speed: " + Factory.Settings.DesertSpeedReductionAmount); }
+                    if (_debug && Factory.Settings.IsPartySpeedDebug) { IM.MessageDebug("DPS: Modifying desert bandits Speed: " + Factory.Settings.DesertSpeedReductionAmount); }
                 }
                 if (_mobileParty.StringId.Contains("forest") && Factory.Settings.ForestSpeedReductionAmount != 0.0f)
                 {
                     ModifiedSpeed = Factory.Settings.ForestSpeedReductionAmount;
                     Message = _slowMessage;
                     HasModifiedSpeed = true;
-                    if (_debug && Factory.Settings.PartySpeedDebug) { IM.MessageDebug("DPS: Modifying forest bandits Speed: " + Factory.Settings.ForestSpeedReductionAmount); }
+                    if (_debug && Factory.Settings.IsPartySpeedDebug) { IM.MessageDebug("DPS: Modifying forest bandits Speed: " + Factory.Settings.ForestSpeedReductionAmount); }
                 }
                 if (_mobileParty.StringId.Contains("mountain") && Factory.Settings.MountainSpeedReductionAmount != 0.0f)
                 {
                     ModifiedSpeed = Factory.Settings.MountainSpeedReductionAmount;
                     Message = _slowMessage;
                     HasModifiedSpeed = true;
-                    if (_debug && Factory.Settings.PartySpeedDebug) { IM.MessageDebug("DPS: Modifying mountain bandits Speed: " + Factory.Settings.MountainSpeedReductionAmount); }
+                    if (_debug && Factory.Settings.IsPartySpeedDebug) { IM.MessageDebug("DPS: Modifying mountain bandits Speed: " + Factory.Settings.MountainSpeedReductionAmount); }
                 }
                 if (_mobileParty.StringId.Contains("raider") && Factory.Settings.SeaRaiderSpeedReductionAmount != 0.0f)
                 {
                     ModifiedSpeed = Factory.Settings.SeaRaiderSpeedReductionAmount;
                     Message = _slowMessage;
                     HasModifiedSpeed = true;
-                    if (_debug && Factory.Settings.PartySpeedDebug) { IM.MessageDebug("DPS: Modifying sea raider bandits Speed: " + Factory.Settings.SeaRaiderSpeedReductionAmount); }
+                    if (_debug && Factory.Settings.IsPartySpeedDebug) { IM.MessageDebug("DPS: Modifying sea raider bandits Speed: " + Factory.Settings.SeaRaiderSpeedReductionAmount); }
                 }
                 if (_mobileParty.StringId.Contains("steppe") && Factory.Settings.SteppeSpeedReductionAmount != 0.0f)
                 {
                     ModifiedSpeed = Factory.Settings.SteppeSpeedReductionAmount;
                     Message = _slowMessage;
                     HasModifiedSpeed = true;
-                    if (_debug && Factory.Settings.PartySpeedDebug) { IM.MessageDebug("DPS: Modifying steppe bandits Speed: " + Factory.Settings.SteppeSpeedReductionAmount); }
+                    if (_debug && Factory.Settings.IsPartySpeedDebug) { IM.MessageDebug("DPS: Modifying steppe bandits Speed: " + Factory.Settings.SteppeSpeedReductionAmount); }
                 }
                 if (_mobileParty.StringId.Contains("villager") && Factory.Settings.VillagerSpeedReductiontEnabled
                     && Factory.Settings.VillagerSpeedReductionAmount != 0.0f)
@@ -109,7 +109,7 @@ namespace KaosesTweaks.Objects.PartySpeeds
                     ModifiedSpeed = Factory.Settings.VillagerSpeedReductionAmount;
                     Message = _slowVillagerMessage;
                     HasModifiedSpeed = true;
-                    if (_debug && Factory.Settings.PartySpeedDebug) { IM.MessageDebug("DPS: Modifying villager Speed: " + Factory.Settings.VillagerSpeedReductiontEnabled); }
+                    if (_debug && Factory.Settings.IsPartySpeedDebug) { IM.MessageDebug("DPS: Modifying villager Speed: " + Factory.Settings.VillagerSpeedReductiontEnabled); }
                 }
                 if (_mobileParty.StringId.Contains("lord_") && Factory.Settings.KingdomSpeedReductiontEnabled
                     && Factory.Settings.KingdomSpeedReductionAmount != 0.0f)
@@ -117,14 +117,14 @@ namespace KaosesTweaks.Objects.PartySpeeds
                     ModifiedSpeed = Factory.Settings.KingdomSpeedReductionAmount;
                     Message = _slowKingdomMessage;
                     HasModifiedSpeed = true;
-                    if (_debug && Factory.Settings.PartySpeedDebug) { IM.MessageDebug("DPS: Modifying lord_ Speed: " + Factory.Settings.KingdomSpeedReductiontEnabled); }
+                    if (_debug && Factory.Settings.IsPartySpeedDebug) { IM.MessageDebug("DPS: Modifying lord_ Speed: " + Factory.Settings.KingdomSpeedReductiontEnabled); }
                 }
                 if (_mobileParty.StringId.Contains("troops_of") && Factory.Settings.OtherKingdomSpeedReductionAmount != 0.0f)
                 {
                     ModifiedSpeed = Factory.Settings.OtherKingdomSpeedReductionAmount;
                     Message = _slowMinorMessage;
                     HasModifiedSpeed = true;
-                    if (_debug && Factory.Settings.PartySpeedDebug) { IM.MessageDebug("DPS: Modifying troops_of Speed: " + Factory.Settings.OtherKingdomSpeedReductionAmount); }
+                    if (_debug && Factory.Settings.IsPartySpeedDebug) { IM.MessageDebug("DPS: Modifying troops_of Speed: " + Factory.Settings.OtherKingdomSpeedReductionAmount); }
                 }
 
                 if (_mobileParty.IsMainParty && Factory.Settings.PlayerSpeedReductiontEnabled && Factory.Settings.PlayerSpeedReductionAmount != 0.0f)
@@ -132,7 +132,7 @@ namespace KaosesTweaks.Objects.PartySpeeds
                     ModifiedSpeed = Factory.Settings.PlayerSpeedReductionAmount;
                     Message = _slowPlayerMessage;
                     HasModifiedSpeed = true;
-                    if (_debug && Factory.Settings.PartySpeedDebug) { IM.MessageDebug("DPS: Modifying player Speed: " + Factory.Settings.PlayerSpeedReductionAmount); }
+                    if (_debug && Factory.Settings.IsPartySpeedDebug) { IM.MessageDebug("DPS: Modifying player Speed: " + Factory.Settings.PlayerSpeedReductionAmount); }
 
                 }
 
@@ -146,7 +146,7 @@ namespace KaosesTweaks.Objects.PartySpeeds
                             ModifiedSpeed = Factory.Settings.PlayerClanSpeedReductionAmount;
                             Message = _slowPlayerClanMessage;
                             HasModifiedSpeed = true;
-                            if (_debug && Factory.Settings.PartySpeedDebug) { IM.MessageDebug("DPS: Modifying PlayerClan Speed: " + Factory.Settings.PlayerClanSpeedReductionAmount); }
+                            if (_debug && Factory.Settings.IsPartySpeedDebug) { IM.MessageDebug("DPS: Modifying PlayerClan Speed: " + Factory.Settings.PlayerClanSpeedReductionAmount); }
                             //Logger.Lm("IsPlayerClan new speed:" + finalSpeed.ResultNumber.ToString());
                         }
                         else if (Factory.Settings.OtherKingdomSpeedReductionAmount != 0.0f)
@@ -154,7 +154,7 @@ namespace KaosesTweaks.Objects.PartySpeeds
                             ModifiedSpeed = Factory.Settings.OtherKingdomSpeedReductionAmount;
                             Message = _slowMinorMessage;
                             HasModifiedSpeed = true;
-                            if (_debug && Factory.Settings.PartySpeedDebug) { IM.MessageDebug("DPS: Modifying other Speed: " + Factory.Settings.OtherKingdomSpeedReductionAmount); }
+                            if (_debug && Factory.Settings.IsPartySpeedDebug) { IM.MessageDebug("DPS: Modifying other Speed: " + Factory.Settings.OtherKingdomSpeedReductionAmount); }
                         }
                     }
                 }

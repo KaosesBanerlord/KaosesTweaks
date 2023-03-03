@@ -14,12 +14,12 @@ namespace KaosesTweaks.Patches
         {
             if (Factory.Settings.HideoutBattleTroopLimitTweakEnabled)
             {
-                if (Factory.Settings.BattleSizeDebug)
+                if (Factory.Settings.IsBattleSizeDebug)
                 {
                     IM.MessageDebug($"Hideout Battle Troop Limit Tweak: original: {__result}");
                 }
                 __result = Math.Min(Factory.Settings.HideoutBattleTroopLimit, 90);
-                if (Factory.Settings.BattleSizeDebug)
+                if (Factory.Settings.IsBattleSizeDebug)
                 {
                     IM.MessageDebug($"Hideout Battle Troop Limit Tweak: modified: {__result}");
                 }

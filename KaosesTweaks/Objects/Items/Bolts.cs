@@ -10,7 +10,7 @@ namespace KaosesTweaks.Objects.Items
         public Bolts(ItemObject itemObject) :
             base(itemObject)
         {
-            if (_settings.ItemDebugMode && _settings.BoltsMultipliersEnabled)
+            if (_settings.IsItemDebugMode && _settings.BoltsMultipliersEnabled)
             {
                 IM.MessageDebug("Bolts : ObjectsBase");
             }
@@ -19,7 +19,7 @@ namespace KaosesTweaks.Objects.Items
 
         protected void TweakValues()
         {
-            if (_settings.ItemDebugMode && _settings.BoltsMultipliersEnabled)
+            if (_settings.IsItemDebugMode && _settings.BoltsMultipliersEnabled)
             {
                 //IM.MessageDebug("String ID: " + _item.StringId.ToString() + "  Tier: " + _item.Tier.ToString() + "  IsCivilian: " + _item.IsCivilian.ToString() + "  ");
             }

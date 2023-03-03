@@ -17,7 +17,7 @@ namespace KaosesTweaks.Patches
         {
             if (village != null && Factory.Settings is { } settings && settings.ProductionTweakEnabled)
             {
-                if (Factory.Settings.SettlementsDebug)
+                if (Factory.Settings.IsSettlementsDebug)
                 {
                     IM.MessageDebug("FoodProductionAmountPatch: original : " + __result.ToString() + "\r\n"
                         + " FoodTweakAmount " + settings.ProductionFoodTweakAmount.ToString() + "\r\n"
@@ -123,7 +123,7 @@ namespace KaosesTweaks.Patches
                         }*/
 
         }
-        static bool Prepare() => Factory.Settings is { } settings && (settings.ProductionTweakEnabled || Factory.Settings.WandererLocationDebug);
+        static bool Prepare() => Factory.Settings is { } settings && (settings.ProductionTweakEnabled || Factory.Settings.IsWandererLocationDebug);
 
     }
 }

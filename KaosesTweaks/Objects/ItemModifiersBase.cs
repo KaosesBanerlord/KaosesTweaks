@@ -57,7 +57,7 @@ namespace KaosesTweaks.Objects
 
         protected void DebugValue(ItemObject item, float multiplier)
         {
-            if (_settings.ItemDebugMode)
+            if (_settings.IsItemDebugMode)
             {
                 IM.MessageDebug("ID: " + item.Name.ToString() + "  Old Value: " + _item.Value + "  New Value: " + _item.Value * multiplier + " using multiplier: " + multiplier);
                 //IM.MessageDebug(item.Name.ToString() + " Old Price: " + item.Value.ToString() + "  New Price: " + newValue.ToString() + " using multiplier: " + multiplier);
@@ -66,7 +66,7 @@ namespace KaosesTweaks.Objects
 
         protected void DebugWeight(ItemObject item, float multiplier)
         {
-            if (_settings.ItemDebugMode)
+            if (_settings.IsItemDebugMode)
             {
                 IM.MessageDebug("ID: " + item.Name.ToString() + "  Old Weight: " + _item.Value + "  New Weight: " + _item.Value * multiplier + " using multiplier: " + multiplier);
                 //IM.MessageDebug(item.Name.ToString() + " Old Weight: " + item.Weight.ToString() + "  New Weight: " + newValue.ToString() + " using multiplier: " + multiplier);
@@ -75,7 +75,7 @@ namespace KaosesTweaks.Objects
 
         protected void DebugStack(ItemObject item, float newValue, float multiplier)
         {
-            if (_settings.ItemDebugMode)
+            if (_settings.IsItemDebugMode)
             {
                 WeaponComponentData weaponData = _item.PrimaryWeapon;
                 float tmpMax = weaponData.MaxDataValue * multiplier;

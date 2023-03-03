@@ -1,6 +1,30 @@
+using KaosesCommon.Objects;
 using KaosesCommon.Utils;
 using KaosesTweaks.Objects;
 using KaosesTweaks.Settings;
+
+using CharacterConfig = KaosesCharacterTweaksCore.Settings.KaosesCharacterTweaksCoreConfig;
+using CharacterFactory = KaosesCharacterTweaksCore.Objects.KaosesCharacterTweaksCoreFactory;
+using BattleConfig = KaosesBattleTweaksCore.Settings.KaosesBattleTweaksCoreConfig;
+using BattleFactory = KaosesBattleTweaksCore.Objects.KaosesBattleTweaksCoreFactory;
+using CraftingConfig = KaosesCraftingTweaksCore.Settings.KaosesCraftingTweaksCoreConfig;
+using CraftingFactory = KaosesCraftingTweaksCore.Objects.KaosesCraftingTweaksCoreFactory;
+using AmmoConfig = KaosesMoreAmmoCore.Settings.KaosesMoreAmmoCoreConfig;
+using AmmoFactory = KaosesMoreAmmoCore.Objects.KaosesMoreAmmoCoreFactory;
+using SizeConfig = KaosesPartySizesCore.Settings.KaosesPartySizesCoreConfig;
+using SizeFactory = KaosesPartySizesCore.Objects.KaosesPartySizesCoreFactory;
+using SpeedsConfig = KaosesPartySpeedsCore.Settings.SpeedsCoreConfig;
+using SpeedsFactory = KaosesPartySpeedsCore.Objects.SpeedsCoreFactory;
+using SettlementConfig = KaosesSettlementTweaksCore.Settings.KaosesSettlementTweaksCoreConfig;
+using SettlementFactory = KaosesSettlementTweaksCore.Objects.KaosesSettlementTweaksCoreFactory;
+using TradeConfig = KaosesTradeGoodsCore.Settings.KaosesTradeGoodsCoreConfig;
+using TradeFactory = KaosesTradeGoodsCore.Objects.KaosesTradeGoodsCoreFactory;
+using WagesConfig = KaosesWagesCore.Settings.KaosesWagesCoreConfig;
+using WagesFactory = KaosesWagesCore.Objects.KaosesWagesCoreFactory;
+using WorkshopConfig = KaosesWorkshopTweaksCore.Settings.KaosesWorkshopTweaksCoreConfig;
+using WorkshopFactory = KaosesWorkshopTweaksCore.Objects.KaosesWorkshopTweaksCoreFactory;
+using KillingBanditsConfig = KillingBanditsRaisesRelationsCore.Settings.KillingBanditsRaisesRelationsCoreConfig;
+using KillingBanditsFactory = KillingBanditsRaisesRelationsCore.Objects.KillingBanditsRaisesRelationsCoreFactory;
 
 namespace KaosesTweaks
 {
@@ -13,29 +37,32 @@ namespace KaosesTweaks
         {
             /// Load the Settings Object
             Config settings = Factory.Settings;
+            //ConfigOther settings2 = Factory.Settings2;
+            //TempCoreConfig settings2 = Factory.SettingsCore;
+            //TempCoreConfig settings2 = TempCoreFactory.Settings;
+            //Factory.DConfig();
+
 
             ///
             /// Set IM variable values
             ///
-            IM.logToFile = settings.LogToFile;
-            IM.IsDebug = settings.Debug;
-            IM.ModVersion = Factory.ModVersion;
-            IM.PrePrend = SubModule.ModuleId;
-
-            ///
-            /// Set Logger variable values
-            ///
-            Logger.ModuleId = SubModule.ModuleId;
-            Logger._modulepath = SubModule.modulePath;
-
-            ///Uncomment to have a this prepended to log lines
-            //Logger.PrePrend = SubModule.ModuleFolder;
-
-            /// Uncomment to have date time added to log lines
-            //Logger.addDateTimeToLog = true;
-
-            /// Uncomment to override the log file path
-            //Logger.LogFilePath = "c:\\BannerLord\\KaosesCommon\\logfile.text";
+            InfoMgr im = new InfoMgr(settings.IsDebug, settings.IsLogToFile, SubModule.ModuleId, SubModule.modulePath);
+            im.PrePrend = SubModule.ModuleId;
+            im.ModVersion = settings.versionTextObj.ToString();
+            //im.LogFilePath = "c:\\BannerLord\\KaosesCommon\\logfile.text";
+            //im.AddDateTimeToLog = true;
+            Factory.IM = im;
+            CharacterFactory.IM = im;
+            BattleFactory.IM = im;
+            CraftingFactory.IM = im;
+            AmmoFactory.IM = im;
+            SizeFactory.IM = im;
+            SpeedsFactory.IM = im;
+            SettlementFactory.IM = im;
+            TradeFactory.IM = im;
+            WagesFactory.IM = im;
+            WorkshopFactory.IM = im;
+            KillingBanditsFactory.IM = im;
         }
     }
 }

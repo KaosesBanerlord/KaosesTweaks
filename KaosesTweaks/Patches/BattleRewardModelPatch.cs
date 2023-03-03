@@ -40,7 +40,7 @@ namespace KaosesTweaks.Patches
                     MobileParty mobileParty = party.MobileParty;
                     PerkHelper.AddPerkBonusForCharacter(famousCommander, (mobileParty != null) ? mobileParty.LeaderHero.CharacterObject : null, true, ref __result);
                 }
-                if (party.LeaderHero == Hero.MainHero && Factory.Settings.BattleRewardShowDebug)
+                if (party.LeaderHero == Hero.MainHero && Factory.Settings.IsBattleRewardShowDebug)
                 {
                     IM.MessageDebug("Harmony Patch Renown Value = " +
                                                 (float)Math.Round(renownValueOfBattle, 2) +
@@ -74,7 +74,7 @@ namespace KaosesTweaks.Patches
                 __result = new ExplainedNumber(party.MapFaction.IsKingdomFaction ? modifiedInfluenceGain : 0f, true, new TextObject("KT influence Tweak", null));
                 //~ KT
 
-                if (party.LeaderHero == Hero.MainHero && Factory.Settings.BattleRewardShowDebug)
+                if (party.LeaderHero == Hero.MainHero && Factory.Settings.IsBattleRewardShowDebug)
                 {
                     IM.MessageDebug("Harmony Patch Influence Value = " +
                                                 (float)Math.Round(influenceValueOfBattle, 2) +
@@ -115,7 +115,7 @@ namespace KaosesTweaks.Patches
                     PerkHelper.AddPerkBonusForParty(DefaultPerks.Leadership.CitizenMilitia, party.MobileParty, false, ref __result);
                 }
 
-                if (party.LeaderHero == Hero.MainHero && Factory.Settings.BattleRewardShowDebug)
+                if (party.LeaderHero == Hero.MainHero && Factory.Settings.IsBattleRewardShowDebug)
                 {
                     IM.MessageDebug("Harmony Patch Morale Value = " +
                                                 (float)Math.Round(renownValueOfBattle, 2) +
@@ -150,7 +150,7 @@ namespace KaosesTweaks.Patches
                 }
                 float modifiedGoldLoss = originalGoldLoss * Factory.Settings.BattleRewardsGoldLossMultiplier;
 
-                if (partyLeaderHero == Hero.MainHero && Factory.Settings.BattleRewardShowDebug)
+                if (partyLeaderHero == Hero.MainHero && Factory.Settings.IsBattleRewardShowDebug)
                 {
                     IM.MessageDebug("Harmony Patch Gold Loss = " +
                                                 (float)Math.Round(originalGoldLoss, 2) +
@@ -197,7 +197,7 @@ namespace KaosesTweaks.Patches
             if (Factory.Settings.BattleRewardsRelationShipGainModifiers)
             {
                 modifiedRelationShipGain = relationShipGain * Factory.Settings.BattleRewardsRelationShipGainMultiplier;
-                if (Factory.Settings.BattleRewardsDebug)
+                if (Factory.Settings.IsBattleRewardsDebug)
                 {
                     IM.MessageDebug("Original RelationShipGain : " + relationShipGain.ToString() +
                     "   Modified Gain : " + modifiedRelationShipGain.ToString() +

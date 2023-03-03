@@ -85,6 +85,20 @@
 		<PackageReference Include="KaosesCommon" Version="1.1.2" />
 	</ItemGroup>
 
+	<ItemGroup>
+		<ProjectReference Include="..\..\KaosesBattleTweaks\KaosesBattleTweaksCore\KaosesBattleTweaksCore.csproj" />
+		<ProjectReference Include="..\..\KaosesCharacterTweaks\KaosesCharacterTweaksCore\KaosesCharacterTweaksCore.csproj" />
+		<ProjectReference Include="..\..\KaosesCraftingTweaks\KaosesCraftingTweaksCore\KaosesCraftingTweaksCore.csproj" />
+		<ProjectReference Include="..\..\KaosesMoreAmmo\KaosesMoreAmmoCore\KaosesMoreAmmoCore.csproj" />
+		<ProjectReference Include="..\..\KaosesPartySizes_beta\KaosesPartySizesCore\KaosesPartySizesCore.csproj" />
+		<ProjectReference Include="..\..\KaosesPartySpeeds_beta\KaosesPartySpeedsCore\KaosesPartySpeedsCore\KaosesPartySpeedsCore.csproj" />
+		<ProjectReference Include="..\..\KaosesSettlementTweaks\KaosesSettlementTweaksCore\KaosesSettlementTweaksCore.csproj" />
+		<ProjectReference Include="..\..\KaosesTradeGoods\KaosesTradeGoodsCore\KaosesTradeGoodsCore.csproj" />
+		<ProjectReference Include="..\..\KaosesWagesBeta\KaosesWagesCore\KaosesWagesCore.csproj" />
+		<ProjectReference Include="..\..\KaosesWorkshopTweaks\KaosesWorkshopTweaksCore\KaosesWorkshopTweaksCore.csproj" />
+		<ProjectReference Include="..\..\KillingBanditsRaisesRelations\KillingBanditsRaisesRelationsCore\KillingBanditsRaisesRelationsCore.csproj" />
+	</ItemGroup>
+
 	<!-- Copies built .nuget packages to the NugetsOutput directory -->
 	<Target Name="CopyPackage" AfterTargets="Pack">
 		<Copy SourceFiles="$(ProjectDir)\bin\x64\Debug\$(PackageId).$(PackageVersion).nupkg" DestinationFolder="$(NugetsOutput)\$(PackageId).$(PackageVersion).nupkg" />

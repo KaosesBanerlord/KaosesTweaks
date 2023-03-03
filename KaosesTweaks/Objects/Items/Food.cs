@@ -16,7 +16,7 @@ namespace KaosesTweaks.Objects.Items
         public Food(ItemObject itemObject) :
             base(itemObject)
         {
-            if (_settings.ItemDebugMode && _settings.MCMFoodModifiers)
+            if (_settings.IsItemDebugMode && _settings.MCMFoodModifiers)
             {
                 IM.MessageDebug("Food : ObjectsBase");
             }
@@ -25,7 +25,7 @@ namespace KaosesTweaks.Objects.Items
 
         protected void TweakValues()
         {
-            if (_settings.ItemDebugMode && _settings.MCMFoodModifiers)
+            if (_settings.IsItemDebugMode && _settings.MCMFoodModifiers)
             {
                 //IM.MessageDebug("String ID: " + _item.StringId.ToString() + "  Tier: " + _item.Tier.ToString() + "  IsCivilian: " + _item.IsCivilian.ToString() + "  ");
             }

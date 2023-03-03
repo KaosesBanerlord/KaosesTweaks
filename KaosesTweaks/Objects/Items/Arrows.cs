@@ -10,7 +10,7 @@ namespace KaosesTweaks.Objects.Items
         public Arrows(ItemObject itemObject) :
             base(itemObject)
         {
-            if (_settings.ItemDebugMode && _settings.ArrowMultipliersEnabled)
+            if (_settings.IsItemDebugMode && _settings.ArrowMultipliersEnabled)
             {
                 IM.MessageDebug("Arrows : ObjectsBase");
             }
@@ -19,7 +19,7 @@ namespace KaosesTweaks.Objects.Items
 
         protected void TweakValues()
         {
-            if (_settings.ItemDebugMode && _settings.ArrowMultipliersEnabled)
+            if (_settings.IsItemDebugMode && _settings.ArrowMultipliersEnabled)
             {
                 //IM.MessageDebug("String ID: " + _item.StringId.ToString() + "  Tier: " + _item.Tier.ToString() + "  IsCivilian: " + _item.IsCivilian.ToString() + "  ");
             }

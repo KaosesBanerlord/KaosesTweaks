@@ -3,7 +3,29 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33122.133
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KaosesTweaks", "KaosesTweaks\KaosesTweaks.csproj", "{8BB09525-5BD0-41A2-841E-DBA299A4EA42}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KaosesTweaks", "KaosesTweaks\KaosesTweaks.csproj", "{8BB09525-5BD0-41A2-841E-DBA299A4EA42}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KaosesBattleTweaksCore", "..\KaosesBattleTweaks\KaosesBattleTweaksCore\KaosesBattleTweaksCore.csproj", "{D651F540-7318-4E23-9CD5-A6C7D3AD0164}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KaosesCharacterTweaksCore", "..\KaosesCharacterTweaks\KaosesCharacterTweaksCore\KaosesCharacterTweaksCore.csproj", "{6F1BAC1F-5542-4424-BC0A-94A70AE39965}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KaosesCraftingTweaksCore", "..\KaosesCraftingTweaks\KaosesCraftingTweaksCore\KaosesCraftingTweaksCore.csproj", "{EA606119-449A-47AA-9D72-DC7FC49F05E1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KaosesSettlementTweaksCore", "..\KaosesSettlementTweaks\KaosesSettlementTweaksCore\KaosesSettlementTweaksCore.csproj", "{0AFB2FF1-147E-4D84-9212-83B27C4791A9}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KaosesWorkshopTweaksCore", "..\KaosesWorkshopTweaks\KaosesWorkshopTweaksCore\KaosesWorkshopTweaksCore.csproj", "{DE2F2072-CC16-4A32-9C1C-D772203E7BBB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KaosesMoreAmmoCore", "..\KaosesMoreAmmo\KaosesMoreAmmoCore\KaosesMoreAmmoCore.csproj", "{8E709198-1155-418F-B506-68F2C7CAAAFC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KaosesPartySpeedsCore", "..\KaosesPartySpeeds_beta\KaosesPartySpeedsCore\KaosesPartySpeedsCore\KaosesPartySpeedsCore.csproj", "{15B79B04-51E6-4113-93F0-84F5B0D9FC0E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KaosesTradeGoodsCore", "..\KaosesTradeGoods\KaosesTradeGoodsCore\KaosesTradeGoodsCore.csproj", "{EBD93811-7211-450A-8F02-9FBE704A27DE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KaosesWagesCore", "..\KaosesWagesBeta\KaosesWagesCore\KaosesWagesCore.csproj", "{3E2D9E3E-9990-441D-84C4-5460993885FC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KaosesPartySizesCore", "..\KaosesPartySizes_beta\KaosesPartySizesCore\KaosesPartySizesCore.csproj", "{23B31DF7-34F4-4B12-B6E3-8995DF9B5FE8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KillingBanditsRaisesRelationsCore", "..\KillingBanditsRaisesRelations\KillingBanditsRaisesRelationsCore\KillingBanditsRaisesRelationsCore.csproj", "{CD4A1FE7-EA25-4437-ADA1-5B14A2A4509F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +37,50 @@ Global
 		{8BB09525-5BD0-41A2-841E-DBA299A4EA42}.Debug|x64.Build.0 = Debug|x64
 		{8BB09525-5BD0-41A2-841E-DBA299A4EA42}.Release|x64.ActiveCfg = Release|x64
 		{8BB09525-5BD0-41A2-841E-DBA299A4EA42}.Release|x64.Build.0 = Release|x64
+		{D651F540-7318-4E23-9CD5-A6C7D3AD0164}.Debug|x64.ActiveCfg = Debug|x64
+		{D651F540-7318-4E23-9CD5-A6C7D3AD0164}.Debug|x64.Build.0 = Debug|x64
+		{D651F540-7318-4E23-9CD5-A6C7D3AD0164}.Release|x64.ActiveCfg = Release|x64
+		{D651F540-7318-4E23-9CD5-A6C7D3AD0164}.Release|x64.Build.0 = Release|x64
+		{6F1BAC1F-5542-4424-BC0A-94A70AE39965}.Debug|x64.ActiveCfg = Debug|x64
+		{6F1BAC1F-5542-4424-BC0A-94A70AE39965}.Debug|x64.Build.0 = Debug|x64
+		{6F1BAC1F-5542-4424-BC0A-94A70AE39965}.Release|x64.ActiveCfg = Release|x64
+		{6F1BAC1F-5542-4424-BC0A-94A70AE39965}.Release|x64.Build.0 = Release|x64
+		{EA606119-449A-47AA-9D72-DC7FC49F05E1}.Debug|x64.ActiveCfg = Debug|x64
+		{EA606119-449A-47AA-9D72-DC7FC49F05E1}.Debug|x64.Build.0 = Debug|x64
+		{EA606119-449A-47AA-9D72-DC7FC49F05E1}.Release|x64.ActiveCfg = Release|x64
+		{EA606119-449A-47AA-9D72-DC7FC49F05E1}.Release|x64.Build.0 = Release|x64
+		{0AFB2FF1-147E-4D84-9212-83B27C4791A9}.Debug|x64.ActiveCfg = Debug|x64
+		{0AFB2FF1-147E-4D84-9212-83B27C4791A9}.Debug|x64.Build.0 = Debug|x64
+		{0AFB2FF1-147E-4D84-9212-83B27C4791A9}.Release|x64.ActiveCfg = Release|x64
+		{0AFB2FF1-147E-4D84-9212-83B27C4791A9}.Release|x64.Build.0 = Release|x64
+		{DE2F2072-CC16-4A32-9C1C-D772203E7BBB}.Debug|x64.ActiveCfg = Debug|x64
+		{DE2F2072-CC16-4A32-9C1C-D772203E7BBB}.Debug|x64.Build.0 = Debug|x64
+		{DE2F2072-CC16-4A32-9C1C-D772203E7BBB}.Release|x64.ActiveCfg = Release|x64
+		{DE2F2072-CC16-4A32-9C1C-D772203E7BBB}.Release|x64.Build.0 = Release|x64
+		{8E709198-1155-418F-B506-68F2C7CAAAFC}.Debug|x64.ActiveCfg = Debug|x64
+		{8E709198-1155-418F-B506-68F2C7CAAAFC}.Debug|x64.Build.0 = Debug|x64
+		{8E709198-1155-418F-B506-68F2C7CAAAFC}.Release|x64.ActiveCfg = Release|x64
+		{8E709198-1155-418F-B506-68F2C7CAAAFC}.Release|x64.Build.0 = Release|x64
+		{15B79B04-51E6-4113-93F0-84F5B0D9FC0E}.Debug|x64.ActiveCfg = Debug|x64
+		{15B79B04-51E6-4113-93F0-84F5B0D9FC0E}.Debug|x64.Build.0 = Debug|x64
+		{15B79B04-51E6-4113-93F0-84F5B0D9FC0E}.Release|x64.ActiveCfg = Release|x64
+		{15B79B04-51E6-4113-93F0-84F5B0D9FC0E}.Release|x64.Build.0 = Release|x64
+		{EBD93811-7211-450A-8F02-9FBE704A27DE}.Debug|x64.ActiveCfg = Debug|x64
+		{EBD93811-7211-450A-8F02-9FBE704A27DE}.Debug|x64.Build.0 = Debug|x64
+		{EBD93811-7211-450A-8F02-9FBE704A27DE}.Release|x64.ActiveCfg = Release|x64
+		{EBD93811-7211-450A-8F02-9FBE704A27DE}.Release|x64.Build.0 = Release|x64
+		{3E2D9E3E-9990-441D-84C4-5460993885FC}.Debug|x64.ActiveCfg = Debug|x64
+		{3E2D9E3E-9990-441D-84C4-5460993885FC}.Debug|x64.Build.0 = Debug|x64
+		{3E2D9E3E-9990-441D-84C4-5460993885FC}.Release|x64.ActiveCfg = Release|x64
+		{3E2D9E3E-9990-441D-84C4-5460993885FC}.Release|x64.Build.0 = Release|x64
+		{23B31DF7-34F4-4B12-B6E3-8995DF9B5FE8}.Debug|x64.ActiveCfg = Debug|x64
+		{23B31DF7-34F4-4B12-B6E3-8995DF9B5FE8}.Debug|x64.Build.0 = Debug|x64
+		{23B31DF7-34F4-4B12-B6E3-8995DF9B5FE8}.Release|x64.ActiveCfg = Release|x64
+		{23B31DF7-34F4-4B12-B6E3-8995DF9B5FE8}.Release|x64.Build.0 = Release|x64
+		{CD4A1FE7-EA25-4437-ADA1-5B14A2A4509F}.Debug|x64.ActiveCfg = Debug|x64
+		{CD4A1FE7-EA25-4437-ADA1-5B14A2A4509F}.Debug|x64.Build.0 = Debug|x64
+		{CD4A1FE7-EA25-4437-ADA1-5B14A2A4509F}.Release|x64.ActiveCfg = Release|x64
+		{CD4A1FE7-EA25-4437-ADA1-5B14A2A4509F}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

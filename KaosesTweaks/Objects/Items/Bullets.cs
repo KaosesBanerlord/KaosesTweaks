@@ -10,7 +10,7 @@ namespace KaosesTweaks.Objects.Items
         public Bullets(ItemObject itemObject) :
             base(itemObject)
         {
-            if (_settings.ItemDebugMode && _settings.BulletsMultiplierEnabled)
+            if (_settings.IsItemDebugMode && _settings.BulletsMultiplierEnabled)
             {
                 IM.MessageDebug("Bullets : ObjectsBase");
             }
@@ -19,7 +19,7 @@ namespace KaosesTweaks.Objects.Items
 
         protected void TweakValues()
         {
-            if (_settings.ItemDebugMode && _settings.BulletsMultiplierEnabled)
+            if (_settings.IsItemDebugMode && _settings.BulletsMultiplierEnabled)
             {
                 //IM.MessageDebug("String ID: " + _item.StringId.ToString() + "  Tier: " + _item.Tier.ToString() + "  IsCivilian: " + _item.IsCivilian.ToString() + "  ");
             }

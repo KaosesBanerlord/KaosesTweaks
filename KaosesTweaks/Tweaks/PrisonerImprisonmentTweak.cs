@@ -49,7 +49,7 @@ namespace KaosesTweaks.Tweaks
                         (int)hero.CaptivityStartTime.ElapsedDaysUntilNow > settings.MinimumDaysOfImprisonment)
                     {
 
-                        if (Factory.Settings.PrisonersDebug)
+                        if (Factory.Settings.IsPrisonersDebug)
                         {
                             IM.MessageDebug("Prisoner release: elapsed >" + hero.CaptivityStartTime.ElapsedDaysUntilNow.ToString() + "\r\n"
                                 + "MinimumDaysOfImprisonment: " + settings.MinimumDaysOfImprisonment.ToString() + "\r\n"

@@ -5,9 +5,33 @@ using MCM.Abstractions.Base.Global;
 using MCM.Common;
 using System;
 using System.Collections.Generic;
+using System.Drawing.Drawing2D;
+using System.Reflection;
 using TaleWorlds.Localization;
 
-//using MCM.Abstractions.Settings.Base.PerSave;
+using CharacterConfig = KaosesCharacterTweaksCore.Settings.KaosesCharacterTweaksCoreConfig;
+using CharacterFactory = KaosesCharacterTweaksCore.Objects.KaosesCharacterTweaksCoreFactory;
+using BattleConfig = KaosesBattleTweaksCore.Settings.KaosesBattleTweaksCoreConfig;
+using BattleFactory = KaosesBattleTweaksCore.Objects.KaosesBattleTweaksCoreFactory;
+using CraftingConfig = KaosesCraftingTweaksCore.Settings.KaosesCraftingTweaksCoreConfig;
+using CraftingFactory = KaosesCraftingTweaksCore.Objects.KaosesCraftingTweaksCoreFactory;
+using AmmoConfig = KaosesMoreAmmoCore.Settings.KaosesMoreAmmoCoreConfig;
+using AmmoFactory = KaosesMoreAmmoCore.Objects.KaosesMoreAmmoCoreFactory;
+using SizeConfig = KaosesPartySizesCore.Settings.KaosesPartySizesCoreConfig;
+using SizeFactory = KaosesPartySizesCore.Objects.KaosesPartySizesCoreFactory;
+using SpeedsConfig = KaosesPartySpeedsCore.Settings.SpeedsCoreConfig;
+using SpeedsFactory = KaosesPartySpeedsCore.Objects.SpeedsCoreFactory;
+using SettlementConfig = KaosesSettlementTweaksCore.Settings.KaosesSettlementTweaksCoreConfig;
+using SettlementFactory = KaosesSettlementTweaksCore.Objects.KaosesSettlementTweaksCoreFactory;
+using TradeConfig = KaosesTradeGoodsCore.Settings.KaosesTradeGoodsCoreConfig;
+using TradeFactory = KaosesTradeGoodsCore.Objects.KaosesTradeGoodsCoreFactory;
+using WagesConfig = KaosesWagesCore.Settings.KaosesWagesCoreConfig;
+using WagesFactory = KaosesWagesCore.Objects.KaosesWagesCoreFactory;
+using WorkshopConfig = KaosesWorkshopTweaksCore.Settings.KaosesWorkshopTweaksCoreConfig;
+using WorkshopFactory = KaosesWorkshopTweaksCore.Objects.KaosesWorkshopTweaksCoreFactory;
+using KillingBanditsConfig = KillingBanditsRaisesRelationsCore.Settings.KillingBanditsRaisesRelationsCoreConfig;
+using KillingBanditsFactory = KillingBanditsRaisesRelationsCore.Objects.KillingBanditsRaisesRelationsCoreFactory;
+
 
 
 namespace KaosesTweaks.Settings
@@ -32,7 +56,7 @@ namespace KaosesTweaks.Settings
         #region Translatable DisplayName 
         // Build mod display name with name and version form the project properties version
 #pragma warning disable CS8620 // Argument cannot be used for parameter due to differences in the null ability of reference types.
-        TextObject versionTextObj = new TextObject(typeof(Config).Assembly.GetName().Version?.ToString(3) ?? "");
+        public TextObject versionTextObj = new TextObject(typeof(Config).Assembly.GetName().Version?.ToString(3) ?? "");
         public override string DisplayName => new TextObject("{=KaosesTweaksDisplayName}" + ModName + " " + versionTextObj.ToString())!.ToString();
 #pragma warning restore CS8620 // Argument cannot be used for parameter due to differences in the null ability of reference types.
         #endregion
@@ -45,7 +69,7 @@ namespace KaosesTweaks.Settings
         [SettingPropertyBool("{=KT_Debug_000}Debug", IsToggle = true, Order = 0, RequireRestart = true,
             HintText = "{=KT_Debug_000}Debug")]
         [SettingPropertyGroup("Debug", GroupOrder = 100)]
-        public bool Debug
+        public bool IsDebug
         {
             get => _Debug;
             set
@@ -55,7 +79,7 @@ namespace KaosesTweaks.Settings
                     _Debug = value;
                     if (value == false)
                     {
-                        OnPropertyChanged(nameof(Debug));
+                        OnPropertyChanged(nameof(IsDebug));
                     }
                 }
             }
@@ -64,7 +88,7 @@ namespace KaosesTweaks.Settings
         [SettingPropertyBool("{=KT_Debug_018}Create Logfile", IsToggle = false, Order = 0, RequireRestart = true,
             HintText = "{=KT_Debug_018}Create Logfile")]
         [SettingPropertyGroup("Debug", GroupOrder = 100)]
-        public bool LogToFile { get; set; } = false;
+        public bool IsLogToFile { get; set; } = false;
 
         [SettingPropertyBool("{=debugharmony}Debug Harmony", RequireRestart = false, HintText = "{=debugharmony_desc}Enable/Disable harmony's debuging logs")]
         [SettingPropertyGroup("Debug", GroupOrder = 2)]
@@ -74,114 +98,114 @@ namespace KaosesTweaks.Settings
         [SettingPropertyBool("{=KT_Debug_001}Show Battle Rewards Calculation Message", IsToggle = false, Order = 0, RequireRestart = true,
             HintText = "{=KT_Debug_001}Show Battle Rewards Calculation Message")]
         [SettingPropertyGroup("Debug", GroupOrder = 100)]
-        public bool BattleRewardShowDebug { get; set; } = false;
+        public bool IsBattleRewardShowDebug { get; set; } = false;
 
         [SettingPropertyBool("{=KT_Debug_002}Debug mode - Army tweaks", IsToggle = false, Order = 0, RequireRestart = true,
             HintText = "{=KT_Debug_002}Debug mode - Army tweaks")]
         [SettingPropertyGroup("Debug", GroupOrder = 100)]
-        public bool ArmyDebug { get; set; } = false;
+        public bool IsArmyDebug { get; set; } = false;
 
         [SettingPropertyBool("{=KT_Debug_020}Debug mode - Another Chance At marriage tweaks", IsToggle = false, Order = 0, RequireRestart = true,
             HintText = "{=KT_Debug_020}Debug mode - Another Chance At marriage tweaks")]
         [SettingPropertyGroup("Debug", GroupOrder = 100)]
-        public bool AnotherChanceAtMarriageDebug { get; set; } = false;
+        public bool IsAnotherChanceAtMarriageDebug { get; set; } = false;
 
         [SettingPropertyBool("{=KT_Debug_003}Debug mode - Battle reward tweaks", IsToggle = false, Order = 0, RequireRestart = true,
             HintText = "{=KT_Debug_003}Debug mode - Battle reward tweaks")]
         [SettingPropertyGroup("Debug", GroupOrder = 100)]
-        public bool BattleRewardsDebug { get; set; } = false;
+        public bool IsBattleRewardsDebug { get; set; } = false;
 
         [SettingPropertyBool("{=KT_Debug_004}Debug mode - Clan tweaks", IsToggle = false, Order = 0, RequireRestart = true,
             HintText = "{=KT_Debug_004}Debug mode - Clan tweaks")]
         [SettingPropertyGroup("Debug", GroupOrder = 100)]
-        public bool ClanDebugging { get; set; } = false;
+        public bool IsClanDebugging { get; set; } = false;
 
         [SettingPropertyBool("{=KT_Debug_005}Debug mode - Item tweaks", IsToggle = false, Order = 0, RequireRestart = true,
             HintText = "{=KT_Debug_005}Debug mode - Item tweaks")]
         [SettingPropertyGroup("Debug", GroupOrder = 100)]
-        public bool ItemDebugMode { get; set; } = false;
+        public bool IsItemDebugMode { get; set; } = false;
 
         [SettingPropertyBool("{=KT_Debug_006}Debug mode - Pregnancy tweaks", IsToggle = false, Order = 0, RequireRestart = true,
             HintText = "{=KT_Debug_006}Debug mode - Pregnancy tweaks")]
         [SettingPropertyGroup("Debug", GroupOrder = 100)]
-        public bool PregnancyDebug { get; set; } = false;
+        public bool IsPregnancyDebug { get; set; } = false;
 
         [SettingPropertyBool("{=KT_Debug_007}Debug mode - Xp tweaks", IsToggle = false, Order = 0, RequireRestart = true,
             HintText = "{=KT_Debug_007}Debug mode - Xp tweaks")]
         [SettingPropertyGroup("Debug", GroupOrder = 100)]
-        public bool XpModifiersDebug { get; set; } = false;
+        public bool IsXpModifiersDebug { get; set; } = false;
 
         [SettingPropertyBool("{=KT_Debug_008}Debug mode - Tournament tweaks", IsToggle = false, Order = 0, RequireRestart = true,
             HintText = "{=KT_Debug_008}Debug mode - Tournament tweaks")]
         [SettingPropertyGroup("Debug", GroupOrder = 100)]
-        public bool TournamentDebug { get; set; } = false;
+        public bool IsTournamentDebug { get; set; } = false;
 
         [SettingPropertyBool("{=KT_Debug_009}Debug mode - Prisoner tweaks", IsToggle = false, Order = 0, RequireRestart = true,
             HintText = "{=KT_Debug_009}Debug mode - Prisoner tweaks")]
         [SettingPropertyGroup("Debug", GroupOrder = 100)]
-        public bool PrisonersDebug { get; set; } = false;
+        public bool IsPrisonersDebug { get; set; } = false;
 
         [SettingPropertyBool("{=KT_Debug_010}Debug mode - Settlement tweaks", IsToggle = false, Order = 0, RequireRestart = true,
             HintText = "{=KT_Debug_010}Debug mode - Settlement tweaks")]
         [SettingPropertyGroup("Debug", GroupOrder = 100)]
-        public bool SettlementsDebug { get; set; } = false;
+        public bool IsSettlementsDebug { get; set; } = false;
 
         [SettingPropertyBool("{=KT_Debug_011}Debug mode - Wanderer location tweaks", IsToggle = false, Order = 0, RequireRestart = true,
             HintText = "{=KT_Debug_011}Debug mode - Wanderer location tweaks")]
         [SettingPropertyGroup("Debug", GroupOrder = 100)]
-        public bool WandererLocationDebug { get; set; } = false;
+        public bool IsWandererLocationDebug { get; set; } = false;
 
         [SettingPropertyBool("{=KT_Debug_012}Debug mode - Party size tweaks", IsToggle = false, Order = 0, RequireRestart = true,
             HintText = "{=KT_Debug_012}Debug mode - Party size tweaks")]
         [SettingPropertyGroup("Debug", GroupOrder = 100)]
-        public bool PartySizeLimitsDebug { get; set; } = false;
+        public bool IsPartySizeLimitsDebug { get; set; } = false;
 
         [SettingPropertyBool("{=KT_Debug_013}Debug mode - Workshop tweaks", IsToggle = false, Order = 0, RequireRestart = true,
             HintText = "{=KT_Debug_013}Debug mode - Workshop tweaks")]
         [SettingPropertyGroup("Debug", GroupOrder = 100)]
-        public bool WorkshopsDebug { get; set; } = false;
+        public bool IsWorkshopsDebug { get; set; } = false;
 
         [SettingPropertyBool("{=KT_Debug_014}Debug mode - Crafting tweaks", IsToggle = false, Order = 0, RequireRestart = true,
             HintText = "{=KT_Debug_014}Debug mode - Crafting tweaks")]
         [SettingPropertyGroup("Debug", GroupOrder = 100)]
-        public bool CraftingDebug { get; set; } = false;
+        public bool IsCraftingDebug { get; set; } = false;
 
         [SettingPropertyBool("{=KT_Debug_015}Debug mode - Learning tweaks", IsToggle = false, Order = 0, RequireRestart = true,
             HintText = "{=KT_Debug_015}Debug mode - Learning tweaks")]
         [SettingPropertyGroup("Debug", GroupOrder = 100)]
-        public bool LearningDebug { get; set; } = false;
+        public bool IsLearningDebug { get; set; } = false;
 
         [SettingPropertyBool("{=KT_Debug_016}Debug mode - Battlesize tweaks", IsToggle = false, Order = 0, RequireRestart = true,
             HintText = "{=KT_Debug_016}Debug mode - Battlesize tweaks")]
         [SettingPropertyGroup("Debug", GroupOrder = 100)]
-        public bool BattleSizeDebug { get; set; } = false;
+        public bool IsBattleSizeDebug { get; set; } = false;
 
         [SettingPropertyBool("{=KT_Debug_017}Debug mode - Culture transformation tweaks", IsToggle = false, Order = 0, RequireRestart = true,
             HintText = "{=KT_Debug_017}Debug mode - Culture transformation tweaks")]
         [SettingPropertyGroup("Debug", GroupOrder = 100)]
-        public bool CultureChangeDebug { get; set; } = false;
+        public bool IsCultureChangeDebug { get; set; } = false;
 
 
         [SettingPropertyBool("{=KT_Debug_019}Debug mode - Killing Bandits Raises RelationShips tweaks", IsToggle = false, Order = 0, RequireRestart = true,
             HintText = "{=KT_Debug_019}Debug mode - Killing Bandits Raises RelationShips tweaks")]
         [SettingPropertyGroup("Debug", GroupOrder = 100)]
-        public bool KillingBanditsDebug { get; set; } = false;
+        public bool IsKillingBanditsDebug { get; set; } = false;
 
 
         [SettingPropertyBool("{=KT_Debug_020}Debug mode - Party Speeds", IsToggle = false, Order = 0, RequireRestart = true,
             HintText = "{=KT_Debug_020}Debug mode - Party Speeds")]
         [SettingPropertyGroup("Debug", GroupOrder = 100)]
-        public bool PartySpeedDebug { get; set; } = false;
+        public bool IsPartySpeedDebug { get; set; } = false;
 
         [SettingPropertyBool("{=KT_Debug_020}Debug mode - Dynamic Party Speeds", IsToggle = false, Order = 0, RequireRestart = true,
             HintText = "{=KT_Debug_020}Debug mode - Dynamic Party Speeds")]
         [SettingPropertyGroup("Debug", GroupOrder = 100)]
-        public bool DynamicPartySpeedDebug { get; set; } = false;
+        public bool IsDynamicPartySpeedDebug { get; set; } = false;
 
         [SettingPropertyBool("{=KPS_Debug_001}Show Fleeing Debug", IsToggle = false, Order = 0, RequireRestart = true,
       HintText = "{=KPS_Debug_001}Show Fleeing Debug")]
         [SettingPropertyGroup("Debug", GroupOrder = 100)]
-        public bool DebugDynamic { get; set; } = false;
+        public bool IsDebugDynamic { get; set; } = false;
 
         #endregion //~Debug
 
@@ -4568,28 +4592,192 @@ namespace KaosesTweaks.Settings
 
         private void MCMSettings_PropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == nameof(Debug))
+            if (e.PropertyName == nameof(IsDebug))
             {
-                Debug = false;
-                BattleRewardShowDebug = false;
-                ArmyDebug = false;
-                BattleRewardsDebug = false;
-                ClanDebugging = false;
-                ItemDebugMode = false;
-                PregnancyDebug = false;
-                XpModifiersDebug = false;
-                TournamentDebug = false;
-                PrisonersDebug = false;
-                SettlementsDebug = false;
-                WandererLocationDebug = false;
-                PartySizeLimitsDebug = false;
-                WorkshopsDebug = false;
-                CraftingDebug = false;
-                LearningDebug = false;
-                BattleSizeDebug = false;
-                CultureChangeDebug = false;
-                LogToFile = false;
+                if (IsDebug == false)
+                {
+                    IsDebug = false;
+                    IsBattleRewardShowDebug = false;
+                    IsArmyDebug = false;
+                    IsBattleRewardsDebug = false;
+                    IsClanDebugging = false;
+                    IsItemDebugMode = false;
+                    IsPregnancyDebug = false;
+                    IsXpModifiersDebug = false;
+                    IsTournamentDebug = false;
+                    IsPrisonersDebug = false;
+                    IsSettlementsDebug = false;
+                    IsWandererLocationDebug = false;
+                    IsPartySizeLimitsDebug = false;
+                    IsWorkshopsDebug = false;
+                    IsCraftingDebug = false;
+                    IsLearningDebug = false;
+                    IsBattleSizeDebug = false;
+                    IsCultureChangeDebug = false;
+                    IsLogToFile = false;
+                }
             }
+
+            CharacterConfig characterConfig = CharacterFactory.Settings;
+            BattleConfig battleConfig = BattleFactory.Settings;
+            CraftingConfig craftingConfig = CraftingFactory.Settings;
+            AmmoConfig ammoConfig = AmmoFactory.Settings;
+            SizeConfig sizeConfig = SizeFactory.Settings;
+            SpeedsConfig speedConfig = SpeedsFactory.Settings;
+            SettlementConfig settlementConfig = SettlementFactory.Settings;
+            TradeConfig tradeConfig = TradeFactory.Settings;
+            WagesConfig wagesConfig = WagesFactory.Settings;
+            WorkshopConfig workshopConfig = WorkshopFactory.Settings;
+            KillingBanditsConfig killingBanditsConfig = KillingBanditsFactory.Settings;
+
+            Type typModelCls = this.GetType(); //trans is the object name
+            foreach (PropertyInfo prop in typModelCls.GetProperties())
+            {
+                if (typeof(CharacterConfig).GetProperty(prop.Name) != null)
+                {
+                    if (prop.ToString().Contains("MCM.Common.Dropdown"))
+                    {
+
+                    }
+                    else
+                    {
+                        typeof(CharacterConfig).GetProperty(prop.Name).SetValue(characterConfig, prop.GetValue(this, null));
+
+                    }
+                }
+
+                if (typeof(BattleConfig).GetProperty(prop.Name) != null)
+                {
+                    if (prop.ToString().Contains("MCM.Common.Dropdown"))
+                    {
+
+                    }
+                    else
+                    {
+                        typeof(BattleConfig).GetProperty(prop.Name).SetValue(battleConfig, prop.GetValue(this, null));
+
+                    }
+                }
+
+                if (typeof(CraftingConfig).GetProperty(prop.Name) != null)
+                {
+                    if (prop.ToString().Contains("MCM.Common.Dropdown"))
+                    {
+
+                    }
+                    else
+                    {
+                        typeof(CraftingConfig).GetProperty(prop.Name).SetValue(craftingConfig, prop.GetValue(this, null));
+
+                    }
+                }
+
+                if (typeof(AmmoConfig).GetProperty(prop.Name) != null)
+                {
+                    if (prop.ToString().Contains("MCM.Common.Dropdown"))
+                    {
+
+                    }
+                    else
+                    {
+                        typeof(AmmoConfig).GetProperty(prop.Name).SetValue(ammoConfig, prop.GetValue(this, null));
+
+                    }
+                }
+
+                if (typeof(SizeConfig).GetProperty(prop.Name) != null)
+                {
+                    if (prop.ToString().Contains("MCM.Common.Dropdown"))
+                    {
+
+                    }
+                    else
+                    {
+                        typeof(SizeConfig).GetProperty(prop.Name).SetValue(sizeConfig, prop.GetValue(this, null));
+
+                    }
+                }
+
+                if (typeof(SpeedsConfig).GetProperty(prop.Name) != null)
+                {
+                    if (prop.ToString().Contains("MCM.Common.Dropdown"))
+                    {
+
+                    }
+                    else
+                    {
+                        typeof(SpeedsConfig).GetProperty(prop.Name).SetValue(speedConfig, prop.GetValue(this, null));
+
+                    }
+                }
+
+                if (typeof(SettlementConfig).GetProperty(prop.Name) != null)
+                {
+                    if (prop.ToString().Contains("MCM.Common.Dropdown"))
+                    {
+
+                    }
+                    else
+                    {
+                        typeof(SettlementConfig).GetProperty(prop.Name).SetValue(settlementConfig, prop.GetValue(this, null));
+
+                    }
+                }
+
+                if (typeof(TradeConfig).GetProperty(prop.Name) != null)
+                {
+                    if (prop.ToString().Contains("MCM.Common.Dropdown"))
+                    {
+
+                    }
+                    else
+                    {
+                        typeof(TradeConfig).GetProperty(prop.Name).SetValue(tradeConfig, prop.GetValue(this, null));
+
+                    }
+                }
+
+                if (typeof(WagesConfig).GetProperty(prop.Name) != null)
+                {
+                    if (prop.ToString().Contains("MCM.Common.Dropdown"))
+                    {
+
+                    }
+                    else
+                    {
+                        typeof(WagesConfig).GetProperty(prop.Name).SetValue(wagesConfig, prop.GetValue(this, null));
+
+                    }
+                }
+
+                if (typeof(WorkshopConfig).GetProperty(prop.Name) != null)
+                {
+                    if (prop.ToString().Contains("MCM.Common.Dropdown"))
+                    {
+
+                    }
+                    else
+                    {
+                        typeof(WorkshopConfig).GetProperty(prop.Name).SetValue(workshopConfig, prop.GetValue(this, null));
+
+                    }
+                }
+
+                if (typeof(KillingBanditsConfig).GetProperty(prop.Name) != null)
+                {
+                    if (prop.ToString().Contains("MCM.Common.Dropdown"))
+                    {
+
+                    }
+                    else
+                    {
+                        typeof(KillingBanditsConfig).GetProperty(prop.Name).SetValue(killingBanditsConfig, prop.GetValue(this, null));
+
+                    }
+                }
+            }
+
+
         }
 
 

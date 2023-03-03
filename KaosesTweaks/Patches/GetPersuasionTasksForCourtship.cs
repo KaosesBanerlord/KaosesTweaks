@@ -35,7 +35,7 @@ namespace KaosesTweaks.Patches
                     ? value
                     : CampaignTime.DaysFromNow(-1f);
 
-                if (Factory.Settings.AnotherChanceAtMarriageDebug)
+                if (Factory.Settings.IsAnotherChanceAtMarriageDebug)
                 {
                     IM.MessageDebug($"Another Chance At Marriage:can_open_courtship  CampaignTime.Now.ToDays < lastAttempt.ToDays = {CampaignTime.Now.ToDays < lastAttempt.ToDays}");
                 }

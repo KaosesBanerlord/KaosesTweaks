@@ -34,7 +34,7 @@ namespace KaosesTweaks.Patches
 
                 if (DisableDonationClan || DisableForAnySettlement)
                 {
-                    if (Factory.Settings.SettlementsDebug)
+                    if (Factory.Settings.IsSettlementsDebug)
                     {
                         IM.MessageDebug("FindNumberOfTroopsToLeaveToGarrison: IS DISABLED");
                     }

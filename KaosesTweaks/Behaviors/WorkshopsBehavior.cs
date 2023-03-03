@@ -589,7 +589,7 @@ namespace KaosesTweaks.Behaviors
                 {
                     float baseline = Math.Min(1000, itemPrice) * count;
                     float num = Math.Min(1000, itemPrice) * count * (Factory.Settings.WorkshopSellTweak - 1f);
-                    if (Factory.Settings.WorkshopsDebug)
+                    if (Factory.Settings.IsWorkshopsDebug)
                     {
                         IM.MessageDebug("WorkShop Behavior: ProduceOutput: baseline: " + baseline + " Tweaked Amount " + num + "using sell tweak: " + Factory.Settings.WorkshopSellTweak);
                     }
@@ -624,7 +624,7 @@ namespace KaosesTweaks.Behaviors
                 {
                     float num = itemPrice * (Factory.Settings.WorkshopBuyTweak - 1f);
                     itemPrice = (int)num;
-                    if (Factory.Settings.WorkshopsDebug)
+                    if (Factory.Settings.IsWorkshopsDebug)
                     {
                         IM.MessageDebug("WorkShop Behavior: ProduceOutput: itemPrice: " + itemPrice + " Tweaked Amount " + num + "using buy tweak: " + Factory.Settings.WorkshopBuyTweak);
                     }

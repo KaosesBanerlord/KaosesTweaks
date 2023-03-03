@@ -14,7 +14,7 @@ namespace KaosesTweaks.Patches
             if (!(Factory.Settings is null))
             {
                 __result = Factory.Settings.TournamentRenownAmount;
-                if (Factory.Settings.TournamentDebug)
+                if (Factory.Settings.IsTournamentDebug)
                 {
                     IM.MessageDebug("Patches TournamentRenownAmount Tweak: " + Factory.Settings.TournamentRenownAmount.ToString());
                 }

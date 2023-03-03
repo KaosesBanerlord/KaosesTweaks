@@ -12,7 +12,7 @@ namespace KaosesTweaks.Objects.Items
         public Armor(ItemObject itemObject) :
             base(itemObject)
         {
-            if (_settings.ItemDebugMode && _settings.MCMArmorModifiers)
+            if (_settings.IsItemDebugMode && _settings.MCMArmorModifiers)
             {
                 IM.MessageDebug("Armor : ObjectsBase");
             }
@@ -21,7 +21,7 @@ namespace KaosesTweaks.Objects.Items
 
         protected void TweakValues()
         {
-            if (_settings.ItemDebugMode && _settings.MCMArmorModifiers)
+            if (_settings.IsItemDebugMode && _settings.MCMArmorModifiers)
             {
                 //IM.MessageDebug("String ID: " + _item.StringId.ToString() + "  Tier: " + _item.Tier.ToString() + "  IsCivilian: " + _item.IsCivilian.ToString());
             }

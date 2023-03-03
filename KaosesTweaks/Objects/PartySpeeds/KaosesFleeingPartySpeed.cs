@@ -24,8 +24,8 @@ namespace KaosesTweaks.Objects.PartySpeeds
             _hoursBeforeReduction = Factory.Settings.DynamicFleeingSpeedReductionHours;
             _enabled = Factory.Settings.KaosesDynamicSpeedModifiersEnabled;
             _nextTimeApplyReduction = CampaignTime.HoursFromNow(_hoursBeforeReduction);
-            _debug = Factory.Settings.Debug;
-            _debugFleeing = Factory.Settings.DebugDynamic;
+            _debug = Factory.Settings.IsDebug;
+            _debugFleeing = Factory.Settings.IsDebugDynamic;
         }
 
         public void CheckPartyToApplyFleeingPenalties(ref ExplainedNumber finalSpeed)//AiBehavior shortTermBehaviors

@@ -115,7 +115,7 @@ namespace KaosesTweaks.Patches
     {
         static void Postfix(CraftingCampaignBehavior __instance, ref int __result)
         {
-            if (Factory.Settings.CraftingDebug)
+            if (Factory.Settings.IsCraftingDebug)
             {
                 IM.MessageDebug("GetMaxHeroCraftingStaminaPatch: original stamina:" + __result + " new multiplied stamina " + (Factory.Settings.MaxCraftingStaminaMultiplier * __result) + " using multiplier: " + Factory.Settings.MaxCraftingStaminaMultiplier);
             }
@@ -150,7 +150,7 @@ namespace KaosesTweaks.Patches
                     if (Factory.Settings.CraftingStaminaGainOutsideSettlementMultiplier < 1 && hero.PartyBelongedTo?.CurrentSettlement == null)
                     {
                         staminaGainAmount = (int)Math.Ceiling(staminaGainAmount * Factory.Settings.CraftingStaminaGainOutsideSettlementMultiplier);
-                        if (Factory.Settings.CraftingDebug)
+                        if (Factory.Settings.IsCraftingDebug)
                         {
                             IM.MessageDebug("HourlyTickPatch: original stamina gain:" + staminaGainAmount + " new multiplied stamina " + (staminaGainAmount * Factory.Settings.CraftingStaminaGainOutsideSettlementMultiplier) + " using multiplier: " + Factory.Settings.CraftingStaminaGainOutsideSettlementMultiplier);
                         }
@@ -280,7 +280,7 @@ namespace KaosesTweaks.Patches
             {
                 float baseXp = MathF.Round(0.3f * (__instance.GetCraftingMaterialItem(refineFormula.Output).Value * refineFormula.OutputCount));
                 baseXp *= Factory.Settings.SmithingRefiningXpValue;
-                if (Factory.Settings.CraftingDebug)
+                if (Factory.Settings.IsCraftingDebug)
                 {
                     IM.MessageDebug("GetSkillXpForRefining  base: " + MathF.Round(0.3f * (__instance.GetCraftingMaterialItem(refineFormula.Output).Value * refineFormula.OutputCount)).ToString() + "  new :" + baseXp.ToString());
                 }
@@ -302,7 +302,7 @@ namespace KaosesTweaks.Patches
             {
                 float baseXp = MathF.Round(0.02f * item.Value);
                 baseXp *= Factory.Settings.SmithingSmeltingXpValue;
-                if (Factory.Settings.CraftingDebug)
+                if (Factory.Settings.IsCraftingDebug)
                 {
                     IM.MessageDebug("GetSkillXpForSmeltingPatch  base: " + MathF.Round(0.02f * item.Value).ToString() + "  new :" + baseXp.ToString());
                 }
@@ -346,7 +346,7 @@ namespace KaosesTweaks.Patches
             {
                 float baseXp = MathF.Round(0.1f * item.Value);
                 baseXp *= Factory.Settings.SmithingSmithingXpValue;
-                if (Factory.Settings.CraftingDebug)
+                if (Factory.Settings.IsCraftingDebug)
                 {
                     IM.MessageDebug("GetSkillXpForSmithingInFreeBuildModePatch base: " + MathF.Round(0.1f * item.Value).ToString() + "  new :" + baseXp.ToString());
                 }
@@ -368,7 +368,7 @@ namespace KaosesTweaks.Patches
             {
                 float baseXp = MathF.Round(0.1f * item.Value);
                 baseXp *= Factory.Settings.SmithingSmithingXpValue;
-                if (Factory.Settings.CraftingDebug)
+                if (Factory.Settings.IsCraftingDebug)
                 {
                     IM.MessageDebug("GetSkillXpForSmithingInCraftingOrderModePatch  base: " + MathF.Round(0.1f * item.Value).ToString() + "  new :" + baseXp.ToString());
                 }
@@ -393,7 +393,7 @@ namespace KaosesTweaks.Patches
                 int num = 6;
                 if (Factory.Settings.SmithingEnergyDisable)
                 {
-                    if (Factory.Settings.CraftingDebug)
+                    if (Factory.Settings.IsCraftingDebug)
                     {
                         IM.MessageDebug("GetEnergyCostForRefining: DISABLED ");
                     }
@@ -403,7 +403,7 @@ namespace KaosesTweaks.Patches
                 else //if (Factory.Settings.CraftingStaminaTweakEnabled)
                 {
                     float tmp = num * Factory.Settings.SmithingEnergyRefiningValue;
-                    if (Factory.Settings.CraftingDebug)
+                    if (Factory.Settings.IsCraftingDebug)
                     {
                         IM.MessageDebug("GetEnergyCostForRefiningPatch: original stamina:" + __result + " new multiplied stamina " + (Factory.Settings.MaxCraftingStaminaMultiplier * __result) + " using multiplier: " + Factory.Settings.MaxCraftingStaminaMultiplier);
                     }
@@ -434,7 +434,7 @@ namespace KaosesTweaks.Patches
                 int num = 10 + tier6 * itemTier;
                 if (Factory.Settings.SmithingEnergyDisable)
                 {
-                    if (Factory.Settings.CraftingDebug)
+                    if (Factory.Settings.IsCraftingDebug)
                     {
                         IM.MessageDebug("GetEnergyCostForSmithing: DISABLED ");
                     }
@@ -444,7 +444,7 @@ namespace KaosesTweaks.Patches
                 else
                 {
                     float tmp = num * Factory.Settings.SmithingEnergySmithingValue;
-                    if (Factory.Settings.CraftingDebug)
+                    if (Factory.Settings.IsCraftingDebug)
                     {
                         IM.MessageDebug("GetEnergyCostForSmithing Old : " + num.ToString() + " New : " + tmp.ToString());
                     }
@@ -474,7 +474,7 @@ namespace KaosesTweaks.Patches
                 int num = 10;
                 if (Factory.Settings.SmithingEnergyDisable)
                 {
-                    if (Factory.Settings.CraftingDebug)
+                    if (Factory.Settings.IsCraftingDebug)
                     {
                         IM.MessageDebug("GetEnergyCostForSmelting: DISABLED ");
                     }
@@ -484,7 +484,7 @@ namespace KaosesTweaks.Patches
                 else
                 {
                     float tmp = num * Factory.Settings.SmithingEnergySmeltingValue;
-                    if (Factory.Settings.CraftingDebug)
+                    if (Factory.Settings.IsCraftingDebug)
                     {
                         IM.MessageDebug("GetEnergyCostForSmelting Old : " + num.ToString() + " New : " + tmp.ToString());
                     }

@@ -22,7 +22,7 @@ namespace KaosesTweaks.Behaviors
         public void OnSessionLaunched(CampaignGameStarter campaignGameStarter)
         {
             AddDialogs(campaignGameStarter);
-            if (Factory.Settings.AnotherChanceAtMarriageDebug)
+            if (Factory.Settings.IsAnotherChanceAtMarriageDebug)
             {
                 IM.MessageDebug($"Another Chance At Marriage OnSessionLaunched Added Dialogs");
             }

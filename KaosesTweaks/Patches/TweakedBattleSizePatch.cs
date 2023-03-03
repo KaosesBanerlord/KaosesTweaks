@@ -109,7 +109,7 @@ namespace KaosesTweaks.Patches
         {
             if (Factory.Settings is { } settings)
             {
-                if (settings.BattleSizeDebug)
+                if (settings.IsBattleSizeDebug)
                 {
                     IM.MessageError("GetRealBattleSize: Battle size original: " + __result + " has been set to " + settings.BattleSize + ".");
                 }
@@ -126,7 +126,7 @@ namespace KaosesTweaks.Patches
         {
             if (Factory.Settings is { } settings)
             {
-                if (settings.BattleSizeDebug)
+                if (settings.IsBattleSizeDebug)
                 {
                     IM.MessageError("GetRealBattleSizeForSiege: Battle size original: " + __result + " has been set to " + settings.BattleSize + ".");
                 }
@@ -143,7 +143,7 @@ namespace KaosesTweaks.Patches
         {
             if (Factory.Settings is { } settings)
             {
-                if (settings.BattleSizeDebug)
+                if (settings.IsBattleSizeDebug)
                 {
                     IM.MessageError("GetRealBattleSizeForSallyOut: Battle size original: " + __result + " has been set to " + settings.BattleSize / 2 + ".");
                 }

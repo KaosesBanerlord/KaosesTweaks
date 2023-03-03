@@ -47,7 +47,7 @@ namespace KaosesTweaks.Models
             {
                 if (Factory.Settings is { } settings && settings.TournamentHeroExperienceMultiplierEnabled)
                 {
-                    if (Factory.Settings.TournamentDebug)
+                    if (Factory.Settings.IsTournamentDebug)
                     {
                         IM.MessageDebug("TournamentHeroXP : original : " + xpAmount.ToString() + " new: "
                             + MathF.Round(settings.TournamentHeroExperienceMultiplier * xpAmount).ToString() + "  multiplier: " + settings.TournamentHeroExperienceMultiplier.ToString());
@@ -64,7 +64,7 @@ namespace KaosesTweaks.Models
             {
                 if (Factory.Settings is { } settings && settings.ArenaHeroExperienceMultiplierEnabled)
                 {
-                    if (Factory.Settings.TournamentDebug)
+                    if (Factory.Settings.IsTournamentDebug)
                     {
                         IM.MessageDebug("ArenaHeroXP : original : " + xpAmount.ToString() + " new: "
                             + MathF.Round(settings.ArenaHeroExperienceMultiplier * xpAmount).ToString() + "  multiplier: " + settings.ArenaHeroExperienceMultiplier.ToString());
@@ -81,7 +81,7 @@ namespace KaosesTweaks.Models
             {
                 if (Factory.Settings is { } settings && settings.TroopBattleExperienceMultiplierEnabled)
                 {
-                    if (Factory.Settings.XpModifiersDebug)
+                    if (Factory.Settings.IsXpModifiersDebug)
                     {
                         IM.MessageDebug(" TroopBattleExperienceMultiplier Original: " + xpAmount.ToString() + " new XP amount: " + (xpAmount * settings.TroopBattleExperienceMultiplier).ToString() + "  multiplier: " + settings.TroopBattleExperienceMultiplier.ToString());
                     }
@@ -98,7 +98,7 @@ namespace KaosesTweaks.Models
             {
                 if (Factory.Settings is { } settings && settings.TroopBattleSimulationExperienceMultiplierEnabled)
                 {
-                    if (Factory.Settings.XpModifiersDebug)
+                    if (Factory.Settings.IsXpModifiersDebug)
                     {
                         IM.MessageDebug("TroopBattleSimulationExperienceMultiplier original: " + xpAmount.ToString() + " new XP amount: " + (xpAmount * settings.TroopBattleSimulationExperienceMultiplier).ToString() + "  multiplier: " + settings.TroopBattleSimulationExperienceMultiplier.ToString());
                     }

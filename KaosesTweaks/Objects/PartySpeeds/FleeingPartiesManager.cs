@@ -19,7 +19,7 @@ namespace KaosesTweaks.Objects.PartySpeeds
 
         public FleeingPartiesManager()//MobileParty mobilePary
         {
-            _debug = Factory.Settings.Debug;
+            _debug = Factory.Settings.IsDebug;
             _enabled = Factory.Settings.KaosesDynamicSpeedModifiersEnabled;
             //_mobilePary = mobilePary;
         }

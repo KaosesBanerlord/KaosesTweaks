@@ -71,7 +71,7 @@ namespace KaosesTweaks.Models
             }
             if (Factory.Settings.armyCohesionMultipliers)
             {
-                if (Factory.Settings.ArmyDebug)
+                if (Factory.Settings.IsArmyDebug)
                 {
                     IM.MessageDebug("KAOSES Cohesion Settings:"
                         + "  army.LeaderParty: " + army.LeaderParty.StringId.ToString()
@@ -85,7 +85,7 @@ namespace KaosesTweaks.Models
                 }
                 else if (Factory.Settings.armyApplyMultiplerToClanOnlyParties && IsClanOnly)
                 {
-                    if (Factory.Settings.ArmyDebug)
+                    if (Factory.Settings.IsArmyDebug)
                     {
                         IM.MessageDebug("Only clan multipliers:   starvingCohesion: " + _numberOfStarvingParties.ToString()
                                                                                                + "  lowMoraleCohesion: " + _numberOfLowMoraleParties.ToString()
@@ -98,7 +98,7 @@ namespace KaosesTweaks.Models
                 }
                 else if (!Factory.Settings.armyApplyMultiplerToClanOnlyParties)
                 {
-                    if (Factory.Settings.ArmyDebug)
+                    if (Factory.Settings.IsArmyDebug)
                     {
                         IM.MessageDebug("Multipliers applied to all:   starvingCohesion: " + _numberOfLessMemberParties.ToString()
                                                                 + "  lowMoraleCohesion: " + _numberOfLowMoraleParties.ToString()
@@ -115,7 +115,7 @@ namespace KaosesTweaks.Models
             cohesionChange.Add(_finalNumberOfLowMoralePartiess, ArmyManagementCalculationModel._numberOfLowMoralePartiesText);
             cohesionChange.Add(_finalNumberOfLessMemberParties, ArmyManagementCalculationModel._numberOfLessMemberPartiesText);
 
-            if (Factory.Settings.ArmyDebug)
+            if (Factory.Settings.IsArmyDebug)
             {
                 IM.MessageDebug("Final Cohesion :"
                                 + " base change: " + Factory.Settings.armyCohesionBaseChange.ToString()

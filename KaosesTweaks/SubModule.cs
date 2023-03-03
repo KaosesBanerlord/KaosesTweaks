@@ -1,31 +1,22 @@
 ﻿using HarmonyLib;
 using KaosesCommon;
-using KaosesCommon.Helpers;
 using KaosesCommon.Utils;
 using KaosesTweaks.Behaviors;
 using KaosesTweaks.Event;
-using KaosesTweaks.Models;
 using KaosesTweaks.Objects;
 using KaosesTweaks.Settings;
 using KaosesTweaks.Tweaks;
 using SandBox;
-using Serilog;
 using StoryMode;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Text;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.CampaignBehaviors;
 using TaleWorlds.CampaignSystem.Extensions;
 using TaleWorlds.CampaignSystem.MapEvents;
-using TaleWorlds.CampaignSystem.Party;
-using TaleWorlds.CampaignSystem.Settlements.Workshops;
 using TaleWorlds.Core;
-using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade;
-using TaleWorlds.ObjectSystem;
 using Module = TaleWorlds.MountAndBlade.Module;
 
 namespace KaosesTweaks
@@ -60,7 +51,7 @@ namespace KaosesTweaks
                 {
                     if (Kaoses.IsHarmonyLoaded())
                     {
-                        IM.MessageModLoaded();
+                        Factory.IM.MessageModLoaded();
                         try
                         {
                             if (_harmony == null)
@@ -75,21 +66,21 @@ namespace KaosesTweaks
                         }
                         catch (Exception ex)
                         {
-                            IM.ShowError(ex, Factory.Settings.ModName + " Harmony Error:");
+                            Factory.IM.ShowError(ex, Factory.Settings.ModName + " Harmony Error:");
                         }
                     }
-                    else { IM.MessageHarmonyLoadError(); }
+                    else { Factory.IM.MessageHarmonyLoadError(); }
                 }
                 else
                 {
 #pragma warning disable CS0162 // Unreachable code detected
-                    IM.MessageModLoaded();
+                    Factory.IM.MessageModLoaded();
 #pragma warning restore CS0162 // Unreachable code detected
                 }
             }
             catch (Exception ex)
             {
-                IM.ShowError(ex, "initial Loading Error " + Factory.Settings.ModName);
+                Factory.IM.ShowError(ex, "initial Loading Error " + Factory.Settings.ModName);
             }
 
             if (Factory.Settings.DisableIntroVideo)
@@ -130,15 +121,15 @@ namespace KaosesTweaks
                     {
                         PrisonerImprisonmentTweak.DailyTick();
                     });
-                    if (Factory.Settings.Debug)
+                    if (Factory.Settings.IsDebug)
                     {
-                        IM.MessageDebug("Loaded DailyTickEvent PrisonerImprisonmentTweak");
+                        Factory.IM.MessageDebug("Loaded DailyTickEvent PrisonerImprisonmentTweak");
                     }
                 }
             }
             catch (Exception ex)
             {
-                IM.ShowError(ex, "Game Initialization : Kaoses Tweaks Prisoner Imprisonment Tweak Error");
+                Factory.IM.ShowError(ex, "Game Initialization : Kaoses Tweaks Prisoner Imprisonment Tweak Error");
             }
 
             //~ KaosesItemTweaks
@@ -147,15 +138,15 @@ namespace KaosesTweaks
                 if (Factory.Settings.MCMItemModifiers)
                 {
                     new KaosesItemTweaks(Items.All);
-                    if (Factory.Settings.Debug)
+                    if (Factory.Settings.IsDebug)
                     {
-                        IM.MessageDebug("Loaded KaosesItemTweaks");
+                        Factory.IM.MessageDebug("Loaded KaosesItemTweaks");
                     }
                 }
             }
             catch (Exception ex)
             {
-                IM.ShowError(ex, "Game Initialization: Kaoses Tweaks Item Tweaks Error");
+                Factory.IM.ShowError(ex, "Game Initialization: Kaoses Tweaks Item Tweaks Error");
             }
         }
 
@@ -181,7 +172,7 @@ namespace KaosesTweaks
                 }
                 catch (Exception ex)
                 {
-                    IM.ShowError(ex, "Game Start : Kaoses Tweaks Error initializing game models");
+                    Factory.IM.ShowError(ex, "Game Start : Kaoses Tweaks Error initializing game models");
                 }
 
                 //~ BT MCMKillingBanditsEnabled
@@ -191,15 +182,15 @@ namespace KaosesTweaks
                     {
                         PlayerBattleEndEventListener playerBattleEndEventListener = new PlayerBattleEndEventListener();
                         CampaignEvents.OnPlayerBattleEndEvent.AddNonSerializedListener(playerBattleEndEventListener, new Action<MapEvent>(playerBattleEndEventListener.IncreaseLocalRelationsAfterBanditFight));
-                        if (Factory.Settings.Debug)
+                        if (Factory.Settings.IsDebug)
                         {
-                            IM.MessageDebug("Loaded Killing Bandits raises relationships playerBattleEndEventListener Behavior");
+                            Factory.IM.MessageDebug("Loaded Killing Bandits raises relationships playerBattleEndEventListener Behavior");
                         }
                     }
                 }
                 catch (Exception ex)
                 {
-                    IM.ShowError(ex, "Game Start: Kaoses Tweaks Error initializing Killing Bandits");
+                    Factory.IM.ShowError(ex, "Game Start: Kaoses Tweaks Error initializing Killing Bandits");
                 }
 
                 //~ Another Chance At Marriage
@@ -209,21 +200,21 @@ namespace KaosesTweaks
                     /* Another chance at marriage */
                     if (Factory.Settings.AnotherChanceAtMarriageEnabled)
                     {
-                        if (Factory.Settings.AnotherChanceAtMarriageDebug)
+                        if (Factory.Settings.IsAnotherChanceAtMarriageDebug)
                         {
-                            IM.MessageDebug($"Another Chance At Marriage ENABLED");
+                            Factory.IM.MessageDebug($"Another Chance At Marriage ENABLED");
                         }
                         campaignGameStarter.CampaignBehaviors.Add(new AnotherChanceBehavior());
-                        if (Factory.Settings.Debug)
+                        if (Factory.Settings.IsDebug)
                         {
-                            IM.MessageDebug("Loaded AnotherChanceBehavior Behavior");
+                            Factory.IM.MessageDebug("Loaded AnotherChanceBehavior Behavior");
                         }
                     }
                     /* Another chance at marriage */
                 }
                 catch (Exception ex)
                 {
-                    IM.ShowError(ex, "Game Start:Kaoses Tweaks Error initializing Another chance");
+                    Factory.IM.ShowError(ex, "Game Start:Kaoses Tweaks Error initializing Another chance");
                 }
 
                 //~ ChangeSettlementCulture
@@ -232,16 +223,16 @@ namespace KaosesTweaks
                     //~BT
                     if (Factory.Settings.EnableCultureChanger)
                     {
-                        if (Factory.Settings.Debug)
+                        if (Factory.Settings.IsDebug)
                         {
-                            IM.MessageDebug("Loaded ChangeSettlementCulture Behavior");
+                            Factory.IM.MessageDebug("Loaded ChangeSettlementCulture Behavior");
                         }
                         campaignGameStarter.AddBehavior(new ChangeSettlementCulture());
                     }
                 }
                 catch (Exception ex)
                 {
-                    IM.ShowError(ex, "Game Start: Kaoses Tweaks Error initializing Culture Changer");
+                    Factory.IM.ShowError(ex, "Game Start: Kaoses Tweaks Error initializing Culture Changer");
                 }
 
                 //~ KaosesCraftingCampaignBehaviors
@@ -250,16 +241,16 @@ namespace KaosesTweaks
                     if (Factory.Settings.ArrowMultipliersEnabled || Factory.Settings.BoltsMultipliersEnabled
                         || Factory.Settings.ThrownMultiplierEnabled)
                     {
-                        if (Factory.Settings.Debug)
+                        if (Factory.Settings.IsDebug)
                         {
-                            IM.MessageDebug("Loaded KaosesCraftingCampaignBehaviors Behavior");
+                            Factory.IM.MessageDebug("Loaded KaosesCraftingCampaignBehaviors Behavior");
                         }
                         campaignGameStarter.AddBehavior(new CraftingCampaignBehaviors());
                     }
                 }
                 catch (Exception ex)
                 {
-                    IM.ShowError(ex, "Game Start: Kaoses Tweaks Error initializing CraftingCampaignBehaviors");
+                    Factory.IM.ShowError(ex, "Game Start: Kaoses Tweaks Error initializing CraftingCampaignBehaviors");
                 }
 
                 //~ KaosesWorkshopCampaignBehaviors
@@ -268,16 +259,16 @@ namespace KaosesTweaks
                     if (Factory.Settings.EnableWorkshopSellTweak || Factory.Settings.EnableWorkshopBuyTweak
                         || Factory.Settings.KeepWorkshopsOnWarDeclaration || Factory.Settings.KeepWorkshopsOnBankruptcy)
                     {
-                        if (Factory.Settings.Debug)
+                        if (Factory.Settings.IsDebug)
                         {
-                            IM.MessageDebug("Loaded KaosesWorkshopCampaignBehaviors Behavior");
+                            Factory.IM.MessageDebug("Loaded KaosesWorkshopCampaignBehaviors Behavior");
                         }
                         campaignGameStarter.AddBehavior(new WorkshopsBehavior());
                     }
                 }
                 catch (Exception ex)
                 {
-                    IM.ShowError(ex, "Game Start: Kaoses Tweaks Error initializing WorkshopsCampaignBehavior");
+                    Factory.IM.ShowError(ex, "Game Start: Kaoses Tweaks Error initializing WorkshopsCampaignBehavior");
                 }
             }
         }
@@ -309,7 +300,7 @@ namespace KaosesTweaks
             }
             catch (Exception ex)
             {
-                IM.ShowError(ex, "Game Loading: Kaoses Tweaks Error initializing PrisonerImprisonmentTweakEnabled");
+                Factory.IM.ShowError(ex, "Game Loading: Kaoses Tweaks Error initializing PrisonerImprisonmentTweakEnabled");
             }
 
             //~ DailyTroopExperienceTweakEnabled
@@ -323,7 +314,7 @@ namespace KaosesTweaks
             }
             catch (Exception ex)
             {
-                IM.ShowError(ex, "Game Loading: Kaoses Tweaks Error initializing DailyTroopExperienceTweakEnabled");
+                Factory.IM.ShowError(ex, "Game Loading: Kaoses Tweaks Error initializing DailyTroopExperienceTweakEnabled");
             }
 
             //~ TweakedConspiracyQuestTimerEnabled
@@ -338,7 +329,7 @@ namespace KaosesTweaks
             }
             catch (Exception ex)
             {
-                IM.ShowError(ex, "Game Loading : Kaoses Tweaks Error initializing TweakedConspiracyQuestTimerEnabled");
+                Factory.IM.ShowError(ex, "Game Loading : Kaoses Tweaks Error initializing TweakedConspiracyQuestTimerEnabled");
             }
             return base.DoLoading(game);
         }
@@ -428,7 +419,6 @@ namespace KaosesTweaks
 
         }
 
-
         /// <summary>
         /// Called when exiting Bannerlord entirely
         /// </summary>
@@ -437,13 +427,10 @@ namespace KaosesTweaks
             base.OnSubModuleUnloaded();
         }
 
-
         private void AddModels(CampaignGameStarter campaignGameStarter)
         {
 
         }
-
-
 
         protected override void OnApplicationTick(float dt)
         {

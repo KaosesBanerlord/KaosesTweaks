@@ -56,13 +56,13 @@ namespace KaosesTweaks.Tweaks
             int leadership = h.GetSkillValue(DefaultSkills.Leadership);
             if (Factory.Settings != null)
             {
-                if (Factory.Settings.XpModifiersDebug)
+                if (Factory.Settings.IsXpModifiersDebug)
                 {
                     IM.MessageDebug("leadership: " + leadership.ToString() + " RequiredLeadershipLevel: " + Factory.Settings.DailyTroopExperienceRequiredLeadershipLevel.ToString());
                 }
                 if (leadership >= Factory.Settings.DailyTroopExperienceRequiredLeadershipLevel)
                 {
-                    if (Factory.Settings.XpModifiersDebug)
+                    if (Factory.Settings.IsXpModifiersDebug)
                     {
                         IM.MessageDebug("DailyExperienceGain : " + (Factory.Settings.LeadershipPercentageForDailyExperienceGain * leadership).ToString());
                     }

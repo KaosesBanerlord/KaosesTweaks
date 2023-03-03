@@ -25,7 +25,7 @@ namespace KaosesTweaks.Objects
             {
                 if (settings.MCMClanModifiers)
                 {
-                    if (settings.Debug)
+                    if (settings.IsDebug)
                     {
                         IM.MessageDebug("Loaded Kaoses Clan Model Override");
                     }
@@ -34,7 +34,7 @@ namespace KaosesTweaks.Objects
                 if (settings.KaosesStaticSpeedModifiersEnabled || settings.KaosesDynamicSpeedModifiersEnabled)
                 {
 
-                    if (settings.Debug)
+                    if (settings.IsDebug)
                     {
                         IM.MessageDebug("Loaded Kaoses Party Speed model Model Override");
                     }
@@ -43,7 +43,7 @@ namespace KaosesTweaks.Objects
                 if (settings.HideoutBattleTroopLimitTweakEnabled)
                 {
                     /*
-                    if (settings.Debug)
+                    if (settings.IsDebug)
                     {
                         IM.MessageDebug("Loaded Kaoses Bandit Density model Model Override");
                     }*/
@@ -51,7 +51,7 @@ namespace KaosesTweaks.Objects
                 }
                 if ((settings.PartyWageTweaksEnabled && !settings.PartyWageTweaksHarmonyEnabled) || (settings.KingdomBalanceStrengthEnabled && !settings.KingdomBalanceStrengthHarmonyEnabled))
                 {
-                    if (settings.Debug)
+                    if (settings.IsDebug)
                     {
                         IM.MessageDebug("Loaded BT Wage model Model Override");
                     }
@@ -59,7 +59,7 @@ namespace KaosesTweaks.Objects
                 }
                 if (settings.MCMArmy)
                 {
-                    if (settings.Debug)
+                    if (settings.IsDebug)
                     {
                         IM.MessageDebug("Loaded Kaoses Army Model Override");
                     }
@@ -67,7 +67,7 @@ namespace KaosesTweaks.Objects
                 }
                 if (settings.MCMBattleRewardModifiers && !settings.BattleRewardModifiersPatchOnly)
                 {
-                    if (settings.Debug)
+                    if (settings.IsDebug)
                     {
                         IM.MessageDebug("Loading Kaoses Battle rewards Model");
                     }
@@ -75,7 +75,7 @@ namespace KaosesTweaks.Objects
                 }
                 if (settings.MCMCharacterDevlopmentModifiers || Factory.Settings.LearningRateMultiplier != 1.0 || Factory.Settings.LearningLimitEnabled)
                 {
-                    if (settings.Debug)
+                    if (settings.IsDebug)
                     {
                         IM.MessageDebug("Loaded Kaoses Character Development Model Override");
                     }
@@ -83,7 +83,7 @@ namespace KaosesTweaks.Objects
                 }
                 if (settings.MCMPregnancyModifiers)
                 {
-                    if (settings.Debug)
+                    if (settings.IsDebug)
                     {
                         IM.MessageDebug("Loaded Kaoses Pregnancy Model Override");
                     }
@@ -91,7 +91,7 @@ namespace KaosesTweaks.Objects
                 }
                 if (settings.MCMSmithingModifiers && !settings.MCMSmithingHarmoneyPatches)
                 {
-                    if (settings.Debug)
+                    if (settings.IsDebug)
                     {
                         IM.MessageDebug("Loaded Kaoses Smithing Model Override");
                     }
@@ -99,7 +99,7 @@ namespace KaosesTweaks.Objects
                 }
                 if (settings.PartyFoodConsumptionEnabled)
                 {
-                    if (settings.Debug)
+                    if (settings.IsDebug)
                     {
                         IM.MessageDebug("Loaded Kaoses party Food Consumption Model Override");
                     }
@@ -107,7 +107,7 @@ namespace KaosesTweaks.Objects
                 }
                 if (settings.DifficultyTweakEnabled)
                 {
-                    if (settings.Debug)
+                    if (settings.IsDebug)
                     {
                         IM.MessageDebug("Loaded BT Difficulty Model Override");
                     }
@@ -115,7 +115,7 @@ namespace KaosesTweaks.Objects
                 }
                 if (settings.SettlementMilitiaEliteSpawnRateBonusEnabled)
                 {
-                    if (settings.Debug)
+                    if (settings.IsDebug)
                     {
                         IM.MessageDebug("Loaded BT Settlement Militia Model Override");
                     }
@@ -142,7 +142,7 @@ namespace KaosesTweaks.Objects
                     }
                     else
                     {
-                        if (settings.Debug)
+                        if (settings.IsDebug)
                         {
                             IM.MessageDebug("Loaded BT Age Model Override");
                         }
@@ -152,7 +152,7 @@ namespace KaosesTweaks.Objects
                 }
                 if (settings.SiegeTweaksEnabled)
                 {
-                    if (settings.Debug)
+                    if (settings.IsDebug)
                     {
                         IM.MessageDebug("Loaded BT Siege Model Override");
                     }
@@ -160,7 +160,7 @@ namespace KaosesTweaks.Objects
                 }
                 if (settings.MaxWorkshopCountTweakEnabled || settings.WorkshopBuyingCostTweakEnabled || settings.WorkshopEffectivnessEnabled)
                 {
-                    if (settings.Debug)
+                    if (settings.IsDebug)
                     {
                         IM.MessageDebug("Loaded BT Workshop Model Override");
                     }
@@ -168,7 +168,7 @@ namespace KaosesTweaks.Objects
                 }
                 if (settings.TroopExperienceTweakEnabled || settings.ArenaHeroExperienceMultiplierEnabled || settings.TournamentHeroExperienceMultiplierEnabled)
                 {
-                    if (settings.Debug)
+                    if (settings.IsDebug)
                     {
                         IM.MessageDebug("Loaded BT ComabatXP Model Override");
                     }

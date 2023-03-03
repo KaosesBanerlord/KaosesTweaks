@@ -10,7 +10,7 @@ namespace KaosesTweaks.Objects.Items
         public RangedWeapons(ItemObject itemObject) :
             base(itemObject)
         {
-            if (_settings.ItemDebugMode && _settings.MCMRagedWeaponsModifiers)
+            if (_settings.IsItemDebugMode && _settings.MCMRagedWeaponsModifiers)
             {
                 IM.MessageDebug("RangedWeapons : ObjectsBase");
             }
@@ -19,7 +19,7 @@ namespace KaosesTweaks.Objects.Items
 
         protected void TweakValues()
         {
-            if (_settings.ItemDebugMode && _settings.MCMRagedWeaponsModifiers)
+            if (_settings.IsItemDebugMode && _settings.MCMRagedWeaponsModifiers)
             {
                 //IM.MessageDebug("String ID: " + _item.StringId.ToString() + "  Tier: " + _item.Tier.ToString() + "  IsCivilian: " + _item.IsCivilian.ToString() + "  ");
             }

@@ -84,7 +84,7 @@ namespace KaosesTweaks.Behaviors
         {
             if (CheckAreNearby(hero, hero.Spouse) && MBRandom.RandomFloat <= Campaign.Current.Models.PregnancyModel.GetDailyChanceOfPregnancyForHero(hero))
             {
-                if (Factory.Settings.PregnancyDebug)
+                if (Factory.Settings.IsPregnancyDebug)
                 {
                     IM.MessageDebug("KaosesPregnancyCampaignBehavior:  MBRandom.RandomFloat <=" + MBRandom.RandomFloat.ToString() + " Hero Chance: " + Campaign.Current.Models.PregnancyModel.GetDailyChanceOfPregnancyForHero(hero).ToString());
                 }

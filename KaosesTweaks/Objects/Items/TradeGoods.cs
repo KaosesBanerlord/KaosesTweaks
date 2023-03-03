@@ -11,7 +11,7 @@ namespace KaosesTweaks.Objects.Items
         public TradeGoods(ItemObject itemObject) :
             base(itemObject)
         {
-            if (_settings.ItemDebugMode && _settings.MCMTradeGoodsModifiers)
+            if (_settings.IsItemDebugMode && _settings.MCMTradeGoodsModifiers)
             {
                 IM.MessageDebug("TradeGoods : ObjectsBase");
             }
@@ -20,7 +20,7 @@ namespace KaosesTweaks.Objects.Items
 
         protected void TweakValues()
         {
-            if (_settings.ItemDebugMode && _settings.MCMTradeGoodsModifiers)
+            if (_settings.IsItemDebugMode && _settings.MCMTradeGoodsModifiers)
             {
                 //IM.MessageDebug("String ID: " + _item.StringId.ToString() + "  Tier: " + _item.Tier.ToString() + "  IsCivilian: " + _item.IsCivilian.ToString() + "  ");
             }

@@ -25,7 +25,7 @@ namespace KaosesTweaks.Patches
                     {
                         num = (float)Math.Ceiling(party.LeaderHero.GetSkillValue(DefaultSkills.Leadership) * settings.LeadershipPartySizeBonus * ((party.LeaderHero == Hero.MainHero) ? 1 : settings.PartySizeTweakAIFactor));
 
-                        if (Factory.Settings.PartySizeLimitsDebug)
+                        if (Factory.Settings.IsPartySizeLimitsDebug)
                         {
                             IM.MessageDebug("BT Leadership PartySizeBonus : " + num.ToString());
                         }
@@ -35,7 +35,7 @@ namespace KaosesTweaks.Patches
                     if (settings.StewardPartySizeBonusEnabled && party.LeaderHero == Hero.MainHero)
                     {
                         num = (int)Math.Ceiling(party.LeaderHero.GetSkillValue(DefaultSkills.Steward) * settings.StewardPartySizeBonus * ((party.LeaderHero == Hero.MainHero) ? 1 : settings.PartySizeTweakAIFactor));
-                        if (Factory.Settings.PartySizeLimitsDebug)
+                        if (Factory.Settings.IsPartySizeLimitsDebug)
                         {
                             IM.MessageDebug("BT Steward PartySizeBonus : " + num.ToString());
                         }
@@ -88,7 +88,7 @@ namespace KaosesTweaks.Patches
                         if (num2 == 0f && party.LeaderHero.Clan.Kingdom.Leader == Hero.MainHero) num2 = settings.KingdomBalanceStrengthCEKEnabled ? settings.Player_CEK_Boost : settings.PlayerBoost;
 
 
-                        if (Factory.Settings.PartySizeLimitsDebug)
+                        if (Factory.Settings.IsPartySizeLimitsDebug)
                         {
                             IM.MessageDebug("BT Balancing Tweak: " + num2.ToString());
                         }
@@ -101,7 +101,7 @@ namespace KaosesTweaks.Patches
                     float num = settings.PlayerCaravanPartySize;
                     float num2 = __result.ResultNumber;
                     float num3 = num - num2;
-                    if (Factory.Settings.PartySizeLimitsDebug)
+                    if (Factory.Settings.IsPartySizeLimitsDebug)
                     {
                         IM.MessageDebug("Caravan PartySize Tweak: " + num3.ToString());
                     }
@@ -136,7 +136,7 @@ namespace KaosesTweaks.Patches
                 if (Factory.Settings is { } settings && settings.PrisonerSizeTweakEnabled)
                 {
                     double num = (int)Math.Ceiling(__result.ResultNumber * settings.PrisonerSizeTweakPercent);
-                    if (Factory.Settings.PrisonersDebug)
+                    if (Factory.Settings.IsPrisonersDebug)
                     {
                         IM.MessageDebug("Prisoner SizeTweak: " + num.ToString() + "   Multiplier: " + settings.PrisonerSizeTweakPercent.ToString());
                         IM.MessageDebug("Prisoner __result: " + __result.ResultNumber.ToString() + "   num: " + num.ToString());
@@ -145,7 +145,7 @@ namespace KaosesTweaks.Patches
                     if ((Factory.Settings.PrisonerSizeTweakAI && party.LeaderHero != Hero.MainHero) || party.LeaderHero == Hero.MainHero)
                     {
                         __result.Add((float)num, new TextObject("BT Prisoner Limit Bonus"));
-                        if (Factory.Settings.PrisonersDebug)
+                        if (Factory.Settings.IsPrisonersDebug)
                         {
                             IM.MessageDebug("Prisoner result Final: " + __result.ResultNumber.ToString());
                         }

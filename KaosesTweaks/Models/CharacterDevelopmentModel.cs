@@ -50,7 +50,7 @@ namespace KaosesTweaks.Models
             int attributeValue = hero.GetAttributeValue(skill.CharacterAttribute);
             int focus = hero.HeroDeveloper.GetFocus(skill);
             int skillValue = hero.GetSkillValue(skill);
-            if (Factory.Settings.LearningDebug)
+            if (Factory.Settings.IsLearningDebug)
             {
                 IM.MessageDebug("KT CalculateLearningRate: " + skill.CharacterAttribute.Name.ToString());
             }
@@ -67,7 +67,7 @@ namespace KaosesTweaks.Models
             if (Factory.Settings.LearningRateEnabled)
             {
                 learningMultiplier = Factory.Settings.LearningRateMultiplier;
-                if (Factory.Settings.LearningDebug)
+                if (Factory.Settings.IsLearningDebug)
                 {
                     IM.MessageDebug("KT attributeName: " + attributeName.ToString());
                 }
@@ -82,7 +82,7 @@ namespace KaosesTweaks.Models
             if (skillValue > num)
             {
                 num2 = skillValue - num;
-                if (Factory.Settings.LearningDebug)
+                if (Factory.Settings.IsLearningDebug)
                 {
                     IM.MessageDebug(attrText.ToString() + " _overLimitText REDUCED VALUE: " + num2.ToString());
                 }
